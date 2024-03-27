@@ -7,13 +7,40 @@
     height: 100vh !important;
     justify-content: center ;
     align-items: center ;
-    background-image:   linear-gradient(to left ,#5F63F2,#0dc9c2) !important;
+    background-image: linear-gradient(to left ,#2063CE,#25CEAE)!important;
     padding-top: 40px;
     padding-bottom: 40px !important;
-    
+    background-size: cover;  
+    background-position: center;
+    position: relative !important;
+    z-index: -2;
     /*background-image: url('../../assets/img/background.jpg');*/
     /*background-size: cover;*/
     /*background-repeat: no-repeat;*/
+}
+
+
+.overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/CRMAssets/waves_background.png");
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Set a lower z-index for the pseudo-element */
+}
+.container{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2 !important;
+    margin-top: -100vh;
 }
 .loginFlex1 {
     background-image: url('../../assets/img/background.jpg');
@@ -35,9 +62,10 @@
 
 .loginFlex2 {
     background-color: #fff;
-    border-radius: 10px !important;
+    border-radius: 18px;
     display: flex;
-    width: 600px !important;
+    padding-bottom: 15px !important;
+    width: 50vw !important;
     flex-direction: column;
     height: fit-content  !important;
 }
@@ -92,7 +120,6 @@
 
 .forgotBtn {
     color: #5F63F2 !important;
-    text-decoration: underline !important;
     font-size: 0.7rem;
     font-weight: 600;
 }
@@ -161,8 +188,8 @@
 }
 
 .signContainer{
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .login {
@@ -179,19 +206,11 @@
     transition: all .5s ease-out;
 }
 
-.login:hover{
-    background-image:   linear-gradient(to left , #0dc9c2,#072ead) !important;
-    color:white !important;
-    transition: 0.2s;
-    /*transition-timing-function:linear;*/
-    border:  1px solid white !important;
-    background-position: left bottom;
-}
-
 .logoImageData{
     display: flex;
     margin-top: 30px;
     justify-content: center !important;
+    margin-bottom: 20px !important;
 }
 
 .textLineMaker{
@@ -213,3 +232,4 @@
     height: 40px !important;
     margin-bottom: 20px !important;
 }
+

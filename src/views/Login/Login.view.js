@@ -23,6 +23,8 @@ import { updateTitle } from "../../libs/general.utils";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 import googleImageContainer from "../../assets/CRMAssets/google_neutral.png";
+import { IconButton } from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 const validate = (values) => {
   const errors = {};
@@ -89,6 +91,7 @@ class LoginView extends Component {
     this.state = {
       a: false,
       is_checked: false,
+      showPassword: false,
     };
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleForgotPassword = this._handleForgotPassword.bind(this);
@@ -117,6 +120,12 @@ class LoginView extends Component {
     });
   }
 
+  _togglePasswordVisibility = () => {
+    this.setState((prevState) => ({
+      showPassword: !prevState.showPassword,
+    }));
+  };
+
   _handleChange() {
     this.setState({
       is_checked: !this.state.is_checked,
@@ -129,9 +138,13 @@ class LoginView extends Component {
 
   render() {
     const { handleSubmit, classes } = this.props;
+    const { showPassword } = this?.state;
+
     return (
       <div className={"login"}>
-        <div className={styles.mainLoginView}>
+        <div className={styles.overlay}></div>
+        <div className={styles.mainLoginView}></div>
+        <div className={styles.container}>
           <div className={styles.loginFlex2}>
             <div className={styles.logoImageData}>
               <img src={logoImage} alt="text_data" />
@@ -140,10 +153,10 @@ class LoginView extends Component {
               <span className={styles.headingText}>Welcome to Ezupp! </span>
               <br />
               <span style={{ color: "#636578" }}>
-                Enter the details below to login to your account
+                Enter the details below to login to your account{" "}
               </span>
-              <br/>
-              <br/>
+              <br />
+              <br />
               <form onSubmit={handleSubmit(this._handleSubmit)}>
                 {/*<div className={styles.loginSignupText}>Login</div>*/}
                 <div>
@@ -151,19 +164,31 @@ class LoginView extends Component {
                     <Field
                       fullWidth={true}
                       name="email"
-                      component={renderTextField}
+                      component={renderOutlinedTextField}
                       label="E-Mail"
                     />
                   </div>
                   <br />
                   <div>
-                    <Field
-                      // type={'password'}
-                      fullWidth={true}
-                      name="password"
-                      component={renderPasswordField}
-                      label="Password"
-                    />
+                    <div style={{ display: "flex" }}>
+                      <Field
+                        type={showPassword ? "text" : "password"}
+                        fullWidth={true}
+                        name="password"
+                        component={renderOutlinedTextField}
+                        label="Password*"
+                        style={{
+                          paddingRight: "10px !important",
+                          width: "100%",
+                        }}
+                      />
+                      <IconButton
+                        style={{ marginLeft: "-30px", padding: "0px" }}
+                        onClick={this._togglePasswordVisibility}
+                      >
+                        {!showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </div>
                   </div>
 
                   <div className={styles.logFlex}>
@@ -191,7 +216,7 @@ class LoginView extends Component {
 
                   <div style={{ marginTop: "7px" }}>
                     <ButtonBase type="submit" className={styles.login}>
-                      Sign In
+                      LOGIN
                     </ButtonBase>
                     {/*<Button variant={'contained'}  type="submit" className={classes.colorButton}>*/}
                     {/*    Sign In*/}
@@ -210,8 +235,6 @@ class LoginView extends Component {
                 <img src={googleImageContainer} alt="google-image" />
               </div>
             </div>
-
-           
           </div>
           <DashboardSnackbar />
         </div>

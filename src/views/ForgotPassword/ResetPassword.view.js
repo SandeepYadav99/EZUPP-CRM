@@ -5,7 +5,10 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import styles from "./Forgot.module.css";
-import { renderTextField } from "../../libs/redux-material.utils";
+import {
+  renderTextField,
+  renderOutlinedTextField,
+} from "../../libs/redux-material.utils";
 import {
   ButtonBase,
   CircularProgress,
@@ -191,7 +194,13 @@ class ResetPasswordView extends Component {
     const { showPassword, showConfirmPassword } = this.state;
     return (
       <form onSubmit={handleSubmit(this._handleSubmit)}>
-        <div style={{ display: "flex", justifyContent: "space-between",alignItems:"flex-start" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+          }}
+        >
           <div></div>
           <div className={styles.logoImageData}>
             <img src={logoImage} alt="text_data" />
@@ -200,56 +209,58 @@ class ResetPasswordView extends Component {
             <Close fontSize="small" />
           </ButtonBase>
         </div>
-        <div
-          className={styles.loginSignupText}
-          style={{ fontWeight: "700", fontSize: "24px" }}
-        >
-          Change Password
-        </div>
-        <p className={styles.bottomLine}>
-          Enter your new password to reset the password.
-        </p>
-        <div>
-          <br />
-          <div style={{ display: "flex" }}>
-            <Field
-              type={showPassword ? "text" : "password"}
-              fullWidth={true}
-              name="password"
-              component={renderTextField}
-              label="Password*"
-            />
-            <IconButton
-              style={{ marginLeft: "-30px" }}
-              onClick={this._togglePasswordVisibility}
-            >
-              {!showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </div>
-          <br />
-          <div style={{ display: "flex" }}>
-            <Field
-              type={showConfirmPassword ? "text" : "password"}
-              fullWidth={true}
-              name="confirm_password"
-              component={renderTextField}
-              label="Confirm Password*"
-            />
-            <IconButton
-              style={{ marginLeft: "-30px" }}
-              onClick={this._toggleConfirmPasswordVisibility}
-            >
-              {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </div>
-          <br />
-          <Button
-            // disabled={this.state.is_calling || this.state.success}
-            variant={"contained"}
-            color={"primary"}
-            type="submit"
+        <div className={styles.signContainer2}>
+          <div
+            className={styles.headingTextBig}
+            style={{ fontWeight: "700", fontSize: "24px" }}
           >
-            {/* {this.state.is_calling ? (
+            Reset Password{" "}
+          </div>
+          <p className={styles.bottomLine}>
+            Your new password must be different from previously used passwords{" "}
+          </p>
+          <div>
+            <br />
+            <div style={{ display: "flex" }}>
+              <Field
+                type={showPassword ? "text" : "password"}
+                fullWidth={true}
+                name="password"
+                component={renderOutlinedTextField}
+                label="Password*"
+              />
+              <IconButton
+                style={{ marginLeft: "-30px", padding: "0px" }}
+                onClick={this._togglePasswordVisibility}
+              >
+                {!showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </div>
+            <br />
+            <div style={{ display: "flex" }}>
+              <Field
+                type={showConfirmPassword ? "text" : "password"}
+                fullWidth={true}
+                name="confirm_password"
+                component={renderOutlinedTextField}
+                label="Confirm Password*"
+              />
+              <IconButton
+                style={{ marginLeft: "-30px", padding: "0px" }}
+                onClick={this._toggleConfirmPasswordVisibility}
+              >
+                {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </div>
+            <br />
+            <Button
+              // disabled={this.state.is_calling || this.state.success}
+              variant={"contained"}
+              color={"primary"}
+              type="submit"
+              className={styles.login}
+            >
+              {/* {this.state.is_calling ? (
               <div style={{ padding: "5px 20px", display: "flex" }}>
                 <CircularProgress size={"18px"} color={"primary"} />
               </div>
@@ -258,8 +269,9 @@ class ResetPasswordView extends Component {
             ) : (
               "Change Password"
             )} */}
-            Change Password
-          </Button>
+              SET NEW PASSWORD{" "}
+            </Button>
+          </div>
         </div>
       </form>
     );
@@ -268,24 +280,30 @@ class ResetPasswordView extends Component {
   render() {
     const { handleSubmit, classes } = this.props;
     return (
-      <div className={styles.mainLoginView}>
-        {/*<div className={styles.loginFlex1}>*/}
-        {/*    <img src={require('../../assets/img/logo_new.png')}/>*/}
+      <>
+        <div className={styles.overlay}></div>
+        <div className={styles.mainLoginView}>
+          {/*<div className={styles.loginFlex1}>*/}
+          {/*    <img src={require('../../assets/img/logo_new.png')}/>*/}
 
-        {/*        /!*<div style={{marginTop:'25px',fontStyle:'italic'}}>*!/*/}
-        {/*        /!*Finish your registration in 3-simple steps on our intutive host platform and go live*!/*/}
-        {/*        /!*</div>*!/*/}
-        {/*</div>*/}
-        <Dialog
+          {/*        /!*<div style={{marginTop:'25px',fontStyle:'italic'}}>*!/*/}
+          {/*        /!*Finish your registration in 3-simple steps on our intutive host platform and go live*!/*/}
+          {/*        /!*</div>*!/*/}
+          {/*</div>*/}
+          {/* <Dialog
           open={this.props.open}
           onClose={this._handleCloseDialog}
           TransitionComponent={Transition}
           fullWidth={true}
-        >
-        <div className={styles.loginFlex2}>{this._renderForm()}</div>
-        <DashboardSnackbar />
-        </Dialog>
-      </div>
+        > */}
+
+          {/* </Dialog> */}
+        </div>
+        <div className={styles.container}>
+          <div className={styles.loginFlex2}>{this._renderForm()}</div>
+          <DashboardSnackbar />
+        </div>
+      </>
     );
   }
 }

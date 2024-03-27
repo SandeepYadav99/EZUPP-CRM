@@ -7,7 +7,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import classnames from "classnames";
 import styles from "./Forgot.module.css";
-import { renderTextField } from "../../libs/redux-material.utils";
+import {
+  renderTextField,
+  renderOutlinedTextField,
+} from "../../libs/redux-material.utils";
 import {
   CircularProgress,
   Dialog,
@@ -24,6 +27,7 @@ import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 
 import EventEmitter from "../../libs/Events.utils";
 import { updateTitle } from "../../libs/general.utils";
+import backArrow from "../../assets/CRMAssets/ic_back.png";
 
 const validate = (values) => {
   const errors = {};
@@ -190,11 +194,11 @@ class ForgotPasswordView extends Component {
               >
                 {/*<ArrowBack onClick={this._handleBack}>*/}
                 {/*</ArrowBack>*/}
-                <div className={styles.title}>Forgot Password</div>
+                <div className={styles.headingTextBig}>Forgot Password</div>
               </div>
               <p className={styles.bottomLine} style={{ color: "grey" }}>
-                Enter your user account's verified email address and we will
-                send you a password reset link.
+                Enter your email and we'll send you instructions to reset your
+                password
               </p>
               <div>
                 <br />
@@ -202,7 +206,7 @@ class ForgotPasswordView extends Component {
                   <Field
                     fullWidth={true}
                     name="email"
-                    component={renderTextField}
+                    component={renderOutlinedTextField}
                     label="E-Mail*"
                   />
                 </div>
@@ -227,7 +231,7 @@ class ForgotPasswordView extends Component {
                         <CircularProgress size={"18px"} color={"primary"} />
                       </div>
                     ) : (
-                      "Send Password"
+                      "SEND REST LINK "
                     )}
                   </ButtonBase>
                   <div>
@@ -236,6 +240,7 @@ class ForgotPasswordView extends Component {
                         onClick={this._handleBack}
                         className={styles.back}
                       >
+                        <img src={backArrow} alt="backtext" />
                         Back To Login
                       </ButtonBase>
                     </span>
@@ -253,13 +258,20 @@ class ForgotPasswordView extends Component {
   render() {
     const { handleSubmit, classes } = this.props;
     return (
-      <div className={styles.mainLoginView}>
-        {/* <div className={styles.loginFlex1}>
+      <>
+        <div className={styles.overlay}></div>
+        <div className={styles.mainLoginView}>
+          {/* <div className={styles.loginFlex1}>
           <img src={require("../../assets/img/logo.png")} />
         </div> */}
-        <div className={styles.loginFlex2}>{this._renderForm()}</div>
-        <DashboardSnackbar />
-      </div>
+          {/* <div className={styles.loginFlex2}>{this._renderForm()}</div>
+        <DashboardSnackbar /> */}
+        </div>
+        <div className={styles.container}>
+          <div className={styles.loginFlex2}>{this._renderForm()}</div>
+          <DashboardSnackbar />
+        </div>
+      </>
     );
   }
 }
