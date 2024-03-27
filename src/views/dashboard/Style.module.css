@@ -1,0 +1,44 @@
+.title {
+    font-size: 26px;
+    color: #000000;
+}
+.quoteRequest{
+    background-color: #FFFFFF;
+    /* margin:4px; */
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.barChart{
+    background-color: #FFFFFF;
+    /* overflow: hidden; */
+    border-radius: 8px;
+    /* margin-right: 20px; */
+   text-align: justify;
+}
+.totalQuoteTitle{
+    font-size: 14px;
+}
+.totalQuote{
+    font-size: 60px;
+    color: #000000;
+    /* box-shadow: 0px 20px 1px #00000029; */
+}
+.container{
+    display: flex;
+}
+
+@media (max-width: 1296px) {
+    .container {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}
+
+.total{
+    font-family: normal normal medium 14px/19px Roboto;
+    font-size: 14px;
+    color: #000000;
+    opacity: 1;
+    font-weight: bold;
+}
