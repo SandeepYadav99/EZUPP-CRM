@@ -152,7 +152,7 @@ class LoginView extends Component {
             <div className={styles.signContainer}>
               <span className={styles.headingText}>Welcome to Ezupp! </span>
               <br />
-              <span style={{ color: "#636578" }}>
+              <span style={{ color: "#636578",fontSize:"14px" }}>
                 Enter the details below to login to your account{" "}
               </span>
               <br />

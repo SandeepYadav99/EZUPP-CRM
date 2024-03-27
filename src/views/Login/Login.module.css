@@ -107,9 +107,9 @@
 
 .headingText {
     margin: 0px;
-    /*font-weight: 600;*/
+    font-weight: 600;
     color: #636578;
-    font-family: CircularStd-Bold;
+    font-family: Arial;
     font-size: 24px !important;
 }
 
