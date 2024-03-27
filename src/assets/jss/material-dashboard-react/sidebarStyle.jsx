@@ -74,6 +74,7 @@ const sidebarStyle = theme => ({
     	easing: theme.transitions.easing.sharp,
     	duration: theme.transitions.duration.enteringScreen,
     }),
+    zIndex:1 ,
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
@@ -83,8 +84,10 @@ const sidebarStyle = theme => ({
     boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
     overflowX: 'hidden',
     width: '50px',
+    zIndex:1,
     [theme.breakpoints.up('sm')]: {
       width: '50px',
+      zIndex:1,
     },
   },
   logoLink: {
