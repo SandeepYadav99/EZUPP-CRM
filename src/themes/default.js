@@ -1,13 +1,13 @@
 import tinycolor from "tinycolor2";
 
-const primary = "#536DFE";
+const primary = "#666cff";
 const secondary = "#072ead";
 const bgcolors = '#ffffff';
 const textColor = "#000000";
 const warning = "#FFC260";
 const success = "#3CD4A0";
 const info = "#9013FE";
-const button = "#2196F3";
+const button = "#666cff";
 const tableCell = 'rgb(39, 43, 65)'
 
 const lightenRate = 7.5;
