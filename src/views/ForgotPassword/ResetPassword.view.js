@@ -290,17 +290,16 @@ class ResetPasswordView extends Component {
           {/*        /!*Finish your registration in 3-simple steps on our intutive host platform and go live*!/*/}
           {/*        /!*</div>*!/*/}
           {/*</div>*/}
-          {/* <Dialog
-          open={this.props.open}
-          onClose={this._handleCloseDialog}
-          TransitionComponent={Transition}
-          fullWidth={true}
-        > */}
-
-          {/* </Dialog> */}
         </div>
         <div className={styles.container}>
-          <div className={styles.loginFlex2}>{this._renderForm()}</div>
+          <Dialog
+            open={this.props.open}
+            onClose={this._handleCloseDialog}
+            TransitionComponent={Transition}
+            fullWidth={true}
+          >
+            <div className={styles.loginFlex2}>{this._renderForm()}</div>
+          </Dialog>
           <DashboardSnackbar />
         </div>
       </>
