@@ -179,7 +179,6 @@ class ForgotPasswordView extends Component {
     } else {
       return (
         <>
-          <div></div>
           <div className={styles.signContainer}>
             <form onSubmit={handleSubmit(this._handleSubmit)}>
               <div className={styles.logoImageData}>
@@ -221,6 +220,7 @@ class ForgotPasswordView extends Component {
                     alignItems: "center",
                     justifyContent: "space-between",
                   }}
+                  className={styles.mobileRender}
                 >
                   <ButtonBase
                     disabled={this.state.is_calling}

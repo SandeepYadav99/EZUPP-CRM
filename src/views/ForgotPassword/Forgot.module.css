@@ -214,16 +214,23 @@
 }
 
 @media only screen and (max-width:1024px) {
+ 
   .loginFlex2 {
     background-color: #fff;
+    /* border-radius: 18px; */
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    box-sizing: border-box;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
+    padding-bottom: 15px !important;
     width: 100vw !important;
-    border-radius: 12px !important;
+    flex-direction: column;
+    height: 100%  !important;
+    border-radius: 0px !important;
+}
+}
+
+
+@media only screen and (max-width:769px) {
+  .mobileRender{
+    display: flex;
+    flex-direction: column !important;
   }
 }
