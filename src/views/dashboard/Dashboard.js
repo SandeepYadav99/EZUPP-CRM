@@ -13,6 +13,9 @@ import { actionGetDashboard } from "../../actions/Dashboard.action";
 import DashboardBarChart from "./components/BigStat/DashboardBarChart";
 import styles from "./Style.module.css";
 import TopRow from "./components/TopRow/TopRow.component";
+import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
+import EventCard from "./components/EmployeeTab/EventCard.component";
+import dataValue from "./components/EmployeeTab/data.json";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -26,6 +29,13 @@ const Dashboard = () => {
     <React.Fragment>
       <div className={styles.container}>
         <TopRow/>
+        <div className={styles.employeeTab}>
+          <div className={styles.meetingSchedule}>
+            <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span>
+            <EventCard data={dataValue?.birthdays}/>
+          </div>
+          <EmployeeTab/>
+        </div>
       </div>
     </React.Fragment>
   );
