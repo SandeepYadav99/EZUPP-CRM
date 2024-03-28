@@ -148,7 +148,7 @@ class LoginView extends Component {
         <div className={styles.container}>
           <div className={styles.loginFlex2}>
             <div className={styles.logoImageData}>
-              <img src={logoImage} alt="text_data" />
+              <img src={logoImage} alt="text_data" style={{width:"250px"}} />
             </div>
             <div className={styles.signContainer}>
               <span className={styles.headingText}>Welcome to Ezupp! </span>
