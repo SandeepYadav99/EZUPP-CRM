@@ -51,7 +51,8 @@ const card = {
 const defaultFont = {
   fontFamily: "Arial",
   fontWeight: "300",
-  lineHeight: "1.5em"
+  lineHeight: "1.5em",
+  color:"#636578",
 };
 
 const primaryColor = "#9c27b0";
