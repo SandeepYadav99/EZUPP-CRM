@@ -1,0 +1,22 @@
+{
+    "birthdays":[
+        {
+            "department":"aaa",
+            "designation":"aaa",
+            "gender":"aaa",
+            "location":"aaa"
+        },
+        {
+            "department":"aaa",
+            "designation":"aaa",
+            "gender":"aaa",
+            "location":"aaa"
+        },
+        {
+            "department":"aaa",
+            "designation":"aaa",
+            "gender":"aaa",
+            "location":"aaa"
+        }
+    ]
+}

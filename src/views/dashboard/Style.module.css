@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  gap:20px;
 }
 .div1 {
   display: flex;
@@ -87,6 +88,22 @@
     flex-direction: column !important;
 }
 
+.employeeTab{
+    display: flex;
+    gap:10px;
+    justify-content: space-between;
+}
+.meetingSchedule{
+    width:40%;
+    background-color:#FFFFFF;
+    height: 370px;
+    box-shadow: 0px 0px 8px #00000029;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
 @media only screen and (max-width:1296px) {
     .iconCont{
         display: flex;
@@ -134,5 +151,21 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+}
+.employeeTab{
+    display: flex;
+    gap:10px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.meetingSchedule{
+    width:100%;
+    background-color:#FFFFFF;
+    height: 370px;
+    box-shadow: 0px 0px 8px #00000029;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 }
