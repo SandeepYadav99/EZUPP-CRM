@@ -15,6 +15,7 @@ import {
   Dialog,
   IconButton,
 } from "@material-ui/core";
+import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
 import { Button, withStyles } from "@material-ui/core";
 import { serviceResetProfilePassword } from "../../services/index.services";
 import DashboardSnackbar from "../../components/Snackbar.component";
@@ -269,7 +270,12 @@ class ResetPasswordView extends Component {
             ) : (
               "Change Password"
             )} */}
-              SET NEW PASSWORD{" "}
+              <div
+                style={{ display: "flex", gap: "5px", alignItems: "center" }}
+              >
+                <span>SET NEW PASSWORD</span>
+                <img src={arrowIcon} alt="arrow" style={{ height: "15px" }} />
+              </div>
             </Button>
           </div>
         </div>
@@ -298,7 +304,7 @@ class ResetPasswordView extends Component {
             TransitionComponent={Transition}
             fullWidth={true}
           >
-            <div className={styles.loginFlex2}>{this._renderForm()}</div>
+          <div className={styles.loginFlex2}>{this._renderForm()}</div>
           </Dialog>
           <DashboardSnackbar />
         </div>

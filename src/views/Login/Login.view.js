@@ -25,6 +25,7 @@ import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 import googleImageContainer from "../../assets/CRMAssets/google_neutral.png";
 import { IconButton } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
 
 const validate = (values) => {
   const errors = {};
@@ -216,7 +217,7 @@ class LoginView extends Component {
 
                   <div style={{ marginTop: "7px" }}>
                     <ButtonBase type="submit" className={styles.login}>
-                      LOGIN
+                     <span>LOGIN</span>   <img src={arrowIcon} alt="arrow"/>
                     </ButtonBase>
                     {/*<Button variant={'contained'}  type="submit" className={classes.colorButton}>*/}
                     {/*    Sign In*/}

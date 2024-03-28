@@ -28,6 +28,8 @@ import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 import EventEmitter from "../../libs/Events.utils";
 import { updateTitle } from "../../libs/general.utils";
 import backArrow from "../../assets/CRMAssets/ic_back.png";
+import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
+
 
 const validate = (values) => {
   const errors = {};
@@ -231,7 +233,12 @@ class ForgotPasswordView extends Component {
                         <CircularProgress size={"18px"} color={"primary"} />
                       </div>
                     ) : (
-                      "SEND RESET LINK "
+                      <div style={{display:"flex",gap:"5px",alignItems:"center"}}>
+                      <span>
+                        SEND RESET LINK
+                      </span> 
+                      <img src={arrowIcon} alt="arrow" style={{height:"15px"}}/>
+                      </div>
                     )}
                   </ButtonBase>
                   <div>

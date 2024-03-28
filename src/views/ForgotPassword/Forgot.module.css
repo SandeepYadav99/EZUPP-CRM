@@ -192,17 +192,15 @@
 
 
 .login {
-  padding: 10px 50px 10px 50px!important;
+  padding: 10px 20px 10px 20px!important;
   border-radius: 7px !important;
-  /*background-image:  linear-gradient(to right, #0f49a0);*/
-  /*font-family: Poppins-Medium;*/
   color: white !important;
   background: #2063ce !important;
-  /*text-transform: uppercase;*/
   margin-top: 15px !important;
   background-size: 200% 100%;
   background-position: right bottom;
   transition: all 0.5s ease-out;
+  width: 240px;
 }
 
 .title {
