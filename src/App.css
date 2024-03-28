@@ -6,17 +6,17 @@ body{
 
 @font-face {
     font-family: 'Arial';
-    src: url("./assets/fonts/CircularStd-Bold.otf");
+    src: url("./assets/fonts/arial.ttf");
 }
 
 @font-face {
     font-family: 'Arial';
-    src: url("./assets/fonts/CircularStd-Book.otf");
+    src: url("./assets/fonts/arial.ttf");
 }
 
 @font-face {
     font-family: 'Arial';
-    src: url("./assets/fonts/CircularStd-Medium.otf");
+    src: url("./assets/fonts/arial.ttf");
 }
 
 
