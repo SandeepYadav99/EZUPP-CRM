@@ -1,44 +1,138 @@
-.title {
-    font-size: 26px;
-    color: #000000;
+.container {
+  display: flex;
+  flex-direction: column;
 }
-.quoteRequest{
-    background-color: #FFFFFF;
-    /* margin:4px; */
-    padding: 12px;
-    border-radius: 8px;
+.div1 {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px !important;
 }
 
-.barChart{
-    background-color: #FFFFFF;
-    /* overflow: hidden; */
-    border-radius: 8px;
-    /* margin-right: 20px; */
-   text-align: justify;
+#card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 8px #00000029;
 }
-.totalQuoteTitle{
-    font-size: 14px;
+
+.congratulation {
+  width: 30%;
+  height: 214px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: space-between;
 }
-.totalQuote{
-    font-size: 60px;
-    color: #000000;
-    /* box-shadow: 0px 20px 1px #00000029; */
+.sales {
+  width: 50%;
+  min-height: 214px !important;
+  padding: 15px;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: space-between;
 }
-.container{
+.quick {
+  width: 20%;
+  height: 214px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: space-evenly;
+}
+.login {
+  padding: 10px 10px 10px 10px !important;
+  border-radius: 7px !important;
+  color: white !important;
+  background: #2063ce !important;
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+  display: flex !important;
+  width: 120px;
+}
+.logingreen {
+  padding: 10px 10px 10px 10px !important;
+  border-radius: 7px !important;
+  color: white !important;
+  background: #25ceae !important;
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+  display: flex !important;
+  width: 120px;
+}
+
+.newCustomer {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between !important;
+}
+
+.iconCont{
     display: flex;
+    width: 30%;
+    height: 70px;
+    align-items: center;
+    gap: 10px;
 }
 
-@media (max-width: 1296px) {
-    .container {
-        flex-wrap: wrap;
-        width: 100%;
+.coloredDiv1{
+    width: 50px;
+    height: 50px;
+    background-color: #25ceae;
+    border-radius: 10px;
+}
+.customerDiv2{
+    display: flex;
+    flex-direction: column !important;
+}
+
+@media only screen and (max-width:1296px) {
+    .iconCont{
+        display: flex;
+        width: 30%;
+        height: 100px;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
     }
+    
 }
 
-.total{
-    font-family: normal normal medium 14px/19px Roboto;
-    font-size: 14px;
-    color: #000000;
-    opacity: 1;
-    font-weight: bold;
+@media only screen and (max-width: 1024px) {
+  .div1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px !important;
+    padding: 15px;
+  }
+  .congratulation {
+    width: 100%;
+    height: 214px;
+    gap: 10px !important;
+    padding: 15px;
+  }
+  .sales {
+    width: 100%;
+  }
+  .quick {
+    width: 100%;
+    height: 214px;
+  }
+  .newCustomer {
+    display: flex;
+    gap: 10px;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+  .iconCont{
+    display: flex;
+    width: 30%;
+    height: 100px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
 }

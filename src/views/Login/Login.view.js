@@ -126,7 +126,6 @@ class LoginView extends Component {
       showPassword: !prevState.showPassword,
     }));
   };
-
   _handleChange() {
     this.setState({
       is_checked: !this.state.is_checked,
