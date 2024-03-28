@@ -214,3 +214,18 @@
   margin-bottom: 30px;
   justify-content: center !important;
 }
+
+@media only screen and (max-width:1024px) {
+  .loginFlex2 {
+    background-color: #fff;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100vw !important;
+    border-radius: 12px !important;
+  }
+}

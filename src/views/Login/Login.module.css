@@ -233,3 +233,14 @@
     margin-bottom: 20px !important;
 }
 
+@media only screen  and (max-width:1024px) {
+    .loginFlex2 {
+        background-color: #fff;
+        border-radius: 18px;
+        display: flex;
+        padding-bottom: 15px !important;
+        width: 100vw !important;
+        flex-direction: column;
+        height: fit-content  !important;
+    }
+}
