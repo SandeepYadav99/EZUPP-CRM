@@ -49,7 +49,7 @@ const card = {
 };
 
 const defaultFont = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontFamily: "Arial",
   fontWeight: "300",
   lineHeight: "1.5em"
 };
