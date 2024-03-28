@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Grid, Typography, Card, CardContent } from "@material-ui/core";
+import { Grid, Typography, Card, CardContent, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { actionGetDashboard } from "../../actions/Dashboard.action";
 import DashboardBarChart from "./components/BigStat/DashboardBarChart";
-import style from "./Style.module.css";
+import styles from "./Style.module.css";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -15,8 +15,8 @@ const Dashboard = () => {
 
   return (
     <React.Fragment>
-      <div className={style.container}>
-        <Grid container spacing={1} className={style.gridItem}>
+      <div className={styles.container}>
+        {/* <Grid container spacing={1} className={style.gridItem}>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <Card>
               <CardContent
@@ -102,7 +102,13 @@ const Dashboard = () => {
               );
             })}
           </div>
-        </Grid>
+        </Grid> */}
+        <div className={styles.div1}>
+          <Paper className={styles.congratulation}>1</Paper>
+          <Paper className={styles.sales}>2</Paper>
+          <Paper className={styles.quick}>3</Paper>
+        </div>
+        <div></div>
       </div>
     </React.Fragment>
   );
