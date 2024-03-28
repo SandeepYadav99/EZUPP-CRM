@@ -16,7 +16,7 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className={style.container}>
-        <Grid container spacing={1} className={style.gridItem}>
+        {/* <Grid container spacing={1} className={style.gridItem}>
           <Grid item lg={6} md={12} sm={12} xs={12}>
             <Card>
               <CardContent
@@ -102,7 +102,7 @@ const Dashboard = () => {
               );
             })}
           </div>
-        </Grid>
+        </Grid> */}
       </div>
     </React.Fragment>
   );
