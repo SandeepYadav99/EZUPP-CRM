@@ -182,7 +182,7 @@ class ForgotPasswordView extends Component {
           <div className={styles.signContainer}>
             <form onSubmit={handleSubmit(this._handleSubmit)}>
               <div className={styles.logoImageData}>
-                <img src={logoImage} alt="text_data" />
+                <img src={logoImage} alt="text_data" style={{width:"250px"}}/>
               </div>
               <div
                 className={styles.loginSignupText}

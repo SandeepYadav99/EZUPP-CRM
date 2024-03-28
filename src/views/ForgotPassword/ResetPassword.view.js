@@ -204,7 +204,7 @@ class ResetPasswordView extends Component {
         >
           <div></div>
           <div className={styles.logoImageData}>
-            <img src={logoImage} alt="text_data" />
+            <img src={logoImage} alt="text_data" style={{width:"250px"}}/>
           </div>
           <ButtonBase onClick={this._handleCloseDialog}>
             <Close fontSize="small" />
