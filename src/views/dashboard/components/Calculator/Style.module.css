@@ -10,8 +10,8 @@
     margin: 5px !important ;
     height: 70px;
     width: 191px;
-    background-color: hwb(206 64% 7%) !important;
-    color: #FFFFFF !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    color: rgba(255, 255, 255, 1)  !important;
     font-size: 18px !important;
     font-weight: bold;
   }
@@ -24,21 +24,21 @@
 font-size: 18px !important;
 font-weight: bold;
   }
-  .button{
+.button{
     margin: 5px !important;
     width: 91px;
-height: 70px;
-background-color: hwb(206 64% 7%) !important;
-color: #FFFFFF !important;
-font-size: 18px !important;
-font-weight: bold;
-
-  }
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    color: rgba(255, 255, 255, 1)  !important;
+    font-size: 18px !important;
+    font-weight: bold;
+}
   .calculator {
     padding: 20px;
     border-radius: 10px;
     width: 448px;
     height: 510px;
+    left: 390px;
   }
   
   /* form input {

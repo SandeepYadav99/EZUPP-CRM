@@ -31,7 +31,7 @@ const Calculator = () => {
       <Container>
         <div className={styles.calculator} style={{background: 'linear-gradient(to top left, #2063CE, #25CEAE)'}}>
   <div>
-  <div style={{ fontSize: '52px', color: 'white', textAlign: 'right', fontWeight: 'bold'}}>{value || '0'}</div>
+  <div style={{ fontSize: '52px', color: 'white', textAlign: 'right', fontWeight: 'bold', marginRight: '10px'}}>{value || '0'}</div>
     {/* <TextField
       value={value}
       InputProps={{
