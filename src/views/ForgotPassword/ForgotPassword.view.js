@@ -195,7 +195,7 @@ class ForgotPasswordView extends Component {
               >
                 {/*<ArrowBack onClick={this._handleBack}>*/}
                 {/*</ArrowBack>*/}
-                <div className={styles.headingTextBig}>Forgot Password</div>
+                <div className={styles.headingTextBig}>Forgot Password ?</div>
               </div>
               <p className={styles.bottomLine} style={{ color: "grey",fontSize:"14px" }}>
                 Enter your email and we'll send you instructions to reset your
