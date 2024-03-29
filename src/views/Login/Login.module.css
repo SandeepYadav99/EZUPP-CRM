@@ -65,7 +65,7 @@
     border-radius: 18px;
     display: flex;
     padding-bottom: 15px !important;
-    width: 50vw !important;
+    width: 550px !important;
     flex-direction: column;
     height: fit-content  !important;
 }
@@ -186,8 +186,8 @@
 }
 
 .signContainer{
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .login {
