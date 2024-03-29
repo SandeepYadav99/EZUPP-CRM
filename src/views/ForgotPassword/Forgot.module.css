@@ -41,12 +41,12 @@
   /*background-repeat: no-repeat;*/
 }
 
-.headingTextBig{
-    margin: 0px;
-    /*font-weight: 600;*/
-    color: #636578;
-    font-family: Arial;
-    font-size: 24px !important;
+.headingTextBig {
+  margin: 0px;
+  /*font-weight: 600;*/
+  color: #636578;
+  font-family: Arial;
+  font-size: 24px !important;
 }
 
 .loginFlex1 {
@@ -79,7 +79,17 @@
   width: 550px !important;
   border-radius: 12px !important;
 }
+.loginFlexReset {
+  background-color: #fff;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
 
+  border-radius: 12px !important;
+}
 /*.loginFlex1:after {*/
 /*position:absolute;*/
 /*top:0;*/
@@ -124,7 +134,7 @@
 }
 
 .back {
-  color: #5F63F2 !important;
+  color: #5f63f2 !important;
   font-size: 0.8rem;
   font-weight: 700;
   display: flex;
@@ -183,16 +193,14 @@
   /* padding: 10% 15%; */
 }
 .signContainer2 {
-    padding-left:15% !important;
-    padding-right: 15% !important;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-  }
-
-
+  padding-left: 15% !important;
+  padding-right: 15% !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
 
 .login {
-  padding: 10px 20px 10px 20px!important;
+  padding: 10px 20px 10px 20px !important;
   border-radius: 7px !important;
   color: white !important;
   background: #2063ce !important;
@@ -203,11 +211,11 @@
   width: 240px;
 }
 
-.login:hover{
-  padding: 10px 20px 10px 20px!important;
+.login:hover {
+  padding: 10px 20px 10px 20px !important;
   border-radius: 7px !important;
   color: white !important;
-  background: #25CEAE !important;
+  background: #25ceae !important;
   margin-top: 15px !important;
   background-size: 200% 100%;
   background-position: right bottom;
@@ -225,24 +233,31 @@
   justify-content: center !important;
 }
 
-@media only screen and (max-width:1024px) {
- 
+@media only screen and (max-width: 1024px) {
   .loginFlex2 {
     background-color: #fff;
-    /* border-radius: 18px; */
+    border-radius: 18px;
     display: flex;
     padding-bottom: 15px !important;
     width: 100vw !important;
     flex-direction: column;
-    height: 100%  !important;
+    height: 100% !important;
     border-radius: 0px !important;
-}
+  }
 }
 
 
-@media only screen and (max-width:769px) {
-  .mobileRender{
+@media only screen and (max-width: 769px) {
+  .mobileRender {
     display: flex;
     flex-direction: column !important;
   }
+}
+
+.closeButton {
+  text-align: end !important;
+  margin: 10px 10px 0px 0px;
+}
+.logoImageDataReset {
+  text-align: center !important;
 }

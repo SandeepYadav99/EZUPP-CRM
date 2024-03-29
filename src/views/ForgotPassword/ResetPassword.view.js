@@ -196,19 +196,22 @@ class ResetPasswordView extends Component {
     return (
       <form onSubmit={handleSubmit(this._handleSubmit)}>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-          }}
+          // style={{
+          //   display: "flex",
+          //   justifyContent: "space-between",
+          //   alignItems: "flex-start",
+          // }}
         >
-          <div></div>
-          <div className={styles.logoImageData}>
+         
+          <div className={styles.closeButton}>
+          <IconButton onClick={this._handleCloseDialog}>
+            <Close fontSize="small" />
+          </IconButton>
+          <div className={styles.logoImageDataReset}>
             <img src={logoImage} alt="text_data" style={{width:"250px"}}/>
           </div>
-          <ButtonBase onClick={this._handleCloseDialog}>
-            <Close fontSize="small" />
-          </ButtonBase>
+
+          </div>
         </div>
         <div className={styles.signContainer2}>
           <div
@@ -304,7 +307,7 @@ class ResetPasswordView extends Component {
             TransitionComponent={Transition}
             fullWidth={true}
           >
-          <div className={styles.loginFlex2}>{this._renderForm()}</div>
+          <div className={styles.loginFlexReset}>{this._renderForm()}</div>
           </Dialog>
           <DashboardSnackbar />
         </div>
