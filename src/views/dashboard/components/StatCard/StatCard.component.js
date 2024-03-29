@@ -4,11 +4,11 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import MoneyIcon from '@material-ui/icons/Money';
-import {VerifiedUser} from "@material-ui/icons";
+import { makeStyles } from '@mui/styles';
+import { Card, CardContent, Grid, Typography, Avatar } from '@mui/material';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import MoneyIcon from '@mui/icons-material/Money';
+import {VerifiedUser} from '@mui/icons-material';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     gridTitle:{
         display:"flex",
         flexDirection:"column",
-       
+
     },
     title1: {
         fontWeight: 500,
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 500,
         fontSize: '14px',
         padding:"10px"
-       
+
     },
     avatar: {
         backgroundColor: 'black',
@@ -90,7 +90,7 @@ const Budget = props => {
                             {newTitle}
                         </Typography>
                         {/* <Typography variant="h3">{value}</Typography> */}
-                        
+
                     </Grid>
                     <Grid item>
                         {/* <Avatar className={classes.avatar}>
@@ -99,7 +99,7 @@ const Budget = props => {
                         <Typography variant="h3">{value}</Typography>
                         <Typography variant="h3">{value}</Typography>
                     </Grid>
-                   
+
                 </Grid>
                 {/*<div className={classes.difference}>*/}
                 {/*    <ArrowDownwardIcon className={classes.differenceIcon} />*/}

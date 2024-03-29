@@ -4,14 +4,14 @@ import {
   Card,
   CardHeader,
   Button,
-  makeStyles,
-} from "@material-ui/core";
+} from "@mui/material";
+import {makeStyles} from '@mui/styles'
 import React, { useCallback, useEffect, useState } from "react";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import historyUtils from "../../../libs/history.utils";
 import styles from "../Detail/ServiceDetail/Style.module.css";
 import { useLocation } from "react-router-dom";
-import { Add, Check, Edit } from "@material-ui/icons";
+import { Add, Check, Edit } from '@mui/icons-material';
 
 import { serviceDetail } from "../../../services/Service.service";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
@@ -115,10 +115,10 @@ const ServiceDetailView = ({}) => {
             color={"primary"}
             font={"35px"}
           >
-            <Edit> </Edit> EDIT 
+            <Edit> </Edit> EDIT
 
           </Button>
-         
+
         </div>
       </div>
       {/* <CandidateInfor empId={details?.emp_code} /> */}
@@ -142,7 +142,7 @@ const ServiceDetailView = ({}) => {
           </div>
         </div>
       )}
-      
+
 
        <div>
                 <div className={styles.plainPaper}>
@@ -165,7 +165,7 @@ const ServiceDetailView = ({}) => {
         open={isAcceptPopUp}
         side={"right"}
       >
-           
+
         <ServiceUpdateView
           handleToggleSidePannel={toggleAcceptDialog}
           isSidePanel={isAcceptPopUp}

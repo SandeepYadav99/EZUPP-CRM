@@ -2,13 +2,11 @@
  * Created by charnjeetelectrovese@gmail.com on 1/27/2020.
  */
 import React, {Component} from 'react';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-    TimePicker
-} from '@material-ui/pickers';
-import DateFnsUtils from "@date-io/date-fns";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {TimePicker} from "@mui/x-date-pickers";
+// import DateFnsUtils from "@date-io/date-fns";
 
 class ReduxDatePicker extends Component {
     constructor(props) {
@@ -19,15 +17,15 @@ class ReduxDatePicker extends Component {
     _handleOnChange(e, d) {
         const hours = e.getHours();
         const minutes = e.getMinutes();
-      
-       
+
+
         this.props.onChange(e);
     }
 
     render() {
         const {value, label, ampm, minDate} = this.props;
         return (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <TimePicker
                     margin="dense"
                     variant="inline"
@@ -47,7 +45,7 @@ class ReduxDatePicker extends Component {
                     //     'aria-label': 'change time',
                     // }}
                 />
-            </MuiPickersUtilsProvider>
+            </LocalizationProvider>
         );
     }
 

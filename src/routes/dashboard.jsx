@@ -37,7 +37,7 @@ import {
   EventNote,
   ContactSupport,
   Settings,
-} from "@material-ui/icons";
+} from '@mui/icons-material';
 import RouteName from "./Route.name";
 import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";

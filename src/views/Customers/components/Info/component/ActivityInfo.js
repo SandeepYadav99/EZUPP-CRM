@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from "./style.module.css";
-import InboxIcon from "@material-ui/icons/Inbox";
-import { ButtonBase } from '@material-ui/core';
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import InboxIcon from "@mui/icons-material/Inbox";
+import { ButtonBase } from '@mui/material';
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 const ActivityInfo = () => {
   return (
     <div className={styles.rightSection}>

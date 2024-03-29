@@ -1,19 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import PropTypes from "prop-types";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
-import DetailsIcon from "@material-ui/icons/Details";
-import LoyaltyIcon from "@material-ui/icons/Loyalty";
-import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
-import CreditCardIcon from "@material-ui/icons/CreditCard";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { Button, ButtonBase } from "@material-ui/core";
-import { Assessment, AssessmentOutlined, BrandingWatermark, Report, TextsmsTwoTone } from "@material-ui/icons";
+import { makeStyles } from "@mui/styles";
+import {withStyles} from '@mui/styles';
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import DetailsIcon from "@mui/icons-material/Details";
+import LoyaltyIcon from "@mui/icons-material/Loyalty";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { Button, ButtonBase } from '@mui/material';
+import { Assessment, AssessmentOutlined, BrandingWatermark, Report, TextsmsTwoTone } from '@mui/icons-material';
 import MuiStyle from "../../libs/MuiStyle";
 import CustomerProfile from "./components/Profile/CustomerProfile.view";
 import BusinessDetails from "./components/Business/BusinessDetails.view";
@@ -22,7 +23,7 @@ import SuspendPopup from "./components/SuspendPopup/SuspendPopup";
 import WaitingComponent from "../../components/Waiting.component";
 import KYC from "./components/Kyc/KYC";
 import history from "../../libs/history.utils";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Badges from "./components/Badges/Badges";
 import BrandView from "../Brands/List/BrandView";
 import RecentUpdate from "../RecentUpdate/List/RecentUpdate";
@@ -82,7 +83,7 @@ const ManufacturerTabs = ({ classes, theme }) => {
     handleErrorVerify
   } = useCustomerProfileHook();
 
- 
+
 
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
@@ -128,7 +129,7 @@ const ManufacturerTabs = ({ classes, theme }) => {
             <strong>User Profile</strong>
             </span>
           </ButtonBase>
-       
+
         </div>
 
         <div className={styles.buttonFlex}>
@@ -141,7 +142,7 @@ const ManufacturerTabs = ({ classes, theme }) => {
             >
               {renderStatus(userProfile?.status || "N/A")}
             </Button>
-            {userProfile?.status  === "SUSPENDED"  ? 
+            {userProfile?.status  === "SUSPENDED"  ?
             <Button
               variant="contained"
               className={classes.btnSuccess}
@@ -151,7 +152,7 @@ const ManufacturerTabs = ({ classes, theme }) => {
               {/*     Make Active  */}
               <Report />
               Make Active
-            
+
             </Button> : <Button
               variant="contained"
               className={classes.btnError}
@@ -161,7 +162,7 @@ const ManufacturerTabs = ({ classes, theme }) => {
               {/*     Make Active  */}
               <Report />
               Suspend
-            
+
             </Button>}
           </div>
         </div>
@@ -255,7 +256,7 @@ const ManufacturerTabs = ({ classes, theme }) => {
             handleVerify={handleVerify}
             handleUnVerify={handleUnVerify}
             handleErrorVerify={handleErrorVerify}
-        
+
           />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}></TabPanel>

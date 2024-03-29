@@ -1,10 +1,10 @@
 import React, { memo } from "react";
-import { Button, ButtonBase, CircularProgress } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
-import Slide from "@material-ui/core/Slide";
-import Dialog from "@material-ui/core/Dialog";
+import { Button, ButtonBase, CircularProgress } from '@mui/material';
+import { Close } from '@mui/icons-material';
+import Slide from "@mui/material/Slide";
+import Dialog from "@mui/material/Dialog";
 import styles from "./Styles.module.css";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 import CustomTextField from "../../../../FormFields/TextField.component";
 
 const useStyles = makeStyles((theme) => ({
@@ -93,7 +93,7 @@ const NotesDilog = ({
                 type={"submit"}
                 onClick={handleSubmit} // handleSubmit
               >
-       
+
                 {isSubmitting ? (
                   <CircularProgress color="success" size="20px" />
                 ) : (

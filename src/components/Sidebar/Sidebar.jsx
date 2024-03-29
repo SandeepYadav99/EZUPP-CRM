@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
 import cx from "classnames";
 import clsx from 'clsx';
+import {withStyles} from '@mui/styles';
 import {
-    withStyles,
     Drawer,
     SwipeableDrawer,
     Hidden,
@@ -13,9 +13,9 @@ import {
     ListItemIcon,
     ListItemText,
     Collapse
-} from "@material-ui/core";
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 // import { HeaderLinks } from "../../components/index.component";
 import logoImageData from "../../assets/CRMAssets/ezupp_login_logo.png";
 

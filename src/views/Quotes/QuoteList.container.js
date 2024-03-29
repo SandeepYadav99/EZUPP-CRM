@@ -2,24 +2,19 @@
  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
  */
 import React, {Component} from 'react';
-import {Button, ButtonBase, capitalize, IconButton, Paper} from '@material-ui/core';
+import {Button, ButtonBase, capitalize, IconButton, Paper} from '@mui/material';
 
 import classNames from 'classnames';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {
-    red as redColor,
-} from '@material-ui/core/colors';
-import {Add, RemoveRedEyeOutlined as ViewIcon} from '@material-ui/icons';
+import {Add, RemoveRedEyeOutlined as ViewIcon} from '@mui/icons-material';
 import PageBox from '../../components/PageBox/PageBox.component';
 import SidePanelComponent from '../../components/SidePanel/SidePanel.component';
 // import CreateProvider from './Create.container';
 import styles from './Style.module.css';
 import DataTables from '../../Datatables/Datatable.table';
 import Constants from '../../config/constants';
-import ScheduleOutlinedIcon from '@material-ui/icons/ScheduleOutlined';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
+import { ScheduleOutlined as ScheduleOutlinedIcon, LocationOnOutlined  as LocationOnOutlinedIcon, LocalShippingOutlined as LocalShippingOutlinedIcon } from '@mui/icons-material';
 import FilterComponent from '../../components/Filter/Filter.component';
 import {
     actionFetchQuotes,

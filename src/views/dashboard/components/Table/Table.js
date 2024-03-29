@@ -6,7 +6,7 @@ import {
   TableBody,
   TableCell,
     Button
-} from "@material-ui/core";
+} from '@mui/material';
 // import { Button } from '../../../../components/Wrappers/Wrappers';
 
 const states = {

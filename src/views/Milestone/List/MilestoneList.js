@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@material-ui/core";
+import { Button, IconButton } from '@mui/material';
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
@@ -8,7 +8,7 @@ import PageBox from "../../../components/PageBox/PageBox.component";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add, Create } from "@material-ui/icons";
+import { Add, Create } from '@mui/icons-material';
 import useMilestoneHook from "./MilestoneHook";
 import MILESTONECreate from "../Create/MilestoneCreate";
 import StatusPill from "../../../FormFields/Status/StatusPill.component";

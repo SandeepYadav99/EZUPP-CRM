@@ -2,7 +2,7 @@
  * Created by charnjeetelectrovese@gmail.com on 8/29/2019.
  */
 import React, { Component } from 'react';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@mui/material';
 import classnames from 'classnames';
 import PlacesAutocomplete, {
     geocodeByAddress,

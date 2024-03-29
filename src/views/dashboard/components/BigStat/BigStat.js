@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
-import { Grid, Select, MenuItem, Input, withStyles, Typography } from "@material-ui/core";
-import { ArrowForward as ArrowForwardIcon } from "@material-ui/icons";
+import { Grid, Select, MenuItem, Input, Typography } from '@mui/material';
+import { ArrowForward as ArrowForwardIcon } from '@mui/icons-material';
 import { BarChart, Bar } from "recharts";
+import {withStyles} from '@mui/styles';
 import classnames from "classnames";
 
 import Widget from "../../../../components/Widget/WidgetView";

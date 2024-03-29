@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import Slide from '@material-ui/core/Slide';
-import Dialog from '@material-ui/core/Dialog';
+import {Slide, Dialog} from '@mui/material';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;

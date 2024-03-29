@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./FileComponent.module.css";
 import EventEmitter from "../../libs/Events.utils";
-import CameraAltIcon from "@material-ui/icons/CameraAlt";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import csx from "classnames";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 

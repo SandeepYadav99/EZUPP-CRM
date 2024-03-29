@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import {
   Button,
   MenuItem,
-  withStyles,
   FormControlLabel,
   Switch,
   IconButton,
   TextField,
   Chip,
-} from "@material-ui/core";
-import { Delete as DeleteIcon } from "@material-ui/icons";
+} from "@mui/material";
+import {withStyles} from '@mui/styles';
+import { Delete as DeleteIcon } from "@mui/icons-material";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import Constants from "../../config/constants";
@@ -24,19 +24,19 @@ import {
   renderCheckbox,
 } from "../../libs/redux-material.utils";
 import EventEmitter from "../../libs/Events.utils";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Slide from "@material-ui/core/Slide";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Slide,
+  Tooltip
+} from '@mui/material';
 import styles from "./Style.module.css";
 import { bindActionCreators } from "redux";
-import DropdownCascadeComponent from "../../components/DropdownCascade/DropdownCascade.component";
-import CustomRadioLabel from "../../components/CustomRadioLabel/CustomRadioLabel.component";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import {Info as InfoIcon} from "@mui/icons-material";
+import {Autocomplete} from "@mui/lab";
 import Cascader from "../../components/FormFields/Cascader/Cascader";
 let requiredFields = [];
 
@@ -83,7 +83,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 const items = [
-   
+
             {
                 value: '11',
                 label: 'Another Item'
@@ -106,7 +106,7 @@ const items = [
                         label: 'Sub Item C'
                     }
                 ]
-        
+
     },
     {
         value: '2',
@@ -522,7 +522,7 @@ class Product extends Component {
 
           <div className={"formFlex"}>
             <div className={"formGroup"}>{this._renderFeatured()}</div>
-{/* 
+{/*
             <div className={"formGroup"}>{this._renderActive()}</div> */}
           </div>
 

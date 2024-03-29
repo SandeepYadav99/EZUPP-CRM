@@ -1,9 +1,9 @@
 import React, {useMemo, useRef, useEffect, useState} from 'react';
-import InputLabel from "@material-ui/core/InputLabel";
-import SelectField from "@material-ui/core/Select";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import SelectField from "@mui/material/Select";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
 import ReactDOM from "react-dom";
 
 const CustomSelectField = ({ isError, errorText, label, handleChange, icon, children, ...rest}) => {

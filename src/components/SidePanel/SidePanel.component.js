@@ -5,8 +5,9 @@ import React, {Component} from 'react';
 import classnames from 'classnames';
 import ReactDOM from 'react-dom';
 import styles from './style.module.css';
-import {ButtonBase, withTheme} from '@material-ui/core';
-import {Close} from '@material-ui/icons';
+import {ButtonBase} from '@mui/material';
+import {withTheme} from '@mui/styles';
+import {Close} from '@mui/icons-material';
 
 class ResizablePanels extends React.Component {
 
@@ -44,7 +45,7 @@ class ResizablePanels extends React.Component {
     }
 
     stopResize = (e) => {
-      
+
         if (this.state.isDragging) {
             this.setState(({panels, currentPanel, delta}) => ({
                 isDragging: false,
@@ -61,7 +62,7 @@ class ResizablePanels extends React.Component {
                 // this.stopResize();
             } else {
                 // const delta = event.clientX - this.state.initialPos;
-      
+
                 this.setState({
                     delta: event.clientX
                 }, () => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
-import { makeStyles } from '@material-ui/core/styles';
-import {TextField} from "@material-ui/core";
+import useAutocomplete from '@mui/labuseAutocomplete';
+import { makeStyles } from '@mui/styles';
+import {TextField} from '@mui/material';
 import LogUtils from "../../../libs/LogUtils";
 
 const useStyles = makeStyles((theme) => ({

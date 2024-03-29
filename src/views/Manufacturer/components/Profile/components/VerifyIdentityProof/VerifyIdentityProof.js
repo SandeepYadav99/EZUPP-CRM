@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from "../../Style.module.css";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import {Done, Clear} from '@material-ui/icons';
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import ButtonBase from "@mui/material/ButtonBase";
+import {Done, Clear} from '@mui/icons-material';
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 class VerifyIdentityProof extends React.Component {
     constructor(props) {

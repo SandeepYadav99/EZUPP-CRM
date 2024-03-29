@@ -17,9 +17,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@material-ui/core";
-import { Button, withStyles, ButtonBase } from "@material-ui/core";
-import { ArrowBack } from "@material-ui/icons";
+} from '@mui/material';
+import { Button, ButtonBase } from '@mui/material';
+import {withStyles} from '@mui/styles';
+import { ArrowBack } from '@mui/icons-material';
 import { serviceForgotPassword } from "../../services/index.services";
 import DashboardSnackbar from "../../components/Snackbar.component";
 import { Link } from "react-router-dom";
@@ -236,7 +237,7 @@ class ForgotPasswordView extends Component {
                       <div style={{display:"flex",gap:"5px",alignItems:"center"}}>
                       <span>
                         SEND RESET LINK
-                      </span> 
+                      </span>
                       <img src={arrowIcon} alt="arrow" style={{height:"15px"}}/>
                       </div>
                     )}

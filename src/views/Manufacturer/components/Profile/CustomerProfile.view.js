@@ -1,6 +1,6 @@
 import React from "react";
 
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 import Queries from "./components/Queries/Queries.view";
 import Messages from "./components/Messages/Messages.component";

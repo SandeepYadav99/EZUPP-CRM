@@ -1,5 +1,5 @@
-import {  ButtonBase} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import {  ButtonBase} from '@mui/material';
+import { Add } from '@mui/icons-material';
 import React, { memo} from "react";
 import NotesDilog from "./NotesDilog";
 import useNotesDilogHook from "./NotesDilogHook";

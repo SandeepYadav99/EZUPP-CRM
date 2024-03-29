@@ -2,8 +2,8 @@ import React, {useCallback, useMemo, useState} from 'react';
 import {useSelector} from "react-redux";
 import Note from "./Note.component";
 import {WaitingComponent} from "../../../../components/index.component";
-import {Button} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
+import {Button} from "@mui/material";
+import {Add} from '@mui/icons-material';
 import styles from './Style.module.css';
 import NoteDialog from "./NoteDialog.view";
 

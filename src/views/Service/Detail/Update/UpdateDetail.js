@@ -5,18 +5,18 @@ import {
   CircularProgress,
   IconButton,
   MenuItem,
-} from "@material-ui/core";
-import { Delete as DeleteIcon } from "@material-ui/icons";
+} from "@mui/material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 
 // import styles from "";
 
 import CustomRadioLabel from "../../../../components/CustomRadioLabel/CustomRadioLabel.component";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
 import CustomSwitch from "../../../../FormFields/CustomSwitch";
 
 import CustomCheckbox from "../../../../FormFields/CustomCheckbox";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@mui/styles';
 import slugify from "slugify";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import CustomTextField from "../../../../FormFields/TextField.component";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 const ServiceUpdateView = ({
   handleToggleSidePannel,
   isSidePanel,
- 
+
   details,
 }) => {
   const {
@@ -54,7 +54,7 @@ const ServiceUpdateView = ({
   } = useServiceUpdateHook({
     handleToggleSidePannel,
     isSidePanel,
-  
+
     details,
   });
   const classes = useStyles();
@@ -121,7 +121,7 @@ const ServiceUpdateView = ({
           </div>
         </div>
 
-     
+
 
         <div className={"formFlex"}>
             <div className={"formGroup"}>
@@ -133,7 +133,7 @@ const ServiceUpdateView = ({
                 onTextChange={(text) => {
                   changeTextData(slugify(text.toLowerCase()), "slug");
                 }}
-                
+
                 onBlur={() => {
                   onBlurHandler("slug");
                 }}
@@ -201,9 +201,9 @@ const ServiceUpdateView = ({
             />
           </h4>
         </div>
-       
 
-    
+
+
 
           <div>
           <div className={"formGroup"}>

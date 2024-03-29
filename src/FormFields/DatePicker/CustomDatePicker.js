@@ -3,14 +3,10 @@
  */
 
 import React, {Component, useMemo} from 'react';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-    TimePicker,
-    DatePicker
-} from '@material-ui/pickers';
-import DateFnsUtils from "@date-io/date-fns";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import DateFnsUtils from "@date-io/date-fns";
 
 
 const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, clearable,...rest}) => {
@@ -29,14 +25,14 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
 
     if (clearable) {
         return (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
                     clearable
                     margin="dense"
                     variant="inline"
                     id="time-picker"
                     fullWidth
-                  
+
                     label={label}
                     value={value ? value : (null)}
                     onChange={handleOnChange}
@@ -53,11 +49,11 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                     //     'aria-label': 'change time',
                     // }}
                 />
-            </MuiPickersUtilsProvider>
+            </LocalizationProvider>
         );
     }
     return (
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
                 margin="dense"
                 variant="inline"
@@ -77,7 +73,7 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                 //     'aria-label': 'change time',
                 // }}
             />
-        </MuiPickersUtilsProvider>
+        </LocalizationProvider>
     );
 }
 

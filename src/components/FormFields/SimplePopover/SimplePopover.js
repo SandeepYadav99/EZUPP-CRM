@@ -1,8 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
+import { makeStyles } from "@mui/styles";
+import Popover from "@mui/material/Popover";
 
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase } from '@mui/material';
 
 import { serviceResetUserStatusUpdate } from "../../../services/CustomersRequest.service";
 import renderImagebyType from "../../../libs/Helper";

@@ -7,7 +7,7 @@ import {
   DialogActions,
   DialogContent,
   Slide,
-} from "@material-ui/core";
+} from '@mui/material';
 import React from "react";
 import GooglePlaceComponent from "./GooglePlace/GooglePlace.component";
 import { Suspense } from "react";

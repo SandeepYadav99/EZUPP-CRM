@@ -1,11 +1,14 @@
 
 import React, { Component } from 'react';
-import { Button, TextField, Select, Popover, Menu, MenuItem, LinearProgress, FormControlLabel, FormGroup, Checkbox, withStyles, FormControl, InputLabel  } from '@material-ui/core';
+import { Button, TextField, Select, Popover, Menu, MenuItem, LinearProgress, FormControlLabel, FormGroup, Checkbox, FormControl, InputLabel  } from '@mui/material';
+import {withStyles} from '@mui/styles';
 // import FlatButton from 'material-ui/FlatButton';
 // import SelectField from 'material-ui/SelectField';
-import { FilterList as FilterIcon, Search as SearchIcon, Add } from '@material-ui/icons';
-import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import { FilterList as FilterIcon, Search as SearchIcon, Add } from '@mui/icons-material';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import DateFnsUtils from "@date-io/date-fns";
 import PropTypes from 'prop-types';
 // import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
 import _ from 'lodash';
@@ -66,7 +69,7 @@ class FilterComponent extends Component {
 
     detailhandleChange(i, event, index, val) {
 
-      
+
         const value = this.state.filter;
         if ((value[i]).type == 'text') {
             (value[i]).value = event.target.value;
@@ -113,7 +116,7 @@ class FilterComponent extends Component {
         if (val.type == 'date') {
             return (
 
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         disabled={this.state.is_edit}
                         fullWidth
@@ -128,7 +131,7 @@ class FilterComponent extends Component {
                         maxDate={val.options ? val.options.maxDate : null}
                         mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
                     />
-                </MuiPickersUtilsProvider>
+                </LocalizationProvider>
                 // <DatePicker
                 //     // floatingLabelText={val.name.toUpperCase()}
                 //     hintText={val.label.toUpperCase()}
@@ -208,7 +211,7 @@ class FilterComponent extends Component {
         return null;
     }
     handleMenuClick(val) {
-       
+
         const index = (this.state.selectedFilters.indexOf(val.name))
         const filter = this.state.filter;
         const selectedFilters = this.state.selectedFilters;

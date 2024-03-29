@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextField, IconButton} from '@material-ui/core';
+import {TextField, IconButton} from '@mui/material';
 import styles from './Style.module.css';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-autocomplete";
 import classnames from "classnames";

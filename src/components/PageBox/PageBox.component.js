@@ -5,11 +5,12 @@ import React from "react";
 import classnames from "classnames";
 import {
     Paper,
-    withStyles,
     Typography,
     IconButton
-} from "@material-ui/core";
-import { MoreVert as MoreIcon } from "@material-ui/icons";
+} from '@mui/material';
+import {withStyles} from '@mui/styles';
+
+import { MoreVert as MoreIcon } from '@mui/icons-material';
 
 const Widget = ({
                     classes,
@@ -21,13 +22,13 @@ const Widget = ({
                     disableWidgetMenu,
                     ...props
                 }) => (
-    <div className={classes.widgetWrapper}>
+    <div class={classes.widgetWrapper}>
         <Paper className={classes.paper} classes={{ root: classes.widgetRoot }}>
             {/*<div className={classes.widgetHeader}>*/}
             {/*    {props.header}*/}
             {/*</div>*/}
             <div
-                className={classnames(classes.widgetBody, {
+                class={classnames(classes.widgetBody, {
                     [classes.noPadding]: noBodyPadding,
                     [bodyClass]: bodyClass
                 })}
@@ -66,7 +67,8 @@ const styles = theme => ({
         display: "flex",
         flexDirection: "column",
         flexGrow: 1,
-        overflow: "hidden"
+        overflow: "hidden",
+        backgroundColor: 'red'
     },
     moreButton: {
         margin: -theme.spacing.unit,

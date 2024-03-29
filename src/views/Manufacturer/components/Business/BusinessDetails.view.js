@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styles from "./Style.module.css";
-import { ButtonBase, Tooltip, withStyles } from "@material-ui/core";
+import { ButtonBase, Tooltip } from '@mui/material';
+import {withStyles} from '@mui/styles';
 import ImageGalleryComponent from "./components/ImageGallery/ImageGallery.component";
 import CompanyProfile from "./components/CompanyProfile/CompanyProfile";
 import BankDetail from "./components/BankDetail/BankDetail";

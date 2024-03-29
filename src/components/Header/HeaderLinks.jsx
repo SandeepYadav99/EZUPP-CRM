@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { Manager, Target, Popper } from "react-popper";
+import {withStyles} from '@mui/styles';
 import {
-  withStyles,
   IconButton,
   MenuItem,
   MenuList,
@@ -10,8 +10,8 @@ import {
   Paper,
   ClickAwayListener,
   Hidden
-} from "material-ui";
-import { Person, Notifications, Dashboard, Search } from "@material-ui/icons";
+} from "@mui/material";
+import { Person, Notifications, Dashboard, Search } from '@mui/icons-material';
 
 import { CustomInput, IconButton as SearchButton } from "components";
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { TableHead, TableRow, Tool } from '@material-ui/core';
+import { TableHead, TableRow, Tool } from '@mui/material';
 import {TableHeader, TableRow} from 'material-ui/Table';
 import {Toolbar} from 'material-ui/Toolbar';
 import DropDownMenu from 'material-ui/DropDownMenu';

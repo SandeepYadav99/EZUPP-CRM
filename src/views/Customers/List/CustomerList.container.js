@@ -3,10 +3,10 @@
  *  Class based Component to Function based Component 12/13/2023
  */
 import React, { useCallback, useMemo } from "react";
-import {  IconButton } from "@material-ui/core";
+import {  IconButton } from '@mui/material';
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import {  Info as EditIcon } from "@material-ui/icons";
+import {  Info as EditIcon } from '@mui/icons-material';
 import PageBox from "../../../components/PageBox/PageBox.component";
 import styles from "../styles.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
