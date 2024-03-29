@@ -16,6 +16,7 @@ import TopRow from "./components/TopRow/TopRow.component";
 import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
 import EventCard from "./components/EmployeeTab/EventCard.component";
 import dataValue from "./components/EmployeeTab/data.json";
+import Calculator from "./components/Calculator/Calculator";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,9 @@ const Dashboard = () => {
             <EventCard data={dataValue?.birthdays}/>
           </div>
           <EmployeeTab/>
+          
         </div>
+        <Calculator/>
       </div>
     </React.Fragment>
   );
