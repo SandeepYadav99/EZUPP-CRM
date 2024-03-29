@@ -31,7 +31,7 @@ const Calculator = () => {
       <Container>
         <div className={styles.calculator} style={{background: 'linear-gradient(to top left, #2063CE, #25CEAE)'}}>
   <div>
-  <div style={{ fontSize: '52px', color: 'white', textAlign: 'right'}}>{value || '0'}</div>
+  <div style={{ fontSize: '52px', color: 'white', textAlign: 'right', fontWeight: 'bold'}}>{value || '0'}</div>
     {/* <TextField
       value={value}
       InputProps={{
@@ -71,7 +71,7 @@ const Calculator = () => {
     <Button className={`${styles.buttonH}`} onClick={handleCalculate} style={{ height: '190%', alignSelf: 'stretch' }}>=</Button> </div>
   </div>
   
-  <div style={{ display: 'flex', alignItems: 'left' }}>
+  <div style={{ display: 'flex', alignItems: 'left'}}>
     <Button  className={`${styles.buttonW} `} onClick={() => handleButtonClick('0')}>0</Button>
     <Button  className={styles.button} onClick={() => handleButtonClick('.')}>.</Button>
    

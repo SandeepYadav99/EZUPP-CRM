@@ -12,6 +12,8 @@
     width: 191px;
     background-color: hwb(206 64% 7%) !important;
     color: #FFFFFF !important;
+    font-size: 18px !important;
+    font-weight: bold;
   }
   .buttonH{
     margin: 5px !important;
@@ -19,6 +21,8 @@
     color: #FFFFFF !important;
     width: 91px;
 /* height: 153px; */
+font-size: 18px !important;
+font-weight: bold;
   }
   .button{
     margin: 5px !important;
@@ -26,17 +30,18 @@
 height: 70px;
 background-color: hwb(206 64% 7%) !important;
 color: #FFFFFF !important;
+font-size: 18px !important;
+font-weight: bold;
 
   }
   .calculator {
     padding: 20px;
     border-radius: 10px;
-    /* background-color: rgb(211, 211, 211); */
     width: 448px;
     height: 510px;
   }
   
-  form input {
+  /* form input {
     border: none;
     outline: 0;
     width: 60px;
@@ -70,4 +75,4 @@ color: #FFFFFF !important;
   
   form input.equal{
     width: 123px;
-  }
+  } */
