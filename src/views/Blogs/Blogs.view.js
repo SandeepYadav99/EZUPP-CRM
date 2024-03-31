@@ -655,14 +655,13 @@ class Blogs extends Component {
                 value={this.state.tags}
                 freeSolo
                 selectOnFocus={false}
-                // noOptionsText={this._renderNoText}
                 renderTags={(value, getTagProps) =>
                   value.map((option, index) => (
                     <Chip
                       variant="outlined"
                       label={option}
                       {...getTagProps({ index })}
-                    /> // disabled={option.length < 2}
+                    /> 
                   ))
                 }
                 renderInput={(params) => (
