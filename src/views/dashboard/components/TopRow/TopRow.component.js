@@ -34,22 +34,24 @@ const TopRow = () => {
             >
               {item.title}
               </div>
-            <div className={styles.subtitle} style={{  fontSize: "14px", marginTop: "-28px"  }}>
+            <div className={styles.subtitle} style={{  fontSize: "14px" }}>
             {item.subtitle}
             </div> 
-           
-            <div style={{ color: "#25CEAE", fontSize: "24px", fontWeight: "bold", marginTop: "-18px" }}>{item.amount}</div>
-            <div className={styles.subtitle} style={{  fontSize: "14px", marginTop: "-30px"  }}>
+            <div className={styles.spacer} />
+            <div className={styles.amount} style={{ color: "#25CEAE", fontSize: "24px", fontWeight: "bold"}}>{item.amount}</div>
+            <div className={styles.subtitle} style={{  fontSize: "14px"  }}>
              
               {item.progress}
             </div>
+          
             <div className={styles.buttonAndImageContainer} >
               <ButtonBase className={styles.login} >{item.buttonText}</ButtonBase>
-              {/* <img src={trophy} className={styles.image} /> */}
+              <img src={trophy} className={styles.image} />
           </div>
           
           {/* <div>
-            <img src={trophy} className={styles.image} /></div> */}
+            <img src={trophy} className={styles.image} />
+            </div> */}
             </div>
             
            ))}

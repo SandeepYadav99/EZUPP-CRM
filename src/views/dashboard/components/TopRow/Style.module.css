@@ -8,15 +8,21 @@
     gap: 10px !important;
    
   }
+  .spacer {
+   margin-bottom: 10px; 
+  }
 .image{
  display: flex;
-  margin-left: 175px;
+  /* margin-left: 175px; */
   float: right;
+  align-items: flex-end !important;
+  margin-top: -68px;
+
 }
-/* .buttonAndImageContainer {
-  display: flex; 
+.buttonAndImageContainer {
+  /* display: flex;  */
  flex-wrap: nowrap;
-} */
+}
   #card {
     background-color: white;
     border-radius: 10px;
@@ -34,7 +40,7 @@
     display: flex;
     flex-direction: column !important;
     justify-content: space-between;
-   
+    
   }
 .title{
   color: #636578;
@@ -69,7 +75,7 @@
     width: 120px;
     height: 32px;
     font-size: 12px;
-   
+   margin-bottom: -30px !important;
   }
   .login:hover{
     background-color: #25ceae !important; 
@@ -77,6 +83,10 @@
 .subtitle{
   color: #888888;
 }
+.subtitle .svg{
+  color: #888888;
+}
+
   .logingreen {
     padding: 10px 10px 10px 10px !important;
     border-radius: 7px !important;
