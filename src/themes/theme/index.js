@@ -12,7 +12,7 @@ const success = "#3CD4A0";
 const info = "#9013FE";
 const border = '#E4E4E6'
 const error = '#FF0000';
-
+const disable = '#d8d8dd';
 const lightenRate = 7.5;
 const darkenRate = 15;
 
@@ -42,8 +42,10 @@ const Theme = (colors) => {
   return {
     primary: {
       main: primary,
-      light: alpha(primary, 0.5),
-      dark: alpha(primary, 0.9)
+      light: alpha(primary, 0.2),
+      dark: alpha(primary, 0.9),
+      hover: alpha(secondary, 0.9),
+      disabled: grey[3]
     },
     error: {
       main: error,
@@ -67,6 +69,11 @@ const Theme = (colors) => {
       light: alpha(warning, 0.5),
       dark: alpha(warning, 0.9)
     },
+    status: {
+      high: error,
+      medium: '#FF9100',
+      low: '#78D90F'
+    },
     success: {
       main: success,
       light: alpha(success, 0.5),
@@ -81,6 +88,11 @@ const Theme = (colors) => {
       primary: "#4A4A4A",
       secondary: "#6E6E6E",
       hint: "#B9B9B9"
+    },
+    primaryButton: {
+      hover: secondary,
+      disabled: disable,
+      disabled_text: greyColors[0]
     },
     grey: greyColors
   };
