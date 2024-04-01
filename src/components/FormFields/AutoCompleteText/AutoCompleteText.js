@@ -1,10 +1,9 @@
 import React, {useCallback, useState} from 'react';
-import {Autocomplete} from '@mui/lab';
-import {TextField} from '@mui/material';
+import {Autocomplete} from "@mui/lab";
+import {TextField} from "@mui/material";
 
 
 const AutoCompleteText = ({ isError, errorText, value, icon, label, onChange, onTextChange, inputProps, dataset, ...rest }) => {
-
     const [isOpen, setIsOpen] = useState(false);
 
     const handleChange = useCallback((e, value, reason) => {

@@ -1,9 +1,8 @@
 import React, {useCallback, useEffect, useState} from "react";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
+import {TextField, InputAdornment} from "@mui/material";
 import ReactDOM from "react-dom";
 
-const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChange, inputProps,...rest }) => {
+const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChange, inputProps, ...rest }) => {
 
     const handleChange = useCallback((e) => {
         onChange && onChange(e);

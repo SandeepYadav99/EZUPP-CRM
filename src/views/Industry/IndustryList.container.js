@@ -30,6 +30,7 @@ import {
 } from "../../actions/Industry.action";
 import { serviceGetListData } from "../../services/index.services";
 import { serviceGetCustomList } from "../../services/Common.service";
+import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 
 let CreateProvider = null;
 
@@ -112,11 +113,11 @@ class IndustryList extends Component {
     // this.props.actionChangeStatus({...data, type: type});
     if (type == "CREATE") {
       this.props.actionCreateIndustry(data);
-     
+
     } else {
       this.props.actionUpdateIndustry(data);
     }
- 
+
     this.setState({
       side_panel: !this.state.side_panel,
       edit_data: null,
@@ -344,6 +345,7 @@ class IndustryList extends Component {
     return (
       <div>
         <PageBox>
+          <CustomTextField  label={'test'}/>
           <div className={styles.headerContainer}>
             <span className={styles.title}>Industries List</span>
             <Button

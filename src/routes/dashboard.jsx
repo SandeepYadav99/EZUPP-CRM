@@ -42,6 +42,7 @@ import RouteName from "./Route.name";
 import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
+import StyleGuide from "../views/StyleGuide/StyleGuide";
 
 const dashboardRoutes = [
   {
@@ -49,6 +50,13 @@ const dashboardRoutes = [
     sidebarName: "Dashboard",
     icon: Dashboard,
     component: DashboardPage,
+    is_sidebar: true,
+  },
+  {
+    path: "/styleguide",
+    sidebarName: "Style Guide",
+    icon: Dashboard,
+    component: StyleGuide,
     is_sidebar: true,
   },
   {
@@ -109,7 +117,7 @@ const dashboardRoutes = [
     should_regex: true,
     parent: "masters",
   },
-  
+
   {
     path: "/industry/category/:id",
     sidebarName: "Categories",
@@ -304,9 +312,9 @@ const dashboardRoutes = [
     // should_regex: false,
     parent: "masters",
   },
-  
 
-  
+
+
   {
     path: "/app/settings",
     sidebarName: "App Settings",
@@ -342,7 +350,7 @@ const dashboardRoutes = [
     sidebarName: "Service",
     navbarName: "Service",
     icon: EventNote,
-    
+
     component:ServiceListContainer ,
     is_sidebar: true,
     is_protect: true,

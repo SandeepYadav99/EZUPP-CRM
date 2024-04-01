@@ -106,21 +106,21 @@ class Header extends React.Component {
 
     return (
       <ThemeProvider theme={defaultTheme}>
-        <AppBar position={"static"} class={classes.appBar + appBarClasses}>
-          <Toolbar class={classes.container}>
+        <AppBar position={"static"} className={classes.appBar + appBarClasses}>
+          <Toolbar className={classes.container}>
             <IconButton
-                class={classes.menuButton}
+                className={classes.menuButton}
                 onClick={this.props.handleHeaderClick}
                 color="inherit"
                 aria-label="Menu"
             >
               <MenuIcon />
             </IconButton>
-            <Button href="#" class={classes.title}>
+            <Button href="#" className={classes.title}>
               {this.makeBrand()}
             </Button>
 
-            <div class={classes.flexGrow}>
+            <div className={classes.flexGrow}>
               {/*<Switch checked={themeType == 'dark'} onChange={this._handleChangeTheme}/>*/}
             </div>
             <div>
@@ -147,13 +147,13 @@ class Header extends React.Component {
                     horizontal: "right",
                   }}
               >
-                <div class={classes.innercontent}>
+                <div className={classes.innercontent}>
                   James sent you a message
                 </div>
               </Popover>
             </div>
 
-            <div class={classes.logoImage}>
+            <div className={classes.logoImage}>
               <img src={userObject?.user?.image} height={30} width={30} />
             </div>
 
@@ -197,7 +197,7 @@ Header.propTypes = {
   color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
 };
 
-const temp = withStyles(headerStyle)(Header);
+const temp = withStyles(headerStyle, {withTheme: true})(Header);
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
