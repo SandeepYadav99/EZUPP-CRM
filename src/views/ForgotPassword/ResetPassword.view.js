@@ -196,33 +196,25 @@ class ResetPasswordView extends Component {
     return (
       <form onSubmit={handleSubmit(this._handleSubmit)}>
         <div
-          // style={{
-          //   display: "flex",
-          //   justifyContent: "space-between",
-          //   alignItems: "flex-start",
-          // }}
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "space-between",
+        //   alignItems: "flex-start",
+        // }}
         >
-         
           <div className={styles.closeButton}>
-          <IconButton onClick={this._handleCloseDialog}>
-            <Close fontSize="small" />
-          </IconButton>
-          <div className={styles.logoImageDataReset}>
-            <img src={logoImage} alt="text_data" style={{width:"250px"}}/>
-          </div>
-
+            <div
+              className={styles.headingTextBig}
+              style={{ fontWeight: "700", fontSize: "24px" }}
+            >
+              Reset Password{" "}
+            </div>
+            <IconButton onClick={this._handleCloseDialog}>
+              <Close fontSize="small" />
+            </IconButton>
           </div>
         </div>
         <div className={styles.signContainer2}>
-          <div
-            className={styles.headingTextBig}
-            style={{ fontWeight: "700", fontSize: "24px" }}
-          >
-            Reset Password{" "}
-          </div>
-          <p className={styles.bottomLine}>
-            Your new password must be different from previously used passwords{" "}
-          </p>
           <div>
             <br />
             <div style={{ display: "flex" }}>
@@ -257,14 +249,24 @@ class ResetPasswordView extends Component {
               </IconButton>
             </div>
             <br />
-            <Button
-              // disabled={this.state.is_calling || this.state.success}
-              variant={"contained"}
-              color={"primary"}
-              type="submit"
-              className={styles.login}
-            >
-              {/* {this.state.is_calling ? (
+            <div className={styles.actionButton}>
+              <Button
+                // disabled={this.state.is_calling || this.state.success}
+                variant={"contained"}
+                color={"primary"}
+                type="submit"
+                className={styles.cancel}
+              >
+                Cancel
+              </Button>
+              <Button
+                // disabled={this.state.is_calling || this.state.success}
+                variant={"contained"}
+                color={"primary"}
+                type="submit"
+                className={styles.login}
+              >
+                {/* {this.state.is_calling ? (
               <div style={{ padding: "5px 20px", display: "flex" }}>
                 <CircularProgress size={"18px"} color={"primary"} />
               </div>
@@ -273,13 +275,14 @@ class ResetPasswordView extends Component {
             ) : (
               "Change Password"
             )} */}
-              <div
-                style={{ display: "flex", gap: "5px", alignItems: "center" }}
-              >
-                <span>SET NEW PASSWORD</span>
-                <img src={arrowIcon} alt="arrow" style={{ height: "15px" }} />
-              </div>
-            </Button>
+                <div
+                  style={{ display: "flex", gap: "5px", alignItems: "center" }}
+                >
+                  <span>SET NEW PASSWORD</span>
+                  <img src={arrowIcon} alt="arrow" style={{ height: "15px" }} />
+                </div>
+              </Button>
+            </div>
           </div>
         </div>
       </form>
@@ -291,7 +294,7 @@ class ResetPasswordView extends Component {
     return (
       <>
         <div className={styles.overlay}></div>
-        <div className={styles.mainLoginView}>
+        <div className={styles.mainLoginView1}>
           {/*<div className={styles.loginFlex1}>*/}
           {/*    <img src={require('../../assets/img/logo_new.png')}/>*/}
 
@@ -307,7 +310,7 @@ class ResetPasswordView extends Component {
             TransitionComponent={Transition}
             fullWidth={true}
           >
-          <div className={styles.loginFlexReset}>{this._renderForm()}</div>
+            <div className={styles.loginFlexReset}>{this._renderForm()}</div>
           </Dialog>
           <DashboardSnackbar />
         </div>

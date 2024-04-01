@@ -98,14 +98,14 @@ const UserList = (props) => {
     () => [
       {
         key: "name",
-        label: "Info",
+        label: "User Info",
         style: { width: "18%" },
         sortable: true,
         render: (value, all) => <div >{renderFirstCell(all)}</div>,
       },
       {
-        key: "email",
-        label: "Email",
+        key: "contact",
+        label: "Contact",
         style: { width: "15%" },
         sortable: false,
         render: (temp, all) => (

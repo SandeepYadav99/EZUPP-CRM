@@ -104,7 +104,7 @@ const useUserListHook = ({}) => {
   );
 
   const handleEdit = useCallback((type) => {
-    historyUtils.push(`${RouteName.USER_PROFILE}${type?.id}`);
+    historyUtils.push(`${RouteName.ADMIN_USER_UPDATE}${type?.id}`);
   }, []);
 
   const handleProfile = useCallback((type) => {
@@ -118,7 +118,7 @@ const useUserListHook = ({}) => {
   );
 
   const handleCreate = useCallback(() => {
-    historyUtils.push(RouteName.USER_PROFILE_CREATE);
+    historyUtils.push(RouteName.USER_CREATE);
   }, []);
 
   const configFilter = useMemo(() => {

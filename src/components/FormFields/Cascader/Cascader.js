@@ -9,7 +9,8 @@ import styles from "./Style.module.css";
 import csx from "classnames";
 import constants from "../../../config/constants";
 import CascaderItem from "./CascaderItem";
-import CustomTextField from "../TextField/TextField.component";
+import CustomTextField from "../../../FormFields/TextField.component";
+
 
 const Cascader = ({
   label,

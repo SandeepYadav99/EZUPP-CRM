@@ -42,6 +42,7 @@ import RouteName from "./Route.name";
 import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
+import UserCreate from "../views/User/Create/UserCreate";
 
 const dashboardRoutes = [
   {
@@ -132,7 +133,7 @@ const dashboardRoutes = [
     // parent: 'masters',
   },
   {
-    path: "/admin/users",
+    path: RouteName.ADMIN_USER,
     sidebarName: "Admin Users",
     navbarName: "Admin Users",
     icon: SupervisedUserCircle,
@@ -142,17 +143,38 @@ const dashboardRoutes = [
     parent: "admin",
     should_regex:true
   },
-
   {
-    path: `${RouteName.USER_PROFILE}:id`,
-    sidebarName: "Users",
-    navbarName: "Users",
-    icon: Dashboard,
-    component: UpperTabs,
+    path: RouteName.USER_CREATE,
+    sidebarName: "Admin Users",
+    navbarName: "Admin Users",
+    icon: SupervisedUserCircle,
+    component: UserCreate,
     is_sidebar: false,
     is_protect: true,
-    should_regex:false
+    parent: "admin",
+    should_regex:true
   },
+  {
+    path: `${RouteName.ADMIN_USER_UPDATE}:id`,
+    sidebarName: "Admin Users",
+    navbarName: "Admin Users",
+    icon: SupervisedUserCircle,
+    component: UserCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+    should_regex:true
+  },
+  // {
+  //   path: `${RouteName.USER_PROFILE}:id`,
+  //   sidebarName: "Users",
+  //   navbarName: "Users",
+  //   icon: Dashboard,
+  //   component: UpperTabs,
+  //   is_sidebar: false,
+  //   is_protect: true,
+  //   should_regex:false
+  // },
   {
     path: `${RouteName.USER_PROFILE_CREATE}`,
     sidebarName: "Users",

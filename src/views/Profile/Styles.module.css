@@ -18,13 +18,17 @@
 }
 
 .resetButton {
-  color: black !important;
-  background-color: white !important;
+  color: #2063CE !important;
+  /* background-color: white !important; */
   padding: 15px 40px !important;
-  border-radius: 5px !important;
+  border-radius: 8px !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   margin-right: 15px !important;
+  border:1px solid #2063CE !important;
+}
+.resetButton:hover{
+  background-color: #E9FCF4;
 }
 
 .addTask {
@@ -36,7 +40,9 @@
   font-weight: 500 !important;
   margin-right: 15px !important;
 }
-
+.addTask:hover{
+  background-color: #03AE85 !important;
+}
 .leftSection {
   /*margin-right: 30px;*/
   flex: 0.5;
@@ -67,7 +73,7 @@
 
 .profileContainer,
 img {
-  border-radius: 5px;
+  border-radius: 50%;
 }
 .edit {
   color: blue !important;
@@ -120,7 +126,7 @@ img {
 .contactFlex {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #5f5151;
 }
 
@@ -136,7 +142,7 @@ img {
 .activityFlex {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #5f5151;
 }
 
@@ -247,8 +253,10 @@ img {
 }
 
 .heading {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
+  margin-top: 1.8rem;
+  color: #636578;
 }
 
 .mainFlex {
@@ -257,4 +265,9 @@ img {
 }
 .proImage{
   max-width: 100px;
+}
+.sideTitle{
+  color: #636578;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
