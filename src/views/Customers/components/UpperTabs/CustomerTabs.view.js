@@ -1,24 +1,18 @@
 import React from "react";
 import styles from "./style.module.css";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
-import {
-  makeStyles,
-  useTheme,
-  withStyles,
-  withTheme,
-} from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
-import ShareIcon from "@material-ui/icons/Share";
-import DetailsIcon from "@material-ui/icons/Details";
-import LoyaltyIcon from "@material-ui/icons/Loyalty";
-import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
-import CreditCardIcon from "@material-ui/icons/CreditCard";
-import { ButtonBase, Paper } from "@material-ui/core";
+import {withStyles, makeStyles, withTheme} from '@mui/styles';
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import ShareIcon from "@mui/icons-material/Share";
+import DetailsIcon from "@mui/icons-material/Details";
+import LoyaltyIcon from "@mui/icons-material/Loyalty";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import { ButtonBase, Paper } from '@mui/material';
 import CustomerView from "../Info/Customer.view";
 import BusinessView from "../Info/Business.view";
 import KYCContainer from "../KYC.container";

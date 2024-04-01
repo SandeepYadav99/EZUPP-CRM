@@ -1,6 +1,6 @@
 import React, { useCallback,  useState } from "react";
 import styles from "./AccountQuality.module.css";
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase } from '@mui/material';
 import AcountQueltyPopUp from "./AcountQueltyPopUp/AcountQueltyPopUp";
 import { serviceProviderAssignManager } from "../../../../../services/ProviderUser.service";
 

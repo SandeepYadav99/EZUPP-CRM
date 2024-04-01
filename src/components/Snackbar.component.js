@@ -3,17 +3,17 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import CloseIcon from '@material-ui/icons/Close';
-import { amber, green, grey } from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import WarningIcon from '@material-ui/icons/Warning';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import InfoIcon from '@mui/icons-material/Info';
+import CloseIcon from '@mui/icons-material/Close';
+import { amber, green, grey } from '@mui/material/colors';
+import IconButton from '@mui/material/IconButton';
+import SnackbarContent from '@mui/material/SnackbarContent';
+import WarningIcon from '@mui/icons-material/Warning';
 import classNames from 'classnames';
-import { makeStyles } from '@material-ui/core/styles';
-import {Snackbar} from "@material-ui/core";
+import { makeStyles } from '@mui/styles';
+import {Snackbar} from '@mui/material';
 import EventEmitter from "../libs/Events.utils";
 
 const variantIcon = {
@@ -99,7 +99,7 @@ class DashboardSnackbar extends Component {
     }
 
     _handleError(t) {
-       
+
         const data = (t);
         data.type = data.type ? data.type : 'none';
         this.setState({
@@ -135,11 +135,13 @@ class DashboardSnackbar extends Component {
                 autoHideDuration={4000}
                 onClose={this._handleSnackBarClose}
             >
-                <MySnackbarContentWrapper
-                    onClose={this._handleSnackBarClose}
-                    variant={this.state.variant}
-                    message={this.state.message}
-                />
+                <div>
+                    <MySnackbarContentWrapper
+                        onClose={this._handleSnackBarClose}
+                        variant={this.state.variant}
+                        message={this.state.message}
+                    />
+                </div>
             </Snackbar>
         )
     }

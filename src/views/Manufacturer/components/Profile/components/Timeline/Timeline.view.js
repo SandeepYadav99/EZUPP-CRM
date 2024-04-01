@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './Style.module.css'
-import {ButtonBase} from "@material-ui/core";
+import {ButtonBase} from '@mui/material';
 
 class Timeline extends Component{
     constructor(props) {

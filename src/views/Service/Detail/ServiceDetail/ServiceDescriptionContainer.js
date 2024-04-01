@@ -1,4 +1,4 @@
-import { CardHeader } from '@material-ui/core'
+import { CardHeader } from '@mui/material'
 import React, { memo } from 'react'
 
 const ServiceDescriptionContainer = ({styles, details, classes}) => {
@@ -24,10 +24,10 @@ const ServiceDescriptionContainer = ({styles, details, classes}) => {
           />
         </div>
       </div>
-    
+
     </div>
-   
-    
+
+
   </div></div>
   )
 }

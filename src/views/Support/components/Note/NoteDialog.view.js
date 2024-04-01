@@ -4,9 +4,8 @@ import {Link} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Button, ButtonBase, MenuItem} from '@material-ui/core';
-import Slide from '@material-ui/core/Slide';
-import Dialog from '@material-ui/core/Dialog';
+import {Button, ButtonBase, MenuItem} from '@mui/material';
+import {Slide, Dialog} from '@mui/material'
 import {renderOutlinedSelectField,renderOutlinedTextField,renderOutlinedTextFieldWithLimit} from "../../../../libs/redux-material.utils";
 import {actionAddSupportNote} from "../../../../actions/Support.action";
 

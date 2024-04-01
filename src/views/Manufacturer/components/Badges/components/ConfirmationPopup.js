@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { ButtonBase, CircularProgress, MenuItem } from "@material-ui/core";
-import { Add, Close, Delete } from "@material-ui/icons";
-import Slide from "@material-ui/core/Slide";
-import Dialog from "@material-ui/core/Dialog";
+import { ButtonBase, CircularProgress, MenuItem } from '@mui/material';
+import { Add, Close, Delete } from '@mui/icons-material';
+import Slide from "@mui/material/Slide";
+import Dialog from "@mui/material/Dialog";
 import styles from "./Style.module.css";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@mui/styles';
 
 import SnackbarUtils from "../../../../../libs/SnackbarUtils";
 import CustomSelectField from "../../../../../FormFields/SelectField/SelectField.component";
@@ -45,9 +45,9 @@ const ConfirmationPopup = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
-  
+
     handleSubmit,
-   
+
   } = useConfirmationHook({ isOpen, handleToggle , badgeId, badgeIds});
 
   return (
@@ -63,7 +63,7 @@ const ConfirmationPopup = ({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        
+
           <div className={styles.resetPasswordWrapper}>
             <div className={styles.resetWrapper1}>
               {/* <div className={styles.upperFlex}>Update Status</div> */}
@@ -80,7 +80,7 @@ const ConfirmationPopup = ({
               <div className={styles.newLine}></div>
               <div className={styles.des}>
                 Please confirm you wish to mark user as Delete Badge
-               
+
               </div>
             </div>
 
@@ -94,7 +94,7 @@ const ConfirmationPopup = ({
               </ButtonBase>
             </div>
           </div>
-       
+
       </Dialog>
     </div>
   );

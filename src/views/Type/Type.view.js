@@ -2,8 +2,9 @@
  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
  */
 import React, {Component} from 'react';
-import {Button, MenuItem, withStyles, FormControlLabel, Switch, IconButton} from '@material-ui/core';
-import {Field, reduxForm} from 'redux-form'
+import {Button, MenuItem, FormControlLabel, Switch, IconButton} from '@mui/material';
+import {Field, reduxForm} from 'redux-form';
+import {withStyles} from '@mui/styles';
 import {connect} from 'react-redux';
 import {
     renderTextField,
@@ -13,18 +14,18 @@ import {
     renderFileField,
     renderOutlinedMultipleSelectField
 } from '../../libs/redux-material.utils';
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    Slide,
+    Tooltip
+} from '@mui/material'
 import styles from "./Style.module.css";
-import {Delete as DeleteIcon} from "@material-ui/icons";
-import Slide from "@material-ui/core/Slide";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
+import {Delete as DeleteIcon, Info as InfoIcon} from "@mui/icons-material";
 import MuiStyle from "../../libs/MuiStyle";
-import {serviceIndustryCheck} from "../../services/Industry.service";
 import {serviceTypeCheck} from "../../services/Type.service";
 
 const Transition = React.forwardRef(function Transition(props, ref) {

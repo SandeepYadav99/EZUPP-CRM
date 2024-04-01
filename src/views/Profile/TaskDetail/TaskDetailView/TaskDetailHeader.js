@@ -1,5 +1,5 @@
-import { ButtonBase } from "@material-ui/core";
-import { Check } from "@material-ui/icons";
+import { ButtonBase } from '@mui/material';
+import { Check } from '@mui/icons-material';
 import React, { useState } from "react";
 
 const TaskDetailHeader = ({

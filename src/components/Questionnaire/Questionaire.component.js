@@ -11,10 +11,10 @@ import PropTypes from 'prop-types';
 // import RemoveIcon from "material-ui/svg-icons/content/remove-circle-outline";
 // import {TextField} from "material-ui";
 
-import {TextField,MenuItem,Menu,Popover,IconButton,Button,ButtonGroup,Checkbox,FormControl,InputLabel,Select} from '@material-ui/core';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-// import {RemoveCircle} from '@material-ui/icons/RemoveCircle'
+import {TextField,MenuItem,Menu,Popover,IconButton,Button,ButtonGroup,Checkbox,FormControl,InputLabel,Select} from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+// import {RemoveCircle} from '@mui/icons-material/RemoveCircle'
 const styles = {
     questionnaireContainer: {
         display: 'flex',

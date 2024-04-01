@@ -3,9 +3,10 @@
  */
 
 import React from 'react';
-import { TextField, IconButton, ButtonBase, Checkbox,Select,MenuItem ,withStyles,FormControl,InputLabel  } from '@material-ui/core';
-import { RemoveCircleOutline as RemoveIcon, AddCircle as AddIcon } from '@material-ui/icons';
+import { TextField, IconButton, ButtonBase, Checkbox,Select,MenuItem ,FormControl,InputLabel  } from '@mui/material';
+import { RemoveCircleOutline as RemoveIcon, AddCircle as AddIcon } from '@mui/icons-material';
 import styles from './style.module.css';
+import {withStyles} from '@mui/styles';
 
 const useStyles = {
     toggleDiv: {

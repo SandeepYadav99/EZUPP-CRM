@@ -1,10 +1,10 @@
 import React from "react";
 
-import { ButtonBase } from "@material-ui/core";
-import EmailIcon from "@material-ui/icons/Email";
-import CallIcon from "@material-ui/icons/Call";
-import InboxIcon from "@material-ui/icons/Inbox";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { ButtonBase } from '@mui/material';
+import EmailIcon from "@mui/icons-material/Email";
+import CallIcon from "@mui/icons-material/Call";
+import InboxIcon from "@mui/icons-material/Inbox";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import styles from "./style.module.css";
 import ActivityInfo from "./component/ActivityInfo";
 import useCustomerProfileHook from "../../../../helper/CustomerProfileHook";

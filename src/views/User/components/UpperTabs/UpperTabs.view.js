@@ -2,14 +2,11 @@ import React  from "react";
 import styles from "./style.module.css";
 import PropTypes from "prop-types";
 
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { makeStyles } from "@mui/styles";
+import { AppBar, Tabs, Tab } from '@mui/material';
 import UserView from "../User/User.view";
 import WorkProfile from "../../components/Work/WorkProfile.view";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
+import {WorkOutline as WorkOutlineIcon, PersonOutline as PersonOutlineIcon} from '@mui/icons-material'
 
 import useUpperTabsHook from "./UpperTabsHook";
 
@@ -56,12 +53,12 @@ const ProfileView = () => {
   const {
     form,
     errorData,
- 
+
     listData,
     handleSubmit,
     onBlurHandler,
     changeTextData,
- 
+
     value,
     setValue,
     setValidateContact,
@@ -73,7 +70,7 @@ const ProfileView = () => {
     setContery,
     setIsValidContact,
     setCountry
-    
+
   } = useUpperTabsHook({});
 
   const classes = useStyles();
@@ -127,7 +124,7 @@ const ProfileView = () => {
             setIsValidContact={setContery}
             setIsValid={setIsValidContact}
             setCountry={setCountry}
-            
+
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -141,7 +138,7 @@ const ProfileView = () => {
             setPhoneContact={setPhoneContact}
             isSubmitting={isSubmitting}/>
         </TabPanel>
-      
+
       </div>
     </div>
   );

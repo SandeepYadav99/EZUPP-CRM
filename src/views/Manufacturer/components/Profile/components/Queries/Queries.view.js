@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Style.module.css';
-import { ButtonBase } from "@material-ui/core";
-import { KeyboardArrowRight } from "@material-ui/icons";
+import { ButtonBase } from '@mui/material';
+import { KeyboardArrowRight } from '@mui/icons-material';
 import history from '../../../../../../libs/history.utils';
 
 const Queries = ({queryLists, supportQueryCount}) => {

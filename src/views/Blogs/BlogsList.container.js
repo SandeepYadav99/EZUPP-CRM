@@ -2,13 +2,12 @@
  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
  */
 import React, { Component } from "react";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Paper } from "@mui/material";
 
 import classNames from "classnames";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { red as redColor } from "@material-ui/core/colors";
-import { Add } from "@material-ui/icons";
+import { Add } from "@mui/icons-material";
 import PageBox from "../../../src/components/PageBox/PageBox.component";
 import SidePanelComponent from "../../../src/components/SidePanel/SidePanel.component";
 // import CreateProvider from './Create.container';
@@ -28,15 +27,6 @@ import {
   actionUpdateBlogs,
   actionDeleteBlogs,
 } from "../../actions/Blogs.action";
-import {
-  serviceFetchTourTypes,
-  serviceGetTagsList,
-} from "../../services/Blogs.service";
-import { serviceGetCustomList } from "../../services/Common.service";
-import IconButton from "@material-ui/core/IconButton";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import MenuItemView from "./component/MenuItem.component";
 import { serviceGetIndustryList } from "../../services/Industry.service";
 

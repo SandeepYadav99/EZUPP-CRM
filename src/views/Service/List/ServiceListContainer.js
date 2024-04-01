@@ -1,7 +1,7 @@
 
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@material-ui/core";
-import {  Info as EditIcon } from "@material-ui/icons";
+import { Button, IconButton } from "@mui/material";
+import {  Info as EditIcon } from "@mui/icons-material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
@@ -13,7 +13,7 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 
 import useServiceListHook from "./ServiceList.Hook";
-import { Add } from "@material-ui/icons";
+import { Add } from "@mui/icons-material";
 import ServiceView from "../Create/ServiceCreate.view";
 
 const ServiceListContainer = (props) => {
@@ -169,7 +169,7 @@ const ServiceListContainer = (props) => {
         render: (temp, all) => <div>{renderStatus(all)}</div>,
       },
 
-      
+
 
       {
         key: "is_featured",
@@ -178,7 +178,7 @@ const ServiceListContainer = (props) => {
         render: (temp, all) => <div>{renderFeatured(all)}</div>,
       },
 
-     
+
 
       {
         key: "user_id",

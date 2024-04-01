@@ -2,10 +2,8 @@
  * Created by charnjeetelectrovese@gmail.com on 4/30/2020.
  */
 import React, { PureComponent } from "react";
-import { Grid, Select, MenuItem, Input, withStyles, Typography } from "@material-ui/core";
-import { ArrowForward as ArrowForwardIcon } from "@material-ui/icons";
-import { BarChart, Bar } from "recharts";
-import classnames from "classnames";
+import { Grid, Select, MenuItem, Input, Typography } from '@mui/material';
+import {withStyles} from '@mui/styles';
 import { Line } from 'react-chartjs-2';
 
 import Widget from "../../../../components/Widget/WidgetView";

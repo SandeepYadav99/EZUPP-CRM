@@ -5,10 +5,10 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  withStyles
-} from "@material-ui/core";
-import { MoreVert as MoreIcon } from "@material-ui/icons";
-import Typography from "@material-ui/core/es/Typography/Typography";
+} from '@mui/material';
+import {withStyles} from '@mui/styles';
+import { MoreVert as MoreIcon } from '@mui/icons-material';
+import Typography from "@mui/material/es/Typography/Typography";
 
 const Widget = ({
   classes,

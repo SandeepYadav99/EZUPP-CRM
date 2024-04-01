@@ -12,7 +12,8 @@ import {
   renderCheckbox,
   renderPasswordField,
 } from "../../libs/redux-material.utils";
-import { Button, withStyles, ButtonBase } from "@material-ui/core";
+import {withStyles} from '@mui/styles';
+import { Button, ButtonBase } from "@mui/material";
 import { serviceLoginUser } from "../../services/index.services";
 import { actionLoginUser } from "../../actions/Auth.action";
 import DashboardSnackbar from "../../components/Snackbar.component";
@@ -23,8 +24,8 @@ import { updateTitle } from "../../libs/general.utils";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 import googleImageContainer from "../../assets/CRMAssets/google_neutral.png";
-import { IconButton } from "@material-ui/core";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { IconButton } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
 
 const validate = (values) => {
@@ -101,6 +102,7 @@ class LoginView extends Component {
 
   async componentDidMount() {
     updateTitle("Login");
+    SnackbarUtils.error("Invalid Credentials! Please verify.");
   }
 
   _handleSubmit(data) {

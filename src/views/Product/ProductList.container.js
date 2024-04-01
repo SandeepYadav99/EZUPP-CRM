@@ -2,13 +2,12 @@
  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
  */
 import React, { Component } from "react";
-import { Button, Paper, Checkbox, IconButton } from "@material-ui/core";
+import { Button, Paper, Checkbox, IconButton } from "@mui/material";
 
 import classNames from "classnames";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { red as redColor } from "@material-ui/core/colors";
-import { Add } from "@material-ui/icons";
+import { Add } from "@mui/icons-material";
 import PageBox from "../../components/PageBox/PageBox.component";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
 // import CreateProvider from './Create.container';
@@ -33,7 +32,7 @@ import { serviceGetCustomList } from "../../services/Common.service";
 import {
   InputRounded as EditIcon,
   RemoveRedEyeOutlined as ViewIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 let CreateProvider = null;
 

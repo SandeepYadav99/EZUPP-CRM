@@ -6,8 +6,7 @@
  */
 
 import React from 'react';
-import {TextField, IconButton} from '@material-ui/core';
-import {AddCircle as AddIcon, RemoveCircleOutline as RemoveIcon} from '@material-ui/icons';
+import {TextField, IconButton} from '@mui/material';
 import styles from './index.module.css';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-autocomplete";
 import classnames from "classnames";

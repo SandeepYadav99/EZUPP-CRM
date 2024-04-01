@@ -1,4 +1,4 @@
-import { Avatar, CardHeader } from "@material-ui/core";
+import { Avatar, CardHeader } from '@mui/material';
 import React, { memo } from "react";
 import StatusPill from "../../../../components/Status/StatusPill.component";
 
@@ -8,14 +8,14 @@ const AssignedContainer = ({ details, styles, classes }) => {
       <div className={styles.backgroundStatus}>
         <div className={styles.getfiledSpace}>
           <div className={styles.titleFiledSpace}>Due Date:</div>{" "}
-        
+
           <div>
             <CardHeader subheader={details?.dueDateText} />
           </div>
         </div>
         <div className={styles.getfiledSpace}>
           <div className={styles.titleFiledSpace}>Assigned To:</div>{" "}
-        
+
           <div>
             <CardHeader
               avatar={
@@ -38,7 +38,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         </div>
         <div className={styles.getfiledSpace}>
           <div className={styles.titleFiledSpace}>Assigned By:</div>{" "}
-       
+
           <div>
             <CardHeader
               avatar={<Avatar src={details?.assignedBy?.image}></Avatar>}
@@ -55,7 +55,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         </div>
         <div className={styles.getfiledSpace}>
           <div className={styles.titleFiledSpace}>Task Category:</div>{" "}
-        
+
           <CardHeader
             subheader={
               <div

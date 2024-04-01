@@ -7,8 +7,8 @@ import {
   FormControlLabel,
   MenuItem,
   Switch,
-  withStyles,
-} from "@material-ui/core";
+} from '@mui/material';
+import {withStyles} from '@mui/styles';
 import Table from "../../../components/Table/Table.component";
 import styles from "../styles.module.css";
 import {
@@ -17,12 +17,12 @@ import {
   renderOutlinedSelectField,
   renderOutlinedTextField,
 } from "../../../libs/redux-material.utils";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Slide from "@material-ui/core/Slide";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Slide from "@mui/material/Slide";
 import EventEmitter from "../../../libs/Events.utils";
 
 let requiredFields = [];

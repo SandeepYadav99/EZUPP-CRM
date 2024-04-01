@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Styles.module.css";
+<<<<<<< HEAD
 import EmailIcon from "@material-ui/icons/Email";
 import CallIcon from "@material-ui/icons/Call";
 import {
@@ -9,6 +10,10 @@ import {
   MenuItem,
   Button,
 } from "@material-ui/core";
+=======
+import { Email as EmailIcon, Call as CallIcon } from "@mui/icons-material";
+import { ButtonBase, FormControl, Select, MenuItem } from "@mui/material";
+>>>>>>> e35468c7e59e76a185496b2b61df26eb4f293282
 import {
   Add,
   CalendarToday,
@@ -16,7 +21,7 @@ import {
   Lock,
   Person,
   WatchLaterRounded,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
 import WaitingComponent from "../../components/Waiting.component";
@@ -28,7 +33,7 @@ import capitalizeFirstLetter, {
 } from "../../hooks/CommonFunction";
 import AssociatedManufactures from "./AssociatedManufactures/AssociatedManufactures";
 import historyUtils from "../../libs/history.utils";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const userData = localStorage.getItem("user");
@@ -51,8 +56,15 @@ const Profile = () => {
 
   const handleClose = () => {
     setOpen(!open);
+<<<<<<< HEAD
   };
 
+=======
+
+  };
+
+
+>>>>>>> e35468c7e59e76a185496b2b61df26eb4f293282
   return (
     <div>
       {isLoading ? (
@@ -60,6 +72,7 @@ const Profile = () => {
       ) : (
         <div>
           <div className={styles.upperFlex}>
+<<<<<<< HEAD
             <ButtonBase onClick={() => historyUtils.push("/users")}>
               <ArrowBackIosIcon fontSize={"small"} />{" "}
               <span>
@@ -67,6 +80,17 @@ const Profile = () => {
               </span>
             </ButtonBase>
             <div></div>
+=======
+          <ButtonBase onClick={() => historyUtils.push("/admin/users")}>
+            <ArrowBackIosIcon fontSize={"small"} />{" "}
+            <span>
+              <b>My Profile</b>
+            </span>
+          </ButtonBase>
+          <div>
+
+        </div>
+>>>>>>> e35468c7e59e76a185496b2b61df26eb4f293282
             <div className={styles.profileHeading}></div>
             <div>
               <ButtonBase className={styles.resetButton} onClick={handleClose}>
@@ -95,6 +119,7 @@ const Profile = () => {
                   Edit
                 </ButtonBase> */}
                 <div className={styles.profileContainer}>
+<<<<<<< HEAD
                   {profileDetails?.image && (
                     <img
                       src={profileDetails?.image}
@@ -102,6 +127,10 @@ const Profile = () => {
                       className={styles.proImage}
                     />
                   )}
+=======
+                  {profileDetails?.image &&   <img src={profileDetails?.image} alt="" className={styles.proImage}/>}
+
+>>>>>>> e35468c7e59e76a185496b2b61df26eb4f293282
 
                   <div className={styles.name}>
                     {capitalizeFirstLetter(profileDetails?.name)}
@@ -219,6 +248,11 @@ const Profile = () => {
 
                     <span className={styles.activity}>Manager</span>
                   </div>
+<<<<<<< HEAD
+=======
+
+                </div>
+>>>>>>> e35468c7e59e76a185496b2b61df26eb4f293282
               </div>
             </div>
             <div className={styles.rightSection}>
@@ -234,10 +268,18 @@ const Profile = () => {
                         disableUnderline
                         value={filterValue}
                         onChange={filterCompltedTask}
+<<<<<<< HEAD
+=======
+
+>>>>>>> e35468c7e59e76a185496b2b61df26eb4f293282
                       >
                         <MenuItem value={"PENDING"}>Pending</MenuItem>
                         <MenuItem value={"COMPLETED"}>Completed</MenuItem>
                         <MenuItem value={"ALL"}>All</MenuItem>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e35468c7e59e76a185496b2b61df26eb4f293282
                       </Select>
                     </FormControl>
                   </div>

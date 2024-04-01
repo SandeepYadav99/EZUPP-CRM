@@ -3,14 +3,15 @@
  */
 import React, {Component} from 'react';
 import {
-    withStyles, Paper,
+    Paper,
     Card, CardHeader,
     Divider, Table,
     TableBody, TableCell,
-    TableContainer, TableRow
-} from '@material-ui/core';
+    TableContainer, TableRow,
+    Checkbox
+} from '@mui/material';
+import {withStyles} from '@mui/styles';
 import styles from './Style.module.css';
-import Checkbox from '@material-ui/core/Checkbox';
 
 class RoleTableComponent extends Component {
     constructor(props) {

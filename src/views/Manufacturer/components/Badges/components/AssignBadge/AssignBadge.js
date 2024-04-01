@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { ButtonBase, CircularProgress, MenuItem } from "@material-ui/core";
-import { Add, Close, Delete } from "@material-ui/icons";
-import Slide from "@material-ui/core/Slide";
-import Dialog from "@material-ui/core/Dialog";
+import { ButtonBase, CircularProgress, MenuItem } from '@mui/material';
+import { Add, Close, Delete } from '@mui/icons-material';
+import Slide from "@mui/material/Slide";
+import Dialog from "@mui/material/Dialog";
 import styles from "./Style.module.css";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@mui/styles';
 
 import useAssignBadgeHook from "./AssignBadgeHook";
 import CustomSelectField from "../../../../../../FormFields/SelectField/SelectField.component";
@@ -57,7 +57,7 @@ const AssignBadge = ({ isOpen, handleToggle, candidateId, status, types }) => {
         open={isOpen}
         onClose={() => {
           handleToggle();
-         
+
         }}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

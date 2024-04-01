@@ -2,7 +2,7 @@
     position: absolute; top: 0px; left: 0px; width: 100%;
 }
 .antCascaderMenus {
-    position: absolute;
+    position: fixed;
     z-index: 1050;
     font-size: 14px;
     white-space: nowrap;
@@ -39,6 +39,7 @@
     position: relative;
     padding-right: 24px;
 }
+
 .cascaderMenuItem {
     padding: 5px 12px;
     line-height: 22px;
@@ -48,6 +49,9 @@
     transition: all .3s;
 }
 
+.cascaderMenuItemSelected {
+    background: #dedede;
+}
 
 .cascaderMenuItemExpand .cascaderMenuItemExpandIcon, .ant-cascader-menu-item-loading-icon {
     display: inline-block;

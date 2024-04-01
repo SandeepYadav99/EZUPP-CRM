@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Menu as MenuIcon, MoreVert as OptionIcon } from "@material-ui/icons";
+import { Menu as MenuIcon, MoreVert as OptionIcon } from "@mui/icons-material";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-  withStyles,
   AppBar,
   Toolbar,
   IconButton,
@@ -13,17 +12,21 @@ import {
   Menu,
   MenuItem,
   Switch,
-} from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import cx from "classnames";
 
 import headerStyle from "../../assets/jss/material-dashboard-react/headerStyle.jsx";
 import { actionLogoutUser } from "../../actions/Auth.action";
 import { actionChangeTheme } from "../../actions/AppSettings.action";
 
-import Badge from "@material-ui/core/Badge";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import Popover from "@material-ui/core/Popover";
+import Badge from "@mui/material/Badge";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import Popover from "@mui/material/Popover";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 // import HeaderLinks from "./HeaderLinks";
+
+const defaultTheme= createTheme();
 
 class Header extends React.Component {
   constructor(props) {
@@ -86,6 +89,7 @@ class Header extends React.Component {
     this.props.actionChangeTheme(themeType == "dark" ? "light" : "dark");
   }
 
+
   render() {
     const { classes, color, themeType } = this.props;
     const { anchorEl, note } = this.state;
@@ -101,87 +105,89 @@ class Header extends React.Component {
     const userObject = JSON.parse(userData);
 
     return (
-      <AppBar position={"static"} className={classes.appBar + appBarClasses}>
-        <Toolbar className={classes.container}>
-          <IconButton
-            className={classes.menuButton}
-            onClick={this.props.handleHeaderClick}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Button href="#" className={classes.title}>
-            {this.makeBrand()}
-          </Button>
-
-          <div className={classes.flexGrow}>
-            {/*<Switch checked={themeType == 'dark'} onChange={this._handleChangeTheme}/>*/}
-          </div>
-          <div>
+      <ThemeProvider theme={defaultTheme}>
+        <AppBar position={"static"} className={classes.appBar + appBarClasses}>
+          <Toolbar className={classes.container}>
             <IconButton
-              aria-label="show 3 new notifications"
-              color="inherit"
-              onClick={this._handleNotification}
+                className={classes.menuButton}
+                onClick={this.props.handleHeaderClick}
+                color="inherit"
+                aria-label="Menu"
             >
-              <Badge badgeContent={3} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+              <MenuIcon />
             </IconButton>
-            <Popover
-              // id={id}
-              open={Boolean(note)}
-              anchorEl={note}
-              onClose={this._handleNoteClose}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-            >
-              <div className={classes.innercontent}>
-                James sent you a message
-              </div>
-            </Popover>
-          </div>
-
-          <div className={classes.logoImage}>
-            <img src={userObject?.user?.image} height={30} width={30} />
-          </div>
-
-          <div>
-            <Button
-              aria-owns={anchorEl ? "simple-menu" : undefined}
-              aria-haspopup="true"
-              onClick={this._handleClick}
-              style={{ color: "black" }}
-            >
-              <OptionIcon />
+            <Button href="#" className={classes.title}>
+              {this.makeBrand()}
             </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={this._handleClose}
-            >
-              {/*<MenuItem onClick={this._handleClose}>Profile</MenuItem>*/}
-              {/*<MenuItem onClick={this._handleClose}>My account</MenuItem>*/}
-              <MenuItem onClick={this._handleLogout}>Logout</MenuItem>
-            </Menu>
-          </div>
-          {/*<IconButton*/}
-          {/*className={classes.appResponsive}*/}
-          {/*color="inherit"*/}
-          {/*aria-label="open drawer"*/}
-          {/*onClick={props.handleDrawerToggle}*/}
-          {/*>*/}
-          {/*<Menu />*/}
-          {/*</IconButton>*/}
-        </Toolbar>
-      </AppBar>
+
+            <div className={classes.flexGrow}>
+              {/*<Switch checked={themeType == 'dark'} onChange={this._handleChangeTheme}/>*/}
+            </div>
+            <div>
+              <IconButton
+                  aria-label="show 3 new notifications"
+                  color="inherit"
+                  onClick={this._handleNotification}
+              >
+                <Badge badgeContent={3} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <Popover
+                  // id={id}
+                  open={Boolean(note)}
+                  anchorEl={note}
+                  onClose={this._handleNoteClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+              >
+                <div className={classes.innercontent}>
+                  James sent you a message
+                </div>
+              </Popover>
+            </div>
+
+            <div className={classes.logoImage}>
+              <img src={userObject?.user?.image} height={30} width={30} />
+            </div>
+
+            <div>
+              <Button
+                  aria-owns={anchorEl ? "simple-menu" : undefined}
+                  aria-haspopup="true"
+                  onClick={this._handleClick}
+                  style={{ color: "black" }}
+              >
+                <OptionIcon />
+              </Button>
+              <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={this._handleClose}
+              >
+                {/*<MenuItem onClick={this._handleClose}>Profile</MenuItem>*/}
+                {/*<MenuItem onClick={this._handleClose}>My account</MenuItem>*/}
+                <MenuItem onClick={this._handleLogout}>Logout</MenuItem>
+              </Menu>
+            </div>
+            {/*<IconButton*/}
+            {/*className={classes.appResponsive}*/}
+            {/*color="inherit"*/}
+            {/*aria-label="open drawer"*/}
+            {/*onClick={props.handleDrawerToggle}*/}
+            {/*>*/}
+            {/*<Menu />*/}
+            {/*</IconButton>*/}
+          </Toolbar>
+        </AppBar>
+      </ThemeProvider>
     );
   }
 }
@@ -191,7 +197,7 @@ Header.propTypes = {
   color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
 };
 
-const temp = withStyles(headerStyle)(Header);
+const temp = withStyles(headerStyle, {withTheme: true})(Header);
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(

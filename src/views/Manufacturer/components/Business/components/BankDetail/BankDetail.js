@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../Style.module.css";
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase } from '@mui/material';
 import SimplePopover from "../../../../../../components/FormFields/SimplePopover/SimplePopover";
 import bankImage from "../../../../../../assets/img/sent_blue.svg";
 const BankDetail = ({ bankdetail ,  handleVerify,

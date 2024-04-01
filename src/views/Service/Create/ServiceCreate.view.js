@@ -1,20 +1,20 @@
 import React from "react";
 
-import {Button, CircularProgress, IconButton, MenuItem } from "@material-ui/core";
+import {Button, CircularProgress, IconButton, MenuItem } from '@mui/material';
 import {
 
   Delete as DeleteIcon,
 
-} from "@material-ui/icons";
+} from '@mui/icons-material';
 
 // import styles from "";
 
 import CustomRadioLabel from "../../../components/CustomRadioLabel/CustomRadioLabel.component";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
 import CustomSwitch from "../../../FormFields/CustomSwitch";
 import CustomCheckbox from "../../../FormFields/CustomCheckbox";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 import useServiceCreateHook from "./ServiceCreateHooks";
 import File from "../../../components/FileComponent/FileComponent.component";
 import CustomTextField from "../../../FormFields/TextField.component";
@@ -121,7 +121,7 @@ const ServiceView = ({ handleToggleSidePannel, isSidePanel, empId }) => {
                 onTextChange={(text) => {
                   changeTextData(slugify(text.toLowerCase()), "slug");
                 }}
-                
+
                 onBlur={() => {
                   onBlurHandler("slug");
                 }}
@@ -181,7 +181,7 @@ const ServiceView = ({ handleToggleSidePannel, isSidePanel, empId }) => {
           </div>
         </div>
 
-      
+
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
             <div className={"heading"}>Status</div>
@@ -207,7 +207,7 @@ const ServiceView = ({ handleToggleSidePannel, isSidePanel, empId }) => {
           </div>
         </div>
 
-       
+
 
         <div style={{ float: "right" }}>
           <Button
@@ -223,7 +223,7 @@ const ServiceView = ({ handleToggleSidePannel, isSidePanel, empId }) => {
             ) : (
               "Submit"
             )}
-          
+
           </Button>
         </div>
       </div>

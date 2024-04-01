@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import styles from './Style.module.css';
-import {ButtonBase, FormControl, InputLabel, MenuItem} from "@material-ui/core";
-import Select from '@material-ui/core/Select';
+import {ButtonBase, FormControl, InputLabel, MenuItem} from "@mui/material";
+import {Select} from '@mui/material';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionChangeQuotePriority, actionChangeQuoteStatus} from "../../../../actions/Quotes.action";
 import {WaitingComponent} from "../../../../components/index.component";
 import constants from "../../../../config/constants";
 import AssignedDialog from '../AssignedDialog/AssignedDialog.view';
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import {VerifiedUser as VerifiedUserIcon} from '@mui/icons-material';
 import LeadAssignedUser from "../AssignedDialog/LeadAssignedUser.component";
 
 class LeadDetailComponent extends Component {

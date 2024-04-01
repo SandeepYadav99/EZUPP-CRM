@@ -2,10 +2,11 @@
  * Created by charnjeetelectrovese@gmail.com on 5/27/2020.
  */
 import React, {Component} from 'react';
-import {IconButton, Paper, withStyles} from "@material-ui/core";
+import {IconButton, Paper} from '@mui/material';
+import {withStyles} from '@mui/styles';
 import styles from './Style.module.css';
 import classNames from 'classnames';
-import {Edit, KeyboardArrowRight as DownIcon, KeyboardArrowUp as UpIcon} from '@material-ui/icons';
+import {Edit, KeyboardArrowRight as DownIcon, KeyboardArrowUp as UpIcon} from '@mui/icons-material';
 
 class Collapse extends Component {
     constructor(props) {

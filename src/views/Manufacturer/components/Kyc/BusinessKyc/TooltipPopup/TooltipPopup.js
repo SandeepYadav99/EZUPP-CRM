@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
+import { makeStyles } from "@mui/styles";
+import Popover from "@mui/material/Popover";
 
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase } from '@mui/material';
 
 import { useParams } from "react-router-dom";
 
@@ -92,7 +92,7 @@ export default function TooltipPopup({ type, title, id , isLoading}) {
     // }).then((res) => {
     //   if (!res.error) {
     //     SnackbarUtils.success("Verified Succesfully");
-     
+
     //   } else {
     //     SnackbarUtils.error("Somthing went worng!");
     //   }

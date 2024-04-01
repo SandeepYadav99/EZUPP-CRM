@@ -1,12 +1,14 @@
 import React, {Component, useEffect} from 'react';
 import {Router, Route, Switch} from "react-router-dom";
-import {MuiThemeProvider, createMuiTheme, createTheme} from '@material-ui/core/styles';
+import {ThemeProvider, createTheme} from '@mui/material/styles';
 import RouteComponent from './routes/index.route';
 import './App.css';
 import themes, {overrides} from './themes';
 import history from './libs/history.utils';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {StyledEngineProvider} from "@mui/material";
+import ThemeCustomization from "./themes";
 
 // const history = createBrowserHistory();
 
@@ -14,16 +16,12 @@ import {bindActionCreators} from "redux";
 
 class App extends Component {
     render() {
-        const { themeType } = this.props;
-        const themeDefault = themeType == 'dark' ? themes.dark : themes.default;
-// themeDefault['palette']['type'] = 'dark';
-        const theme = createTheme({...themeDefault, ...overrides});
         return (
-            <MuiThemeProvider theme={theme}>
+            <ThemeCustomization>
                 <Router history={history}>
                     <RouteComponent/>
                 </Router>
-            </MuiThemeProvider>
+            </ThemeCustomization>
         );
     }
 }

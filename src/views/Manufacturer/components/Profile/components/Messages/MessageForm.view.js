@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Button, ButtonBase, MenuItem} from '@material-ui/core';
+import {Button, ButtonBase, MenuItem} from '@mui/material';
 import {renderOutlinedTextField} from "../../../../../../libs/redux-material.utils";
 
 const validate = (values) => {

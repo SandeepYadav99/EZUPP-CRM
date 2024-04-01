@@ -1,6 +1,6 @@
 
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@material-ui/core";
+import { Button, IconButton } from '@mui/material';
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
@@ -12,7 +12,7 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 
 
-import { Add, RemoveRedEyeOutlined } from "@material-ui/icons";
+import { Add, RemoveRedEyeOutlined } from '@mui/icons-material';
 
 import useIndustryListHook from "./IndustryListHook";
 import IndustryCreateView from "../Create/IndustryCreate";

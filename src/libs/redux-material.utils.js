@@ -3,24 +3,22 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-// import { RadioButton, RadioButtonGroup } from '@material-ui/core/Radio';
-import Checkbox from '@material-ui/core/Checkbox';
-import TextField from '@material-ui/core/TextField';
-import SelectField from '@material-ui/core/Select';
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import InputLabel from "@material-ui/core/InputLabel";
-import {Chip, withStyles, FormHelperText, MenuItem,Input,IconButton} from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import {useTheme} from '@material-ui/core/styles';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { Checkbox,
+    TextField,
+    Select as SelectField,
+    FormControl,
+    FormControlLabel,
+    InputLabel,
+    InputAdornment
+} from '@mui/material';
+import {Chip, FormHelperText, MenuItem,Input,IconButton} from '@mui/material';
+import {withStyles} from '@mui/styles';
+import Autocomplete from '@mui/lab/Autocomplete';
 import TimePicker from '../components/ReduxDatePicker/ReduxTimePicker.component';
 import File from "../components/FileComponent/FileComponent.component";
 import ReduxCountryContact from '../components/country/ReduxCountryContact.component';
 import DatePicker from '../components/ReduxDatePicker/ReduxDatePicker.component';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import  { Visibility, VisibilityOff } from '@material-ui/icons';
+import  { Visibility, VisibilityOff } from '@mui/icons-material';
 
 export const renderTextField = ({input, label, meta: {touched, error}, ...custom}) => (
     <TextField
@@ -256,7 +254,7 @@ export  class renderAutoComplete extends React.Component {
 
     render() {
         const {input, label, margin, meta: {touched, error}, dataObj, data, children, ...custom} = this.props;
-    
+
         return (
             <div>
                 <Autocomplete

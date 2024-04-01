@@ -6,26 +6,27 @@ import {Field, reduxForm} from 'redux-form'
 import {connect} from 'react-redux';
 import styles from './Style.module.css'
 import csx from 'classnames';
-import {MenuItem, Button, IconButton, withStyles} from '@material-ui/core';
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
+import {MenuItem, Button, IconButton, } from '@mui/material';
+import {createTheme} from '@mui/material/styles';
+import {withStyles} from '@mui/styles';
 
 import {
     renderOutlinedTextField,
     renderOutlinedTextFieldWithLimit,
     renderOutlinedSelectField, renderCheckbox, renderAutoComplete, renderFileField,
 } from '../../../../libs/redux-material.utils';
-
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-import {Delete as DeleteIcon} from "@material-ui/icons";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Slide from "@material-ui/core/Slide";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
+import {
+    FormControlLabel,
+    Switch,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    Slide,
+    Tooltip,
+} from '@mui/material';
+import {Delete as DeleteIcon, Info as InfoIcon} from "@mui/icons-material";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -60,7 +61,7 @@ const negativeNormalize = (value, prevValue) => {
     } return prevValue;
 };
 
-const defaultTheme = createMuiTheme()
+const defaultTheme = createTheme()
 
 Object.assign(defaultTheme, {
     overrides: {
