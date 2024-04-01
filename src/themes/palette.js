@@ -42,11 +42,11 @@ const Palette = (mode) => {
         white: '#fff'
       },
       ...paletteColor,
-      text: {
-        primary: paletteColor.grey[700],
-        secondary: paletteColor.grey[500],
-        disabled: paletteColor.grey[400]
-      },
+      // text: {
+      //   primary: paletteColor.grey[700],
+      //   secondary: paletteColor.grey[500],
+      //   disabled: paletteColor.grey[400]
+      // },
       // action: {
       //   disabled: paletteColor.grey[300]
       // },
