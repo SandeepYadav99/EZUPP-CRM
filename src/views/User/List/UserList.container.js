@@ -16,6 +16,8 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./UserListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
+import { ActionButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+
 
 
 const UserList = (props) => {
@@ -202,14 +204,14 @@ const UserList = (props) => {
       <PageBox>
         <div className={styles.headerContainer}>
           <span className={styles.title}>User List</span>
-          <Button
-            // disabled={this.state.is_calling}
-            variant={"contained"}
-            color={"primary"}
+          <PrimaryButton
+           
+          
+           
              onClick={handleCreate}
           >
             <Add></Add> Create
-          </Button>
+          </PrimaryButton>
         </div>
 
         <div>

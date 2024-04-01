@@ -9,8 +9,9 @@ import {
 } from "../../components/Buttons/PrimaryButton";
 import styles from './Style.module.css';
 import {Typography} from "@mui/material";
-import CustomTextField from "../../components/FormFields/TextField/TextField.component";
+// import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
+import CustomTextField from '../../FormFields/TextField.component';
 
 const StyleGuide = ({}) => {
     return (

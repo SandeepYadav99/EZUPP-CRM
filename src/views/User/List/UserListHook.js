@@ -118,7 +118,7 @@ const useUserListHook = ({}) => {
   );
 
   const handleCreate = useCallback(() => {
-    historyUtils.push(RouteName.USER_CREATE);
+    historyUtils.push(RouteName?.USER_CREATE);
   }, []);
 
   const configFilter = useMemo(() => {

@@ -1,39 +1,35 @@
 import React, { Component } from "react";
 
-import {
-  Button,
-  MenuItem,
-  withStyles,
-  FormControlLabel,
-  Switch,
-  ButtonBase,
-} from "@material-ui/core";
+
 
 import styles from "./Style.module.css";
 
 // import {serviceProviderUserCheck} from "../../services/User.service";
 
-import { makeStyles } from "@material-ui/styles";
+
 
 import File from "../../../components/FileComponent/FileComponent.component";
 import CustomTextField from "../../../FormFields/TextField.component";
 import CustomSelectField from "../../../FormFields/SelectField/SelectField.component";
 import CustomPhoneContactField from "../../../FormFields/CustomPhoneContact.componet";
-import PhoneInput from "react-phone-input-2";
-import { ArrowBackIos } from "@material-ui/icons";
+
+
 import CustomDatePicker from "../../../FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../components/FormFields/CustomCheckbox";
 import history from "../../../libs/history.utils";
+import { ActionButton } from "../../../components/Buttons/PrimaryButton";
+import { MenuItem } from "@mui/material";
+import { ArrowBackIos } from "@mui/icons-material";
 
-const useStyles = makeStyles((theme) => ({
-  iconBtnError: {
-    color: theme.palette.error.dark,
-  },
-  deleteBtn: {
-    color: "red",
-    // borderBottom: '1px solid red'
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   iconBtnError: {
+//     color: theme.palette.error.dark,
+//   },
+//   deleteBtn: {
+//     color: "red",
+//     // borderBottom: '1px solid red'
+//   },
+// }));
 
 const UserCreate = ({
   handleToggleSidePannel,
@@ -48,18 +44,18 @@ const UserCreate = ({
   setCountry,
   id,
 }) => {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
     <>
       <div className={styles.outerFlex1}>
         <div>
-          <ButtonBase onClick={()=>history.goBack()}>
+          <ActionButton onClick={()=>history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
             <span>
               <b>{id === "true" ? "Update" : "Add"} User</b>
             </span>
-          </ButtonBase>
+          </ActionButton>
          
         </div>
       </div>
@@ -305,7 +301,7 @@ const UserCreate = ({
         </div>
    
         <div className={styles.saveButton}>
-            <Button
+            <ActionButton
               variant={"contained"}
               color={"primary"}
               type="button"
@@ -317,7 +313,7 @@ const UserCreate = ({
                  Save
               {/* )} */}
               
-            </Button>
+            </ActionButton>
           </div>
       </>
     </>

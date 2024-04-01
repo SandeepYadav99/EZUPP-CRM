@@ -113,7 +113,7 @@ class FilterComponent extends Component {
                 />
             );
         }
-        if (val.type == 'date') {
+        if (val?.type == 'date') {
             return (
 
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
