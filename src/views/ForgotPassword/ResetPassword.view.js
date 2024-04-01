@@ -264,19 +264,12 @@ class ResetPasswordView extends Component {
                 variant={"contained"}
                 color={"primary"}
                 type="submit"
-                className={styles.login}
+                className={styles.login1}
               >
-                {/* {this.state.is_calling ? (
-              <div style={{ padding: "5px 20px", display: "flex" }}>
-                <CircularProgress size={"18px"} color={"primary"} />
-              </div>
-            ) : this.state.success ? (
-              "Redirecting"
-            ) : (
-              "Change Password"
-            )} */}
+               
                 <div
                   style={{ display: "flex", gap: "5px", alignItems: "center" }}
+                  className={styles.newPassword}
                 >
                   <span>SET NEW PASSWORD</span>
                   <img src={arrowIcon} alt="arrow" style={{ height: "15px" }} />

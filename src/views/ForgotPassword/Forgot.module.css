@@ -227,6 +227,20 @@
   transition: all 0.5s ease-out;
   width: 240px;
 }
+.login1 {
+  padding: 10px 20px 10px 20px !important;
+  border-radius: 7px !important;
+  color: white !important;
+  background: #2063ce !important;
+  margin-top: 15px !important;
+  background-size: 200% 100%;
+  background-position: right bottom;
+  /* transition: all 0.5s ease-out; */
+  width: 240px;
+}
+.login1:hover{
+  background-color: #03AE85 !important;
+}
 .cancel{
   padding: 10px 20px 10px 20px !important;
   border-radius: 7px !important;
@@ -236,7 +250,9 @@
  border: 1px solid #FF0000;
   
 }
-
+.cancel:hover{
+  background-color: #FBECE0 !important;
+}
 .login:hover {
   padding: 10px 20px 10px 20px !important;
   border-radius: 7px !important;
