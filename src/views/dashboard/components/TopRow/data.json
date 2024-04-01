@@ -1,0 +1,12 @@
+{
+  "Data":[
+    {
+        "title": "Congratulations Shivay!",
+        "subtitle": "Best seller of the month",
+        "amount": "$42.8k",
+        "progress": "78% of target 🚀",
+        "buttonText": "VIEW SALES",
+        "imageURL": "../../../../assets/Assets/trophy.png"
+    }
+  ]  
+}
