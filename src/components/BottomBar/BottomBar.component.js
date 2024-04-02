@@ -4,8 +4,8 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import styles from './style.module.css';
-import {ButtonBase} from '@material-ui/core';
-import {Close} from '@material-ui/icons';
+import {ButtonBase} from '@mui/material';
+import {Close} from '@mui/icons-material';
 
 class BottomPanelComponent extends Component {
     constructor(props) {

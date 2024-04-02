@@ -1,7 +1,7 @@
 import styles from "./Style.module.css";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 import CustomSelectField from "../../../../FormFields/SelectField/SelectField.component";
-import { Button, CircularProgress, MenuItem } from "@material-ui/core";
+import { Button, CircularProgress, MenuItem } from "@mui/material";
 import CustomDatePicker from "../../../../FormFields/DatePicker/CustomDatePicker";
 import CustomTextField from "../../../../FormFields/TextField.component";
 import { formattedOptions } from "../../../../helper/Department";
@@ -51,7 +51,7 @@ const WorkProfile = ({
                 onChange={(value) => {
                   changeTextData(value, "joining_date");
                 }}
-              
+
                 format={"dd-MM-yyyy"}
                 value={form?.joining_date}
                 isError={errorData?.joining_date}
@@ -73,7 +73,7 @@ const WorkProfile = ({
               >
                 {formattedOptions?.map((option, index) => (
                   <MenuItem
-                  
+
                     value={option?.id}
                   >
                     {option?.name}
@@ -131,7 +131,7 @@ const WorkProfile = ({
               ) : (
                 " Save"
               )}
-              
+
             </Button>
           </div>
         </div>

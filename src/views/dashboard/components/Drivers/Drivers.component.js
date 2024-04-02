@@ -5,8 +5,9 @@
  * Created by charnjeetelectrovese@gmail.com on 4/30/2020.
  */
 import React, {Component} from "react";
-import {Grid, Divider, List, ListItem, withStyles, Typography, Paper} from "@material-ui/core";
+import {Grid, Divider, List, ListItem, Typography, Paper} from '@mui/material';
 import styles from './Styles.module.css';
+import {withStyles} from '@mui/styles';
 
 class DriversList extends Component {
 

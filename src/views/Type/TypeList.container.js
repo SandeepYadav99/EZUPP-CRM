@@ -2,15 +2,12 @@
  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
  */
 import React, {Component} from 'react';
-import {Button, IconButton, Paper} from '@material-ui/core';
+import {Button, IconButton, Paper} from '@mui/material';
 
 import classNames from 'classnames';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {
-    red as redColor,
-} from '@material-ui/core/colors';
-import {Add, InputRounded as EditIcon} from '@material-ui/icons';
+import {Add, InputRounded as EditIcon} from '@mui/icons-material';
 import PageBox from '../../../src/components/PageBox/PageBox.component';
 import SidePanelComponent from '../../../src/components/SidePanel/SidePanel.component';
 // import CreateProvider from './Create.container';

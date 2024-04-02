@@ -1,7 +1,7 @@
 import React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
+import {Checkbox} from "@mui/material";
 import styles from "./Styles.module.css";
-import { AccessTime, Watch } from "@material-ui/icons";
+import { AccessTime, Watch } from '@mui/icons-material';
 
 const TaskListItem = ({
   task,
@@ -44,7 +44,7 @@ const TaskListItem = ({
           color="primary"
           checked={task?.is_completed ? true : false}
           onClick={handleCheckboxClick}
-          
+
         />
         <div onClick={() => handleDetailPage(task)} >
 

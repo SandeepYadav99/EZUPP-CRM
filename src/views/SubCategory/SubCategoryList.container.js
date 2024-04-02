@@ -2,20 +2,20 @@
  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
  */
 import React, {Component} from 'react';
-import {Button, Paper,ButtonBase} from '@material-ui/core';
+import {Button, Paper,ButtonBase} from '@mui/material';
 
 import classNames from 'classnames';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {
     red as redColor,
-} from '@material-ui/core/colors';
-    // import {Add} from '@material-ui/icons';
+} from '@mui/material/colors';
+    // import {Add} from '@mui/icons-material';
 import PageBox from '../../components/PageBox/PageBox.component';
 import SidePanelComponent from '../../components/SidePanel/SidePanel.component';
 // import CreateProvider from './Create.container';
 import styles from './Style.module.css';
-import { Add,KeyboardArrowLeft } from '@material-ui/icons';
+import { Add,KeyboardArrowLeft } from '@mui/icons-material';
 // import DataTables from '../../Datatables/DataTableSrc/DataTables';
 import DataTables from '../../Datatables/Datatable.table';
 import Constants from '../../config/constants';

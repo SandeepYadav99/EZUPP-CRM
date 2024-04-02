@@ -1,15 +1,15 @@
-import { AppBar } from "@material-ui/core";
+import { AppBar } from '@mui/material';
 import React from "react";
 import { useCallback } from "react";
 import { useState } from "react";
 import styles from "./Style.module.css";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import PropTypes from "prop-types";
 // import BirthdayEvent from "./BirthdayEvent";
 import { useSelector } from "react-redux";
 // import WaitingComponent  from "../../../../../components/Waiting.component";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import EventCard from "./EventCard.component";
 import dataValue from "./data.json";
 

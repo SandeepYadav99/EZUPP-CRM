@@ -6,14 +6,14 @@ import {
   MenuItem,
   TextField,
   Tooltip,
-} from "@material-ui/core";
+} from '@mui/material';
 import React, { useState } from "react";
 import CustomTextField from "../../../FormFields/TextField.component";
 import styles from "./Style.module.css";
 import useAddTaskCreate from "./AddTaskCreateHook";
-import InfoIcon from "@material-ui/icons/Info";
-import { Autocomplete } from "@material-ui/lab";
-import { Clear, Search } from "@material-ui/icons";
+import InfoIcon from "@mui/icons-material/Info";
+import { Autocomplete } from '@mui/lab';
+import { Clear, Search } from '@mui/icons-material';
 import CustomSelectField from "../../../FormFields/SelectField/SelectField.component";
 import CustomDateTimePicker from "../../../FormFields/DatePicker/CustomDateTimePicker";
 
@@ -53,7 +53,7 @@ const AddTaskCreate = ({
             <InfoIcon fontSize={"small"} />
           </Tooltip>
         </h4>
-      
+
       </div>
 
       <div>
@@ -248,7 +248,7 @@ const AddTaskCreate = ({
                 changeTextData(value, "associated_user");
               }}
               value={form?.associated_user || []}
-              options={filteredUsers || []} 
+              options={filteredUsers || []}
               getOptionLabel={(option) =>
                 `${option?.name || ""} ${
                   option?.email ? `(${option?.email})` : ""

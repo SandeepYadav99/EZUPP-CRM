@@ -1,6 +1,6 @@
 
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@material-ui/core";
+import { Button } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
@@ -12,7 +12,7 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 
 import useBadgeListHook from "./BadgeList.Hook";
-import { Add } from "@material-ui/icons";
+import { Add } from "@mui/icons-material";
 import BadgeView from "../Create/BadgeCreate.view";
 
 const BadgeListContainer = (props) => {
@@ -42,7 +42,7 @@ const BadgeListContainer = (props) => {
   } = useSelector((state) => state.badge);
 
   const renderFirstCell = useCallback((user) => {
-  
+
     const tempEmailRender = user?.email ? (
       <span style={{ textTransform: "lowercase" }}>{user?.email}</span>
     ) : null;

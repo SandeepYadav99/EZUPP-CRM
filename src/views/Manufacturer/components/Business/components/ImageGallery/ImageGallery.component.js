@@ -10,12 +10,12 @@ import {
   DialogContentText,
   DialogActions,
   Slide,
-} from "@material-ui/core";
+} from '@mui/material';
 import {
   Add as AddIcon,
   CloudUpload as UploadIcon,
   DeleteOutline as DeleteIcon,
-} from "@material-ui/icons";
+} from '@mui/icons-material';
 import { WaitingComponent } from "../../../../../../components/index.component";
 import {
   serviceDeleteCertificates,

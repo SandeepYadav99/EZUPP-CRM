@@ -2,8 +2,7 @@ import React, {useCallback, useMemo} from "react";
 import styles from "./Style.module.css";
 import csx from "classnames";
 
-
-const CascaderItem = ({ options, level, handleClick }) => {
+const CascaderItem = ({ options, level, label, handleClick, value }) => {
 
     const handleItemClick = useCallback((data, index) => {
         handleClick(data,index,level);
@@ -11,21 +10,29 @@ const CascaderItem = ({ options, level, handleClick }) => {
 
 
     const items = useMemo(() => {
+        // console.log('cascadeerITem', label, level);
         if (options && Array.isArray(options)) {
             const items =  options.map((val, index) => {
+                let isSelected = false;
+                if (value && Array.isArray(value) && value.length >= 0) {
+                    isSelected = value[level] === index;
+                }
                 return (
-                    <li onClick={() => {handleItemClick(val, index)}} className={csx(styles.cascaderMenuItem, styles.cascaderMenuItemExpand)}
-                        title="Zhong Hua Men"
+                    <li key={'LEVEL'+level+'index'+index} onClick={() => {handleItemClick(val, index)}} className={csx(styles.cascaderMenuItem, styles.cascaderMenuItemExpand, (isSelected ? styles.cascaderMenuItemSelected : ''))}
+                        title=""
                         role="menuitem">{val.label}</li>
                 );
             });
+            items.unshift(<li key={'LVEL'+level+'menu'}  className={csx(styles.cascaderMenuItem, styles.cascaderMenuItemExpand)}
+                              title={label}
+                              role="menuitem"><b>{label}</b></li>);
             return (
                 <ul className={styles.cascaderMenu}>
                     {items}
                 </ul>
             )
         }
-    }, [options]);
+    }, [options, label, value, level]);
     return (
         <>
             {items}

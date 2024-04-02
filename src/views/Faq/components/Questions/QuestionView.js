@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styles from './Style.module.css';
-import {IconButton} from "@material-ui/core";
-import {AddCircleOutline} from "@material-ui/icons";
+import {IconButton} from "@mui/material";
+import {AddCircleOutline} from "@mui/icons-material";
 import QuestionsView from "./Questions.view";
 import SidePanelComponent from "../../../../components/SidePanel/SidePanel.component";
 import QuestionsForm from './QuestionsForm.view'

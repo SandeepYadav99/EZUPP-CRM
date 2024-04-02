@@ -8,8 +8,8 @@ import {actionGetSupportDetails, actionGetSupportNotes} from "../../actions/Supp
 import LeadNoteList from "./components/Note/NoteList.component";
 import Concern from "./components/Concern/Concern.view";
 import {WaitingComponent} from "../../components/index.component";
-import {ButtonBase} from "@material-ui/core";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import {ButtonBase} from "@mui/material";
+import { ArrowBackIos as ArrowBackIosIcon } from "@mui/icons-material";
 import history from "../../libs/history.utils";
 
 class Support extends Component{

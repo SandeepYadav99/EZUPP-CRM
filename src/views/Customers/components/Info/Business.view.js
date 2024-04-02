@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Paper } from "@material-ui/core";
+import { Paper } from '@mui/material';
 import styles from "./style.module.css";
 
 const BusinessView = () => {

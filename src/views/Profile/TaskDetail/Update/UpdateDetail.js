@@ -6,17 +6,14 @@ import {
   MenuItem,
   TextField,
   Tooltip,
-} from "@material-ui/core";
+} from "@mui/material";
 import React from "react";
 
 import CustomTextField from "../../../../FormFields/TextField.component";
 import styles from "./Style.module.css";
 
-import InfoIcon from "@material-ui/icons/Info";
-import CustomDatePicker from "../../../../FormFields/DatePicker/CustomDatePicker";
-import { Autocomplete } from "@material-ui/lab";
-
-import { Clear, Search } from "@material-ui/icons";
+import {Info as InfoIcon, Clear, Search} from "@mui/icons-material";
+import { Autocomplete } from "@mui/lab";
 import CustomSelectField from "../../../../FormFields/SelectField/SelectField.component";
 import useAddTaskUpdate from "./UpdateDetailHook";
 import CustomDateTimePicker from "../../../../FormFields/DatePicker/CustomDateTimePicker";
@@ -130,7 +127,7 @@ const AddTaskUpdate = ({
               )}
               disableClearable
             />
-           
+
           </div>
         </div>
         <div className={"formFlex"}>

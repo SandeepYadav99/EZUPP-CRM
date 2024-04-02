@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react'
 import Constants from '../../../../config/constants';
-import {Button} from '@material-ui/core';
+import {Button} from '@mui/material';
 import EventEmitter from "../../../../libs/Events.utils";
 
 const tempGoogleMapStyles = [

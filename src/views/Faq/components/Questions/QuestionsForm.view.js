@@ -6,8 +6,9 @@ import {Field, reduxForm} from 'redux-form'
 import {connect} from 'react-redux';
 import styles from './Style.module.css'
 import csx from 'classnames';
-import {MenuItem, Button, IconButton, withStyles} from '@material-ui/core';
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
+import {MenuItem, Button, IconButton} from '@mui/material';
+import {withStyles} from '@mui/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles'
 import MUIRichTextEditor from 'mui-rte';
 import { stateToHTML } from 'draft-js-export-html';
 import { convertFromHTML, ContentState, convertToRaw, convertFromRaw } from 'draft-js'
@@ -18,19 +19,16 @@ import {
 } from '../../../../libs/redux-material.utils';
 import {serviceBlogsExists, serviceUploadBlogImage} from "../../../../services/Blogs.service";
 import EventEmitter from "../../../../libs/Events.utils";
-import BackupIcon from '@material-ui/icons/Backup'
-// import UploadImagePopover from './component/Popover/Popover.component';
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-import {Delete as DeleteIcon} from "@material-ui/icons";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Slide from "@material-ui/core/Slide";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
+import {Backup as BackupIcon, Info as InfoIcon, Delete as DeleteIcon} from '@mui/icons-material'
+import {FormControlLabel, Switch,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    Slide,
+    Tooltip,
+} from "@mui/material";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -67,7 +65,7 @@ const negativeNormalize = (value, prevValue) => {
     } return prevValue;
 };
 
-const defaultTheme = createMuiTheme()
+const defaultTheme = createTheme()
 
 Object.assign(defaultTheme, {
     overrides: {
@@ -265,7 +263,7 @@ class QuestionsFormView extends Component {
                     {/*        this._setAnchor(null);*/}
                     {/*    }}*/}
                     {/*/>*/}
-                    <MuiThemeProvider theme={defaultTheme}>
+                    <ThemeProvider theme={defaultTheme}>
                         <MUIRichTextEditor
                             ref={(ref) => { this.editorRef = ref; }}
                             defaultValue={editor_data}
@@ -294,7 +292,7 @@ class QuestionsFormView extends Component {
                                 }
                             }}
                         />
-                    </MuiThemeProvider>
+                    </ThemeProvider>
                 </>
             )
         }

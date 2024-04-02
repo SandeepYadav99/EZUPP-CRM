@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
-import { ButtonBase } from "@material-ui/core";
-import { ReportProblem } from "@material-ui/icons";
+import { makeStyles } from "@mui/styles";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import { ButtonBase } from '@mui/material';
+import { ReportProblem } from '@mui/icons-material';
 
 import renderImagebyType from "../../../../../../libs/Helper";
 import { useParams } from "react-router-dom";
@@ -37,11 +37,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimplePopovers({
- 
+
   userProfile,
   type,
   title,
- 
+
 }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -79,7 +79,7 @@ export default function SimplePopovers({
   let closeTimer;
 
 
- 
+
   const isVerifiedTitle = title && title.includes("VERIFIED");
 
   return (

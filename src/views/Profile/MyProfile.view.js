@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Styles.module.css";
-import EmailIcon from "@material-ui/icons/Email";
-import CallIcon from "@material-ui/icons/Call";
-import { ButtonBase, FormControl, Select, MenuItem } from "@material-ui/core";
+import { Email as EmailIcon, Call as CallIcon } from "@mui/icons-material";
+import { ButtonBase, FormControl, Select, MenuItem } from "@mui/material";
 import {
   Add,
   CalendarToday,
@@ -11,7 +10,7 @@ import {
   Lock,
   Person,
   WatchLaterRounded,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
 import WaitingComponent from "../../components/Waiting.component";
@@ -21,7 +20,7 @@ import TaskListItem from "./TaskListView";
 import capitalizeFirstLetter, { formatString } from "../../hooks/CommonFunction";
 import AssociatedManufactures from "./AssociatedManufactures/AssociatedManufactures";
 import historyUtils from "../../libs/history.utils";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const userData = localStorage.getItem("user");
@@ -44,10 +43,10 @@ const Profile = () => {
 
   const handleClose = () => {
     setOpen(!open);
-    
+
   };
 
- 
+
   return (
     <div>
       {isLoading ? (
@@ -62,7 +61,7 @@ const Profile = () => {
             </span>
           </ButtonBase>
           <div>
-       
+
         </div>
             <div className={styles.profileHeading}></div>
             <div>
@@ -93,7 +92,7 @@ const Profile = () => {
                 </ButtonBase>
                 <div className={styles.profileContainer}>
                   {profileDetails?.image &&   <img src={profileDetails?.image} alt="" className={styles.proImage}/>}
-                
+
 
                   <div className={styles.name}>
                     {capitalizeFirstLetter(profileDetails?.name)}
@@ -172,7 +171,7 @@ const Profile = () => {
                         : "N/A"}
                     </span>
                   </div>
-                
+
                 </div>
               </div>
             </div>
@@ -189,12 +188,12 @@ const Profile = () => {
                         disableUnderline
                         value={filterValue}
                         onChange={filterCompltedTask}
-                     
+
                       >
                         <MenuItem value={"PENDING"}>Pending</MenuItem>
                         <MenuItem value={"COMPLETED"}>Completed</MenuItem>
                         <MenuItem value={"ALL"}>All</MenuItem>
-                     
+
                       </Select>
                     </FormControl>
                   </div>

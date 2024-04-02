@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
-import { ButtonBase } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import Popover from "@mui/material/Popover";
+import { ButtonBase } from '@mui/material';
 import { useParams } from "react-router-dom";
 import {  serviceResetKycStatusUpdate } from "../../../../../../services/CustomersRequest.service";
 import SnackbarUtils from "../../../../../../libs/SnackbarUtils";
@@ -89,7 +89,7 @@ export default function RepresentativeTooltip({ type, title, id , isLoading}) {
     // }).then((res) => {
     //   if (!res.error) {
     //     SnackbarUtils.success("Verified Succesfully");
-     
+
     //   } else {
     //     SnackbarUtils.error("Somthing went worng!");
     //   }

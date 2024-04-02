@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { ButtonBase, CircularProgress, MenuItem } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
-import Slide from "@material-ui/core/Slide";
-import Dialog from "@material-ui/core/Dialog";
+import { ButtonBase, CircularProgress, MenuItem } from '@mui/material';
+import { Close } from '@mui/icons-material';
+import Slide from "@mui/material/Slide";
+import Dialog from "@mui/material/Dialog";
 import styles from "./Style.module.css";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@mui/styles';
 
 import CustomSelectField from "../../../../../../../components/FormFields/SelectField/SelectField.component";
 import useBankDetailHook from "./BankDetailHook";
@@ -43,7 +43,7 @@ const BankDetailPopup = ({ isOpen, handleToggle, bankId , status}) => {
     isSubmitting
   } = useBankDetailHook({ isOpen, handleToggle, bankId });
 
- 
+
   return (
     <div>
       <Dialog
@@ -60,7 +60,7 @@ const BankDetailPopup = ({ isOpen, handleToggle, bankId , status}) => {
         {/*<DialogTitle id="alert-dialog-title">*/}
         <div className={styles.resetPasswordWrapper}>
           <div className={styles.resetWrapper}>
-             <div className={styles.upperFlex}>Please choose the status of the banking detail.</div> 
+             <div className={styles.upperFlex}>Please choose the status of the banking detail.</div>
             <ButtonBase
               classes={{ root: classes.closeBtn }}
               onClick={handleToggle}
@@ -90,7 +90,7 @@ const BankDetailPopup = ({ isOpen, handleToggle, bankId , status}) => {
           </div>
 
           <div className={styles.printFlex}>
-           
+
             <ButtonBase onClick={handleSubmit} className={styles.createBtn}>
               {isSubmitting ? (
                 <CircularProgress color="success" size="20px" />

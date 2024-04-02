@@ -7,7 +7,7 @@ import {
   Paper,
   Button,
   ButtonBase,
-} from "@material-ui/core";
+} from '@mui/material';
 
 import styles from "./Style.module.css";
 import data from './data.json';

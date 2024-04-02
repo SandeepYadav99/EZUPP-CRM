@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./styles.module.css";
-import { Add, Delete, VerifiedUser } from "@material-ui/icons";
+import { Add, Delete, VerifiedUser } from '@mui/icons-material';
 import Review from "../../../../assets/img/sent_blue.svg";
 import ic_add from "../../../../assets/img/ic_add.png";
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase } from '@mui/material';
 import ConfirmationPopup from "./components/ConfirmationPopup";
 import useBadgesHook from "./BadgesHook";
 import AssignBadge from "./components/AssignBadge/AssignBadge";

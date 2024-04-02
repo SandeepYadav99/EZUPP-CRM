@@ -1,8 +1,7 @@
 import React from 'react';
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
-import { makeStyles } from '@material-ui/core/styles';
-import {TextField} from "@material-ui/core";
-import LogUtils from "../../../libs/LogUtils";
+import useAutocomplete from '@mui/lab/useAutocomplete';
+import { makeStyles } from '@mui/styles';
+import {TextField} from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
     relative: {
@@ -62,6 +61,7 @@ const CustomAutoComplete = ({isError, errorText, icon, label, onChange, onTextCh
             onTextChange && onTextChange(value);
         },
         ...(autoCompleteProps ? autoCompleteProps : {}),
+        ...rest
     });
 
 
@@ -83,7 +83,7 @@ const CustomAutoComplete = ({isError, errorText, icon, label, onChange, onTextCh
             </div>
             {(groupedOptions?.length > 0 && !disabledList ) ? (
                 <ul className={classes.listbox} {...getListboxProps()}>
-                    {groupedOptions.map((option, index) => (
+                    {groupedOptions?.map((option, index) => (
                         <li {...getOptionProps({ option, index })}>{datasetKey ? option[datasetKey] : option }</li>
                     ))}
                 </ul>

@@ -1,154 +1,133 @@
 /* eslint-disable indent,no-mixed-spaces-and-tabs */
-import React from "react";
-import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
-import classNames from "classnames";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Snackbar, withStyles } from "@material-ui/core";
-import { Header, Sidebar } from "../../components/index.component";
-import dashboardRoutes from "../../routes/dashboard";
-import appStyle from "../../assets/jss/material-dashboard-react/appStyle";
-import logo from "../../assets/img/factorylogo.png";
-import CustomRouter from "../../libs/CustomRouter.utils";
-import DashboardSnackbar from "../../components/Snackbar.component";
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import PropTypes from 'prop-types';
+import {Switch, Route, Redirect} from 'react-router-dom';
+import classNames from 'classnames';
+import {connect, useSelector} from "react-redux";
+import {Header, Sidebar} from '../../components/index.component';
+import dashboardRoutes from '../../routes/dashboard';
+import appStyle from '../../assets/jss/material-dashboard-react/appStyle';
+import logo from '../../assets/img/logo.png';
+import CustomRouter from '../../libs/CustomRouter.utils';
+import DashboardSnackbar from '../../components/Snackbar.component';
+import {makeStyles} from "@mui/styles";
+import EventEmitter from "../../libs/Events.utils";
+import RolesUtils from "../../libs/Roles.utils";
+const useStyles = makeStyles(appStyle);
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mobileOpen: false,
-      drawerOpen: true,
-      snackbar: false,
-      message: "",
-    };
-    this._handleHeaderClick = this._handleHeaderClick.bind(this);
-    this._switchRoutes = this._switchRoutes.bind(this);
-    this._sideBarRoutes = this._sideBarRoutes.bind(this);
-    this._handleResize = this._handleResize.bind(this);
-  }
+const Dashboard = ({title, ...props}) => {
+    const classes = useStyles();
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [drawerOpen, setDrawerOpen] = useState(true);
+    const [snackbar, setSnackbar] = useState(false);
+    const [message, setMessage] = useState('');
+    const {user_profile, role} = useSelector(state => state.auth);
+    const mainPanelRef = useRef(null);
 
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
-  };
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        EventEmitter.subscribe(EventEmitter.MOVE_TO_TOP, moveToTop);
+        // initializeFirebase();
+        // getTokenFcm().then((token) => {
+        //     if (token) {
+        //         serviceCaptureInfo({ fcm_token: token });
+        //     }
+        // });
+        return () => {
+            EventEmitter.unsubscribe(EventEmitter.MOVE_TO_TOP);
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
 
-  getRoute() {
-    return this.props.location.pathname !== "/maps";
-  }
+    useEffect(() => {
+        const isMobile = window.innerWidth <= 768;
+        if(isMobile){
+            setDrawerOpen(false)
+        }
+        // this.refs.mainPanel.scrollTop = 0;
+    }, []);
 
-  componentDidMount() {
-    window.addEventListener("resize", this._handleResize);
-    // if (navigator.platform.indexOf('Win') > -1) {
-    //     // eslint-disable-next-line
-    //     // const ps = new PerfectScrollbar(this.refs.mainPanel);
-    // }
-  }
+    const moveToTop = useCallback(() => {
+        mainPanelRef.current.scrollTop = 0;
+    }, []);
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this._handleResize);
-  }
+    const handleDrawerToggle = useCallback(() => {
+        setMobileOpen(e => !e);
+    }, [setMobileOpen]);
 
-  _handleResize(e) {
-    if (window.innerWidth < 767) {
-      this.setState({
-        drawerOpen: false,
-      });
-    } else {
-      this.setState({
-        drawerOpen: true,
-      });
-    }
-  }
+    const handleResize =  useCallback((e) => {
+        if (window.innerWidth < 767) {
+            // setDrawerOpen(false);
+        } else {
+            setDrawerOpen(true);
+        }
+    }, [setDrawerOpen]);
 
-  componentDidUpdate() {
-    this.refs.mainPanel.scrollTop = 0;
-  }
 
-  _handleHeaderClick() {
-    this.setState({ drawerOpen: !this.state.drawerOpen });
-  }
 
-  _switchRoutes() {
-    const tempRoutes = [];
-    dashboardRoutes.forEach((prop, key) => {
-        
-      if (
-        (this.props.user_profile.is_verified || !prop.is_protect) &&
-        prop.path
-      ) {
-        tempRoutes.push(
-          <CustomRouter
-            is_protect={prop.is_protect}
-            private
-            exact
-            path={prop.path}
-            component={prop.component}
-            desktopComponent={prop.desktopComponent}
-            key={key}
-            check={"dsds"}
-          />
-        );
-      }
-    });
-    return <Switch>{tempRoutes}</Switch>;
-  }
+    const handleHeaderClick = useCallback(() => {
+        setDrawerOpen(e => !e);
+    }, [setDrawerOpen]);
 
-  _sideBarRoutes() {
-    return dashboardRoutes.filter((val, index) => {
-      if (this.props.user_profile.is_verified || !val.is_protect) {
-        return true;
-      }
-    });
-  }
-  render() {
-    const { classes, ...rest } = this.props;
+    const switchRoutes =  useMemo(() => {
+        const tempRoutes = [];
+        dashboardRoutes.forEach((prop, key) => {
+            if ((user_profile.is_verified || !prop.is_protect) && prop.path ) {
+                tempRoutes.push(<CustomRouter is_protect={prop.is_protect} private exact path={prop.path}
+                                              component={prop.component} desktopComponent={prop.desktopComponent}
+                                              key={key}
+                                              {...prop}/>);
+            }
+        })
+        return (<Switch>
+            {tempRoutes}
+        </Switch>)
+    }, [dashboardRoutes]);
+
+    const sideBarRoutes = useMemo(() => {
+        return dashboardRoutes.filter((val, index) => {
+            // if (val.roles) {
+            //     if (val.roles.indexOf(Constants.ROLES.GENERAL) >= 0) {
+            //         return true;
+            //     }
+            //     const isThere = val.roles.indexOf(role);
+            //     return isThere >= 0;
+            // } return true;
+            return RolesUtils.canAccess(val?.roles, role);
+        })
+    }, [dashboardRoutes, role]);
+
     return (
-      <div ref="mainPanel" className={classes.wrapper}>
-        <Sidebar
-          routes={dashboardRoutes}
-          logoText={this.props.title}
-          logo={logo}
-          handleDrawerToggle={this.handleDrawerToggle}
-          open={this.state.drawerOpen}
-          color="blue"
-          {...rest}
-        />
-        <div
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.drawerOpen,
-          })}
-        >
-          <Header
-            handleHeaderClick={this._handleHeaderClick}
-            routes={dashboardRoutes}
-            handleDrawerToggle={this.handleDrawerToggle}
-            {...rest}
-          />
-          <div className={classes.content}>
-            <div className={classes.container}>{this._switchRoutes()}</div>
-          </div>
+        <div ref={mainPanelRef} className={classNames(classes.wrapper,'bottomAction')}>
+            <Sidebar
+                routes={sideBarRoutes}
+                logoText={title}
+                logo={logo}
+                handleDrawerToggle={handleDrawerToggle}
+                toggleSideBar={handleHeaderClick}
+                open={drawerOpen}
+                color="blue"
+                {...props}
+            />
+            <div className={classNames(classes.appBar, {
+                [classes.appBarShift]: drawerOpen,
+            })}
+            >
+                <Header
+                    handleHeaderClick={handleHeaderClick}
+                    routes={dashboardRoutes}
+                    handleDrawerToggle={handleDrawerToggle}
+                    {...props}
+                />
+                <div className={classes.content}>
+                    <div className={classes.container}>
+                        {switchRoutes}
+                    </div>
+                </div>
+            </div>
+            <DashboardSnackbar/>
         </div>
-        <DashboardSnackbar />
-      </div>
     );
-  }
 }
 
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-function mapStateToProps(state) {
-  return {
-    user_profile: state?.auth.user_profile,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(appStyle)(App));
+export default (Dashboard);

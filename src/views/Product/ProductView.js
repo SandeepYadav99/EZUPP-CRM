@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {Button, MenuItem, withStyles, FormControlLabel, Switch,IconButton} from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
-import {Field, reduxForm} from 'redux-form'
+import {Button, MenuItem, FormControlLabel, Switch,IconButton} from '@mui/material';
+import {Field, reduxForm} from 'redux-form';
+import {withStyles} from '@mui/styles';
 import {connect} from 'react-redux';
-import Constants from '../../config/constants';
 import {
     renderTextField,
     renderSelectField,
@@ -13,18 +12,16 @@ import {
     renderOutlinedMultipleSelectField, renderAutoComplete, renderCheckbox
 } from '../../libs/redux-material.utils';
 import EventEmitter from "../../libs/Events.utils";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Slide from "@material-ui/core/Slide";
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    Slide,
+} from '@mui/material';
 import styles from './Style.module.css';
 import {bindActionCreators} from "redux";
-import DropdownCascadeComponent from '../../components/DropdownCascade/DropdownCascade.component'
-import CustomRadioLabel from "../../components/CustomRadioLabel/CustomRadioLabel.component";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
 
 
 let requiredFields = [];

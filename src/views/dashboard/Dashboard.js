@@ -7,7 +7,7 @@ import {
   Paper,
   Button,
   ButtonBase,
-} from "@material-ui/core";
+} from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import { actionGetDashboard } from "../../actions/Dashboard.action";
 import DashboardBarChart from "./components/BigStat/DashboardBarChart";
