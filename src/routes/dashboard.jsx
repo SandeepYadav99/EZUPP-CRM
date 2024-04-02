@@ -1,3 +1,4 @@
+
 import DashboardPage from "../views/dashboard/Dashboard";
 import UserList from "../views/User/List/UserList.container";
 import CustomerList from "../views/Customers/List/CustomerList.container";
@@ -15,6 +16,7 @@ import FaqList from "../views/Faq/FaqList.container";
 import SupportList from "../views/Support/SupportList.container";
 import TypeList from "../views/Type/TypeList.container";
 import Profile from "../views/Profile/MyProfile.view";
+
 import CustomerTabs from "../views/Customers/components/UpperTabs/CustomerTabs.view";
 import ManufacturerTabs from "../views/Manufacturer/ManufacturerTabs.view";
 import Support from "../views/Support/Support.view";
@@ -44,6 +46,7 @@ import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
+import React from "react";
 
 const dashboardRoutes = [
   {

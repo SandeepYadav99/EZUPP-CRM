@@ -6,10 +6,10 @@ import {
   serviceTaskMnagmentByUser,
 } from "../../services/ProviderUser.service";
 import historyUtils from "../../libs/history.utils";
-import RouteName from "../../routes/Route.name";
+
 import { serviceTaskMnagmentUpdateStatus } from "../../services/TaskManage.service";
 import SnackbarUtils from "../../libs/SnackbarUtils";
-import { useParams } from "react-router-dom";
+
 import { useLocation } from "react-router-dom";
 
 const useMyProfileHook = () => {
@@ -133,7 +133,7 @@ const useMyProfileHook = () => {
     setTaskCreated(true);
   };
   const handleEdit = useCallback((profile) => {
-    historyUtils.push(`${RouteName.USER_PROFILE}${profile?.id}`);
+    // historyUtils.push(`${RouteName.USER_PROFILE}${profile?.id}`);
   });
 
   const handleSideToggle = useCallback(
@@ -144,7 +144,7 @@ const useMyProfileHook = () => {
   );
 
   const handleDetailPage = useCallback((data) => {
-    historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
+    // historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
   }, []);
 
   const filterCompltedTask = useCallback(

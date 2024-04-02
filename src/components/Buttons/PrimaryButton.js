@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import {Button} from "@mui/material";
-import { ArrowForward } from '@mui/icons-material';
+import { Add, ArrowForward, Lock } from '@mui/icons-material';
 
 const ButtonWrapper = styled(Button)(({ theme }) => ({
 
@@ -61,12 +61,12 @@ const ActionButton = ({disabled, children, ...props}) => {
     );
 }
 
-const ArrowPrimaryButton = ({...props}) =>{
-    return (<PrimaryButton {...props} endIcon={<ArrowForward/>} />);
+const ArrowPrimaryButton = ({...props},  icon) =>{
+    return (<PrimaryButton {...props} endIcon={ !icon ? <ArrowForward/> :  <Add fontSize={"small"} />} />);
 }
 
-const ArrowOutlineButton = ({...props}) =>{
-    return (<OutlineButton {...props} endIcon={<ArrowForward/>} />);
+const ArrowOutlineButton = ({...props}, icon) =>{
+    return (<OutlineButton {...props} endIcon={icon ? <Lock fontSize="normal"/> : <ArrowForward/>} />);
 }
 
 const ArrowActionButton = ({...props}) =>{
