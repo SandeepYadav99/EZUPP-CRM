@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styles from './Style.module.css'
-import {Add} from "@material-ui/icons";
-import {Button} from "@material-ui/core";
+import {Add} from '@mui/icons-material';
+import {Button} from '@mui/material';
 import NoteDialog from '../Note/NoteDialog.view'
 
 class Note extends Component{

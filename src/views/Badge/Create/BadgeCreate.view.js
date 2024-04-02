@@ -1,19 +1,19 @@
 import React from "react";
 
-import {Button, CircularProgress, IconButton, MenuItem } from "@material-ui/core";
+import {Button, CircularProgress, IconButton, MenuItem } from "@mui/material";
 import {
 
   Delete as DeleteIcon,
 
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 import styles from "../Style.module.css";
 
 import CustomRadioLabel from "../../../components/CustomRadioLabel/CustomRadioLabel.component";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
+import {Tooltip} from "@mui/material";
+import {Info as InfoIcon} from "@mui/icons-material";
 
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 
 import useBadgeCreateHook from "./BadgeCreateHook";
 import File from "../../../components/FileComponent/FileComponent.component";
@@ -182,7 +182,7 @@ const BadgeView = ({ handleToggleSidePannel, isSidePanel, empId }) => {
             ) : (
               "Submit"
             )}
-          
+
           </Button>
         </div>
       </div>

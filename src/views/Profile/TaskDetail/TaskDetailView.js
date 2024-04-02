@@ -1,10 +1,10 @@
-import { ButtonBase, makeStyles } from "@material-ui/core";
+import { ButtonBase } from '@mui/material';
 import React, { useCallback, useEffect, useState } from "react";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import historyUtils from "../../../libs/history.utils";
 import styles from "./Style.module.css";
-import { useLocation } from "react-router-dom";
-import { Edit } from "@material-ui/icons";
+import { makeStyles } from "@mui/styles";
+import { Edit } from '@mui/icons-material';
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import { serviceTaskMnagmentUpdateStatus } from "../../../services/TaskManage.service";
 import TaskDetailHeader from "./TaskDetailView/TaskDetailHeader";

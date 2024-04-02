@@ -2,7 +2,7 @@
  * Created by charnjeetelectrovese@gmail.com on 1/20/2020.
  */
 import React, { Component } from 'react';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@mui/material';
 
 class WaitingComponent extends Component {
     render() {

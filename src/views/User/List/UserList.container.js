@@ -4,13 +4,12 @@
  *  Class based Component to Function based Component 12/13/2023
  */
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@material-ui/core";
+import { Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { Add, Info as EditIcon, Info, Person } from "@material-ui/icons";
+import { Add, Info as EditIcon, Info, Person, OpenInNew as OpenInNewIcon } from "@mui/icons-material";
 import PageBox from "../../../components/PageBox/PageBox.component";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
-import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import styles from "../Style.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
@@ -42,17 +41,17 @@ const UserList = (props) => {
   } = useSelector((state) => state.provider_user);
 
   const renderFirstCell = useCallback((user) => {
-  
+
     return (
       <div className={styles.firstCellFlex} >
         <div>
           <img src={user?.image} alt="" />
         </div>
         <div className={classNames(styles.firstCellInfo, "openSans")}>
-         
+
             <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
             <div> {user?.employee_id}</div>
-        
+
         </div>
       </div>
     );
@@ -130,7 +129,7 @@ const UserList = (props) => {
         sortable: true,
         render: (temp, all) => <div>{all.role}</div>,
       },
-   
+
       {
         key: "status",
         label: "Status",

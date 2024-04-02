@@ -1,4 +1,4 @@
-import { Avatar, CardHeader } from "@material-ui/core";
+import { Avatar, CardHeader } from '@mui/material';
 import React, { memo } from "react";
 import RouteName from "../../../../routes/Route.name";
 import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
@@ -40,7 +40,7 @@ console.log(details?.completedOnText)
               title={<span className={classes.subTitle}>Associated User</span>}
               subheader={
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    {details?.associatedUser?.name ? 
+                    {details?.associatedUser?.name ?
                     <>
                   <Avatar
                     className={classes.avatar}
@@ -52,14 +52,14 @@ console.log(details?.completedOnText)
                   </Avatar>
                  <a
                     href={ `/profile/?id=${details?.associatedUser?.id}`
-                        
+
                     }
                   >
                     {capitalizeFirstLetter(details?.associatedUser?.name)
                      }
                   </a>
                     </> : "N/A"}
-                 
+
                 </div>
               }
             />

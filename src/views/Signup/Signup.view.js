@@ -13,7 +13,8 @@ import {
     renderOutlinedTextField,
     renderTextField
 } from '../../libs/redux-material.utils';
-import {Button, MenuItem, withStyles} from '@material-ui/core';
+import {Button, MenuItem} from '@mui/material';
+import {withStyles} from '@mui/styles';
 import {
     serviceCreateRequest,
     serviceGetCityData,

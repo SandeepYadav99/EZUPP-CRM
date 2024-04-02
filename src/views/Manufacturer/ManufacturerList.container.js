@@ -2,13 +2,13 @@
 //  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
 //  */
 // import React, { Component } from "react";
-// import { Button, Paper } from "@material-ui/core";
+// import { Button, Paper } from '@mui/material';
 
 // import classNames from "classnames";
 // import { bindActionCreators } from "redux";
 // import { connect } from "react-redux";
-// import { red as redColor } from "@material-ui/core/colors";
-// import { Add } from "@material-ui/icons";
+// import { red as redColor } from "@mui/material/colors";
+// import { Add } from '@mui/icons-material';
 // import PageBox from "../../components/PageBox/PageBox.component";
 // import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
 // // import CreateProvider from './Create.container';

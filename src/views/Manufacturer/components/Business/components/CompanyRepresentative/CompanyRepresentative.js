@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Style.module.css'
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 const CompanyRepresentative = ({userProfile}) => {
   return (
     <div><div className={styles.blockFlex}>

@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Style.module.css";
-import { AccessAlarm, Delete, VerifiedUser, Watch } from "@material-ui/icons";
+import { AccessAlarm, Delete, VerifiedUser, Watch } from "@mui/icons-material";
 import Review from "../../../assets/img/sent_blue.svg";
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase } from "@mui/material";
 import StatusPill from "../../../FormFields/Status/StatusPill.component";
 const BrandView = ({ userProfile }) => {
   return (

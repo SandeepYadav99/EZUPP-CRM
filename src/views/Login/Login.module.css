@@ -65,7 +65,7 @@
     border-radius: 18px;
     display: flex;
     padding-bottom: 15px !important;
-    width: 50vw !important;
+    width: 550px !important;
     flex-direction: column;
     height: fit-content  !important;
 }
@@ -186,8 +186,8 @@
 }
 
 .signContainer{
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .login {
@@ -205,7 +205,21 @@
     display: flex !important;
     gap:10px !important;
 }
-
+.login:hover{
+    padding: 10px 50px 10px 50px!important;
+    border-radius: 7px !important;
+    /*background-image:  linear-gradient(to right, #0f49a0);*/
+    color: white !important;
+    /*font-family: Poppins-Medium;*/
+    background:#25CEAE  !important;
+    /*text-transform: uppercase;*/
+    margin-top: 15px !important;
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .5s ease-out;
+    display: flex !important;
+    gap:10px !important;
+}
 .logoImageData{
     display: flex;
     margin-top: 30px;

@@ -2,8 +2,8 @@
  * Created by sandeep.electrovese@gmail.com on 11/02/2020.
  */
 import React, { Component, useCallback, useMemo } from "react";
-import { Button, ButtonBase, IconButton, withStyles } from "@material-ui/core";
-import {  Info as EditIcon } from "@material-ui/icons";
+import { Button, ButtonBase, IconButton } from '@mui/material';
+import {  Info as EditIcon } from '@mui/icons-material';
 import DataTables from "../../../../Datatables/Datatable.table";
 import Constants from "../../../../config/constants";
 import styles from "./Style.module.css";
@@ -63,7 +63,7 @@ const ServiceForm = ({ listData, id }) => {
   //       case 'Reject':
   //         return '#FF0000';
   //     default:
-  //       return '#FFFFFF'; 
+  //       return '#FFFFFF';
   //   }
   // };
 
@@ -76,12 +76,12 @@ const ServiceForm = ({ listData, id }) => {
         case 'Reject':
           return '#FF0000';
       default:
-        return '#FFFFFF'; 
+        return '#FFFFFF';
     }
   };
 
   const tableStructure = useMemo(() => {
-    
+
     return [
       {
         key: "customer_name",
@@ -94,7 +94,7 @@ const ServiceForm = ({ listData, id }) => {
         label: "Customer details",
         sortable: false,
         render: (temp, all) => <div>{all?.contact}<br></br>{all?.email} </div>,
-       
+
       },
       {
         key: "interested_in",
@@ -138,7 +138,7 @@ const ServiceForm = ({ listData, id }) => {
         borderRadius: "0px",
         textTransform: "capitalize",   }}>{all?.action || "N/A"}</div>,
       },
-   
+
       {
         key: "user_id",
         label: "Action",
@@ -157,8 +157,8 @@ const ServiceForm = ({ listData, id }) => {
           </div>
         ),
       },
-    
-  
+
+
     ];
   }, [renderStatus, renderFirstCell, handleViewDetails, handleEdit, isCalling]);
 

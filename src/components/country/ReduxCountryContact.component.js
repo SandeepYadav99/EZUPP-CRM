@@ -5,8 +5,8 @@ import React, {Component} from 'react';
 import {CountryPhone} from "../index.component";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {FormHelperText} from "@material-ui/core";
-import FormControl from "@material-ui/core/FormControl";
+import {FormHelperText} from '@mui/material';
+import FormControl from "@mui/material/FormControl";
 
 
 class ReduxCountryContact extends Component {

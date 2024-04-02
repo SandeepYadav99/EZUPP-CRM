@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { Avatar, Card, CardHeader, Typography } from "@material-ui/core";
+import { Avatar, Card, CardHeader, Typography } from '@mui/material';
 import  capitalizeFirstLetter  from "../../../../hooks/CommonFunction";
 
 const NoteItem = ({ note, styles, classes }) => (
- 
+
     <div >
       <Card style={{margin:"2px"}}>
       <Typography style={{marginLeft: "15px", fontSize: "14px",marginTop:"8px", wordWrap: "break-word"}} >{note?.title}</Typography>
@@ -15,7 +15,7 @@ const NoteItem = ({ note, styles, classes }) => (
       </Card>
       <div className={styles.gaps} />
     </div>
- 
+
 );
 
 export default memo(NoteItem);

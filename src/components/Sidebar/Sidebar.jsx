@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useMemo} from "react";
 import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
 import cx from "classnames";
 import clsx from 'clsx';
+import {withStyles} from '@mui/styles';
 import {
-    withStyles,
     Drawer,
     SwipeableDrawer,
     Hidden,
@@ -12,14 +12,14 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    Collapse
-} from "@material-ui/core";
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-// import { HeaderLinks } from "../../components/index.component";
+    Collapse, ListItemButton
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import logoImageData from "../../assets/CRMAssets/ezupp_login_logo.png";
 
 import sidebarStyle from "../../assets/jss/material-dashboard-react/sidebarStyle.jsx";
+import {styled} from "@mui/material/styles";
 
 
 class CustomListItem extends React.Component {
@@ -57,7 +57,7 @@ class CustomListItem extends React.Component {
                 activeClassName="active"
                 // key={key}
             >
-                <ListItem button className={classes.itemLink + listItemClasses}>
+                <ListItemButton className={classes.itemLink + listItemClasses}>
                     <ListItemIcon className={classes.itemIcon + whiteFontClasses}>
                         <prop.icon className={classes.sidebarIcon}/>
                     </ListItemIcon>
@@ -66,7 +66,7 @@ class CustomListItem extends React.Component {
                         className={classes.itemText + whiteFontClasses}
                         disableTypography={true}
                     />
-                </ListItem>
+                </ListItemButton>
             </NavLink>
         );
     }
@@ -102,7 +102,7 @@ class CustomListItem extends React.Component {
             });
             return (
                 <>
-                    <ListItem button className={classes.itemLink + listItemClasses} onClick={this._handleClick}>
+                    <ListItemButton className={classes.itemLink + listItemClasses} onClick={this._handleClick}>
                         <ListItemIcon className={classes.itemIcon + whiteFontClasses}>
                             <prop.icon className={classes.sidebarIcon}/>
                         </ListItemIcon>
@@ -112,7 +112,7 @@ class CustomListItem extends React.Component {
                             disableTypography={true}
                         />
                         {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
+                    </ListItemButton>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {this._renderNestedLinks(prop.slug, true)}
@@ -125,30 +125,32 @@ class CustomListItem extends React.Component {
     }
 }
 
-class CustomLink extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    _renderLinks() {
-        const {routes, classes, color, activeRoute} = this.props;
+const CustomLink = ({routes, classes, color, activeRoute, isOpened}) => {
+    const renderLinks = useMemo(() => {
         const links = [];
         routes.forEach((prop, key) => {
             links.push(<CustomListItem routes={routes} key={key} prop={prop} classes={classes} activeRoute={activeRoute}
                                        color={color}/>);
         });
         return links;
-    }
+    }, [routes, classes, activeRoute, isOpened]);
 
-    render() {
-        const {routes, classes} = this.props;
-        return (
-            <List className={classes.list}>
-                {this._renderLinks()}
-            </List>
-        )
-    }
+    return (
+        <List className={classes.list}>
+            {renderLinks}
+        </List>
+    )
 }
+
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+}));
 
 const Sidebar = ({...props}) => {
     // verifies if routeName is the one active (in browser input)
@@ -195,14 +197,9 @@ const Sidebar = ({...props}) => {
                     {brand}
                     <div className={classes.sidebarWrapper}>
                         {/*<HeaderLinks />*/}
-                        <CustomLink routes={routes} classes={classes} color={color} activeRoute={activeRoute}/>
+                        <CustomLink routes={routes} isOpened={props.open} classes={classes} color={color} activeRoute={activeRoute}/>
                     </div>
-                    {image !== undefined ? (
-                        <div
-                            className={classes.background}
-                            style={{backgroundImage: "url(" + image + ")"}}
-                        />
-                    ) : null}
+
                 </Drawer>
             </Hidden>
             <Hidden smDown>
@@ -224,7 +221,7 @@ const Sidebar = ({...props}) => {
                 >
                     {brand}
                     <div className={classes.sidebarWrapper}>
-                        <CustomLink routes={routes} classes={classes} color={color} activeRoute={activeRoute}/>
+                        <CustomLink routes={routes}  isOpened={props.open} classes={classes} color={color} activeRoute={activeRoute}/>
                     </div>
                 </Drawer>
             </Hidden>

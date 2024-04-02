@@ -1,16 +1,16 @@
-import { Avatar, CardHeader } from '@material-ui/core'
+import { Avatar, CardHeader } from '@mui/material'
 import React, { memo } from 'react'
 import RouteName from '../../../../routes/Route.name'
 import history from '../../../../libs/history.utils'
 
 const ServiceDetailContainer = ({details, styles, classes}) => {
- 
+
   return (
-    
+
     <div><div className={styles.mainFlex}>
     {/* <div className={styles.gaps} /> */}
     <div className={styles.backgroundStatus}>
-     
+
 
       <div className={styles.getfiledSpace}>
         <div className={styles.titleFiledSpace}>Featured</div>{" "}
@@ -19,7 +19,7 @@ const ServiceDetailContainer = ({details, styles, classes}) => {
           <CardHeader subheader={<div style={{fontSize:"20px", color:"#000000"}}>{details?.is_featured?"YES":"NO"}</div>} />
         </div>
       </div>
-      
+
       <div className={styles.getfiledSpace}>
         <div className={styles.titleFiledSpace}>Priority</div>{" "}
         {/* Avator  */}
@@ -38,7 +38,7 @@ const ServiceDetailContainer = ({details, styles, classes}) => {
       </div>
 
 
-      
+
       <div className={styles.getfiledSpace}>
         <div className={styles.titleFiledSpace}>Slug</div>{" "}
         {/* Avator  */}

@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { ButtonBase, CircularProgress } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
-import Slide from "@material-ui/core/Slide";
-import Dialog from "@material-ui/core/Dialog";
+import { ButtonBase, CircularProgress } from '@mui/material';
+import { Close } from '@mui/icons-material';
+import Slide from "@mui/material/Slide";
+import Dialog from "@mui/material/Dialog";
 import styles from "./Style.module.css";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@mui/styles';
 import SnackbarUtils from "../../../../libs/SnackbarUtils";
 import {
   serviceGetUserActive,

@@ -1,11 +1,10 @@
 import React from "react";
 import {
-  withStyles,
-  withTheme,
   Badge as BadgeBase,
   Typography as TypographyBase,
   Button as ButtonBase
-} from "@material-ui/core";
+} from '@mui/material';
+import {withStyles, withTheme} from '@mui/styles';
 import classnames from "classnames";
 import theme, { overrides } from '../../themes/index';
 

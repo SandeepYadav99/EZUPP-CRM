@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, withStyles, Typography } from "@material-ui/core";
+import { Button, Typography } from '@mui/material';
+import {withStyles} from '@mui/styles';
 // import { Typography } from "../Wrappers/Wrappers";
 
 const PageTitle = ({ classes, ...props }) => (

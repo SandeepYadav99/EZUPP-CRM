@@ -2,15 +2,15 @@
  * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
  */
 import React, {Component} from 'react';
-import {Button, Paper, Checkbox, IconButton,ButtonBase} from '@material-ui/core';
+import {Button, Paper, Checkbox, IconButton,ButtonBase} from '@mui/material';
 
 import classNames from 'classnames';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {
     red as redColor,
-} from '@material-ui/core/colors';
-import {Add, InputRounded as EditIcon, RemoveRedEyeOutlined as ViewIcon} from '@material-ui/icons';
+} from '@mui/material/colors';
+import {Add, InputRounded as EditIcon, RemoveRedEyeOutlined as ViewIcon} from '@mui/icons-material';
 import PageBox from '../../components/PageBox/PageBox.component';
 import SidePanelComponent from '../../components/SidePanel/SidePanel.component';
 // import CreateProvider from './Create.container';
@@ -19,7 +19,6 @@ import styles from './styles.module.css';
 import DataTables from '../../Datatables/Datatable.table';
 import Constants from '../../config/constants';
 import FilterComponent from '../../components/Filter/Filter.component';
-import {BookmarkBorder, Bookmark, Check, Close,} from '@material-ui/icons';
 import {
     actionFetchSupport,
     actionChangePageSupport,
@@ -32,7 +31,7 @@ import {
     // actionCleanSupport
 } from '../../actions/Support.action';
 import csx from "classnames";
-import MenuItem from "@material-ui/core/MenuItem";
+import {MenuItem} from "@mui/material";
 import {serviceGetQuoteUsers} from "../../services/Quotes.service";
 
 

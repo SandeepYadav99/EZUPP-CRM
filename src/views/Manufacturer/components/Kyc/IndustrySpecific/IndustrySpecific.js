@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Style.module.css";
-import { VerifiedUser } from "@material-ui/icons";
+import { VerifiedUser } from '@mui/icons-material';
 
 const IndustrySpecific = () => {
   return (

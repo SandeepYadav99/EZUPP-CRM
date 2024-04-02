@@ -4,14 +4,14 @@ import startsWith from "lodash.startswith";
 import {
   Button,
   MenuItem,
-  withStyles,
   FormControlLabel,
   Switch,
   IconButton,
   Chip,
   TextField,
-} from "@material-ui/core";
-import { Delete as DeleteIcon } from "@material-ui/icons";
+} from '@mui/material';
+import {withStyles} from '@mui/styles';
+import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import {
@@ -26,24 +26,24 @@ import EventEmitter from "../../libs/Events.utils";
 import { CountryPhone } from "../../components/index.component";
 import styles from "./Style.module.css";
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Slide from "@material-ui/core/Slide";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Slide from "@mui/material/Slide";
 import { bindActionCreators } from "redux";
 import QuestionaireChild from "../../components/Questionnaire/Questionaire.component";
 import slugify from "slugify";
-import Tooltip from "@material-ui/core/Tooltip";
-import Fab from "@material-ui/core/Fab";
-import InfoIcon from "@material-ui/icons/Info";
+import Tooltip from "@mui/material/Tooltip";
+import Fab from "@mui/material/Fab";
+import InfoIcon from "@mui/icons-material/Info";
 import IncludeForm from "./components/includes/Includes.component";
 import {
   serviceIndustryCheck,
   serviceIndustryTags,
 } from "../../services/Industry.service";
-import { Autocomplete } from "@material-ui/lab";
+import { Autocomplete } from "@mui/lab";
 import { actionFetchIndustry } from "../../actions/Industry.action";
 // import {serviceProviderEmailExists} from "../../services/ProviderRequest.service";
 // import {servicePromotionCheck} from "../../services/Promotion.service";
@@ -512,7 +512,7 @@ class Industry extends Component {
           {data && (
             <IconButton
               variant={"contained"}
-              className={this.props.classes.iconBtnError}
+              class={this.props.classes.iconBtnError}
               onClick={this._handleDelete}
               type="button"
             >

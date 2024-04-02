@@ -4,14 +4,14 @@ import {
   CircularProgress,
   IconButton,
   TextField,
-} from "@material-ui/core";
-import { Delete as DeleteIcon } from "@material-ui/icons";
+} from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
 import styles from "./Style.module.css";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
-import { makeStyles } from "@material-ui/styles";
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
+import { makeStyles } from '@mui/styles';
 import CustomTextField from "../../../FormFields/TextField.component";
-import { Autocomplete } from "@material-ui/lab";
+import { Autocomplete } from "@mui/lab";
 import useHubMasterCreateHook from "./HubMasterCreateHook";
 import Geofencing from "./component/Geofencing/Geofencing.component";
 import CustomSwitch from "../../../FormFields/CustomSwitch";
@@ -90,7 +90,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               onChange={(e, value) => {
                 changeTextData(value, "industry_id");
               }}
-            
+
               value={form.industry_id || []}
               options={listData || []}
               getOptionLabel={(option) => option.name}

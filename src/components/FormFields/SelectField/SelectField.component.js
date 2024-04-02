@@ -1,26 +1,22 @@
 import React, {useMemo, useRef, useEffect, useState} from 'react';
-import InputLabel from "@material-ui/core/InputLabel";
-import SelectField from "@material-ui/core/Select";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import ReactDOM from "react-dom";
+import { InputLabel, Select, OutlinedInput, FormHelperText, FormControl} from "@mui/material";
+import LogUtils from "../../../libs/LogUtils";
 
 const CustomSelectField = ({ isError, errorText, label, handleChange, icon, children, ...rest}) => {
     const [labelWidth, setLabelWidth] = useState(0);
     const inputLabelRef = useRef(null);
 
-    useEffect(() => {
-        if (inputLabelRef.current) {
-           // setLabelWidth(ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth);
-        }
-    }, []);
 
     const id = useMemo(() => {
-        return Date.now();
+        return Date.now()+'SELECTED_LABEL'+label;
     }, [label]);
 
-
+    const handleChangeLocal = (event) => {
+        const {
+            target: { value },
+        } = event;
+        handleChange(value);
+    };
 
     return (
         <FormControl fullWidth margin={'dense'} variant={'outlined'} error={isError}>
@@ -32,8 +28,8 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
             </InputLabel>
             <div style={{position: 'relative', display: 'inline-block'}}>
 
-                <SelectField
-                    onChange={(e) => { handleChange && handleChange(e.target.value) }}
+                <Select
+                    name={label}
                     {...rest}
                     input={
                         <OutlinedInput
@@ -43,9 +39,10 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
                             id={`selectField${id}`}
                         />
                     }
+                    onChange={(e) => { handleChangeLocal && handleChangeLocal(e); }}
                 >
                     {children}
-                </SelectField>
+                </Select>
             </div>
             <FormHelperText>{isError ? (errorText) : ''}</FormHelperText>
         </FormControl>

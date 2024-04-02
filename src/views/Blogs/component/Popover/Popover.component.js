@@ -1,14 +1,13 @@
 import React, {Component} from "react";
-import Grid from '@material-ui/core/Grid'
-import Popover from '@material-ui/core/Popover'
-import TextField from '@material-ui/core/TextField'
-import IconButton from '@material-ui/core/IconButton'
-import Button from '@material-ui/core/Button'
-import DoneIcon from '@material-ui/icons/Done'
-import CloseIcon from '@material-ui/icons/Close'
-import AttachFileIcon from '@material-ui/icons/AttachFile'
-import {withStyles} from "@material-ui/core/styles";
-
+import {
+    Grid,
+    Popover,
+    TextField,
+    IconButton,
+    Button,
+} from '@mui/material';
+import { Done as DoneIcon, Close as CloseIcon, AttachFile as AttachFileIcon} from '@mui/icons-material'
+import {withStyles} from '@mui/styles';
 
 const useStyles = {
     root: {

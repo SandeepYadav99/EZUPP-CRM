@@ -2,17 +2,17 @@
  * Created by sandeep.electrovese@gmail.com on 11/02/2020.
  */
 import React, { Component, useCallback, useMemo } from "react";
-import { Button, ButtonBase, IconButton, withStyles } from "@material-ui/core";
+import { Button, ButtonBase, IconButton } from '@mui/material';
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import styles from "./Style.module.css";
 import classNames from "classnames";
-import { Add, Edit, InfoOutlined } from "@material-ui/icons";
+import { Add, Edit, InfoOutlined } from '@mui/icons-material';
 
 import FilterComponent from "../../../components/Filter/Filter.component";
 
 import { useSelector } from "react-redux";
-import SendIcon from "@material-ui/icons/Send";
+import SendIcon from "@mui/icons-material/Send";
 
 import RouteName from "../../../routes/Route.name";
 import historyUtils from "../../../libs/history.utils";

@@ -1,5 +1,4 @@
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import {Checkbox, FormControlLabel} from "@mui/material";
 import React from "react";
 
 

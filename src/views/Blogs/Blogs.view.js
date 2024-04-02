@@ -6,8 +6,9 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import styles from "./Blogs.module.css";
 import csx from "classnames";
-import { MenuItem, Button, IconButton, withStyles } from "@material-ui/core";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import { MenuItem, Button, IconButton } from "@mui/material";
+import {withStyles} from '@mui/styles';
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 import MUIRichTextEditor from "mui-rte";
 import { stateToHTML } from "draft-js-export-html";
 import {
@@ -29,22 +30,20 @@ import {
   serviceUploadBlogImage,
 } from "../../services/Blogs.service";
 import EventEmitter from "../../libs/Events.utils";
-import BackupIcon from "@material-ui/icons/Backup";
+import {Backup as BackupIcon, Delete as DeleteIcon, Info as InfoIcon} from "@mui/icons-material";
 import UploadImagePopover from "./component/Popover/Popover.component";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-import { Delete as DeleteIcon } from "@material-ui/icons";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import Slide from "@material-ui/core/Slide";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
-import Chip from "@material-ui/core/Chip";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import {FormControlLabel, Switch,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Slide,
+  Tooltip,
+  Chip,
+  TextField
+} from "@mui/material";
+import Autocomplete from "@mui/lab/Autocomplete";
 import NewEditor from "../../components/NewEditor/NewEditor.component";
 import { WaitingComponent } from "../../components/index.component";
 import slugify from "slugify";
@@ -126,7 +125,7 @@ const metaNormalize = (value, prevValue) => {
   }
 };
 
-const defaultTheme = createMuiTheme();
+const defaultTheme = createTheme();
 
 Object.assign(defaultTheme, {
   overrides: {
@@ -396,7 +395,7 @@ class Blogs extends Component {
               this._setAnchor(null);
             }}
           />
-          <MuiThemeProvider theme={defaultTheme}>
+          <ThemeProvider theme={defaultTheme}>
             <MUIRichTextEditor
               ref={(ref) => {
                 this.editorRef = ref;
@@ -438,7 +437,7 @@ class Blogs extends Component {
                 },
               }}
             />
-          </MuiThemeProvider>
+          </ThemeProvider>
         </>
       );
     }

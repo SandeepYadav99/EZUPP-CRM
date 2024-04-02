@@ -14,16 +14,17 @@ import {
   CircularProgress,
   Dialog,
   IconButton,
-} from "@material-ui/core";
+} from '@mui/material';
 import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
-import { Button, withStyles } from "@material-ui/core";
+import { Button } from '@mui/material';
+import {withStyles} from '@mui/styles';
 import { serviceResetProfilePassword } from "../../services/index.services";
 import DashboardSnackbar from "../../components/Snackbar.component";
-import Slide from "@material-ui/core/Slide";
+import Slide from "@mui/material/Slide";
 import EventEmitter from "../../libs/Events.utils";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import historyUtils from "../../libs/history.utils";
-import { Close, Visibility, VisibilityOff } from "@material-ui/icons";
+import { Close, Visibility, VisibilityOff } from '@mui/icons-material';
 import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 
 function Transition(props) {

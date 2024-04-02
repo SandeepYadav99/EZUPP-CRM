@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import styles from "../LeadDetail/Style.module.css";
-import {ButtonBase} from "@material-ui/core";
+import {ButtonBase} from "@mui/material";
 import ConcernDialog from './ConcernDialog.view'
 import {useDispatch, useSelector} from "react-redux";
 import {actionChangeSupportConcern} from "../../../../actions/Support.action";

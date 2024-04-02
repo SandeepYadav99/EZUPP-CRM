@@ -3,14 +3,10 @@
  */
 
 import React, {Component} from 'react';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-    TimePicker,
-    DatePicker
-} from '@material-ui/pickers';
-import DateFnsUtils from "@date-io/date-fns";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import DateFnsUtils from "@date-io/date-fns";
 
 class ReduxDatePicker extends Component {
     constructor(props) {
@@ -21,14 +17,14 @@ class ReduxDatePicker extends Component {
     _handleOnChange(e, d) {
         // const tempDate  = new Date(e);
         // const formattedDate = tempDate.getDate() + "-" + (tempDate.getMonth() + 1) + "-" + tempDate.getFullYear();
-    
+
         this.props.onChange(e);
     }
 
     render() {
         const {value, label, minDate} = this.props;
         return (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                     margin="dense"
                     variant="inline"
@@ -46,7 +42,7 @@ class ReduxDatePicker extends Component {
                     //     'aria-label': 'change time',
                     // }}
                 />
-            </MuiPickersUtilsProvider>
+            </LocalizationProvider>
         );
     }
 

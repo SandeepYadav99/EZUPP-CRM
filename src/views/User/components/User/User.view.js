@@ -2,23 +2,19 @@ import React, { Component } from "react";
 
 import {
   Button,
-  MenuItem,
-  withStyles,
-  FormControlLabel,
-  Switch,
-} from "@material-ui/core";
+  MenuItem
+} from "@mui/material";
 
 import styles from "../../Style.module.css";
 
 // import {serviceProviderUserCheck} from "../../services/User.service";
 
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 
 import File from "../../../../components/FileComponent/FileComponent.component";
 import CustomTextField from "../../../../FormFields/TextField.component";
 import CustomSelectField from "../../../../FormFields/SelectField/SelectField.component";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
-import PhoneInput from "react-phone-input-2";
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -119,12 +115,12 @@ const User = ({
                 errorText={errorData?.contact}
                 value={form?.contact}
                 onTextChange={(text) => {
-              
+
                   changeTextData(text, "contact");
                 }}
-              
+
                 isValid={(value) => {
-             
+
                   if (value.match(/12345/)) {
                     return "";
                   } else if (value.match(/1234/)) {
@@ -132,7 +128,7 @@ const User = ({
                   } else {
                     return true;
                   }
-              
+
                   }}
               />
             </div>

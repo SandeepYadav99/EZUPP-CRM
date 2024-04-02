@@ -7,22 +7,22 @@ import {
   IconButton,
   MenuItem,
   TextField,
-} from "@material-ui/core";
-import { Delete as DeleteIcon } from "@material-ui/icons";
+} from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
 
 import styles from "../Style.module.css";
 
 import CustomRadioLabel from "../../../components/CustomRadioLabel/CustomRadioLabel.component";
-import Tooltip from "@material-ui/core/Tooltip";
-import InfoIcon from "@material-ui/icons/Info";
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
 
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@mui/styles';
 
 import File from "../../../components/FileComponent/FileComponent.component";
 import CustomTextField from "../../../FormFields/TextField.component";
 import QuestionaireChild from "../../../components/Questionnaire/Questionaire.component";
 import CustomSelectField from "../../../FormFields/SelectField/SelectField.component";
-import { Autocomplete } from "@material-ui/lab";
+import { Autocomplete } from "@mui/lab";
 import useIndustryCreateHook from "./IndustryCreateHook";
 
 const useStyles = makeStyles((theme) => ({
@@ -244,13 +244,13 @@ const IndustryCreateView = ({ handleToggleSidePannel, isSidePanel, empId }) => {
           <div className={"formGroup"}>
             <CustomSelectField
               fullWidth={true}
-            
+
               // component={renderOutlinedSelectField}
               margin={"dense"}
               label="Status"
               isError={errorData?.status}
               errorText={errorData?.status}
-            
+
               value={form?.status}
               handleChange={(value) => {
                 changeTextData(value, "status");
