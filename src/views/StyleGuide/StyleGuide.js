@@ -13,7 +13,14 @@ import {Typography} from "@mui/material";
 import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
+import UserCountAvatars, { UserCountAvatarsAnimation, UserCountAvatarsInitials, UserCountAvatarsShapes, UserCountAvatarsSize, UserCountAvatarsStatusIndicator } from '../../components/AvatarGroup/AvatarGroup';
 
+const avatars=[
+    'A',
+    'B',
+    'C',
+    '2k'
+]
 const StyleGuide = ({}) => {
     return (
         <PageBoxComponent>
@@ -184,6 +191,26 @@ const StyleGuide = ({}) => {
                 </div>
             </div>
 
+
+            <div className={styles.boxCont}>
+               
+             <UserCountAvatars avatars={avatars}/>
+              
+            </div>
+
+           <div className={styles.boxContFlex}>
+            <UserCountAvatarsSize />
+            <UserCountAvatarsInitials/>
+            <UserCountAvatarsShapes/>
+            <UserCountAvatarsStatusIndicator/>
+           </div>
+
+
+               <div >
+                
+
+             </div>
+         
         </PageBoxComponent>
     )
 };

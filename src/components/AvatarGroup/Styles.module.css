@@ -1,0 +1,29 @@
+.hovered{
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.hovered:hover {
+    cursor: pointer;
+  }
+  
+  .flexBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   max-width: 315px;
+   gap: 10px;
+  }
+.flexBox1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ max-width: 215px;
+ gap: 10px;
+}
+  .avaterAlignment{
+    /* text-align: center; */
+    display: flex;
+    /* margin: 0px auto; */
+    justify-content: center;
+  }
