@@ -9,9 +9,10 @@ import {
 } from "../../components/Buttons/PrimaryButton";
 import styles from './Style.module.css';
 import {Typography} from "@mui/material";
-// import CustomTextField from "../../components/FormFields/TextField/TextField.component";
+ import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
-import CustomTextField from '../../FormFields/TextField.component';
+// import CustomTextField from '../../FormFields/TextField.component';
+import ShadowBox from "../../components/ShadowBox/ShadowBox";
 
 const StyleGuide = ({}) => {
     return (
@@ -140,16 +141,51 @@ const StyleGuide = ({}) => {
                 <div className={styles.sideMargin}>
                     <div><Typography variant={'h5'}>Status</Typography></div>
                     <div className={styles.boxCont}>
-                        <StatusPill status={'High'} color={'high'} /> &nbsp;
-                        <StatusPill status={'Medium'} color={'medium'} /> &nbsp;
-                        <StatusPill status={'Low'} color={'low'} />
+                        <StatusPill status={'High'} color={'high'}/> &nbsp;
+                        <StatusPill status={'Medium'} color={'medium'}/> &nbsp;
+                        <StatusPill status={'Low'} color={'low'}/>
+                    </div>
+                </div>
+            </div>
+
+            <div className={''}>
+                <div className={styles.sideMargin}>
+                    <div><Typography variant={'h5'}>Status</Typography></div>
+                    <div className={styles.boxCont}>
+                        <ShadowBox>
+                            <Typography variant={'h5'} color={'text.secondary'} sx={{mb: 1.5}}>Sales
+                                Overview</Typography>
+                            <Typography variant={'h4'} color={'secondary'}>42.5K</Typography>
+                            <Typography variant={'body2'} color={'text.secondary'}>Total Sales</Typography>
+                        </ShadowBox>
                     </div>
                 </div>
             </div>
 
 
+            <div className={''}>
+                <div className={styles.sideMargin}>
+                    <div><Typography variant={'h5'}>Status</Typography></div>
+                    <div className={styles.boxCont}>
+                        {
+                            (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'caption', 'body1', 'body2', 'subtitle1', 'subtitle2', 'overline',]).map(key => {
+                                return (<Typography variant={key}>Here is the text - {key}</Typography>)
+                            })
+                        }
+
+
+                        <h5>Color Property</h5>
+                        {
+                            (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'caption', 'body1', 'body2', 'subtitle1', 'subtitle2', 'overline',]).map(key => {
+                                return (<Typography color={'text.secondary'} variant={key}>Here is the text - {key}</Typography>)
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
+
         </PageBoxComponent>
-)
+    )
 };
 
 

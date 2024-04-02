@@ -192,16 +192,16 @@ input[type=radio] + label:hover {
     border: 1px solid #2896E9 !important;
     border-radius: 3px !important;
 }
-.iconTabs .MuiTab-wrapper {
-    display: flex;
-    flex-direction: row;
-    font-size: 0.7rem;
-}
-.iconTabsEvents .MuiTab-wrapper {
-    display: flex;
-    flex-direction: row;
-    font-size: 0.7rem;
-}
+/*.iconTabs .MuiTab-wrapper {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    font-size: 0.7rem;*/
+/*}*/
+/*.iconTabsEvents .MuiTab-wrapper {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    font-size: 0.7rem;*/
+/*}*/
 .iconTabsEvents{
     flex: 1;
 }
@@ -229,7 +229,7 @@ input[type=radio] + label:hover {
 
 .status {
     display: inline!important;
-    font-size: 12px;
+    /*font-size: 12px;*/
     font-weight: 600;
     /*background-color: rgba(134,142,174,.06274509803921569);*/
     padding: 4.5px 11.85px;

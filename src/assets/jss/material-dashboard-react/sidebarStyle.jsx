@@ -28,7 +28,7 @@ const sidebarStyle = theme => ({
     // overflow: 'auto',
     // ...boxShadow,
     borderRight: '1px solid rgba(0, 0, 0, 0.12)',
-    width: drawerWidth,
+    // width: drawerWidth,
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       position: "fixed",
@@ -83,11 +83,9 @@ const sidebarStyle = theme => ({
     }),
     boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
     overflowX: 'hidden',
-    width: '50px',
-    zIndex:1,
+    width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up('sm')]: {
-      width: '50px',
-      zIndex:1,
+      width: `calc(${theme.spacing(7)} + 1px)`,
     },
   },
   logoLink: {
@@ -160,36 +158,37 @@ const sidebarStyle = theme => ({
   itemLink: {
     width: 'auto',
     transition: "all 300ms linear",
-    margin: "5px 0px 0",
+    marginTop: theme.spacing(1.4),
     borderRadius: "3px",
     position: "relative",
     display: "flex",
     padding: "5px 15px",
-    alignItems: 'baseline',
+    alignItems: 'center',
     backgroundColor: "transparent",
     ...defaultFont
   },
   sidebarIcon: {
-    fontSize: '16px'
+    fontSize: '1.8rem'
   },
   nested: {
     paddingLeft: theme.spacing(3),
   },
   itemIcon: {
-    width: "24px",
-    height: "30px",
+    // width: "24px",
+    // height: "30px",
     float: "left",
     // marginRight: "15px",
     textAlign: "center",
     verticalAlign: "middle",
-    color: 'rgb(173, 180, 210)'
+    color: theme.palette.grey[500]
   },
   itemText: {
     ...defaultFont,
     margin: "0",
+    marginLeft: theme.spacing(2),
     lineHeight: "30px",
     fontSize: "14px",
-    color:"#636578",
+    color: theme.palette.grey[500],
   },
   whiteFont: {
     color: "#FFFFFF"

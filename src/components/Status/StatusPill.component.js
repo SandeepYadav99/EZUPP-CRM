@@ -7,7 +7,6 @@ import {Typography} from "@mui/material";
 
 const StatusPill = ({color, status}) => {
     const theme = useTheme();
-    console.log(theme);
     const colorCode = useMemo(() => {
         return ['high', 'medium', 'low'].indexOf(color) >= 0 ? color: 'high';
     }, [color]);
