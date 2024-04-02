@@ -16,6 +16,7 @@ import TopRow from "./components/TopRow/TopRow.component";
 import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
 import EventCard from "./components/EmployeeTab/EventCard.component";
 import dataValue from "./components/EmployeeTab/data.json";
+import DoughnutChart from "../../components/GraphFile/DougnutGraph";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ const Dashboard = () => {
             <EventCard data={dataValue?.birthdays}/>
           </div>
           <EmployeeTab/>
+        </div>
+        <div>
+        <DoughnutChart/>
         </div>
       </div>
     </React.Fragment>
