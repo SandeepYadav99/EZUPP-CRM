@@ -254,7 +254,16 @@ input[type=radio] + label:hover {
     text-transform: uppercase !important;
     font-weight: 600 !important;
 }
-
+.AddBtn{
+    color: #ffffff !important;
+    padding: 10px 20px !important;
+    font-size: 0.8rem !important;
+    border-radius: 10px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    background-color: #666cff !important;
+    border-color: #666cff !important
+}
 .plusIcon{
     margin-left: 10px !important;
 }
