@@ -1,40 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
 import styles from "./Style.module.css";
-import File from "../../../components/FileComponent/FileComponent.component";
-import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
-import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
-import {
-  Button,
-  ButtonBase,
-  IconButton,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { ButtonBase, Typography } from "@mui/material";
 
-import CustomPhoneContactField from "../../../FormFields/CustomPhoneContact.componet";
-import {
-  ActionButton,
-  ArrowActionButton,
-  ArrowOutlineButton,
-  PrimaryButton,
-} from "../../../components/Buttons/PrimaryButton";
-import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
+import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import WorkInfoView from "./Component/WorkInfoView";
 import PersonalInformation from "./Component/PersonalInformation";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
-
-// import {serviceProviderUserCheck} from "../../services/User.service";
-// const useStyles = makeStyles((theme) => ({
-//   iconBtnError: {
-//     color: theme.palette.error.dark,
-//   },
-//   deleteBtn: {
-//     color: "red",
-//     // borderBottom: '1px solid red'
-//   },
-// }));
 
 const UserCreate = ({
   handleToggleSidePannel,
@@ -48,9 +21,8 @@ const UserCreate = ({
   setTypeOf,
   setCountry,
   id,
+  handleSaveClick,
 }) => {
-  // const classes = useStyles();
-
   return (
     <>
       <div className={styles.outerFlex1}>
@@ -63,24 +35,33 @@ const UserCreate = ({
           </ButtonBase>
         </div>
       </div>
-      <PersonalInformation />
-      <>
-        <WorkInfoView />
+      <PersonalInformation
+        errorData={errorData}
+        form={form}
+        image={image}
+        changeTextData={changeTextData}
+        handleSubmit={handleSubmit}
+        onBlurHandler={onBlurHandler}
+      />
 
-        <div className={styles.saveButton}>
-          <PrimaryButton
-            color={"primary"}
+      <WorkInfoView
+        errorData={errorData}
+        form={form}
+        image={image}
+        changeTextData={changeTextData}
+        handleSubmit={handleSubmit}
+        onBlurHandler={onBlurHandler}
+      />
 
-            // onClick={handleSaveClick}
-          >
-            {/* {isSubmitting ? ( */}
-            {/* <CircularProgress color="success" size="20px" />
+      <div className={styles.saveButton}>
+        <PrimaryButton color={"primary"} onClick={handleSaveClick}>
+          {/* {isSubmitting ? ( */}
+          {/* <CircularProgress color="success" size="20px" />
               ) : (  */}
-            Save
-            {/* )} */}
-          </PrimaryButton>
-        </div>
-      </>
+          Save
+          {/* )} */}
+        </PrimaryButton>
+      </div>
     </>
   );
 };

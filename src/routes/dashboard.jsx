@@ -10,7 +10,7 @@ import Rolelist from "../views/Role/RoleList.container";
 import BadgeList from "../views/Badge/List/BadgeList.container";
 import ProductList from "../views/Product/ProductList.container";
 import ProductView from "../views/Product/ProductView";
-import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
+// import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
 import FaqList from "../views/Faq/FaqList.container";
 import SupportList from "../views/Support/SupportList.container";
@@ -186,16 +186,16 @@ const dashboardRoutes = [
   //   is_protect: true,
   //   should_regex:false
   // },
-  {
-    path: `${RouteName.USER_PROFILE_CREATE}`,
-    sidebarName: "Users",
-    navbarName: "Users",
-    icon: Dashboard,
-    component: UpperTabs,
-    is_sidebar: false,
-    is_protect: true,
-    should_regex:false
-  },
+  // {
+  //   path: `${RouteName.USER_PROFILE_CREATE}`,
+  //   sidebarName: "Users",
+  //   navbarName: "Users",
+  //   icon: Dashboard,
+  //   component: UpperTabs,
+  //   is_sidebar: false,
+  //   is_protect: true,
+  //   should_regex:false
+  // },
   {
     path: "/role",
     sidebarName: "UserRole",

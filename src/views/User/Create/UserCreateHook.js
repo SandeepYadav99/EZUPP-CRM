@@ -24,20 +24,21 @@ import useDebounce from "../../../hooks/DebounceHook";
 function useUserCreateHook() {
   const initialForm = {
     name: "",
-    url: "",
-    chapter_ids: [],
+    userName:"",
     image: "",
-    name2: "",
-    email: "",
-    title: "",
     contact: "",
-    is_active: true,
-    is_access_invite: false,
-    country_code: "",
-    company_name: "",
-    image1: "",
-
-    // is_valid_member:false
+    email: "",
+    role: "",
+    type: "",
+    employee_id: "",
+    // password: "1231231admin",
+    joining_date: null,
+    department: "",
+    designation: "",
+    manager: "",
+    end_date:"",
+    userManage: false,
+    invoiteToUser:false
   };
   const colorKey = ["name2", "email", "title", "contact"];
   const [form, setForm] = useState({ ...initialForm });

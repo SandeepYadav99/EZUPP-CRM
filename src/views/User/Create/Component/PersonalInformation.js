@@ -49,7 +49,7 @@ const PersonalInformation = ({
                 <CustomTextField
                   isError={errorData?.name}
                   errorText={errorData?.name}
-                  label={" Name"}
+                  label={"Full Name"}
                   value={form?.name}
                   onTextChange={(text) => {
                     changeTextData(text, "name");
@@ -62,15 +62,15 @@ const PersonalInformation = ({
 
               <div className={"formGroup"}>
                 <CustomTextField
-                  isError={errorData?.email}
-                  errorText={errorData?.email}
+                  isError={errorData?.userName}
+                  errorText={errorData?.userName}
                   label={"User Name"}
-                  value={form?.email}
+                  value={form?.userName}
                   onTextChange={(text) => {
-                    changeTextData(text, "email");
+                    changeTextData(text, "userName");
                   }}
                   onBlur={() => {
-                    onBlurHandler("email");
+                    onBlurHandler("userName");
                   }}
                 />
               </div>
