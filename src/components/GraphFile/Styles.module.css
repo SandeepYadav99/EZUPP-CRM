@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    justify-content: center !important;
+}
+
+canvas {
+    position: relative;
+    left: 0;
+    top: 0;
+    border-radius: 10px; /* Set an initial border-radius for the entire chart */
+  }

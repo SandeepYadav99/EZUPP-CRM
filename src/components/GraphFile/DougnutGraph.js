@@ -1,10 +1,10 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import PageBox from "../PageBox/PageBox.component";
+import { StylesContext } from "@mui/styles";
+import styles from "./Styles.module.css";
 
 const data = {
-  labels: ["Not Opened", "Opened", "Total Sent"],
-
   datasets: [
     {
       data: [8, 24, 10],
@@ -16,7 +16,8 @@ const data = {
 };
 
 const options = {
-  responsive: true,
+  responsive: false,
+  cutout: '50%', 
   plugins: {
     legend: {
       display: false,
@@ -31,10 +32,12 @@ const options = {
   },
 };
 
+
+
 const DoughnutChart = () => (
-  <PageBox>
-    <Doughnut data={data} options={options} />
-  </PageBox>
+  <div className={styles.container}>
+    <Doughnut data={data} options={options} height={"150px"}/>
+  </div>
 );
 
 export default DoughnutChart;
