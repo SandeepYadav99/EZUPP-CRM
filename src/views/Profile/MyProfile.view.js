@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Styles.module.css";
-// import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
+ import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
 import WaitingComponent from "../../components/Waiting.component";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
@@ -268,11 +268,11 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          {/* <ResetPasswordDialog
+           <ResetPasswordDialog
             open={open}
             handleClose={handleClose}
             email={profileDetails?.email}
-          /> */}
+          /> 
           {/* Side Pannel for Add Task management  */}
           {/* <SidePanelComponent
             handleToggle={handleSideToggle}

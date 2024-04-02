@@ -14,18 +14,23 @@ import {
   CircularProgress,
   Dialog,
   IconButton,
-} from '@mui/material';
+} from "@mui/material";
 import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
-import { Button } from '@mui/material';
-import {withStyles} from '@mui/styles';
+import { Button } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import { serviceResetProfilePassword } from "../../services/index.services";
 import DashboardSnackbar from "../../components/Snackbar.component";
 import Slide from "@mui/material/Slide";
 import EventEmitter from "../../libs/Events.utils";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import historyUtils from "../../libs/history.utils";
-import { Close, Visibility, VisibilityOff } from '@mui/icons-material';
+import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
 import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
+import {
+  ActionButton,
+  ArrowActionButton,
+  OutlineButton,
+} from "../../components/Buttons/PrimaryButton";
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -251,31 +256,22 @@ class ResetPasswordView extends Component {
             </div>
             <br />
             <div className={styles.actionButton}>
-              <Button
+              <ActionButton
                 // disabled={this.state.is_calling || this.state.success}
-                variant={"contained"}
-                color={"primary"}
-                type="submit"
-                className={styles.cancel}
+
+                className={styles.closeButton}
               >
                 Cancel
-              </Button>
-              <Button
+              </ActionButton>
+              <ArrowActionButton
                 // disabled={this.state.is_calling || this.state.success}
-                variant={"contained"}
+
                 color={"primary"}
                 type="submit"
                 className={styles.login1}
               >
-               
-                <div
-                  style={{ display: "flex", gap: "5px", alignItems: "center" }}
-                  className={styles.newPassword}
-                >
-                  <span>SET NEW PASSWORD</span>
-                  <img src={arrowIcon} alt="arrow" style={{ height: "15px" }} />
-                </div>
-              </Button>
+                SET NEW PASSWORD
+              </ArrowActionButton>
             </div>
           </div>
         </div>
