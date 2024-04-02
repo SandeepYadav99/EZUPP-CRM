@@ -31,3 +31,12 @@
 .saveButton{
   text-align: right !important;
 }
+.dateContainer{
+  width: 100% !important;
+}
+.iconButton{
+  width: 20rem;
+}
+.custonCSS{
+  width: 50% ;
+}

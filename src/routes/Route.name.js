@@ -34,5 +34,5 @@ export default {
 
   ADMIN_USER:"/users",
   ADMIN_USER_CREATE:"/users/create",
-  ADMIN_USER_UPDATE:"/users/update"
+  ADMIN_USER_UPDATE:"/users/update/"
 };

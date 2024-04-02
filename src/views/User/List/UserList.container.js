@@ -16,7 +16,8 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./UserListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
-import { ActionButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import { ActionButton, ArrowPrimaryButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 
 
 
@@ -201,15 +202,15 @@ const UserList = (props) => {
 
   return (
     <div>
-      <PageBox>
+      <div className={"plainPaper"}>
         <div className={styles.headerContainer}>
           <span className={styles.title}>User List</span>
-          <PrimaryButton
+          <ArrowPrimaryButton
             onClick={handleCreate}
-            icon={true}
+            icon={<Add fontSize="normal"/>}
           >
              Create
-          </PrimaryButton>
+          </ArrowPrimaryButton>
         </div>
 
         <div>
@@ -229,15 +230,8 @@ const UserList = (props) => {
             </div>
           </div>
         </div>
-      </PageBox>
-      <SidePanelComponent
-        handleToggle={handleSideToggle}
-        title={"New User"}
-        open={isSidePanel}
-        side={"right"}
-      >
-        {/* {renderCreateForm()} */}
-      </SidePanelComponent>
+      </div>
+      
     </div>
   );
 };
