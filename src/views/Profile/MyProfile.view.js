@@ -4,11 +4,9 @@ import styles from "./Styles.module.css";
 
 import {
   Add,
-  CalendarToday,
-  Group,
+ 
   Lock,
-  Person,
-  WatchLaterRounded,
+
 } from "@mui/icons-material";
 import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
@@ -22,8 +20,8 @@ import capitalizeFirstLetter, {
 
 import historyUtils from "../../libs/history.utils";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { Button, ButtonBase, FormControl, Select } from "@mui/material";
-import { MenuItem } from "@mui/base";
+import { Button, ButtonBase, FormControl, MenuItem, Select } from "@mui/material";
+
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const userData = localStorage.getItem("user");

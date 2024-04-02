@@ -42,8 +42,8 @@ import RouteName from "./Route.name";
 import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
-import UserCreate from "../views/User/Create/UserCreate";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
+import UserCreate from "../views/User/Create/UserCreate";
 
 const dashboardRoutes = [
   {
@@ -152,7 +152,7 @@ const dashboardRoutes = [
     should_regex:true
   },
   {
-    path: RouteName.USER_CREATE,
+    path: RouteName.ADMIN_USER_CREATE,
     sidebarName: "Admin Users",
     navbarName: "Admin Users",
     icon: SupervisedUserCircle,

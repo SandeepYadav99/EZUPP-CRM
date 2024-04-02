@@ -204,14 +204,11 @@ const UserList = (props) => {
       <PageBox>
         <div className={styles.headerContainer}>
           <span className={styles.title}>User List</span>
-          <PrimaryButton
-           
-          
-           
-             onClick={handleCreate}
+          <Button
+            onClick={handleCreate}
           >
             <Add></Add> Create
-          </PrimaryButton>
+          </Button>
         </div>
 
         <div>
