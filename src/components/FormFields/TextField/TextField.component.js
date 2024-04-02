@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {TextField, InputAdornment} from "@mui/material";
-import ReactDOM from "react-dom";
 
 const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChange, inputProps, ...rest }) => {
 
@@ -24,8 +23,9 @@ const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChang
            }}
            onChange={handleChange}
            variant={'outlined'}
-           margin={"dense"}
-           fullWidth={true}
+           color={'primary'}
+           size={'small'}
+           fullWidth
            {...rest}
        />
    )

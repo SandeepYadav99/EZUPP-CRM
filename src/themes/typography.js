@@ -2,6 +2,7 @@
 
 const Typography = (fontFamily) => ({
   htmlFontSize: 16,
+  fontSize: 14,
   fontFamily,
   fontWeightLight: 300,
   fontWeightRegular: 400,
@@ -61,7 +62,8 @@ const Typography = (fontFamily) => ({
     lineHeight: 1.66
   },
   overline: {
-    lineHeight: 1.66
+    lineHeight: 1.66,
+    // color: 'red !important'
   },
   button: {
     textTransform: 'capitalize'
