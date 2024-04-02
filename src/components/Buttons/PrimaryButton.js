@@ -61,12 +61,12 @@ const ActionButton = ({disabled, children, ...props}) => {
     );
 }
 
-const ArrowPrimaryButton = ({...props},  icon) =>{
-    return (<PrimaryButton {...props} endIcon={ !icon ? <ArrowForward/> :  <Add fontSize={"small"} />} />);
+const ArrowPrimaryButton = ({icon, ...props}) =>{
+    return (<PrimaryButton {...props} endIcon={ !icon ? <ArrowForward/> :  icon} />);
 }
 
-const ArrowOutlineButton = ({...props}, icon) =>{
-    return (<OutlineButton {...props} endIcon={icon ? <Lock fontSize="normal"/> : <ArrowForward/>} />);
+const ArrowOutlineButton = ({ icon,...props}) =>{
+    return (<OutlineButton {...props} endIcon={icon ? icon : <ArrowForward/>} />);
 }
 
 const ArrowActionButton = ({...props}) =>{

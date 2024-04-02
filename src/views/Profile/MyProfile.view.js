@@ -22,7 +22,7 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { Add, ArrowBackIos, Lock } from "@mui/icons-material";
+import { Add, ArrowBackIos, ArrowForward, Lock } from "@mui/icons-material";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import capitalizeFirstLetter, {
   formatString,
@@ -71,12 +71,12 @@ const Profile = () => {
               <ArrowOutlineButton
                 className={styles.resetButton}
                 onClick={handleClose}
-                icon={true}
+                icon={<Lock fontSize="normal"/>}
               >
                 <div className={styles.innerText}>Reset Password</div>
               </ArrowOutlineButton>
               <ArrowPrimaryButton
-                icon={true}
+                icon={<Add fontSize={"small"} />}
                 className={styles.addTask}
                 onClick={handleSideToggle}
               >
