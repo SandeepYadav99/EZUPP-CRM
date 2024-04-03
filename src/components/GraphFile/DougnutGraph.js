@@ -18,6 +18,8 @@ const data = {
 const options = {
   responsive: false,
   cutout: '50%', 
+  cutoutPercentage: 65,
+
   plugins: {
     legend: {
       display: false,
