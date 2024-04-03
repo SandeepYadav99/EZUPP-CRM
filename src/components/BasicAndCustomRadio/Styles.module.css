@@ -13,12 +13,16 @@
   margin: 0;
   border-radius: 0.625rem;
   cursor: pointer;
+ 
 }
 .custom_opon {
   cursor: pointer;
   border: 1px solid #eaeaec;
   border-radius: 0.625rem;
   margin: 1px;
+  border-color: #6d788d;
+  color: #636578;
+  background-color: rgba(102, 108, 255, .12);
 }
 .cardGrid1 {
   display: grid;
@@ -40,4 +44,7 @@
 }
 .card:hover {
   background-color: #dfdfe3;
+}
+.card:not(:hover) {
+  background-color: #fff;
 }
