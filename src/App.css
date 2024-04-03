@@ -1044,6 +1044,50 @@ input[type=radio] + label:hover {
     display: flex;
     align-items: center;
 }
+.rbc-header {
+  border-color: #eaeaec;
+  color: #75757a;
+  padding: 5px 15px;
+}
+.rbc-date-cell {
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+.rbc-time-slot {
+  color: #75757a;
+  font-weight: 500;
+  z-index: 1;
+}
+.rbc-event-content {
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding-left: 10px;
+  z-index: 999 !important;
+}
+.rbc-row-segment {
+  margin-top: 5px;
+}
+.rbc-off-range-bg {
+  background: #f2f2f2;
+}
+.rbc-time-slot:not(.rbc-today .rbc-time-slot) {
+  background-color: #eff4f7;
+}
+.rbc-event,
+.rbc-background-event {
+  z-index: 2;
+  padding: 0px !important;
+  border: none !important;
+}
+
+.rbc-event-label {
+  display: none !important;
+}
+
+.rbc-events-container {
+  width: 100% !important;
+}
 @media (max-width: 767px) {
     .iconTabsEvents{
         padding: 6px 8px !important;

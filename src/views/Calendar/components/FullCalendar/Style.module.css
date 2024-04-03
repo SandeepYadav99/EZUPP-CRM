@@ -1,0 +1,14 @@
+.toolWrapper {
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+.backIcon {
+  color: #919bb0 !important;
+}
+.upperWrap{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
