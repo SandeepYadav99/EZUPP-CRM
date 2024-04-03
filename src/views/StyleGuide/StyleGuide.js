@@ -6,7 +6,7 @@ import {
     ArrowPrimaryButton,
     OutlineButton,
     PrimaryButton
-} from "../../components/Buttons/PrimaryButton";
+} from "../../components/Buttons/PrimaryButton"; 
 import styles from './Style.module.css';
 import {Typography} from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";

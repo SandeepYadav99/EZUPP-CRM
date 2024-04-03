@@ -11,17 +11,23 @@
   .spacer {
    margin-bottom: 10px; 
   }
+.boxCont {
+    margin: 10px 0px;
+}
+.sideMargin {
+    margin: 0px 10px;
+}
 .image{
  display: flex;
   /* margin-left: 175px; */
   float: right;
   align-items: flex-end !important;
-  margin-top: -68px;
+  margin-top: -70px;
 
 }
 .buttonAndImageContainer {
   /* display: flex;  */
- flex-wrap: nowrap;
+ flex-wrap: nowrap !important;
 }
   #card {
     background-color: white;
@@ -36,7 +42,7 @@
   .congratulation {
     width: 448px;
     height: 214px;
-    padding: 20px !important;
+   
     display: flex;
     flex-direction: column !important;
     justify-content: space-between;
@@ -48,7 +54,7 @@
   
 }
   .sales {
-    width: 50%;
+    width: 632px;;
     min-height: 214px !important;
     padding: 15px;
     display: flex;
@@ -56,9 +62,9 @@
     justify-content: space-between;
   }
   .quick {
-    width: 20%;
-    height: 214px;
-    padding: 15px;
+    width: 256px;
+    height: 212px;
+   
     display: flex;
     flex-direction: column !important;
     justify-content: space-evenly;
@@ -76,6 +82,14 @@
     height: 32px;
     font-size: 12px;
    margin-bottom: -30px !important;
+  }
+  .primary{
+    /* width: 99px; */
+    width: 99px;
+    font-size: 12px;
+    white-space: nowrap;
+    margin-bottom: -33px !important;
+    height: 32px;
   }
   .login:hover{
     background-color: #25ceae !important; 
@@ -107,23 +121,21 @@
   
   .iconCont{
       display: flex;
-      width: 30%;
-      height: 70px;
+      /* width: 30%;
+      height: 70px; */
       align-items: center;
       gap: 10px;
-  }
-  
-  .coloredDiv1{
-      width: 50px;
-      height: 50px;
-      background-color: #25ceae;
-      border-radius: 10px;
+      flex-direction: row !important; 
   }
   .customerDiv2{
       display: flex;
       flex-direction: column !important;
+      white-space: nowrap !important;
   }
-  
+  .customerImg{
+   
+    display: block;
+  }
   @media only screen and (max-width:1296px) {
       .iconCont{
           display: flex;
