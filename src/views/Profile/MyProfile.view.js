@@ -46,6 +46,7 @@ const Profile = () => {
     markAsCompleted,
     completedHandler,
     filterCompltedTask,
+    handleSaveClick
   } = useMyProfileHook();
 
   const handleClose = () => {
@@ -112,7 +113,7 @@ const Profile = () => {
                     <div className={styles.saveButton}>
                       <PrimaryButton
 
-                      // onClick={handleSaveClick}
+onClick={() => handleEdit(profileDetails)}
                       >
                         Edit
                       </PrimaryButton>
@@ -133,14 +134,14 @@ const Profile = () => {
                         <div className={styles.sideTitle}>Username:</div>
                         <span className={styles.email}>
                           {" "}
-                          {profileDetails?.email || "N/A"}
+                          {profileDetails?.user_name || "N/A"}
                         </span>
                       </div>
                       <div className={styles.contactFlex}>
                         <div className={styles.sideTitle}>Email</div>
                         <span className={styles.email}>
                           {" "}
-                          {profileDetails?.contact || "N/A"}
+                          {profileDetails?.email || "N/A"}
                         </span>
                       </div>
                       <div className={styles.contactFlex}>
@@ -154,7 +155,7 @@ const Profile = () => {
                         <div className={styles.sideTitle}>Role</div>
                         <span className={styles.email}>
                           {" "}
-                          {profileDetails?.contact || "N/A"}
+                          {profileDetails?.role || "N/A"}
                         </span>
                       </div>
                     </div>
@@ -166,27 +167,27 @@ const Profile = () => {
                         <div className={styles.sideTitle}>Work Details</div>
 
                         <span className={styles.activity}>
-                          {/* {formatString(profileDetails?.department)} */}
+                          {formatString(profileDetails?.department)}
                         </span>
                       </div>
                       <div className={styles.activityFlex}>
                         <div className={styles.sideTitle}>Designation:</div>
 
                         <span className={styles.activity}>
-                          {/* {formatString(profileDetails?.designation)} */}
+                          {formatString(profileDetails?.designation)}
                         </span>
                       </div>
                       <div className={styles.activityFlex}>
                         <div className={styles.sideTitle}>Manager:</div>
 
                         <span className={styles.activity}>
-                          {/* {formatString(profileDetails?.joiningDateText || "N/A")} */}
+                          {formatString(profileDetails?.joiningDateText || "N/A")}
                         </span>
                       </div>
                       <div className={styles.activityFlex}>
                         <div className={styles.sideTitle}>Joining Date:</div>
 
-                        <span className={styles.activity}>Manager</span>
+                        <span className={styles.activity}>{profileDetails?.joiningDateText}</span>
                       </div>
 
                       <div className={styles.activityFlex}>
@@ -204,22 +205,22 @@ const Profile = () => {
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Created On:</div>
 
-                      <span className={styles.activity}>Manager</span>
+                      <span className={styles.activity}>{profileDetails?.createdAtText}</span>
                     </div>
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Updated On:</div>
 
-                      <span className={styles.activity}>Manager</span>
+                      <span className={styles.activity}>{profileDetails?.updatedAtText}</span>
                     </div>
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Updated By:</div>
 
-                      <span className={styles.activity}>Manager</span>
+                      <span className={styles.activity}>{profileDetails?.updated_by || "N/A"}</span>
                     </div>
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Last Login:</div>
 
-                      <span className={styles.activity}>Manager</span>
+                      <span className={styles.activity}>{profileDetails?.lastLoginText}</span>
                     </div>
                   </ShadowBox>
                 </>

@@ -11,6 +11,7 @@ const PersonalInformation = ({
   changeTextData,
   onBlurHandler,
   form,
+  image
 }) => {
   console.log(form, "Form")
   return (
@@ -36,7 +37,7 @@ const PersonalInformation = ({
               user_image
               error={errorData?.image}
               value={form?.image}
-              default_image={""}
+              default_image={image ? image :""}
               onChange={(file) => {
                 if (file) {
                   changeTextData(file, "image");

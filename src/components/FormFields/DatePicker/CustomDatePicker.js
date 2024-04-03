@@ -1,11 +1,10 @@
 /**
  * Created by charnjeetelectrovese@gmail.com on 2/7/2020.
  */
+
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import React, {Component, useMemo} from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
- import DateFnsUtils from "@date-io/date-fns";
 
 
 const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, clearable,...rest}) => {
@@ -16,7 +15,7 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
         onChange && onChange(e);
     }
 
-    const mD = useMemo(() => {
+      const mD = useMemo(() => {
         // const d = new Date();
         // d?.setFullYear(d?.getFullYear() + 10);
         // return maxDate ? maxDate : d;
@@ -24,16 +23,16 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
 
     if (clearable) {
         return (
-            <LocalizationProvider dateAdapter={AdapterDayjs}  >
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                    clearable
+                    clearable={clearable}
                      margin="dense"
                      variant="inline"
                      id="time-picker"
                     fullWidth
                   
                     label={label}
-                     value={value ? value : (null)}
+                    value={value ? value : (null)}
                     onChange={handleOnChange}
                     inputVariant={'outlined'}
                     format={
@@ -44,15 +43,16 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                      maxDate={mD}
                     showTodayButton
                     {...rest}
-                    // KeyboardButtonProps={{
-                    //     'aria-label': 'change time',
-                    // }}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change time',
+                    }}
                 />
+               
             </LocalizationProvider>
         );
     }
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}  >
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
                  margin="dense"
                  variant="inline"
@@ -72,6 +72,7 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                 //     'aria-label': 'change time',
                 // }}
             />
+          
         </LocalizationProvider>
     );
 }

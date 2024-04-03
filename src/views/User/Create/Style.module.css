@@ -35,7 +35,8 @@
   width: 100% !important;
 }
 .iconButton{
-  width: 20rem;
+  display: flex;
+  gap: 5px;
 }
 .custonCSS{
   width: 50% ;

@@ -11,6 +11,7 @@ import { serviceTaskMnagmentUpdateStatus } from "../../services/TaskManage.servi
 import SnackbarUtils from "../../libs/SnackbarUtils";
 
 import { useLocation } from "react-router-dom";
+import RouteName from "../../routes/Route.name";
 
 const useMyProfileHook = () => {
   const [profileDetails, setProfileDetails] = useState(null);
@@ -133,7 +134,7 @@ const useMyProfileHook = () => {
     setTaskCreated(true);
   };
   const handleEdit = useCallback((profile) => {
-    // historyUtils.push(`${RouteName.USER_PROFILE}${profile?.id}`);
+     historyUtils.push(`${RouteName.ADMIN_USER_UPDATE}${profile?.id}`);
   });
 
   const handleSideToggle = useCallback(
@@ -173,6 +174,9 @@ const useMyProfileHook = () => {
     [filterValue]
   );
 
+  // const handleEdit = useCallback((profile) => {
+  //   historyUtils.push(`${RouteName.USER_PROFILE}${profile?.id}`);
+  // });
   return {
     profileDetails,
     handleEdit,
@@ -190,6 +194,7 @@ const useMyProfileHook = () => {
     filterCompltedTask,
     filterValue,
     id,
+    
   };
 };
 

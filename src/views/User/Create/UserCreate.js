@@ -19,7 +19,7 @@ const UserCreate = ({}) => {
     handleSubmit,
     image,
     id,
-    handleSaveClick,
+    images,
     manager,
     department
   } = useUserCreateHook();
@@ -30,10 +30,10 @@ const UserCreate = ({}) => {
         <div className={styles.iconButton}>
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
-            <Typography variant={"h4"}>
-              {id === "true" ? "Update" : "Add"} User
-            </Typography>
           </ButtonBase>
+            <Typography variant={"h4"}>
+              {id  ? "Update" : "Add"} User
+            </Typography>
         </div>
       </div>
       <PersonalInformation
@@ -54,6 +54,7 @@ const UserCreate = ({}) => {
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
+      
       />
 
       <div className={styles.saveButton}>
