@@ -109,19 +109,22 @@ class SidePanelComponent extends Component {
     render() {
         const { theme } = this.props;
         const tempStyle = {
-            width: (this.state.delta == 0 || !this.props.open) ? 'calc(100vw)' : (window.innerWidth - this.state.delta),
+            width:
+                this.state.delta == 0 || !this.props.open
+                ? "calc(45vw)"
+                : window.innerWidth - this.state.delta,
             height: '100%',
             backgroundColor: theme.palette.bgColor.main,
             color: theme.palette.textColor,
             top: '0px',
             position: 'fixed',
-            zIndex: '3',
+            zIndex: '9',
         };
-        if (this.props.side == 'left') {
-            tempStyle['left'] = (this.props.open ? '0px' : 'calc(-100vw)');
-        } else {
-            tempStyle['right'] = (this.props.open ? '0px' : 'calc(-100vw)');
-        }
+        if (this.props.side == "left") {
+            tempStyle["left"] = this.props.open ? "0px" : "calc(-45vw)";
+          } else {
+            tempStyle["right"] = this.props.open ? "0px" : "calc(-45vw)";
+          }
         return (
             <div className={classnames(!this.props.open ? styles.LPTransition: '', styles.noScrollbar)} style={tempStyle}>
               <ResizablePanels handleWidth={this._handleWidth} />

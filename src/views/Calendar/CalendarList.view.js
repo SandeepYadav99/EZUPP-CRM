@@ -5,31 +5,35 @@ import { ButtonBase, Checkbox, FormControlLabel } from "@mui/material";
 import { Add, CheckBox } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 import CalendarDetail from "./components/FullCalendar/FullCalendar";
+import PageBox from "../../components/PageBox/PageBox.component";
+import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
+import useCalendarList from "./CalendarList.hook";
+import EventForm from "./components/EventForm/EventForm.view";
 
 function CalendarList() {
+  const { isSidePanel, handleSideToggle } = useCalendarList({});
   const useStyles = makeStyles((theme) => ({
     checkboxLabel: {
       color: "#636578",
       fontWeight: "bold",
       fontSize: "18px",
+      fontWeight: "500",
     },
   }));
   const classes = useStyles();
   return (
-    <div className={styles.plainPaper}>
+    // <div className={styles.plainPaper}>
+    <PageBox classStyles={classes.pageBox}>
       <div className={styles.mainFlex}>
         <div className={styles.left}>
-          <div>
-            <ButtonBase
-              // onClick={handleCreate}
-              className={"AddBtn"}
-            >
+          <div className={styles.calContainer}>
+            <ButtonBase onClick={handleSideToggle} className={"AddBtn"}>
               <Add fontSize={"small"} className={"plusIcon"}></Add>
               Add Event
             </ButtonBase>
             <CalendarMui />
           </div>
-          <div>
+          <div className={styles.lowerWrap}>
             <div className={styles.title}>FILTER</div>
             <div className={styles.discriptionWrap}>
               <FormControlLabel
@@ -112,10 +116,20 @@ function CalendarList() {
           </div>
         </div>
         <div className={styles.right}>
-          <CalendarDetail/>
+          <CalendarDetail />
         </div>
       </div>
-    </div>
+      <SidePanelComponent
+        handleToggle={handleSideToggle}
+        title={"Add Event"}
+        open={isSidePanel}
+        side={"right"}
+      >
+        <EventForm isOpen={isSidePanel} handleToggle={handleSideToggle} />
+      </SidePanelComponent>
+    </PageBox>
+
+    // </div>
   );
 }
 

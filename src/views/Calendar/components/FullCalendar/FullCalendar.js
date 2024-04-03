@@ -5,7 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { getBgColor, getTextColor } from "../../../../helper/Helper";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { OutlineButton } from "../../../../components/Buttons/PrimaryButton";
-import {  ButtonBase, ButtonGroup, Typography } from "@mui/material";
+import { ButtonBase, ButtonGroup, Typography } from "@mui/material";
 import styles from "./Style.module.css";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const localizer = momentLocalizer(moment);
@@ -56,14 +56,14 @@ const CalendarDetail = () => {
     },
     {
       id: 4,
-      type: "holiday",
+      type: "family",
       title: "Different",
       start: new Date(2024, 3, 16, 9, 0),
       end: new Date(2024, 3, 16, 17, 0),
     },
     {
       id: 5,
-      type: "holiday",
+      type: "etc",
       title: "Different",
       start: new Date(2024, 3, 18, 9, 0),
       end: new Date(2024, 3, 19, 17, 0),
@@ -76,7 +76,7 @@ const CalendarDetail = () => {
       end: new Date(2024, 3, 17, 17, 0),
     },
   ]);
-
+  const [activeMonth, setActiveMonth] = useState("month");
   // Function to handle event addition
   const handleEventAdd = (event) => {
     setEvents([...events, event]);
@@ -86,7 +86,7 @@ const CalendarDetail = () => {
   const handleEventRemove = (eventToRemove) => {
     setEvents(events.filter((event) => event !== eventToRemove));
   };
-  console.log("events", events);
+  console.log("events", activeMonth);
 
   const eventStyleGetter = (event) => {
     let backgroundColor = getBgColor(event?.type); // Default color
@@ -100,6 +100,7 @@ const CalendarDetail = () => {
   };
 
   const CustomToolbar = ({ label, onNavigate, onView }) => {
+    // console.log("onView",onView)
     return (
       <div className={styles.toolWrapper}>
         <div className={styles.upperWrap}>
@@ -114,33 +115,23 @@ const CalendarDetail = () => {
           </ButtonBase>
           <Typography variant="h4">{label}</Typography>
         </div>
-
         <div>
           <ButtonGroup
             variant="outlined"
             size="large"
             aria-label="Medium-sized button group"
           >
-            <OutlineButton
-              color="primary"
-              onClick={() => onView("month")}
-              sx={{ fontWeight: "400" }}
-            >
-              MONTH
+            <OutlineButton color="primary" onClick={() => onView("month")}>
+              <Typography variant="body1">MONTH</Typography>
             </OutlineButton>
-            <OutlineButton
-              color="primary"
-              onClick={() => onView("week")}
-              sx={{ fontWeight: "400" }}
-            >
-              WEEK
+            <OutlineButton color="primary" onClick={() => onView("week")}>
+              <Typography variant="body1">WEEK</Typography>
             </OutlineButton>
-            <OutlineButton
-              color="primary"
-              onClick={() => onView("day")}
-              sx={{ fontWeight: "400" }}
-            >
-              DAY
+            <OutlineButton color="primary" onClick={() => onView("day")}>
+              <Typography variant="body1">DAY</Typography>
+            </OutlineButton>
+            <OutlineButton color="primary" onClick={() => onView("agenda")}>
+              <Typography variant="body1">LIST</Typography>
             </OutlineButton>
           </ButtonGroup>
         </div>
@@ -148,7 +139,7 @@ const CalendarDetail = () => {
     );
   };
   return (
-    <div style={{ height: 500 }}>
+    <div className={styles.detailWrap}>
       <Calendar
         localizer={localizer}
         events={events}
@@ -164,6 +155,7 @@ const CalendarDetail = () => {
         components={{
           toolbar: CustomToolbar, // Replace default toolbar with custom toolbar
         }}
+        onView={(view) => setActiveMonth(view)}
       />
     </div>
   );

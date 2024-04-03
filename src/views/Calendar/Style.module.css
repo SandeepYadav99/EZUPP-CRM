@@ -9,13 +9,20 @@
   display: flex;
 }
 .left {
+  padding: .8rem;
   flex: 1;
 }
 .right {
+  /* border-left: 1px solid #eaeaec; */
   flex: 4;
 }
 .title {
+  margin: 20px 0;
   color: #bbbcc4 !important;
+}
+.lowerWrap{
+  margin-top: 20px;
+  border-top: 1px solid #eaeaec;
 }
 .discriptionWrap {
   display: flex;
