@@ -1049,6 +1049,8 @@ input[type=radio] + label:hover {
   border-color: #eaeaec;
   color: #75757a;
   padding: 5px 15px;
+  font-size: 1rem !important;
+  font-weight: 500;
 }
 .rbc-date-cell {
   text-align: left;
@@ -1058,7 +1060,8 @@ input[type=radio] + label:hover {
 .rbc-button-link{
   color: #75757a;
   font-weight: 500 !important;
-  font-size: .8rem;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 .rbc-time-slot {
   color: #75757a;
@@ -1067,8 +1070,10 @@ input[type=radio] + label:hover {
 }
 .rbc-event-content {
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 500;
   padding-left: 10px;
+  font-size: 1rem;
+  margin-top: 5px;
   /* z-index: 999 !important; */
 }
 .rbc-row-segment {
@@ -1098,6 +1103,21 @@ input[type=radio] + label:hover {
   padding-left: 0 !important;
   padding-bottom: 0 !important;
   border-left: 1px solid #eaeaec;
+}
+
+.calender_Wrapper .MuiPickersCalendarHeader-label,
+.calender_Wrapper .MuiPickersDay-root,
+.calender_Wrapper .MuiDayCalendar-weekDayLabel,
+.calender_Wrapper .MuiPickersYear-yearButton {
+  font-size: .875rem;
+}
+
+.calender_Wrapper .MuiPickersYear-yearButton {
+  font-size: .8rem; 
+}
+
+.MuiPickersDay-dayOutsideMonth {
+  color: #d8d8dd;
 }
 @media (max-width: 767px) {
     .iconTabsEvents{

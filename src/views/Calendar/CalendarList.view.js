@@ -1,17 +1,26 @@
 import React from "react";
 import CalendarMui from "./components/CalendarMui/CalendarMui";
 import styles from "./Style.module.css";
-import { ButtonBase, Checkbox, FormControlLabel } from "@mui/material";
-import { Add, CheckBox } from "@mui/icons-material";
+import { Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 import CalendarDetail from "./components/FullCalendar/FullCalendar";
 import PageBox from "../../components/PageBox/PageBox.component";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
 import useCalendarList from "./CalendarList.hook";
 import EventForm from "./components/EventForm/EventForm.view";
+import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 
 function CalendarList() {
-  const { isSidePanel, handleSideToggle } = useCalendarList({});
+  const {
+    isSidePanel,
+    handleSideToggle,
+    checkedItems,
+    handleCheckboxChange,
+    filteredData,
+    selectedDate,
+    handleDateChange,
+  } = useCalendarList({});
   const useStyles = makeStyles((theme) => ({
     checkboxLabel: {
       color: "#636578",
@@ -22,16 +31,20 @@ function CalendarList() {
   }));
   const classes = useStyles();
   return (
-    // <div className={styles.plainPaper}>
     <PageBox classStyles={classes.pageBox}>
       <div className={styles.mainFlex}>
         <div className={styles.left}>
           <div className={styles.calContainer}>
-            <ButtonBase onClick={handleSideToggle} className={"AddBtn"}>
+            <PrimaryButton onClick={handleSideToggle} style={{ width: "100%" }}>
               <Add fontSize={"small"} className={"plusIcon"}></Add>
-              Add Event
-            </ButtonBase>
-            <CalendarMui />
+              <Typography variant="body1">ADD EVENT</Typography>
+            </PrimaryButton>
+            <div className="calender_Wrapper">
+              <CalendarMui
+                selectedDate={selectedDate}
+                handleDateChange={handleDateChange}
+              />
+            </div>
           </div>
           <div className={styles.lowerWrap}>
             <div className={styles.title}>FILTER</div>
@@ -40,8 +53,9 @@ function CalendarList() {
                 control={
                   <Checkbox
                     style={{ color: "#636578", borderColor: "#636578" }}
-                    //  checked={checked}
-                    //   onChange={handleChange}
+                    name="all"
+                    checked={checkedItems?.all}
+                    onChange={handleCheckboxChange}
                   />
                 }
                 className={classes.checkboxLabel}
@@ -53,8 +67,9 @@ function CalendarList() {
                 control={
                   <Checkbox
                     style={{ color: "#ff4d49" }}
-                    //  checked={checked}
-                    //   onChange={handleChange}
+                    name="personal"
+                    checked={checkedItems?.personal}
+                    onChange={handleCheckboxChange}
                   />
                 }
                 className={classes.checkboxLabel}
@@ -66,8 +81,9 @@ function CalendarList() {
                 control={
                   <Checkbox
                     style={{ color: "#666cff" }}
-                    //  checked={checked}
-                    //   onChange={handleChange}
+                    name="business"
+                    checked={checkedItems?.business}
+                    onChange={handleCheckboxChange}
                   />
                 }
                 className={classes.checkboxLabel}
@@ -79,8 +95,9 @@ function CalendarList() {
                 control={
                   <Checkbox
                     style={{ color: "#fdb528" }}
-                    //  checked={checked}
-                    //   onChange={handleChange}
+                    name="family"
+                    checked={checkedItems?.family}
+                    onChange={handleCheckboxChange}
                   />
                 }
                 className={classes.checkboxLabel}
@@ -92,8 +109,9 @@ function CalendarList() {
                 control={
                   <Checkbox
                     style={{ color: "#72e128" }}
-                    //  checked={checked}
-                    //   onChange={handleChange}
+                    name="holiday"
+                    checked={checkedItems?.holiday}
+                    onChange={handleCheckboxChange}
                   />
                 }
                 className={classes.checkboxLabel}
@@ -105,8 +123,9 @@ function CalendarList() {
                 control={
                   <Checkbox
                     style={{ color: "#26c6f9" }}
-                    //  checked={checked}
-                    //   onChange={handleChange}
+                    name="etc"
+                    checked={checkedItems?.etc}
+                    onChange={handleCheckboxChange}
                   />
                 }
                 className={classes.checkboxLabel}
@@ -116,7 +135,7 @@ function CalendarList() {
           </div>
         </div>
         <div className={styles.right}>
-          <CalendarDetail />
+          <CalendarDetail data={filteredData} selectedDate={selectedDate} />
         </div>
       </div>
       <SidePanelComponent
@@ -128,8 +147,6 @@ function CalendarList() {
         <EventForm isOpen={isSidePanel} handleToggle={handleSideToggle} />
       </SidePanelComponent>
     </PageBox>
-
-    // </div>
   );
 }
 

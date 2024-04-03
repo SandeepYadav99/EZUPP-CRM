@@ -4,8 +4,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import styles from "./Style.module.css";
 import { makeStyles } from "@material-ui/styles";
-import { ButtonBase } from "@mui/material";
-import { Add } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   customCalendar: {
@@ -19,19 +17,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CalendarMui() {
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  // Function to handle date change
-  const handleDateChange = (date) => {
-    console.log(">>>>", date);
-    setSelectedDate(date);
-  };
+function CalendarMui({ selectedDate, handleDateChange }) {
   console.log("selectedDate", selectedDate);
   const classes = useStyles();
   return (
     <div className={styles.calWrapper}>
-     
       <LocalizationProvider
         dateAdapter={AdapterDayjs}
         className={styles.calContainer}
