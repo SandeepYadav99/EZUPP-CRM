@@ -58,7 +58,7 @@ const TopRow = () => {
           
           <div className={`${styles.sales} `} >
           
-          <ShadowBox>
+          <ShadowBox style={{height:"100%"}}>
               <Typography variant={'h4'} color={'text.secondary'} sx={{mb: 1.5}}>{item.titleSales}</Typography>
               
               <Typography variant={'h4'} color={'secondary'}>{item.totalSales}</Typography>
@@ -112,7 +112,7 @@ const TopRow = () => {
 
 
           <div className={styles.quick} >
-          <ShadowBox>
+          <ShadowBox style={{height:"100%"}}>
             <Typography variant={'h4'} color={'text.secondary'}>
              {item.titleQuick}
             </Typography>

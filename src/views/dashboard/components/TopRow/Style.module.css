@@ -40,7 +40,7 @@
   }
   
   .congratulation {
-    width: 448px;
+    width: 30%;
     height: 214px;
    
     display: flex;
@@ -54,20 +54,17 @@
   
 }
   .sales {
-    width: 632px;;
-    min-height: 214px !important;
-    padding: 15px;
+    width: 50%;;
+    height: 214px !important;
     display: flex;
     flex-direction: column !important;
-    justify-content: space-between;
   }
   .quick {
-    width: 256px;
-    height: 212px;
-   
+    width: 20%;
+    height: 214px;
+
     display: flex;
     flex-direction: column !important;
-    justify-content: space-evenly;
   }
   .login {
     /* padding: 10px 10px 10px 10px !important; */
