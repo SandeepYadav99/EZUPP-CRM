@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, ...other} = props;
 
   return (
     <div

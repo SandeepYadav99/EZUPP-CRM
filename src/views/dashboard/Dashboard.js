@@ -7,7 +7,7 @@ import {
   Paper,
   Button,
   ButtonBase,
-} from '@mui/material';
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actionGetDashboard } from "../../actions/Dashboard.action";
 import DashboardBarChart from "./components/BigStat/DashboardBarChart";
@@ -16,6 +16,8 @@ import TopRow from "./components/TopRow/TopRow.component";
 import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
 import EventCard from "./components/EmployeeTab/EventCard.component";
 import dataValue from "./components/EmployeeTab/data.json";
+import GraphComponent from "./components/GraphComponent/Graph";
+import HalfDoughnut from "./components/HalfDoughnutGraph/HalfDoughnut";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -28,13 +30,19 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <TopRow/>
+        <TopRow />
         <div className={styles.employeeTab}>
           <div className={styles.meetingSchedule}>
-            <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span>
-            <EventCard data={dataValue?.birthdays}/>
+            <span style={{ fontSize: "18px", fontWeight: "600" }}>
+              Meeting Schedule
+            </span>
+            <EventCard data={dataValue?.birthdays} />
           </div>
-          <EmployeeTab/>
+          <EmployeeTab />
+        </div>
+        <div className={styles.chartsDesktop}>
+        <GraphComponent />
+        <HalfDoughnut/>
         </div>
       </div>
     </React.Fragment>
