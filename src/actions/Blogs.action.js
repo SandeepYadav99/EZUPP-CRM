@@ -2,8 +2,6 @@
  * Created by charnjeetelectrovese@gmail.com on 1/1/2020.
  */
 
-// import { serviceFetchProviderRequests } from '../services/ProviderRequest.service';
-// import { fetchPRequests } from '../services/User.service';
 import store from '../store';
 import Constants from '../config/constants';
 import {
@@ -46,7 +44,7 @@ export function actionFetchBlogs(index = 1, sorting = {}, filter = {}, shouldRes
             dispatch({type: SET_FILTER, payload: filter});
             dispatch({type: SET_SORTING, payload: sorting});
             if (!data.error) {
-                dispatch({type: FETCHED, payload: { data: data.data, page: index }});
+                dispatch({type: FETCHED, payload: { data: data?.data, page: index }});
                 dispatch({ type: SET_SERVER_PAGE, payload: index });
                 if (index == 1) {
                     dispatch({type: CHANGE_PAGE, payload: index - 1});
@@ -101,40 +99,22 @@ export function actionChangePageBlogs(page) {
     }
 }
 
-// export function nextPRequestsClick() {
-//     return {
-//         type: NEXT_PREQUESTS,
-//         payload: null,
-//     };
-// }
-//
-// export function prevPRequestsClick() {
-//     return {
-//         type: PREV_PREQUESTS,
-//         payload: null,
-//     };
-// }
 
 export function actionFilterBlogs(value) {
-    const request = null;////serviceFetchProviderRequests(value);
+    const request = null;
     return (dispatch) => {
         dispatch({type: FETCH_INIT, payload: null});
         request.then((data) => {
             dispatch({type: FILTER, payload: data});
-            dispatch({type: FETCHED, payload: null});//dispatch function
+            dispatch({type: FETCHED, payload: null});
         });
     };
 }
 
 
 export function actionChangeStatusBlogs(id, status) {
-    // const request = serviceFetchProviderRequests(value);
     return (dispatch) => {
         dispatch({type: CHANGE_STATUS, payload: {id, status}});
-        // request.then((data) => {
-        //     dispatch({type: FILTER_PREQUESTS, payload: data});
-        //     dispatch({type: FETCHED_PREQUESTS, payload: null});
-        // });
     };
 }
 
@@ -156,17 +136,9 @@ export function actionSetPageBlogs(page) {
 
     if (totalLength <= ((page + 1) * Constants.DEFAULT_PAGE_VALUE)) {
         store.dispatch(actionFetchBlogs(serverPage + 1, sortingData, {query, query_data: queryData}));
-        // this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order, { query: this.props.query, query_data: this.props.query_data });
-    }
-
-  
+    } 
     return {
         type: CHANGE_PAGE,
         payload: page,
     };
-    // if (this.props.totalUsers <= ((this.props.currentPage + 1) * 100)) {
-    //         // this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order);
-    //         this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order, { query: this.props.query, query_data: this.props.query_data });
-    //     }
-
 }
