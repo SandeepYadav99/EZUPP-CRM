@@ -31,12 +31,12 @@ const Dashboard = () => {
       <div className={styles.container}>
      
         <TopRow/>
-        <EventCard />
         <div className={styles.employeeTab}>
+       
           
-            
+          <EventCard />
            
-          
+        
           <EmployeeTab/>
           
         </div>

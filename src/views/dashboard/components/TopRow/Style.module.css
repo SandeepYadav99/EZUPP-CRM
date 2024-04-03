@@ -23,13 +23,16 @@
   /* margin-left: 175px; */
   float: right;
   align-items: flex-end !important;
-  margin-top: -70px;
+  margin-top: -22%;
 
 }
 .buttonAndImageContainer {
   /* display: flex;  */
  flex-wrap: nowrap !important;
 }
+/* .line{
+  border-color: grey !important;
+} */
   #card {
     background-color: white;
     border-radius: 10px;
@@ -42,7 +45,7 @@
   
   .congratulation {
     width: 30%;
-   height: 330px;
+    height: 214px;
    
     display: flex;
     flex-direction: column !important;
@@ -55,20 +58,18 @@
   
 }
   .sales {
-    width: 50%;
-    height: 330px !important;
-    /* padding: 15px; */
+    width: 50%;;
+    height: 214px !important;
     display: flex;
     flex-direction: column !important;
-    justify-content: space-between;
   }
   .quick {
     width: 20%;
-    height: 330px;
-   
+    height: 214px;
+
     display: flex;
     flex-direction: column !important;
-    justify-content: space-evenly;
+    white-space: nowrap;
   }
   .login {
     /* padding: 10px 10px 10px 10px !important; */
@@ -89,7 +90,7 @@
     width: 99px;
     font-size: 12px;
     white-space: nowrap;
-    margin-bottom: -33px !important;
+    margin-bottom: -40px !important;
     height: 32px;
   }
   .login:hover{

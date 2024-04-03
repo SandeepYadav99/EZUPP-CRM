@@ -29,12 +29,12 @@ const TopRow = () => {
         {Data.map((item, index) => (
           <>
           <div className={styles.congratulation}  >
-           <ShadowBox>
-            <Typography variant={'h3'} color={'text.secondary'} 
+           <ShadowBox style={{height:"98%"}}>
+            <Typography variant={'h4'} color={'text.secondary'} 
             >
               {item.title}
               </Typography>
-            <Typography variant={'body1'} color={'text.secondary'}>
+            <Typography variant={'body2'} color={'text.secondary'}>
             {item.subtitle}
             </Typography> 
             <div className={styles.spacer} />
@@ -58,7 +58,7 @@ const TopRow = () => {
           
           <div className={`${styles.sales} `} >
           
-          <ShadowBox>
+          <ShadowBox style={{height:"98%"}}>
               <Typography variant={'h4'} color={'text.secondary'} sx={{mb: 1.5}}>{item.titleSales}</Typography>
               
               <Typography variant={'h4'} color={'secondary'}>{item.totalSales}</Typography>
@@ -112,23 +112,23 @@ const TopRow = () => {
 
 
           <div className={styles.quick} >
-          <ShadowBox>
+          <ShadowBox style={{height:"98%"}}>
             <Typography variant={'h4'} color={'text.secondary'}>
              {item.titleQuick}
             </Typography>
-            <hr style={{ width: '100%', margin: '10px auto' }}/>
+            <hr className={styles.line} style={{ width: '100%', margin: '10px auto' }}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={contact} alt="Image" style={{ marginRight: '10px' }} />
             <div>
             <Typography variant={'subtitle1'} color={'text.primary'}>
                     {item.titleContact}
                   </Typography>
-            <Typography variant={'body2'} color={'text.secondary'}>
+            <Typography variant={'body2'} color={'text.secondary'} >
                    {item.ContactSub}
             </Typography>
             </div>
             </div>
-            <hr/>
+            <hr className={styles.line} style={{ marginBottom: '15px'}}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={query} alt="Image" style={{ marginRight: '10px' }} />
             <div>
