@@ -14,6 +14,8 @@ import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import UserCountAvatars, { UserCountAvatarsAnimation, UserCountAvatarsInitials, UserCountAvatarsLabelInitials, UserCountAvatarsLableAvatarGroup, UserCountAvatarsLableAvatarStatusIndicator, UserCountAvatarsShapes, UserCountAvatarsSize, UserCountAvatarsStatusIndicator } from '../../components/AvatarGroup/AvatarGroup';
+import { UserCountRadioLables } from '../../components/BasicAndCustomRadio/RadioLables';
+import { CustomOptionRadiosWithIcon } from '../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon';
 
 const avatars=[
     'A',
@@ -202,12 +204,20 @@ const StyleGuide = ({}) => {
               <UserCountAvatarsStatusIndicator/>
               <UserCountAvatarsLableAvatarStatusIndicator />
            </div>
+           <br/>
              <div>
-              </div>
+              <div >
                  <UserCountAvatarsLableAvatarGroup avatars={avatars}/>
-               <div >
+               </div >
             </div>
-         
+             <br/>
+                <div >
+                    <UserCountRadioLables/>
+                </div>
+         <br/>
+         <div>
+            <CustomOptionRadiosWithIcon/>
+         </div>
         </PageBoxComponent>
     )
 };
