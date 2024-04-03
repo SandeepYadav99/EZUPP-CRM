@@ -195,22 +195,18 @@ const StyleGuide = ({}) => {
             
 
            <div className={styles.boxContFlex}>
-            <UserCountAvatarsSize />
-            <UserCountAvatarsInitials/>
-            <UserCountAvatarsLabelInitials/>
-            <UserCountAvatarsShapes/>
-            <UserCountAvatarsStatusIndicator/>
-            <UserCountAvatarsLableAvatarStatusIndicator />
+              <UserCountAvatarsSize />
+              <UserCountAvatarsInitials/>
+              <UserCountAvatarsLabelInitials/>
+              <UserCountAvatarsShapes/>
+              <UserCountAvatarsStatusIndicator/>
+              <UserCountAvatarsLableAvatarStatusIndicator />
            </div>
              <div>
-
-             </div>
-            
-                <UserCountAvatarsLableAvatarGroup avatars={avatars}/>
+              </div>
+                 <UserCountAvatarsLableAvatarGroup avatars={avatars}/>
                <div >
-                
-
-             </div>
+            </div>
          
         </PageBoxComponent>
     )

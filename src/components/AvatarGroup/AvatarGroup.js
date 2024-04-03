@@ -12,55 +12,34 @@ import styles from "./Styles.module.css";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    backgroundColor: "#6d788d",
+    backgroundColor:  theme.palette.badgeColor.color,
     color: "",
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
   },
 }));
 const StyledBadge1 = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    backgroundColor: "#fdb528",
-    color: "#44b700",
+    backgroundColor: theme.palette.badgeColor.color1,
+    color: "",
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
   },
 }));
 const StyledBadge2 = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    backgroundColor: "#ff4d49", //
-    color: "#44b700",
+    backgroundColor: theme.palette.badgeColor.color2, //
+    color: "",
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
   },
 }));
 const StyledBadge3 = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    backgroundColor: "#fdb528", //
-    color: "#44b700",
+    backgroundColor: theme.palette.badgeColor.color1, //
+    color: "",
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
   },
 }));
 
-// export default function UserCountAvatars({ avatars }) {
-//   return (
-//     <Card sx={{ maxWidth: 345 }}>
-//       <CardContent>
-//         <div>
-//           <Typography gutterBottom variant={"h5"}>
-//             Defaul
-//           </Typography>
-//         </div>
-//         <div className={styles.avaterAlignment}>
-//           <AvatarGroup max={4}>
-//             {avatars.map((avatar, index) => (
-//               <Avatar key={index} alt={avatar.alt}>
-//                 {avatar}
-//               </Avatar>
-//             ))}
-//           </AvatarGroup>
-//         </div>
-//       </CardContent>
-//     </Card>
-//   );
-// }
+
 
 export function UserCountAvatarsSize({ avatars, title }) {
   return (
