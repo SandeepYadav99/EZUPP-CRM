@@ -1,6 +1,6 @@
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add } from "@material-ui/icons";
+import { Add } from "@mui/icons-material";
 import useBlogsHook from "./BlogsList.hook";
 import styles from "./Style.module.css";
 import React, { useMemo } from "react";

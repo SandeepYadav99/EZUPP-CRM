@@ -12,13 +12,17 @@ import {Typography} from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
+import {useTheme} from "@mui/styles";
 
 const StyleGuide = ({}) => {
+    const theme = useTheme();
+    // console.log('theme', theme);
     return (
         <PageBoxComponent>
             <div className={'formFlex'}>
                 <div className={styles.sideMargin}>
-                    <div><Typography variant={'h5'}>Normal</Typography></div>
+                    <div>
+                        <Typography variant={'h5'}>Normal</Typography></div>
                     <div className={styles.boxCont}>
                         <PrimaryButton>
                             Normal
@@ -128,7 +132,7 @@ const StyleGuide = ({}) => {
                         <CustomTextField label={'Name'}/>
                         <br/>
                         <br/>
-                        <CustomTextField label={'Name'} isError={true}/>
+                        <CustomTextField label={'Name'} isError={true} />
 
                         <br/>
                         <br/>
