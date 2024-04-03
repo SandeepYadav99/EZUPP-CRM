@@ -18,6 +18,7 @@ import EventCard from "./components/EmployeeTab/EventCard.component";
 import dataValue from "./components/EmployeeTab/data.json";
 import GraphComponent from "./components/GraphComponent/Graph";
 import HalfDoughnut from "./components/HalfDoughnutGraph/HalfDoughnut";
+import Calculator from "./components/Calculator/Calculator";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -38,12 +39,13 @@ const Dashboard = () => {
             </span>
             <EventCard data={dataValue?.birthdays} />
           </div>
-          <EmployeeTab />
+          <EmployeeTab/>
         </div>
-        <div className={styles.chartsDesktop}>
-        <GraphComponent />
-        <HalfDoughnut/>
-        </div>
+        <Calculator/>
+          <div className={styles.chartsDesktop}>
+              <GraphComponent />
+              <HalfDoughnut/>
+          </div>
       </div>
     </React.Fragment>
   );

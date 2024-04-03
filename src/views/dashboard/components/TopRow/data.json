@@ -1,0 +1,30 @@
+{
+  "Data":[
+    {
+        "title": "Congratulations Shivay!",
+        "subtitle": "Best seller of the month",
+        "amount": "$42.8k",
+        "progress": "78% of target 🚀",
+        "buttonText": "VIEW SALES",
+        "imageURL": "../../../../assets/Assets/trophy.png",
+
+        "titleSales": "Sales Overview",
+        "totalSales": "42.5k",
+        "totalSalesSubtitle": "Total Sales",
+        "totalRate": "+18%🡑",
+        "newCustomers": "8,458",
+        "newCustomersSubtitle": "New Customers",
+        "totalProfit": "$28.5k",
+        "totalProfitSubtitle": "Total Profit",
+        "newTransactions": "2,450k",
+        "newTransactionsSubtitle": "New Transactions",
+
+        "titleQuick": "Quick Actions",
+        "titleContact": "Contact",
+        "ContactSub": "Add your contacts",
+        "titleQuery": "Query",
+        "QuerySub": "Add your query"
+    }
+   
+  ]  
+}
