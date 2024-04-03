@@ -13,7 +13,7 @@ import {Typography} from "@mui/material";
 import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
-import UserCountAvatars, { UserCountAvatarsAnimation, UserCountAvatarsInitials, UserCountAvatarsShapes, UserCountAvatarsSize, UserCountAvatarsStatusIndicator } from '../../components/AvatarGroup/AvatarGroup';
+import UserCountAvatars, { UserCountAvatarsAnimation, UserCountAvatarsInitials, UserCountAvatarsLabelInitials, UserCountAvatarsLableAvatarGroup, UserCountAvatarsLableAvatarStatusIndicator, UserCountAvatarsShapes, UserCountAvatarsSize, UserCountAvatarsStatusIndicator } from '../../components/AvatarGroup/AvatarGroup';
 
 const avatars=[
     'A',
@@ -192,20 +192,21 @@ const StyleGuide = ({}) => {
             </div>
 
 
-            <div className={styles.boxCont}>
-               
-             <UserCountAvatars avatars={avatars}/>
-              
-            </div>
+            
 
            <div className={styles.boxContFlex}>
             <UserCountAvatarsSize />
             <UserCountAvatarsInitials/>
+            <UserCountAvatarsLabelInitials/>
             <UserCountAvatarsShapes/>
             <UserCountAvatarsStatusIndicator/>
+            <UserCountAvatarsLableAvatarStatusIndicator />
            </div>
+             <div>
 
-
+             </div>
+            
+                <UserCountAvatarsLableAvatarGroup avatars={avatars}/>
                <div >
                 
 

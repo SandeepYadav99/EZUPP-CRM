@@ -1,11 +1,11 @@
 .boxCont {
-    margin: 10px 0px;
+  margin: 10px 0px;
 }
 .sideMargin {
-    margin: 0px 10px;
+  margin: 0px 10px;
 }
-.boxContFlex{
-    display: grid;
-    gap: 10px;
-   grid-template-columns: repeat(2, 1fr);
+.boxContFlex {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
 }
