@@ -13,6 +13,8 @@
   margin: 0;
   border-radius: 0.625rem;
   cursor: pointer;
+  background-color: rgba(102, 108, 255, .12);
+  /* color: #666cff; */
  
 }
 .custom_opon {
@@ -23,6 +25,15 @@
   border-color: #6d788d;
   color: #636578;
   background-color: rgba(102, 108, 255, .12);
+}
+.custom_opon1 {
+  cursor: pointer;
+  border: 1px solid #eaeaec;
+  border-radius: 0.625rem;
+  margin: 1px;
+  border-color: #6d788d;
+  color: #636578;
+
 }
 .cardGrid1 {
   display: grid;
@@ -43,8 +54,8 @@
   text-align: center;
 }
 .card:hover {
-  background-color: #dfdfe3;
+  border-color: #dfdfe3;
 }
 .card:not(:hover) {
-  background-color: #fff;
+  border-color: #fff;
 }

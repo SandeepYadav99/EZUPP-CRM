@@ -33,7 +33,7 @@ export function CustomOptionRadiosWithIcon({ avatars, title }) {
               className={
                 selectedOption === "starter"
                   ? styles.custom_option
-                  : styles.custom_opon
+                  : styles.custom_opon1
               }
               onClick={() => setSelectedOption("starter")}
             >
@@ -69,7 +69,7 @@ export function CustomOptionRadiosWithIcon({ avatars, title }) {
               className={
                 selectedOption === "personal"
                   ? styles.custom_option
-                  : styles.custom_opon
+                  : styles.custom_opon1
               }
               onClick={() => setSelectedOption("personal")}
             >
@@ -105,7 +105,7 @@ export function CustomOptionRadiosWithIcon({ avatars, title }) {
               className={
                 selectedOption === "enterprise"
                   ? styles.custom_option
-                  : styles.custom_opon
+                  : styles.custom_opon1
               }
               onClick={() => setSelectedOption("enterprise")}
             >
