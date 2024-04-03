@@ -31,11 +31,12 @@ const Dashboard = () => {
       <div className={styles.container}>
      
         <TopRow/>
+        <EventCard />
         <div className={styles.employeeTab}>
-          <div className={styles.meetingSchedule}>
-            <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span>
-            <EventCard data={dataValue?.birthdays}/>
-          </div>
+          
+            
+           
+          
           <EmployeeTab/>
           
         </div>

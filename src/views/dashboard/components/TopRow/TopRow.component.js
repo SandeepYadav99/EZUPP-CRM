@@ -28,9 +28,9 @@ const TopRow = () => {
         <div className={styles.div1}> 
         {Data.map((item, index) => (
           <>
-          <div className={styles.congratulation} >
+          <div className={styles.congratulation}  >
            <ShadowBox>
-            <Typography variant={'h4'} color={'text.secondary'} 
+            <Typography variant={'h3'} color={'text.secondary'} 
             >
               {item.title}
               </Typography>
