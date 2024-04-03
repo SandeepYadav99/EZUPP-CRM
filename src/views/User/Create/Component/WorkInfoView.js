@@ -6,7 +6,7 @@ import CustomSelectField from "../../../../components/FormFields/SelectField/Sel
 import { MenuItem } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
-const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler }) => {
+const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager, department}) => {
   return (
     <>
       <div className={"plainPaper"}>
@@ -39,11 +39,12 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler }) => {
                   label={"Department"}
                   value={form?.department}
                   handleChange={(value) => {
+                    console.log(value, "Value")
                     changeTextData(value, "department");
                   }}
                 >
-                  {[]?.map((option, index) => (
-                    <MenuItem value={option?.id}>{option?.name}</MenuItem>
+                  {department?.map((option, index) => (
+                    <MenuItem value={option}>{option}</MenuItem>
                   ))}
                 </CustomSelectField>
               </div>
@@ -75,11 +76,11 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler }) => {
                 changeTextData(value, "manager");
               }}
             >
-              {[]?.map((item) => {
+              {manager?.map((item) => {
                 return (
                   <MenuItem
                     value={item?.id}
-                  >{`${item?.name}   (${item?.employee_id})`}</MenuItem>
+                  >{`${item?.name} `}</MenuItem>
                 );
               })}
             </CustomSelectField>
@@ -121,9 +122,9 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler }) => {
           <div className={"formGroup"}>
             <CustomCheckbox
               value={form?.userManage}
-              // handleChange={() => {
-              //   changeTextData(!form?.status, "status");
-              // }}
+              handleChange={() => {
+                changeTextData(!form?.userManage, "userManage");
+              }}
               label={`User is a manager?`}
             />
           </div>
@@ -131,10 +132,10 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler }) => {
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomCheckbox
-              value={form?.invoiteToUser}
-              // handleChange={() => {
-              //   changeTextData(!form?.status, "status");
-              // }}
+              value={form?.department}
+              handleChange={() => {
+                changeTextData(!form?.department, "department");
+              }}
               label={`Send Invite to user on email`}
             />
           </div>

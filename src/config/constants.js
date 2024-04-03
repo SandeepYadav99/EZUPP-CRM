@@ -1,14 +1,15 @@
 /* eslint-disable indent,linebreak-style */
 const TABLE_LIMIT = 50;
-const tempLevel = true; 
+//const tempLevel = true; 
 
-//const tempLevel =  !(!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
+const tempLevel =  !(!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
 const tempDate = new Date();
 export default {
     TIME_ZONE: -(tempDate.getTimezoneOffset()/60),
     DEFAULT_TIME_FORMAT: 'DD-MM-YYYY, HH:mm',
     APP_NAME: 'Ezupp-Panel',
-    DEFAULT_APP_URL: tempLevel ? 'http://91.205.173.97:2444/v1/admin/' :'http://localhost:2444/v1/admin/',
+    DEFAULT_APP_URL: tempLevel ? 'http://91.205.173.97:8118/api/admin/' :'http://localhost:2444/v1/admin/',
+    // DEFAULT_APP_URL: tempLevel ? 'http://91.205.173.97:2444/v1/admin/' :'http://localhost:2444/v1/admin/',
     SOCKET_URL: tempLevel ? 'http://91.205.173.97:8085/' : 'http://91.205.173.97:8085/',
     // DEFAULT_APP_URL: 'http://35.154.147.169:5055/api/',
     DEFAULT_PAGE_VALUE: TABLE_LIMIT,

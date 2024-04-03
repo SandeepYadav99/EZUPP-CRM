@@ -12,6 +12,7 @@ const PersonalInformation = ({
   onBlurHandler,
   form,
 }) => {
+  console.log(form, "Form")
   return (
     <div>
       <div className={"plainPaper"}>

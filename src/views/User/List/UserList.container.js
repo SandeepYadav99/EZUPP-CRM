@@ -173,7 +173,7 @@ const UserList = (props) => {
         ),
       },
     ],
-    [renderFirstCell, renderStatus]
+    [renderFirstCell, renderStatus, handleEdit, handleProfile]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {

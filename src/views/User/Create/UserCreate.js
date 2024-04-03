@@ -8,21 +8,22 @@ import WorkInfoView from "./Component/WorkInfoView";
 import PersonalInformation from "./Component/PersonalInformation";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
+import useUserCreateHook from "./UserCreateHook";
 
-const UserCreate = ({
-  handleToggleSidePannel,
-  errorData,
-  changeTextData,
-  form,
-  onBlurHandler,
-  handleSubmit,
-  image,
-  setPhoneContact,
-  setTypeOf,
-  setCountry,
-  id,
-  handleSaveClick,
-}) => {
+const UserCreate = ({}) => {
+  const {
+    errorData,
+    changeTextData,
+    form,
+    onBlurHandler,
+    handleSubmit,
+    image,
+    id,
+    handleSaveClick,
+    manager,
+    department
+  } = useUserCreateHook();
+
   return (
     <>
       <div className={styles.outerFlex1}>
@@ -40,21 +41,23 @@ const UserCreate = ({
         form={form}
         image={image}
         changeTextData={changeTextData}
-        handleSubmit={handleSubmit}
+        // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
       />
-
+      {/* Work flow  */}
       <WorkInfoView
         errorData={errorData}
         form={form}
         image={image}
         changeTextData={changeTextData}
-        handleSubmit={handleSubmit}
+        // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
+        manager={manager}
+        department={department}
       />
 
       <div className={styles.saveButton}>
-        <PrimaryButton color={"primary"} onClick={handleSaveClick}>
+        <PrimaryButton color={"primary"} onClick={handleSubmit}>
           {/* {isSubmitting ? ( */}
           {/* <CircularProgress color="success" size="20px" />
               ) : (  */}

@@ -1,7 +1,5 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 4/10/2020.
- */
-import {formDataRequest, postRequest} from '../libs/AxiosService.util';
+
+import {formDataRequest, getRequest, postRequest} from '../libs/AxiosService.util';
 
 export async function serviceCreateProviderUser(params) {
     return await formDataRequest('profile/create', params);
@@ -31,12 +29,15 @@ export async function serviceProviderUserManager(params) {
 }
 
 export async function serviceProviderAssignManager(params) {
-    return await postRequest('user/assign/manager', params); //user/assign/manager
+    return await postRequest('user/assign/manager', params); //profile/get/keyword
 }
 export async function serviceProviderIsExist(params) {
     return await postRequest('profile/isexist', params); 
 }
 
+export async function serviceProviderProfileGetKeyword(params) {
+    return await postRequest('profile/get/keyword', params); 
+}
 export async function serviceProfileDetail(params) {
     return await postRequest('profile/details', params); 
 }
@@ -75,4 +76,7 @@ export async function serviceTaskMnagmentByUser(params) {
 
 export async function serviceTaskFilterByUser(params) {
     return await postRequest('task/management/filter/task', params); // task/management/filter/task
+}
+export async function serviceProfileManager(params) {
+    return await postRequest('profile/manager', params); // task/management/filter/task
 }

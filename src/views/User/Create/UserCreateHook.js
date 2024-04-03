@@ -13,18 +13,22 @@ import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
 
-
 import Constants from "../../../config/constants";
 import { parsePhoneNumber } from "libphonenumber-js";
 
-
-
 import useDebounce from "../../../hooks/DebounceHook";
+import {
+  serviceCreateProviderUser,
+  serviceGetProviderUserDetail,
+  serviceProfileManager,
+  serviceProviderProfileGetKeyword,
+  serviceUpdateProviderUser,
+} from "../../../services/ProviderUser.service";
 
 function useUserCreateHook() {
   const initialForm = {
     name: "",
-    userName:"",
+    userName: "",
     image: "",
     contact: "",
     email: "",
@@ -32,22 +36,23 @@ function useUserCreateHook() {
     type: "",
     employee_id: "",
     // password: "1231231admin",
-    joining_date: null,
+    joining_date: "",
     department: "",
     designation: "",
     manager: "",
-    end_date:"",
+    end_date: "",
     userManage: false,
-    invoiteToUser:false
+    invoiteToUser: false,
   };
-  const colorKey = ["name2", "email", "title", "contact"];
+
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const codeDebouncer = useDebounce(form?.contact, 6000);
-
+  const [manager, setManager] = useState([]);
+  const [department, setDepartment] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [listData, setListData] = useState({
     ADMIN: [],
@@ -70,28 +75,53 @@ function useUserCreateHook() {
   //     }
   //   });
   // }, []);
+  useEffect(() => {
+    serviceProfileManager({}).then((res) => {
+      if (!res?.error) {
+        const data = res?.data;
+        setManager(data);
+      }
+    });
+  }, []);
 
   useEffect(() => {
+    serviceProviderProfileGetKeyword({}).then((res) => {
+      if (!res?.error) {
+        const data = res?.data;
+        setDepartment(data);
+      }
+    });
+  }, []);
+  useEffect(() => {
     if (id) {
-      "serviceDetailsMemberList"({ id: id }).then((res) => {
+      serviceGetProviderUserDetail({ id: id }).then((res) => {
         if (!res.error) {
-          const data = res?.data?.details;
+          const data = res?.data;
 
           const formData = {
             ...form,
             name: data?.name,
-            url: data?.url,
-            chapter_ids: data?.chapters,
-            is_access_invite: data?.is_access_invite,
-            is_active: data?.status === Constants.GENERAL_STATUS.ACTIVE,
+
+            userName: data?.user_name,
+
+            contact: data?.contact,
+            email: data?.email,
+            role: data?.role,
+            // type: string;
+            employee_id: data?.employee_id,
+            // joining_date: data?.joining_date,
+            department: data?.department,
+            designation: data?.designation,
+            manager: data?.manager,
+            // end_date: data?.end_date,
+            userManage: data?.is_manager,
+
+            invoiteToUser: data?.is_primary_user,
+
+            // is_access_invite: data?.is_access_invite,
+            // is_active: data?.status === Constants.GENERAL_STATUS.ACTIVE,
           };
-          if (data?.primary_user?.id) {
-            formData.name2 = data?.primary_user?.name;
-            formData.email = data?.primary_user?.email;
-            formData.title = data?.primary_user?.title;
-            formData.contact = data?.primary_user?.full_contact;
-            formData.company_name=data?.primary_user?.company_name
-          }
+
           setForm(formData);
           setImages(data?.image);
         } else {
@@ -101,53 +131,65 @@ function useUserCreateHook() {
     }
   }, [id]);
 
-  const checkCodeValidation = useCallback(() => {
-    "serviceUpdateAdminUserSearch"({
-      contact: form?.contact,
-      id: id ? id : "",
-    }).then((res) => {
-      if (!res.error) {
-        const data = res?.data;
+  // const checkCodeValidation = useCallback(() => {
+  //   "serviceUpdateAdminUserSearch"({
+  //     contact: form?.contact,
+  //     id: id ? id : "",
+  //   }).then((res) => {
+  //     if (!res.error) {
+  //       const data = res?.data;
 
-        // if (data?.full_contact === form?.contact) {
-        //   setIsContactInList(true);
-        // }
-        if (data) {
-          const tForm = {
-            ...form,
-            contact: data?.full_contact,
-            email: data?.email,
-            reg_id: data?.reg_id,
-            name2: data?.name,
-            member_id: data?.member?.id,
-            title: data?.title,
-            company_name:data?.member
-            ?.name
-           
-          };
-          setForm(tForm);
-        } else {
-          if (data?.contact !== form?.contact) {
-            // setIsContactInList(false);
-          }
-          setForm({
-            ...form,
-            id: "",
-          });
-        }
-      }
-    });
-  }, [form, id, form?.contact]);
+  //       // if (data?.full_contact === form?.contact) {
+  //       //   setIsContactInList(true);
+  //       // }
+  //       if (data) {
+  //         const tForm = {
+  //           ...form,
+  //           contact: data?.full_contact,
+  //           email: data?.email,
+  //           reg_id: data?.reg_id,
+  //           name2: data?.name,
+  //           member_id: data?.member?.id,
+  //           title: data?.title,
+  //           company_name:data?.member
+  //           ?.name
 
-  useEffect(() => {
-    if (codeDebouncer) {
-      checkCodeValidation();
-    }
-  }, [codeDebouncer]);
+  //         };
+  //         setForm(tForm);
+  //       } else {
+  //         if (data?.contact !== form?.contact) {
+  //           // setIsContactInList(false);
+  //         }
+  //         setForm({
+  //           ...form,
+  //           id: "",
+  //         });
+  //       }
+  //     }
+  //   });
+  // }, [form, id, form?.contact]);
+
+  // useEffect(() => {
+  //   if (codeDebouncer) {
+  //     checkCodeValidation();
+  //   }
+  // }, [codeDebouncer]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name",  "name2", "email", "contact", "title"];
+    let required = [
+      "name",
+      "email",
+      "contact",
+      "userName",
+      "role",
+      "employee_id",
+      "joining_date",
+      "department",
+      "designation",
+      "manager",
+      "end_date",
+    ];
     if (!id) {
       required.push("image");
     }
@@ -158,28 +200,26 @@ function useUserCreateHook() {
       ) {
         errors[val] = true;
       }
-      // if (val === "contact" && form?.contact) {
-      //   const phoneNumber = parsePhoneNumber(
-      //     "+" + form?.contact)
-      //   );
+      if (val === "contact" && form?.contact) {
+        const phoneNumber = parsePhoneNumber(form?.contact);
 
-    //     if (phoneNumber) {
-    //       if (phoneNumber.isValid() === false) {
-    //         errors.contact = "Invalid Number";
-    //       }
-    //     } else {
-    //       errors.contact = "Invalid Number";
-    //     }
-    //   }
-     });
+        if (phoneNumber) {
+          if (phoneNumber.isValid() === false) {
+            errors.contact = "Invalid Number";
+          }
+        } else {
+          errors.contact = "Invalid Number";
+        }
+      }
+    });
 
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
-    if (form?.url && !validateUrl(form?.url)) {
-      errors.url = true;
-      SnackbarUtils.error("Please Enter the Valid Url");
-    }
+    // if (form?.url && !validateUrl(form?.url)) {
+    //   errors.url = true;
+    //   SnackbarUtils.error("Please Enter the Valid Url");
+    // }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -197,13 +237,23 @@ function useUserCreateHook() {
     [setErrorData, errorData]
   );
 
-  const changeTextData = useCallback(
+ const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
         t[fieldName] = text;
       } else if (fieldName === "contact") {
+        t[fieldName] = text;
+      } else if (fieldName === "userName") {
+        t[fieldName] = text;
+      } else if (fieldName === "email") {
+        t[fieldName] = text;
+      } else if (fieldName === "contact") {
+        t[fieldName] = text;
+      } else if (fieldName === "role") {
+        t[fieldName] = text;
+      } else if (fieldName === "department") {
         t[fieldName] = text;
       } else {
         t[fieldName] = text;
@@ -214,49 +264,43 @@ function useUserCreateHook() {
     },
     [removeError, form, setForm]
   );
-
+  console.log(form, "Form");
   const submitToServer = useCallback(
     (status) => {
       if (!isSubmitting) {
         setIsSubmitting(true);
         const fd = new FormData();
 
-        const relatedId =
-          Array.isArray(form.chapter_ids) && form.chapter_ids.length > 0
-            ? form.chapter_ids.map((item) => item.id)
-            : [];
-        form.chapter_ids = relatedId;
-        const themeData = {};
+        const formDataFields = {
+          name: form?.name,
+          image: form?.image,
+          contact: form?.contact,
+          role: "5e186e7276f01e25bc9311a0",
+          email: form?.email,
+          employee_id: form?.employee_id,
+          joining_date: form?.joining_date,
+          exit_date: form?.end_date,
+          department: form?.department,
+          designation: form?.designation,
+          manager: form?.manager,
+          user_name: form?.userName,
+          is_primary_user: form?.invoiteToUser,
+          is_manager: form?.userManage,
+          country_code: 91,
+        };
 
-        for (const prop in form) {
-          if (colorKey.includes(prop)) {
-            if (prop === "name2") {
-              themeData["name"] = form[prop];
-            } else if (prop === "contact") {
-              themeData[prop] = `${form[prop]}`;
-            } else {
-              themeData[prop] = form[prop];
-            }
-            delete form[prop];
+        for (const field in formDataFields) {
+          if (formDataFields.hasOwnProperty(field)) {
+            fd.append(field, formDataFields[field]);
           }
         }
-        if (id) {
-          fd.append("id", id);
-        }
-        form.member_users = themeData;
-        Object.keys(form).forEach((key) => {
-          if (["chapter_ids", "member_users"].includes(key)) {
-            fd.append(key, JSON.stringify(form[key]));
-          } else {
-            fd.append(key, form[key]);
-          }
-        });
-        fd.delete("country_code");
+
         let req;
         if (id) {
-          req = "serviceUpdateMemberList"(fd);
+          fd.append("id",id)
+          req = serviceUpdateProviderUser(fd);
         } else {
-          req = "serviceCreateMemberList"(fd);
+          req = serviceCreateProviderUser(fd);
         }
         req.then((res) => {
           if (!res.error) {
@@ -306,6 +350,8 @@ function useUserCreateHook() {
     id,
     // isContactInList,
     isOpen,
+    manager,
+    department,
   };
 }
 
