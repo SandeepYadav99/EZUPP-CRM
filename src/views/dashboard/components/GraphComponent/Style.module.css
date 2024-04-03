@@ -55,6 +55,12 @@
   width: 40%;
 }
 
+.underLine{
+   color:#2063CE;
+   text-decoration: underline;
+   padding-bottom: 10px;
+}
+
 @media only screen and (max-width: 1296px) {
   .cardComponent {
     display: flex;

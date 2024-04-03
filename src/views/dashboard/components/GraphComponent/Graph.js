@@ -19,10 +19,10 @@ const GraphComponent =()=>{
             <Typography variant={"subtitle1"}> Quotes</Typography>
           </div>
           <div className={styles.alignDataValue}>
-            <Typography variant={"h6"}> Today</Typography>
-            <Typography variant={"h6"}> Week </Typography>
-            <Typography variant={"h6"}> Month</Typography>
-            <Typography variant={"h6"}> Year</Typography>
+            <Typography variant={"subtitle2"}> Today</Typography>
+            <Typography variant={"subtitle2"}> Week </Typography>
+            <Typography variant={"subtitle2"}> Month</Typography>
+            <Typography variant={"subtitle2"} className={styles.underLine}> Year</Typography>
           </div>
         </div>
         <DoughnutChart />
