@@ -81,7 +81,7 @@ function LoginView() {
                     />
                     <IconButton
                       style={{
-                        marginLeft: "-30px",
+                        marginLeft: "-37px",
                         padding: "0px",
                       }}
                       onClick={togglePasswordVisibility}
