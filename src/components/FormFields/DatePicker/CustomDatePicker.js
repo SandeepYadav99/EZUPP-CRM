@@ -6,7 +6,7 @@ import React, {Component, useMemo} from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import DateFnsUtils from "@date-io/date-fns";
+import dayjs from 'dayjs';
 
 
 const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, clearable,...rest}) => {
@@ -34,15 +34,15 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                     fullWidth
 
                     label={label}
-                    value={value ? value : (null)}
+                    value={value ? dayjs(value) : (null)}
                     onChange={handleOnChange}
                     inputVariant={'outlined'}
                     format={
                         "dd-MM-yyyy"
                     }
                     error={isError ? true : false}
-                    minDate={minDate}
-                    maxDate={mD}
+                    minDate={minDate && dayjs(minDate)}
+                    maxDate={mD ? dayjs(mD) : dayjs()}
                     showTodayButton
                     {...rest}
                     // KeyboardButtonProps={{

@@ -79,7 +79,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
           </div>
           <div>
             <CustomDatePicker
-              // clearable
+              clearable
               label={"End Date"}
               maxDate={new Date()}
               onChange={(date) => {
@@ -88,7 +88,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
               value={form?.end_date}
               isError={errorData?.end_date}
             />
-          </div> 
+          </div>
           <CustomTextField
             isError={errorData?.event_url}
             errorText={errorData?.event_url}
