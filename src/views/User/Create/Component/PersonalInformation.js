@@ -118,7 +118,7 @@ const PersonalInformation = ({
                 <CustomSelectField
                   isError={errorData?.role}
                   errorText={errorData?.role}
-                  label={" Role"}
+                  label={"Role"}
                   value={form?.role}
                   handleChange={(value) => {
                     changeTextData(value, "role");

@@ -173,7 +173,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
             <CustomDatePicker
               clearable
               label={"Joining Date"}
-              maxDate={new Date()}
+              // maxDate={new Date()}
               //maxDate={new Date(new Date().getFullYear(), 11, 31)}
               onChange={(value) => {
                 changeTextData(value, "joining_date");
@@ -191,12 +191,12 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               clearable
               className={styles.dateContainer}
               label={"End Date"}
-              maxDate={new Date()}
+              //  maxDate={new Date()}
               // maxDate={new Date(new Date().getFullYear(), 11, 31)}
               onChange={(value) => {
                 changeTextData(value, "end_date");
               }}
-              // format={"dd-MM-yyyy"}
+              
               value={form?.end_date}
               isError={errorData?.end_date}
               errorText={errorData?.end_date}

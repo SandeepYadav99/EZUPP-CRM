@@ -26,7 +26,7 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
         return (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                    clearable={clearable}
+                    clearable
                      margin="dense"
                      variant="inline"
                      id="time-picker"
@@ -36,11 +36,12 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                     value={value ? dayjs(value) : (null)}
                     onChange={handleOnChange}
                     inputVariant={'outlined'}
-                    format={
-                        "dd-MM-yyyy"
-                    }
+                    // format={
+                    //     "dd-MM-yyyy"
+                    // }
+                    format="MM-DD-YYYY"
                     error={isError ? true : false}
-                    minDate={minDate && dayjs(minDate)}
+                     minDate={minDate && dayjs(minDate)}
                     maxDate={mD ? dayjs(mD) : dayjs()}
                     showTodayButton
                     {...rest}
