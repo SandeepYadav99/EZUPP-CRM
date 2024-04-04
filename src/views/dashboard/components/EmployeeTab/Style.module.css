@@ -19,14 +19,16 @@
   align-items: center;
 }
 .status{
- align-items: flex-end;
+ /* align-items: flex-end; */
   /* margin-left: 40px; */
+  flex: 1; 
+  margin-left: auto !important;
 }
 .menu{
   display: inline-block;
   width: 4px;
 height: 20px;
-margin-left: 50px;
+/* margin-left: 175px; */
 }
 .meetingSchedule{
   width:40%;;

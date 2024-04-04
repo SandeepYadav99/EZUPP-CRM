@@ -116,19 +116,19 @@ const TopRow = () => {
             <Typography variant={'h4'} color={'text.secondary'}>
              {item.titleQuick}
             </Typography>
-            <hr className={styles.line} style={{ width: '100%', margin: '10px auto' }}/>
+            <div className={styles.line} style={{ width: '100%', margin: '10px auto' }}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={contact} alt="Image" style={{ marginRight: '10px' }} />
             <div>
             <Typography variant={'subtitle1'} color={'text.primary'}>
                     {item.titleContact}
                   </Typography>
-            <Typography variant={'body2'} color={'text.secondary'} >
+            <Typography variant={'body2'} color={'text.secondary'}>
                    {item.ContactSub}
             </Typography>
             </div>
             </div>
-            <hr className={styles.line} style={{ marginBottom: '15px'}}/>
+            <div className={styles.line} style={{ marginBottom: '15px', marginTop: '10px'}}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={query} alt="Image" style={{ marginRight: '10px' }} />
             <div>

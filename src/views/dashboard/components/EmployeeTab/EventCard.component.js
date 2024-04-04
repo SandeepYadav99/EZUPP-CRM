@@ -17,14 +17,13 @@ const EventCard =()=> {
     {Data.map((item, index) => (
      
       <ShadowBox className={styles.meetingSchedule}>
-        <span className={styles.title}>
-<Typography variant={'h4'} color={'text.secondary'} 
-            >
+        <span style={{ display: 'flex', alignItems: 'center' }}>
+<Typography variant={'h4'} color={'text.secondary'}> 
               {item.title}
               </Typography>
-              {/* <img src={menu} className={styles.menu} alt="Image"/> */}
+              <img src={menu} className={styles.menu} alt="Image" style={{ marginLeft: 'auto' }} />
               </span>
-              <div className={styles.members}>
+            <div className={styles.members}>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px'}}>
               <img src={avatar} alt="Image" style={{ marginRight: '10px' }} />
               <div>
@@ -32,7 +31,7 @@ const EventCard =()=> {
               <span style={{ display: 'flex', alignItems: 'center' }}>
               <img src={calender} alt="Image"/>
               <Typography variant={'body2'} color={'text.secondary'} sx={{ml: 1}}>{item.Date}</Typography>
-              
+              <StatusPill status={'Business'} color={'business'} />
               </span>
                </div>
              
@@ -44,10 +43,11 @@ const EventCard =()=> {
               <Typography variant={'h5'} color={'text.secondary'}>{item.subtitle2}</Typography>
               <span className={styles.date}>
               <img src={calender} alt="Image"/>
-              <Typography variant={'body2'} color={'text.secondary'} sx={{ml: 1}}>{item.Date}</Typography>
-               {/* <div className={styles.status}><StatusPill status={'Payment'} color={'low'} />
-               </div> */}
+              
+              <Typography variant={'body2'} color={'text.secondary'} sx={{ml: 1}}>{item.Date}</Typography> 
+              <div className={styles.status} style={{marginLeft: 'auto'}}><StatusPill status={'Payment'} color={'low'} sx={{ ml: 1 }} /></div>
               </span>
+              
                </div>
                </div>
 
@@ -58,6 +58,7 @@ const EventCard =()=> {
               <span className={styles.date}>
               <img src={calender} alt="Image"/>
               <Typography variant={'body2'} color={'text.secondary'} sx={{ml: 1}}>{item.Date}</Typography>
+              <StatusPill status={'Meetup'} color={'medium'} />
               </span>
                </div>
                </div>
@@ -80,10 +81,11 @@ const EventCard =()=> {
               <span className={styles.date}>
               <img src={calender} alt="Image"/>
               <Typography variant={'body2'} color={'text.secondary'} sx={{ml: 1}}>{item.Date}</Typography>
+              <StatusPill status={'Payment'} color={'low'} />
               </span>
                </div>
                </div>
-               </div> 
+            </div> 
 </ShadowBox>
 
 ))}

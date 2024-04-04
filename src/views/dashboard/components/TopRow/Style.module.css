@@ -30,9 +30,10 @@
   /* display: flex;  */
  flex-wrap: nowrap !important;
 }
-/* .line{
-  border-color: grey !important;
-} */
+.line{
+  /* border-color: grey !important; */
+  border-bottom: 2px solid #ebedf4;
+}
   #card {
     background-color: white;
     border-radius: 10px;
