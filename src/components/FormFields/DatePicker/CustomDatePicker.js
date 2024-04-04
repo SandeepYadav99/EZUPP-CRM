@@ -43,9 +43,9 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                      maxDate={mD}
                     showTodayButton
                     {...rest}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change time',
-                    }}
+                    // KeyboardButtonProps={{
+                    //     'aria-label': 'change time',
+                    // }}
                 />
                
             </LocalizationProvider>

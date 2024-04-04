@@ -44,12 +44,11 @@ const UserList = (props) => {
   } = useSelector((state) => state.provider_user);
 
   const renderFirstCell = useCallback((user) => {
-
+console.log(user, "User")
     return (
       <div className={styles.firstCellFlex} >
-        <div>
-          <img src={user?.image} alt="" />
-        </div>
+        <img src={user.image} alt="" />
+       
         <div className={classNames(styles.firstCellInfo, "openSans")}>
 
             <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
@@ -130,7 +129,7 @@ const UserList = (props) => {
         label: "User Role",
         style: { width: "15%" },
         sortable: true,
-        render: (temp, all) => <div>{all.role}</div>,
+        render: (temp, all) => <div>{all?.role?.name}</div>,
       },
 
       {
@@ -145,7 +144,7 @@ const UserList = (props) => {
         label: "Last Login",
         sortable: true,
         render: (temp, all) => (
-          <div>{all?.lastLoginText ? all?.lastLoginText : "N/A"}</div>
+          <div>{all?.lastLoginText }</div>
         ),
       },
       {
