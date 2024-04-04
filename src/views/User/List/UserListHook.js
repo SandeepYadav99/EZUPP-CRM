@@ -6,13 +6,14 @@ import {
   actionCreateCustomers,
   actionUpdateCustomers,
 } from "../../../actions/Customers.action";
-import historyUtils from "../../../libs/history.utils";
+
 import RouteName from "../../../routes/Route.name";
 import {
   actionFetchProviderUser,
   actionSetPageProviderUserRequests,
 } from "../../../actions/ProviderUser.action";
 import { format } from "date-fns";
+import history from "../../../libs/history.utils";
 
 const useUserListHook = ({}) => {
   const [isSidePanel, setSidePanel] = useState(false);         
@@ -85,6 +86,7 @@ const useUserListHook = ({}) => {
     },
     [queryFilter]
   );
+ 
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
@@ -104,11 +106,11 @@ const useUserListHook = ({}) => {
   );
 
   const handleEdit = useCallback((type) => {
-    historyUtils.push(`${RouteName.USER_PROFILE}${type?.id}`);
+    history.push(`${RouteName.ADMIN_USER_UPDATE}${type?.id}`);
   }, []);
 
   const handleProfile = useCallback((type) => {
-    historyUtils.push(`${"/profile/"}?id=${type?.id}`);
+    history.push(`${"/profile/"}?id=${type?.id}`);
   }, []);
   const handleToggleSidePannel = useCallback(
     (data) => {
@@ -118,7 +120,7 @@ const useUserListHook = ({}) => {
   );
 
   const handleCreate = useCallback(() => {
-    historyUtils.push(RouteName.USER_PROFILE_CREATE);
+    history.push(RouteName.ADMIN_USER_CREATE);
   }, []);
 
   const configFilter = useMemo(() => {

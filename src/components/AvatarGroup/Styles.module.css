@@ -1,0 +1,69 @@
+.hovered {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.hovered:hover {
+  cursor: pointer;
+}
+.flexGrid{
+  display: grid;
+}
+.flexBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 315px;
+  gap: 10px;
+}
+.flexBox1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 215px;
+  gap: 10px;
+}
+.avaterAlignment {
+  /* text-align: center; */
+  display: flex;
+  /* margin: 0px auto; */
+  /* justify-content: center; */
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0px;
+}
+
+
+.avatar_group2 .avatar:hover{
+  transform : translateY(-10px);
+  z-index: 8;
+  transition: all .5s ease;
+}
+
+.avatar {
+  cursor: pointer;
+}
+.avatar1 {
+  cursor: pointer;
+}
+
+.avatar:hover {
+  z-index: 8;
+  transition: all .5s ease;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff;
+}
+.flexGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.flexBox1 {
+  display: flex;
+  gap: 5px;
+}

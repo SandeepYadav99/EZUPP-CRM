@@ -85,7 +85,7 @@ const Dashboard = ({title, ...props}) => {
     }, [dashboardRoutes]);
 
     const sideBarRoutes = useMemo(() => {
-        return dashboardRoutes.filter((val, index) => {
+        return dashboardRoutes?.filter((val, index) => {
             // if (val.roles) {
             //     if (val.roles.indexOf(Constants.ROLES.GENERAL) >= 0) {
             //         return true;
@@ -93,7 +93,7 @@ const Dashboard = ({title, ...props}) => {
             //     const isThere = val.roles.indexOf(role);
             //     return isThere >= 0;
             // } return true;
-            return RolesUtils.canAccess(val?.roles, role);
+            return RolesUtils?.canAccess(val?.roles, role);
         })
     }, [dashboardRoutes, role]);
 

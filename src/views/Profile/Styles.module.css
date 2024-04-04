@@ -1,9 +1,11 @@
 .profileFlex {
   display: flex;
-  /*align-items: center;*/
+
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px !important;
+ 
+  
+  gap: 5px;
+
 }
 @media (max-width: 1115px) {
   .profileFlex {
@@ -18,15 +20,24 @@
 }
 
 .resetButton {
-  color: black !important;
-  background-color: white !important;
+  color: #2063CE !important;
+  /* background-color: white !important; */
   padding: 15px 40px !important;
-  border-radius: 5px !important;
+  border-radius: 8px !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   margin-right: 15px !important;
+  border:1px solid #2063CE !important;
 }
+.resetButton:hover{
+  background-color: #E9FCF4;
+}
+.container{
+  margin-top: 20px;
+}
+.gridContainer{
 
+}
 .addTask {
   color: white !important;
   background-color: #5f63f2 !important;
@@ -36,15 +47,20 @@
   font-weight: 500 !important;
   margin-right: 15px !important;
 }
-
+.addTask:hover{
+  background-color: #03AE85 !important;
+}
 .leftSection {
   /*margin-right: 30px;*/
+  margin-top: 20px;
   flex: 0.5;
 }
 .rightSection {
   flex: 1;
-  margin-left: 20px;
-  margin-right: 10px;
+  /* margin-left: 20px;
+  margin-right: 10px; */
+  margin-top: 20px !important;
+  text-align: center;
 }
 
 .profileHeading {
@@ -62,19 +78,21 @@
 }
 
 .profileContainer {
-  text-align: center;
+ display: flex;
+ gap: 20px;
+ align-items: center;
+
 }
 
-.profileContainer,
+.profileContainer
 img {
-  border-radius: 5px;
+  border-radius: 50%;
+  text-align: start;
 }
 .edit {
   color: blue !important;
-  display: flex !important;
-  align-items: flex-end !important;
-  justify-content: end !important;
-  width: 100%;
+ float: right !important;
+  /* width: 100%; */
   text-decoration: underline !important;
 }
 
@@ -109,6 +127,7 @@ img {
   border-radius: 20px;
   text-transform: capitalize;
   display: inline-block;
+ float: right;
 }
 
 .heading {
@@ -120,7 +139,7 @@ img {
 .contactFlex {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #5f5151;
 }
 
@@ -136,7 +155,7 @@ img {
 .activityFlex {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #5f5151;
 }
 
@@ -247,8 +266,10 @@ img {
 }
 
 .heading {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
+  margin-top: 1.8rem;
+  color: #636578;
 }
 
 .mainFlex {
@@ -257,4 +278,9 @@ img {
 }
 .proImage{
   max-width: 100px;
+}
+.sideTitle{
+  color: #636578;
+  font-weight: 600;
+  font-size: 0.95rem;
 }

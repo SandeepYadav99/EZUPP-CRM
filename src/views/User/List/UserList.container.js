@@ -16,6 +16,9 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./UserListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
+import { ActionButton, ArrowPrimaryButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+
 
 
 const UserList = (props) => {
@@ -97,14 +100,14 @@ const UserList = (props) => {
     () => [
       {
         key: "name",
-        label: "Info",
+        label: "User Info",
         style: { width: "18%" },
         sortable: true,
         render: (value, all) => <div >{renderFirstCell(all)}</div>,
       },
       {
-        key: "email",
-        label: "Email",
+        key: "contact",
+        label: "Contact",
         style: { width: "15%" },
         sortable: false,
         render: (temp, all) => (
@@ -170,7 +173,7 @@ const UserList = (props) => {
         ),
       },
     ],
-    [renderFirstCell, renderStatus]
+    [renderFirstCell, renderStatus, handleEdit, handleProfile]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -199,17 +202,15 @@ const UserList = (props) => {
 
   return (
     <div>
-      <PageBox>
+      <div className={"plainPaper"}>
         <div className={styles.headerContainer}>
           <span className={styles.title}>User List</span>
-          <Button
-            // disabled={this.state.is_calling}
-            variant={"contained"}
-            color={"primary"}
-             onClick={handleCreate}
+          <ArrowPrimaryButton
+            onClick={handleCreate}
+            icon={<Add fontSize="normal"/>}
           >
-            <Add></Add> Create
-          </Button>
+             Create
+          </ArrowPrimaryButton>
         </div>
 
         <div>
@@ -229,15 +230,8 @@ const UserList = (props) => {
             </div>
           </div>
         </div>
-      </PageBox>
-      <SidePanelComponent
-        handleToggle={handleSideToggle}
-        title={"New User"}
-        open={isSidePanel}
-        side={"right"}
-      >
-        {/* {renderCreateForm()} */}
-      </SidePanelComponent>
+      </div>
+      
     </div>
   );
 };

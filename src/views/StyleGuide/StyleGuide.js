@@ -6,14 +6,23 @@ import {
     ArrowPrimaryButton,
     OutlineButton,
     PrimaryButton
-} from "../../components/Buttons/PrimaryButton"; 
+} from "../../components/Buttons/PrimaryButton";
 import styles from './Style.module.css';
 import {Typography} from "@mui/material";
-import CustomTextField from "../../components/FormFields/TextField/TextField.component";
+ import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
+// import CustomTextField from '../../FormFields/TextField.component';
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
+import UserCountAvatars, { UserCountAvatarsAnimation, UserCountAvatarsInitials, UserCountAvatarsLabelInitials, UserCountAvatarsLableAvatarGroup, UserCountAvatarsLableAvatarStatusIndicator, UserCountAvatarsShapes, UserCountAvatarsSize, UserCountAvatarsStatusIndicator } from '../../components/AvatarGroup/AvatarGroup';
+import { UserCountRadioLables } from '../../components/BasicAndCustomRadio/RadioLables';
+import { CustomOptionRadiosWithIcon } from '../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon';
 import {useTheme} from "@mui/styles";
-
+const avatars=[
+    'A',
+    'B',
+    'C',
+    '2k'
+]
 const StyleGuide = ({}) => {
     const theme = useTheme();
     // console.log('theme', theme);
@@ -187,6 +196,31 @@ const StyleGuide = ({}) => {
                 </div>
             </div>
 
+
+
+
+           <div className={styles.boxContFlex}>
+              <UserCountAvatarsSize />
+              <UserCountAvatarsInitials/>
+              <UserCountAvatarsLabelInitials/>
+              <UserCountAvatarsShapes/>
+              <UserCountAvatarsStatusIndicator/>
+              <UserCountAvatarsLableAvatarStatusIndicator />
+           </div>
+           <br/>
+             <div>
+              <div >
+                 <UserCountAvatarsLableAvatarGroup avatars={avatars}/>
+               </div >
+            </div>
+             <br/>
+                <div >
+                    <UserCountRadioLables/>
+                </div>
+         <br/>
+         <div>
+            <CustomOptionRadiosWithIcon/>
+         </div>
         </PageBoxComponent>
     )
 };

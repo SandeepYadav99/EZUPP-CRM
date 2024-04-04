@@ -1,3 +1,4 @@
+
 import DashboardPage from "../views/dashboard/Dashboard";
 import UserList from "../views/User/List/UserList.container";
 import CustomerList from "../views/Customers/List/CustomerList.container";
@@ -9,12 +10,13 @@ import Rolelist from "../views/Role/RoleList.container";
 import BadgeList from "../views/Badge/List/BadgeList.container";
 import ProductList from "../views/Product/ProductList.container";
 import ProductView from "../views/Product/ProductView";
-import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
+// import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
 import FaqList from "../views/Faq/FaqList.container";
 import SupportList from "../views/Support/SupportList.container";
 import TypeList from "../views/Type/TypeList.container";
 import Profile from "../views/Profile/MyProfile.view";
+
 import CustomerTabs from "../views/Customers/components/UpperTabs/CustomerTabs.view";
 import ManufacturerTabs from "../views/Manufacturer/ManufacturerTabs.view";
 import Support from "../views/Support/Support.view";
@@ -44,6 +46,8 @@ import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
+import UserCreate from "../views/User/Create/UserCreate";
+import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 
 const dashboardRoutes = [
@@ -142,7 +146,7 @@ const dashboardRoutes = [
     // parent: 'masters',
   },
   {
-    path: "/admin/users",
+    path: RouteName.ADMIN_USER,
     sidebarName: "Admin Users",
     navbarName: "Admin Users",
     icon: SupervisedUserCircle,
@@ -152,27 +156,48 @@ const dashboardRoutes = [
     parent: "admin",
     should_regex:true
   },
-
   {
-    path: `${RouteName.USER_PROFILE}:id`,
-    sidebarName: "Users",
-    navbarName: "Users",
-    icon: Dashboard,
-    component: UpperTabs,
+    path: RouteName.ADMIN_USER_CREATE,
+    sidebarName: "Admin Users",
+    navbarName: "Admin Users",
+    icon: SupervisedUserCircle,
+    component: UserCreate,
     is_sidebar: false,
     is_protect: true,
-    should_regex:false
+    parent: "admin",
+    should_regex:true
   },
   {
-    path: `${RouteName.USER_PROFILE_CREATE}`,
-    sidebarName: "Users",
-    navbarName: "Users",
-    icon: Dashboard,
-    component: UpperTabs,
+    path: `${RouteName.ADMIN_USER_UPDATE}:id`,
+    sidebarName: "Admin Users",
+    navbarName: "Admin Users",
+    icon: SupervisedUserCircle,
+    component: UserCreate,
     is_sidebar: false,
     is_protect: true,
-    should_regex:false
+    parent: "admin",
+    should_regex:true
   },
+  // {
+  //   path: `${RouteName.USER_PROFILE}:id`,
+  //   sidebarName: "Users",
+  //   navbarName: "Users",
+  //   icon: Dashboard,
+  //   component: UpperTabs,
+  //   is_sidebar: false,
+  //   is_protect: true,
+  //   should_regex:false
+  // },
+  // {
+  //   path: `${RouteName.USER_PROFILE_CREATE}`,
+  //   sidebarName: "Users",
+  //   navbarName: "Users",
+  //   icon: Dashboard,
+  //   component: UpperTabs,
+  //   is_sidebar: false,
+  //   is_protect: true,
+  //   should_regex:false
+  // },
   {
     path: "/role",
     sidebarName: "UserRole",

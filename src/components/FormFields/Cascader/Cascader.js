@@ -2,7 +2,8 @@ import React, {useCallback, useEffect, useMemo, useState, useRef} from 'react';
 import styles from './Style.module.css';
 import csx from 'classnames';
 import CascaderItem from "./CascaderItem";
-import CustomTextField from "../TextField/TextField.component";
+import CustomTextField from "../../../FormFields/TextField.component";
+
 const Cascader = ({label, isError, defaultValue, options, handleChange, value, itemLabels, ...rest}) => {
     const [pos, setPos] = useState([0,0]);
     const [isOpen, setIsOpen] = useState(false);

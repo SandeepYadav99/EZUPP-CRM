@@ -12,7 +12,9 @@ const success = "#3CD4A0";
 const info = "#9013FE";
 const border = '#E4E4E6'
 const error = '#FF0000';
-const disable = '#d8d8dd';
+const disable = '#d8d8dd';// 
+const badgeColor= "#6d788d";
+const badgeColor1="#fdb528";
 const lightenRate = 7.5;
 const darkenRate = 15;
 const textMainColor = '#4A4A4A';
@@ -96,7 +98,12 @@ const Theme = (colors) => {
       disabled: disable,
       disabled_text: greyColors[0]
     },
-    grey: greyColors
+    grey: greyColors,
+    badgeColor:{
+      color:badgeColor,
+      color1:badgeColor1,
+      color2:"#ff4d49"
+    },
   };
 };
 
