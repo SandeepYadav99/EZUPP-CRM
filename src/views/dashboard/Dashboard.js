@@ -17,6 +17,7 @@ import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
 import EventCard from "./components/EmployeeTab/EventCard.component";
 import dataValue from "./components/EmployeeTab/data.json";
 import Calculator from "./components/Calculator/Calculator";
+import QuickAccess from "./components/QuickAccess/QuickAccess";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const Dashboard = () => {
           
         </div>
         <Calculator/>
+        <QuickAccess/>
       </div>
     </React.Fragment>
   );

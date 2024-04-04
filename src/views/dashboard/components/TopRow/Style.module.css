@@ -6,7 +6,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 10px !important;
+    gap: 15px !important;
    
   }
   .spacer {
@@ -23,7 +23,7 @@
   /* margin-left: 175px; */
   float: right;
   align-items: flex-end !important;
-  margin-top: -22%;
+  margin-top: -55px;
 
 }
 .buttonAndImageContainer {
@@ -31,8 +31,9 @@
  flex-wrap: nowrap !important;
 }
 .line{
-  /* border-color: grey !important; */
+  width: 100% !important;
   border-bottom: 2px solid #ebedf4;
+  
 }
   #card {
     background-color: white;

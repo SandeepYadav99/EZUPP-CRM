@@ -61,7 +61,7 @@ const TopRow = () => {
           <ShadowBox style={{height:"98%"}}>
               <Typography variant={'h4'} color={'text.secondary'} sx={{mb: 1.5}}>{item.titleSales}</Typography>
               
-              <Typography variant={'h4'} color={'secondary'}>{item.totalSales}</Typography>
+              <Typography variant={'h3'} color={'secondary'}>{item.totalSales}</Typography>
               <span style={{ display: 'flex', alignItems: 'center' }}>
               <Typography variant={'body2'} color={'text.secondary'}>{item.totalSalesSubtitle}
                
@@ -73,7 +73,7 @@ const TopRow = () => {
               <img src={customer} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
                 
-                  <Typography variant={'h2'} color={'text.primary'}>
+                  <Typography variant={'h3'} color={'text.primary'}>
                     {item.newCustomers}{" "}
                   </Typography>
 
@@ -85,7 +85,7 @@ const TopRow = () => {
               <div className={styles.iconCont}>
               <img src={profit} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
-                  <Typography variant={'h2'} color={'text.primary'}>
+                  <Typography variant={'h3'} color={'text.primary'}>
                     {item.totalProfit}{" "}
                   </Typography>
 
@@ -97,7 +97,7 @@ const TopRow = () => {
               <div className={styles.iconCont}>
               <img src={transaction} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
-                  <Typography variant={'h2'} color={'text.primary'}>
+                  <Typography variant={'h3'} color={'text.primary'}>
                     {item.newTransactions}{" "}
                   </Typography>
 

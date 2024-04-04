@@ -18,6 +18,14 @@
   display: flex;
   align-items: center;
 }
+.gap{
+  display: flex;
+  gap: 3px;
+}
+.avatar{
+  width: 44px;
+height: 44px;
+}
 .status{
  /* align-items: flex-end; */
   /* margin-left: 40px; */

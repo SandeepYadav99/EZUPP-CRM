@@ -37,14 +37,14 @@ font-family: Arial !important;
     color: rgba(255, 255, 255, 1)  !important;
     font-size: 18px !important;
     font-weight: bold !important;
-    font-family: Arial !important;
+    /* font-family: Arial !important; */
 }
 
   .calculator {
     padding: 20px;
     border-radius: 10px;
     width: 448px;
-    height: 441px;
+    height: fit-content;
     left: 390px;
    margin-left: -20px;
    /* flex-wrap: wrap !important; */

@@ -1,0 +1,41 @@
+.quickAccess{
+    width: 70%;
+    height: 141px;
+}
+.title{
+    margin-left: 20px;
+}
+.line{
+    width: 100% !important;
+    margin-top: 10px;
+    border-bottom: 2px solid #ebedf4;
+  }
+.hline{
+    width: 2px; 
+    height: 78%;
+   border-left: 2px solid #ebedf4;
+
+}
+.row{
+    display: flex;
+    align-items: center; 
+    margin-top: 20px;
+    /* margin-left: 20px; */
+    /* box-shadow: 0px 0px 3px #00000029; */
+    /* border: none !important; */
+    /* overflow: hidden; */
+ 
+}
+.firstRow{
+    display: flex;
+    align-items: center; 
+   margin-left: 15px;
+   /* margin-left: auto; */
+
+}
+.image{
+    margin-left: 10px;
+}
+.text{
+    margin-right: 20px;
+}
