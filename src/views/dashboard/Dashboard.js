@@ -31,21 +31,23 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <TopRow />
+        <TopRow/>
         <div className={styles.employeeTab}>
           <div className={styles.meetingSchedule}>
-            <span style={{ fontSize: "18px", fontWeight: "600" }}>
+            <span style={{fontSize: "18px", fontWeight: "600"}}>
               Meeting Schedule
             </span>
-            <EventCard data={dataValue?.birthdays} />
+            <EventCard data={dataValue?.birthdays}/>
           </div>
           <EmployeeTab/>
         </div>
+
+        <div className={styles.chartsDesktop}>
+
+          <GraphComponent/>
+          <HalfDoughnut/>
+        </div>
         <Calculator/>
-          <div className={styles.chartsDesktop}>
-              <GraphComponent />
-              <HalfDoughnut/>
-          </div>
       </div>
     </React.Fragment>
   );
