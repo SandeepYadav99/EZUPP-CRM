@@ -45,8 +45,12 @@ import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
+<<<<<<< HEAD
 import UserCreate from "../views/User/Create/UserCreate";
 import React from "react";
+=======
+import CalendarList from "../views/Calendar/CalendarList.view";
+>>>>>>> e83b227e75037dc1fbc6714ba2d5b158d7366cef
 
 const dashboardRoutes = [
   {
@@ -246,7 +250,16 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: true,
   },
-
+  {
+    path: `${RouteName.CALENDAR}`,
+    sidebarName: "Calendar",
+    navbarName: "Calendar",
+    icon: SupervisedUserCircle,
+    component: CalendarList,
+    is_sidebar: true,
+    is_protect: true,
+    should_regex: true,
+  },
   {
     path: `${RouteName.CUSTOMERS_MANUFACTURES}:id`,
     sidebarName: "Manufacturer",

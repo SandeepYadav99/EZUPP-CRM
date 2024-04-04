@@ -31,8 +31,12 @@ export default {
   HUB_MASTERS: "/hub/master",
   TASK_DETAIL: "/task/detail/",
   SERVICE_DETAIL: "/service/detail/",
+<<<<<<< HEAD
 
   ADMIN_USER:"/users",
   ADMIN_USER_CREATE:"/users/create",
   ADMIN_USER_UPDATE:"/users/update/"
+=======
+  CALENDAR:"/calendar"
+>>>>>>> e83b227e75037dc1fbc6714ba2d5b158d7366cef
 };

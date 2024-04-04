@@ -261,7 +261,17 @@ input[type=radio] + label:hover {
     text-transform: uppercase !important;
     font-weight: 600 !important;
 }
-
+.AddBtn{
+    color: #ffffff !important;
+    padding: 10px 20px !important;
+    font-size: 0.8rem !important;
+    border-radius: 10px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    background-color: #666cff !important;
+    border-color: #666cff !important;
+    width: 100%;
+}
 .plusIcon{
     margin-left: 10px !important;
 }
@@ -1041,6 +1051,80 @@ input[type=radio] + label:hover {
 .logoDiv {
     display: flex;
     align-items: center;
+}
+.rbc-header {
+  border-color: #eaeaec;
+  color: #75757a;
+  padding: 5px 15px;
+  font-size: 1rem !important;
+  font-weight: 500;
+}
+.rbc-date-cell {
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+.rbc-button-link{
+  color: #75757a;
+  font-weight: 500 !important;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.rbc-time-slot {
+  color: #75757a;
+  font-weight: 500;
+  z-index: 1;
+}
+.rbc-event-content {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding-left: 10px;
+  font-size: 1rem;
+  margin-top: 5px;
+  /* z-index: 999 !important; */
+}
+.rbc-row-segment {
+  margin-top: 5px;
+}
+.rbc-off-range-bg {
+  background: #f2f2f2;
+}
+.rbc-time-slot:not(.rbc-today .rbc-time-slot) {
+  background-color: #eff4f7;
+}
+.rbc-event,
+.rbc-background-event {
+  z-index: 2;
+  padding: 0px !important;
+  border: none !important;
+}
+
+.rbc-event-label {
+  display: none !important;
+}
+
+.rbc-events-container {
+  width: 100% !important;
+}
+.rbc-calendar{
+  padding-left: 0 !important;
+  padding-bottom: 0 !important;
+  border-left: 1px solid #eaeaec;
+}
+
+.calender_Wrapper .MuiPickersCalendarHeader-label,
+.calender_Wrapper .MuiPickersDay-root,
+.calender_Wrapper .MuiDayCalendar-weekDayLabel,
+.calender_Wrapper .MuiPickersYear-yearButton {
+  font-size: .875rem;
+}
+
+.calender_Wrapper .MuiPickersYear-yearButton {
+  font-size: .8rem; 
+}
+
+.MuiPickersDay-dayOutsideMonth {
+  color: #d8d8dd;
 }
 @media (max-width: 767px) {
     .iconTabsEvents{
