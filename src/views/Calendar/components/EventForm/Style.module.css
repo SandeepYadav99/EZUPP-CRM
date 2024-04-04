@@ -10,16 +10,10 @@
 .printFlex {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding-bottom: 30px;
-  padding-top: 10px;
-}
-
-.btmBtn {
-  background-color: #29cb97 !important;
-  padding: 15px 50px !important;
-  color: white !important;
-  border-radius: 5px !important;
+  padding-top: 30px;
+  gap: 10px;
 }
 .tableCont {
   padding: 10px 10px;
@@ -35,7 +29,7 @@
 .fieldWrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   margin-top: 10px;
 }
 .checkBox > label {

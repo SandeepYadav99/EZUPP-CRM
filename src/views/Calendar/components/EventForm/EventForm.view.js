@@ -4,7 +4,14 @@ import styles from "./Style.module.css";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import useEventFormHook from "./EventForm.hook";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem } from "@mui/material";
+import { Autocomplete, MenuItem, TextField } from "@mui/material";
+import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
+import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
+import {
+  OutlineButton,
+  PrimaryButton,
+} from "../../../../components/Buttons/PrimaryButton";
+// import { Autocomplete } from "@material-ui/lab";
 
 const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
   const {
@@ -17,6 +24,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
     resData,
     isSubmitted,
     isSubmitting,
+    listData,
   } = useEventFormHook({ isOpen, handleToggle, candidateId, isInterview });
 
   return (
@@ -50,33 +58,97 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
             <MenuItem value="HOLIDAY">HOLIDAY</MenuItem>
             <MenuItem value="ETC">ETC</MenuItem>
           </CustomSelectField>
-          <div>
-            <CustomTextField
-              isError={errorData?.comment}
-              errorText={errorData?.comment}
-              label={"Add comments (Optional)"}
-              value={form?.comment}
-              onTextChange={(text) => {
-                changeTextData(text, "comment");
+          <CustomSwitch
+            value={form?.is_all_day}
+            handleChange={() => {
+              changeTextData(!form?.is_all_day, "is_all_day");
+            }}
+            label={`All Day`}
+          />
+           <div>
+            {/* <CustomDatePicker
+              clearable
+              label={"Start Date"}
+              maxDate={new Date()}
+              onChange={(date) => {
+                changeTextData(date, "start_date");
               }}
-              onBlur={() => {
-                onBlurHandler("comment");
-              }}
-              multiline
-              rows={3}
-            />
+              value={form?.start_date}
+              isError={errorData?.start_date}
+            /> */}
           </div>
+          <div>
+            <CustomDatePicker
+              // clearable
+              label={"End Date"}
+              maxDate={new Date()}
+              onChange={(date) => {
+                changeTextData(date, "end_date");
+              }}
+              value={form?.end_date}
+              isError={errorData?.end_date}
+            />
+          </div> 
+          <CustomTextField
+            isError={errorData?.event_url}
+            errorText={errorData?.event_url}
+            label={"Event URL"}
+            value={form?.event_url}
+            onTextChange={(text) => {
+              changeTextData(text, "event_url");
+            }}
+            onBlur={() => {
+              onBlurHandler("event_url");
+            }}
+          />
+          <Autocomplete
+            multiple
+            id="tags-outlined"
+            onChange={(e, value) => {
+              changeTextData(value, "guest_name");
+            }}
+            value={form?.guest_name}
+            // id="tags-standard"
+            options={listData ? listData : []}
+            getOptionLabel={(option) => option.title}
+            defaultValue={form?.guest_name}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="Add Guests"
+                error={errorData?.guest_name}
+              />
+            )}
+          />
+          <CustomTextField
+            isError={errorData?.location}
+            errorText={errorData?.location}
+            label={"Location"}
+            value={form?.location}
+            onTextChange={(text) => {
+              changeTextData(text, "location");
+            }}
+            onBlur={() => {
+              onBlurHandler("location");
+            }}
+          />{" "}
+          <CustomTextField
+            isError={errorData?.description}
+            errorText={errorData?.description}
+            label={"Description"}
+            value={form?.description}
+            onTextChange={(text) => {
+              changeTextData(text, "description");
+            }}
+            onBlur={() => {
+              onBlurHandler("description");
+            }}
+          />
         </div>
         <div className={styles.printFlex}>
-          {/* <ButtonBase
-            onClick={handleSubmit}
-            disabled={!declaration ? true : false}
-            className={
-              declaration ? styles.createBtn : styles.disabledCreatebtn
-            }
-          >
-            CONFIRM
-          </ButtonBase> */}
+          <PrimaryButton onClick={handleSubmit}>ADD</PrimaryButton>
+          <OutlineButton>CANCEL</OutlineButton>
         </div>
       </div>
     </div>

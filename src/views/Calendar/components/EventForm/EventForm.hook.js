@@ -3,21 +3,30 @@ import SnackbarUtils from "../../../../libs/SnackbarUtils";
 // import { serviceApproveCLaim } from "../../../../services/Claims.service";
 import RouteName from "../../../../routes/Route.name";
 import historyUtils from "../../../../libs/history.utils";
+import { guestList } from "../../../../helper/Helper";
 
 const initialForm = {
-  comment: "",
+  title: "",
+  type: "",
+  start_date: "",
+  end_date: "",
+  description: "",
+  location: "",
+  guest_name: [],
+  event_url: "",
+  is_all_day: false,
 };
 const useEventFormHook = ({ isOpen, handleToggle, candidateId }) => {
   const [form, setForm] = useState(
     JSON.parse(JSON.stringify({ ...initialForm }))
   );
   const [errorData, setErrorData] = useState({});
-  const [showPasswordCurrent, setShowPasswordCurrent] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [resData, setResData] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [declaration, setDeclaration] = useState(false);
+  const [listData, setListData] = useState([...guestList]);
 
   useEffect(() => {
     if (isOpen) {
@@ -38,6 +47,7 @@ const useEventFormHook = ({ isOpen, handleToggle, candidateId }) => {
     [setErrorData, errorData]
   );
 
+  console.log("form", form);
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
@@ -52,7 +62,14 @@ const useEventFormHook = ({ isOpen, handleToggle, candidateId }) => {
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = [];
+    let required = [
+      "title",
+      "type",
+      "location",
+      "guest_name",
+      "event_url",
+      "description",
+    ];
     required.forEach((val) => {
       if (
         !form?.[val] ||
@@ -87,7 +104,7 @@ const useEventFormHook = ({ isOpen, handleToggle, candidateId }) => {
       //     } else {
       //       SnackbarUtils.error(res?.message);
       //     }
-      //     setIsSubmitting(false);
+      setIsSubmitting(false);
       //   });
     }
   }, [form, isSubmitting, setIsSubmitting, handleToggle]);
@@ -122,8 +139,7 @@ const useEventFormHook = ({ isOpen, handleToggle, candidateId }) => {
     resData,
     isSubmitted,
     isVerified,
-    showPasswordCurrent,
-    setShowPasswordCurrent,
+    listData,
   };
 };
 

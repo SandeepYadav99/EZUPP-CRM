@@ -99,3 +99,26 @@ export const calenderData = [
     end: new Date(2024, 3, 17, 17, 0),
   },
 ];
+
+export const guestList = [
+  {
+    id:1,
+    label :"Raman",
+    title:"Raman"
+  },
+  {
+    id:2,
+    label :"Raj",
+    title:"Raj"
+  },
+  {
+    id:3,
+    label :"Pankaj",
+    title:"Pankaj"
+  },
+  {
+    id:4,
+    label :"Shivam",
+    title:"Shivam"
+  }
+]
