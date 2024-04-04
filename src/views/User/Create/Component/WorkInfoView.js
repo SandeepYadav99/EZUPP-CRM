@@ -178,7 +178,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               onChange={(value) => {
                 changeTextData(value, "joining_date");
               }}
-              format={"dd-MM-yyyy"}
+              // format={"dd-MM-yyyy"}
 
               className={styles.dateContainer}
               value={form?.joining_date}
@@ -196,7 +196,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               onChange={(value) => {
                 changeTextData(value, "end_date");
               }}
-              format={"dd-MM-yyyy"}
+              // format={"dd-MM-yyyy"}
               value={form?.end_date}
               isError={errorData?.end_date}
               errorText={errorData?.end_date}

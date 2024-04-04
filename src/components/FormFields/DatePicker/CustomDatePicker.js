@@ -1,7 +1,6 @@
 /**
  * Created by charnjeetelectrovese@gmail.com on 2/7/2020.
  */
-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -18,9 +17,9 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
     }
 
       const mD = useMemo(() => {
-        // const d = new Date();
-        // d?.setFullYear(d?.getFullYear() + 10);
-        // return maxDate ? maxDate : d;
+        const d = new Date();
+        d.setFullYear(d.getFullYear() + 10);
+        return maxDate ? maxDate : d;
     }, [maxDate]);
 
     if (clearable) {

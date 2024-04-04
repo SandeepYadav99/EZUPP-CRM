@@ -97,14 +97,14 @@ function useUserCreateHook() {
 
             contact: data?.contact,
             email: data?.email,
-            role: data?.role,
+            // role: data?.role?._id,
             // type: string;
             employee_id: data?.employee_id,
-            //  joining_date: data?.joining_date,
+            joining_date: data?.joining_date,
             department: data?.department,
             designation: data?.designation,
             manager: data?.manager,
-            //  end_date: data?.end_date,
+            end_date: data?.end_date,
             userManage: data?.is_manager,
 
             invoiteToUser: data?.is_primary_user,
@@ -173,7 +173,7 @@ function useUserCreateHook() {
       "email",
       "contact",
       "userName",
-      "role",
+      // "role",
       "employee_id",
       "joining_date",
       "department",
@@ -289,6 +289,7 @@ function useUserCreateHook() {
         let req;
         if (id) {
           fd.append("id", id);
+          // fd.append("image", images ? images : null);
           req = serviceUpdateProviderUser(fd);
         } else {
           req = serviceCreateProviderUser(fd);
