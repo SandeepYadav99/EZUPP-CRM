@@ -8,11 +8,30 @@ import {
     PrimaryButton
 } from "../../components/Buttons/PrimaryButton";
 import styles from './Style.module.css';
-import {Typography} from "@mui/material";
+import {MenuItem, Typography,Autocomplete,TextField} from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
+import CustomSelectField from '../../components/FormFields/SelectField/SelectField.component';
+import CustomDatePicker from '../../components/FormFields/DatePicker/CustomDatePicker';
 
+const AutoCompleteData=[
+    {
+        id:1,
+        title:"test",
+        label:"test"
+    },
+    {
+        id:2,
+        title:"Development",
+        label:"Development"
+    },
+    {
+        id:1,
+        title:"QA",
+        label:"QA"
+    },
+]
 const StyleGuide = ({}) => {
     return (
         <PageBoxComponent>
@@ -136,8 +155,105 @@ const StyleGuide = ({}) => {
                     </div>
                 </div>
             </div>
+            <div className={""}>
+              <div className={styles.sideMargin}>
+             <Typography variant={"h5"}>Select Field</Typography>
+             <div className={styles.boxCont}>
+             <CustomSelectField label={"Name"}>
+               <MenuItem value="Electrovese">Electrovese</MenuItem>
+             </CustomSelectField>
+             <br />
+             <br />
+             <CustomSelectField label={"Name"} value="Electrovese">
+               <MenuItem value="Electrovese">Electrovese</MenuItem>
+             </CustomSelectField>
+             <br/>
+             <br/>
+             <CustomSelectField label={"Name"} isError={true}>
+               <MenuItem value="Electrovese">Electrovese</MenuItem>
+             </CustomSelectField>
+           </div>
+           </div>
+            </div>
             <div className={''}>
                 <div className={styles.sideMargin}>
+                    <div><Typography variant={'h5'}>Auto Complete</Typography></div>
+                    <div className={styles.boxCont}>
+                    <div className={styles.boxCont}>
+                        <Typography variant={'h6'}>Multipe select</Typography>
+                        </div>
+                    <Autocomplete
+                     multiple
+                     id="tags-outlined"
+                    options={AutoCompleteData ? AutoCompleteData : []}
+                    getOptionLabel={(option) => option.title}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="outlined"
+                        label="Add Guests"
+                      />
+                    )}
+                      />
+                      <div className={styles.boxCont}>
+                        <Typography variant={'h6'}>single select</Typography>
+                        </div>
+                        <Autocomplete
+                         id="tags-outlined"
+                        options={AutoCompleteData ? AutoCompleteData : []}
+                        getOptionLabel={(option) => option.title}
+                        renderInput={(params) => (
+                        <TextField
+                         {...params}
+                        variant="outlined"
+                        label="Add Guests"
+                        />
+                        )}
+                        />
+                         <div className={styles.boxCont}>
+                        <Typography variant={'h6'}>Error Field with Disabled</Typography>
+                        </div>
+                        <Autocomplete
+                        disabled={true}
+                         id="tags-outlined"
+                        options={AutoCompleteData ? AutoCompleteData : []}
+                        getOptionLabel={(option) => option.title}
+                        renderInput={(params) => (
+                        <TextField
+                         {...params}
+                        variant="outlined"
+                        label="Add Guests"
+                        error={true}
+                        />
+                        )}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className={''}>
+                <div className={styles.sideMargin}>
+                    <div><Typography variant={'h5'}>DatePicker</Typography></div>
+                    <div className={styles.boxCont}>
+                    <CustomDatePicker
+                     clearable
+                     label={"Select Date"}
+                     maxDate={new Date()}
+                    //  isError={errorData?.end_date}
+                     />
+                    </div>
+                    <br/>
+                    <CustomDatePicker
+                     clearable
+                     disabled={true}
+                     label={"Select Date"}
+                     isError={true}
+                     />
+                    </div>
+                    </div>
+                     <div className={''}>
+                     <div className={styles.sideMargin}>
+                    <br/>
+
                     <div><Typography variant={'h5'}>Status</Typography></div>
                     <div className={styles.boxCont}>
                         <StatusPill status={'High'} color={'high'}/> &nbsp;
