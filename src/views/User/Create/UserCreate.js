@@ -21,7 +21,8 @@ const UserCreate = ({}) => {
     id,
     images,
     manager,
-    department
+    department,
+    listData
   } = useUserCreateHook();
 
   return (
@@ -43,6 +44,7 @@ const UserCreate = ({}) => {
         changeTextData={changeTextData}
         // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
+        listData={listData}
       />
       {/* Work flow  */}
       <WorkInfoView

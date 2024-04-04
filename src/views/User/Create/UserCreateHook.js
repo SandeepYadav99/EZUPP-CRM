@@ -24,6 +24,7 @@ import {
   serviceProviderProfileGetKeyword,
   serviceUpdateProviderUser,
 } from "../../../services/ProviderUser.service";
+import { serviceGetList } from "../../../services/index.services";
 
 function useUserCreateHook() {
   const initialForm = {
@@ -55,26 +56,16 @@ function useUserCreateHook() {
   const [department, setDepartment] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [listData, setListData] = useState({
-    ADMIN: [],
-    CITY_CHAPTERS: [],
-    EVENTS: [],
-    ADMIN_CHAPTERS: [],
-    CHAPTERS: [],
+    ROLES: [],
   });
 
-  // useEffect(() => {
-  //   serviceGetList([
-  //     "ADMIN",
-  //     "CITY_CHAPTERS",
-  //     "EVENTS",
-  //     "ADMIN_CHAPTERS",
-  //     "CHAPTERS",
-  //   ]).then((res) => {
-  //     if (!res.error) {
-  //       setListData(res.data);
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    serviceGetList(["ROLES"]).then((res) => {
+      if (!res.error) {
+        setListData(res.data);
+      }
+    });
+  }, []);
   useEffect(() => {
     serviceProfileManager({}).then((res) => {
       if (!res?.error) {
@@ -182,7 +173,7 @@ function useUserCreateHook() {
       "email",
       "contact",
       "userName",
-      "role",
+      // "role",
       "employee_id",
       "joining_date",
       "department",
@@ -237,7 +228,7 @@ function useUserCreateHook() {
     [setErrorData, errorData]
   );
 
- const changeTextData = useCallback(
+  const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
       const t = { ...form };
@@ -297,7 +288,7 @@ function useUserCreateHook() {
 
         let req;
         if (id) {
-          fd.append("id",id)
+          fd.append("id", id);
           req = serviceUpdateProviderUser(fd);
         } else {
           req = serviceCreateProviderUser(fd);
