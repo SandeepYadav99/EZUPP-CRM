@@ -35,5 +35,8 @@ export default {
   ADMIN_USER:"/users",
   ADMIN_USER_CREATE:"/users/create",
   ADMIN_USER_UPDATE:"/users/update/",
-  CALENDAR:"/calendar"
+  CALENDAR:"/calendar",
+  ROLE:"/roles",
+  ROLE_CREATE:"/role/create",
+  ROLE_CREATE_UPDATE:"/role/update/"
 };

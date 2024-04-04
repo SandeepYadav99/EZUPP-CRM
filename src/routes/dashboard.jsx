@@ -6,7 +6,8 @@ import AppSettings from "../views/AppSettings/AppSettings.container";
 import IndustryList from "../views/Industry/IndustryList.container";
 import MilestoneList from "../views/Milestone/List/MilestoneList";
 import CategoryList from "../views/Category/CategoryList.container";
-import Rolelist from "../views/Role/RoleList.container";
+import RoleList from "../views/Role/List/RoleList";
+import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
 import ProductList from "../views/Product/ProductList.container";
 import ProductView from "../views/Product/ProductView";
@@ -198,12 +199,32 @@ const dashboardRoutes = [
   //   should_regex:false
   // },
   {
-    path: "/role",
+    path: RouteName.ROLE,
     sidebarName: "UserRole",
     navbarName: "UserRole",
     icon: LibraryBooks,
-    component: Rolelist,
+    component: RoleList,
     is_sidebar: true,
+    is_protect: true,
+    parent: "admin",
+  },
+  {
+    path: RouteName.ROLE_CREATE,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+  },
+  {
+    path: `${RouteName.ROLE_CREATE_UPDATE}:id`,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleCreate,
+    is_sidebar: false,
     is_protect: true,
     parent: "admin",
   },
