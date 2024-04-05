@@ -162,7 +162,7 @@ const StyleGuide = ({}) => {
                         <CustomTextField label={'Name'}/>
                         <br/>
                         <br/>
-                        <CustomTextField label={'Name'} isError={true} />
+                        <CustomTextField label={'Name'} isError={true} errorText="This is required field"/>
 
                         <br/>
                         <br/>
@@ -272,8 +272,11 @@ const StyleGuide = ({}) => {
                     <div><Typography variant={'h5'}>Status</Typography></div>
                     <div className={styles.boxCont}>
                         <StatusPill status={'High'} color={'high'}/> &nbsp;
+                        <StatusPill status={'Inactive'} color={'high'}/> &nbsp;
                         <StatusPill status={'Medium'} color={'medium'}/> &nbsp;
-                        <StatusPill status={'Low'} color={'low'}/>
+                        <StatusPill status={'Low'} color={'low'}/>&nbsp;
+                        <StatusPill status={'Active'} color={'active'}/>&nbsp;
+
                     </div>
                 </div>
             </div>
