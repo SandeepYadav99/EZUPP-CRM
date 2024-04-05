@@ -25,7 +25,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import Popover from "@mui/material/Popover";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 // import HeaderLinks from "./HeaderLinks";
-
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
 const defaultTheme= createTheme();
 
 class Header extends React.Component {
@@ -121,9 +122,11 @@ class Header extends React.Component {
             </Button>
 
             <div className={classes.flexGrow}>
-              {/*<Switch checked={themeType == 'dark'} onChange={this._handleChangeTheme}/>*/}
+              {/*<Switch checked={themeType == 'dark'} onChange={this._handleChangeTheme}/> */}
             </div>
             <div>
+            <IconButton ><LightModeOutlinedIcon /></IconButton>
+            {/* NightsStayOutlinedIcon */}
               <IconButton
                   aria-label="show 3 new notifications"
                   color="inherit"
@@ -154,7 +157,8 @@ class Header extends React.Component {
             </div>
 
             <div className={classes.logoImage}>
-              <img src={userObject?.user?.image} height={30} width={30} />
+              <img src={userObject?.user?.image} height={30} width={30} style={{ borderRadius: "50%" }}
+            alt="user avatar"/>
             </div>
 
             <div>
