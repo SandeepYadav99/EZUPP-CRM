@@ -94,11 +94,12 @@ const useBlogsHook = () => {
 
   const handleEdit = useCallback(
     (data) => {
-      setEditData(data);
+       setEditData(data?.id)
     },
     [setEditData]
   );
 
+  console.log(editData,"editData is here")
   const handleViewDetails = useCallback(() => {}, []);
 
   const handleCreateFed = useCallback(() => {
@@ -118,13 +119,6 @@ const useBlogsHook = () => {
         name: "status",
         type: "select",
         fields: ["INACTIVE", "ACTIVE"],
-      },
-      {
-        label: "Industry",
-        name: "industry_id",
-        type: "selectObject",
-        custom: { extract: { id: "id", title: "name" } },
-        fields: [],
       },
     ];
   }, [dataList]);

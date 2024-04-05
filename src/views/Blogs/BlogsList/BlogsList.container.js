@@ -83,12 +83,6 @@ const BlogListContainer = () => {
         ),
       },
       {
-        key: "industry",
-        label: "Industry",
-        sortable: false,
-        render: (temp, all) => <div>{all.industry_name}</div>,
-      },
-      {
         key: "author",
         label: "Author",
         sortable: false,
@@ -117,12 +111,12 @@ const BlogListContainer = () => {
         label: "Action",
         render: (temp, all) => (
           <div>
-            <MenuItemView handleEdit={handleEdit(all)} blogId={all.slug} />
+            <MenuItemView handleEdit={handleEdit(allData)} blogId={all.slug} />
           </div>
         ),
       },
     ];
-  }, [handleViewDetails, handleEdit, isCalling]);
+  }, [handleViewDetails, handleEdit, isCalling,allData]);
 
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -134,10 +128,11 @@ const BlogListContainer = () => {
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
       columns: tableStructure,
-      data: data?.length > 0 ? data : [],
+      data: allData?.length > 0 ? allData : [],
       count: allData?.length > 0 ? allData?.length : 0,
       page: currentPage,
     };
+
 
     return { datatableFunctions, datatable };
   }, [

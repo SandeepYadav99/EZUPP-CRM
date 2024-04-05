@@ -49,6 +49,7 @@ import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
+import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 
 const dashboardRoutes = [
   {
@@ -399,6 +400,13 @@ const dashboardRoutes = [
     navbarName: "service List",
     icon: SupervisedUserCircle,
     component: ServiceDetailView ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path: '/blogs/create',
+    component: BlogsCreate ,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,

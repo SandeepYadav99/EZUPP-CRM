@@ -5,10 +5,10 @@ import {formDataRequest, postRequest} from '../libs/AxiosService.util';
 
 
 export async function serviceFetchBlogs(params) {
-    return await postRequest('blogs', params);
+    return await postRequest('/blogs', params);
 }
 export async function serviceCreateBlogs(params) {
-    return await formDataRequest('blogs/create', params);
+    return await formDataRequest('/blogs/create', params);
 }
 
 export async function serviceUpdateBlogs(params) {
@@ -28,5 +28,5 @@ export async function serviceUploadBlogImage(params) {
 }
 
 export async function serviceGetTagsList(params) {
-    return await postRequest('tags', params);
+    return await postRequest('/profile/get/keyword', params);
 }

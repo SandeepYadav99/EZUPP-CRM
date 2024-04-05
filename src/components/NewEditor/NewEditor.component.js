@@ -9,10 +9,7 @@ const NewEditor = ({editorData,handleChangeEditor,type, value}) => {
         handleChangeEditor(content);
     }
 
-    if (!editorData) {
-        return null;
-    }
-
+   
     return (
         <div>
             <SunEditor
