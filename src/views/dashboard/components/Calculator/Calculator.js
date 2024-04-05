@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid, TextField, Button } from "@mui/material";
-
+import { Typography } from "@mui/material";
 import styles from "./Style.module.css";
 
 const Calculator = () => {
@@ -8,20 +8,31 @@ const Calculator = () => {
   const [result, setResult] = useState("");
   console.log(inputValue, "inputValue");
   const handleButtonClick = (value) => {
-    console.log(value.length)
-    if(inputValue.length<=15){
-    const operators = {
-      "÷": "/",
-      x: "*",
-    };
-    
-    const operator = operators[value] || value;
-    const displayValue =
-      operator === "*" ? "×" : operator === "/" ? "÷" : operator;
+    if (inputValue.length <= 15) {
+      const operators = {
+        "÷": "/",
+        x: "*",
+      };
 
-    setInputValue((prevInputValue) => prevInputValue + displayValue);
-  }
+      const operator = operators[value] || value;
+      const displayValue =
+        operator === "*" ? "×" : operator === "/" ? "÷" : operator;
 
+      if (/[+\-*/]$/.test(inputValue) && /\d/.test(value)) {
+        setInputValue((prevInputValue) => prevInputValue + value);
+        return;
+      }
+      const lastCharIsOperator = /[+\-*/]$/.test(inputValue);
+
+      if (lastCharIsOperator) {
+        // Replace the last character with the new operator
+        setInputValue(
+          (prevInputValue) => prevInputValue.slice(0, -1) + displayValue
+        );
+      } else {
+        setInputValue((prevInputValue) => prevInputValue + displayValue);
+      }
+    }
   };
 
   const handleClear = () => {
@@ -34,12 +45,20 @@ const Calculator = () => {
   };
 
   const handleCalculate = () => {
+    if (inputValue === ".") {
+      return;
+    }
+    if (/[+\-*/]$/g.test(inputValue) || inputValue === "") {
+      return;
+    }
     try {
       const evaluatedExpression = inputValue
         .replace(/÷/g, "/")
         .replace(/×/g, "*");
       const calculatedResult = eval(evaluatedExpression);
-      setResult(calculatedResult);
+      const formattedResult = Number(calculatedResult.toPrecision(15));
+      setResult(formattedResult);
+      //setResult(calculatedResult);
     } catch (error) {
       setResult("Error");
     }
@@ -53,20 +72,21 @@ const Calculator = () => {
       >
         <div>
           {/* <div style={{ fontSize: '52px', color: 'white', textAlign: 'right', fontWeight: 'bold', marginRight: '10px', fontFamily: 'Arial'}}>{value || '0'}</div> */}
-          <div
+          <Typography
+            variant={"h1"}
             className={styles.value}
             style={{
-              fontSize: "38px",
+              // fontSize: "38px",
               color: "white",
               textAlign: "right",
-              fontWeight: "bold",
+              // fontWeight: "bold",
               marginRight: "10px",
               wordBreak: "break-all",
             }}
           >
-            {result !== "" ? result: inputValue || "0"}
-            {console.log(result, 'result')}
-          </div>
+            {result !== "" ? result : inputValue || "0"}
+            {/* {inputValue || '0'} */}
+          </Typography>
         </div>
         <div>
           <Button className={`${styles.button}`} onClick={handleClear}>
@@ -164,15 +184,17 @@ const Calculator = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              //justifyContent: "space-between"
             }}
           >
+           
             <Button
               className={`${styles.buttonH}`}
               onClick={handleCalculate}
-              style={{ height: "188%", alignSelf: "stretch" }}
+              style={{ height: "188%" }}
             >
-              =
-            </Button>{" "}
+            <span style={{ fontSize: "18px" }}>  =</span> 
+            </Button>
           </div>
         </div>
 

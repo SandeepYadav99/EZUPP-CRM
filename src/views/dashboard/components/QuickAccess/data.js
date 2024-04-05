@@ -3,9 +3,10 @@ import task1 from '../../../../assets/Assets/ic_attendance.png'
 import task2 from '../../../../assets/Assets/ic_reports.png'
 import task3 from '../../../../assets/Assets/ic_contacts.png'
 const data={
+  "title": "Quick Access",
     "Data":[
       {
-        "title": "Quick Access",
+       
       
           
           "subtitle": "Tasks",

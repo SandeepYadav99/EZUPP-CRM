@@ -41,6 +41,7 @@ const Dashboard = () => {
           <EmployeeTab/>
           
         </div>
+        
         <Calculator/>
         <QuickAccess/>
       </div>
