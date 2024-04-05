@@ -1,90 +1,204 @@
 import React, { useMemo } from "react";
 import styles from "./Style.module.css";
-// import noEvent from "./../../../../../assets/img/ic_no event today.png";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import data from "./mockData.json";
+import { Typography } from "@mui/material";
+import avatar from "../../../../assets/Assets/avatar 1.png";
+import avatar1 from "../../../../assets/Assets/avatar 2.png";
+import avatar2 from "../../../../assets/Assets/avatar 3.png";
+import calender from "../../../../assets/Assets/ic_calendar.png";
+import menu from "../../../../assets/Assets/ic_kebab_menu.png";
+import StatusPill from "../../../../components/Status/StatusPill.component";
 
-function EventCard({ data, isWorkPage }) {
-  function addOrdinalSuffix(num) {
-    if (num === 0) {
-      return 0;
-    } else {
-      const lastTwoDigits = num % 100;
-      const lastDigit = lastTwoDigits % 10;
-      const suffix =
-        lastDigit === 1 && lastTwoDigits !== 11
-          ? "st"
-          : lastDigit === 2 && lastTwoDigits !== 12
-          ? "nd"
-          : lastDigit === 3 && lastTwoDigits !== 13
-          ? "rd"
-          : "th";
-      return `${num}${suffix} Anniversary!`;
-    }
-  }
-  const list = useMemo(() => {
-    if (data?.length === 0) {
-      return (
-        <div className={styles.noEventWrapper}>
-          <div className={styles.noEvent}>
-            {/* <img src={noEvent} /> */}
-            <span>No Events for Today!</span>
-          </div>
-        </div>
-      );
-    } else {
-      return data?.map((emp) => {
-        return (
-          <div className={styles.birthdayEventWrapper}>
-            <div className={styles.parentWrapper}>
-              <div className={styles.imageNameContainer}>
-                <div>
-                  <img src={emp.image} className={styles.userImage} />
+const EventCard = () => {
+  const { Data } = data;
+  return (
+    <>
+      {Data.map((item, index) => (
+        <ShadowBox className={styles.meetingSchedule}>
+          <span style={{ display: "flex", alignItems: "center" }}>
+            <Typography variant={"h4"} color={"text.secondary"}>
+              {item.title}
+            </Typography>
+            <img
+              src={menu}
+              className={styles.menu}
+              alt="Image"
+              style={{ marginLeft: "auto" }}
+            />
+          </span>
+          <div className={styles.members}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "20px",
+              }}
+            >
+              <div className={styles.gap}>
+              <img src={avatar} alt="Image"  style={{ marginRight: "10px" }} />
+              <div>
+              <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                {item.subtitle}
+              </Typography>
+              <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={calender} alt="Image" />
+              <Typography
+                variant={"body2"}
+                color={"text.secondary"}
+                sx={{ ml: 1 }}
+              >
+                {item.Date}
+              </Typography>
+              
+              </div>
+              </div>
+              </div>
+              
+              <div style={{ display: "flex", alignItems: "center", marginTop: "10px"}}>
+                  <StatusPill status={"Business"} color={"business"} />
                 </div>
-                <div className={styles.profileContainer}>
-                  <span className={styles.profileName}>{emp?.name}</span>
-                  {isWorkPage ? (
-                    <>
-                      <span className={styles.anni}>
-                        {emp?.experience?.current && addOrdinalSuffix(emp?.experience?.current)}
-                      </span>
-                      <span className={styles.profileAddress}>
-                        {`${emp?.designation} (${emp?.department} - ${emp?.location})`}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <span className={styles.profilePosition}>
-                        {emp?.designation}
-                      </span>
-                      <span className={styles.profileAddress}>
-                        {`${emp?.department} - ${emp?.location}`}
-                      </span>
-                    </>
-                  )}
+              
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "20px",
+              }}
+            >
+              <div className={styles.gap}>
+              <img src={avatar1} alt="Image" style={{ marginRight: "10px" }} />
+              
+              <div>
+                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                  {item.subtitle2}
+                </Typography>
+                <div className={styles.date}>
+                  <img src={calender} alt="Image" />
+
+                  <Typography
+                    variant={"body2"}
+                    color={"text.secondary"}
+                    sx={{ ml: 1 }}
+                  >
+                    {item.Date}
+                  </Typography>
+                </div>
+                 
+
+                
+              </div>
+              </div>
+              <div  style={{ display: "flex", alignItems: "center", marginTop: "10px"}}>
+                    <StatusPill
+                      status={"Payment"}
+                      color={"low"}
+                      sx={{ ml: 1 }}
+                    />
+                  </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "20px",
+              }}
+            >
+               <div className={styles.gap}>
+              <img src={avatar2} alt="Image" style={{ marginRight: "10px" }} />
+              
+              <div>
+                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                  {item.subtitle3}
+                </Typography>
+                <div className={styles.date}>
+                  <img src={calender} alt="Image" />
+                  <Typography
+                    variant={"body2"}
+                    color={"text.secondary"}
+                    sx={{ ml: 1 }}
+                  >
+                    {item.Date}
+                  </Typography>
+                 
                 </div>
               </div>
-              <div>
-                {isWorkPage ? (
-                  <div className={styles.workLogo}>
-                    {/* <img
-                      src={require("../../../../../assets/img/ic_anniversary.png")}
-                    /> */}
-                  </div>
-                ) : (
-                  <div>
-                    {/* <img
-                      src={require("../../../../../assets/img/birthday.png")}
-                    /> */}
-                  </div>
-                )}
+              </div>
+              <div  style={{ display: "flex", alignItems: "center", marginTop: "10px"}}>
+              <StatusPill status={"Meetup"} color={"medium"} />
               </div>
             </div>
-          </div>
-        );
-      });
-    }
-  }, [data]);
 
-  return <div className={styles.paperBackground}>{list} </div>;
-}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "20px",
+              }}
+            >
+               <div className={styles.gap}>
+              <img src={avatar} alt="Image" style={{ marginRight: "10px" }} />
+              <div>
+                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                  {item.subtitle}
+                </Typography>
+                <div className={styles.date}>
+                  <img src={calender} alt="Image" />
+                  <Typography
+                    variant={"body2"}
+                    color={"text.secondary"}
+                    sx={{ ml: 1 }}
+                  >
+                    {item.Date}
+                  </Typography>
+                  
+                </div>
+              </div>
+              </div>
+              <div  style={{ display: "flex", alignItems: "center", marginTop: "10px"}}>
+              <StatusPill status={"Business"} color={"business"} />
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "20px",
+              }}
+            >
+              <div className={styles.gap}>
+              <img src={avatar1} alt="Image" style={{ marginRight: "10px" }} />
+              <div>
+                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                  {item.subtitle2}
+                </Typography>
+                <div className={styles.date}>
+                  <img src={calender} alt="Image" />
+                  <Typography
+                    variant={"body2"}
+                    color={"text.secondary"}
+                    sx={{ ml: 1 }}
+                  >
+                    {item.Date}
+                  </Typography>
+                  
+                </div>
+              </div>
+              </div>
+              <div  style={{ display: "flex", alignItems: "center", marginTop: "10px"}}>
+              <StatusPill status={"Payment"} color={"low"} />
+              </div>
+            </div>
+          
+          </div>
+        </ShadowBox>
+      ))}
+    </>
+  );
+};
 
 export default EventCard;

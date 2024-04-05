@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 // import WaitingComponent  from "../../../../../components/Waiting.component";
 import { makeStyles, useTheme } from "@mui/styles";
-import EventCard from "./EventCard.component";
+//import EventCard from "./EventCard.component";
 import dataValue from "./data.json";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,13 +77,13 @@ function EmployeeTab() {
       </AppBar>
       <div className={styles.paperBackground1}>
         <TabPanel value={value} index={0} dir={"ltr"}>
-          <EventCard data={dataValue?.birthdays}/>
+          {/* <EventCard data={dataValue?.birthdays}/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={"ltr"}>
         <EventCard data={dataValue?.birthdays}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={"ltr"}>
-        <EventCard data={dataValue?.birthdays}/>
+        <EventCard data={dataValue?.birthdays}/> */}
         </TabPanel>
       </div>
     </div>

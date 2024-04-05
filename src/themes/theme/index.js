@@ -75,7 +75,8 @@ const Theme = (colors) => {
     status: {
       high: error,
       medium: '#FF9100',
-      low: '#78D90F'
+      low: '#78D90F',
+      business: '#888cff'
     },
     success: {
       main: success,
