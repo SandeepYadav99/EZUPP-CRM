@@ -3,15 +3,15 @@
  */
 import React, {Component} from 'react';
 import {
-    Paper,
-    Card, CardHeader,
-    Divider, Table,
+    Table,
     TableBody, TableCell,
-    TableContainer, TableRow,
-    Checkbox
+    TableRow,
+    Checkbox,
+    Typography
 } from '@mui/material';
 import {withStyles} from '@mui/styles';
 import styles from './Style.module.css';
+import ShadowBox from '../../components/ShadowBox/ShadowBox';
 
 class RoleTableComponent extends Component {
     constructor(props) {
@@ -35,7 +35,8 @@ class RoleTableComponent extends Component {
     render() {
         const {classes, data} = this.props;
         return (
-            <Paper>
+            <ShadowBox width={"100%"}>
+                 <Typography variant="h5">Permissions Granted</Typography>
                 {/*<Card className={classes.root}>*/}
                 {/*    <CardHeader*/}
                 {/*        classes={{ root: classes.cardHeader }}*/}
@@ -55,7 +56,7 @@ class RoleTableComponent extends Component {
                         <TableCell classes={{ root: classes.singleCell}}><Checkbox  color={'primary'}/></TableCell>
                     </TableBody>
                 </Table>
-            </Paper>
+            </ShadowBox>
         );
     }
 
