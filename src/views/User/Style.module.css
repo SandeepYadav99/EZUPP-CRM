@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.7rem;
 }
 .headerContainer .title {
     font-size: 1rem;
@@ -52,6 +53,10 @@
 .profileImage{
    
     
+}
+.actionButton{
+    display: flex;
+    gap: 2px;
 }
 
 .formContainer{

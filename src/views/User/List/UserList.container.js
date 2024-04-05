@@ -1,4 +1,3 @@
-
 /**
  * Update by sandeepelectrovese@gmail.com ->
  *  Class based Component to Function based Component 12/13/2023
@@ -7,19 +6,29 @@ import React, { useCallback, useMemo } from "react";
 import { Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { Add, Info as EditIcon, Info, Person, OpenInNew as OpenInNewIcon } from "@mui/icons-material";
-import PageBox from "../../../components/PageBox/PageBox.component";
-import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
+import {
+  Add,
+  Info as EditIcon,
+  Info,
+  Person,
+  OpenInNew as OpenInNewIcon,
+  Edit,
+  Topic,
+} from "@mui/icons-material";
+import addTask from "../../../assets/img/ic_add_task@2x.png";
 import styles from "../Style.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./UserListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
-import { ActionButton, ArrowPrimaryButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import {
+  ActionButton,
+  ArrowPrimaryButton,
+  PrimaryButton,
+} from "../../../components/Buttons/PrimaryButton";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
-
-
+import StatusPill from "../../../components/Status/StatusPill.component";
 
 const UserList = (props) => {
   const {
@@ -33,7 +42,7 @@ const UserList = (props) => {
     configFilter,
     isSidePanel,
     handleSideToggle,
-    handleCreate
+    handleCreate,
   } = useUserListHook({});
 
   const {
@@ -44,16 +53,13 @@ const UserList = (props) => {
   } = useSelector((state) => state.provider_user);
 
   const renderFirstCell = useCallback((user) => {
-
     return (
-      <div className={styles.firstCellFlex} >
+      <div className={styles.firstCellFlex}>
         <img src={user.image} alt="" />
-       
+
         <div className={classNames(styles.firstCellInfo, "openSans")}>
-
-            <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
-            <div> {user?.employee_id}</div>
-
+          <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
+          <div> {user?.employee_id}</div>
         </div>
       </div>
     );
@@ -61,112 +67,78 @@ const UserList = (props) => {
 
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
-      return (
-        <span
-          style={{
-            fontSize: "12px",
-            color: "white",
-            background: "green",
-            padding: "3px 10px",
-            borderRadius: "20px",
-            textTransform: "capitalize",
-          }}
-        >
-          {status}
-        </span>
-      );
+      return <StatusPill status={"ACTIVE"} color={"active"} />;
+    } else if (status === "INACTIVE") {
+      return <StatusPill status={"INACTIVE"} color={"high"} />;
     }
-    return (
-      <span
-        style={{
-          ...styles.spanFont,
-          fontSize: "12px",
-          color: "white",
-          background: `${status == "NEW" ? "orange" : "orange"}`,
-          padding: "3px 10px",
-          borderRadius: "20px",
-          textTransform: "capitalize",
-        }}
-      >
-        {status}
-      </span>
-    );
   }, []);
-
-
 
   const tableStructure = useMemo(
     () => [
       {
         key: "name",
         label: "User Info",
-        style: { width: "18%" },
+        // style: { width: "18%" },
         sortable: false,
-        render: (value, all) => <div >{renderFirstCell(all)}</div>,
+        render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "contact",
         label: "Contact",
-        style: { width: "15%" },
+        // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => (
           <div>
             {all?.email}
             <br />
-         {all?.contact}
+            {all?.contact}
           </div>
         ),
       },
       {
         key: "designation",
         label: "Designation",
-        style: { width: "15%" },
+        // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => <div>{all?.designation}</div>,
       },
       {
         key: "role",
         label: "User Role",
-        style: { width: "15%" },
-        sortable: true,
+        // style: { width: "15%" },
+        sortable: false,
         render: (temp, all) => <div>{all?.role?.name}</div>,
       },
 
       {
         key: "status",
         label: "Status",
-        style: { width: "15%" },
-        sortable: true,
+        // style: { width: "15%" },
+        sortable: false,
         render: (temp, all) => <div>{renderStatus(all.status)}</div>,
       },
       {
         key: "last_login",
         label: "Last Login",
-        sortable: true,
-        render: (temp, all) => (
-          <div>{all?.lastLoginText }</div>
-        ),
+        sortable: false,
+        render: (temp, all) => <div>{all?.lastLoginText}</div>,
       },
       {
         key: "user_id",
         label: "Action",
         render: (temp, all) => (
-          <div>
-             <IconButton
-              className={"tableActionBtn"}
-              color="secondary"
+          <div className={styles.actionButton}>
+            <IconButton
               // disabled={is_calling}
-              onClick={()=>handleProfile(all)}
+              onClick={() => handleProfile(all)}
             >
-              <Person fontSize={"small"} />
+              <img src={addTask} alt="task" width={20} />
             </IconButton>
             <IconButton
-              className={"tableActionBtn"}
-              color="secondary"
               // disabled={is_calling}
-              onClick={()=>handleEdit(all)}
+              onClick={() => handleEdit(all)}
             >
-              <OpenInNewIcon fontSize={"small"} />
+              <Edit fontSize={"small"} />
             </IconButton>
           </div>
         ),
@@ -206,9 +178,10 @@ const UserList = (props) => {
           <span className={styles.title}>User List</span>
           <ArrowPrimaryButton
             onClick={handleCreate}
-            icon={<Add fontSize="normal"/>}
+            
+            icon={<Add fontSize="normal" />}
           >
-             Create
+            CREATE
           </ArrowPrimaryButton>
         </div>
 
@@ -221,7 +194,7 @@ const UserList = (props) => {
           />
           <div>
             <br />
-            <div style={{ width: "100%" }}>
+            <div style={{ width: "100%" }} >
               <DataTables
                 {...tableData.datatable}
                 {...tableData.datatableFunctions}
@@ -230,7 +203,6 @@ const UserList = (props) => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

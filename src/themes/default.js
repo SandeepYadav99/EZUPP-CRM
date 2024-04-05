@@ -217,6 +217,7 @@ export default {
         MuiTableCell: {
             root: {
                 padding: '10px',
+               
                 borderBottom: '1px solid rgba(224, 224, 224, .3)',
                 // fontWeight: '600',
                 fontFamily: ' \'Inter\', sans-serif',
@@ -227,7 +228,7 @@ export default {
             head: {
                 fontSize: '0.9rem',
                 padding: '15px 10px',
-                background: '#f5f5f5',
+                background:"gray",
                 '&:first-child': {
                     borderTopLeftRadius: '10px',
                     borderBottomLeftRadius: '10px',
