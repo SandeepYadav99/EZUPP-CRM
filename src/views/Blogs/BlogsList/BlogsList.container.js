@@ -10,7 +10,6 @@ import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import MenuItemView from "../component/MenuItem.component";
 
-
 const BlogListContainer = () => {
   const {
     handlePageChange,
@@ -28,13 +27,13 @@ const BlogListContainer = () => {
 
   const {
     data,
-    all,
+    all: allData,
     currentPage,
     is_fetching: isFetching,
     query,
   } = useSelector((state) => state.blogs);
 
-  const renderStatus =(status)=>{
+  const renderStatus = (status) => {
     if (status === "ACTIVE") {
       return (
         <span
@@ -68,8 +67,7 @@ const BlogListContainer = () => {
         {status}
       </span>
     );
-  }
-
+  };
 
   const tableStructure = useMemo(() => {
     return [
@@ -79,12 +77,7 @@ const BlogListContainer = () => {
         sortable: false,
         render: (temp, all) => (
           <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={all?.cover_image}
-              alt=""
-              height={"50"}
-              width={"50"}
-            />
+            <img src={all?.cover_image} alt="" height={"50"} width={"50"} />
             <div style={{ marginLeft: "10px" }}>{all.title}</div>
           </div>
         ),
@@ -124,10 +117,7 @@ const BlogListContainer = () => {
         label: "Action",
         render: (temp, all) => (
           <div>
-            <MenuItemView
-              handleEdit={handleEdit( all)}
-              blogId={all.slug}
-            />
+            <MenuItemView handleEdit={handleEdit(all)} blogId={all.slug} />
           </div>
         ),
       },
@@ -144,14 +134,14 @@ const BlogListContainer = () => {
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
       columns: tableStructure,
-      data: all,
-      count: all?.length,
+      data: data?.length > 0 ? data : [],
+      count: allData?.length > 0 ? allData?.length : 0,
       page: currentPage,
     };
 
     return { datatableFunctions, datatable };
   }, [
-    all,
+    allData,
     tableStructure,
     handleSortOrderChange,
     handlePageChange,
@@ -159,6 +149,7 @@ const BlogListContainer = () => {
     data,
     currentPage,
   ]);
+
 
   return (
     <div>
@@ -175,12 +166,12 @@ const BlogListContainer = () => {
         </div>
 
         <div>
-        <FilterComponent
-              is_progress={isFetching}
-              filters={configFilter}
-              handleSearchValueChange={handleSearchValueChange}
-              handleFilterDataChange={handleFilterDataChange}
-            />
+          <FilterComponent
+            is_progress={isFetching}
+            filters={configFilter}
+            handleSearchValueChange={handleSearchValueChange}
+            handleFilterDataChange={handleFilterDataChange}
+          />
           <div>
             <br />
             <div style={{ width: "100%" }}>

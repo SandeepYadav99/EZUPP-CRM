@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {actionFetchBlogs,actionSetPageBlogs} from "../../../actions/Blogs.action";
 import { useParams } from "react-router";
 import { serviceGetIndustryList } from "../../../services/Industry.service";
+import history from "../../../libs/history.utils";
 
 const useBlogsHook = () => {
   const [isCalling, setIsCalling] = useState(false);
@@ -101,7 +102,7 @@ const useBlogsHook = () => {
   const handleViewDetails = useCallback(() => {}, []);
 
   const handleCreateFed = useCallback(() => {
-
+     history.push('/blogs/create')
   }, []);
 
   const configFilter = useMemo(() => {
@@ -123,7 +124,7 @@ const useBlogsHook = () => {
         name: "industry_id",
         type: "selectObject",
         custom: { extract: { id: "id", title: "name" } },
-        fields: [...dataList],
+        fields: [],
       },
     ];
   }, [dataList]);
