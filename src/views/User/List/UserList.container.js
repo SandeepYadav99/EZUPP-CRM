@@ -67,7 +67,7 @@ const UserList = (props) => {
 
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
-      return <StatusPill status={"ACTIVE"} color={"active"} />;
+      return <StatusPill status={"ACTIVE"} color={"active"}  />;
     } else if (status === "INACTIVE") {
       return <StatusPill status={"INACTIVE"} color={"high"} />;
     }

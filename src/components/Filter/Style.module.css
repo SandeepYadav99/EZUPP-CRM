@@ -3,9 +3,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #f4f4f4;
+    border: 1px solid #E4E4E6;
     padding: 0px 5px;
-    background: #F8F9FB;
+    /* background: #F8F9FB; */
     /* border-radius: 20px; */
     border-radius: 6px;
 }
