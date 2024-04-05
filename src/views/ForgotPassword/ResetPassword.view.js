@@ -287,7 +287,7 @@ class ResetPasswordView extends Component {
                 <div>
                   <span className={styles.bottomSignup}>
                     <ButtonBase
-                      onClick={this._handleBack}
+                      onClick={this._handleLoginClick}
                       className={styles.back}
                     >
                       <img src={backArrow} alt="backtext" />
