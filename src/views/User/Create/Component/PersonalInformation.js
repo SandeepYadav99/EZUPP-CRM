@@ -11,7 +11,8 @@ const PersonalInformation = ({
   changeTextData,
   onBlurHandler,
   form,
-  image
+  image,
+  listData
 }) => {
   console.log(form, "Form")
   return (
@@ -126,8 +127,11 @@ const PersonalInformation = ({
               }}
               className={styles.custonCSS}
             >
-              <MenuItem value={"MANAGER"}>Manager</MenuItem>
-              <MenuItem value={"OWNER"}>Owner</MenuItem>
+              {listData?.ROLES?.map((role)=>(
+
+              <MenuItem value={role?.id}>{role?.name}</MenuItem>
+              ))}
+              {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
             </CustomSelectField>
           </div>
         </div>

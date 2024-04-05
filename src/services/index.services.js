@@ -6,7 +6,7 @@ import Constants from '../config/constants';
 import {getRequest, postRequest} from '../libs/AxiosService.util';
 
 export async function serviceLoginUser(data) {
-    return await postRequest('login', data);
+    return await postRequest('auth/login', data);
 }
 export async function serviceGetProfile () {
     return await postRequest('profile', {});
@@ -14,6 +14,9 @@ export async function serviceGetProfile () {
 
 export async function serviceGetListData() {
     return await getRequest('list/data', {});
+}
+export async function serviceGetList(list, otherParams = {}) {
+    return await postRequest('list', { list: list, ...otherParams });
 }
 export async function serviceForgotPassword(params) {
     return await postRequest('forgot/password', params);

@@ -24,6 +24,7 @@ import {
   serviceProviderProfileGetKeyword,
   serviceUpdateProviderUser,
 } from "../../../services/ProviderUser.service";
+import { serviceGetList } from "../../../services/index.services";
 
 function useUserCreateHook() {
   const initialForm = {
@@ -55,26 +56,16 @@ function useUserCreateHook() {
   const [department, setDepartment] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [listData, setListData] = useState({
-    ADMIN: [],
-    CITY_CHAPTERS: [],
-    EVENTS: [],
-    ADMIN_CHAPTERS: [],
-    CHAPTERS: [],
+    ROLES: [],
   });
 
-  // useEffect(() => {
-  //   serviceGetList([
-  //     "ADMIN",
-  //     "CITY_CHAPTERS",
-  //     "EVENTS",
-  //     "ADMIN_CHAPTERS",
-  //     "CHAPTERS",
-  //   ]).then((res) => {
-  //     if (!res.error) {
-  //       setListData(res.data);
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    serviceGetList(["ROLES"]).then((res) => {
+      if (!res.error) {
+        setListData(res.data);
+      }
+    });
+  }, []);
   useEffect(() => {
     serviceProfileManager({}).then((res) => {
       if (!res?.error) {
@@ -109,11 +100,11 @@ function useUserCreateHook() {
             role: data?.role,
             // type: string;
             employee_id: data?.employee_id,
-            // joining_date: data?.joining_date,
+            //  joining_date: data?.joining_date,
             department: data?.department,
             designation: data?.designation,
             manager: data?.manager,
-            // end_date: data?.end_date,
+            //  end_date: data?.end_date,
             userManage: data?.is_manager,
 
             invoiteToUser: data?.is_primary_user,
@@ -237,7 +228,7 @@ function useUserCreateHook() {
     [setErrorData, errorData]
   );
 
- const changeTextData = useCallback(
+  const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
       const t = { ...form };
@@ -275,7 +266,7 @@ function useUserCreateHook() {
           name: form?.name,
           image: form?.image,
           contact: form?.contact,
-          role: "5e186e7276f01e25bc9311a0",
+          role: form?.role,
           email: form?.email,
           employee_id: form?.employee_id,
           joining_date: form?.joining_date,
@@ -297,7 +288,7 @@ function useUserCreateHook() {
 
         let req;
         if (id) {
-          fd.append("id",id)
+          fd.append("id", id);
           req = serviceUpdateProviderUser(fd);
         } else {
           req = serviceCreateProviderUser(fd);

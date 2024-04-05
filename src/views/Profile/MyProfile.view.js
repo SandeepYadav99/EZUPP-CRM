@@ -155,7 +155,7 @@ onClick={() => handleEdit(profileDetails)}
                         <div className={styles.sideTitle}>Role</div>
                         <span className={styles.email}>
                           {" "}
-                          {profileDetails?.role || "N/A"}
+                          {profileDetails?.role?.name || "N/A"}
                         </span>
                       </div>
                     </div>
@@ -181,7 +181,7 @@ onClick={() => handleEdit(profileDetails)}
                         <div className={styles.sideTitle}>Manager:</div>
 
                         <span className={styles.activity}>
-                          {formatString(profileDetails?.joiningDateText || "N/A")}
+                          {formatString(profileDetails?.manager?.name || "N/A")}
                         </span>
                       </div>
                       <div className={styles.activityFlex}>
@@ -195,7 +195,7 @@ onClick={() => handleEdit(profileDetails)}
                           User is a Manager:
                         </div>
 
-                        <span className={styles.activity}>Manager</span>
+                        <span className={styles.activity}>{profileDetails?.is_manager ? 'Yes' : "No"}</span>
                       </div>
                     </div>
 
