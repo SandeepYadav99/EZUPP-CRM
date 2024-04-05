@@ -271,11 +271,6 @@ class ForgotPasswordView extends Component {
       <>
         <div className={styles.overlay}></div>
         <div className={styles.mainLoginView}>
-          {/* <div className={styles.loginFlex1}>
-          <img src={require("../../assets/img/logo.png")} />
-        </div> */}
-          {/* <div className={styles.loginFlex2}>{this._renderForm()}</div>
-        <DashboardSnackbar /> */}
         </div>
         <div className={styles.container}>
           <div className={styles.loginFlex2}>{this._renderForm()}</div>

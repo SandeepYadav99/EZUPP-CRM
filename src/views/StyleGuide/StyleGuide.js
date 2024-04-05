@@ -8,6 +8,8 @@ import {
     PrimaryButton
 } from "../../components/Buttons/PrimaryButton";
 import styles from './Style.module.css';
+import CustomSelectField from '../../components/FormFields/SelectField/SelectField.component';
+import CustomDatePicker from '../../components/FormFields/DatePicker/CustomDatePicker';
 import {MenuItem, Typography,Autocomplete,TextField} from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
@@ -23,8 +25,7 @@ const avatars=[
     'C',
     '2k'
 ]
-import CustomSelectField from '../../components/FormFields/SelectField/SelectField.component';
-import CustomDatePicker from '../../components/FormFields/DatePicker/CustomDatePicker';
+
 
 const AutoCompleteData=[
     {
