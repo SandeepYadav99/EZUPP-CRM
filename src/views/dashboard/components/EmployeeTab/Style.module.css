@@ -56,7 +56,7 @@ height: 20px;
   border-radius: 10px !important;
 }
 .paperBackground {
-  padding: 10px 12px;
+  /* padding: 10px 12px; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: white !important;
@@ -76,7 +76,7 @@ height: 20px;
   display: flex;
   justify-content: space-between;
   padding: 10px 15px;
-  border-bottom: 2px solid #ebedf4;
+  /* border-bottom: 2px solid #ebedf4; */
 }
 .imageNameContainer {
   display: flex;
@@ -94,8 +94,8 @@ height: 20px;
   font-weight: 600;
 }
 .userImage {
-  width: 70px;
-  height: 70px;
+  width: 44px;
+  height: 44px;
   object-fit: cover;
 }
 .parentWrapper {
@@ -147,6 +147,73 @@ height: 20px;
   /* background-image: url("../../../../../assets/img/ic_bunting_bg.png"); */
   background-repeat: no-repeat;
   background-position: top;
+}
+.iconTabsEvents_Box{
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  justify-content: center;
+}
+.iconTabsEvents_Box>img{
+  height: 24px;
+  width: 24px;
+}
+.iconCardsBoxContainer{
+padding-top: 12px;
+}
+.iconCardsBox{
+  display: flex;
+  gap: 18px;
+
+}
+
+.iconCards{
+  height: 24px;
+  width: 24px;
+
+}
+.containerWidth{
+flex: 1;
+height: 422px;
+
+}
+.TaskListEventWrapper{
+  background-color: white !important;
+
+  display: flex;
+  flex-direction: column;
+  
+  padding: 10px 15px;
+  border-bottom: 2px solid #ebedf4;
+
+}
+.IconDateBox{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.TaskList{
+  display: flex;
+  gap: 2rem;
+}
+.buttonsBox{
+  display: flex;
+  gap:2rem;
+}
+.messageCounter{
+  border-radius: 50%;
+    color: #FFFFFF;
+    background: #25CEAE;
+    height: 2rem;
+    width: 2rem;
+    padding: 5px;
+}
+.taskListButtonWrapper{
+  display: flex;
+  gap:1rem;
+}
+.dropdownButtonLabel{
+  padding: 7px !important;
 }
 @media (max-width: 500px) {
   .noEvent > img {

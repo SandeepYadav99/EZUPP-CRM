@@ -15,11 +15,13 @@ import styles from "./Style.module.css";
 import TopRow from "./components/TopRow/TopRow.component";
 import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
 import EventCard from "./components/EmployeeTab/EventCard.component";
-import dataValue from "./components/EmployeeTab/data.json";
+import dataValue from "./components/EmployeeTab/data.js";
 import GraphComponent from "./components/GraphComponent/Graph";
 import HalfDoughnut from "./components/HalfDoughnutGraph/HalfDoughnut";
 import Calculator from "./components/Calculator/Calculator";
 import QuickAccess from "./components/QuickAccess/QuickAccess";
+// import dataValue from "./components/EmployeeTab/data.json";
+import Notifications from "./components/Notifications/Notification";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -34,22 +36,13 @@ const Dashboard = () => {
       <div className={styles.container}>
         <TopRow/>
         <div className={styles.employeeTab}>
-       
-          
-          <EventCard />
-           
-        
+          <div className={styles.meetingSchedule}>
+            <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span>
+            {/* <EventCard data={dataValue?.birthdays}/> */}
+          </div>
           <EmployeeTab/>
         </div>
-
-        <div className={styles.chartsDesktop}>
-
-          <GraphComponent/>
-          <HalfDoughnut/>
-        </div>
-        
-        <Calculator/>
-        <QuickAccess/>
+        <Notifications/>
       </div>
     </React.Fragment>
   );

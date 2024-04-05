@@ -1,4 +1,4 @@
-import { AppBar } from '@mui/material';
+import { AppBar } from "@mui/material";
 import React from "react";
 import { useCallback } from "react";
 import { useState } from "react";
@@ -6,12 +6,20 @@ import styles from "./Style.module.css";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import PropTypes from "prop-types";
+import data from "./data";
 // import BirthdayEvent from "./BirthdayEvent";
 import { useSelector } from "react-redux";
 // import WaitingComponent  from "../../../../../components/Waiting.component";
 import { makeStyles, useTheme } from "@mui/styles";
-//import EventCard from "./EventCard.component";
-import dataValue from "./data.json";
+import EventCard from "./EventCard.component";
+
+import imageLogo1 from "../../../../assets/Assets/ic_contacts_blue.png";
+import imageLogo2 from "../../../../assets/Assets/ic_messages_grey.png";
+import imageLogo3 from "../../../../assets/Assets/ic_task_list_blue.png";
+
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import {Typography} from "@mui/material";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +68,8 @@ function EmployeeTab() {
   );
 
   return (
-    <div className={styles.eventBirthdayWrapper}>
+    // <div className={styles.eventBirthdayWrapper}>
+    <ShadowBox  className={styles.containerWidth}>
       <div className={styles.eventBgImage}></div>
       <AppBar position="static" className={styles.backgroundColor}>
         <Tabs
@@ -70,23 +79,46 @@ function EmployeeTab() {
           indicatorColor="primary"
           textColor="primary"
         >
-          <Tab className={"iconTabsEvents"} label="Contacts" style={{textTransform:"none"}}/>
-          <Tab className={"iconTabsEvents"} label="Messages" style={{textTransform:"none"}}/>
-          <Tab className={"iconTabsEvents"} label="Task List" style={{textTransform:"none"}}/>
+          <Tab
+            className={"iconTabsEvents"}
+            label={
+              <div className={styles.iconTabsEvents_Box}>
+                <img alt="text" src={imageLogo1}/><Typography component="span" variant="h4">Contacts</Typography> 
+              </div>
+            }
+            style={{ textTransform: "none" }}
+          />
+          <Tab
+            className={"iconTabsEvents"}
+            label={ <div className={styles.iconTabsEvents_Box}>
+            <img alt="text" src={imageLogo2}/><Typography component="span" variant="h4">Messages</Typography> 
+            {/* <Typography component="span" color>Messages</Typography>  */}
+            <Typography  className={styles.messageCounter}component="span">5</Typography>
+          </div>}
+            style={{ textTransform: "none" }}
+          />
+          <Tab
+            className={"iconTabsEvents"}
+            label={ <div className={styles.iconTabsEvents_Box}>
+            <img alt="text" src={imageLogo3}/><Typography component="span" variant="h4">Task List</Typography> 
+          </div>}
+            style={{ textTransform: "none" }}
+          />
         </Tabs>
       </AppBar>
       <div className={styles.paperBackground1}>
         <TabPanel value={value} index={0} dir={"ltr"}>
-          {/* <EventCard data={dataValue?.birthdays}/>
+          <EventCard data={data?.contacts} item={'contact'} />
         </TabPanel>
-        <TabPanel value={value} index={1} dir={"ltr"}>
-        <EventCard data={dataValue?.birthdays}/>
+        <TabPanel value={value} index={1} dir={"ltr"} >
+          <EventCard data={data?.messages} item={'messages'} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={"ltr"}>
-        <EventCard data={dataValue?.birthdays}/> */}
+          <EventCard data={data?.tasksList} item={'taskList'} />
         </TabPanel>
       </div>
-    </div>
+      </ShadowBox>
+     /* </div> */
   );
 }
 
