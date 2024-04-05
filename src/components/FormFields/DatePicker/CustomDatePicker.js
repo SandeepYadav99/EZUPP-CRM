@@ -37,9 +37,10 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
                     value={value ? dayjs(value) : (null)}
                     onChange={handleOnChange}
                     inputVariant={'outlined'}
-                    format={
-                        "dd-MM-yyyy"
-                    }
+                    // format={
+                    //     "dd-MM-yyyy"
+                    // }
+                    format="DD-MM-YYYY"
                     error={isError ? true : false}
                     minDate={minDate && dayjs(minDate)}
                     maxDate={mD ? dayjs(mD) : dayjs()}
