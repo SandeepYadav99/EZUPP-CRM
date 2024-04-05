@@ -73,7 +73,8 @@ const Theme = (colors) => {
     status: {
       high: error,
       medium: '#FF9100',
-      low: '#78D90F'
+      low: '#78D90F',
+      Discuss:"#636578"
     },
     success: {
       main: success,

@@ -15,7 +15,8 @@ import styles from "./Style.module.css";
 import TopRow from "./components/TopRow/TopRow.component";
 import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
 import EventCard from "./components/EmployeeTab/EventCard.component";
-import dataValue from "./components/EmployeeTab/data.json";
+// import dataValue from "./components/EmployeeTab/data.json";
+import Notifications from "./components/Notifications/Notification";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -32,10 +33,11 @@ const Dashboard = () => {
         <div className={styles.employeeTab}>
           <div className={styles.meetingSchedule}>
             <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span>
-            <EventCard data={dataValue?.birthdays}/>
+            {/* <EventCard data={dataValue?.birthdays}/> */}
           </div>
           <EmployeeTab/>
         </div>
+        <Notifications/>
       </div>
     </React.Fragment>
   );
