@@ -66,11 +66,11 @@ const UserList = (props) => {
   }, []);
 
   const renderStatus = useCallback((status) => {
-    if (status === "ACTIVE") {
-      return <StatusPill status={"ACTIVE"} color={"active"}  />;
-    } else if (status === "INACTIVE") {
-      return <StatusPill status={"INACTIVE"} color={"high"} />;
-    }
+    // if (status === "ACTIVE") {
+    //   <StatusPill status={"ACTIVE"} color={"active"}  />;
+    // } else if (status === "INACTIVE") {
+    //    <StatusPill status={"INACTIVE"} color={"high"} />;
+    // }
   }, []);
 
   const tableStructure = useMemo(
@@ -128,7 +128,7 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            <IconButton
+            {/* <IconButton
               // disabled={is_calling}
               onClick={() => handleProfile(all)}
             >
@@ -139,7 +139,7 @@ const UserList = (props) => {
               onClick={() => handleEdit(all)}
             >
               <Edit fontSize={"small"} />
-            </IconButton>
+            </IconButton> */}
           </div>
         ),
       },
