@@ -123,7 +123,7 @@ function EventCard({ data, item }) {
               </div>
             </div>
 
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -161,9 +161,9 @@ function EventCard({ data, item }) {
               >
                 <StatusPill status={"Business"} color={"business"} />
               </div>
-            </div>
+            </div> */}
 
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -205,7 +205,7 @@ function EventCard({ data, item }) {
               >
                 <StatusPill status={"Payment"} color={"low"} />
               </div>
-            </div>
+            </div> */}
           </div>
         );
       });

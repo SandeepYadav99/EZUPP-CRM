@@ -40,8 +40,10 @@ const Dashboard = () => {
             <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span>
             {/* <EventCard data={dataValue?.birthdays}/> */}
           </div>
+          <EventCard />
           <EmployeeTab/>
         </div>
+        <Calculator/>
         <Notifications/>
       </div>
     </React.Fragment>
