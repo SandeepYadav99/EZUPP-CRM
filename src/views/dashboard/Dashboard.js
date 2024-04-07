@@ -22,6 +22,9 @@ import Calculator from "./components/Calculator/Calculator";
 import QuickAccess from "./components/QuickAccess/QuickAccess";
 // import dataValue from "./components/EmployeeTab/data.json";
 import Notifications from "./components/Notifications/Notification";
+import Schedule from "./components/EmployeeTab/Schedule.js";
+
+//import { Schedule } from "@mui/icons-material";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -36,15 +39,33 @@ const Dashboard = () => {
       <div className={styles.container}>
         <TopRow/>
         <div className={styles.employeeTab}>
-          <div className={styles.meetingSchedule}>
-            <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span>
+          {/* <div > */}
+            {/* <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span> */}
             {/* <EventCard data={dataValue?.birthdays}/> */}
-          </div>
-          <EventCard />
+          {/* </div> */}
+          {/* <EventCard /> */}
+          <Schedule/>
           <EmployeeTab/>
         </div>
+        {/* <div className={styles.employeeTab}>
         <Calculator/>
+       <QuickAccess/>
+        </div> */}
+        {/* <QuickAccess/> */}
+        <div className={styles.row}>
+        <div class="calendar-wrapper">
+        <Calculator/>
+        </div>
+    
+        <QuickAccess/>
+       
+        </div>
+        <div className={styles.chartsDesktop}>
+        <GraphComponent />
+        <HalfDoughnut/>
         <Notifications/>
+        </div>
+      
       </div>
     </React.Fragment>
   );

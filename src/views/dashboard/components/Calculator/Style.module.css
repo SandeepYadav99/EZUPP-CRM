@@ -45,10 +45,13 @@ font-family: Arial !important; */
   .calculator {
     padding: 10px;
     border-radius: 10px;
-    width: 42%;
-    height: fit-content;
+    min-width: 42% !important;
+    height: 441px;
     /* left: 390px; */
    margin-left: -20px;
+   display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
    /* flex-wrap: wrap !important; */
   }
 .value{

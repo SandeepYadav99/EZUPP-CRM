@@ -90,7 +90,7 @@
 
 .employeeTab {
   display: flex;
-  gap: 10px;
+  /* gap: 10px; */
   justify-content: space-between;
 }
 .meetingSchedule {
@@ -102,6 +102,15 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
+}
+.row{
+  display: flex;
+  /* flex-wrap: nowrap; */
+
+  
+}
+.calendar-wrapper {
+  flex: 1;
 }
 .headerAlign {
   display: flex;
