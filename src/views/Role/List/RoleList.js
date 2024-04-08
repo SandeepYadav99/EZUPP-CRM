@@ -61,21 +61,23 @@ const RoleList = (props) => {
 
   const renderAssociatedIndustriesName = useCallback(
     (industryData) => (
-      <div>
+      <>
         {industryData?.map((industry, index) => (
-          <React.Fragment key={index}>
-            {industry?.image}
-            {index < industryData.length - 1 && ", "}
-          </React.Fragment>
+          <div key={industry.id} className={styles.image}>
+            {console.log(industry, "User")}
+            <img src={industry.image} alt="" />
+            {/* {}
+            {index < industryData.length - 1 && ", "} */}
+          </div>
         ))}
-      </div>
+      </>
     ),
     []
   );
 
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
-      return <StatusPill status={"ACTIVE"} color={"active"}  />;
+      return <StatusPill status={"ACTIVE"} color={"active"} />;
     } else if (status === "INACTIVE") {
       return <StatusPill status={"INACTIVE"} color={"high"} />;
     }
@@ -98,7 +100,9 @@ const RoleList = (props) => {
         key: "users",
         label: "Users",
         sortable: false,
-        render: (temp, all) => <div>{renderAssociatedIndustriesName(all?.users)} </div>,
+        render: (temp, all) => (
+          <div>{renderAssociatedIndustriesName(all?.users)} </div>
+        ),
       },
       {
         key: "status",
