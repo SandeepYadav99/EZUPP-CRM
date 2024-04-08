@@ -309,7 +309,7 @@ function useUserCreateHook() {
           name: form?.name,
           image: form?.image,
           contact: form?.contact,
-          role: form?.role,
+          role_id: form?.role,
           email: form?.email,
           employee_id: form?.employee_id,
           joining_date: form?.joining_date,
@@ -318,8 +318,9 @@ function useUserCreateHook() {
           designation: form?.designation,
           manager: form?.manager,
           user_name: form?.userName,
-          is_primary_user: form?.invoiteToUser,
+          is_primary_user: true,
           is_manager: form?.userManage,
+          email_send:form?.invoiteToUser,
           country_code: 91,
         };
 
