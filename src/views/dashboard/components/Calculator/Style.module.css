@@ -43,7 +43,7 @@ font-family: Arial !important; */
 }
 
   .calculator {
-    padding: 24px;
+    padding: 10px;
     border-radius: 10px;
     min-width: 42% !important;
     height: fit-content;
