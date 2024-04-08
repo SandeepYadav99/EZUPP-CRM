@@ -405,12 +405,20 @@ const dashboardRoutes = [
     should_regex: false,
   },
   {
-    path: '/blogs/create',
+    path:`${RouteName?.BLOGS_CREATE}`,
     component: BlogsCreate ,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
-  }
+  },
+  {
+    path:`${RouteName?.BLOGS_UPDATE}:id`,
+    component: BlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+ 
 ];
 
 export default dashboardRoutes;

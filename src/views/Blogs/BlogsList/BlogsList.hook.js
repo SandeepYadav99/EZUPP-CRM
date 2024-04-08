@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {actionFetchBlogs,actionSetPageBlogs} from "../../../actions/Blogs.action";
+import {
+  actionFetchBlogs,
+  actionSetPageBlogs,
+} from "../../../actions/Blogs.action";
 import { useParams } from "react-router";
 import { serviceGetIndustryList } from "../../../services/Industry.service";
 import history from "../../../libs/history.utils";
@@ -11,7 +14,7 @@ const useBlogsHook = () => {
   const [listData, setListData] = useState({
     LOCATIONS: [],
   });
-  const [dataList,setDataList] = useState([])
+  const [dataList, setDataList] = useState([]);
   const dispatch = useDispatch();
   const isMountRef = useRef(false);
   const {
@@ -23,16 +26,15 @@ const useBlogsHook = () => {
 
   const { id } = useParams();
 
-
-  useEffect(()=>{
-    serviceGetIndustryList()?.then((res)=>{
-        setDataList(res?.data)
-    })
-  },[])
+  useEffect(() => {
+    serviceGetIndustryList()?.then((res) => {
+      setDataList(res?.data);
+    });
+  }, []);
 
   useEffect(() => {
     dispatch(
-        actionFetchBlogs(1, sortingData, {
+      actionFetchBlogs(1, sortingData, {
         query: query,
         query_data: isMountRef.current ? queryData : null,
       })
@@ -94,26 +96,28 @@ const useBlogsHook = () => {
 
   const handleEdit = useCallback(
     (data) => {
-       setEditData(data?.id)
+      if (data[0]?.id) {
+        setEditData(data[0]?.id);
+        history.push(`blogs/update/${data[0]?.id}`);
+      }
     },
-    [setEditData]
+    [editData]
   );
 
-  console.log(editData,"editData is here")
-  const handleViewDetails = useCallback(() => {}, []);
+  const handleViewDetails = useCallback(() => { }, []);
 
   const handleCreateFed = useCallback(() => {
-     history.push('/blogs/create')
+    history.push("/blogs/create");
   }, []);
 
   const configFilter = useMemo(() => {
     return [
-      {
-        label: "Request Date",
-        name: "createdAt",
-        type: "date",
-        options: { maxDate: new Date() },
-      },
+      // {
+      //   label: "Request Date",
+      //   name: "createdAt",
+      //   type: "date",
+      //   options: { maxDate: new Date() },
+      // },
       {
         label: "Status",
         name: "status",

@@ -77,7 +77,7 @@ const BlogListContainer = () => {
         sortable: false,
         render: (temp, all) => (
           <div style={{ display: "flex", alignItems: "center" }}>
-            <img src={all?.cover_image} alt="" height={"50"} width={"50"} />
+            <img src={all?.image ? all?.image :''} alt="" height={"50"} width={"50"} />
             <div style={{ marginLeft: "10px" }}>{all.title}</div>
           </div>
         ),
@@ -111,12 +111,15 @@ const BlogListContainer = () => {
         label: "Action",
         render: (temp, all) => (
           <div>
-            <MenuItemView handleEdit={handleEdit(allData)} blogId={all.slug} />
+            <MenuItemView
+              handleEdit={()=>handleEdit(allData)}
+              blogId={all.slug}
+            />
           </div>
         ),
       },
     ];
-  }, [handleViewDetails, handleEdit, isCalling,allData]);
+  }, [handleViewDetails, handleEdit, isCalling, allData]);
 
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -133,7 +136,6 @@ const BlogListContainer = () => {
       page: currentPage,
     };
 
-
     return { datatableFunctions, datatable };
   }, [
     allData,
@@ -144,7 +146,6 @@ const BlogListContainer = () => {
     data,
     currentPage,
   ]);
-
 
   return (
     <div>

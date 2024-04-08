@@ -34,6 +34,8 @@ import CustomSelectField from "../../../components/FormFields/SelectField/Select
 import File from "../../../components/FileComponent/FileComponent.component";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
 import CustomCheckbox from "../../../components/FormFields/CustomCheckbox";
+import FileField from "../../../components/FileField/File.component";
+import { useParams } from "react-router-dom";
 
 const BlogsCreate = ({ location }) => {
   const {
@@ -58,6 +60,9 @@ const BlogsCreate = ({ location }) => {
   } = useCreateHook({ location });
 
   const defaultTheme = createMuiTheme();
+  const params = useParams();
+
+  console.log(coverImage,"CoverImage is here")
 
   const renderEditor = () => {
     if (editor_data) {
@@ -153,7 +158,7 @@ const BlogsCreate = ({ location }) => {
               <InfoIcon fontSize={"small"} />
             </Tooltip>
           </h4>
-          {dataMapped && (
+          {params?.id && (
             <IconButton
               variant={"contained"}
               onClick={handleDelete}
@@ -209,15 +214,18 @@ const BlogsCreate = ({ location }) => {
           Please press enter to add a tag if not found in the search results.
         </label>
         <div className={"formGroup"} id={styles.inTwo}>
-          <div style={{display:"flex",alignItems:"center"}} className={styles.minReads}>
+          <div
+            style={{ display: "flex", alignItems: "center" }}
+            className={styles.minReads}
+          >
             <CustomTextField
-              isError={errorData?.read_time}
-              errorText={errorData?.read_time}
+              isError={errorData?.topic}
+              errorText={errorData?.topic}
               label={"No. of Mins of Read"}
-              value={form?.read_time}
+              value={form?.topic}
               type="number"
               onTextChange={(text) => {
-                changeTextData(text, "read_time");
+                changeTextData(text, "topic");
               }}
             />
           </div>
@@ -255,36 +263,25 @@ const BlogsCreate = ({ location }) => {
           Image should be in JPG, PNG format and should of 16:9 ratio
         </label>
         <div className={"formGroup"}>
-          <File
-            max_size={10 * 1024 * 1024}
-            type={["jpeg", "jpg", "png"]}
+          <FileField
+            bannerLabel="Upload Image"
             default_image={coverImage}
+            // imageClass={styles.inputFileUploader}
+            max_size={5 * 1024 * 1024}
+            type={["png", "jpeg", "jpg"]}
             fullWidth={true}
-            name="od1"
-            label="Cover Image"
+            name="document"
             accept={"image/*"}
-            error={errorData?.cover_image}
-            value={form?.cover_image}
-            placeholder={"Cover Image"}
+            label="Please Upload Image"
+            show_image={true}
+            error={errorData?.image}
+            value={form?.image}
             onChange={(file) => {
               if (file) {
-                changeTextData(file, "cover_image");
+                changeTextData(file, "image");
               }
             }}
           />
-          {coverImage && (
-            <a
-              href={coverImage}
-              target="_blank"
-              style={{
-                fontSize: "12px",
-                color: "blue",
-                textDecoration: "underline",
-              }}
-            >
-              View Image
-            </a>
-          )}
         </div>
         <div className={"formGroup"}>
           <CustomCheckbox

@@ -8,19 +8,21 @@ import {
   serviceUpdateBlogs,
   serviceDeleteBlogs,
   serviceGetTagsList,
+  serviceBlogsDetails,
 } from "../../../services/Blogs.service";
 import { serviceGetIndustryList } from "../../../services/Industry.service";
 import constants from "../../../config/constants";
+import { useParams } from "react-router-dom";
 
 function useCreateHook({ location }) {
   const initialForm = {
     title: "",
     slug: "",
     tags: [],
-    read_time: "",
+    topic: "",
     meta_description: "",
     author: "",
-    cover_image: null,
+    image: null,
     is_featured: "",
     description: "",
     publish_on: "",
@@ -37,6 +39,8 @@ function useCreateHook({ location }) {
   const [editor_data, setEditor_Data] = useState(null);
   const [anchor, _setAnchor] = useState(null);
 
+  const params = useParams();
+
   useEffect(() => {
     serviceGetTagsList()?.then((res) => {
       setTagList(res?.data);
@@ -48,8 +52,6 @@ function useCreateHook({ location }) {
       setIndustries(res?.data);
     });
   }, []);
-
-  const dataMapped = location?.state?.dataValue;
 
   const onChangeCheckBox = () => {
     setChecked((e) => !e);
@@ -79,23 +81,25 @@ function useCreateHook({ location }) {
   const handleSave = () => {};
 
   useEffect(() => {
-    if (dataMapped) {
-      setCoverImage(dataMapped?.cover_image);
-      setForm({
-        ...form,
-        title: dataMapped?.title,
-        slug: dataMapped?.slug,
-        read_time: dataMapped?.read_time,
-        author: dataMapped?.author,
-        meta_description: dataMapped?.meta_description,
-        cover_image: coverImage,
-        is_featured: dataMapped?.is_featured,
-        status: dataMapped?.status === constants.GENERAL_STATUS.ACTIVE,
-        tags: dataMapped?.tags,
-        description: `<p>dataMapped?.description</p>`,
+    if (params?.id) {
+      serviceBlogsDetails({ id: params?.id })?.then((res) => {
+        const data = res?.data;
+        setCoverImage(data?.image);
+        setForm({
+          ...form,
+          title: data?.title,
+          slug: data?.slug,
+          topic: data?.topic,
+          author: data?.author,
+          is_featured: data?.is_featured,
+          status: data?.status === constants.GENERAL_STATUS.ACTIVE,
+          tags: data?.tags,
+          description: data?.description,
+          meta_description: data?.meta_description,
+        });
       });
     }
-  }, [dataMapped]);
+  }, [params?.id]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -104,12 +108,12 @@ function useCreateHook({ location }) {
       "tags",
       "author",
       "meta_description",
-      "cover_image",
-      "read_time",
+      "image",
+      "topic",
     ];
 
-    if (dataMapped) {
-      const index = required.indexOf("cover_image");
+    if (params?.id) {
+      const index = required.indexOf("image");
       required.splice(index, 1);
     }
 
@@ -145,7 +149,7 @@ function useCreateHook({ location }) {
       const t = { ...form };
       if (fieldName === "title") {
         t[fieldName] = text;
-      } else if (fieldName === "read_time") {
+      } else if (fieldName === "topic") {
         if (text >= 0) {
           t[fieldName] = text;
         }
@@ -163,28 +167,30 @@ function useCreateHook({ location }) {
       if (!isSubmitting) {
         setIsSubmitting(true);
         const fd = new FormData();
-        if (dataMapped) {
-          fd.append("cover_image", coverImage);
+        if (params?.id) {
+          fd.append("image", coverImage);
         }
         Object.keys(form).forEach((key) => {
           if (key === "status") {
             fd.append(key, form[key] ? "ACTIVE" : "INACTIVE");
           } else if (key === "publish_on") {
             fd.append(key, `${Day}-${Month}-${Year}`);
+          } else if (key === "description") {
+            fd.append("blog_description", form?.description);
           } else {
             fd.append(key, form[key]);
           }
         });
         let req;
-        if (dataMapped) {
-          fd.append("id", dataMapped?.id);
+        if (params?.id) {
+          fd.append("id", params?.id);
           req = serviceUpdateBlogs(fd);
         } else {
           req = serviceCreateBlogs(fd);
         }
         req.then((res) => {
           if (!res.error) {
-            historyUtils.goBack();
+            historyUtils.push("/blogs");
           } else {
             SnackbarUtils.error(res?.message);
           }
@@ -226,7 +232,7 @@ function useCreateHook({ location }) {
   };
 
   const suspendItem = () => {
-    serviceDeleteBlogs({ id: dataMapped?.id })?.then((res) => {
+    serviceDeleteBlogs({ id: params?.id })?.then((res) => {
       SnackbarUtils.success("Deleted SuccessFully");
       setConfirmPopUp(false);
       historyUtils.push("/blogs");
@@ -236,7 +242,7 @@ function useCreateHook({ location }) {
   const handleEditor = (data) => {
     setForm({
       ...form,
-      description: data,
+      blog_description: data,
     });
   };
 
@@ -251,7 +257,6 @@ function useCreateHook({ location }) {
     onChangeCheckBox,
     handleEditor,
     industries,
-    dataMapped,
     handleDelete,
     confirmPopUp,
     suspendItem,

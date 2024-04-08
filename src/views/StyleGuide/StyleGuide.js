@@ -12,23 +12,27 @@ import {
   PrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
 
-import styles from './Style.module.css';
-import {MenuItem, Typography,Autocomplete,TextField} from "@mui/material";
+import styles from "./Style.module.css";
+import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
-import UserCountAvatars, { UserCountAvatarsAnimation, UserCountAvatarsInitials, UserCountAvatarsLabelInitials, UserCountAvatarsLableAvatarGroup, UserCountAvatarsLableAvatarStatusIndicator, UserCountAvatarsShapes, UserCountAvatarsSize, UserCountAvatarsStatusIndicator } from '../../components/AvatarGroup/AvatarGroup';
-import { UserCountRadioLables } from '../../components/BasicAndCustomRadio/RadioLables';
-import { CustomOptionRadiosWithIcon } from '../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon';
-import {useTheme} from "@mui/styles";
-const avatars=[
-    'A',
-    'B',
-    'C',
-    '2k'
-]
-
+import UserCountAvatars, {
+  UserCountAvatarsAnimation,
+  UserCountAvatarsInitials,
+  UserCountAvatarsLabelInitials,
+  UserCountAvatarsLableAvatarGroup,
+  UserCountAvatarsLableAvatarStatusIndicator,
+  UserCountAvatarsShapes,
+  UserCountAvatarsSize,
+  UserCountAvatarsStatusIndicator,
+} from "../../components/AvatarGroup/AvatarGroup";
+import { UserCountRadioLables } from "../../components/BasicAndCustomRadio/RadioLables";
+import { CustomOptionRadiosWithIcon } from "../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon";
+import TimeLine from "../../components/TimeLine/TimeLine.component";
+import { useTheme } from "@mui/styles";
+const avatars = ["A", "B", "C", "2k"];
 
 const AutoCompleteData = [
   {
@@ -362,6 +366,12 @@ const StyleGuide = ({}) => {
       <br />
       <div>
         <CustomOptionRadiosWithIcon />
+      </div>
+      <div className={styles.timeLineComponent}>
+        <Typography gutterBottom variant="h5">
+          Reusable TimeLine Component
+        </Typography>
+        <TimeLine />
       </div>
     </PageBoxComponent>
   );
