@@ -24,7 +24,7 @@ function useCreateHook({ location }) {
     author: "",
     image: null,
     is_featured: "",
-    description: "",
+    blog_description: "",
     publish_on: "",
     status: "ACTIVE",
   };
@@ -41,6 +41,7 @@ function useCreateHook({ location }) {
 
   const params = useParams();
 
+  console.log(form?.is_featured,"is_featured is here")
   useEffect(() => {
     serviceGetTagsList()?.then((res) => {
       setTagList(res?.data);
@@ -54,7 +55,7 @@ function useCreateHook({ location }) {
   }, []);
 
   const onChangeCheckBox = () => {
-    setChecked(!checked);
+    setChecked((e)=>!e);
   };
 
   useEffect(() => {
@@ -94,7 +95,7 @@ function useCreateHook({ location }) {
           is_featured: data?.is_featured,
           status: data?.status === constants.GENERAL_STATUS.ACTIVE,
           tags: data?.tags,
-          description: data?.description,
+          blog_description: data?.blog_description,
           meta_description: data?.meta_description,
         });
       });
@@ -175,8 +176,8 @@ function useCreateHook({ location }) {
             fd.append(key, form[key] ? "ACTIVE" : "INACTIVE");
           } else if (key === "publish_on") {
             fd.append(key, `${Day}-${Month}-${Year}`);
-          } else if (key === "description") {
-            fd.append("blog_description", form?.description);
+          } else if (key === "blog_description") {
+            fd.append("blog_description", form?.blog_description);
           } else {
             fd.append(key, form[key]);
           }
@@ -242,7 +243,7 @@ function useCreateHook({ location }) {
   const handleEditor = (data) => {
     setForm({
       ...form,
-      blog_description: data,
+      blog_description:data,
     });
   };
 

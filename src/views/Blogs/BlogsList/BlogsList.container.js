@@ -98,7 +98,7 @@ const BlogListContainer = () => {
         key: "createdAt",
         label: "Date",
         sortable: true,
-        render: (temp, all) => <div>{all.createdAt}</div>,
+        render: (temp, all) => <div>{all.updatedAtText ? all?.updatedAtText :"--"}</div>,
       },
       {
         key: "status",

@@ -293,7 +293,7 @@ const BlogsCreate = ({ location }) => {
         <div className={"formGroup"}>
           <label className={styles.enter}>Blog Description</label>
           <NewEditor
-            editorData={form?.description}
+            editorData={form?.blog_description}
             handleChangeEditor={handleEditor}
           />
         </div>
