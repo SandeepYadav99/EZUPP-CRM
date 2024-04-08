@@ -227,7 +227,6 @@ class File extends Component {
                 <div className={styles.fileUpload}>
                     <div className={styles.fileName}
                          style={error ? {border: '1px solid red', color: 'red'} : {color: 'grey'}}>
-                        {/*<div style={this.props.value ? {marginLeft:'15px',color:'grey'} : {marginLeft:'15px', color: (this.props.error ? 'red': 'grey')}}></div>*/}
                         {tempPlaceHolder}
 
                     </div>

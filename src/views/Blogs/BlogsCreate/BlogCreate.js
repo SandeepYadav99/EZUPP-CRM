@@ -11,16 +11,12 @@ import {
 } from "@mui/icons-material";
 import UploadImagePopover from "../component/Popover/Popover.component";
 import {
-  FormControlLabel,
-  Switch,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
-  Slide,
   Tooltip,
-  Chip,
   TextField,
 } from "@mui/material";
 import Autocomplete from "@mui/lab/Autocomplete";
@@ -31,7 +27,6 @@ import useCreateHook from "./BlogsCreate.hook";
 import { MuiThemeProvider } from "@material-ui/core";
 import history from "../../../libs/history.utils";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
-import File from "../../../components/FileComponent/FileComponent.component";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
 import CustomCheckbox from "../../../components/FormFields/CustomCheckbox";
 import FileField from "../../../components/FileField/File.component";
@@ -57,6 +52,7 @@ const BlogsCreate = ({ location }) => {
     editor_data,
     anchor,
     coverImage,
+    checked,
   } = useCreateHook({ location });
 
   const defaultTheme = createMuiTheme();
@@ -264,7 +260,6 @@ const BlogsCreate = ({ location }) => {
           <FileField
             bannerLabel="Upload Image"
             default_image={coverImage ? coverImage : ""}
-            // imageClass={styles.inputFileUploader}
             max_size={5 * 1024 * 1024}
             type={["png", "jpeg", "jpg"]}
             fullWidth={true}
@@ -279,6 +274,7 @@ const BlogsCreate = ({ location }) => {
                 changeTextData(file, "image");
               }
             }}
+            style={{ width: "480px", height: "270px" }}
           />
         </div>
         <div className={"formGroup"}>
@@ -286,7 +282,9 @@ const BlogsCreate = ({ location }) => {
             color={"primary"}
             label={"Featured"}
             checked={form?.is_featured}
-            handleChange={() => onChangeCheckBox}
+            handleChange={() => {
+              onChangeCheckBox();
+            }}
           />
         </div>
 

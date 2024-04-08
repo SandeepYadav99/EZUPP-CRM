@@ -267,6 +267,7 @@ function useCreateHook({ location }) {
     editor_data,
     anchor,
     coverImage,
+    checked,
   };
 }
 

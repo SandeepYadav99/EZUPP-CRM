@@ -101,12 +101,11 @@ function LoginView() {
                       }
                       value={form?.logged_in}
                       handleChange={(text) => {
-                        changeTextData(!text, "logged_in");
+                        changeTextData(text, "logged_in");
                       }}
                     />
                   </div>
                   <div style={{ display: "flex" }}>
-                    {/*<span className={styles.bottomSignup}>Don't have an account ? <Link to='/signup'>Sign Up here</Link></span>*/}
                     <span className={styles.bottomSignup}>
                       <ButtonBase
                         onClick={handleForgotPassword}
