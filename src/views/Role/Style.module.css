@@ -54,6 +54,18 @@
   border-radius: 6px;
   width: 80%;
 }
+.crudHover{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+ 
+  background-color: #ffffff;
+  color: #636578;
+  border-radius: 6px;
+  width: 80%;
+  border: 1px solid #2063CE;
+}
 .infoFiled {
   display: flex;
   gap: 5px;

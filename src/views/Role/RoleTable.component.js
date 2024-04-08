@@ -45,7 +45,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={styles.crud}>
+                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.all_data}
