@@ -77,6 +77,7 @@ const BlogListContainer = () => {
         sortable: false,
         render: (temp, all) => (
           <div style={{ display: "flex", alignItems: "center" }}>
+            {console.log(all?.image,"image is here")}
             <img src={all?.image ? all?.image :''} alt="" height={"50"} width={"50"} />
             <div style={{ marginLeft: "10px" }}>{all.title}</div>
           </div>

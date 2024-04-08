@@ -260,7 +260,7 @@ const BlogsCreate = ({ location }) => {
         <div className={"formGroup"}>
           <FileField
             bannerLabel="Upload Image"
-            default_image={form?.image ? form?.image : coverImage}
+            default_image={coverImage}
             max_size={5 * 1024 * 1024}
             type={["png", "jpeg", "jpg"]}
             fullWidth={true}
@@ -276,6 +276,13 @@ const BlogsCreate = ({ location }) => {
               }
             }}
           />
+          {params?.id ? (
+            <a href={coverImage} target="_blank">
+              Preview
+            </a>
+          ) : (
+            ""
+          )}
         </div>
         <div className={"formGroup"}>
           <CustomCheckBox
