@@ -2,7 +2,8 @@ import React from "react";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 
-const NewEditor = ({ editorData, handleChangeEditor, type, value }) => {
+const NewEditor = ({ editorData, handleChangeEditor, type, value,...rest }) => {
+  
   const handleChange = (content) => {
     handleChangeEditor && handleChangeEditor(content);
   };
@@ -26,7 +27,6 @@ const NewEditor = ({ editorData, handleChangeEditor, type, value }) => {
               "indent",
               "outdent",
               "list",
-              "link",
               "align",
               "codeView",
               "video",
@@ -34,7 +34,10 @@ const NewEditor = ({ editorData, handleChangeEditor, type, value }) => {
             ],
           ],
         }}
-        onChange={handleChange}
+        onChange={(text) => {
+          handleChange(text);
+        }}
+        {...rest}
       />
     </div>
   );

@@ -274,6 +274,7 @@ function useCreateHook({ location }) {
     anchor,
     coverImage,
     checked,
+    descriptionRef,
   };
 }
 

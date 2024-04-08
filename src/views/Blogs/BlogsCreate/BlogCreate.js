@@ -302,7 +302,7 @@ const BlogsCreate = ({ location }) => {
           <label className={styles.enter}>Blog Description</label>
           <NewEditor
             editorData={form?.blog_description}
-            handleEditor={(html) => {
+            handleChangeEditor={(html) => {
               descriptionRef.current(html, "blog_description");
             }}
           />
