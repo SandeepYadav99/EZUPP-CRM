@@ -18,7 +18,11 @@ import useRoleCreateHook from "./RoleCreateHook";
 import RoleTableComponent from "../RoleTable.component";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import history from "../../../libs/history.utils";
-import { ActionButton, OutlineButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import {
+  ActionButton,
+  OutlineButton,
+  PrimaryButton,
+} from "../../../components/Buttons/PrimaryButton";
 
 // import CustomSwitch from "../../../FormFields/CustomSwitch";
 // import CustomCheckbox from "../../../FormFields/CustomCheckbox";
@@ -42,26 +46,25 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     listData,
 
     isSubmitting,
-    toggleAcceptDialog,
-    isAcceptPopUp,
+    
+    data,
+    permissions,
+    
+    permisionChangeHandler,
     id,
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
 
   return (
     <>
-   
-   
-          <div className={styles.iconButton}>
-            <ButtonBase onClick={() => history.goBack()}>
-              <ArrowBackIos fontSize={"small"} />{" "}
-            </ButtonBase>
-            <Typography variant={"h4"}>
-              {id ? "Update" : "Create"} Role
-            </Typography>
-          </div>
-      
-        {/* {empId && (
+      <div className={styles.iconButton}>
+        <ButtonBase onClick={() => history.goBack()}>
+          <ArrowBackIos fontSize={"small"} />{" "}
+        </ButtonBase>
+        <Typography variant={"h4"}>{id ? "Update" : "Create"} Role</Typography>
+      </div>
+
+      {/* {empId && (
           <IconButton
             variant={"contained"}
             className={classes.iconBtnError}
@@ -71,14 +74,11 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             <DeleteIcon />
           </IconButton>
         )} */}
-     
 
       <div className={styles.container}>
-     
         <ShadowBox width={"100%"}>
-        
-            <Typography variant="h5" >Role Details</Typography>
-        
+          <Typography variant="h5">Role Details</Typography>
+
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
@@ -129,19 +129,17 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           </div>
         </ShadowBox>
         <>
-         
-           
-          <RoleTableComponent />
-         
+          <RoleTableComponent
+            classes={classes}
+            data={data}
+            permissions={permissions}
+            changeTextData={changeTextData}
+            permisionChangeHandler={permisionChangeHandler}
+          />
         </>
 
         <div className={styles.actionButton}>
-        <ActionButton
-          
-            onClick={handleSubmit}
-          >
-           CANCEL
-          </ActionButton>
+          <ActionButton onClick={handleSubmit}>CANCEL</ActionButton>
           <PrimaryButton
             variant={"contained"}
             color={"primary"}

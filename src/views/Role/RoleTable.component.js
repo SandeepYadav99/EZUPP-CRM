@@ -12,57 +12,56 @@ import {
 import {withStyles} from '@mui/styles';
 import styles from './Style.module.css';
 import ShadowBox from '../../components/ShadowBox/ShadowBox';
+import { Info, InfoOutlined } from '@mui/icons-material';
 
-class RoleTableComponent extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-    _renderRows() {
-        const { classes} = this.props;
-            return (
-                <TableRow>
-                    <TableCell classes={{ root: classes.tableCell}}>Modules</TableCell>
-                    <TableCell classes={{ root: classes.tableCell}}><div className={styles.crud}>Read<Checkbox color={'primary'}/></div></TableCell>
-                    <TableCell classes={{ root: classes.tableCell}}><div className={styles.crud}>Write<Checkbox color={'primary'}/></div></TableCell>
-                    <TableCell classes={{ root: classes.tableCell}}><div className={styles.crud}>Update<Checkbox color={'primary'}/></div></TableCell>
-                    <TableCell classes={{ root: classes.tableCell}}><div className={styles.crud}>Delete<Checkbox color={'primary'}/></div></TableCell>
-                </TableRow>
-            )
-    }
-
-    render() {
-        const {classes, data} = this.props;
+const RoleTableComponent = ({ classes, data }) => {
+    const renderRows = (rowData) => {
         return (
-            <ShadowBox width={"100%"}>
-                 <Typography variant="h5">Permissions Granted</Typography>
-                {/*<Card className={classes.root}>*/}
-                {/*    <CardHeader*/}
-                {/*        classes={{ root: classes.cardHeader }}*/}
-                {/*        title="Role"*/}
-                {/*    />*/}
-                {/*</Card>*/}
-                {/*<Divider/>*/}
-                <Table className={classes.table} aria-label="simple table">
-                    <TableBody>
-                        {this._renderRows(data)}
-                    </TableBody>
-                    <TableBody>
-                        <TableCell>Customer</TableCell>
-                        <TableCell classes={{ root: classes.singleCell}}><Checkbox  color={'primary'}/></TableCell>
-                        <TableCell classes={{ root: classes.singleCell}}><Checkbox  color={'primary'}/></TableCell>
-                        <TableCell classes={{ root: classes.singleCell}}><Checkbox  color={'primary'}/></TableCell>
-                        <TableCell classes={{ root: classes.singleCell}}><Checkbox  color={'primary'}/></TableCell>
-                    </TableBody>
-                </Table>
-            </ShadowBox>
+            <TableRow>
+                <TableCell classes={{ root: classes.tableCell }}>Modules</TableCell>
+                <TableCell classes={{ root: classes.tableCell }}>
+                    <div className={styles.crud}><Checkbox color={'primary'} /> All Data</div>
+                </TableCell>
+                <TableCell classes={{ root: classes.tableCell }}>
+                    <div className={styles.crud}><Checkbox color={'primary'} />Read</div>
+                </TableCell>
+                <TableCell classes={{ root: classes.tableCell }}>
+                    <div className={styles.crud}><Checkbox color={'primary'} />Write</div>
+                </TableCell>
+                <TableCell classes={{ root: classes.tableCell }}>
+                    <div className={styles.crud}><Checkbox color={'primary'} />Update</div>
+                </TableCell>
+                <TableCell classes={{ root: classes.tableCell }}>
+                    <div className={styles.crud}><Checkbox color={'primary'} />Delete</div>
+                </TableCell>
+                <hr/>
+            </TableRow>
         );
-    }
+    };
 
-}
+    return (
+        <ShadowBox width={"100%"}>
+            <div className={styles.infoFiled}>
+            <Typography variant="h5">Permissions Granted </Typography>
+            <InfoOutlined/>
+            </div>
+            <Table className={classes.table} aria-label="simple table">
+                <TableBody>
+                    {renderRows(data)}
+                    {/* <TableRow>
+                        <TableCell>Customer</TableCell>
+                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
+                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
+                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
+                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
+                    </TableRow> */}
+                </TableBody>
+            </Table>
+        </ShadowBox>
+    );
+};
 
-const useStyle = theme => ({
+const useStyle = (theme) => ({
     tableCell: {
         color: 'black',
         fontSize: '0.90rem',
@@ -76,5 +75,4 @@ const useStyle = theme => ({
     }
 });
 
-
-export default (withStyles(useStyle, {withTheme: true})(RoleTableComponent));
+export default withStyles(useStyle, { withTheme: true })(RoleTableComponent);

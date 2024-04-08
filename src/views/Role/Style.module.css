@@ -1,71 +1,80 @@
 .mainContainer {
-    padding: 10px;
+  padding: 10px;
 }
 .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .headerContainer .title {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 .bottomLine {
-    opacity: 0.4;
-    color: grey;
-    margin-bottom: 5px;
+  opacity: 0.4;
+  color: grey;
+  margin-bottom: 5px;
 }
 .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .firstCellFlex {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .firstCellFlex img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .firstCellInfo {
-    /*margin-left: 10px;*/
+  /*margin-left: 10px;*/
 }
 
 .headerFlex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .includeContainer {
-    font-weight: 700;
-    margin-left: 15px;
+  font-weight: 700;
+  margin-left: 15px;
 }
 
-.crud{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.crud {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid gray;
+  background-color: #ffffff;
+  color: #636578;
+  border-radius: 6px;
+  width: 80%;
+}
+.infoFiled {
+  display: flex;
+  gap: 5px;
+}
+.teamImages {
+  height: 30px;
+  margin-right: 10px;
+  border: 1px solid #cdcdcdfc;
+  border-radius: 30px;
+}
+.infoTitle {
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  margin-left: 15px;
+  border-bottom: 1px solid;
+  width: 100%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 }
 
-.teamImages{
-    height: 30px;
-    margin-right: 10px;
-    border: 1px solid #cdcdcdfc;
-    border-radius: 30px;
-}
-.infoTitle{
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    margin-left: 15px;
-    border-bottom: 1px solid;
-    width: 100%;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-}
-
-.heading{
-    margin-right: 5px;
+.heading {
+  margin-right: 5px;
 }
