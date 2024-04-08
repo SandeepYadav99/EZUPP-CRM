@@ -46,6 +46,10 @@
 .avatar {
   cursor: pointer;
 }
+.avatar_size {
+  cursor: pointer;
+}
+
 .avatar1 {
   cursor: pointer;
 }

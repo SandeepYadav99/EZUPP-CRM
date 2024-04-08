@@ -205,16 +205,23 @@ const StyleGuide = ({}) => {
             <div className={styles.boxCont}>
               <Typography variant={"h6"}>single select</Typography>
             </div>
-            <Autocomplete
-              id="tags-outlined"
-              options={AutoCompleteData ? AutoCompleteData : []}
-              getOptionLabel={(option) => option.title}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="Add Guests" />
-              )}
-            />
-            <div className={styles.boxCont}>
-              <Typography variant={"h6"}>Error Field with Disabled</Typography>
+
+            <br/>
+            <br/>
+            <div className={''}>
+                <div className={styles.sideMargin}>
+                    <div><Typography variant={'h5'}>Text</Typography></div>
+                    <div className={styles.boxCont}>
+                        <CustomTextField label={'Name'}/>
+                        <br/>
+                        <br/>
+                        <CustomTextField label={'Name'} isError={true} errorText="This is required field"/>
+
+                        <br/>
+                        <br/>
+                        <CustomTextField label={'Name'} value={'Electrovese'}/>
+                    </div>
+                </div>
             </div>
             <Autocomplete
               disabled={true}
@@ -259,16 +266,17 @@ const StyleGuide = ({}) => {
         <div className={styles.sideMargin}>
           <br />
 
-          <div>
-            <Typography variant={"h5"}>Status</Typography>
-          </div>
-          <div className={styles.boxCont}>
-            <StatusPill status={"High"} color={"high"} /> &nbsp;
-            <StatusPill status={"Medium"} color={"medium"} /> &nbsp;
-            <StatusPill status={"Low"} color={"low"} />
-          </div>
-        </div>
-      </div>
+                    <div><Typography variant={'h5'}>Status</Typography></div>
+                    <div className={styles.boxCont}>
+                        <StatusPill status={'High'} color={'high'}/> &nbsp;
+                        <StatusPill status={'Inactive'} color={'high'}/> &nbsp;
+                        <StatusPill status={'Medium'} color={'medium'}/> &nbsp;
+                        <StatusPill status={'Low'} color={'low'}/>&nbsp;
+                        <StatusPill status={'Active'} color={'active'}/>&nbsp;
+
+                    </div>
+                </div>
+            </div>
 
       <div className={""}>
         <div className={styles.sideMargin}>
