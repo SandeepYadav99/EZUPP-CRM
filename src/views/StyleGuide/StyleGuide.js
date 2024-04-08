@@ -301,8 +301,8 @@ const StyleGuide = ({}) => {
                     <div><Typography variant={'h5'}>Status</Typography></div>
                     <div className={styles.boxCont}>
                         {
-                            (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'caption', 'body1', 'body2', 'subtitle1', 'subtitle2', 'overline',]).map(key => {
-                                return (<Typography variant={key}>Here is the text - {key}</Typography>)
+                            ([{name:'h1',font:"38"}, {name:'h2',font:"30"}, {name:'h3',font:"24"}, {name:'h4',font:"20"}, {name:'h5',font:"16"}, {name:'h6',font:"14"}, {name:'caption',font:"12"}, {name:'body1',font:"14"}, {name:'body2',font:"12"}, {name:'subtitle1',font:"14"}, {name:'subtitle2',font:"12"}, {name:'overline',font:"12"},]).map(key => {
+                                return (<Typography variant={key?.name}>Here is the text - {key?.name} - {key?.font} px</Typography>)
                             })
                         }
 
