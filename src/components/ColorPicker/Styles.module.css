@@ -34,18 +34,7 @@ width: 20%;
   border-radius: 2px;
   background: rgba(255, 73, 97, 1);
 }
-.color1 {
-  width: 36px;
-  height: 34px;
-  border-radius: 2px;
-  background: rgba(40, 208, 148, 1);
-}
-.color2 {
-  width: 36px;
-  height: 34px;
-  border-radius: 2px;
-  background: rgba(102, 108, 232, 1);
-}
+
 .colorContainer {
   display: flex;
   justify-content: center;

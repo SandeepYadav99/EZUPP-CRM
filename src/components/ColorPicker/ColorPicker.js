@@ -1,16 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Card,
-  CardContent,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { SketchPicker } from "react-color";
 import styles from "./Styles.module.css";
-import ShadowBox from "../ShadowBox/ShadowBox";
+
 const ColorPicker = () => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const colorPickerRef = useRef(null);
@@ -49,7 +41,7 @@ const ColorPicker = () => {
     console.log(newColor, "Color");
     setColor(newColor.rgb);
   };
-  console.log(color, "color");
+
   return (
     <div className={styles.main}>
       <div ref={colorPickerRef}>
