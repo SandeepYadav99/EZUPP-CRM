@@ -62,7 +62,7 @@ const headerStyle = theme => ({
         }
     },
     innercontent: {
-        padding: '10px 15px'
+        // padding: '10px 15px'
     },
     logoImage: {
       marginLeft:'12px',

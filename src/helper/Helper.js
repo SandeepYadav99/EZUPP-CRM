@@ -122,3 +122,30 @@ export const guestList = [
     title:"Shivam"
   }
 ]
+export const NotiList = [
+  {
+    title: "Congratulation Lettie 🎉",
+    body: "Won the monthly best seller gold badge",
+    dateTime: "1h ago"
+  },
+  {
+    title: "Charles Franklin",
+    body: "Accepted your connection",
+    dateTime: "12h ago"
+  },
+  {
+    title: "Payment Pending",
+    body: "You have new message from Natalie",
+    dateTime: "10h ago"
+  },
+  {
+      title: "Whoo! You have new order 🛒 ",
+      body: "Your ABC project application has been approved.",
+      dateTime: "9h ago"
+    },
+    {
+      title: "Charles Franklin",
+      body: "Peter sent you connection request",
+      dateTime: "1h ago"
+    }
+]
