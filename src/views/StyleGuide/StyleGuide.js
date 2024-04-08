@@ -16,6 +16,7 @@ import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import UserCountAvatars, { UserCountAvatarsAnimation, UserCountAvatarsInitials, UserCountAvatarsLabelInitials, UserCountAvatarsLableAvatarGroup, UserCountAvatarsLableAvatarStatusIndicator, UserCountAvatarsShapes, UserCountAvatarsSize, UserCountAvatarsStatusIndicator } from '../../components/AvatarGroup/AvatarGroup';
 import { UserCountRadioLables } from '../../components/BasicAndCustomRadio/RadioLables';
 import { CustomOptionRadiosWithIcon } from '../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon';
+import ColorPicker from '../../components/ColorPicker/ColorPicker';
 
 const avatars=[
     'A',
@@ -193,8 +194,7 @@ const StyleGuide = ({}) => {
                 </div>
             </div>
 
-
-            
+           
 
            <div className={styles.boxContFlex}>
               {/* <UserCountAvatarsSize />
@@ -215,9 +215,14 @@ const StyleGuide = ({}) => {
                     <UserCountRadioLables/>
                 </div>
          <br/>
-         <div>
-            <CustomOptionRadiosWithIcon/>
-         </div>
+               <div>
+                 <CustomOptionRadiosWithIcon/>
+              </div>
+              <br/>
+              <div>
+               <ColorPicker/>
+            </div>
+            
         </PageBoxComponent>
     )
 };
