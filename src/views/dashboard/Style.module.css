@@ -70,10 +70,12 @@
 }
 .quickAccess{
   width: 58%; 
+
 }
 .image{
   width: 590px;
 height: 270px;
+margin-bottom: 10px;
 }
 .iconCont {
   display: flex;
