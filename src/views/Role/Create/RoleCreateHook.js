@@ -21,10 +21,11 @@ import {
 } from "../../../services/Role.service";
 import { useParams } from "react-router-dom";
 import history from "../../../libs/history.utils";
+import RouteName from "../../../routes/Route.name";
 const initialForm = {
   name: "",
-  displayName:"",
-  description:""
+  displayName: "",
+  description: "",
 };
 
 const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
@@ -46,22 +47,20 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   // }, []);
 
   useEffect(() => {
-    if (empId) {
-      serviceDetailRole({ id: empId }).then((res) => {
+    if (id) {
+      serviceDetailRole({ id: id }).then((res) => {
         if (!res.error) {
-          const data = res.data;
-
+          const data = res?.data?.details;
           setForm({
             ...form,
             name: data?.name,
-           
-            
+            description: data?.description,
           });
         } else {
         }
       });
     }
-  }, [empId, listData]);
+  }, [id]);
 
   useEffect(() => {
     serviceDetailPermissions({ id: id ? id : " " }).then((res) => {
@@ -123,27 +122,24 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     }
     setIsSubmitting(true);
 
-   
-
     const updateData = {
       name: form?.name,
-      permissions:permission,
-      description:form?.description,
-      is_active:true
+      permissions: permission,
+       display_name:form?.displayName,
+      description: form?.description,
+      is_active: true,
     };
 
-    if (empId) {
-      updateData.id = empId;
+    if (id) {
+      updateData.id = id;
     }
 
     try {
-      const req = empId ? serviceUpdateRole : serviceCreateRole;
+      const req = id ? serviceUpdateRole : serviceCreateRole;
       const res = await req(updateData);
 
       if (!res.error) {
-        handleSideToggle();
-        // dispatch(actionFetchHubMaster(1));
-        //window.location.reload();
+       
         history.goBack()
       } else {
         SnackbarUtils.error(res.message);

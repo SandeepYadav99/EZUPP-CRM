@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import styles from "./Style.module.css";
@@ -7,12 +7,12 @@ import PageBox from "../../../components/PageBox/PageBox.component";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add, Create, Edit } from '@mui/icons-material';
+import { Add, Create, Edit } from "@mui/icons-material";
 
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import useRoleListHook from "./RoleListHook";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
-
+import StatusPill from "../../../components/Status/StatusPill.component";
 
 const RoleList = (props) => {
   const {
@@ -59,38 +59,53 @@ const RoleList = (props) => {
     );
   }, []);
 
-  const renderAssociatedIndustriesName = useCallback((industryData) => (
-    <div>
-      {industryData?.map((industry, index) => (
-        <React.Fragment key={index}>
-          {industry.name}
-          {index < industryData.length - 1 && ", "}
-        </React.Fragment>
-      ))}
-    </div>
-  ),[])
-  
+  const renderAssociatedIndustriesName = useCallback(
+    (industryData) => (
+      <div>
+        {industryData?.map((industry, index) => (
+          <React.Fragment key={index}>
+            {industry.name}
+            {index < industryData.length - 1 && ", "}
+          </React.Fragment>
+        ))}
+      </div>
+    ),
+    []
+  );
+
+  const renderStatus = useCallback((status) => {
+    if (status === "ACTIVE") {
+      return <StatusPill status={"ACTIVE"} color={"active"}  />;
+    } else if (status === "INACTIVE") {
+      return <StatusPill status={"INACTIVE"} color={"high"} />;
+    }
+  }, []);
   const tableStructure = useMemo(() => {
     return [
       {
         key: "name",
         label: "Name",
         sortable: false,
-        render: (value, all) => <div>{capitalizeFirstLetter(all?.name)} </div>, 
+        render: (value, all) => <div>{capitalizeFirstLetter(all?.name)} </div>,
       },
       {
         key: "description",
         label: "Description",
         sortable: false,
-        render: (temp, all) => renderAssociatedIndustriesName(all?.industryData)
+        render: (temp, all) => <div>{all?.description} </div>,
       },
       {
         key: "users",
         label: "Users",
         sortable: false,
-        render: (temp, all) => renderAssociatedIndustriesName(all?.industryData)
+        render: (temp, all) => <div>{renderAssociatedIndustriesName(all?.users)} </div>,
       },
-    
+      {
+        key: "status",
+        label: "Status",
+        sortable: false,
+        render: (temp, all) => <div>{renderStatus(all?.status)} </div>,
+      },
       {
         key: "user_id",
         label: "Action",
@@ -102,7 +117,7 @@ const RoleList = (props) => {
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
-                handleEdit(all)
+                handleEdit(all);
               }}
             >
               <Edit fontSize={"small"} />
@@ -136,7 +151,6 @@ const RoleList = (props) => {
     handleRowSize,
     present,
     currentPage,
- 
   ]);
 
   return (
@@ -146,9 +160,9 @@ const RoleList = (props) => {
           <span className={styles.title}>Roles List</span>
           <ArrowPrimaryButton
             onClick={handleCreate}
-            icon={<Add fontSize="normal"/>}
+            icon={<Add fontSize="normal" />}
           >
-             Create
+            Create
           </ArrowPrimaryButton>
         </div>
 
@@ -169,11 +183,9 @@ const RoleList = (props) => {
                 {...tableData.datatableFunctions}
               />
             </div>
-            
           </div>
         </div>
       </PageBox>
-     
     </div>
   );
 };

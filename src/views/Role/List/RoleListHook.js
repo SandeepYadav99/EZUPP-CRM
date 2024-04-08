@@ -2,12 +2,10 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {
-  actionFetchHubMaster,
-  actionSetPageHubMasterRequests,
-} from "../../../actions/HubMaster.action";
+
 import RouteName from "../../../routes/Route.name";
 import history from "../../../libs/history.utils";
+import { actionFetchRole, actionSetPageRole } from "../../../actions/Role.action";
 
 const useRoleListHook = ({}) => {
   const [isSidePanel, setSidePanel] = useState(false);
@@ -27,7 +25,7 @@ const useRoleListHook = ({}) => {
 
   useEffect(() => {
     dispatch(
-      actionFetchHubMaster(
+      actionFetchRole(
         1,
         {},
         {
@@ -40,13 +38,13 @@ const useRoleListHook = ({}) => {
   }, []);
 
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageHubMasterRequests(type));
+    dispatch(actionSetPageRole(type));
   }, []);
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchHubMaster(1, sortingData, {
+        actionFetchRole(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
           query_data: key == "FILTER_DATA" ? value : queryData,
         })
@@ -71,9 +69,9 @@ const useRoleListHook = ({}) => {
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageHubMasterRequests(1));
+      dispatch(actionSetPageRole(1));
       dispatch(
-        actionFetchHubMaster(
+        actionFetchRole(
           1,
           { row, order },
           {
@@ -100,6 +98,7 @@ const useRoleListHook = ({}) => {
       // setSidePanel((e) => !e);
       // setEditId(data?.id);
       // setEditData(data);
+      history.push(`${RouteName.ROLE_CREATE_UPDATE}${data?.id}`)
     },
     [setEditData, setSidePanel, setEditId]
   );
