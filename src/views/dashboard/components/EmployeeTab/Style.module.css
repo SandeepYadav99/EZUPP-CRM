@@ -264,4 +264,7 @@ height: 422px;
     object-fit: cover;
     border-radius: 100% !important;
   }
+  .meetingSchedule {
+    min-width: 100%; 
+  }
 }

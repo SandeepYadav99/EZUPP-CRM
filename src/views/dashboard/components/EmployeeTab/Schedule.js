@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styles from "./Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
-import data from "./mockData.json";
+import data from "./mockData";
 import { Typography } from "@mui/material";
 import avatar from "../../../../assets/Assets/avatar 1.png";
 import avatar1 from "../../../../assets/Assets/avatar 2.png";
@@ -11,14 +11,14 @@ import menu from "../../../../assets/Assets/ic_kebab_menu.png";
 import StatusPill from "../../../../components/Status/StatusPill.component";
 
 const Schedule = () => {
-  const { Data } = data;
+  //const { Data } = data;
   return (
     <>
-      {Data.map((item, index) => (
+     
         <ShadowBox className={styles.meetingSchedule}>
           <span style={{ display: "flex", alignItems: "center" }}>
             <Typography variant={"h4"} color={"text.primary"}>
-              {item.title}
+              {data.title}
             </Typography>
             <img
               src={menu}
@@ -27,16 +27,17 @@ const Schedule = () => {
               style={{ marginLeft: "auto" }}
             />
           </span>
+          {data.Data.map((item, index) => (
           <div className={styles.members}>
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                marginBottom: "20px",
+                //marginBottom: "20px",
               }}
             >
               <div className={styles.gap}>
-              <img src={avatar} alt="Image"  style={{ marginRight: "10px" }} />
+              <img src={item.image} alt="Image"  style={{ marginRight: "10px" }} />
               <div>
               <Typography variant={"h5"} color={"text.primary"}  sx={{ mb: 0.3 }}>
                 {item.subtitle}
@@ -56,12 +57,12 @@ const Schedule = () => {
               </div>
               
               <div style={{ display: "flex", alignItems: "center", marginTop: "10px"}}>
-                  <StatusPill status={"Business"} color={"business"} />
+                  <StatusPill status={item.status} color={item.color} />
                 </div>
               
             </div>
 
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -192,11 +193,12 @@ const Schedule = () => {
               <div  style={{ display: "flex", alignItems: "center", marginTop: "10px"}}>
               <StatusPill status={"Payment"} color={"low"} />
               </div>
-            </div>
+            </div> */}
           
           </div>
+           ))}
         </ShadowBox>
-      ))}
+     
     </>
   );
 };

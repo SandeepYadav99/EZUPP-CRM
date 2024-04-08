@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import styles from "./Style.module.css";
 const QuickAccess = () => {
   // const { Data } = data;
-  return (
+  return ( 
     <>
       <ShadowBox className={styles.quickAccess}>
         

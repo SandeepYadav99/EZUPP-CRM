@@ -10,23 +10,16 @@ import {
 } from '@mui/material';
 
 import styles from "./Style.module.css";
-import data from './data.json';
-import trophy from '../../../../assets/Assets/trophy.png'
-import customer from '../../../../assets/Assets/ic_customer.png';
-import profit from '../../../../assets/Assets/ic_profit.png';
-import transaction from '../../../../assets/Assets/ic_transaction.png'
-import contact from '../../../../assets/Assets/ic_add_contact.png'
-import query from '../../../../assets/Assets/ic_add_query.png'
-import sales from '../../../../assets/Assets/ic_sales_up.png'
+import data from './data';
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import {PrimaryButton} from "../../../../components/Buttons/PrimaryButton";
 const TopRow = () => {
   
-  const { Data } = data;
+ // const { Data } = data;
   return (
     <>
         <div className={styles.div1}> 
-        {Data.map((item, index) => (
+        {data.Data.map((item, index) => (
           <>
           <div className={styles.congratulation}  >
            <ShadowBox style={{height:"98%"}}>
@@ -46,7 +39,7 @@ const TopRow = () => {
           
             <div className={styles.buttonAndImageContainer} >
               <PrimaryButton size={'small'} className={styles.primary} >{item.buttonText}</PrimaryButton>
-              <img src={trophy} className={styles.image} />
+              <img src={item.image1} className={styles.image} />
              
           </div>
           </ShadowBox>  
@@ -70,7 +63,7 @@ const TopRow = () => {
               </span>
             <div className={styles.newCustomer}>
               <div className={styles.iconCont}>
-              <img src={customer} className="customerImg" alt="Query Image" />
+              <img src={item.image2} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
                 
                   <Typography variant={'h3'} color={'text.primary'}>
@@ -83,7 +76,7 @@ const TopRow = () => {
                 </div>
               </div>
               <div className={styles.iconCont}>
-              <img src={profit} className="customerImg" alt="Query Image" />
+              <img src={item.image3} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
                   <Typography variant={'h3'} color={'text.primary'}>
                     {item.totalProfit}{" "}
@@ -95,7 +88,7 @@ const TopRow = () => {
                 </div>
               </div>
               <div className={styles.iconCont}>
-              <img src={transaction} className="customerImg" alt="Query Image" />
+              <img src={item.image4} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
                   <Typography variant={'h3'} color={'text.primary'}>
                     {item.newTransactions}{" "}
@@ -118,7 +111,7 @@ const TopRow = () => {
             </Typography>
             <div className={styles.line} style={{ width: '100%', margin: '10px auto' }}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={contact} alt="Image" style={{ marginRight: '10px' }} />
+            <img src={item.image5} alt="Image" style={{ marginRight: '10px' }} />
             <div>
             <Typography variant={'subtitle1'} color={'text.primary'}>
                     {item.titleContact}
@@ -130,7 +123,7 @@ const TopRow = () => {
             </div>
             <div className={styles.line} style={{ marginBottom: '15px', marginTop: '10px'}}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={query} alt="Image" style={{ marginRight: '10px' }} />
+            <img src={item.image6} alt="Image" style={{ marginRight: '10px' }} />
             <div>
             <Typography variant={'subtitle1'} color={'text.primary'}>
                     {item.titleQuery}
