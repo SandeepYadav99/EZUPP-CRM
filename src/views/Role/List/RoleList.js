@@ -116,8 +116,8 @@ const RoleList = (props) => {
         key: "user_id",
         label: "Action",
         render: (temp, all) => (
-          <div>
-            <IconButton
+          <>
+            {/* <IconButton
               className={"tableActionBtn"}
               color="secondary"
               disabled={isCalling}
@@ -127,8 +127,8 @@ const RoleList = (props) => {
               }}
             >
               <Edit fontSize={"small"} />
-            </IconButton>
-          </div>
+            </IconButton> */}
+          </>
         ),
       },
     ];
