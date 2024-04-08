@@ -21,6 +21,7 @@ import {
   serviceCreateProviderUser,
   serviceGetProviderUserDetail,
   serviceProfileManager,
+  serviceProviderIsExist,
   serviceProviderProfileGetKeyword,
   serviceUpdateProviderUser,
 } from "../../../services/ProviderUser.service";
@@ -51,7 +52,8 @@ function useUserCreateHook() {
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const codeDebouncer = useDebounce(form?.contact, 6000);
+  const emailDebouncer = useDebounce(form.email, 500);
+  const empIdDebouncer = useDebounce(form.employee_id, 500);
   const [manager, setManager] = useState([]);
   const [department, setDepartment] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -83,6 +85,47 @@ function useUserCreateHook() {
       }
     });
   }, []);
+
+  const validateField = useCallback(
+    (field, values, errorKey, existsMessage) => {
+      serviceProviderIsExist({ [field]: values, id: id || null }).then(
+        (res) => {
+          if (!res.error) {
+            const errors = { ...errorData };
+            if (res.data.is_exists) {
+              errors[errorKey] = existsMessage;
+            } else {
+              delete errors[errorKey];
+            }
+            setErrorData(errors);
+          }
+        }
+      );
+    },
+    [errorData, setErrorData, id]
+  );
+
+  const checkCodeValidation = useCallback(() => {
+    validateField("email", form.email, "email", "Admin User Email Exists");
+  }, [form.email, id]);
+
+  const checkEmpIdValidation = useCallback(() => {
+    validateField(
+      "employee_id",
+      form.employee_id,
+      "employee_id",
+      "Admin User Employee Id Exists"
+    );
+  }, [form.employee_id, id]);
+
+  useEffect(() => {
+    if (emailDebouncer) checkCodeValidation();
+  }, [emailDebouncer]);
+
+  useEffect(() => {
+    if (empIdDebouncer) checkEmpIdValidation();
+  }, [empIdDebouncer]);
+
   useEffect(() => {
     if (id) {
       serviceGetProviderUserDetail({ id: id }).then((res) => {
@@ -97,7 +140,7 @@ function useUserCreateHook() {
 
             contact: data?.contact,
             email: data?.email,
-             role: data?.role?.id,
+            role: data?.role?.id,
             // type: string;
             employee_id: data?.employee_id,
             joining_date: data?.joining_date,
