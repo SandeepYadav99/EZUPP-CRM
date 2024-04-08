@@ -33,7 +33,7 @@ function useCreateHook({ location }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checked, setChecked] = useState(false);
   const [industries, setIndustries] = useState([]);
-  const [coverImage, setCoverImage] = useState(null);
+  const [coverImage, setCoverImage] = useState("");
   const [confirmPopUp, setConfirmPopUp] = useState(false);
   const [taglist, setTagList] = useState([]);
   const [editor_data, setEditor_Data] = useState(null);
@@ -54,7 +54,7 @@ function useCreateHook({ location }) {
   }, []);
 
   const onChangeCheckBox = () => {
-    setChecked((e) => !e);
+    setChecked(!checked);
   };
 
   useEffect(() => {

@@ -62,8 +62,6 @@ const BlogsCreate = ({ location }) => {
   const defaultTheme = createMuiTheme();
   const params = useParams();
 
-  console.log(coverImage,"CoverImage is here")
-
   const renderEditor = () => {
     if (editor_data) {
       return (
@@ -265,7 +263,7 @@ const BlogsCreate = ({ location }) => {
         <div className={"formGroup"}>
           <FileField
             bannerLabel="Upload Image"
-            default_image={coverImage}
+            default_image={coverImage ? coverImage : ""}
             // imageClass={styles.inputFileUploader}
             max_size={5 * 1024 * 1024}
             type={["png", "jpeg", "jpg"]}
