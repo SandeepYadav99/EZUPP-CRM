@@ -112,7 +112,7 @@ const BlogListContainer = () => {
         render: (temp, all) => (
           <div>
             <MenuItemView
-              handleEdit={()=>handleEdit(allData)}
+              handleEdit={()=>handleEdit(all)}
               blogId={all.slug}
             />
           </div>

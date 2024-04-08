@@ -91,9 +91,9 @@ const useBlogsHook = () => {
 
   const handleEdit = useCallback(
     (data) => {
-      if (data[0]?.id) {
-        setEditData(data[0]?.id);
-        history.push(`blogs/update/${data[0]?.id}`);
+      if (data?.id) {
+        setEditData(data?.id);
+        history.push(`blogs/update/${data?.id}`);
       }
     },
     [editData]
