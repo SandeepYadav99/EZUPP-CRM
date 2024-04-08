@@ -42,7 +42,9 @@
   font-weight: 700;
   margin-left: 15px;
 }
-
+.imageContainer{
+  margin-right: 20%;
+}
 .infoTitle {
   margin-bottom: 15px;
   padding-bottom: 5px;

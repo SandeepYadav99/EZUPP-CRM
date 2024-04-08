@@ -8,11 +8,20 @@ import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import { Add, Create, Edit } from "@mui/icons-material";
-
+import {
+  Avatar,
+  AvatarGroup,
+  Badge,
+  Card,
+  CardContent,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import useRoleListHook from "./RoleListHook";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
+import ImageStack from "../../../components/AvatarGroup/ImageStack";
 
 const RoleList = (props) => {
   const {
@@ -61,16 +70,9 @@ const RoleList = (props) => {
 
   const renderAssociatedIndustriesName = useCallback(
     (industryData) => (
-      <>
-        {industryData?.map((industry, index) => (
-          <div key={industry.id} className={styles.image}>
-            {console.log(industry, "User")}
-            <img src={industry.image} alt="" />
-            {/* {}
-            {index < industryData.length - 1 && ", "} */}
-          </div>
-        ))}
-      </>
+      <div className={styles.imageContainer}>
+        <ImageStack industryData={industryData} />
+      </div>
     ),
     []
   );
@@ -88,7 +90,7 @@ const RoleList = (props) => {
         key: "name",
         label: "Name",
         sortable: false,
-        render: (value, all) => <div>{capitalizeFirstLetter(all?.name)} </div>,
+        render: (value, all) => <>{capitalizeFirstLetter(all?.name)} </>,
       },
       {
         key: "description",
@@ -101,7 +103,7 @@ const RoleList = (props) => {
         label: "Users",
         sortable: false,
         render: (temp, all) => (
-          <div>{renderAssociatedIndustriesName(all?.users)} </div>
+          <>{renderAssociatedIndustriesName(all?.users)} </>
         ),
       },
       {

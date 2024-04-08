@@ -55,6 +55,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
             ...form,
             name: data?.name,
             description: data?.description,
+            displayName:data?.display_name
           });
         } else {
         }
