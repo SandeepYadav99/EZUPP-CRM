@@ -43,15 +43,13 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     handleSubmit,
     onBlurHandler,
     changeTextData,
-    listData,
-
     isSubmitting,
-    
     data,
-    permissions,
     
     permisionChangeHandler,
     id,
+    
+    permission
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
 
@@ -96,15 +94,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.name}
-                errorText={errorData?.name}
+                isError={errorData?.displayName}
+                errorText={errorData?.displayName}
                 label="Display Name"
-                value={form?.name}
+                value={form?.displayName}
                 onTextChange={(text) => {
-                  changeTextData(text, "name");
+                  changeTextData(text, "displayName");
                 }}
                 onBlur={() => {
-                  onBlurHandler("name");
+                  onBlurHandler("displayName");
                 }}
               />
             </div>
@@ -112,17 +110,17 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.name}
-                errorText={errorData?.name}
+                isError={errorData?.description}
+                errorText={errorData?.description}
                 multiline
                 rows="3"
                 label="Role Description"
-                value={form?.name}
+                value={form?.description}
                 onTextChange={(text) => {
-                  changeTextData(text, "name");
+                  changeTextData(text, "description");
                 }}
                 onBlur={() => {
-                  onBlurHandler("name");
+                  onBlurHandler("description");
                 }}
               />
             </div>
@@ -131,8 +129,8 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
         <>
           <RoleTableComponent
             classes={classes}
-            data={data}
-            permissions={permissions}
+            // data={data}
+            permissions={permission}
             changeTextData={changeTextData}
             permisionChangeHandler={permisionChangeHandler}
           />

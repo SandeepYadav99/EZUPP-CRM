@@ -23,7 +23,7 @@ const useRoleListHook = ({}) => {
     query,
     query_data: queryData,
     all,
-  } = useSelector((state) => state.hubMaster);
+  } = useSelector((state) => state.role);
 
   useEffect(() => {
     dispatch(
@@ -95,11 +95,11 @@ const useRoleListHook = ({}) => {
     [setEditId, setSidePanel, setEditData]
   );
 
-  const handleEditHubMaster = useCallback(
+  const handleEdit = useCallback(
     (data) => {
-      setSidePanel((e) => !e);
-      setEditId(data?.id);
-      setEditData(data);
+      // setSidePanel((e) => !e);
+      // setEditId(data?.id);
+      // setEditData(data);
     },
     [setEditData, setSidePanel, setEditId]
   );
@@ -131,7 +131,7 @@ const useRoleListHook = ({}) => {
     isSidePanel,
     configFilter,
     editId,
-    handleEditHubMaster,
+    handleEdit,
     handleCreate
   };
 };

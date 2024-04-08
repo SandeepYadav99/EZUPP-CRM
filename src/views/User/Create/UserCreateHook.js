@@ -59,6 +59,7 @@ function useUserCreateHook() {
     ROLES: [],
   });
 
+  
   useEffect(() => {
     serviceGetList(["ROLES"]).then((res) => {
       if (!res.error) {
@@ -66,6 +67,8 @@ function useUserCreateHook() {
       }
     });
   }, []);
+
+
   useEffect(() => {
     serviceProfileManager({}).then((res) => {
       if (!res?.error) {

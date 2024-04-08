@@ -27,7 +27,7 @@ const RoleList = (props) => {
     handleCreate,
     isSidePanel,
     editId,
-    handleEditHubMaster,
+    handleEdit,
   } = useRoleListHook({});
 
   const {
@@ -35,7 +35,7 @@ const RoleList = (props) => {
     all: allData,
     currentPage,
     is_fetching: isFetching,
-  } = useSelector((state) => state.hubMaster);
+  } = useSelector((state) => state.role);
 
   const renderFirstCell = useCallback((user) => {
     console.log(user, "User ");
@@ -75,19 +75,19 @@ const RoleList = (props) => {
       {
         key: "name",
         label: "Name",
-        sortable: true,
+        sortable: false,
         render: (value, all) => <div>{capitalizeFirstLetter(all?.name)} </div>, 
       },
       {
         key: "description",
         label: "Description",
-        sortable: true,
+        sortable: false,
         render: (temp, all) => renderAssociatedIndustriesName(all?.industryData)
       },
       {
         key: "users",
         label: "Users",
-        sortable: true,
+        sortable: false,
         render: (temp, all) => renderAssociatedIndustriesName(all?.industryData)
       },
     
@@ -102,7 +102,7 @@ const RoleList = (props) => {
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
-                handleEditHubMaster(all)
+                handleEdit(all)
               }}
             >
               <Edit fontSize={"small"} />
@@ -111,7 +111,7 @@ const RoleList = (props) => {
         ),
       },
     ];
-  }, [renderAssociatedIndustriesName, isCalling, handleEditHubMaster]);
+  }, [renderAssociatedIndustriesName, isCalling, handleEdit]);
 
   const tableData = useMemo(() => {
     const datatableFunctions = {
