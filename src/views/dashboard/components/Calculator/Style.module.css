@@ -46,7 +46,7 @@ font-family: Arial !important; */
     padding: 10px;
     border-radius: 10px;
     min-width: 42% !important;
-    height: 441px;
+    height: fit-content;
     /* left: 390px; */
    margin-left: -20px;
    display: flex;

@@ -68,7 +68,13 @@
   gap: 10px;
   justify-content: space-between !important;
 }
-
+.quickAccess{
+  width: 58%; 
+}
+.image{
+  width: 590px;
+height: 270px;
+}
 .iconCont {
   display: flex;
   width: 30%;
@@ -106,7 +112,7 @@
 .row{
   display: flex;
   /* flex-wrap: nowrap; */
-
+  align-items: flex-start;
   
 }
 .calendar-wrapper {

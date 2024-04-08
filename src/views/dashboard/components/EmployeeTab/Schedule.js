@@ -17,7 +17,7 @@ const Schedule = () => {
       {Data.map((item, index) => (
         <ShadowBox className={styles.meetingSchedule}>
           <span style={{ display: "flex", alignItems: "center" }}>
-            <Typography variant={"h4"} color={"text.secondary"}>
+            <Typography variant={"h4"} color={"text.primary"}>
               {item.title}
             </Typography>
             <img
@@ -38,7 +38,7 @@ const Schedule = () => {
               <div className={styles.gap}>
               <img src={avatar} alt="Image"  style={{ marginRight: "10px" }} />
               <div>
-              <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+              <Typography variant={"h5"} color={"text.primary"}  sx={{ mb: 0.3 }}>
                 {item.subtitle}
               </Typography>
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -72,7 +72,7 @@ const Schedule = () => {
               <img src={avatar1} alt="Image" style={{ marginRight: "10px" }} />
               
               <div>
-                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                <Typography variant={"h5"} color={"text.primary"}  sx={{ mb: 0.3 }}>
                   {item.subtitle2}
                 </Typography>
                 <div className={styles.date}>
@@ -111,7 +111,7 @@ const Schedule = () => {
               <img src={avatar2} alt="Image" style={{ marginRight: "10px" }} />
               
               <div>
-                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                <Typography variant={"h5"} color={"text.primary"}  sx={{ mb: 0.3 }}>
                   {item.subtitle3}
                 </Typography>
                 <div className={styles.date}>
@@ -142,7 +142,7 @@ const Schedule = () => {
                <div className={styles.gap}>
               <img src={avatar} alt="Image" style={{ marginRight: "10px" }} />
               <div>
-                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                <Typography variant={"h5"} color={"text.primary"}  sx={{ mb: 0.3 }}>
                   {item.subtitle}
                 </Typography>
                 <div className={styles.date}>
@@ -173,7 +173,7 @@ const Schedule = () => {
               <div className={styles.gap}>
               <img src={avatar1} alt="Image" style={{ marginRight: "10px" }} />
               <div>
-                <Typography variant={"h5"} color={"text.secondary"}  sx={{ mb: 0.3 }}>
+                <Typography variant={"h5"} color={"text.primary"}  sx={{ mb: 0.3 }}>
                   {item.subtitle2}
                 </Typography>
                 <div className={styles.date}>

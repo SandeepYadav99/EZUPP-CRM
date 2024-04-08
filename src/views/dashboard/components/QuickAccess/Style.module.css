@@ -1,5 +1,5 @@
 .quickAccess{
-    width: 70%;
+    /* width: 70%; */
     /* display: flex; */
     flex: 1;
     position: relative;
@@ -19,7 +19,7 @@
     height: 180%;
    border-right: 2px solid #ebedf4;
    margin-right: 10px;
-
+margin-left: 10px;
 
 }
 .vline {
