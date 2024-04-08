@@ -75,7 +75,9 @@ height: 20px;
 
   display: flex;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 10px 10px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
   /* border-bottom: 2px solid #ebedf4; */
 }
 .imageNameContainer {
@@ -150,7 +152,7 @@ height: 20px;
 }
 .iconTabsEvents_Box{
   display: flex;
-  gap: 11px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
 }
@@ -183,7 +185,11 @@ height: 422px;
   display: flex;
   flex-direction: column;
   
-  padding: 10px 15px;
+  /* padding: 10px 10px; */
+  padding-top: 1px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-bottom: 2px solid #ebedf4;
 
 }
@@ -195,10 +201,12 @@ height: 422px;
 .TaskList{
   display: flex;
   gap: 2rem;
+  /* padding: 5px; */
 }
 .buttonsBox{
   display: flex;
   gap:2rem;
+  padding-top: 10px;
 }
 .messageCounter{
   border-radius: 50%;

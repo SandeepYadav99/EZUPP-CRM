@@ -32,7 +32,7 @@ function EventCard({ data, item }) {
       return (
         <>
           <div className={styles.birthdayEventWrapper}>
-            <Typography component="span" variant="h4" align="end">
+            <Typography component="span" variant="h4" align="end" sx={{paddingTop:"5px"}}>
               My Task (3)
             </Typography>
             <div className={styles.taskListButtonWrapper}>
@@ -81,8 +81,13 @@ function EventCard({ data, item }) {
                     )}
                     <StatusPill status={"Discuss"} color={"Discuss"} />
                   </div>
+                
                 </div>
+                
+                {/* <hr style={{width:"40%",border:" 2px solid #ebedf4"}}></hr> */}
               </div>
+              
+              
             );
           })}
         </>
