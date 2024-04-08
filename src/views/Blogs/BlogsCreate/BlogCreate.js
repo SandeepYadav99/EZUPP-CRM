@@ -53,6 +53,7 @@ const BlogsCreate = ({ location }) => {
     anchor,
     coverImage,
     checked,
+    descriptionRef,
   } = useCreateHook({ location });
 
   const defaultTheme = createMuiTheme();
@@ -259,7 +260,7 @@ const BlogsCreate = ({ location }) => {
         <div className={"formGroup"}>
           <FileField
             bannerLabel="Upload Image"
-            default_image={coverImage ? coverImage : ""}
+            default_image={form?.image ? form?.image : coverImage}
             max_size={5 * 1024 * 1024}
             type={["png", "jpeg", "jpg"]}
             fullWidth={true}
@@ -294,7 +295,9 @@ const BlogsCreate = ({ location }) => {
           <label className={styles.enter}>Blog Description</label>
           <NewEditor
             editorData={form?.blog_description}
-            handleChangeEditor={handleEditor}
+            handleEditor={(html) => {
+              descriptionRef.current(html, "blog_description");
+            }}
           />
         </div>
 

@@ -41,6 +41,9 @@ function useCreateHook({ location }) {
 
   const params = useParams();
 
+  const descriptionRef = useRef(null);
+
+
   useEffect(() => {
     serviceGetTagsList()?.then((res) => {
       setTagList(res?.data);
@@ -161,6 +164,9 @@ function useCreateHook({ location }) {
     },
     [removeError, form, setForm]
   );
+
+  descriptionRef.current = changeTextData;
+
 
   const submitToServer = useCallback(
     (status) => {
