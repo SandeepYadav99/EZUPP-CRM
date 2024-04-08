@@ -28,13 +28,13 @@ const TopRow = () => {
         <div className={styles.div1}> 
         {Data.map((item, index) => (
           <>
-          <div className={styles.congratulation} >
-           <ShadowBox>
+          <div className={styles.congratulation}  >
+           <ShadowBox style={{height:"98%"}}>
             <Typography variant={'h4'} color={'text.secondary'} 
             >
               {item.title}
               </Typography>
-            <Typography variant={'body1'} color={'text.secondary'}>
+            <Typography variant={'body2'} color={'text.secondary'}>
             {item.subtitle}
             </Typography> 
             <div className={styles.spacer} />
@@ -58,10 +58,10 @@ const TopRow = () => {
           
           <div className={`${styles.sales} `} >
           
-          <ShadowBox>
+          <ShadowBox style={{height:"98%"}}>
               <Typography variant={'h4'} color={'text.secondary'} sx={{mb: 1.5}}>{item.titleSales}</Typography>
               
-              <Typography variant={'h4'} color={'secondary'}>{item.totalSales}</Typography>
+              <Typography variant={'h3'} color={'secondary'}>{item.totalSales}</Typography>
               <span style={{ display: 'flex', alignItems: 'center' }}>
               <Typography variant={'body2'} color={'text.secondary'}>{item.totalSalesSubtitle}
                
@@ -73,7 +73,7 @@ const TopRow = () => {
               <img src={customer} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
                 
-                  <Typography variant={'h2'} color={'text.primary'}>
+                  <Typography variant={'h3'} color={'text.primary'}>
                     {item.newCustomers}{" "}
                   </Typography>
 
@@ -85,7 +85,7 @@ const TopRow = () => {
               <div className={styles.iconCont}>
               <img src={profit} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
-                  <Typography variant={'h2'} color={'text.primary'}>
+                  <Typography variant={'h3'} color={'text.primary'}>
                     {item.totalProfit}{" "}
                   </Typography>
 
@@ -97,7 +97,7 @@ const TopRow = () => {
               <div className={styles.iconCont}>
               <img src={transaction} className="customerImg" alt="Query Image" />
                 <div className={styles.customerDiv2}>
-                  <Typography variant={'h2'} color={'text.primary'}>
+                  <Typography variant={'h3'} color={'text.primary'}>
                     {item.newTransactions}{" "}
                   </Typography>
 
@@ -112,11 +112,11 @@ const TopRow = () => {
 
 
           <div className={styles.quick} >
-          <ShadowBox>
+          <ShadowBox style={{height:"98%"}}>
             <Typography variant={'h4'} color={'text.secondary'}>
              {item.titleQuick}
             </Typography>
-            <hr style={{ width: '100%', margin: '10px auto' }}/>
+            <div className={styles.line} style={{ width: '100%', margin: '10px auto' }}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={contact} alt="Image" style={{ marginRight: '10px' }} />
             <div>
@@ -128,7 +128,7 @@ const TopRow = () => {
             </Typography>
             </div>
             </div>
-            <hr/>
+            <div className={styles.line} style={{ marginBottom: '15px', marginTop: '10px'}}/>
             <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={query} alt="Image" style={{ marginRight: '10px' }} />
             <div>

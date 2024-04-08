@@ -19,6 +19,7 @@ import dataValue from "./components/EmployeeTab/data.json";
 import GraphComponent from "./components/GraphComponent/Graph";
 import HalfDoughnut from "./components/HalfDoughnutGraph/HalfDoughnut";
 import Calculator from "./components/Calculator/Calculator";
+import QuickAccess from "./components/QuickAccess/QuickAccess";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -33,12 +34,11 @@ const Dashboard = () => {
       <div className={styles.container}>
         <TopRow/>
         <div className={styles.employeeTab}>
-          <div className={styles.meetingSchedule}>
-            <span style={{fontSize: "18px", fontWeight: "600"}}>
-              Meeting Schedule
-            </span>
-            <EventCard data={dataValue?.birthdays}/>
-          </div>
+       
+          
+          <EventCard />
+           
+        
           <EmployeeTab/>
         </div>
 
@@ -47,7 +47,9 @@ const Dashboard = () => {
           <GraphComponent/>
           <HalfDoughnut/>
         </div>
+        
         <Calculator/>
+        <QuickAccess/>
       </div>
     </React.Fragment>
   );
