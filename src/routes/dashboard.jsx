@@ -49,6 +49,7 @@ import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
+import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 
 const dashboardRoutes = [
   {
@@ -402,7 +403,22 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
-  }
+  },
+  {
+    path:`${RouteName?.BLOGS_CREATE}`,
+    component: BlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path:`${RouteName?.BLOGS_UPDATE}:id`,
+    component: BlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+ 
 ];
 
 export default dashboardRoutes;
