@@ -5,7 +5,6 @@ import {
   actionSetPageBlogs,
 } from "../../../actions/Blogs.action";
 import { useParams } from "react-router";
-import { serviceGetIndustryList } from "../../../services/Industry.service";
 import history from "../../../libs/history.utils";
 
 const useBlogsHook = () => {
@@ -26,11 +25,7 @@ const useBlogsHook = () => {
 
   const { id } = useParams();
 
-  useEffect(() => {
-    serviceGetIndustryList()?.then((res) => {
-      setDataList(res?.data);
-    });
-  }, []);
+  
 
   useEffect(() => {
     dispatch(

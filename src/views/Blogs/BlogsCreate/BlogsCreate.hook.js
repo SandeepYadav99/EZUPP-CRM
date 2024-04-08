@@ -23,7 +23,7 @@ function useCreateHook({ location }) {
     meta_description: "",
     author: "",
     image: null,
-    is_featured: "",
+    is_featured: true,
     blog_description: "",
     publish_on: "",
     status: "ACTIVE",
@@ -41,7 +41,6 @@ function useCreateHook({ location }) {
 
   const params = useParams();
 
-  console.log(form?.is_featured,"is_featured is here")
   useEffect(() => {
     serviceGetTagsList()?.then((res) => {
       setTagList(res?.data);
@@ -55,7 +54,7 @@ function useCreateHook({ location }) {
   }, []);
 
   const onChangeCheckBox = () => {
-    setChecked((e)=>!e);
+    setChecked(!checked);
   };
 
   useEffect(() => {
@@ -243,7 +242,7 @@ function useCreateHook({ location }) {
   const handleEditor = (data) => {
     setForm({
       ...form,
-      blog_description:data,
+      blog_description: data,
     });
   };
 

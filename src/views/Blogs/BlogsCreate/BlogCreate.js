@@ -286,7 +286,7 @@ const BlogsCreate = ({ location }) => {
             color={"primary"}
             label={"Featured"}
             checked={form?.is_featured}
-            handleChange={() => onChangeCheckBox()}
+            handleChange={() => onChangeCheckBox}
           />
         </div>
 
