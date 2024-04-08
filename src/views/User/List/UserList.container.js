@@ -128,7 +128,7 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            {/* <IconButton
+             <IconButton
               // disabled={is_calling}
               onClick={() => handleProfile(all)}
             >
@@ -139,7 +139,7 @@ const UserList = (props) => {
               onClick={() => handleEdit(all)}
             >
               <Edit fontSize={"small"} />
-            </IconButton> */}
+            </IconButton> 
           </div>
         ),
       },
