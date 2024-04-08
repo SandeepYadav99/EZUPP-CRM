@@ -76,7 +76,8 @@ const Theme = (colors) => {
       high: error,
       medium: '#FF9100',
       low: '#78D90F',
-      active:"#03AE85"
+      active:"#03AE85",
+      Discuss:"#636578"
     },
     success: {
       main: success,
