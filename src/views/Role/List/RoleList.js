@@ -64,7 +64,7 @@ const RoleList = (props) => {
       <div>
         {industryData?.map((industry, index) => (
           <React.Fragment key={index}>
-            {industry.name}
+            {industry?.image}
             {index < industryData.length - 1 && ", "}
           </React.Fragment>
         ))}
