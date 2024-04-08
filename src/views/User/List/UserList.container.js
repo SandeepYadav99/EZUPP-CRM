@@ -44,7 +44,7 @@ const UserList = (props) => {
   } = useSelector((state) => state.provider_user);
 
   const renderFirstCell = useCallback((user) => {
-console.log(user, "User")
+
     return (
       <div className={styles.firstCellFlex} >
         <img src={user.image} alt="" />
@@ -101,7 +101,7 @@ console.log(user, "User")
         key: "name",
         label: "User Info",
         style: { width: "18%" },
-        sortable: true,
+        sortable: false,
         render: (value, all) => <div >{renderFirstCell(all)}</div>,
       },
       {
