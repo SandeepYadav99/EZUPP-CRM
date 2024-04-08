@@ -28,7 +28,7 @@ import { MuiThemeProvider } from "@material-ui/core";
 import history from "../../../libs/history.utils";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
-import CustomCheckbox from "../../../components/FormFields/CustomCheckbox";
+import CustomCheckBox from "../../../components/FormFields/CustomCheckbox";
 import FileField from "../../../components/FileField/File.component";
 import { useParams } from "react-router-dom";
 
@@ -274,16 +274,18 @@ const BlogsCreate = ({ location }) => {
                 changeTextData(file, "image");
               }
             }}
-            style={{ width: "480px", height: "270px" }}
           />
         </div>
         <div className={"formGroup"}>
-          <CustomCheckbox
-            color={"primary"}
-            label={"Featured"}
-            checked={form?.is_featured}
-            handleChange={() => {
-              onChangeCheckBox();
+          <CustomCheckBox
+            label={
+              <span style={{ color: "#888888", fontSize: "14px" }}>
+                Featured
+              </span>
+            }
+            value={form?.is_featured}
+            handleChange={(text) => {
+              changeTextData(text, "is_featured");
             }}
           />
         </div>

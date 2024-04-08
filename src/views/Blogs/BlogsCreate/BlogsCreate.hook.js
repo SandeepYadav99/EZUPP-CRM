@@ -238,7 +238,7 @@ function useCreateHook({ location }) {
       historyUtils.push("/blogs");
     });
   };
-
+ 
   const handleEditor = (data) => {
     setForm({
       ...form,
