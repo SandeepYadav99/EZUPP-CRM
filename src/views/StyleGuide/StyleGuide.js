@@ -203,11 +203,12 @@ const StyleGuide = ({}) => {
               {/* <UserCountAvatarsShapes/> */}
               <UserCountAvatarsStatusIndicator/>
               <UserCountAvatarsLableAvatarStatusIndicator />
+              <UserCountAvatarsLableAvatarGroup avatars={avatars}/>
            </div>
            <br/>
              <div>
               <div >
-                 <UserCountAvatarsLableAvatarGroup avatars={avatars}/>
+                
                </div >
             </div>
              <br/>
