@@ -61,7 +61,7 @@ height: 20px;
   border-bottom-left-radius: 10px;
   background-color: white !important;
   height: 300px;
-  overflow: auto;
+  /* overflow: auto; */
 }
 .paperBackground1 {
   padding: 10px 12px;
@@ -178,6 +178,7 @@ padding-top: 12px;
 flex: 1;
 height: 422px;
 padding: 0px;
+overflow: auto;
 }
 
 .TaskListEventWrapper{
