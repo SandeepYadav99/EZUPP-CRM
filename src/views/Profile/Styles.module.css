@@ -4,7 +4,7 @@
   flex-wrap: wrap;
  
   
-  gap: 5px;
+  gap: 10px;
 
 }
 @media (max-width: 1115px) {
