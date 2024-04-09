@@ -6,11 +6,11 @@ import { Add, ArrowForward, Lock } from '@mui/icons-material';
 const ButtonWrapper = styled(Button)(({ theme }) => ({
 
     '&:hover': {
-        backgroundColor: theme.palette.primaryButton.hover
+        backgroundColor: theme.palette?.primaryButton?.hover
     },
     '&:disabled': {
-        backgroundColor: theme.palette.primaryButton.disabled,
-        color:  theme.palette.primaryButton.disabled_text
+        backgroundColor: theme.palette.primaryButton?.disabled,
+        color:  theme.palette.primaryButton?.disabled_text
     }
 }));
 const PrimaryButton = ({disabled, children, ...props}) => {
