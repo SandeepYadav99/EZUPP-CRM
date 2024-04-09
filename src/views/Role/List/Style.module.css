@@ -63,3 +63,7 @@
 .heading {
   margin-right: 5px;
 }
+.description{
+  max-width: 20rem !important;
+ word-wrap: break-word;
+}

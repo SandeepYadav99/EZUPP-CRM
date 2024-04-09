@@ -96,7 +96,8 @@ const RoleList = (props) => {
         key: "description",
         label: "Description",
         sortable: false,
-        render: (temp, all) => <div>{all?.description} </div>,
+       
+        render: (temp, all) => <div className={styles.description}>{all?.description} </div>,
       },
       {
         key: "users",
