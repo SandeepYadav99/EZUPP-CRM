@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/styles";
 import styles from "./Styles.module.css";
+import componentData from "../JSONDATA/Data";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -561,31 +562,22 @@ export function UserCountAvatarsLableAvatarGroup({ avatars, title }) {
           Pull Up with Tooltip
           </Typography>
           <div className={styles.avaterAlignment}>
-            <AvatarGroup max={4} className={styles.avatar_group2}>
-            <Tooltip title="Vinnie Mostowy" placement="top">
-              <Avatar className={styles.avatar}>
-                <img
-                  src={require("../../assets/img/1.png")}
-                  alt={""}
-                  className={styles.pull_up}
-                />
-              </Avatar>
-              </Tooltip>
-              <Tooltip title="Allen Rieske" placement="top">
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/4.png")} alt={""} />
-              </Avatar>
-              </Tooltip>
-              <Tooltip title="Julee Rossignol" placement="top">
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/5.png")} alt={""} />
-              </Avatar>
-              </Tooltip>
-              <Tooltip title="Darcey Nooner" placement="top">
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/8.png")} alt={""} />
-              </Avatar>
-              </Tooltip>
+          <AvatarGroup max={4} className={styles.avatar_group2}>
+              {componentData?.components[5]?.props?.avatars6?.map((avator) => {
+                return (
+                  <>
+                    <Tooltip title={avator?.title} placement="top">
+                      <Avatar className={styles.avatar}>
+                        <img
+                          src={avator?.imageUrl}
+                          alt={""}
+                          className={styles.pull_up}
+                        />
+                      </Avatar>
+                    </Tooltip>
+                  </>
+                );
+              })}
             </AvatarGroup>
           </div>
         </CardContent>
