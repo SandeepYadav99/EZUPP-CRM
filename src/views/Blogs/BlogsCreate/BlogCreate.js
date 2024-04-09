@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Style.module.css";
 import { MenuItem, Button, IconButton, createMuiTheme } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MUIRichTextEditor from "mui-rte";
 import {
   Backup as BackupIcon,
@@ -24,7 +24,6 @@ import NewEditor from "../../../components/NewEditor/NewEditor.component";
 import slugify from "slugify";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import useCreateHook from "./BlogsCreate.hook";
-import { MuiThemeProvider } from "@material-ui/core";
 import history from "../../../libs/history.utils";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
@@ -72,7 +71,7 @@ const BlogsCreate = ({ location }) => {
               this._setAnchor(null);
             }}
           />
-          <MuiThemeProvider theme={defaultTheme}>
+          <ThemeProvider theme={defaultTheme}>
             <MUIRichTextEditor
               ref={(ref) => {
                 this.editorRef = ref;
@@ -104,7 +103,7 @@ const BlogsCreate = ({ location }) => {
                 },
               }}
             />
-          </MuiThemeProvider>
+          </ThemeProvider>
         </>
       );
     }

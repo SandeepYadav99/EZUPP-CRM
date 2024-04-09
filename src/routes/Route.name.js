@@ -38,7 +38,7 @@ export default {
   CALENDAR:"/calendar",
   ROLE:"/roles",
   ROLE_CREATE:"/role/create",
-  ROLE_CREATE_UPDATE:"/role/update/"
+  ROLE_CREATE_UPDATE:"/role/update/",
   BLOGS_CREATE:"/blogs/create",
   BLOGS_UPDATE:"/blogs/update/"
 };
