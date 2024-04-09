@@ -18,7 +18,7 @@ const ImageStack = ({ industryData: imageArray }) => {
             <div className={styles.avaterAlignment}>
               <AvatarGroup max={3} className={styles.avatar_group}>
                 <Avatar className={styles.avatar}>
-                  <img src={industry?.image} alt={""} />
+                  <img src={industry?.image} alt={""} crossOrigin="anonymous"/>
                 </Avatar>
 
                 <Tooltip title="+3 More" placement="bottom">

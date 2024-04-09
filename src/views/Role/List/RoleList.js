@@ -55,7 +55,7 @@ const RoleList = (props) => {
     return (
       <div className={styles.firstCellFlex}>
         <div>
-          <img src={user?.logo} alt="" />
+          <img src={user?.logo} alt="" crossOrigin="anonymous"/>
         </div>
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <span>
@@ -112,25 +112,25 @@ const RoleList = (props) => {
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all?.status)} </div>,
       },
-      {
-        key: "user_id",
-        label: "Action",
-        render: (temp, all) => (
-          <>
-            {/* <IconButton
-              className={"tableActionBtn"}
-              color="secondary"
-              disabled={isCalling}
-              onClick={() => {
-                // handleSideToggle(all?.id);
-                handleEdit(all);
-              }}
-            >
-              <Edit fontSize={"small"} />
-            </IconButton> */}
-          </>
-        ),
-      },
+      // {
+      //   key: "user_id",
+      //   label: "Action",
+      //   render: (temp, all) => (
+      //     <>
+      //       {/* <IconButton
+      //         className={"tableActionBtn"}
+      //         color="secondary"
+      //         disabled={isCalling}
+      //         onClick={() => {
+      //           // handleSideToggle(all?.id);
+      //           handleEdit(all);
+      //         }}
+      //       >
+      //         <Edit fontSize={"small"} />
+      //       </IconButton> */}
+      //     </>
+      //   ),
+      // },
     ];
   }, [renderAssociatedIndustriesName, isCalling, handleEdit]);
 
