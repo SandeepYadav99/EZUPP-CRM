@@ -510,7 +510,7 @@ export function UserCountAvatarsLableAvatarGroup({ avatars, title }) {
         Avatar Group
       </Typography>
       <div className={styles.flexGrid}>
-        <CardContent>
+        {/* <CardContent>
           <Typography gutterBottom variant="h5">
             Default
           </Typography>
@@ -530,9 +530,9 @@ export function UserCountAvatarsLableAvatarGroup({ avatars, title }) {
               </Avatar>
             </AvatarGroup>
           </div>
-        </CardContent>
+        </CardContent> */}
 
-        <CardContent>
+        {/* <CardContent>
           <Typography gutterBottom variant="h5">
             Pull Up
           </Typography>
@@ -556,7 +556,7 @@ export function UserCountAvatarsLableAvatarGroup({ avatars, title }) {
               </Avatar>
             </AvatarGroup>
           </div>
-        </CardContent>
+        </CardContent> */}
 
         <CardContent>
           <Typography gutterBottom variant="h5">

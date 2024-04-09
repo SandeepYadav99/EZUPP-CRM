@@ -16,7 +16,7 @@ const PersonalInformation = ({
 }) => {
   console.log(form, "Form");
   return (
-    <div>
+    <>
       <div className={"plainPaper"}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
@@ -135,7 +135,7 @@ const PersonalInformation = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

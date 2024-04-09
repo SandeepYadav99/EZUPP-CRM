@@ -31,12 +31,14 @@ export default {
   HUB_MASTERS: "/hub/master",
   TASK_DETAIL: "/task/detail/",
   SERVICE_DETAIL: "/service/detail/",
-  BLOGS_CREATE:'/blogs/create',
-  CALENDAR:"/calendar",
 
   ADMIN_USER:"/users",
   ADMIN_USER_CREATE:"/users/create",
   ADMIN_USER_UPDATE:"/users/update/",
+  CALENDAR:"/calendar",
+  ROLE:"/roles",
+  ROLE_CREATE:"/role/create",
+  ROLE_CREATE_UPDATE:"/role/update/"
   BLOGS_CREATE:"/blogs/create",
   BLOGS_UPDATE:"/blogs/update/"
 };
