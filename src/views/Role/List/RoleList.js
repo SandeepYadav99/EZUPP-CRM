@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import styles from "./Style.module.css";
@@ -7,12 +7,21 @@ import PageBox from "../../../components/PageBox/PageBox.component";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add, Create, Edit } from '@mui/icons-material';
-
+import { Add, Create, Edit } from "@mui/icons-material";
+import {
+  Avatar,
+  AvatarGroup,
+  Badge,
+  Card,
+  CardContent,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import useRoleListHook from "./RoleListHook";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
-
+import StatusPill from "../../../components/Status/StatusPill.component";
+import ImageStack from "../../../components/AvatarGroup/ImageStack";
 
 const RoleList = (props) => {
   const {
@@ -27,7 +36,7 @@ const RoleList = (props) => {
     handleCreate,
     isSidePanel,
     editId,
-    handleEditHubMaster,
+    handleEdit,
   } = useRoleListHook({});
 
   const {
@@ -35,7 +44,7 @@ const RoleList = (props) => {
     all: allData,
     currentPage,
     is_fetching: isFetching,
-  } = useSelector((state) => state.hubMaster);
+  } = useSelector((state) => state.role);
 
   const renderFirstCell = useCallback((user) => {
     console.log(user, "User ");
@@ -46,7 +55,7 @@ const RoleList = (props) => {
     return (
       <div className={styles.firstCellFlex}>
         <div>
-          <img src={user?.logo} alt="" />
+          <img src={user?.logo} alt="" crossOrigin="anonymous"/>
         </div>
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <span>
@@ -59,59 +68,72 @@ const RoleList = (props) => {
     );
   }, []);
 
-  const renderAssociatedIndustriesName = useCallback((industryData) => (
-    <div>
-      {industryData?.map((industry, index) => (
-        <React.Fragment key={index}>
-          {industry.name}
-          {index < industryData.length - 1 && ", "}
-        </React.Fragment>
-      ))}
-    </div>
-  ),[])
-  
+  const renderAssociatedIndustriesName = useCallback(
+    (industryData) => (
+      <div className={styles.imageContainer}>
+        <ImageStack industryData={industryData} />
+      </div>
+    ),
+    []
+  );
+
+  const renderStatus = useCallback((status) => {
+    if (status === "ACTIVE") {
+      return <StatusPill status={"ACTIVE"} color={"active"} />;
+    } else if (status === "INACTIVE") {
+      return <StatusPill status={"INACTIVE"} color={"high"} />;
+    }
+  }, []);
   const tableStructure = useMemo(() => {
     return [
       {
         key: "name",
         label: "Name",
-        sortable: true,
-        render: (value, all) => <div>{capitalizeFirstLetter(all?.name)} </div>, 
+        sortable: false,
+        render: (value, all) => <>{capitalizeFirstLetter(all?.name)} </>,
       },
       {
         key: "description",
         label: "Description",
-        sortable: true,
-        render: (temp, all) => renderAssociatedIndustriesName(all?.industryData)
+        sortable: false,
+       
+        render: (temp, all) => <div className={styles.description}>{all?.description} </div>,
       },
       {
         key: "users",
         label: "Users",
-        sortable: true,
-        render: (temp, all) => renderAssociatedIndustriesName(all?.industryData)
+        sortable: false,
+        render: (temp, all) => (
+          <>{renderAssociatedIndustriesName(all?.users)} </>
+        ),
       },
-    
+      {
+        key: "status",
+        label: "Status",
+        sortable: false,
+        render: (temp, all) => <div>{renderStatus(all?.status)} </div>,
+      },
       {
         key: "user_id",
         label: "Action",
         render: (temp, all) => (
-          <div>
-            <IconButton
+          <>
+           <IconButton
               className={"tableActionBtn"}
               color="secondary"
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
-                handleEditHubMaster(all)
+                handleEdit(all);
               }}
             >
               <Edit fontSize={"small"} />
-            </IconButton>
-          </div>
+            </IconButton> 
+          </>
         ),
       },
     ];
-  }, [renderAssociatedIndustriesName, isCalling, handleEditHubMaster]);
+  }, [renderAssociatedIndustriesName, isCalling, handleEdit]);
 
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -136,7 +158,6 @@ const RoleList = (props) => {
     handleRowSize,
     present,
     currentPage,
- 
   ]);
 
   return (
@@ -146,9 +167,9 @@ const RoleList = (props) => {
           <span className={styles.title}>Roles List</span>
           <ArrowPrimaryButton
             onClick={handleCreate}
-            icon={<Add fontSize="normal"/>}
+            icon={<Add fontSize="normal" />}
           >
-             Create
+            Create
           </ArrowPrimaryButton>
         </div>
 
@@ -169,11 +190,9 @@ const RoleList = (props) => {
                 {...tableData.datatableFunctions}
               />
             </div>
-            
           </div>
         </div>
       </PageBox>
-     
     </div>
   );
 };
