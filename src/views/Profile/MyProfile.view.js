@@ -110,7 +110,7 @@ const Profile = () => {
              <div className={styles.profileFlex}>
               <div className={styles.leftSection}>
                 <>
-                  <ShadowBox>
+                  <ShadowBox width={'98%'}>
                     <div className={styles.heading}>Personal Details</div>
 
                     <div>
