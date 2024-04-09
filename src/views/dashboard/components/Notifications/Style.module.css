@@ -1,0 +1,84 @@
+/* .notifications {
+  width: 40%;
+  background-color: #ffffff;
+  height: 370px;
+  box-shadow: 0px 0px 8px #00000029;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+} */
+
+/* .topic {
+  text-align: left;
+  font: normal normal bold 18px/36px Arial;
+  letter-spacing: 0px;
+  color: #636578;
+  opacity: 1;
+} */
+
+/* .paymentPending {
+  text-align: left;
+  font: normal normal bold 14px/21px Arial;
+  letter-spacing: 0px;
+  color: #636578;
+  opacity: 1;
+} */
+.parentWrapper {
+  background-color: white !important;
+
+  display: flex;
+
+  flex-direction: column;
+  padding: 10px 15px;
+  border-bottom: 2px solid #ebedf4;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.anchor {cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  /* font: normal normal bold 12px/36px Arial; */
+  letter-spacing: 0px;
+  color: #2063ce;
+  opacity: 1;
+}
+.containerWidth{
+  width: 40%;
+  height:350px;
+  overflow: auto;
+}
+/* .container-width{
+  width: 40%;
+} */
+/* .paymentPendingBody {
+  text-align: left;
+  font: normal normal normal 14px/21px Arial;
+  letter-spacing: 0px;
+  color: #888888;
+  opacity: 1;
+} */
+/* .paymentPending_dateTime {
+  text-align: left;
+  font: normal normal bold 12px/21px Arial;
+  letter-spacing: 0px;
+  color: #636578;
+  opacity: 1;
+} */
+
+
+
+
+@media only screen and (max-width: 1024px) {
+.containerWidth{
+  width: 100%;
+}
+}
+
+
+

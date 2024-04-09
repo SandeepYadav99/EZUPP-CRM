@@ -1,0 +1,29 @@
+{
+  "Payment": [
+    {
+      "title": "Payment Pending",
+      "body": "Please be advised that there is an outstanding payment associated with your account",
+      "dateTime": "12/03/2024 | 10:00"
+    },
+    {
+      "title": "Payment Pending",
+      "body": "Please be advised that there is an outstanding payment associated with your account",
+      "dateTime": "12/03/2024 | 10:00"
+    },
+    {
+      "title": "Payment Pending",
+      "body": "Please be advised that there is an outstanding payment associated with your account",
+      "dateTime": "12/03/2024 | 10:00"
+    },
+    {
+        "title": "Payment Pending",
+        "body": "Please be advised that there is an outstanding payment associated with your account",
+        "dateTime": "12/03/2024 | 10:00"
+      },
+      {
+        "title": "Payment Pending",
+        "body": "Please be advised that there is an outstanding payment associated with your account",
+        "dateTime": "12/03/2024 | 10:00"
+      }
+  ]
+}

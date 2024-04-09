@@ -1,6 +1,10 @@
 .quickAccess{
-    width: 70%;
+    /* width: 70%; */
+    /* display: flex; */
+    flex: 1;
+    position: relative;
     height: 141px;
+    /* justify-content: space-around; */
 }
 .title{
     margin-left: 10px;
@@ -12,9 +16,10 @@
   }
 .hline{
     /* width: 2px;  */
-    height: 198%;
+    height: 180%;
    border-right: 2px solid #ebedf4;
    margin-right: 10px;
+margin-left: 10px;
 
 }
 .vline {
@@ -33,7 +38,7 @@
     /* box-shadow: 0px 0px 3px #00000029; */
     /* border: none !important; */
     /* overflow: hidden; */
-    width: 37%;
+    width: 40%;
 }
 .firstRow{
     display: flex;
@@ -49,5 +54,6 @@
 .text{
     flex: 1;
     /* margin-right: 22px; */
-   
+   white-space: nowrap;
+   /* margin-right: 10px; */
 }

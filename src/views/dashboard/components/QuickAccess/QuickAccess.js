@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import styles from "./Style.module.css";
 const QuickAccess = () => {
   // const { Data } = data;
-  return (
+  return ( 
     <>
       <ShadowBox className={styles.quickAccess}>
         
@@ -13,7 +13,7 @@ const QuickAccess = () => {
             <Typography
               className={styles.title}
               variant={"h4"}
-              color={"text.secondary"}
+              color={"text.primary"}
             >
               {data.title}
             </Typography>
@@ -31,7 +31,7 @@ const QuickAccess = () => {
                 <div className={styles.text}>
                   <Typography
                     variant={"h5"}
-                    color={"text.secondary"}
+                    color={"text.primary"}
                     sx={{ ml: 1 }}
                   >
                     {item.subtitle}

@@ -39,7 +39,7 @@ height: 20px;
 /* margin-left: 175px; */
 }
 .meetingSchedule{
-  width:40%;;
+ min-width: 38%;;
   /* background-color:#FFFFFF; */
   height: 422px;;
   /* box-shadow: 0px 0px 8px #00000029; */
@@ -56,7 +56,7 @@ height: 20px;
   border-radius: 10px !important;
 }
 .paperBackground {
-  padding: 10px 12px;
+  /* padding: 10px 12px; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: white !important;
@@ -75,8 +75,10 @@ height: 20px;
 
   display: flex;
   justify-content: space-between;
-  padding: 10px 15px;
-  border-bottom: 2px solid #ebedf4;
+  padding: 10px 10px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
+  /* border-bottom: 2px solid #ebedf4; */
 }
 .imageNameContainer {
   display: flex;
@@ -94,8 +96,8 @@ height: 20px;
   font-weight: 600;
 }
 .userImage {
-  width: 70px;
-  height: 70px;
+  width: 44px;
+  height: 44px;
   object-fit: cover;
 }
 .parentWrapper {
@@ -148,6 +150,79 @@ height: 20px;
   background-repeat: no-repeat;
   background-position: top;
 }
+.iconTabsEvents_Box{
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+.iconTabsEvents_Box>img{
+  height: 24px;
+  width: 24px;
+}
+.iconCardsBoxContainer{
+padding-top: 12px;
+}
+.iconCardsBox{
+  display: flex;
+  gap: 18px;
+
+}
+
+.iconCards{
+  height: 24px;
+  width: 24px;
+
+}
+.containerWidth{
+flex: 1;
+height: 422px;
+
+}
+.TaskListEventWrapper{
+  background-color: white !important;
+
+  display: flex;
+  flex-direction: column;
+  
+  /* padding: 10px 10px; */
+  padding-top: 1px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: 2px solid #ebedf4;
+
+}
+.IconDateBox{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.TaskList{
+  display: flex;
+  gap: 2rem;
+  /* padding: 5px; */
+}
+.buttonsBox{
+  display: flex;
+  gap:2rem;
+  padding-top: 10px;
+}
+.messageCounter{
+  border-radius: 50%;
+    color: #FFFFFF;
+    background: #25CEAE;
+    height: 2rem;
+    width: 2rem;
+    padding: 5px;
+}
+.taskListButtonWrapper{
+  display: flex;
+  gap:1rem;
+}
+.dropdownButtonLabel{
+  padding: 7px !important;
+}
 @media (max-width: 500px) {
   .noEvent > img {
     width: 250px;
@@ -188,5 +263,8 @@ height: 20px;
     height: 70px;
     object-fit: cover;
     border-radius: 100% !important;
+  }
+  .meetingSchedule {
+    min-width: 100%; 
   }
 }

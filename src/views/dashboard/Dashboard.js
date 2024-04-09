@@ -15,11 +15,16 @@ import styles from "./Style.module.css";
 import TopRow from "./components/TopRow/TopRow.component";
 import EmployeeTab from "./components/EmployeeTab/EmployeeTab.component";
 import EventCard from "./components/EmployeeTab/EventCard.component";
-import dataValue from "./components/EmployeeTab/data.json";
+import dataValue from "./components/EmployeeTab/data.js";
 import GraphComponent from "./components/GraphComponent/Graph";
 import HalfDoughnut from "./components/HalfDoughnutGraph/HalfDoughnut";
 import Calculator from "./components/Calculator/Calculator";
 import QuickAccess from "./components/QuickAccess/QuickAccess";
+// import dataValue from "./components/EmployeeTab/data.json";
+import Notifications from "./components/Notifications/Notification";
+import Schedule from "./components/EmployeeTab/Schedule.js";
+import calendar from "../../../src/assets/Assets/calendar.png";
+//import { Schedule } from "@mui/icons-material";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -34,22 +39,35 @@ const Dashboard = () => {
       <div className={styles.container}>
         <TopRow/>
         <div className={styles.employeeTab}>
-       
-          
-          <EventCard />
-           
-        
+          {/* <div > */}
+            {/* <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span> */}
+            {/* <EventCard data={dataValue?.birthdays}/> */}
+          {/* </div> */}
+          {/* <EventCard /> */}
+          <Schedule/>
           <EmployeeTab/>
         </div>
-
-        <div className={styles.chartsDesktop}>
-
-          <GraphComponent/>
-          <HalfDoughnut/>
-        </div>
-        
+        {/* <div className={styles.employeeTab}>
         <Calculator/>
-        <QuickAccess/>
+       <QuickAccess/>
+        </div> */}
+        {/* <QuickAccess/> */}
+        <div className={styles.row}>
+        <div class="calendar-wrapper">
+        <Calculator/>
+        </div>
+       <div style={{display:"flex",flexDirection: "column"}}>
+       
+        <img src={calendar} alt="Image" className={styles.image}/>
+        <QuickAccess  className={styles.quickAccess}/>
+        </div>
+        </div>
+        <div className={styles.chartsDesktop}>
+        <GraphComponent />
+        <HalfDoughnut/>
+        <Notifications/>
+        </div>
+      
       </div>
     </React.Fragment>
   );
