@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageBoxComponent from "../../components/PageBox/PageBox.component";
 import {
-    ActionButton, ArrowActionButton,
+    ActionButton, ActionMultiSelectButton, ArrowActionButton,
     ArrowOutlineButton,
     ArrowPrimaryButton,
     OutlineButton,
@@ -10,7 +10,7 @@ import {
 import styles from './Style.module.css';
 import CustomSelectField from '../../components/FormFields/SelectField/SelectField.component';
 import CustomDatePicker from '../../components/FormFields/DatePicker/CustomDatePicker';
-import {MenuItem, Typography,Autocomplete,TextField} from "@mui/material";
+import {MenuItem, Typography,Autocomplete,TextField, Avatar} from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
@@ -31,21 +31,28 @@ const AutoCompleteData=[
     {
         id:1,
         title:"test",
-        label:"test"
+        label:"test",
+        image:"../../assets/img/1.png",
+        email: "user1@example.com",
     },
     {
         id:2,
         title:"Development",
-        label:"Development"
+        label:"Development",
+        image:"../../assets/img/1.png",
+        email: "user2@example.com",
     },
     {
         id:1,
         title:"QA",
-        label:"QA"
+        label:"QA",
+        image:"../../assets/img/1.png",
+        email: "user3@example.com",
     },
 ]
 const StyleGuide = ({}) => {
     const theme = useTheme();
+        const [selectedUsers, setSelectedUsers] = useState([]);
     // console.log('theme', theme);
     return (
         <PageBoxComponent>
@@ -210,6 +217,46 @@ const StyleGuide = ({}) => {
                       />
                     )}
                       />
+                       <Autocomplete
+                        multiple
+                         id="user-autocomplete"
+                         options={AutoCompleteData ? AutoCompleteData : []}
+                         getOptionLabel={(user) => user.email}
+                         onChange={(event, newValue) => {
+                           setSelectedUsers(newValue);
+                         }}
+                         renderInput={(params) => (
+                           <TextField
+                             {...params}
+                             variant="outlined"
+                             label="Select Users"
+                             placeholder="Select Users"
+                           />
+                         )}
+                         renderOption={(props, option) => (
+                           <li {...props} >
+                             <Avatar src={require("../../assets/img/1.png")} alt={option.email} />
+                             <div className='option_auto_class'>{option.email}</div>
+                           </li>
+                         )}
+                         renderTags={(value, getTagProps) =>
+                           value.map((option, index) => (
+                          <div className='multipe_auto_options'>
+                            <ActionMultiSelectButton>
+                             <Avatar
+                                {...getTagProps({ index })}
+                                src={require("../../assets/img/1.png")}
+                                alt={option.email}
+                                sx={{ width: 20, height: 20 }}
+                             />
+                             <span>{option?.email}</span>
+                        </ActionMultiSelectButton>
+
+                             </div>
+                           ))
+
+                          }
+                        />
                       <div className={styles.boxCont}>
                         <Typography variant={'h6'}>single select</Typography>
                         </div>

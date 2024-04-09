@@ -6,8 +6,6 @@ import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 
 function NotificationCard() {
   const listData = [...NotiList];
-
-  console.log("listData", listData);
   const Card = useCallback(
     ({ data }) => {
       return (
