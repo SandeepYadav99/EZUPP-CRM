@@ -29,7 +29,7 @@ height: 44px;
 .status{
  /* align-items: flex-end; */
   /* margin-left: 40px; */
-  flex: 1; 
+  flex: 1;
   margin-left: auto !important;
 }
 .menu{
@@ -177,14 +177,15 @@ padding-top: 12px;
 .containerWidth{
 flex: 1;
 height: 422px;
-
+padding: 0px;
 }
+
 .TaskListEventWrapper{
   background-color: white !important;
 
   display: flex;
   flex-direction: column;
-  
+
   /* padding: 10px 10px; */
   padding-top: 1px;
   padding-bottom: 10px;
@@ -265,6 +266,6 @@ height: 422px;
     border-radius: 100% !important;
   }
   .meetingSchedule {
-    min-width: 100%; 
+    min-width: 100%;
   }
 }
