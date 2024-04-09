@@ -55,7 +55,7 @@ const UserList = (props) => {
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
-        <img src={user.image} alt="" />
+        <img src={user.image} alt="" crossOrigin="anonymous" />
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
@@ -66,11 +66,11 @@ const UserList = (props) => {
   }, []);
 
   const renderStatus = useCallback((status) => {
-    // if (status === "ACTIVE") {
-    //   <StatusPill status={"ACTIVE"} color={"active"}  />;
-    // } else if (status === "INACTIVE") {
-    //    <StatusPill status={"INACTIVE"} color={"high"} />;
-    // }
+    if (status === "ACTIVE") {
+      return <StatusPill status={"ACTIVE"} color={"active"} />;
+    } else if (status === "INACTIVE") {
+      return <StatusPill status={"INACTIVE"} color={"high"} />;
+    }
   }, []);
 
   const tableStructure = useMemo(
@@ -128,7 +128,7 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-             <IconButton
+            <IconButton
               // disabled={is_calling}
               onClick={() => handleProfile(all)}
             >
@@ -139,7 +139,7 @@ const UserList = (props) => {
               onClick={() => handleEdit(all)}
             >
               <Edit fontSize={"small"} />
-            </IconButton> 
+            </IconButton>
           </div>
         ),
       },
@@ -178,7 +178,6 @@ const UserList = (props) => {
           <span className={styles.title}>User List</span>
           <ArrowPrimaryButton
             onClick={handleCreate}
-            
             icon={<Add fontSize="normal" />}
           >
             CREATE
@@ -194,7 +193,7 @@ const UserList = (props) => {
           />
           <div>
             <br />
-            <div style={{ width: "100%" }} >
+            <div style={{ width: "100%" }}>
               <DataTables
                 {...tableData.datatable}
                 {...tableData.datatableFunctions}
