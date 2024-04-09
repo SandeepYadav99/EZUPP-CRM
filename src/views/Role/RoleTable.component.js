@@ -61,7 +61,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={styles.crud}>
+                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.read}
@@ -73,7 +73,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={styles.crud}>
+                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.create}
@@ -89,7 +89,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={styles.crud}>
+                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.update}
@@ -105,7 +105,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={styles.crud}>
+                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.delete}
