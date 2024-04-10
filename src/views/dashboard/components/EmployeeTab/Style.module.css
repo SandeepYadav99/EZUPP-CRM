@@ -39,7 +39,7 @@ height: 20px;
 /* margin-left: 175px; */
 }
 .meetingSchedule{
- min-width: 38%;;
+ width: 38%;;
   /* background-color:#FFFFFF; */
   height: 422px;;
   /* box-shadow: 0px 0px 8px #00000029; */
@@ -60,7 +60,7 @@ height: 20px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: white !important;
-  height: 300px;
+  height: 336px;
   overflow: auto;
 }
 .paperBackground1 {
@@ -178,9 +178,11 @@ padding-top: 12px;
 flex: 1;
 height: 422px;
 padding: 0px;
+/* overflow: auto; */
 }
 
 .TaskListEventWrapper{
+  width: 75%;
   background-color: white !important;
 
   display: flex;
@@ -224,6 +226,17 @@ padding: 0px;
 .dropdownButtonLabel{
   padding: 7px !important;
 }
+.addTaskwrapper{
+  background-color: white !important;
+
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right:5px;
+
+}
 @media (max-width: 500px) {
   .noEvent > img {
     width: 250px;
@@ -255,6 +268,9 @@ padding: 0px;
     /* height: 85vh; */
     /* max-height: 510px;
       min-height: 510px; */
+  }
+  .meetingSchedule {
+    min-width: 100%; 
   }
 }
 

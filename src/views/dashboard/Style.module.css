@@ -73,7 +73,7 @@
 
 }
 .image{
-  width: 590px;
+  width: 70%;
 height: 270px;
 margin-bottom: 10px;
 }
@@ -98,7 +98,7 @@ margin-bottom: 10px;
 
 .employeeTab {
   display: flex;
-  /* gap: 10px; */
+  gap: 10px !important;
   justify-content: space-between;
 }
 .meetingSchedule {
@@ -113,9 +113,10 @@ margin-bottom: 10px;
 }
 .row{
   display: flex;
+  flex: 1;
+  /* gap: -100% !important; */
   /* flex-wrap: nowrap; */
   align-items: flex-start;
-
 }
 .calendar-wrapper {
   flex: 1;
@@ -212,6 +213,9 @@ margin-bottom: 10px;
     justify-content: center;
     gap: 10px;
   }
+  .image{
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -268,5 +272,15 @@ margin-bottom: 10px;
   .chartsDesktop {
     display: flex;
     flex-direction: column;
+  }
+  .row{
+    display: flex;
+    flex-direction: column;
+  }
+  .image{
+    width: 100%;
+  }
+  .calendar-wrapper {
+    max-width: 100%; 
   }
 }

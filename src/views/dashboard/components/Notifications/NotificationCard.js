@@ -9,13 +9,13 @@ function NotificationCard({ data, index }) {
       key={`Notification_card${index}`}
       className={style.parentWrapper}
     >
-      <Typography component="div" variant="h5" className="">
+      <Typography component="div" variant="subtitle1" className="" color="text.secondary">
         {data?.title}
       </Typography>
-      <Typography component="div" variant="body2" className="">
+      <Typography component="div" variant="body2" className="" color="text.secondary">
         {data?.body}
       </Typography>
-      <Typography component="div" variant="subtitle2" className=" ">
+      <Typography component="div" variant="subtitle3" className=" " color="text.secondary">
         {data?.dateTime}
       </Typography>
     </div>
