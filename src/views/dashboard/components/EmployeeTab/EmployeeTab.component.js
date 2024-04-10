@@ -83,7 +83,7 @@ function EmployeeTab() {
             className={"iconTabsEvents"}
             label={
               <div className={styles.iconTabsEvents_Box}>
-                <img alt="text" src={imageLogo1}/><Typography component="span" variant="h4">Contacts</Typography> 
+                <img alt="text" src={imageLogo1}/><Typography component="span" variant="h6">Contacts</Typography> 
               </div>
             }
             style={{ textTransform: "none" }}
@@ -91,16 +91,16 @@ function EmployeeTab() {
           <Tab
             className={"iconTabsEvents"}
             label={ <div className={styles.iconTabsEvents_Box}>
-            <img alt="text" src={imageLogo2}/><Typography component="span" variant="h4">Messages</Typography> 
+            <img alt="text" src={imageLogo2}/><Typography component="span" variant="h6">Messages</Typography> 
             {/* <Typography component="span" color>Messages</Typography>  */}
-            <Typography  className={styles.messageCounter}component="span">5</Typography>
+            <Typography className={styles.messageCounter}component="span">5</Typography>
           </div>}
             style={{ textTransform: "none" }}
           />
           <Tab
             className={"iconTabsEvents"}
             label={ <div className={styles.iconTabsEvents_Box}>
-            <img alt="text" src={imageLogo3}/><Typography component="span" variant="h4">Task List</Typography> 
+            <img alt="text" src={imageLogo3}/><Typography component="span" variant="h6">Task List</Typography> 
           </div>}
             style={{ textTransform: "none" }}
           />

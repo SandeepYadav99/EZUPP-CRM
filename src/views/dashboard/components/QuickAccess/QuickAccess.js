@@ -12,7 +12,7 @@ const QuickAccess = () => {
           <>
             <Typography
               className={styles.title}
-              variant={"h4"}
+              variant={"h5"}
               color={"text.primary"}
             >
               {data.title}
@@ -30,7 +30,7 @@ const QuickAccess = () => {
                 <img src={item.image} alt="Image" className={styles.image} />
                 <div className={styles.text}>
                   <Typography
-                    variant={"h5"}
+                    variant={"subtitle1"}
                     color={"text.primary"}
                     sx={{ ml: 1 }}
                   >

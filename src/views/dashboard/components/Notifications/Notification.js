@@ -23,7 +23,7 @@ function Notifications() {
   return (
     <ShadowBox   className={style.containerWidth}>
       <div className={style.header}>
-        <Typography component="span" variant="h4">
+        <Typography component="span" variant="h5">
           Notifications
         </Typography>
         <Typography

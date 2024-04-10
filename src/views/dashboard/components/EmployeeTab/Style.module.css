@@ -39,7 +39,7 @@ height: 20px;
 /* margin-left: 175px; */
 }
 .meetingSchedule{
- min-width: 38%;;
+ width: 38%;;
   /* background-color:#FFFFFF; */
   height: 422px;;
   /* box-shadow: 0px 0px 8px #00000029; */
@@ -254,6 +254,9 @@ height: 422px;
     /* height: 85vh; */
     /* max-height: 510px;
       min-height: 510px; */
+  }
+  .meetingSchedule {
+    min-width: 100%; 
   }
 }
 
