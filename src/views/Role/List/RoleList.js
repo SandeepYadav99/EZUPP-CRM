@@ -113,6 +113,7 @@ const RoleList = (props) => {
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all?.status)} </div>,
       },
+      
       // {
       //   key: "user_id",
       //   label: "Action",
