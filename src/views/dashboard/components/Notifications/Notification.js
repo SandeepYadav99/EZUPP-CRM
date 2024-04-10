@@ -21,14 +21,14 @@ function Notifications() {
   }, [viewAll]);
 
   return (
-    <ShadowBox   className={style.containerWidth}>
+    <ShadowBox className={style.containerWidth}>
       <div className={style.header}>
-        <Typography component="span" variant="h4">
+        <Typography component="span" variant="h5" color="text.secondary">
           Notifications
         </Typography>
         <Typography
           component="span"
-          variant="subtitle1"
+          variant="subtitle3"
           className={style.anchor}
           onClick={handleViewClick}
         >

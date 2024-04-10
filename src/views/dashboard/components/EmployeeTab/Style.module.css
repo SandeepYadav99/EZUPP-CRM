@@ -60,8 +60,8 @@ height: 20px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: white !important;
-  height: 300px;
-  /* overflow: auto; */
+  height: 336px;
+  overflow: auto;
 }
 .paperBackground1 {
   padding: 10px 12px;
@@ -178,10 +178,11 @@ padding-top: 12px;
 flex: 1;
 height: 422px;
 padding: 0px;
-overflow: auto;
+/* overflow: auto; */
 }
 
 .TaskListEventWrapper{
+  width: 75%;
   background-color: white !important;
 
   display: flex;
@@ -224,6 +225,17 @@ overflow: auto;
 }
 .dropdownButtonLabel{
   padding: 7px !important;
+}
+.addTaskwrapper{
+  background-color: white !important;
+
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right:5px;
+
 }
 @media (max-width: 500px) {
   .noEvent > img {

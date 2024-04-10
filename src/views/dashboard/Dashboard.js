@@ -37,15 +37,15 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <TopRow/>
+        <TopRow />
         <div className={styles.employeeTab}>
           {/* <div > */}
-            {/* <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span> */}
-            {/* <EventCard data={dataValue?.birthdays}/> */}
+          {/* <span style={{fontSize:"18px",fontWeight:"600"}}>Meeting Schedule</span> */}
+          {/* <EventCard data={dataValue?.birthdays}/> */}
           {/* </div> */}
           {/* <EventCard /> */}
-          <Schedule/>
-          <EmployeeTab/>
+          <Schedule />
+          <EmployeeTab />
         </div>
         {/* <div className={styles.employeeTab}>
         <Calculator/>
@@ -53,21 +53,19 @@ const Dashboard = () => {
         </div> */}
         {/* <QuickAccess/> */}
         <div className={styles.row}>
-        <div class="calendar-wrapper">
-        <Calculator/>
-        </div>
-       <div style={{display:"flex",flexDirection: "column"}}>
-       
-        <img src={calendar} alt="Image" className={styles.image}/>
-        <QuickAccess  className={styles.quickAccess}/>
-        </div>
+          <div class="calendar-wrapper">
+            <Calculator />
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <img src={calendar} alt="Image" className={styles.image} />
+            <QuickAccess className={styles.quickAccess} />
+          </div>
         </div>
         <div className={styles.chartsDesktop}>
-        <GraphComponent />
-        <HalfDoughnut/>
-        <Notifications/>
+          <GraphComponent />
+          <HalfDoughnut />
+          <Notifications />
         </div>
-      
       </div>
     </React.Fragment>
   );

@@ -107,11 +107,19 @@ function EventCard({ data, item }) {
                 </div>
                 <div className={styles.profileContainer}>
                   {/* <span className={styles.profileName}>{emp?.name}</span> */}
-                  <Typography component="span" variant="h5">
+                  <Typography
+                    component="span"
+                    variant="subtitle1"
+                    color={"text.secondary"}
+                  >
                     {emp?.name}
                   </Typography>
 
-                  <Typography component="span" variant="body2">
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color={"text.secondary"}
+                  >
                     {emp?.designation}
                   </Typography>
                 </div>
