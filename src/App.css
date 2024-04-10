@@ -1140,6 +1140,12 @@ input[type=radio] + label:hover {
 .MuiPickersDay-dayOutsideMonth {
   color: #d8d8dd;
 }
+.fileClass{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+}
 @media (max-width: 767px) {
     .iconTabsEvents{
         padding: 6px 8px !important;
