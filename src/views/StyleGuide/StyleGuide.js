@@ -32,7 +32,7 @@ import TimeLine from "../../components/TimeLine/TimeLine.component";
 import { useTheme } from "@mui/styles";
 import CustomMultiComplete from '../../components/FormFields/AutoCompleteText/MultiComplete';
 import img from "../../assets/img/1.png";
-
+import ColorPicker from '../../components/ColorPicker/ColorPicker';
 const avatars=[
     'A',
     'B',
@@ -396,6 +396,10 @@ const StyleGuide = ({}) => {
         </Typography>
         <TimeLine />
       </div>
+            <br/>
+            <div>
+                <ColorPicker/>
+            </div>
     </PageBoxComponent>
   );
 };

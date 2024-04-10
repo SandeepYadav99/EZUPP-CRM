@@ -511,53 +511,7 @@ export function UserCountAvatarsLableAvatarGroup({ avatars, title }) {
         Avatar Group
       </Typography>
       <div className={styles.flexGrid}>
-        {/* <CardContent>
-          <Typography gutterBottom variant="h5">
-            Default
-          </Typography>
-          <div className={styles.avaterAlignment}>
-            <AvatarGroup max={4} className={styles.avatar_group}>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/1.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/4.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/5.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/8.png")} alt={""} />
-              </Avatar>
-            </AvatarGroup>
-          </div>
-        </CardContent> */}
-
-        {/* <CardContent>
-          <Typography gutterBottom variant="h5">
-            Pull Up
-          </Typography>
-          <div className={styles.avaterAlignment}>
-            <AvatarGroup max={4} className={styles.avatar_group2}>
-              <Avatar className={styles.avatar}>
-                <img
-                  src={require("../../assets/img/1.png")}
-                  alt={""}
-                  className={styles.pull_up}
-                />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/4.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/5.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/8.png")} alt={""} />
-              </Avatar>
-            </AvatarGroup>
-          </div>
-        </CardContent> */}
+     
 
         <CardContent>
           <Typography gutterBottom variant="h5">
