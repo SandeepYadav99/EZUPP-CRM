@@ -9,10 +9,11 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/styles";
 import styles from "./Styles.module.css";
+import componentData from "../JSONDATA/Data";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    backgroundColor:  theme.palette.badgeColor.color,
+    backgroundColor: theme.palette.badgeColor.color,
     color: "",
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
   },
@@ -39,8 +40,6 @@ const StyledBadge3 = styled(Badge)(({ theme }) => ({
   },
 }));
 
-
-
 export function UserCountAvatarsSize({ avatars, title }) {
   return (
     <Card>
@@ -50,34 +49,39 @@ export function UserCountAvatarsSize({ avatars, title }) {
         </Typography>
         <div className={styles.flexBox}>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar_size}
             src={require("../../assets/img/1.png")}
             alt=""
             sx={{ width: 24, height: 24 }}
+            variant="circular"
           />
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar_size}
             src={require("../../assets/img/1.png")}
             alt=""
             sx={{ width: 34, height: 34 }}
+            variant="circular"
           />
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar_size}
             src={require("../../assets/img/1.png")}
             alt=""
             sx={{ width: 44, height: 44 }}
+            variant="circular"
           />
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar_size}
             src={require("../../assets/img/1.png")}
             alt=""
             sx={{ width: 54, height: 54 }}
+            variant="circular"
           />
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar_size}
             src={require("../../assets/img/1.png")}
             alt=""
             sx={{ width: 64, height: 64 }}
+            variant="circular"
           />
         </div>
       </CardContent>
@@ -94,7 +98,7 @@ export function UserCountAvatarsInitials({ avatars, title }) {
         </Typography>
         <div className={styles.flexBox}>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{ width: 28, height: 28, bgcolor: "#666cff", fontSize: "12px" }}
@@ -102,7 +106,7 @@ export function UserCountAvatarsInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{ width: 34, height: 34, bgcolor: "#636578", fontSize: "16px" }}
@@ -110,7 +114,7 @@ export function UserCountAvatarsInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{ width: 44, height: 44, bgcolor: "#2cd548", fontSize: "20px" }}
@@ -118,7 +122,7 @@ export function UserCountAvatarsInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{ width: 54, height: 54, bgcolor: "#ff4500", fontSize: "24px" }}
@@ -126,7 +130,7 @@ export function UserCountAvatarsInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{ width: 64, height: 64, bgcolor: "#1ab7ea", fontSize: "26px" }}
@@ -176,7 +180,7 @@ export function UserCountAvatarsLabelInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{
@@ -190,7 +194,7 @@ export function UserCountAvatarsLabelInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{
@@ -204,7 +208,7 @@ export function UserCountAvatarsLabelInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{
@@ -218,7 +222,7 @@ export function UserCountAvatarsLabelInitials({ avatars, title }) {
             PI
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src=""
             alt=""
             sx={{
@@ -246,7 +250,7 @@ export function UserCountAvatarsShapes({ avatars, title }) {
         </Typography>
         <div className={styles.flexBox1}>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src={""}
             alt=""
             sx={{ width: 44, height: 44 }}
@@ -261,7 +265,7 @@ export function UserCountAvatarsShapes({ avatars, title }) {
             />
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src={""}
             alt=""
             sx={{ width: 54, height: 54 }}
@@ -275,7 +279,7 @@ export function UserCountAvatarsShapes({ avatars, title }) {
             />
           </Avatar>
           <Avatar
-          className={styles.avatar}
+            className={styles.avatar}
             src={""}
             alt=""
             sx={{ width: 64, height: 64 }}
@@ -350,7 +354,6 @@ export function UserCountAvatarsStatusIndicator({ avatars, title }) {
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
-
           >
             <Avatar
               src={require("../../assets/img/8.png")}
@@ -461,7 +464,7 @@ export function UserCountAvatarsLableAvatarStatusIndicator({ avatars, title }) {
             variant="dot"
           >
             <Avatar
-            className={styles.avatar1}
+              className={styles.avatar1}
               src=""
               alt=""
               sx={{
@@ -481,7 +484,7 @@ export function UserCountAvatarsLableAvatarStatusIndicator({ avatars, title }) {
             variant="dot"
           >
             <Avatar
-            className={styles.avatar1}
+              className={styles.avatar1}
               src=""
               alt=""
               sx={{
@@ -504,35 +507,40 @@ export function UserCountAvatarsLableAvatarStatusIndicator({ avatars, title }) {
 export function UserCountAvatarsLableAvatarGroup({ avatars, title }) {
   return (
     <Card mt={2}>
-      <Typography gutterBottom variant="h5" >
-      Avatar Group
+      <Typography gutterBottom variant="h5">
+        Avatar Group
       </Typography>
       <div className={styles.flexGrid}>
+     
+
         <CardContent>
           <Typography gutterBottom variant="h5">
-            Default
+            Pull Up with Tooltip
           </Typography>
           <div className={styles.avaterAlignment}>
-            <AvatarGroup max={4} className={styles.avatar_group}>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/1.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/4.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/5.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/8.png")} alt={""} />
-              </Avatar>
+          <AvatarGroup max={4} className={styles.avatar_group2}>
+              {componentData?.components[5]?.props?.avatars6?.map((avator) => {
+                return (
+                  <>
+                    <Tooltip title={avator?.title} placement="top">
+                      <Avatar className={styles.avatar}>
+                        <img
+                          src={avator?.imageUrl}
+                          alt={""}
+                          className={styles.pull_up}
+                        />
+                      </Avatar>
+                    </Tooltip>
+                  </>
+                );
+              })}
             </AvatarGroup>
           </div>
         </CardContent>
 
         <CardContent>
           <Typography gutterBottom variant="h5">
-          Pull Up
+            Avatar with count
           </Typography>
           <div className={styles.avaterAlignment}>
             <AvatarGroup max={4} className={styles.avatar_group2}>
@@ -543,83 +551,17 @@ export function UserCountAvatarsLableAvatarGroup({ avatars, title }) {
                   className={styles.pull_up}
                 />
               </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/4.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/5.png")} alt={""} />
-              </Avatar>
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/8.png")} alt={""} />
-              </Avatar>
-            </AvatarGroup>
-          </div>
-        </CardContent>
 
-        <CardContent>
-          <Typography gutterBottom variant="h5">
-          Pull Up with Tooltip
-          </Typography>
-          <div className={styles.avaterAlignment}>
-            <AvatarGroup max={4} className={styles.avatar_group2}>
-            <Tooltip title="Vinnie Mostowy" placement="top">
-              <Avatar className={styles.avatar}>
-                <img
-                  src={require("../../assets/img/1.png")}
-                  alt={""}
-                  className={styles.pull_up}
-                />
-              </Avatar>
-              </Tooltip>
-              <Tooltip title="Allen Rieske" placement="top">
               <Avatar className={styles.avatar}>
                 <img src={require("../../assets/img/4.png")} alt={""} />
               </Avatar>
-              </Tooltip>
-              <Tooltip title="Julee Rossignol" placement="top">
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/5.png")} alt={""} />
-              </Avatar>
-              </Tooltip>
-              <Tooltip title="Darcey Nooner" placement="top">
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/8.png")} alt={""} />
-              </Avatar>
-              </Tooltip>
-            </AvatarGroup>
-          </div>
-        </CardContent>
 
-        
-        <CardContent>
-          <Typography gutterBottom variant="h5">
-          Avatar with count
-          </Typography>
-          <div className={styles.avaterAlignment}>
-            <AvatarGroup max={4} className={styles.avatar_group2}>
-           
-              <Avatar className={styles.avatar}>
-                <img
-                  src={require("../../assets/img/1.png")}
-                  alt={""}
-                  className={styles.pull_up}
-                />
-            
-              </Avatar>
-           
-              <Avatar className={styles.avatar}>
-                <img src={require("../../assets/img/4.png")} alt={""} />
-              </Avatar>
-             
-             
               <Avatar className={styles.avatar}>
                 <img src={require("../../assets/img/5.png")} alt={""} />
               </Avatar>
-             
+
               <Tooltip title="+3 More" placement="bottom">
-              <Avatar className={styles.avatar}>
-                +3
-              </Avatar>
+                <Avatar className={styles.avatar}>+3</Avatar>
               </Tooltip>
             </AvatarGroup>
           </div>

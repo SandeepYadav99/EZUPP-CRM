@@ -22,7 +22,7 @@ const UserCreate = ({}) => {
     images,
     manager,
     department,
-    listData
+    listData,
   } = useUserCreateHook();
 
   return (
@@ -32,9 +32,7 @@ const UserCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
           </ButtonBase>
-            <Typography variant={"h4"}>
-              {id  ? "Update" : "Add"} User
-            </Typography>
+          <Typography variant={"h4"}>{id ? "Update" : "Add"} User</Typography>
         </div>
       </div>
       <PersonalInformation
@@ -50,13 +48,12 @@ const UserCreate = ({}) => {
       <WorkInfoView
         errorData={errorData}
         form={form}
-        image={image}
+        // image={image}
         changeTextData={changeTextData}
         // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
-      
       />
 
       <div className={styles.saveButton}>

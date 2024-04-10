@@ -70,8 +70,6 @@ function EmployeeTab() {
   return (
     // <div className={styles.eventBirthdayWrapper}>
     <ShadowBox  className={styles.containerWidth}>
-      <div className={styles.eventBgImage}></div>
-      <AppBar position="static" className={styles.backgroundColor}>
         <Tabs
           classes={{ root: classes.root }}
           value={value}
@@ -83,7 +81,7 @@ function EmployeeTab() {
             className={"iconTabsEvents"}
             label={
               <div className={styles.iconTabsEvents_Box}>
-                <img alt="text" src={imageLogo1}/><Typography component="span" variant="h6">Contacts</Typography> 
+                <img alt="text" src={imageLogo1}/><Typography component="span" variant="h5">Contacts</Typography>
               </div>
             }
             style={{ textTransform: "none" }}
@@ -91,7 +89,7 @@ function EmployeeTab() {
           <Tab
             className={"iconTabsEvents"}
             label={ <div className={styles.iconTabsEvents_Box}>
-            <img alt="text" src={imageLogo2}/><Typography component="span" variant="h6">Messages</Typography> 
+            <img alt="text" src={imageLogo2}/><Typography component="span" variant="h5">Messages</Typography>
             {/* <Typography component="span" color>Messages</Typography>  */}
             <Typography className={styles.messageCounter}component="span">5</Typography>
           </div>}
@@ -100,13 +98,12 @@ function EmployeeTab() {
           <Tab
             className={"iconTabsEvents"}
             label={ <div className={styles.iconTabsEvents_Box}>
-            <img alt="text" src={imageLogo3}/><Typography component="span" variant="h6">Task List</Typography> 
+            <img alt="text" src={imageLogo3}/><Typography component="span" variant="h5">Task List</Typography>
           </div>}
             style={{ textTransform: "none" }}
           />
         </Tabs>
-      </AppBar>
-      <div className={styles.paperBackground1}>
+      <div style={{ paddingLeft: theme.spacing(2), paddingRight: theme.spacing(2) }}>
         <TabPanel value={value} index={0} dir={"ltr"}>
           <EventCard data={data?.contacts} item={'contact'} />
         </TabPanel>

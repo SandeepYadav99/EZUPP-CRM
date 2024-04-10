@@ -5,6 +5,7 @@ import { actionLoginUser } from "../../../actions/Auth.action";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import { useDispatch } from "react-redux";
+import { isEmail } from "../../../libs/RegexUtils";
 
 const initialForm = {
   email: "",
@@ -31,6 +32,9 @@ const useLoginHook = () => {
         errors[val] = false;
       }
     });
+    if(!isEmail(form?.email)){
+      errors['email'] = true;
+    }
 
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {

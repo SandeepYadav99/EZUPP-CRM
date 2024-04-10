@@ -14,12 +14,12 @@ import { useState } from "react";
 import { EngineeringTwoTone, Person, RocketLaunch } from "@mui/icons-material";
 
 export function CustomOptionRadiosWithIcon({ avatars, title }) {
-  const [selectedOption, setSelectedOption] = useState("basic");
+  const [selectedOption, setSelectedOption] = useState("personal");
 
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
   };
-  console.log(selectedOption, "Options");
+ 
 
   return (
     <div>

@@ -104,7 +104,8 @@ h6 {
 
 body {
     background-color: #EEEEEE;
-    color: #3C4858;
+    /* color: #3C4858; */
+    color: #E4E4E6;
 }
 
 blockquote p {

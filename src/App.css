@@ -589,14 +589,27 @@ input[type=radio] + label:hover {
     position: absolute;
     z-index: 2;
 }
-
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
 .Demo__suggestion-item {
     padding: 8px;
     text-align: left;
     background-color: #fff;
     cursor: pointer;
 }
-
+.option_auto_class{
+    display: flex;
+    margin-left: 10px;
+}
+.multipe_auto_options{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 10px;
+}
 .Demo__suggestion-item--active {
     background-color: #fafafa;
 }
@@ -1126,6 +1139,12 @@ input[type=radio] + label:hover {
 
 .MuiPickersDay-dayOutsideMonth {
   color: #d8d8dd;
+}
+.fileClass{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
 }
 @media (max-width: 767px) {
     .iconTabsEvents{

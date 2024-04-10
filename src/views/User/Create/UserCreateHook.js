@@ -21,6 +21,7 @@ import {
   serviceCreateProviderUser,
   serviceGetProviderUserDetail,
   serviceProfileManager,
+  serviceProviderIsExist,
   serviceProviderProfileGetKeyword,
   serviceUpdateProviderUser,
 } from "../../../services/ProviderUser.service";
@@ -51,7 +52,8 @@ function useUserCreateHook() {
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const codeDebouncer = useDebounce(form?.contact, 6000);
+  const emailDebouncer = useDebounce(form.email, 500);
+  const empIdDebouncer = useDebounce(form.employee_id, 500);
   const [manager, setManager] = useState([]);
   const [department, setDepartment] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -59,6 +61,7 @@ function useUserCreateHook() {
     ROLES: [],
   });
 
+  
   useEffect(() => {
     serviceGetList(["ROLES"]).then((res) => {
       if (!res.error) {
@@ -66,6 +69,8 @@ function useUserCreateHook() {
       }
     });
   }, []);
+
+
   useEffect(() => {
     serviceProfileManager({}).then((res) => {
       if (!res?.error) {
@@ -83,6 +88,47 @@ function useUserCreateHook() {
       }
     });
   }, []);
+
+  const validateField = useCallback(
+    (field, values, errorKey, existsMessage) => {
+      serviceProviderIsExist({ [field]: values, id: id || null }).then(
+        (res) => {
+          if (!res.error) {
+            const errors = { ...errorData };
+            if (res.data.is_exists) {
+              errors[errorKey] = existsMessage;
+            } else {
+              delete errors[errorKey];
+            }
+            setErrorData(errors);
+          }
+        }
+      );
+    },
+    [errorData, setErrorData, id]
+  );
+
+  const checkCodeValidation = useCallback(() => {
+    validateField("email", form.email, "email", "Admin User Email Exists");
+  }, [form.email, id]);
+
+  const checkEmpIdValidation = useCallback(() => {
+    validateField(
+      "employee_id",
+      form.employee_id,
+      "employee_id",
+      "Admin User Employee Id Exists"
+    );
+  }, [form.employee_id, id]);
+
+  useEffect(() => {
+    if (emailDebouncer) checkCodeValidation();
+  }, [emailDebouncer]);
+
+  useEffect(() => {
+    if (empIdDebouncer) checkEmpIdValidation();
+  }, [empIdDebouncer]);
+
   useEffect(() => {
     if (id) {
       serviceGetProviderUserDetail({ id: id }).then((res) => {
@@ -97,14 +143,14 @@ function useUserCreateHook() {
 
             contact: data?.contact,
             email: data?.email,
-            role: data?.role,
+            role: data?.role?.id,
             // type: string;
             employee_id: data?.employee_id,
-            //  joining_date: data?.joining_date,
+            joining_date: data?.joining_date,
             department: data?.department,
             designation: data?.designation,
-            manager: data?.manager,
-            //  end_date: data?.end_date,
+            manager: data?.manager?.id,
+            end_date: data?.exit_date,
             userManage: data?.is_manager,
 
             invoiteToUser: data?.is_primary_user,
@@ -121,7 +167,7 @@ function useUserCreateHook() {
       });
     }
   }, [id]);
-
+console.log(images, "Image")
   // const checkCodeValidation = useCallback(() => {
   //   "serviceUpdateAdminUserSearch"({
   //     contact: form?.contact,
@@ -173,7 +219,7 @@ function useUserCreateHook() {
       "email",
       "contact",
       "userName",
-      "role",
+      // "role",
       "employee_id",
       "joining_date",
       "department",
@@ -266,7 +312,7 @@ function useUserCreateHook() {
           name: form?.name,
           image: form?.image,
           contact: form?.contact,
-          role: form?.role,
+          role_id: form?.role,
           email: form?.email,
           employee_id: form?.employee_id,
           joining_date: form?.joining_date,
@@ -275,8 +321,9 @@ function useUserCreateHook() {
           designation: form?.designation,
           manager: form?.manager,
           user_name: form?.userName,
-          is_primary_user: form?.invoiteToUser,
+          is_primary_user: true,
           is_manager: form?.userManage,
+          email_send:form?.invoiteToUser,
           country_code: 91,
         };
 
@@ -289,6 +336,7 @@ function useUserCreateHook() {
         let req;
         if (id) {
           fd.append("id", id);
+          // fd.append("image", images ? images : null);
           req = serviceUpdateProviderUser(fd);
         } else {
           req = serviceCreateProviderUser(fd);

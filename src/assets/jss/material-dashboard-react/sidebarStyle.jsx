@@ -168,7 +168,7 @@ const sidebarStyle = theme => ({
     ...defaultFont
   },
   sidebarIcon: {
-    fontSize: '1.8rem'
+    fontSize: '1.5rem'
   },
   nested: {
     paddingLeft: theme.spacing(3),

@@ -12,7 +12,7 @@ const success = "#3CD4A0";
 const info = "#9013FE";
 const border = '#E4E4E6'
 const error = '#FF0000';
-const disable = '#d8d8dd';// 
+const disable = '#d8d8dd';//
 const badgeColor= "#6d788d";
 const badgeColor1="#fdb528";
 const lightenRate = 7.5;
@@ -76,6 +76,7 @@ const Theme = (colors) => {
       high: error,
       medium: '#FF9100',
       low: '#78D90F',
+      active:"#03AE85",
       business: '#888cff',
       Discuss:"#636578"
     },

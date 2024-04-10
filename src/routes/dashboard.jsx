@@ -6,7 +6,9 @@ import AppSettings from "../views/AppSettings/AppSettings.container";
 import IndustryList from "../views/Industry/IndustryList.container";
 import MilestoneList from "../views/Milestone/List/MilestoneList";
 import CategoryList from "../views/Category/CategoryList.container";
-import Rolelist from "../views/Role/RoleList.container";
+// import RoleList from "../views/Role/List/RoleList";
+
+import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
 import ProductList from "../views/Product/ProductList.container";
 import ProductView from "../views/Product/ProductView";
@@ -49,6 +51,7 @@ import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
+import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 
 const dashboardRoutes = [
   {
@@ -198,13 +201,33 @@ const dashboardRoutes = [
   //   is_protect: true,
   //   should_regex:false
   // },
+  // {
+  //   path: RouteName.ROLE,
+  //   sidebarName: "UserRole",
+  //   navbarName: "UserRole",
+  //   icon: LibraryBooks,
+  //   component: RoleList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   parent: "admin",
+  // },
   {
-    path: "/role",
+    path: RouteName.ROLE_CREATE,
     sidebarName: "UserRole",
     navbarName: "UserRole",
     icon: LibraryBooks,
-    component: Rolelist,
-    is_sidebar: true,
+    component: RoleCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+  },
+  {
+    path: `${RouteName.ROLE_CREATE_UPDATE}:id`,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleCreate,
+    is_sidebar: false,
     is_protect: true,
     parent: "admin",
   },
@@ -402,7 +425,22 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
-  }
+  },
+  {
+    path:`${RouteName?.BLOGS_CREATE}`,
+    component: BlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path:`${RouteName?.BLOGS_UPDATE}:id`,
+    component: BlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+ 
 ];
 
 export default dashboardRoutes;

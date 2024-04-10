@@ -297,7 +297,9 @@ class File extends Component {
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 borderColor: error ? "red" : "#c2c2c2",
+                
               }}
+              // crossOrigin="anonymous"
             ></div>
             <div className={styles.imgEditBtn}>
               <CameraAltIcon className={styles.cameraIcon} />
