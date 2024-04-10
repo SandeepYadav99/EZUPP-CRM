@@ -1142,6 +1142,9 @@ input[type=radio] + label:hover {
 }
 .fileClass{
     width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
 }
 @media (max-width: 767px) {
     .iconTabsEvents{
