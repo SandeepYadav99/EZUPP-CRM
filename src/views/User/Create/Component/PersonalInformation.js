@@ -12,11 +12,11 @@ const PersonalInformation = ({
   onBlurHandler,
   form,
   image,
-  listData
+  listData,
 }) => {
-  console.log(form, "Form")
+  console.log(form, "Form");
   return (
-    <div>
+    <>
       <div className={"plainPaper"}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
@@ -34,11 +34,12 @@ const PersonalInformation = ({
               accept={"image/*"}
               label="Profile"
               // show_image={true}
+              
               link={""}
               user_image
               error={errorData?.image}
               value={form?.image}
-              default_image={image ? image :""}
+              default_image={image ? image : ""}
               onChange={(file) => {
                 if (file) {
                   changeTextData(file, "image");
@@ -77,7 +78,6 @@ const PersonalInformation = ({
                   }}
                 />
               </div>
-              
             </div>
             <div className={"formFlex"}>
               <div className={"formGroup"}>
@@ -113,33 +113,30 @@ const PersonalInformation = ({
                   }}
                 />
               </div>
-         
             </div>
             <div className={"formFlex"}>
-          <div className={"formGroup"} >
-            <CustomSelectField
-              isError={errorData?.role}
-              errorText={errorData?.role}
-              label={" Role"}
-              value={form?.role}
-              handleChange={(value) => {
-                changeTextData(value, "role");
-              }}
-              className={styles.custonCSS}
-            >
-              {listData?.ROLES?.map((role)=>(
-
-              <MenuItem value={role?.id}>{role?.name}</MenuItem>
-              ))}
-              {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
-            </CustomSelectField>
+              <div className={"formGroup"}>
+                <CustomSelectField
+                  isError={errorData?.role}
+                  errorText={errorData?.role}
+                  label={"Role"}
+                  value={form?.role}
+                  handleChange={(value) => {
+                    changeTextData(value, "role");
+                  }}
+                  className={styles.custonCSS}
+                >
+                  {listData?.ROLES?.map((role) => (
+                    <MenuItem value={role?.id}>{role?.name}</MenuItem>
+                  ))}
+                  {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
+                </CustomSelectField>
+              </div>
+            </div>
           </div>
         </div>
-          </div>
-        </div>
-     
       </div>
-    </div>
+    </>
   );
 };
 

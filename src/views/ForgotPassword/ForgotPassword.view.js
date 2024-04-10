@@ -241,7 +241,7 @@ class ForgotPasswordView extends Component {
                         <CircularProgress size={"18px"} color={"primary"} />
                       </div>
                     ) : (
-                      "SEND RESET LINK"
+                      ""
                     )}
                   </ArrowPrimaryButton>
                   <div>

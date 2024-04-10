@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.7rem;
 }
 .headerContainer .title {
     font-size: 1rem;
@@ -28,6 +29,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    display: block !important;
 }
 .firstCellInfo {
     margin-left: 10px;
@@ -52,6 +54,10 @@
 .profileImage{
    
     
+}
+.actionButton{
+    display: flex;
+    gap: 2px;
 }
 
 .formContainer{

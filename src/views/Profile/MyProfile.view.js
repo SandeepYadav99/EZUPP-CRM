@@ -1,28 +1,22 @@
 import React, { useState } from "react";
 import styles from "./Styles.module.css";
- import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
+import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
 import WaitingComponent from "../../components/Waiting.component";
-import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
-import AddTaskCreate from "./Create/AddTaskCreate";
 import TaskListItem from "./TaskListView";
 import history from "../../libs/history.utils";
 import {
-  ActionButton,
   ArrowOutlineButton,
   ArrowPrimaryButton,
-  OutlineButton,
   PrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
 import {
-  Button,
   ButtonBase,
   FormControl,
-  IconButton,
   MenuItem,
   Select,
 } from "@mui/material";
-import { Add, ArrowBackIos, ArrowForward, Lock } from "@mui/icons-material";
+import { Add, ArrowBackIos,  Lock } from "@mui/icons-material";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import capitalizeFirstLetter, {
   formatString,
@@ -30,23 +24,17 @@ import capitalizeFirstLetter, {
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
-  const userData = localStorage.getItem("user");
-  const userObject = JSON.parse(userData);
   const {
     profileDetails,
     handleEdit,
     isLoading,
-    isSidePanel,
     handleSideToggle,
-    id,
     handleDetailPage,
     taskLists,
     filterValue,
-    handleCreatedTask,
     markAsCompleted,
     completedHandler,
     filterCompltedTask,
-    handleSaveClick
   } = useMyProfileHook();
 
   const handleClose = () => {
@@ -72,7 +60,7 @@ const Profile = () => {
               <ArrowOutlineButton
                 className={styles.resetButton}
                 onClick={handleClose}
-                icon={<Lock fontSize="normal"/>}
+                icon={<Lock fontSize="normal" />}
               >
                 <div className={styles.innerText}>Reset Password</div>
               </ArrowOutlineButton>
@@ -86,14 +74,13 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.gridContainer}>
-            <div className={styles.container}>
-              <ShadowBox width={"98%"}>
-           
+       
+              {/* <ShadowBox width={"98%"}>
                 <div className={styles.status}>
                   {profileDetails?.status || "N/A"}
                 </div>
 
-                <div className={styles.profileContainer}>
+                 <div className={styles.profileContainer}>
                   <div>
                     {profileDetails?.image && (
                       <img
@@ -111,22 +98,47 @@ const Profile = () => {
                       Emp. ID : {profileDetails?.employee_id || "N/A"}
                     </div>
                     <div className={styles.saveButton}>
-                      <PrimaryButton
-
-onClick={() => handleEdit(profileDetails)}
-                      >
+                      <PrimaryButton onClick={() => handleEdit(profileDetails)}>
                         Edit
                       </PrimaryButton>
                     </div>
                   </div>
-                </div>
-              </ShadowBox>
-            </div>
+                </div> 
+              </ShadowBox> className={styles.container}*/}
+           
 
-            <div className={styles.profileFlex}>
+             <div className={styles.profileFlex}>
               <div className={styles.leftSection}>
                 <>
-                  <ShadowBox>
+                  <ShadowBox width={'23rem'}>
+                  <div className={styles.profileContainer}>
+                  <div>
+                    {profileDetails?.image && (
+                      <img
+                        src={profileDetails?.image}
+                        alt=""
+                        className={styles.proImage}
+                        crossOrigin="anonymous"
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <div className={styles.name}>
+                      {capitalizeFirstLetter(profileDetails?.name)}
+                    </div>
+                    <div className={styles.position}>
+                      Emp. ID : {profileDetails?.employee_id || "N/A"}
+                    </div>
+                    <div className={styles.status}>
+                  {profileDetails?.status || "N/A"}
+                </div>
+                    <div className={styles.saveButton}>
+                      <PrimaryButton onClick={() => handleEdit(profileDetails)}>
+                        Edit
+                      </PrimaryButton>
+                    </div>
+                  </div>
+                </div> 
                     <div className={styles.heading}>Personal Details</div>
 
                     <div>
@@ -187,7 +199,9 @@ onClick={() => handleEdit(profileDetails)}
                       <div className={styles.activityFlex}>
                         <div className={styles.sideTitle}>Joining Date:</div>
 
-                        <span className={styles.activity}>{profileDetails?.joiningDateText}</span>
+                        <span className={styles.activity}>
+                          {profileDetails?.joiningDateText}
+                        </span>
                       </div>
 
                       <div className={styles.activityFlex}>
@@ -195,7 +209,9 @@ onClick={() => handleEdit(profileDetails)}
                           User is a Manager:
                         </div>
 
-                        <span className={styles.activity}>{profileDetails?.is_manager ? 'Yes' : "No"}</span>
+                        <span className={styles.activity}>
+                          {profileDetails?.is_manager ? "Yes" : "No"}
+                        </span>
                       </div>
                     </div>
 
@@ -205,22 +221,30 @@ onClick={() => handleEdit(profileDetails)}
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Created On:</div>
 
-                      <span className={styles.activity}>{profileDetails?.createdAtText}</span>
+                      <span className={styles.activity}>
+                        {profileDetails?.createdAtText}
+                      </span>
                     </div>
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Updated On:</div>
 
-                      <span className={styles.activity}>{profileDetails?.updatedAtText}</span>
+                      <span className={styles.activity}>
+                        {profileDetails?.updatedAtText}
+                      </span>
                     </div>
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Updated By:</div>
-
-                      <span className={styles.activity}>{profileDetails?.updated_by || "N/A"}</span>
+ 
+                     <span className={styles.activity}>
+                        { "N/A"}
+                      </span> 
                     </div>
                     <div className={styles.activityFlex}>
                       <div className={styles.sideTitle}>Last Login:</div>
 
-                      <span className={styles.activity}>{profileDetails?.lastLoginText}</span>
+                      <span className={styles.activity}>
+                        {profileDetails?.lastLoginText}
+                      </span>
                     </div>
                   </ShadowBox>
                 </>
@@ -248,8 +272,8 @@ onClick={() => handleEdit(profileDetails)}
                         </FormControl>
                       </div>
                     </div>
-                    {taskLists && taskLists.length > 0 ? (
-                      taskLists.map((task) => (
+                    {taskLists && taskLists?.length > 0 ? (
+                      taskLists?.map((task) => (
                         <TaskListItem
                           key={task.id}
                           task={task}
@@ -267,28 +291,15 @@ onClick={() => handleEdit(profileDetails)}
                   </div>
                 </ShadowBox>
               </div>
-            </div>
+            </div> 
           </div>
            <ResetPasswordDialog
             open={open}
             handleClose={handleClose}
             email={profileDetails?.email}
           /> 
-          {/* Side Pannel for Add Task management  */}
-          {/* <SidePanelComponent
-            handleToggle={handleSideToggle}
-            title={"Create New Task"} // profileId ? "Update Hubs" :
-            open={isSidePanel}
-            side={"right"}
-          >
-            <AddTaskCreate
-              handleSideToggle={handleSideToggle}
-              isSidePanel={isSidePanel}
-              // empId={profileId}
-              profileDetails={profileDetails}
-              handleCreatedTask={handleCreatedTask}
-            />
-          </SidePanelComponent> */}
+        
+          
         </div>
       )}
     </div>
