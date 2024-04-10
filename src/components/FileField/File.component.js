@@ -73,7 +73,7 @@ class File extends Component {
 
 
     render() {
-        const {value, children, multiple, accept, error, placeholder,name,component,user_image, title, show_image, default_image,banner, link, circular,bannerLabel} = this.props;
+        const {value, children, multiple, accept, error, placeholder,name,component,user_image, title, show_image, default_image,banner, link, circular,bannerLabel,isBlogPage} = this.props;
         let tempPlaceHolder = this.props.placeholder;
         if (value != '' && value !== null) {
             if (value instanceof Object && !Array.isArray(value)) {
@@ -110,7 +110,7 @@ class File extends Component {
         if(bannerLabel && !multiple){
             return (
                 <div>
-                <div className={styles.imageBtnContainerShow}>
+                <div className={isBlogPage ? styles.aspectWidth :styles.imageBtnContainerShow}>
                     <div>
                         <div className={csx(styles.imagePlusShow, this.props.imageClass)} style={{ backgroundImage: "url("+(this._getImageUrl(value))+")",
                             backgroundSize: 'cover', backgroundPosition: 'center',borderColor: (error ? 'red' : '#c2c2c2')}}></div>

@@ -274,6 +274,8 @@ const BlogsCreate = ({ location }) => {
                 changeTextData(file, "image");
               }
             }}
+            isBlogPage
+            imageClass={'fileClass'}
           />
           {params?.id ? (
             <a href={coverImage} target="_blank">

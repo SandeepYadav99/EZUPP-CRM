@@ -47,11 +47,6 @@ const Dashboard = () => {
           <Schedule />
           <EmployeeTab />
         </div>
-        {/* <div className={styles.employeeTab}>
-        <Calculator/>
-       <QuickAccess/>
-        </div> */}
-        {/* <QuickAccess/> */}
         <div className={styles.row}>
           <div class="calendar-wrapper">
             <Calculator />
@@ -60,12 +55,22 @@ const Dashboard = () => {
             <img src={calendar} alt="Image" className={styles.image} />
             <QuickAccess className={styles.quickAccess} />
           </div>
+        <div class="calendar-wrapper">
+        <Calculator/>
+        </div>
+       <div style={{display:"flex",flexDirection: "column"}}>
+       
+        <img src={calendar} alt="Image" className={styles.image}/>
+        <QuickAccess  />
+        </div>
         </div>
         <div className={styles.chartsDesktop}>
           <GraphComponent />
           <HalfDoughnut />
           <Notifications />
         </div>
+        <QuickAccess/>
+     
       </div>
     </React.Fragment>
   );

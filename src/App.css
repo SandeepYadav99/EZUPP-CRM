@@ -598,7 +598,18 @@ input[type=radio] + label:hover {
     background-color: #fff;
     cursor: pointer;
 }
-
+.option_auto_class{
+    display: flex;
+    margin-left: 10px;
+}
+.multipe_auto_options{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 10px;
+}
 .Demo__suggestion-item--active {
     background-color: #fafafa;
 }
@@ -1128,6 +1139,12 @@ input[type=radio] + label:hover {
 
 .MuiPickersDay-dayOutsideMonth {
   color: #d8d8dd;
+}
+.fileClass{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
 }
 @media (max-width: 767px) {
     .iconTabsEvents{

@@ -33,6 +33,10 @@ const Typography = (fontFamily) => ({
     fontSize: "1rem",
     lineHeight: 1.5,
   },
+  subtitle: {
+    fontWeight: 600,
+    fontSize: "0.8rem",
+  },
   h6: {
     fontWeight: 400,
     fontSize: "0.875rem",

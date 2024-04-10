@@ -7,6 +7,7 @@ import IndustryList from "../views/Industry/IndustryList.container";
 import MilestoneList from "../views/Milestone/List/MilestoneList";
 import CategoryList from "../views/Category/CategoryList.container";
 // import RoleList from "../views/Role/List/RoleList";
+
 import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
 import ProductList from "../views/Product/ProductList.container";

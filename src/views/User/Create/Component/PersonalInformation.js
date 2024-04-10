@@ -34,6 +34,7 @@ const PersonalInformation = ({
               accept={"image/*"}
               label="Profile"
               // show_image={true}
+              
               link={""}
               user_image
               error={errorData?.image}
