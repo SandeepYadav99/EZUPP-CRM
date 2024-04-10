@@ -201,16 +201,17 @@ const dashboardRoutes = [
   //   is_protect: true,
   //   should_regex:false
   // },
-  // {
-  //   path: RouteName.ROLE,
-  //   sidebarName: "UserRole",
-  //   navbarName: "UserRole",
-  //   icon: LibraryBooks,
-  //   component: RoleList,
-  //   is_sidebar: true,
-  //   is_protect: true,
-  //   parent: "admin",
-  // },
+
+  {
+    path: RouteName.ROLE,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleList,
+    is_sidebar: true,
+    is_protect: true,
+    parent: "admin",
+  },
   {
     path: RouteName.ROLE_CREATE,
     sidebarName: "UserRole",
@@ -440,7 +441,7 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
   },
- 
+
 ];
 
 export default dashboardRoutes;
