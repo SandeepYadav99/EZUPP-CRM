@@ -74,8 +74,8 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.gridContainer}>
-            <div className={styles.container}>
-              <ShadowBox width={"98%"}>
+       
+              {/* <ShadowBox width={"98%"}>
                 <div className={styles.status}>
                   {profileDetails?.status || "N/A"}
                 </div>
@@ -104,13 +104,41 @@ const Profile = () => {
                     </div>
                   </div>
                 </div> 
-              </ShadowBox>
-            </div>
+              </ShadowBox> className={styles.container}*/}
+           
 
              <div className={styles.profileFlex}>
               <div className={styles.leftSection}>
                 <>
-                  <ShadowBox>
+                  <ShadowBox width={'23rem'}>
+                  <div className={styles.profileContainer}>
+                  <div>
+                    {profileDetails?.image && (
+                      <img
+                        src={profileDetails?.image}
+                        alt=""
+                        className={styles.proImage}
+                        crossOrigin="anonymous"
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <div className={styles.name}>
+                      {capitalizeFirstLetter(profileDetails?.name)}
+                    </div>
+                    <div className={styles.position}>
+                      Emp. ID : {profileDetails?.employee_id || "N/A"}
+                    </div>
+                    <div className={styles.status}>
+                  {profileDetails?.status || "N/A"}
+                </div>
+                    <div className={styles.saveButton}>
+                      <PrimaryButton onClick={() => handleEdit(profileDetails)}>
+                        Edit
+                      </PrimaryButton>
+                    </div>
+                  </div>
+                </div> 
                     <div className={styles.heading}>Personal Details</div>
 
                     <div>

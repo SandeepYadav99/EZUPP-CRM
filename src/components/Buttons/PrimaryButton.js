@@ -6,11 +6,11 @@ import { Add, ArrowForward, Lock } from '@mui/icons-material';
 const ButtonWrapper = styled(Button)(({ theme }) => ({
 
     '&:hover': {
-        backgroundColor: theme.palette.primaryButton.hover
+        backgroundColor: theme.palette?.primaryButton?.hover
     },
     '&:disabled': {
-        backgroundColor: theme.palette.primaryButton.disabled,
-        color:  theme.palette.primaryButton.disabled_text
+        backgroundColor: theme.palette.primaryButton?.disabled,
+        color:  theme.palette.primaryButton?.disabled_text
     }
 }));
 const PrimaryButton = ({disabled, children, ...props}) => {
@@ -53,11 +53,36 @@ const ActionButtonWrapper = styled(Button)(({ theme }) => ({
     }
 }));
 
+const ActionMultiSelectButtonWrapper = styled(Button)(({ theme }) => ({
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingTop: theme.spacing(0),
+    paddingBottom: theme.spacing(0),
+    backgroundColor: theme.palette.grey[200],
+    border:0,
+    color:theme.palette.common.black,
+    borderRadius:"20px",
+    '&:hover': {
+        backgroundColor: theme.palette.error.light
+    },
+    '&:disabled': {
+        backgroundColor: 'transparent',
+        // color:  theme.palette.primaryButton.disabled_text
+    }
+}));
 const ActionButton = ({disabled, children, ...props}) => {
     return (
         <ActionButtonWrapper variant={'outlined'} color={'error'} disabled={disabled} {...props}>
             {children}
         </ActionButtonWrapper>
+    );
+}
+
+const ActionMultiSelectButton = ({disabled, children, ...props}) => {
+    return (
+        <ActionMultiSelectButtonWrapper variant={'outlined'} color={'error'} disabled={disabled} {...props}>
+            {children}
+        </ActionMultiSelectButtonWrapper>
     );
 }
 
@@ -79,5 +104,6 @@ export {
     ActionButton,
     ArrowPrimaryButton,
     ArrowOutlineButton,
-    ArrowActionButton
+    ArrowActionButton,
+    ActionMultiSelectButton
 };

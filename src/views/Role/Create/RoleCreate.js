@@ -18,7 +18,11 @@ import useRoleCreateHook from "./RoleCreateHook";
 import RoleTableComponent from "../RoleTable.component";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import history from "../../../libs/history.utils";
-import { ActionButton, OutlineButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import {
+  ActionButton,
+  OutlineButton,
+  PrimaryButton,
+} from "../../../components/Buttons/PrimaryButton";
 
 // import CustomSwitch from "../../../FormFields/CustomSwitch";
 // import CustomCheckbox from "../../../FormFields/CustomCheckbox";
@@ -39,29 +43,26 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     handleSubmit,
     onBlurHandler,
     changeTextData,
-    listData,
-
     isSubmitting,
-    toggleAcceptDialog,
-    isAcceptPopUp,
+    data,
+    
+    permisionChangeHandler,
     id,
+    
+    permission
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
 
   return (
     <>
-   
-   
-          <div className={styles.iconButton}>
-            <ButtonBase onClick={() => history.goBack()}>
-              <ArrowBackIos fontSize={"small"} />{" "}
-            </ButtonBase>
-            <Typography variant={"h4"}>
-              {id ? "Update" : "Create"} Role
-            </Typography>
-          </div>
-      
-        {/* {empId && (
+      <div className={styles.iconButton}>
+        <ButtonBase onClick={() => history.goBack()}>
+          <ArrowBackIos fontSize={"small"} />{" "}
+        </ButtonBase>
+        <Typography variant={"h4"}>{id ? "Update" : "Create"} Role</Typography>
+      </div>
+
+      {/* {empId && (
           <IconButton
             variant={"contained"}
             className={classes.iconBtnError}
@@ -71,14 +72,11 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             <DeleteIcon />
           </IconButton>
         )} */}
-     
 
       <div className={styles.container}>
-     
         <ShadowBox width={"100%"}>
-        
-            <Typography variant="h5" >Role Details</Typography>
-        
+          <Typography variant="h5">Role Details</Typography>
+
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
@@ -96,15 +94,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.name}
-                errorText={errorData?.name}
+                isError={errorData?.displayName}
+                errorText={errorData?.displayName}
                 label="Display Name"
-                value={form?.name}
+                value={form?.displayName}
                 onTextChange={(text) => {
-                  changeTextData(text, "name");
+                  changeTextData(text, "displayName");
                 }}
                 onBlur={() => {
-                  onBlurHandler("name");
+                  onBlurHandler("displayName");
                 }}
               />
             </div>
@@ -112,36 +110,34 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.name}
-                errorText={errorData?.name}
+                isError={errorData?.description}
+                errorText={errorData?.description}
                 multiline
                 rows="3"
                 label="Role Description"
-                value={form?.name}
+                value={form?.description}
                 onTextChange={(text) => {
-                  changeTextData(text, "name");
+                  changeTextData(text, "description");
                 }}
                 onBlur={() => {
-                  onBlurHandler("name");
+                  onBlurHandler("description");
                 }}
               />
             </div>
           </div>
         </ShadowBox>
         <>
-         
-           
-          <RoleTableComponent />
-         
+          <RoleTableComponent
+            classes={classes}
+            // data={data}
+            permissions={permission}
+            changeTextData={changeTextData}
+            permisionChangeHandler={permisionChangeHandler}
+          />
         </>
 
         <div className={styles.actionButton}>
-        <ActionButton
-          
-            onClick={handleSubmit}
-          >
-           CANCEL
-          </ActionButton>
+          <ActionButton onClick={handleSubmit}>CANCEL</ActionButton>
           <PrimaryButton
             variant={"contained"}
             color={"primary"}

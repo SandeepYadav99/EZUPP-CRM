@@ -4,7 +4,7 @@
   flex-wrap: wrap;
  
   
-  gap: 5px;
+  gap: 10px;
 
 }
 @media (max-width: 1115px) {
@@ -52,7 +52,7 @@
 }
 .leftSection {
   /*margin-right: 30px;*/
-  margin-top: 20px;
+  margin-top: 25px;
   flex: 0.5;
 }
 .rightSection {
