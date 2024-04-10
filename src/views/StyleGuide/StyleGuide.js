@@ -62,7 +62,6 @@ const StyleGuide = ({}) => {
             setSelectedUsers([...text])
         },[selectedUsers])
         
-    console.log('selectedUsers', selectedUsers);
     return (
         <PageBoxComponent>
             <div className={'formFlex'}>

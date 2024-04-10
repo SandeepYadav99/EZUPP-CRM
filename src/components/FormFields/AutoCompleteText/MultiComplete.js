@@ -57,7 +57,6 @@ const CustomMultiComplete = ({
     },
     [onChange, onTextChange, value]
   );
-  console.log("enableField", enableField);
   return (
     <Autocomplete
       multiple
