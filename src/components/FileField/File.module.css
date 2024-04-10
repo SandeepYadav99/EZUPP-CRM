@@ -64,6 +64,11 @@
   position: relative;
   height: 270px;
 }
+.aspectWidth{
+  width:calc(9 / 16 * 100%);
+  position: relative;
+  max-height: 270px;
+}
 
 .imageBtnContainerNew {
   width: 100%;
@@ -79,6 +84,8 @@
   font-size: 0.6rem;
   color: #536dfe;
 }
+
+
 
 .wrapper {
   border: 1px solid black;
