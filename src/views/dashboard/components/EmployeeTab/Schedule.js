@@ -40,6 +40,7 @@ const Schedule = () => {
                   src={item.image}
                   alt="Image"
                   style={{ marginRight: "10px" }}
+                  className={styles.userImage}
                 />
                 <div>
                   <Typography

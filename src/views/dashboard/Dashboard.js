@@ -48,13 +48,13 @@ const Dashboard = () => {
           <EmployeeTab />
         </div>
         <div className={styles.row}>
-        <div class="calendar-wrapper" style={{width: "30%"}}>
+        {/* <div class="calendar-wrapper" style={{width: "30%"}}> */}
         <Calculator/>
-        </div>
+        {/* </div> */}
        {/* <div style={{display:"flex",flexDirection: "column"}}> */}
        
         {/* <img src={calendar} alt="Image" className={styles.image}/> */}
-        <QuickAccess  />
+        <QuickAccess />
         {/* </div> */}
         </div>
         <div className={styles.chartsDesktop}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid, TextField, Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import styles from "./Style.module.css";
-import { display } from "html2canvas/dist/types/css/property-descriptors/display";
+
 
 const Calculator = () => {
   const [inputValue, setInputValue] = useState("");
@@ -89,6 +89,7 @@ const Calculator = () => {
           {/* {inputValue || '0'} */}
         </Typography>
       </div>
+      
       <div>
         <Button className={`${styles.button}`} onClick={handleClear}>
           <Typography variant={"h5"}> C </Typography>

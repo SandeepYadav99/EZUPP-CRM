@@ -164,7 +164,7 @@
       width: 100%;
       /* height: 214px; */
       gap: 10px !important;
-      padding: 15px;
+      /* padding: 15px; */
     }
     .sales {
       width: 100%;
@@ -175,6 +175,7 @@
     }
     .newCustomer {
       display: flex;
+     
       gap: 10px;
       flex-direction: column !important;
       justify-content: space-between !important;
