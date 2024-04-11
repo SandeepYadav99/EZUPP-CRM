@@ -2,6 +2,7 @@
 
   .container {
     display: flex;
+
     /* justify-content: center;
     align-items: center; */
   }
@@ -9,20 +10,20 @@
     height: 40px;
   }
   .buttonW{
-    margin: 5px !important ;
+    margin: 1.5% !important ;
     height: 60px;
     width: 47%;
     background-color: rgba(255, 255, 255, 0.3) !important;
     color: rgba(255, 255, 255, 1)  !important;
-    font-size: 18px !important;
+    /* font-size: 18px !important;
     font-weight: bold !important;
-    font-family: Arial !important;
+    font-family: Arial !important; */
   }
   .buttonH{
-    margin: 5px !important;
+    margin: 1.5% !important;
     background-color: #FF7700 !important;
     color: #FFFFFF !important;
-    min-width: 50% !important;
+    width: 22% !important;
     top: 50%;
 
 /* height: 153px; */
@@ -30,7 +31,7 @@
   }
 
 .button{
-    margin: 5px !important;
+    margin: 1.5% !important;
     width: 22%;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.3) !important;
@@ -43,10 +44,10 @@
   .calculator {
     padding: 10px;
     border-radius: 10px;
-    min-width: 42% !important;
-    height: fit-content;  
+    min-width: 30% !important;
+    height: 441px;  
     /* left: 390px; */
-   margin-left: -20px;
+   /* margin-left: -20px; */
    display: flex;
   flex-direction: column;
   /* justify-content: space-around; */
@@ -71,27 +72,6 @@
        width: 100%;
         /* height: 441px;  */
     }
-    .button{
-      margin: 3px !important;
-      width: 20% !important;
-      flex-wrap: nowrap !important;
-      /* height: auto; */
-      /* width: calc(2% - 10px) !important; */
-      /* flex-grow: 1; */
-      max-width: none !important;
-      white-space: nowrap;
-      height: 60px;
-    }
-    
-    .buttonH{
-      width: 20% !important;
-    }
-    .buttonW{
-      width: 40%;
-      /* height: 60px; */
-    }
-    .value{
-      font-size: 30px !important;
-    }
+  
   } 
   

@@ -48,21 +48,21 @@ const Dashboard = () => {
           <EmployeeTab/>
         </div>
         <div className={styles.row}>
-        <div class="calendar-wrapper">
+        <div class="calendar-wrapper" >
         <Calculator/>
         </div>
-       <div style={{display:"flex",flexDirection: "column"}}>
+       {/* <div style={{display:"flex",flexDirection: "column"}}> */}
        
-        <img src={calendar} alt="Image" className={styles.image}/>
+        {/* <img src={calendar} alt="Image" className={styles.image}/> */}
         <QuickAccess  />
-        </div>
+        {/* </div> */}
         </div>
         <div className={styles.chartsDesktop}>
         <GraphComponent />
         <HalfDoughnut/>
         <Notifications/>
         </div>
-        <QuickAccess/>
+       
      
       </div>
     </React.Fragment>

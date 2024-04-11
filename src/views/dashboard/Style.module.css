@@ -73,7 +73,7 @@
 
 }
 .image{
-  width: 70%;
+  /* width: 70%; */
 height: 270px;
 margin-bottom: 10px;
 }
@@ -114,13 +114,15 @@ margin-bottom: 10px;
 .row{
   display: flex;
   flex: 1;
+  justify-content: space-between;
+  gap: 10px;
   /* gap: -100% !important; */
   /* flex-wrap: nowrap; */
   align-items: flex-start;
 }
 .calendar-wrapper {
-  width: 100%;
-  flex: 1;
+  /* width: 30%; */
+  /* flex: 1; */
 }
 .headerAlign {
   display: flex;

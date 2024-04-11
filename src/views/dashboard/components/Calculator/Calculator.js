@@ -65,7 +65,7 @@ const Calculator = () => {
   };
 
   return (
-    <Container className={styles.container}>
+    // <div className={styles.container}>
       <div
         className={styles.calculator}
         style={{ background: "linear-gradient(to top left, #2063CE, #25CEAE)" }}
@@ -213,7 +213,7 @@ const Calculator = () => {
           </Button>
         </div>
       </div>
-    </Container>
+    // </div>
   );
 };
 
