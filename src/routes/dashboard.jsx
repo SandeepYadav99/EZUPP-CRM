@@ -6,7 +6,7 @@ import AppSettings from "../views/AppSettings/AppSettings.container";
 import IndustryList from "../views/Industry/IndustryList.container";
 import MilestoneList from "../views/Milestone/List/MilestoneList";
 import CategoryList from "../views/Category/CategoryList.container";
-// import RoleList from "../views/Role/List/RoleList";
+import RoleList from "../views/Role/List/RoleList";
 
 import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
@@ -201,16 +201,17 @@ const dashboardRoutes = [
   //   is_protect: true,
   //   should_regex:false
   // },
-  // {
-  //   path: RouteName.ROLE,
-  //   sidebarName: "UserRole",
-  //   navbarName: "UserRole",
-  //   icon: LibraryBooks,
-  //   component: RoleList,
-  //   is_sidebar: true,
-  //   is_protect: true,
-  //   parent: "admin",
-  // },
+
+  {
+    path: RouteName.ROLE,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleList,
+    is_sidebar: true,
+    is_protect: true,
+    parent: "admin",
+  },
   {
     path: RouteName.ROLE_CREATE,
     sidebarName: "UserRole",
@@ -440,7 +441,7 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
   },
- 
+
 ];
 
 export default dashboardRoutes;

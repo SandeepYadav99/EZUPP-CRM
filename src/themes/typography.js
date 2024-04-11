@@ -72,6 +72,11 @@ const Typography = (fontFamily) => ({
   button: {
     textTransform: "capitalize",
   },
+  subtitle3: {
+    fontSize: "0.75rem",
+    lineHeight: 1.75,
+    fontWeight: 600,
+  },
 });
 
 export default Typography;

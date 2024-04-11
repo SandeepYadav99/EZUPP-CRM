@@ -120,10 +120,10 @@ margin-bottom: 10px;
   /* flex-wrap: nowrap; */
   align-items: flex-start;
 }
-.calendar-wrapper {
+/* .calendar-wrapper { */
   /* width: 30%; */
   /* flex: 1; */
-}
+/* } */
 .headerAlign {
   display: flex;
   justify-content: space-between !important;

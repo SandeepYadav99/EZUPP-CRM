@@ -145,6 +145,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       } else {
         SnackbarUtils.error(res.message);
       }
+      
     } catch (error) {
     } finally {
       setIsSubmitting(false);
