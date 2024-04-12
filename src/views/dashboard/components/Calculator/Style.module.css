@@ -20,9 +20,10 @@
     color: #FFFFFF !important;
     width: 22% !important;
     /* flex: 1; */
-    top: 50%;
+    /* top: 50%; */
+    display: flex;
+    height: calc(200% - 3%);
 
-/* height: 153px; */
 
   }
 

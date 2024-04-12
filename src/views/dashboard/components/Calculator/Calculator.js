@@ -182,17 +182,17 @@ const Calculator = () => {
           <Typography variant={"h5"}>3</Typography>
         </Button>
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            //justifyContent: "space-between"
-          }}
+          // style={{
+          //   display: "flex",
+          //   alignItems: "center",
+          //   justifyContent: "center",
+            
+          // }}
         >
           <Button
             className={`${styles.buttonH}`}
             onClick={handleCalculate}
-            style={{ height: "188%" }}
+            // style={{ height: "188%" }}
           >
             <Typography variant={"h5"}>=</Typography>
           </Button>
