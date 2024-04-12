@@ -182,6 +182,7 @@ const Calculator = () => {
           <Typography variant={"h5"}>3</Typography>
         </Button>
         <div
+        className={`${styles.buttonWrap}`}
           // style={{
           //   display: "flex",
           //   alignItems: "center",
