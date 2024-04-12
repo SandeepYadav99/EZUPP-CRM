@@ -10,7 +10,7 @@ import RoleList from "../views/Role/List/RoleList";
 
 import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
-import ProductList from "../views/Product/ProductList.container";
+import ProductList from "../views/Products/List/ProductList.container";
 import ProductView from "../views/Product/ProductView";
 // import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
