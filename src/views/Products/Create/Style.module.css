@@ -1,0 +1,43 @@
+.outerFlex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding-bottom: 30px; */
+  }
+  .outerFlex1{
+    padding-bottom: 30px;
+  }
+  .claimListWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .plainPaper {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,.15);
+    margin-bottom: 20px;
+    padding: .4rem 1.2rem;
+  }
+  
+  .cont{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .lowerWrap{
+    flex: 1;
+  }
+  .saveButton{
+    text-align: right !important;
+  }
+  .dateContainer{
+    width: 100% !important;
+  }
+  .iconButton{
+    display: flex;
+    gap: 5px;
+  }
+  .custonCSS{
+    width: 50% ;
+  }

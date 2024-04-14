@@ -74,14 +74,14 @@ const ProductList = (props) => {
     () => [
       {
         key: "name",
-        label: "User Info",
+        label: "Product Info",
         // style: { width: "18%" },
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "contact",
-        label: "Contact",
+        label: "Type",
         // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => (
@@ -94,14 +94,14 @@ const ProductList = (props) => {
       },
       {
         key: "designation",
-        label: "Designation",
+        label: "Link",
         // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => <div>{all?.designation}</div>,
       },
       {
         key: "role",
-        label: "User Role",
+        label: "Measure Unit",
         // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => <div>{all?.role?.name}</div>,
@@ -116,7 +116,7 @@ const ProductList = (props) => {
       },
       {
         key: "last_login",
-        label: "Last Login",
+        label: "Last Updated At",
         sortable: false,
         render: (temp, all) => <div>{all?.lastLoginText}</div>,
       },

@@ -49,6 +49,7 @@ import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
+import ProductCreate from "../views/Products/Create/ProductCreate"
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
@@ -257,11 +258,19 @@ const dashboardRoutes = [
     sidebarName: "Products",
     navbarName: "Products",
     icon: LocalOffer,
-    component: ProductView,
+    component: ProductCreate,
     is_sidebar: false,
     is_protect: true,
   },
-
+  {
+    path: "/products/create",
+    sidebarName: "Products",
+    navbarName: "Products",
+    icon: LocalOffer,
+    component: ProductCreate,
+    is_sidebar: false,
+    is_protect: true,
+  },
   {
     path: `${RouteName.APP_USERS}`,
     sidebarName: "App Users",

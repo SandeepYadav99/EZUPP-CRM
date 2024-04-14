@@ -4,13 +4,13 @@ import styles from "./Style.module.css";
 import { ButtonBase, Typography } from "@mui/material";
 
 import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
-// import WorkInfoView from "./Component/WorkInfoView";
-import ProductInformation from "./Components/ProductInformation";
+import WorkInfoView from "./Component/WorkInfoView";
+import ProductInformation from "./Component/ProductInformation";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
-import useProductCreateHook from "./ProductCreateHook";
+import useUserCreateHook from "./UserCreateHook";
 
-const ProductCreate = ({}) => {
+const UserCreate = ({}) => {
   const {
     errorData,
     changeTextData,
@@ -23,7 +23,7 @@ const ProductCreate = ({}) => {
     manager,
     department,
     listData,
-  } = useProductCreateHook();
+  } = useUserCreateHook();
 
   return (
     <>
@@ -45,16 +45,16 @@ const ProductCreate = ({}) => {
         listData={listData}
       />
       {/* Work flow  */}
-      {/* <WorkInfoView
+      <WorkInfoView
         errorData={errorData}
         form={form}
-       
+        // image={image}
         changeTextData={changeTextData}
-        
+        // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
-      /> */}
+      />
 
       <div className={styles.saveButton}>
         <PrimaryButton color={"primary"} onClick={handleSubmit}>
@@ -69,4 +69,4 @@ const ProductCreate = ({}) => {
   );
 };
 
-export default ProductCreate;
+export default UserCreate;
