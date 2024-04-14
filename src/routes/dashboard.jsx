@@ -254,7 +254,7 @@ const dashboardRoutes = [
     parent: "masters",
   },
   {
-    path: "/products/edit",
+    path: "/products/details",
     sidebarName: "Products",
     navbarName: "Products",
     icon: LocalOffer,

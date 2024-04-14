@@ -1,8 +1,9 @@
 .outerFlex {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     /* padding-bottom: 30px; */
+   
   }
   .outerFlex1{
     padding-bottom: 30px;
@@ -24,6 +25,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
+  
   }
   .lowerWrap{
     flex: 1;
@@ -31,6 +33,9 @@
   .saveButton{
     text-align: right !important;
   }
+.cancelButton{
+  text-align: left !important;
+}
   .dateContainer{
     width: 100% !important;
   }
@@ -41,3 +46,25 @@
   .custonCSS{
     width: 50% ;
   }
+.box{
+  border: 1px solid #D8D8DD;
+  border-radius: 6px;
+  width: 300px;
+  margin-left: 10px;
+}
+.box1{
+  border: 1px solid #D8D8DD;
+  border-radius: 6px;
+  width: 300px;
+  margin-left: 40px;
+}
+.space{
+  margin-bottom: 25px;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-between; 
+}
+/* .desc{
+  height: 50% !important;
+} */

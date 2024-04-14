@@ -30,8 +30,18 @@ import { serviceGetList } from "../../../services/index.services";
 function useProductCreateHook() {
   const initialForm = {
     name: "",
-    userName: "",
+    productCode: "",
+    productLink: "",
+    associateTags: "",
+    description: "",
     image: "",
+
+    ballparkCost: "",
+    ballparkPrice: "",
+    discountPercent: "",
+    discountValue: "",
+
+
     contact: "",
     email: "",
     role: "",
@@ -44,6 +54,7 @@ function useProductCreateHook() {
     manager: "",
     end_date: "",
     userManage: false,
+    valueAdd: false,
     invoiteToUser: false,
   };
 
@@ -139,8 +150,13 @@ function useProductCreateHook() {
             ...form,
             name: data?.name,
 
-            userName: data?.user_name,
-
+            productCode: data?.productCode,
+            productLink: data?.productLink,
+            description: data?.description,
+            ballparkCost: data?.ballparkCost,
+            ballparkPrice: data?.ballparkPrice,
+            discountPercent: data?.discountPercent,
+            discountValue: data?.discountValue,
             contact: data?.contact,
             email: data?.email,
             role: data?.role?.id,
@@ -218,8 +234,10 @@ console.log(images, "Image")
       "name",
       "email",
       "contact",
-      "userName",
-      // "role",
+      "productCode",
+     // "productLink",
+       "role",
+       "valueAdd",
       "employee_id",
       "joining_date",
       "department",
@@ -282,9 +300,23 @@ console.log(images, "Image")
         t[fieldName] = text;
       } else if (fieldName === "contact") {
         t[fieldName] = text;
-      } else if (fieldName === "userName") {
+      } else if (fieldName === "productCode") {
         t[fieldName] = text;
-      } else if (fieldName === "email") {
+      }else if (fieldName === "productLink") {
+        t[fieldName] = text;
+      } else if (fieldName === "associateTags") { 
+        t[fieldName] = text;
+      }else if (fieldName === "description") {  
+        t[fieldName] = text;
+      }else if (fieldName === "ballparkCost") {  
+        t[fieldName] = text;
+      }else if (fieldName === "ballparkPrice") { 
+        t[fieldName] = text;
+      }else if (fieldName === "discountPercent") { 
+        t[fieldName] = text;
+      }else if (fieldName === "discountValue") { 
+        t[fieldName] = text;
+      }else if (fieldName === "email") {
         t[fieldName] = text;
       } else if (fieldName === "contact") {
         t[fieldName] = text;
@@ -320,7 +352,14 @@ console.log(images, "Image")
           department: form?.department,
           designation: form?.designation,
           manager: form?.manager,
-          user_name: form?.userName,
+          productCode: form?.productCode,
+          productLink: form?.productLink,
+          associateTags: form?.associateTags,
+          description: form?.description,
+          ballparkCost: form?.ballparkCost,
+          ballparkPrice: form?.ballparkPrice,
+          discountPercent: form?.discountPercent,
+          discountValue: form?.discountValue,
           is_primary_user: true,
           is_manager: form?.userManage,
           email_send:form?.invoiteToUser,

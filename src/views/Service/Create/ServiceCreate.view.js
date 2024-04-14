@@ -227,7 +227,7 @@ const ServiceView = ({ handleToggleSidePannel, isSidePanel, empId }) => {
           </Button>
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 

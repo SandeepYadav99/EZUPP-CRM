@@ -3,9 +3,11 @@ import React from "react";
 import styles from "./Style.module.css";
 import { ButtonBase, Typography } from "@mui/material";
 
-import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import { PrimaryButton, ActionButton, OutlineButton } from "../../../components/Buttons/PrimaryButton";
 // import WorkInfoView from "./Component/WorkInfoView";
 import ProductInformation from "./Components/ProductInformation";
+import ProductCommercials from "./Components/ProductCommercials";
+import Settings from "./Components/Settings";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
 import useProductCreateHook from "./ProductCreateHook";
@@ -32,7 +34,7 @@ const ProductCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant={"h4"}>{id ? "Update" : "Add"} User</Typography>
+          <Typography variant={"h4"}>{id ? "Update" : "Create"} Product</Typography>
         </div>
       </div>
       <ProductInformation
@@ -44,8 +46,8 @@ const ProductCreate = ({}) => {
         onBlurHandler={onBlurHandler}
         listData={listData}
       />
-      {/* Work flow  */}
-      {/* <WorkInfoView
+     
+      <ProductCommercials
         errorData={errorData}
         form={form}
        
@@ -54,16 +56,32 @@ const ProductCreate = ({}) => {
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
-      /> */}
+      />
+      <Settings
+        errorData={errorData}
+        form={form}
+       
+        changeTextData={changeTextData}
+        
+        onBlurHandler={onBlurHandler}
+        manager={manager}
+        department={department}
+      />
+     <div className={styles.buttonContainer}>
+      <div className={styles.cancelButton}>
+        
+        <ActionButton sx={{ mt: 4 }}>CANCEL</ActionButton>
+      </div>
 
       <div className={styles.saveButton}>
-        <PrimaryButton color={"primary"} onClick={handleSubmit}>
+        <PrimaryButton color={"primary"} sx={{ mt: 4 }} onClick={handleSubmit}>
           {/* {isSubmitting ? ( */}
           {/* <CircularProgress color="success" size="20px" />
               ) : (  */}
-          Save
+          CREATE
           {/* )} */}
         </PrimaryButton>
+      </div>
       </div>
     </>
   );

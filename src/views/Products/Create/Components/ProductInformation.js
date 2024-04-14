@@ -1,11 +1,35 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
+import img from "../../../../assets/img/1.png";
+const AutoCompleteData=[
+    {
+        id:1,
+        title:"Ardeen Batisse",
+        label:"Ardeen Batisse",
+        image:img,
+        email: "user1@example.com",
+    },
+    {
+        id:2,
+        title:"Justinian Hattersley",
+        label:"Justinian Hattersley",
+        image:img,
+        email: "user2@example.com",
+    },
+    {
+        id:1,
+        title:"Graeme Yellowley",
+        label:"Graeme Yellowley",
+        image:img,
+        email: "user3@example.com",
+    },
 
+]
 const ProductInformation = ({
   errorData,
   changeTextData,
@@ -20,7 +44,7 @@ const ProductInformation = ({
       <div className={"plainPaper"}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
-            <div className={"heading"}>Product Information</div>
+            <Typography variant= {"h5"} className={"heading"}>Product Information</Typography>
           </h4>
         </div>
         <div className={styles.outerFlex}>
@@ -66,54 +90,19 @@ const ProductInformation = ({
 
               <div className={"formGroup"}>
                 <CustomTextField
-                  isError={errorData?.userName}
-                  errorText={errorData?.userName}
+                  isError={errorData?.productCode}
+                  errorText={errorData?.productCode}
                   label={"Product Code"}
-                  value={form?.userName}
+                  value={form?.productCode}
                   onTextChange={(text) => {
-                    changeTextData(text, "userName");
+                    changeTextData(text, "productCode");
                   }}
                   onBlur={() => {
-                    onBlurHandler("userName");
+                    onBlurHandler("productCode");
                   }}
                 />
               </div>
             </div>
-            {/* <div className={"formFlex"}>
-              <div className={"formGroup"}>
-                <CustomTextField
-                  isError={errorData?.email}
-                  errorText={errorData?.email}
-                  label={"Email ID"}
-                  value={form?.email}
-                  onTextChange={(text) => {
-                    changeTextData(text, "email");
-                  }}
-                  onBlur={() => {
-                    onBlurHandler("email");
-                  }}
-                />
-              </div>
-              <div className={"formGroup"}>
-                <CustomPhoneContactField
-                  isError={errorData?.contact}
-                  errorText={errorData?.contact}
-                  value={form?.contact}
-                  onTextChange={(text) => {
-                    changeTextData(text, "contact");
-                  }}
-                  isValid={(value) => {
-                    if (value.match(/12345/)) {
-                      return "";
-                    } else if (value.match(/1234/)) {
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  }}
-                />
-              </div>
-            </div> */}
             <div className={"formFlex"}>
               <div className={"formGroup"}>
                 <CustomSelectField
@@ -124,7 +113,7 @@ const ProductInformation = ({
                   handleChange={(value) => {
                     changeTextData(value, "role");
                   }}
-                  className={styles.custonCSS}
+                  // className={styles.custonCSS}
                 >
                   {listData?.ROLES?.map((role) => (
                     <MenuItem value={role?.id}>{role?.name}</MenuItem>
@@ -132,6 +121,61 @@ const ProductInformation = ({
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
               </div>
+              
+             
+              <div className={"formGroup"}>
+              <CustomTextField
+                  isError={errorData?.productLink}
+                  errorText={errorData?.productLink}
+                  label={"Product Link"}
+                  value={form?.productLink}
+                  onTextChange={(text) => {
+                    changeTextData(text, "productLink");
+                  }}
+                  onBlur={() => {
+                    onBlurHandler("productLink");
+                  }}
+                />
+              </div>
+           
+            </div>
+            <div className={"formFlex"}>
+            <div className={"formGroup"}>
+            <Autocomplete
+                      isError={errorData?.associateTags}
+                      errorText={errorData?.associateTags}
+                    //  value={form?.associateTags}
+                    //  onTextChange={(text) => {
+                    //    changeTextData(text, "associateTags");
+                    //  }}
+                     multiple
+                     id="tags-outlined"
+                    options={AutoCompleteData ? AutoCompleteData : []}
+                    getOptionLabel={(option) => option.title}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="outlined"
+                        label="Associate Tags"
+                      />
+                    )}
+                      />
+                      </div>
+            </div>
+            <div className={`formFlex ${styles.space}`}>
+            <div className={"formGroup"}>
+            <CustomTextField 
+            isError={errorData?.description}
+            errorText={errorData?.description}
+            label={"Description"}
+            onTextChange={(text) => {
+              changeTextData(text, "description");
+            }}
+            onBlur={() => {
+              onBlurHandler("description");
+            }} 
+            className={styles.desc}/>
+            </div>
             </div>
           </div>
         </div>
