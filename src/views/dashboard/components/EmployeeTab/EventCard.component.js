@@ -87,7 +87,7 @@ function EventCard({ data, item }) {
       );
     } else {
       return data?.map((emp) => {
-        console.log(emp, "eventcard");
+        // console.log(emp, "eventcard");
         return (
           <div className={styles.birthdayEventWrapper}>
             <div className={styles.parentWrapper}>

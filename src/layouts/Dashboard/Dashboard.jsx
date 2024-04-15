@@ -13,6 +13,7 @@ import DashboardSnackbar from '../../components/Snackbar.component';
 import {makeStyles} from "@mui/styles";
 import EventEmitter from "../../libs/Events.utils";
 import RolesUtils from "../../libs/Roles.utils";
+// import Navbar from '../../components/NavBarHorizon/NavBarHorizon';
 const useStyles = makeStyles(appStyle);
 
 const Dashboard = ({title, ...props}) => {
@@ -119,6 +120,7 @@ const Dashboard = ({title, ...props}) => {
                     handleDrawerToggle={handleDrawerToggle}
                     {...props}
                 />
+                {/* <Navbar routes={sideBarRoutes}/> */}
                 <div className={classes.content}>
                     <div className={classes.container}>
                         {switchRoutes}
