@@ -48,16 +48,38 @@ const ProductInformation = ({
           </h4>
         </div>
         <div className={styles.outerFlex}>
-          <div className={styles.count}>
-            <File
-              // bannerLabel="Profile"
+          <div className={styles.count}  style={{ margin: "7px 10px 0 14px" }}>
+          <File
+              // imageClass={styles.inputFileUploader}
+              max_size={2 * 1024 * 1024}
+              type={["jpg", "png", "jpeg"]}
+              fullWidth={true}
+              name="image"
+              accept={"image/*"}
+              // label="Please Upload Image"
+              show_image={true}
+              error={errorData?.image}
+              value={form?.image}
+             
+              default_image={image ? image : ""}
+              // link={data ? data.logo : ""}
+              
+              onChange={(file) => {
+                if (file) {
+                  changeTextData(file, "image");
+                }
+              }}
+            />
+            <Typography variant="subtitle3" className={styles.imgText}>Image Guide</Typography>
+            {/* <File
+              
               max_size={2 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
               name="image"
               accept={"image/*"}
               label="Profile"
-              // show_image={true}
+             
 
               link={""}
               user_image
@@ -69,7 +91,7 @@ const ProductInformation = ({
                   changeTextData(file, "image");
                 }
               }}
-            />
+            /> */}
           </div>
           <div className={styles.lowerWrap}>
             <div className={"formFlex"}>
@@ -79,6 +101,7 @@ const ProductInformation = ({
                   errorText={errorData?.name}
                   label={"Product Name"}
                   value={form?.name}
+                  
                   onTextChange={(text) => {
                     changeTextData(text, "name");
                   }}
@@ -168,6 +191,8 @@ const ProductInformation = ({
             isError={errorData?.description}
             errorText={errorData?.description}
             label={"Description"}
+            multiline
+            rows="3"
             onTextChange={(text) => {
               changeTextData(text, "description");
             }}

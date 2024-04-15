@@ -28,7 +28,7 @@ import QuoteList from "../views/Quotes/QuoteList.container";
 import QuoteDetail from "../views/Quotes/Quote.view";
 import HubMasterList from "../views/HubMaster/List/HubMasterList";
 import BlogsComponentList from "../views/Blogs/BlogsList/BlogsList.container";
-
+import ProductDetailview from "../views/Details/ProductDetails.view";
 
 import {
   Dashboard,
@@ -254,11 +254,11 @@ const dashboardRoutes = [
     parent: "masters",
   },
   {
-    path: "/products/details",
+    path: `${RouteName.PRODUCT_DETAILS}:id`,
     sidebarName: "Products",
     navbarName: "Products",
     icon: LocalOffer,
-    component: ProductCreate,
+    component: ProductDetailview,
     is_sidebar: false,
     is_protect: true,
   },

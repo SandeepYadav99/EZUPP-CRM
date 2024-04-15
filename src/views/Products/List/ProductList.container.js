@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import addTask from "../../../assets/img/ic_add_task@2x.png";
+import removeTask from "../../../assets/Assets/ic_delete@2x.png";
 import styles from "../Style.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
@@ -80,7 +81,7 @@ const ProductList = (props) => {
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
-        key: "contact",
+        key: "role",
         label: "Type",
         // style: { width: "15%" },
         sortable: false,
@@ -93,11 +94,11 @@ const ProductList = (props) => {
         ),
       },
       {
-        key: "designation",
+        key: "productLink",
         label: "Link",
         // style: { width: "15%" },
         sortable: false,
-        render: (temp, all) => <div>{all?.designation}</div>,
+        render: (temp, all) => <div>{all?.productLink}</div>,
       },
       {
         key: "role",
@@ -127,16 +128,17 @@ const ProductList = (props) => {
           <div className={styles.actionButton}>
             <IconButton
               // disabled={is_calling}
-              onClick={() => handleProfile(all)}
-            >
-              <img src={addTask} alt="task" width={20} />
-            </IconButton>
-            <IconButton
-              // disabled={is_calling}
               onClick={() => handleEdit(all)}
             >
               <Edit fontSize={"small"} />
             </IconButton>
+            <IconButton
+              // disabled={is_calling}
+              // onClick={() => handleProfile(all)}
+            >
+              <img src={removeTask} alt="task" width={20} />
+            </IconButton>
+            
           </div>
         ),
       },

@@ -104,7 +104,7 @@ const useUserListHook = ({}) => {
   );
 
   const handleEdit = useCallback((type) => {
-    history.push(`${"/products/details"}${type?.id}`);
+    history.push(`${RouteName.PRODUCT_DETAILS}${type?.id}`);
   }, []);
 
   const handleProfile = useCallback((type) => {
