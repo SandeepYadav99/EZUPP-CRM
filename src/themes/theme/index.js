@@ -5,7 +5,7 @@ import {
 
 const primary = "#2063CE";
 const secondary = "#25CEAE";
-const bgcolors = '#ffffff';
+const bgcolors = '#F7F7F9';
 const textColor = "#000000";
 const warning = "#FFC260";
 const success = "#3CD4A0";

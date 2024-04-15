@@ -92,7 +92,7 @@
 .file-upload__label {
     display: block;
     padding: 10px 5px;
-    color: #fff;
+    color: #F7F7F9;
     background: #4962FE;
     transition: background 0.3s;
 }
@@ -143,7 +143,7 @@ input[type=radio] {
     border-radius: 10px;
     padding: 0.4rem 1.2rem;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #F7F7F9;
     box-shadow: 0 0 8px rgb(0 0 0 / 15%);
 }
 .badge {
@@ -595,7 +595,7 @@ input[type=radio] + label:hover {
 .Demo__suggestion-item {
     padding: 8px;
     text-align: left;
-    background-color: #fff;
+    background-color: #F7F7F9;
     cursor: pointer;
 }
 .option_auto_class{
@@ -642,7 +642,7 @@ input[type=radio] + label:hover {
     border-radius: 10px;
     padding: 0.4rem 1.2rem;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #F7F7F9;
     box-shadow: 0 0 8px rgb(0 0 0 / 15%);
 }
 

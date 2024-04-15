@@ -71,7 +71,7 @@
 }
 
 .loginFlex2 {
-  background-color: #fff;
+  background-color: #F7F7F9;
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
@@ -231,7 +231,7 @@
 
 @media only screen and (max-width: 1024px) {
   .loginFlex2 {
-    background-color: #fff;
+    background-color: #F7F7F9;
     /* border-radius: 18px; */
     display: flex;
     padding-bottom: 15px !important;

@@ -45,7 +45,7 @@ const PageBox = ({
 const styles = theme => ({
     widgetWrapper: {
         display: "flex",
-        minHeight: "100%"
+        minHeight: "100%",
     },
     widgetHeader: {
         padding: theme.spacing(3),
@@ -61,7 +61,9 @@ const styles = theme => ({
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
         paddingRight: theme.spacing(2),
-        paddingLeft: theme.spacing(2)
+        paddingLeft: theme.spacing(2),
+        background:"#F7F7F9"
+
     },
     noPadding: {
         padding: 0

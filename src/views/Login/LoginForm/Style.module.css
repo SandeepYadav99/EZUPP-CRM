@@ -61,7 +61,7 @@
 }
 
 .loginFlex2 {
-    background-color: #fff;
+    background-color: #F7F7F9;
     border-radius: 18px;
     display: flex;
     padding-bottom: 15px !important;
@@ -251,7 +251,7 @@
 @media only screen  and (max-width:1024px) {
     .loginFlex2 {
         border-radius: 0px !important;
-        background-color: #fff;
+        background-color: #F7F7F9;
         /* border-radius: 18px; */
         display: flex;
         padding-bottom: 15px ;
