@@ -197,6 +197,7 @@ const StyleGuide = ({}) => {
             
 
            <div className={styles.boxContFlex}>
+            
               {/* <UserCountAvatarsSize /> */}
               {/* <UserCountAvatarsInitials/> */}
               <UserCountAvatarsLabelInitials/>
