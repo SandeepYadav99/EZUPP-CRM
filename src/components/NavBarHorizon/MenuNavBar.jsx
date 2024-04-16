@@ -58,7 +58,7 @@ const MenuItems = ({ items, depthLevel, routes }) => {
                 {window.innerWidth < 960 && depthLevel === 0 ? (
                   items?.sidebarName
                 ) : (
-                  <Link to={items?.path}>{items?.sidebarName}</Link>
+                  <div>{items?.sidebarName}</div>
                 )}
 
                 {depthLevel > 0 && window.innerWidth < 960 ? null : depthLevel >

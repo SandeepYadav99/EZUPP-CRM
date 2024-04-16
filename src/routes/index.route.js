@@ -9,6 +9,7 @@ import LoginView from "../views/Login/LoginForm/Login.view.js";
 import ForgotPassword from "../views/ForgotPassword/ForgotPassword.view";
 import ResetPassword from "../views/ForgotPassword/ResetPassword.view";
 import { Route, Switch } from "react-router-dom";
+import HorizontalNav from "../views/HorizontalNav/HorizontalNav.js";
 
 const App = () => {
   return <div> hi</div>;
@@ -19,6 +20,7 @@ const RouteComponent = () => (
     {/*/!*<Route path={'/signup'} component={Signup} />*!/*/}
     <Route path={"/forgot/password"} component={ForgotPassword} />
     <Route path={"/reset/password"} component={ResetPassword} />
+    <Route path={"/tester"} component={HorizontalNav} />
     <Route path={"/"} component={Dashboard} />
   </Switch>
 );
