@@ -35,7 +35,12 @@ const Typography = (fontFamily) => ({
   },
   title: {
     fontWeight: 600,
-    fontSize: "1.125rem",
+    fontSize: "1.125rem", //18px
+    lineHeight: 1.5,
+  },
+  title1: {
+    fontWeight: 600,
+    fontSize: "1.375rem", //22px
     lineHeight: 1.5,
   },
   subtitle: {

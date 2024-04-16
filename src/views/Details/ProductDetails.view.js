@@ -56,13 +56,17 @@ const ProductDetailview = () => {
             <ButtonBase onClick={() => history.push("/products")}>
               <ArrowBackIos fontSize={"small"} />{" "}
               <span>
-              <Typography variant={"h4"}>Product Detail</Typography>
+              <Typography variant={"title1"}>Product Detail</Typography>
               </span>
             </ButtonBase>
             <div></div>
             <div className={styles.profileHeading}></div>
             <div>
-            <ActionButton >DELETE<img src={removeTask} alt="task" width={20} height={15} /></ActionButton>
+            <ActionButton >DELETE
+            <span className={styles.imageContainer}>
+              <img src={removeTask} alt="task" width={20} height={17}  className={styles.binImage}/>
+              </span>
+              </ActionButton>
               {/* <ArrowOutlineButton
                 className={styles.resetButton}
                 onClick={handleClose}
@@ -83,7 +87,7 @@ const ProductDetailview = () => {
           <div className={styles.gridContainer}>
             <ShadowBox className={styles.product}>
             <div className={styles.title} >
-            <div className={styles.row}>
+            <div  className={styles.row}>
                 <img src={item.image} alt="Image" className={styles.image} />
                 <div className={styles.textContainer}>
                 <div className={styles.row1}>

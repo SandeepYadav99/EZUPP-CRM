@@ -20,7 +20,7 @@ const ProductCommercials = ({
       <div className={"plainPaper"}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
-            <Typography variant= {"h5"} className={"heading"}>Product Commercials</Typography>
+            <Typography variant= {"title"} className={"heading"}>Product Commercials</Typography>
           </h4>
         </div>
         <div className={styles.outerFlex}>

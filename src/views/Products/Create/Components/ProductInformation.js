@@ -44,7 +44,7 @@ const ProductInformation = ({
       <div className={"plainPaper"}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
-            <Typography variant= {"h5"} className={"heading"}>Product Information</Typography>
+            <Typography variant= {"title"} className={"heading"}>Product Information</Typography>
           </h4>
         </div>
         <div className={styles.outerFlex}>

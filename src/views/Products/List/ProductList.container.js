@@ -174,7 +174,7 @@ const ProductList = (props) => {
     <div>
       <div className={"plainPaper"}>
         <div className={styles.headerContainer}>
-          <Typography variant={"h5"} color={"text.primary"} className={styles.title}>Product List</Typography>
+          <Typography variant={"title"} color={"text.primary"} className={styles.title}>Product List</Typography>
           <ArrowPrimaryButton
             onClick={handleCreate}
             icon={<Add fontSize="normal" />}

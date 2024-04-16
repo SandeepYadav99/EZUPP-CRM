@@ -34,7 +34,7 @@ const ProductCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant={"h4"}>{id ? "Update" : "Create"} Product</Typography>
+          <Typography variant={"title1"}>{id ? "Update" : "Create"} Product</Typography>
         </div>
       </div>
       <ProductInformation
