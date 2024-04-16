@@ -96,6 +96,24 @@ initialForm['valueAdd'] = false;
       "designation",
       "manager",
     ];
+    if (!id) {
+      required.push("image");
+    }
+    required.forEach((val) => {
+      if (
+        (!form?.[val] && parseInt(form?.[val]) != 0) ||
+        (Array.isArray(form?.[val]) && form?.[val]?.length === 0)
+      ) {
+        errors[val] = true;
+      }
+    
+    });
+
+    Object.keys(errors).forEach((key) => {
+      if (!errors[key]) {
+        delete errors[key];
+      }
+    });
     return errors;
   }, [form, errorData]);
 
@@ -111,11 +129,29 @@ initialForm['valueAdd'] = false;
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
-      const fieldsToUpdate = ["name", "productCode", "productLink", "associateTags", "description", "ballparkCost", "ballparkPrice", "discountPercent", "discountValue",  "role"];
-      const t = { ...form };
-      fieldsToUpdate.forEach(fieldName => {
-        t[fieldName] = text;
-      });
+      // const fieldsToUpdate = ["name", "productCode", "productLink", "associateTags", "description", "ballparkCost", "ballparkPrice", "discountPercent", "discountValue",  "role"];
+      const updateField = {
+        "name": "name",
+        "contact": "contact",
+        "productCode": "productCode",
+        "productLink": "productLink",
+        "associateTags": "associateTags",
+        "description": "description",
+        "ballparkCost": "ballparkCost",
+        "ballparkPrice": "ballparkPrice",
+        "discountPercent": "discountPercent",
+        "discountValue": "discountValue",
+        "email": "email",
+        "role": "role",
+        "department": "department",
+      };
+       const t = { ...form };
+      // fieldsToUpdate.forEach(fieldName => {
+      //   t[fieldName] = text;
+      // });
+      if (updateField.hasOwnProperty(fieldName)) {
+        t[updateField[fieldName]] = text;
+      } 
       setForm(t);
       shouldRemoveError && removeError(fieldName);
    
@@ -128,7 +164,7 @@ initialForm['valueAdd'] = false;
       if (!isSubmitting) {
         setIsSubmitting(true);
         const fd = new FormData();
-
+        
         let req;
         if (id) {
           fd.append("id", id);
