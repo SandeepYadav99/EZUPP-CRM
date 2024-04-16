@@ -41,7 +41,6 @@ function useProductCreateHook() {
     discountPercent: "",
     discountValue: "",
 
-
     contact: "",
     email: "",
     role: "",
@@ -72,7 +71,6 @@ function useProductCreateHook() {
     ROLES: [],
   });
 
-  
   useEffect(() => {
     serviceGetList(["ROLES"]).then((res) => {
       if (!res.error) {
@@ -80,65 +78,6 @@ function useProductCreateHook() {
       }
     });
   }, []);
-
-
-  useEffect(() => {
-    serviceProfileManager({}).then((res) => {
-      if (!res?.error) {
-        const data = res?.data;
-        setManager(data);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    serviceProviderProfileGetKeyword({}).then((res) => {
-      if (!res?.error) {
-        const data = res?.data;
-        setDepartment(data);
-      }
-    });
-  }, []);
-
-  const validateField = useCallback(
-    (field, values, errorKey, existsMessage) => {
-      serviceProviderIsExist({ [field]: values, id: id || null }).then(
-        (res) => {
-          if (!res.error) {
-            const errors = { ...errorData };
-            if (res.data.is_exists) {
-              errors[errorKey] = existsMessage;
-            } else {
-              delete errors[errorKey];
-            }
-            setErrorData(errors);
-          }
-        }
-      );
-    },
-    [errorData, setErrorData, id]
-  );
-
-  const checkCodeValidation = useCallback(() => {
-    validateField("email", form.email, "email", "Admin User Email Exists");
-  }, [form.email, id]);
-
-  const checkEmpIdValidation = useCallback(() => {
-    validateField(
-      "employee_id",
-      form.employee_id,
-      "employee_id",
-      "Admin User Employee Id Exists"
-    );
-  }, [form.employee_id, id]);
-
-  useEffect(() => {
-    if (emailDebouncer) checkCodeValidation();
-  }, [emailDebouncer]);
-
-  useEffect(() => {
-    if (empIdDebouncer) checkEmpIdValidation();
-  }, [empIdDebouncer]);
 
   useEffect(() => {
     if (id) {
@@ -183,50 +122,7 @@ function useProductCreateHook() {
       });
     }
   }, [id]);
-console.log(images, "Image")
-  // const checkCodeValidation = useCallback(() => {
-  //   "serviceUpdateAdminUserSearch"({
-  //     contact: form?.contact,
-  //     id: id ? id : "",
-  //   }).then((res) => {
-  //     if (!res.error) {
-  //       const data = res?.data;
-
-  //       // if (data?.full_contact === form?.contact) {
-  //       //   setIsContactInList(true);
-  //       // }
-  //       if (data) {
-  //         const tForm = {
-  //           ...form,
-  //           contact: data?.full_contact,
-  //           email: data?.email,
-  //           reg_id: data?.reg_id,
-  //           name2: data?.name,
-  //           member_id: data?.member?.id,
-  //           title: data?.title,
-  //           company_name:data?.member
-  //           ?.name
-
-  //         };
-  //         setForm(tForm);
-  //       } else {
-  //         if (data?.contact !== form?.contact) {
-  //           // setIsContactInList(false);
-  //         }
-  //         setForm({
-  //           ...form,
-  //           id: "",
-  //         });
-  //       }
-  //     }
-  //   });
-  // }, [form, id, form?.contact]);
-
-  // useEffect(() => {
-  //   if (codeDebouncer) {
-  //     checkCodeValidation();
-  //   }
-  // }, [codeDebouncer]);
+  console.log(images, "Image");
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -235,9 +131,9 @@ console.log(images, "Image")
       "email",
       "contact",
       "productCode",
-     // "productLink",
-       "role",
-       "valueAdd",
+      // "productLink",
+      "role",
+      "valueAdd",
       "employee_id",
       "joining_date",
       "department",
@@ -257,14 +153,6 @@ console.log(images, "Image")
       }
       if (val === "contact" && form?.contact) {
         const phoneNumber = parsePhoneNumber(form?.contact);
-
-        if (phoneNumber) {
-          if (phoneNumber.isValid() === false) {
-            errors.contact = "Invalid Number";
-          }
-        } else {
-          errors.contact = "Invalid Number";
-        }
       }
     });
 
@@ -298,32 +186,6 @@ console.log(images, "Image")
       const t = { ...form };
       if (fieldName === "name") {
         t[fieldName] = text;
-      } else if (fieldName === "contact") {
-        t[fieldName] = text;
-      } else if (fieldName === "productCode") {
-        t[fieldName] = text;
-      }else if (fieldName === "productLink") {
-        t[fieldName] = text;
-      } else if (fieldName === "associateTags") { 
-        t[fieldName] = text;
-      }else if (fieldName === "description") {  
-        t[fieldName] = text;
-      }else if (fieldName === "ballparkCost") {  
-        t[fieldName] = text;
-      }else if (fieldName === "ballparkPrice") { 
-        t[fieldName] = text;
-      }else if (fieldName === "discountPercent") { 
-        t[fieldName] = text;
-      }else if (fieldName === "discountValue") { 
-        t[fieldName] = text;
-      }else if (fieldName === "email") {
-        t[fieldName] = text;
-      } else if (fieldName === "contact") {
-        t[fieldName] = text;
-      } else if (fieldName === "role") {
-        t[fieldName] = text;
-      } else if (fieldName === "department") {
-        t[fieldName] = text;
       } else {
         t[fieldName] = text;
       }
@@ -339,38 +201,6 @@ console.log(images, "Image")
       if (!isSubmitting) {
         setIsSubmitting(true);
         const fd = new FormData();
-
-        const formDataFields = {
-          name: form?.name,
-          image: form?.image,
-          contact: form?.contact,
-          role_id: form?.role,
-          email: form?.email,
-          employee_id: form?.employee_id,
-          joining_date: form?.joining_date,
-          exit_date: form?.end_date,
-          department: form?.department,
-          designation: form?.designation,
-          manager: form?.manager,
-          productCode: form?.productCode,
-          productLink: form?.productLink,
-          associateTags: form?.associateTags,
-          description: form?.description,
-          ballparkCost: form?.ballparkCost,
-          ballparkPrice: form?.ballparkPrice,
-          discountPercent: form?.discountPercent,
-          discountValue: form?.discountValue,
-          is_primary_user: true,
-          is_manager: form?.userManage,
-          email_send:form?.invoiteToUser,
-          country_code: 91,
-        };
-
-        for (const field in formDataFields) {
-          if (formDataFields.hasOwnProperty(field)) {
-            fd.append(field, formDataFields[field]);
-          }
-        }
 
         let req;
         if (id) {
