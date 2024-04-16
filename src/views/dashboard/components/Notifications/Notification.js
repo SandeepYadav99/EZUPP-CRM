@@ -11,11 +11,13 @@ function Notifications() {
     setViewall((prev) => !prev);
   }, [viewAll, setViewall]);
   const dataValueStore = useMemo(() => {
-    return viewAll
-      ? datavalue?.Payment?.map((item, index) => (
-          <NotificationCard data={item} index={index} />
-        ))
-      : datavalue?.Payment?.slice(0, 3).map((item, index) => (
+    // return 
+    // viewAll
+    //   ? datavalue?.Payment?.map((item, index) => (
+    //       <NotificationCard data={item} index={index} />
+    //     ))
+    //   :
+      return datavalue?.Payment?.slice(0, 3).map((item, index) => (
           <NotificationCard data={item} index={index} />
         ));
   }, [viewAll]);

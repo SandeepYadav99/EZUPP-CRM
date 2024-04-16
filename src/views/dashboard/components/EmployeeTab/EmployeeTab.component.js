@@ -25,6 +25,7 @@ import { Typography } from "@mui/material";
 import TaskList from "./TaskListCard";
 import MessageCard from "./MessageCard";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     overflow: "auto",
@@ -161,7 +162,7 @@ function EmployeeTab() {
           {/* <EventCard data={data?.messages} item={'messages'} /> */}
           <MessageCard data={data?.messages} item={"messages"} />
         </TabPanel>
-        <TabPanel value={value} index={2} dir={"ltr"}>
+        <TabPanel value={value} index={2} dir={"ltr"} style={{overflow:"scroll"}}>
           {/* <EventCard data={data?.tasksList} item={'taskList'} /> */}
           <TaskList data={data?.tasksList} item={"taskList"} />
         </TabPanel>
