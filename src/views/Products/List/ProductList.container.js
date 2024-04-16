@@ -81,6 +81,13 @@ const ProductList = (props) => {
         key: "role",
         label: "Type",
         sortable: false,
+        render: (temp, all) => (
+          <div>
+            {all?.email}
+            <br />
+            {all?.contact}
+          </div>
+        ),
       },
       {
         key: "productLink",
