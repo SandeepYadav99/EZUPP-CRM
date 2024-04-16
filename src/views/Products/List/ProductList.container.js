@@ -12,7 +12,6 @@ import {
   Topic,
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
-import addTask from "../../../assets/img/ic_add_task@2x.png";
 import removeTask from "../../../assets/Assets/ic_delete@2x.png";
 import styles from "../Style.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
@@ -25,7 +24,6 @@ import {
   ArrowPrimaryButton,
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
-import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
 
 const ProductList = (props) => {
@@ -76,34 +74,23 @@ const ProductList = (props) => {
       {
         key: "name",
         label: "Product Info",
-        // style: { width: "18%" },
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "role",
         label: "Type",
-        // style: { width: "15%" },
         sortable: false,
-        render: (temp, all) => (
-          <div>
-            {all?.email}
-            <br />
-            {all?.contact}
-          </div>
-        ),
       },
       {
         key: "productLink",
         label: "Link",
-        // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => <div>{all?.productLink}</div>,
       },
       {
         key: "role",
         label: "Measure Unit",
-        // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => <div>{all?.role?.name}</div>,
       },
@@ -111,7 +98,6 @@ const ProductList = (props) => {
       {
         key: "status",
         label: "Status",
-        // style: { width: "15%" },
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all.status)}</div>,
       },
@@ -133,8 +119,6 @@ const ProductList = (props) => {
               <Edit fontSize={"small"} />
             </IconButton>
             <IconButton
-              // disabled={is_calling}
-              // onClick={() => handleProfile(all)}
             >
               <img src={removeTask} alt="task" width={20} />
             </IconButton>

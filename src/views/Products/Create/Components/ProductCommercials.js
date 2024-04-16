@@ -1,11 +1,9 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
-import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
-import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
-import img from "../../../../assets/img/1.png";
+
 const ProductCommercials = ({
   errorData,
   changeTextData,

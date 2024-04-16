@@ -1,13 +1,9 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
-import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
-import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
-
-import File from "../../../../components/FileComponent/FileComponent.component";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import styles from "../Style.module.css";
-import img from "../../../../assets/img/1.png";
+
 
 const Settings = ({
   errorData,
@@ -39,12 +35,12 @@ const Settings = ({
                   handleChange={(value) => {
                     changeTextData(value, "role");
                   }}
-                  // className={styles.custonCSS}
+                 
                 >
                   {listData?.ROLES?.map((role) => (
                     <MenuItem value={role?.id}>{role?.name}</MenuItem>
                   ))}
-                  {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
+                 
                 </CustomSelectField>
               </div>
               

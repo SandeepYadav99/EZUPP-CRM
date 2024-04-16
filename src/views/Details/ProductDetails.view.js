@@ -7,16 +7,11 @@ import StatusPill from "../../components/Status/StatusPill.component";
 //import TaskListItem from "./TaskListView";
 import history from "../../libs/history.utils";
 import {
-  ArrowOutlineButton,
-  ArrowPrimaryButton,
   ActionButton,
   PrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
 import {
   ButtonBase,
-  FormControl,
-  MenuItem,
-  Select,
   Typography
 } from "@mui/material";
 import { Add, ArrowBackIos,  Lock } from "@mui/icons-material";
@@ -30,16 +25,10 @@ import capitalizeFirstLetter, {
 const ProductDetailview = () => {
   const [open, setOpen] = useState(false);
   const {
-    profileDetails,
-    handleEdit,
+   
     isLoading,
     handleSideToggle,
     handleDetailPage,
-    taskLists,
-    filterValue,
-    markAsCompleted,
-    completedHandler,
-    filterCompltedTask,
   } = useMyProfileHook();
 
   const handleClose = () => {
@@ -67,20 +56,6 @@ const ProductDetailview = () => {
               <img src={removeTask} alt="task" width={20} height={17}  className={styles.binImage}/>
               </span>
               </ActionButton>
-              {/* <ArrowOutlineButton
-                className={styles.resetButton}
-                onClick={handleClose}
-                icon={<Lock fontSize="normal" />}
-              >
-                <div className={styles.innerText}>Reset Password</div>
-              </ArrowOutlineButton>
-              <ArrowPrimaryButton
-                icon={<Add fontSize={"small"} />}
-                className={styles.addTask}
-                onClick={handleSideToggle}
-              >
-                <div className={styles.innerText}>Add Task</div>
-              </ArrowPrimaryButton> */}
             </div>
           </div>
           {data.Data.map((item, index) => (
@@ -193,16 +168,6 @@ const ProductDetailview = () => {
                           {item.createdAt || "N/A"}
                         </Typography>
                       </div>
-
-                      {/* <div className={styles.activityFlex}>
-                        <div className={styles.sideTitle}>
-                          User is a Manager:
-                        </div>
-
-                        <span className={styles.activity}>
-                          {profileDetails?.is_manager ? "Yes" : "No"}
-                        </span>
-                      </div> */}
                     </div>
 
                     <div className={styles.line} />

@@ -75,11 +75,7 @@ const ProductCreate = ({}) => {
 
       <div className={styles.saveButton}>
         <PrimaryButton color={"primary"} sx={{ mt: 4 }} onClick={handleSubmit}>
-          {/* {isSubmitting ? ( */}
-          {/* <CircularProgress color="success" size="20px" />
-              ) : (  */}
           CREATE
-          {/* )} */}
         </PrimaryButton>
       </div>
       </div>

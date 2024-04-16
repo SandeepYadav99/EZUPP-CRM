@@ -1,7 +1,6 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
-import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
@@ -50,19 +49,17 @@ const ProductInformation = ({
         <div className={styles.outerFlex}>
           <div className={styles.count}  style={{ margin: "7px 10px 0 14px" }}>
           <File
-              // imageClass={styles.inputFileUploader}
+
               max_size={2 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
               name="image"
               accept={"image/*"}
-              // label="Please Upload Image"
               show_image={true}
               error={errorData?.image}
               value={form?.image}
              
               default_image={image ? image : ""}
-              // link={data ? data.logo : ""}
               
               onChange={(file) => {
                 if (file) {
@@ -71,27 +68,6 @@ const ProductInformation = ({
               }}
             />
             <Typography variant="subtitle3" className={styles.imgText}>Image Guide</Typography>
-            {/* <File
-              
-              max_size={2 * 1024 * 1024}
-              type={["jpg", "png", "jpeg"]}
-              fullWidth={true}
-              name="image"
-              accept={"image/*"}
-              label="Profile"
-             
-
-              link={""}
-              user_image
-              error={errorData?.image}
-              value={form?.image}
-              default_image={image ? image : ""}
-              onChange={(file) => {
-                if (file) {
-                  changeTextData(file, "image");
-                }
-              }}
-            /> */}
           </div>
           <div className={styles.lowerWrap}>
             <div className={"formFlex"}>
@@ -141,7 +117,7 @@ const ProductInformation = ({
                   {listData?.ROLES?.map((role) => (
                     <MenuItem value={role?.id}>{role?.name}</MenuItem>
                   ))}
-                  {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
+
                 </CustomSelectField>
               </div>
               
@@ -167,10 +143,6 @@ const ProductInformation = ({
             <Autocomplete
                       isError={errorData?.associateTags}
                       errorText={errorData?.associateTags}
-                    //  value={form?.associateTags}
-                    //  onTextChange={(text) => {
-                    //    changeTextData(text, "associateTags");
-                    //  }}
                      multiple
                      id="tags-outlined"
                     options={AutoCompleteData ? AutoCompleteData : []}
