@@ -11,7 +11,6 @@ import RoleList from "../views/Role/List/RoleList";
 import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
 import ProductList from "../views/Products/List/ProductList.container";
-import ProductView from "../views/Product/ProductView";
 // import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
 import FaqList from "../views/Faq/FaqList.container";
@@ -263,7 +262,7 @@ const dashboardRoutes = [
     is_protect: true,
   },
   {
-    path: "/products/create",
+    path: `${RouteName.PRODUCT_CREATE}`,
     sidebarName: "Products",
     navbarName: "Products",
     icon: LocalOffer,

@@ -20,9 +20,7 @@ import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./ProductListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import {
-  ActionButton,
   ArrowPrimaryButton,
-  PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
 
@@ -36,8 +34,6 @@ const ProductList = (props) => {
     handleSearchValueChange,
     handleProfile,
     configFilter,
-    isSidePanel,
-    handleSideToggle,
     handleCreate,
   } = useUserListHook({});
 
@@ -46,7 +42,7 @@ const ProductList = (props) => {
     all: allData,
     currentPage,
     is_fetching: isFetching,
-  } = useSelector((state) => state.provider_user);
+  } = useSelector((state) => state.product);
 
   const renderFirstCell = useCallback((user) => {
     return (
@@ -96,13 +92,6 @@ const ProductList = (props) => {
         render: (temp, all) => <div>{all?.productLink}</div>,
       },
       {
-        key: "role",
-        label: "Measure Unit",
-        sortable: false,
-        render: (temp, all) => <div>{all?.role?.name}</div>,
-      },
-
-      {
         key: "status",
         label: "Status",
         sortable: false,
@@ -125,11 +114,9 @@ const ProductList = (props) => {
             >
               <Edit fontSize={"small"} />
             </IconButton>
-            <IconButton
-            >
+            <IconButton>
               <img src={removeTask} alt="task" width={20} />
             </IconButton>
-            
           </div>
         ),
       },
@@ -165,7 +152,13 @@ const ProductList = (props) => {
     <div>
       <div className={"plainPaper"}>
         <div className={styles.headerContainer}>
-          <Typography variant={"title"} color={"text.primary"} className={styles.title}>Product List</Typography>
+          <Typography
+            variant={"title"}
+            color={"text.primary"}
+            className={styles.title}
+          >
+            Product List
+          </Typography>
           <ArrowPrimaryButton
             onClick={handleCreate}
             icon={<Add fontSize="normal" />}

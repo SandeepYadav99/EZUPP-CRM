@@ -1,21 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {
-  actionCreateCustomers,
-  actionUpdateCustomers,
-} from "../../../actions/Customers.action";
-
 import RouteName from "../../../routes/Route.name";
 import {
-  actionFetchProviderUser,
-  actionSetPageProviderUserRequests,
-} from "../../../actions/ProviderUser.action";
-import { format } from "date-fns";
+  actionFetchProduct,
+  actionSetPageProductRequests,
+} from "../../../actions/Product.action";
 import history from "../../../libs/history.utils";
 
 const useUserListHook = ({}) => {
-  const [isSidePanel, setSidePanel] = useState(false);         
-  const [isCalling, setIsCalling] = useState(false);
   const [editData, setEditData] = useState(null);
 
   const dispatch = useDispatch();
@@ -26,11 +18,11 @@ const useUserListHook = ({}) => {
     query,
     query_data: queryData,
     all,
-  } = useSelector((state) => state?.provider_user);
+  } = useSelector((state) => state?.product);
 
   useEffect(() => {
     dispatch(
-      actionFetchProviderUser(
+      actionFetchProduct(
         1,
         {},
         {
@@ -43,26 +35,13 @@ const useUserListHook = ({}) => {
   }, []);
 
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageProviderUserRequests(type));
+    dispatch(actionSetPageProductRequests(type));
   }, []);
-
-  const handleDataSave = useCallback(
-    (data, type) => {
-      if (type == "CREATE") {
-        dispatch(actionCreateCustomers(data));
-      } else {
-        dispatch(actionUpdateCustomers(data));
-      }
-      setSidePanel((e) => !e);
-      setEditData(null);
-    },
-    [setSidePanel, setEditData]
-  );
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchProviderUser(1, sortingData, {
+        actionFetchProduct(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
           query_data: key == "FILTER_DATA" ? value : queryData,
         })
@@ -84,13 +63,12 @@ const useUserListHook = ({}) => {
     },
     [queryFilter]
   );
- 
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageProviderUserRequests(1));
+      dispatch(actionSetPageProductRequests(1));
       dispatch(
-        actionFetchProviderUser(
+        actionFetchProduct(
           1,
           { row, order },
           {
@@ -107,15 +85,8 @@ const useUserListHook = ({}) => {
     history.push(`${RouteName.PRODUCT_DETAILS}${type?.id}`);
   }, []);
 
-  const handleToggleSidePannel = useCallback(
-    (data) => {
-      setSidePanel((e) => !e);
-    },
-    [setSidePanel, setEditData]
-  );
-
   const handleCreate = useCallback(() => {
-    history.push("/products/create");
+    history.push(RouteName.PRODUCT_CREATE);
   }, []);
 
   const configFilter = useMemo(() => {
@@ -137,17 +108,13 @@ const useUserListHook = ({}) => {
 
   return {
     handlePageChange,
-    handleDataSave,
     handleFilterDataChange,
     handleSearchValueChange,
     handleSortOrderChange,
     handleEdit,
-    isCalling,
     editData,
-    isSidePanel,
     configFilter,
     handleCreate,
-    handleToggleSidePannel,
   };
 };
 

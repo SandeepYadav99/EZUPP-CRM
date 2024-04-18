@@ -1,19 +1,13 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 4/8/2020.
- */
 import store from '../store';
 import Constants from '../config/constants';
 import {serviceCreateProduct, serviceGetProduct, serviceUpdateProduct,serviceDeleteProduct} from "../services/Product.service";
 import EventEmitter from "../libs/Events.utils";
-import {serviceDeleteCategory} from "../services/Category.service";
 
 
 export const FETCH_INIT = 'FETCH_INIT_PRODUCTS';
 export const FETCHED = 'FETCHED_PRODUCTS';
 export const FETCHED_FAIL = 'FETCHED_FAIL_PRODUCTS';
 export const FETCHED_FILTER = 'FETCHED_FILTER_PRODUCTS';
-// export const NEXT_PREQUESTS = 'NEXT_PREQUESTS';
-// export const PREV_PREQUESTS = 'PREV_PREQUESTS';
 export const FETCH_NEXT = 'FETCH_NEXT_PRODUCTS';
 export const FILTER = 'FILTER_PRODUCTS';
 export const RESET_FILTER = 'RESET_FILTER_PRODUCTS';
@@ -84,20 +78,6 @@ export function actionChangePageProductRequests(page) {
     }
 }
 
-// export function nextPRequestsClick() {
-//     return {
-//         type: NEXT_PREQUESTS,
-//         payload: null,
-//     };
-// }
-//
-// export function prevPRequestsClick() {
-//     return {
-//         type: PREV_PREQUESTS,
-//         payload: null,
-//     };
-// }
-
 export function actionFilterProductRequests(value) {
     const request = null;////serviceFetchProviderRequests(value);
     return (dispatch) => {
@@ -114,10 +94,6 @@ export function actionChangeStatusProductRequests(id, status) {
     // const request = serviceFetchProviderRequests(value);
     return (dispatch) => {
         dispatch({type: CHANGE_STATUS, payload: {id, status}});
-        // request.then((data) => {
-        //     dispatch({type: FILTER_PREQUESTS, payload: data});
-        //     dispatch({type: FETCHED_PREQUESTS, payload: null});
-        // });
     };
 }
 
@@ -141,15 +117,8 @@ export function actionSetPageProductRequests(page) {
         store.dispatch(actionFetchProduct(serverPage + 1, sortingData, {query, query_data: queryData}));
         // this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order, { query: this.props.query, query_data: this.props.query_data });
     }
-
-   
     return {
         type: CHANGE_PAGE,
         payload: page,
     };
-    // if (this.props.totalUsers <= ((this.props.currentPage + 1) * 100)) {
-    //         // this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order);
-    //         this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order, { query: this.props.query, query_data: this.props.query_data });
-    //     }
-
 }
