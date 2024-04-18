@@ -18,40 +18,39 @@ const ProductCommercials = ({
       <div className={"plainPaper"}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
-            <Typography variant= {"title"} className={"heading"}>Product Commercials</Typography>
+            <Typography variant={"title"} className={"heading"}>
+              Product Commercials
+            </Typography>
           </h4>
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.lowerWrap}>
-            
             <div className={"formFlex"}>
               <div className={"formGroup"}>
                 <CustomSelectField
-                  isError={errorData?.role}
-                  errorText={errorData?.role}
+                  isError={errorData?.currency}
+                  errorText={errorData?.currency}
                   label={"Currency"}
-                  value={form?.role}
+                  value={form?.currency}
                   handleChange={(value) => {
-                    changeTextData(value, "role");
+                    changeTextData(value, "currency");
                   }}
                   // className={styles.custonCSS}
                 >
-                  {listData?.ROLES?.map((role) => (
-                    <MenuItem value={role?.id}>{role?.name}</MenuItem>
-                  ))}
-                  {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
+                  <MenuItem value={"INR"}>INR</MenuItem>
+                  <MenuItem value={"USD"}>USD</MenuItem>
+                  <MenuItem value={"EURO"}>EURO</MenuItem>
                 </CustomSelectField>
               </div>
-              
-             
+
               <div className={"formGroup"}>
-              <CustomSelectField
-                  isError={errorData?.role}
-                  errorText={errorData?.role}
+                <CustomSelectField
+                  isError={errorData?.unit_id}
+                  errorText={errorData?.unit_id}
                   label={"Measure Unit"}
-                  value={form?.role}
+                  value={form?.unit_id}
                   handleChange={(value) => {
-                    changeTextData(value, "role");
+                    changeTextData(value, "unit_id");
                   }}
                   // className={styles.custonCSS}
                 >
@@ -61,35 +60,36 @@ const ProductCommercials = ({
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
               </div>
-           
             </div>
             <div className={"formFlex"}>
               <div className={"formGroup"}>
                 <CustomTextField
-                  isError={errorData?.ballparkCost}
-                  errorText={errorData?.ballparkCost}
+                  type="number"
+                  isError={errorData?.ballpark_cost}
+                  errorText={errorData?.ballpark_cost}
                   label={"Ballpark Cost"}
-                  value={form?.name}
+                  value={form?.ballpark_cost}
                   onTextChange={(text) => {
-                    changeTextData(text, "ballparkCost");
+                    changeTextData(text, "ballpark_cost");
                   }}
                   onBlur={() => {
-                    onBlurHandler("ballparkCost");
+                    onBlurHandler("ballpark_cost");
                   }}
                 />
               </div>
 
               <div className={"formGroup"}>
                 <CustomTextField
-                  isError={errorData?.ballparkPrice}
-                  errorText={errorData?.ballparkPrice}
+                  type="number"
+                  isError={errorData?.ballpark_price}
+                  errorText={errorData?.ballpark_price}
                   label={"Ballpark Price"}
-                  value={form?.ballparkPrice}
+                  value={form?.ballpark_price}
                   onTextChange={(text) => {
-                    changeTextData(text, "ballparkPrice");
+                    changeTextData(text, "ballpark_price");
                   }}
                   onBlur={() => {
-                    onBlurHandler("ballparkPrice");
+                    onBlurHandler("ballpark_price");
                   }}
                 />
               </div>
@@ -97,35 +97,36 @@ const ProductCommercials = ({
             <div className={`formFlex ${styles.space}`}>
               <div className={"formGroup"}>
                 <CustomTextField
-                  isError={errorData?.discountPercent}
-                  errorText={errorData?.discountPercent}
+                  type="number"
+                  isError={errorData?.discount_percent}
+                  errorText={errorData?.discount_percent}
                   label={"Discount Percent"}
-                  value={form?.discountPercent}
+                  value={form?.discount_percent}
                   onTextChange={(text) => {
-                    changeTextData(text, "discountPercent");
+                    changeTextData(text, "discount_percent");
                   }}
                   onBlur={() => {
-                    onBlurHandler("discountPercent");
+                    onBlurHandler("discount_percent");
                   }}
                 />
               </div>
 
               <div className={"formGroup"}>
                 <CustomTextField
-                  isError={errorData?.discountValue}
-                  errorText={errorData?.discountValue}
+                  type="number"
+                  isError={errorData?.discount_value}
+                  errorText={errorData?.discount_value}
                   label={"Discount Value"}
-                  value={form?.userName}
+                  value={form?.discount_value}
                   onTextChange={(text) => {
-                    changeTextData(text, "discountValue");
+                    changeTextData(text, "discount_value");
                   }}
                   onBlur={() => {
-                    onBlurHandler("discountValue");
+                    onBlurHandler("discount_value");
                   }}
                 />
               </div>
             </div>
-            
           </div>
         </div>
       </div>

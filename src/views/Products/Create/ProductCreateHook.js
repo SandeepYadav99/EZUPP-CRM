@@ -1,101 +1,87 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
-
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
 import {
-  serviceCreateProviderUser,
-  serviceGetProviderUserDetail,
-  serviceUpdateProviderUser,
-} from "../../../services/ProviderUser.service";
+  serviceCreateProduct,
+  serviceUpdateProduct,
+} from "../../../services/Product.service";
 import { serviceGetList } from "../../../services/index.services";
 
 function useProductCreateHook() {
-  const initialForm = {};
-const defaultPropertyValue = "";
-const properties = [
-  'name',
-  'productCode',
-  'productLink',
-  'associateTags',
-  'description',
-  'image',
-  'ballparkCost',
-  'ballparkPrice',
-  'discountPercent',
-  'discountValue',
-  'role',
-  'type',
-  'manager',
-  'valueAdd'
-];
-properties.forEach(property => {
-  initialForm[property] = defaultPropertyValue;
-});
-initialForm['valueAdd'] = false;
+  const initialForm = {
+    name: "name",
+    code: "code",
+    product_link: "product_link",
+    tags: [],
+    description: "description",
+    image: "",
+    unit_id: "kg",
+    currency: "",
+    ballpark_cost: "",
+    ballpark_price: "",
+    discount_percent: "",
+    discount_value: "",
+    type: "",
+    status: "",
+    is_show_public: false,
+    is_value_add: false,
+  };
 
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [manager, setManager] = useState([]);
   const [listData, setListData] = useState({
     ROLES: [],
+    UNITS: [],
   });
 
   useEffect(() => {
-    serviceGetList(["ROLES"]).then((res) => {
+    serviceGetList(["ROLES", "UNITS"]).then((res) => {
       if (!res.error) {
         setListData(res.data);
       }
     });
   }, []);
 
-  useEffect(() => {
-    if (id) {
-      serviceGetProviderUserDetail({ id: id }).then((res) => {
-        if (!res.error) {
-          const data = res?.data;
+  // serviceGetTags;
+  // useEffect(() => {
+  //   if (id) {
+  //     serviceGetProviderUserDetail({ id: id }).then((res) => {
+  //       if (!res.error) {
+  //         const data = res?.data;
 
-          const formData = {
-            ...form,
-            name: data?.name,
-            productCode: data?.productCode,
-            productLink: data?.productLink,
-            description: data?.description,
-            ballparkCost: data?.ballparkCost,
-            ballparkPrice: data?.ballparkPrice,
-            discountPercent: data?.discountPercent,
-            discountValue: data?.discountValue,
-            role: data?.role?.id,
-            designation: data?.designation,
-            manager: data?.manager?.id,
-          };
+  //         const formData = {
+  //           ...form,
+  //           name: data?.name,
+  //           code: data?.code,
+  //           product_link: data?.product_link,
+  //           description: data?.description,
+  //           ballpark_cost: data?.ballpark_cost,
+  //           ballpark_price: data?.ballpark_price,
+  //           discount_percent: data?.discount_percent,
+  //           discount_value: data?.discount_value,
+  //           designation: data?.designation,
+  //           is_show_public: data?.is_show_public?.id,
+  //         };
 
-          setForm(formData);
-          setImages(data?.image);
-        } else {
-          SnackbarUtils.error(res?.message);
-        }
-      });
-    }
-  }, [id]);
+  //         setForm(formData);
+  //         setImages(data?.image);
+  //       } else {
+  //         SnackbarUtils.error(res?.message);
+  //       }
+  //     });
+  //   }
+  // }, [id]);
   console.log(images, "Image");
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = [
-      "name",
-      "productCode",
-      "role",
-      "valueAdd",
-      "department",
-      "designation",
-      "manager",
-    ];
+    let required = ["name", "code", "type", "currency", "status"];
     if (!id) {
       required.push("image");
     }
@@ -106,7 +92,6 @@ initialForm['valueAdd'] = false;
       ) {
         errors[val] = true;
       }
-    
     });
 
     Object.keys(errors).forEach((key) => {
@@ -129,32 +114,24 @@ initialForm['valueAdd'] = false;
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
-      // const fieldsToUpdate = ["name", "productCode", "productLink", "associateTags", "description", "ballparkCost", "ballparkPrice", "discountPercent", "discountValue",  "role"];
-      const updateField = {
-        "name": "name",
-        "contact": "contact",
-        "productCode": "productCode",
-        "productLink": "productLink",
-        "associateTags": "associateTags",
-        "description": "description",
-        "ballparkCost": "ballparkCost",
-        "ballparkPrice": "ballparkPrice",
-        "discountPercent": "discountPercent",
-        "discountValue": "discountValue",
-        "email": "email",
-        "role": "role",
-        "department": "department",
-      };
-       const t = { ...form };
-      // fieldsToUpdate.forEach(fieldName => {
-      //   t[fieldName] = text;
-      // });
-      if (updateField.hasOwnProperty(fieldName)) {
-        t[updateField[fieldName]] = text;
-      } 
+      const t = { ...form };
+      if (
+        fieldName === "ballpark_cost" ||
+        fieldName === "ballpark_price" ||
+        fieldName === "discount_value"
+      ) {
+        if (text >= 0) {
+          t[fieldName] = text;
+        }
+      } else if (fieldName === "discount_percent") {
+        if (text >= 0 && text <= 100) {
+          t[fieldName] = text;
+        }
+      } else {
+        t[fieldName] = text;
+      }
       setForm(t);
       shouldRemoveError && removeError(fieldName);
-   
     },
     [removeError, form, setForm]
   );
@@ -164,13 +141,24 @@ initialForm['valueAdd'] = false;
       if (!isSubmitting) {
         setIsSubmitting(true);
         const fd = new FormData();
-        
+        Object.keys(form).forEach((key) => {
+          if (["image"].indexOf(key) < 0) {
+            if (key === "is_show_public" || key === "is_value_add") {
+              fd.append(key, form[key] ? true : false);
+            } else {
+              fd.append(key, form[key]);
+            }
+          }
+        });
+        if (form?.image) {
+          fd.append("image", form?.image);
+        }
         let req;
         if (id) {
           fd.append("id", id);
-          req = serviceUpdateProviderUser(fd);
+          req = serviceUpdateProduct(fd);
         } else {
-          req = serviceCreateProviderUser(fd);
+          req = serviceCreateProduct(fd);
         }
         req.then((res) => {
           if (!res.error) {
@@ -218,7 +206,6 @@ initialForm['valueAdd'] = false;
     isSubmitting,
     images,
     id,
-    manager,
   };
 }
 

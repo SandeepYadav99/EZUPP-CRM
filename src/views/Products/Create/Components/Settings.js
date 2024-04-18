@@ -4,7 +4,6 @@ import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import styles from "../Style.module.css";
 
-
 const Settings = ({
   errorData,
   changeTextData,
@@ -19,73 +18,76 @@ const Settings = ({
       <div className={"plainPaper"}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
-            <Typography variant= {"title"} className={"heading"}>Settings</Typography>
+            <Typography variant={"title"} className={"heading"}>
+              Settings
+            </Typography>
           </h4>
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.lowerWrap}>
-            
             <div className={"formFlex"}>
               <div className={"formGroup"}>
                 <CustomSelectField
-                  isError={errorData?.role}
-                  errorText={errorData?.role}
+                  isError={errorData?.status}
+                  errorText={errorData?.status}
                   label={"Status"}
-                  value={form?.role}
+                  value={form?.status}
                   handleChange={(value) => {
-                    changeTextData(value, "role");
+                    changeTextData(value, "status");
                   }}
-                 
                 >
-                  {listData?.ROLES?.map((role) => (
-                    <MenuItem value={role?.id}>{role?.name}</MenuItem>
-                  ))}
-                 
+                  <MenuItem value="ACTIVE">ACTIVE</MenuItem>
+                  <MenuItem value="INACTIVE">INACTIVE</MenuItem>
+                  <MenuItem value="DRAFT">DRAFT</MenuItem>
+                  <MenuItem value="DELETED">DELETED</MenuItem>
                 </CustomSelectField>
               </div>
-              
-             
-              <div className={"formGroup"}>
-              </div>
-           
-            </div>
-        <div className={`formFlex ${styles.space}`}>
-            <div className={styles.box}>
-            <div className={"formGroup "}>
-           
-            <CustomCheckbox
-              value={form?.userManage}
-              handleChange={() => {
-                changeTextData(!form?.userManage, "userManage");
-              }}
-              label={<Typography variant="subtitle1">Show Public</Typography>}
-             
-            />
-            <Typography color= {"text.secondary"} sx={{ ml: 4, mt: -1 }} variant="body1">Make the product visible to public</Typography>
-           
-          </div>
-          </div>
 
-          <div className={styles.box1}>
-          <div className={"formGroup "}>
-           
-            <CustomCheckbox
-              
-              value={form?.valueAdd}
-              handleChange={() => {
-                changeTextData(!form?.valueAdd, "valueAdd");
-              }}
-              label={<Typography variant="subtitle1">Value Add</Typography>}
-             
-            />
-            <Typography color= {"text.secondary"} sx={{ ml: 4 , mt: -1}} variant="body1">Value add help text to be shown here</Typography>
-           
-          </div>
-          </div>
-          
-        </div>
-            
-            
+              <div className={"formGroup"}></div>
+            </div>
+            <div className={`formFlex ${styles.space}`}>
+              <div className={styles.box}>
+                <div className={"formGroup "}>
+                  <CustomCheckbox
+                    value={form?.is_show_public}
+                    handleChange={() => {
+                      changeTextData(!form?.is_show_public, "is_show_public");
+                    }}
+                    label={
+                      <Typography variant="subtitle1">Show Public</Typography>
+                    }
+                  />
+                  <Typography
+                    color={"text.secondary"}
+                    sx={{ ml: 4, mt: -1 }}
+                    variant="body1"
+                  >
+                    Make the product visible to public
+                  </Typography>
+                </div>
+              </div>
+
+              <div className={styles.box1}>
+                <div className={"formGroup "}>
+                  <CustomCheckbox
+                    value={form?.is_value_add}
+                    handleChange={() => {
+                      changeTextData(!form?.is_value_add, "is_value_add");
+                    }}
+                    label={
+                      <Typography variant="subtitle1">Value Add</Typography>
+                    }
+                  />
+                  <Typography
+                    color={"text.secondary"}
+                    sx={{ ml: 4, mt: -1 }}
+                    variant="body1"
+                  >
+                    Value add help text to be shown here
+                  </Typography>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
