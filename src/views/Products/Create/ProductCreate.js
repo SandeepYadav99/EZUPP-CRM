@@ -3,8 +3,11 @@ import React from "react";
 import styles from "./Style.module.css";
 import { ButtonBase, Typography } from "@mui/material";
 
-import { PrimaryButton, ActionButton, OutlineButton } from "../../../components/Buttons/PrimaryButton";
-// import WorkInfoView from "./Component/WorkInfoView";
+import {
+  PrimaryButton,
+  ActionButton,
+  OutlineButton,
+} from "../../../components/Buttons/PrimaryButton";
 import ProductInformation from "./Components/ProductInformation";
 import ProductCommercials from "./Components/ProductCommercials";
 import Settings from "./Components/Settings";
@@ -34,7 +37,9 @@ const ProductCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant={"title1"}>{id ? "Update" : "Create"} Product</Typography>
+          <Typography variant={"title1"}>
+            {id ? "Update" : "Create"} Product
+          </Typography>
         </div>
       </div>
       <ProductInformation
@@ -46,13 +51,11 @@ const ProductCreate = ({}) => {
         onBlurHandler={onBlurHandler}
         listData={listData}
       />
-     
+
       <ProductCommercials
         errorData={errorData}
         form={form}
-       
         changeTextData={changeTextData}
-        
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
@@ -60,24 +63,25 @@ const ProductCreate = ({}) => {
       <Settings
         errorData={errorData}
         form={form}
-       
         changeTextData={changeTextData}
-        
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
       />
-     <div className={styles.buttonContainer}>
-      <div className={styles.cancelButton}>
-        
-        <ActionButton sx={{ mt: 4 }}>CANCEL</ActionButton>
-      </div>
+      <div className={styles.buttonContainer}>
+        <div className={styles.cancelButton}>
+          <ActionButton sx={{ mt: 4 }}>CANCEL</ActionButton>
+        </div>
 
-      <div className={styles.saveButton}>
-        <PrimaryButton color={"primary"} sx={{ mt: 4 }} onClick={handleSubmit}>
-          CREATE
-        </PrimaryButton>
-      </div>
+        <div className={styles.saveButton}>
+          <PrimaryButton
+            color={"primary"}
+            sx={{ mt: 4 }}
+            onClick={handleSubmit}
+          >
+            CREATE
+          </PrimaryButton>
+        </div>
       </div>
     </>
   );

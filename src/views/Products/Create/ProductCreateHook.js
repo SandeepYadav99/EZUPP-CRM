@@ -8,7 +8,11 @@ import {
   serviceCreateProduct,
   serviceUpdateProduct,
 } from "../../../services/Product.service";
-import { serviceGetList } from "../../../services/index.services";
+import {
+  serviceGetList,
+  serviceGetTagList,
+} from "../../../services/index.services";
+import { validateUrl } from "../../../libs/RegexUtils";
 
 function useProductCreateHook() {
   const initialForm = {
@@ -48,35 +52,14 @@ function useProductCreateHook() {
     });
   }, []);
 
-  // serviceGetTags;
   // useEffect(() => {
-  //   if (id) {
-  //     serviceGetProviderUserDetail({ id: id }).then((res) => {
-  //       if (!res.error) {
-  //         const data = res?.data;
+  //   serviceGetTagList(query).then((res) => {
+  //     if (!res.error) {
+  //       setListData(res.data);
+  //     }
+  //   });
+  // }, []);
 
-  //         const formData = {
-  //           ...form,
-  //           name: data?.name,
-  //           code: data?.code,
-  //           product_link: data?.product_link,
-  //           description: data?.description,
-  //           ballpark_cost: data?.ballpark_cost,
-  //           ballpark_price: data?.ballpark_price,
-  //           discount_percent: data?.discount_percent,
-  //           discount_value: data?.discount_value,
-  //           designation: data?.designation,
-  //           is_show_public: data?.is_show_public?.id,
-  //         };
-
-  //         setForm(formData);
-  //         setImages(data?.image);
-  //       } else {
-  //         SnackbarUtils.error(res?.message);
-  //       }
-  //     });
-  //   }
-  // }, [id]);
   console.log(images, "Image");
 
   const checkFormValidation = useCallback(() => {
@@ -93,7 +76,16 @@ function useProductCreateHook() {
         errors[val] = true;
       }
     });
-
+    if(form?.name?.length < 2){
+      errors["name"] = true;
+    }
+    if(form?.code?.length < 2){
+      errors["code"] = true;
+    }
+    if (form?.product_link && !validateUrl(form?.product_link)) {
+      SnackbarUtils.error("Please Enter the Valid Url");
+      errors["product_link"] = true;
+    }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];

@@ -19,9 +19,7 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./ProductListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
-import {
-  ArrowPrimaryButton,
-} from "../../../components/Buttons/PrimaryButton";
+import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
 
 const ProductList = (props) => {
@@ -74,22 +72,22 @@ const ProductList = (props) => {
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
+        key: "product_code",
+        label: "Product Code",
+        sortable: false,
+        render: (temp, all) => <div>{all?.code}</div>,
+      },
+      {
         key: "role",
         label: "Type",
         sortable: false,
-        render: (temp, all) => (
-          <div>
-            {all?.email}
-            <br />
-            {all?.contact}
-          </div>
-        ),
+        render: (temp, all) => <div>{all?.type}</div>,
       },
       {
         key: "productLink",
         label: "Link",
         sortable: false,
-        render: (temp, all) => <div>{all?.productLink}</div>,
+        render: (temp, all) => <div>{all?.product_link}</div>,
       },
       {
         key: "status",
@@ -101,7 +99,7 @@ const ProductList = (props) => {
         key: "last_login",
         label: "Last Updated At",
         sortable: false,
-        render: (temp, all) => <div>{all?.lastLoginText}</div>,
+        render: (temp, all) => <div>{all?.updatedAtText}</div>,
       },
       {
         key: "user_id",
