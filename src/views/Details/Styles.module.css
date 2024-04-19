@@ -42,7 +42,8 @@
   .image{
     width: 110px;
     height: 100px;
-margin-right: 10px;
+    border-radius: 10px;
+    margin-right: 20px;
   }
 .row{
   display: flex;

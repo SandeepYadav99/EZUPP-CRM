@@ -52,6 +52,7 @@ const ProductDetailview = () => {
                   src={profileDetails?.image}
                   alt="Image"
                   className={styles.image}
+                  crossOrigin="anonymous"
                 />
                 <div className={styles.textContainer}>
                   <div className={styles.row1}>
