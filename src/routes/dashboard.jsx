@@ -10,8 +10,7 @@ import RoleList from "../views/Role/List/RoleList";
 
 import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
-import ProductList from "../views/Product/ProductList.container";
-import ProductView from "../views/Product/ProductView";
+import ProductList from "../views/Products/List/ProductList.container";
 // import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
 import FaqList from "../views/Faq/FaqList.container";
@@ -28,7 +27,7 @@ import QuoteList from "../views/Quotes/QuoteList.container";
 import QuoteDetail from "../views/Quotes/Quote.view";
 import HubMasterList from "../views/HubMaster/List/HubMasterList";
 import BlogsComponentList from "../views/Blogs/BlogsList/BlogsList.container";
-
+import ProductDetailview from "../views/Details/ProductDetails.view";
 
 import {
   Dashboard,
@@ -49,6 +48,7 @@ import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
+import ProductCreate from "../views/Products/Create/ProductCreate"
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
@@ -263,15 +263,23 @@ const dashboardRoutes = [
     parent: "masters",
   },
   {
-    path: "/products/edit",
+    path: `${RouteName.PRODUCT_DETAILS}:id`,
     sidebarName: "Products",
     navbarName: "Products",
     icon: LocalOffer,
-    component: ProductView,
+    component: ProductDetailview,
     is_sidebar: false,
     is_protect: true,
   },
-
+  {
+    path: `${RouteName.PRODUCT_CREATE}`,
+    sidebarName: "Products",
+    navbarName: "Products",
+    icon: LocalOffer,
+    component: ProductCreate,
+    is_sidebar: false,
+    is_protect: true,
+  },
   {
     path: `${RouteName.APP_USERS}`,
     sidebarName: "App Users",

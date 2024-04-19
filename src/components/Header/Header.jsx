@@ -21,6 +21,7 @@ import { actionLogoutUser } from "../../actions/Auth.action";
 import { actionChangeTheme } from "../../actions/AppSettings.action";
 
 import Badge from "@mui/material/Badge";
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Popover from "@mui/material/Popover";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
@@ -28,6 +29,8 @@ import {createTheme, ThemeProvider} from "@mui/material/styles";
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
 import NotificationCard from "../NotificationCard/NotificationCard.js";
+import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 const defaultTheme= createTheme();
 
 class Header extends React.Component {
@@ -88,12 +91,13 @@ class Header extends React.Component {
 
   _handleChangeTheme() {
     const { themeType } = this.props;
+    console.log(">>>>>",this.state.dark)
     this.props.actionChangeTheme(themeType == "dark" ? "light" : "dark");
   }
 
 
   render() {
-    const { classes, color, themeType } = this.props;
+    const { classes, color, themeType ,userData} = this.props;
     const { anchorEl, note } = this.state;
     const appBarClasses = cx({
       [" " + classes[color]]: color,
@@ -102,9 +106,7 @@ class Header extends React.Component {
     const palletType = this.state.dark ? "dark" : "light";
     const mainPrimaryColor = this.state.dark ? "" : "";
     const mainSecondaryColor = this.state.dark ? "" : "";
-    const userData = localStorage.getItem("user");
-
-    const userObject = JSON.parse(userData);
+    {console.log(">>>>>",this.state.dark,themeType)}
 
     return (
       <ThemeProvider theme={defaultTheme}>
@@ -126,7 +128,11 @@ class Header extends React.Component {
               {/*<Switch checked={themeType == 'dark'} onChange={this._handleChangeTheme}/> */}
             </div>
             <div>
-            <IconButton ><LightModeOutlinedIcon /></IconButton>
+            <IconButton 
+           onClick={this._handleChangeTheme}
+            >
+                {themeType === "light" ? <LightModeOutlinedIcon /> : <BedtimeOutlinedIcon/>}
+              </IconButton>
             {/* NightsStayOutlinedIcon */}
               <IconButton
                   aria-label="show 3 new notifications"
@@ -134,7 +140,7 @@ class Header extends React.Component {
                   onClick={this._handleNotification}
               >
                 <Badge badgeContent={3} color="secondary">
-                  <NotificationsIcon />
+                  <NotificationsNoneOutlinedIcon />
                 </Badge>
               </IconButton>
               <Popover
@@ -158,8 +164,8 @@ class Header extends React.Component {
             </div>
 
             <div className={classes.logoImage}>
-              <img src={userObject?.user?.image} height={30} width={30} style={{ borderRadius: "50%" }}
-            alt="user avatar"/>
+              <img src={userData?.image} height={30} width={30} style={{ borderRadius: "50%" }}
+            alt="user avatar" crossOrigin="anonymous"/>
             </div>
 
             <div>
@@ -216,6 +222,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     themeType: state.app_setting.theme,
+    userData: state?.auth?.user,
   };
 }
 

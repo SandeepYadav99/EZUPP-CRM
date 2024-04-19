@@ -1,0 +1,75 @@
+.outerFlex {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    /* padding-bottom: 30px; */
+   
+  }
+  .outerFlex1{
+    padding-bottom: 30px;
+  }
+  .claimListWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .plainPaper {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,.15);
+    margin-bottom: 20px;
+    padding: .4rem 1.2rem;
+  }
+  
+  .cont{
+    display: flex;
+    gap: 10px;
+    /* align-items: center; */
+   
+  }
+.imgText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  .lowerWrap{
+    flex: 1;
+  }
+  .saveButton{
+    text-align: right !important;
+  }
+.cancelButton{
+  text-align: left !important;
+}
+  .dateContainer{
+    width: 100% !important;
+  }
+  .iconButton{
+    display: flex;
+    gap: 5px;
+  }
+  .custonCSS{
+    width: 50% ;
+  }
+.box{
+  border: 1px solid #D8D8DD;
+  border-radius: 6px;
+  width: 300px;
+  margin-left: 10px;
+}
+.box1{
+  border: 1px solid #D8D8DD;
+  border-radius: 6px;
+  width: 300px;
+  margin-left: 40px;
+}
+.space{
+  margin-bottom: 25px;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-between; 
+}
+/* .desc{
+  height: 50% !important;
+} */
