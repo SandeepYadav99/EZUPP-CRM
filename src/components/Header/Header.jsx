@@ -21,6 +21,7 @@ import { actionLogoutUser } from "../../actions/Auth.action";
 import { actionChangeTheme } from "../../actions/AppSettings.action";
 
 import Badge from "@mui/material/Badge";
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Popover from "@mui/material/Popover";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
@@ -93,7 +94,7 @@ class Header extends React.Component {
 
 
   render() {
-    const { classes, color, themeType } = this.props;
+    const { classes, color, themeType ,userData} = this.props;
     const { anchorEl, note } = this.state;
     const appBarClasses = cx({
       [" " + classes[color]]: color,
@@ -102,9 +103,6 @@ class Header extends React.Component {
     const palletType = this.state.dark ? "dark" : "light";
     const mainPrimaryColor = this.state.dark ? "" : "";
     const mainSecondaryColor = this.state.dark ? "" : "";
-    const userData = localStorage.getItem("user");
-
-    const userObject = JSON.parse(userData);
 
     return (
       <ThemeProvider theme={defaultTheme}>
@@ -134,7 +132,7 @@ class Header extends React.Component {
                   onClick={this._handleNotification}
               >
                 <Badge badgeContent={3} color="secondary">
-                  <NotificationsIcon />
+                  <NotificationsNoneOutlinedIcon />
                 </Badge>
               </IconButton>
               <Popover
@@ -158,7 +156,7 @@ class Header extends React.Component {
             </div>
 
             <div className={classes.logoImage}>
-              <img src={userObject?.user?.image} height={30} width={30} style={{ borderRadius: "50%" }}
+              <img src={userData?.image} height={30} width={30} style={{ borderRadius: "50%" }}
             alt="user avatar"/>
             </div>
 
@@ -216,6 +214,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     themeType: state.app_setting.theme,
+    userData: state?.auth?.user,
   };
 }
 
