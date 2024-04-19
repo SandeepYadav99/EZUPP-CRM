@@ -28,6 +28,7 @@ const ProductCreate = ({}) => {
     manager,
     department,
     listData,
+    tagList
   } = useProductCreateHook();
 
   return (
@@ -50,6 +51,7 @@ const ProductCreate = ({}) => {
         // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
         listData={listData}
+        tagList={tagList}
       />
 
       <ProductCommercials

@@ -35,25 +35,28 @@ const ProductInformation = ({
   form,
   image,
   listData,
+  tagList,
 }) => {
-  const renderImage = useMemo(()=>{
-    return  <File
-    max_size={2 * 1024 * 1024}
-    type={["jpg", "png", "jpeg"]}
-    fullWidth={true}
-    name="image"
-    accept={"image/*"}
-    show_image={true}
-    error={errorData?.image}
-    value={form?.image}
-    default_image={image ? image : ""}
-    onChange={(file) => {
-      if (file) {
-        changeTextData(file, "image");
-      }
-    }}
-  />
-  },[form?.image])
+  const renderImage = useMemo(() => {
+    return (
+      <File
+        max_size={2 * 1024 * 1024}
+        type={["jpg", "png", "jpeg"]}
+        fullWidth={true}
+        name="image"
+        accept={"image/*"}
+        show_image={true}
+        error={errorData?.image}
+        value={form?.image}
+        default_image={image ? image : ""}
+        onChange={(file) => {
+          if (file) {
+            changeTextData(file, "image");
+          }
+        }}
+      />
+    );
+  }, [form?.image,changeTextData]);
   console.log(form, "Form");
   return (
     <>
@@ -67,7 +70,7 @@ const ProductInformation = ({
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.count} style={{ margin: "7px 10px 0 14px" }}>
-           {renderImage}
+            {renderImage}
             <Typography variant="subtitle3" className={styles.imgText}>
               Image Guide
             </Typography>
@@ -144,6 +147,25 @@ const ProductInformation = ({
                   errorText={errorData?.tags}
                   multiple
                   id="tags-outlined"
+                  options={tagList ? tagList : []}
+                  value={form?.tags}
+                  getOptionLabel={(option) => option}
+                  onChange={(e, value) => {
+                    changeTextData(value, "tags");
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      label="Associate Tags"
+                    />
+                  )}
+                />
+                {/* <Autocomplete
+                  isError={errorData?.tags}
+                  errorText={errorData?.tags}
+                  multiple
+                  id="tags-outlined"
                   options={AutoCompleteData ? AutoCompleteData : []}
                   value={form?.tags}
                   getOptionLabel={(option) => option.title}
@@ -157,7 +179,7 @@ const ProductInformation = ({
                       label="Associate Tags"
                     />
                   )}
-                />
+                /> */}
               </div>
             </div>
             <div className={`formFlex ${styles.space}`}>

@@ -16,11 +16,11 @@ import { validateUrl } from "../../../libs/RegexUtils";
 
 function useProductCreateHook() {
   const initialForm = {
-    name: "name",
-    code: "code",
-    product_link: "product_link",
+    name: "",
+    code: "",
+    product_link: "",
     tags: [],
-    description: "description",
+    description: "",
     image: "",
     unit_id: "kg",
     currency: "",
@@ -43,7 +43,7 @@ function useProductCreateHook() {
     ROLES: [],
     UNITS: [],
   });
-
+  const [tagList,setTagList] = useState([])
   useEffect(() => {
     serviceGetList(["ROLES", "UNITS"]).then((res) => {
       if (!res.error) {
@@ -52,15 +52,15 @@ function useProductCreateHook() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   serviceGetTagList(query).then((res) => {
-  //     if (!res.error) {
-  //       setListData(res.data);
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    serviceGetTagList({query:"a"}).then((res) => {
+      if (!res.error) {
+        setTagList(res.data);
+      }
+    });
+  }, []);
 
-  console.log(images, "Image");
+  console.log(tagList, "Image");
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -76,10 +76,10 @@ function useProductCreateHook() {
         errors[val] = true;
       }
     });
-    if(form?.name?.length < 2){
+    if (form?.name?.length < 2) {
       errors["name"] = true;
     }
-    if(form?.code?.length < 2){
+    if (form?.code?.length < 2) {
       errors["code"] = true;
     }
     if (form?.product_link && !validateUrl(form?.product_link)) {
@@ -198,6 +198,7 @@ function useProductCreateHook() {
     isSubmitting,
     images,
     id,
+    tagList
   };
 }
 

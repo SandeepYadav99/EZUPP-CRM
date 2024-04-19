@@ -48,6 +48,11 @@ margin-right: 10px;
   display: flex;
   /* justify-content: space-between; */
 }
+.row21{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 .textContainer {
   display: flex;
   flex: 1;
@@ -65,11 +70,8 @@ margin-right: 10px;
 .tags{
   background: #E8F0FE 0% 0% no-repeat padding-box;
   border-radius: 18px;
-  width: 55px;
-  height: 25px;
+  padding: 5px 15px;
   text-align: center;
-  margin-right: 10px;
-  margin-bottom: 10px;
 }
 .row1{
   display: flex;
