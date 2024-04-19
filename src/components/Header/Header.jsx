@@ -29,6 +29,8 @@ import {createTheme, ThemeProvider} from "@mui/material/styles";
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
 import NotificationCard from "../NotificationCard/NotificationCard.js";
+import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 const defaultTheme= createTheme();
 
 class Header extends React.Component {
@@ -89,6 +91,7 @@ class Header extends React.Component {
 
   _handleChangeTheme() {
     const { themeType } = this.props;
+    console.log(">>>>>",this.state.dark)
     this.props.actionChangeTheme(themeType == "dark" ? "light" : "dark");
   }
 
@@ -103,6 +106,7 @@ class Header extends React.Component {
     const palletType = this.state.dark ? "dark" : "light";
     const mainPrimaryColor = this.state.dark ? "" : "";
     const mainSecondaryColor = this.state.dark ? "" : "";
+    {console.log(">>>>>",this.state.dark,themeType)}
 
     return (
       <ThemeProvider theme={defaultTheme}>
@@ -124,7 +128,11 @@ class Header extends React.Component {
               {/*<Switch checked={themeType == 'dark'} onChange={this._handleChangeTheme}/> */}
             </div>
             <div>
-            <IconButton ><LightModeOutlinedIcon /></IconButton>
+            <IconButton 
+           onClick={this._handleChangeTheme}
+            >
+                {themeType === "light" ? <LightModeOutlinedIcon /> : <BedtimeOutlinedIcon/>}
+              </IconButton>
             {/* NightsStayOutlinedIcon */}
               <IconButton
                   aria-label="show 3 new notifications"
