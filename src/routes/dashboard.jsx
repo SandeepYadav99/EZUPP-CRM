@@ -28,7 +28,7 @@ import QuoteDetail from "../views/Quotes/Quote.view";
 import HubMasterList from "../views/HubMaster/List/HubMasterList";
 import BlogsComponentList from "../views/Blogs/BlogsList/BlogsList.container";
 import ProductDetailview from "../views/Details/ProductDetails.view";
-
+import UnitsList from "../views/Units/UnitList.container";
 import {
   Dashboard,
   MeetingRoom,
@@ -364,7 +364,7 @@ const dashboardRoutes = [
     sidebarName: "Unit",
     navbarName: "Unit",
     icon: VerifiedUser,
-    component: UnitList,
+    component: UnitsList,
     is_sidebar: true,
     is_protect: true,
     parent: "masters",
