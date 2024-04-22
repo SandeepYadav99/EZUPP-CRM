@@ -14,7 +14,7 @@ import {
 } from "../../../services/index.services";
 import { validateUrl } from "../../../libs/RegexUtils";
 
-function useUnitCreateHook() {
+function useUnitCreateHook({handleToggle}) {
   const initialForm = {
     name: "",
     is_general: false,
@@ -31,31 +31,29 @@ function useUnitCreateHook() {
     ROLES: [],
     UNITS: [],
   });
-  const [tagList,setTagList] = useState([])
-  useEffect(() => {
-    serviceGetList(["ROLES", "UNITS"]).then((res) => {
-      if (!res.error) {
-        setListData(res.data);
-      }
-    });
-  }, []);
+  // const [tagList,setTagList] = useState([])
+  // useEffect(() => {
+  //   serviceGetList(["ROLES", "UNITS"]).then((res) => {
+  //     if (!res.error) {
+  //       setListData(res.data);
+  //     }
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    serviceGetTagList({query:"a"}).then((res) => {
-      if (!res.error) {
-        setTagList(res.data);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   serviceGetTagList({query:"a"}).then((res) => {
+  //     if (!res.error) {
+  //       setTagList(res.data);
+  //     }
+  //   });
+  // }, []);
 
-  console.log(tagList, "Image");
+
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "code", "type", "currency", "status"];
-    if (!id) {
-      required.push("image");
-    }
+    let required = ["name"];
+    
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
@@ -69,10 +67,6 @@ function useUnitCreateHook() {
     }
     if (form?.code?.length < 2) {
       errors["code"] = true;
-    }
-    if (form?.product_link && !validateUrl(form?.product_link)) {
-      SnackbarUtils.error("Please Enter the Valid Url");
-      errors["product_link"] = true;
     }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
@@ -92,67 +86,103 @@ function useUnitCreateHook() {
   );
 
   const changeTextData = useCallback(
-    (text, fieldName) => {
-      let shouldRemoveError = true;
-      const t = { ...form };
-      if (
-        fieldName === "ballpark_cost" ||
-        fieldName === "ballpark_price" ||
-        fieldName === "discount_value"
-      ) {
-        if (text >= 0) {
-          t[fieldName] = text;
+    // (text, fieldName) => {
+    //   let shouldRemoveError = true;
+    //   const t = { ...form };
+      (value, fieldName) => {
+        let updatedForm = { ...form };
+    
+        // Handle different field names
+        if (fieldName === "is_general") {
+          updatedForm.is_general = value; // Update is_general directly
+        } else {
+          updatedForm[fieldName] = value;
         }
-      } else if (fieldName === "discount_percent") {
-        if (text >= 0 && text <= 100) {
-          t[fieldName] = text;
-        }
-      } else {
-        t[fieldName] = text;
-      }
-      setForm(t);
-      shouldRemoveError && removeError(fieldName);
-    },
+    
+        setForm(updatedForm); // Update the form state
+        removeError(fieldName); // Remove any previous error for this field
+      },
+      // if (
+      //   fieldName === "ballpark_cost" ||
+      //   fieldName === "ballpark_price" ||
+      //   fieldName === "discount_value"
+      // ) {
+      //   if (text >= 0) {
+      //     t[fieldName] = text;
+      //   }
+      // } else if (fieldName === "discount_percent") {
+      //   if (text >= 0 && text <= 100) {
+      //     t[fieldName] = text;
+      //   }
+      // } else {
+      //   t[fieldName] = text;
+      // }
+      // setForm(t);
+      // shouldRemoveError && removeError(fieldName);
+    // },
     [removeError, form, setForm]
   );
   console.log(form, "Form");
   const submitToServer = useCallback(
-    (status) => {
+    () => {
       if (!isSubmitting) {
         setIsSubmitting(true);
-        const fd = new FormData();
-        Object.keys(form).forEach((key) => {
-          // if (["image"].indexOf(key) < 0) {
-          //   if (key === "is_show_public" || key === "is_value_add") {
-          //     fd.append(key, form[key] ? true : false);
-          //   } else {
-          //     fd.append(key, form[key]);
-          //   }
-          // }
-        });
-        // if (form?.image) {
-        //   fd.append("image", form?.image);
-        // }
+  
+      
+        const errors = {};
+        if (!form.name.trim()) {
+          errors.name = "Unit Name is required";
+        }
+       
+        if (Object.keys(errors).length > 0) {
+          setErrorData(errors);
+          setIsSubmitting(false); 
+          return;
+        }
+  
+      
+        const formData = {
+          name: form.name.trim(),
+          is_general: form.is_general,
+          is_active: form.is_active,
+      
+        };
+  
         let req;
         if (id) {
-          fd.append("id", id);
-          req = serviceUpdateUnit(fd);
+          
+          formData.id = id;
+          req = serviceUpdateUnit(formData);
         } else {
-          req = serviceCreateUnit(fd);
+         
+          req = serviceCreateUnit(formData);
         }
+  
         req.then((res) => {
           if (!res.error) {
-            historyUtils.goBack();
+            
+            handleToggle();
+            //  historyUtils.goBack();
+            SnackbarUtils.success("Unit saved successfully");
+
+            setErrorData({});
           } else {
-            SnackbarUtils.error(res?.message);
+            
+            SnackbarUtils.error(res.message);
           }
-          setIsSubmitting(false);
+          setIsSubmitting(false); 
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting]
+    [form, isSubmitting, setIsSubmitting, setErrorData, id]
   );
-
+  const handleDeleteTask = useCallback((taskData) => {
+    const updatedTasks = form.tasks.filter(task => task.id !== taskData.id);
+  setForm(prevForm => ({
+    ...prevForm,
+    tasks: updatedTasks,
+  }));
+  }, [form, setForm]);
   const onBlurHandler = useCallback(
     (type) => {
       if (form?.[type]) {
@@ -186,7 +216,7 @@ function useUnitCreateHook() {
     isSubmitting,
     images,
     id,
-    tagList
+    handleDeleteTask,
   };
 }
 

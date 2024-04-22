@@ -31,6 +31,7 @@ const UnitsList = (props) => {
     handleSideToggle,
     handlePageChange,
     handleEdit,
+    handleDeleteTask,
     handleFilterDataChange,
     handleSearchValueChange,
     handleProfile,
@@ -78,32 +79,16 @@ const UnitsList = (props) => {
         key: "is_general",
         label: "Is General",
         sortable: false,
-        render: (temp, all) => <div>{all?.code}</div>,
+        render: (temp, all) => <div>{all?.is_general ?"Yes" : "No" }</div>,
       },
-    //   {
-    //     key: "role",
-    //     label: "Type",
-    //     sortable: false,
-    //     render: (temp, all) => <div>{all?.type}</div>,
-    //   },
-      // {
-      //   key: "productLink",
-      //   label: "Link",
-      //   sortable: false,
-      //   render: (temp, all) => <div>{all?.product_link}</div>,
-      //  },
+   
       {
         key: "status",
         label: "Status",
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all.status)}</div>,
       },
-    //   {
-    //     key: "last_login",
-    //     label: "Last Updated At",
-    //     sortable: false,
-    //     render: (temp, all) => <div>{all?.updatedAtText}</div>,
-    //   },
+   
       {
         key: "user_id",
         label: "Action",
@@ -115,7 +100,7 @@ const UnitsList = (props) => {
             >
               <Edit fontSize={"small"} />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={handleDeleteTask}>
               <img src={removeTask} alt="task" width={20} />
             </IconButton>
           </div>
