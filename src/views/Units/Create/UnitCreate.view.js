@@ -2,7 +2,7 @@ import React from "react";
 // import { ButtonBase } from "@material-ui/core";
 import styles from "./Style.module.css";
 import CustomTextField from "./../../../components/FormFields/TextField/TextField.component";
-import useEventFormHook from "./UnitCreate.hook";
+import useUnitCreateHook from "./UnitCreate.hook";
 import CustomSelectField from "./../../../components/FormFields/SelectField/SelectField.component";
 import {  Tooltip, Typography } from "@mui/material";
 
@@ -27,7 +27,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
     isSubmitted,
     isSubmitting,
     listData,
-  } = useEventFormHook({ isOpen, handleToggle, candidateId, isInterview });
+  } = useUnitCreateHook({ isOpen, handleToggle, candidateId, isInterview });
 
   return (
     <div>
@@ -42,32 +42,32 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
             </Tooltip>
           </div>
           <CustomTextField
-            isError={errorData?.title}
-            errorText={errorData?.title}
+            isError={errorData?.name}
+            errorText={errorData?.name}
             label={"Unit Name"}
-            value={form?.title}
+            value={form?.name}
             onTextChange={(text) => {
-              changeTextData(text, "title");
+              changeTextData(text, "name");
             }}
             onBlur={() => {
-              onBlurHandler("title");
+              onBlurHandler("name");
             }}
           />
           <div className={"formFlex"} style={{marginLeft: "-10px"}}>
             <div className={"formGroup"}>
               <CustomCheckbox
-                value={form?.userManage}
+                value={form?.is_general}
                 handleChange={() => {
-                  changeTextData(!form?.userManage, "userManage");
+                  changeTextData(!form?.is_general, "is_general");
                 }}
                 label={`Is General`}
               />
             </div>
             <div className={"formGroup"}>
               <CustomSwitch
-                value={form?.is_all_day}
+                value={form?.is_active}
                 handleChange={() => {
-                  changeTextData(!form?.is_all_day, "is_all_day");
+                  changeTextData(!form?.is_active, "is_active");
                 }}
                 label={`Active ?`}
               />

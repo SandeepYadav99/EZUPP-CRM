@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import RouteName from "./../../routes/Route.name";
 import {
-  actionFetchProduct,
-  actionSetPageProductRequests,
-} from "./../../actions/Product.action";
+  actionFetchUnit,
+  actionSetPageUnit, 
+} from "./../../actions/Unit.action";
 import history from "./../../libs/history.utils";
 
 const useUserListHook = ({}) => {
@@ -19,11 +19,11 @@ const useUserListHook = ({}) => {
     query,
     query_data: queryData,
     all,
-  } = useSelector((state) => state?.product);
+  } = useSelector((state) => state?.unit);
 
   useEffect(() => {
     dispatch(
-      actionFetchProduct(
+      actionFetchUnit(
         1,
         {},
         {
@@ -44,13 +44,13 @@ const useUserListHook = ({}) => {
     [setEditData, setSidePanel]
   );
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageProductRequests(type));
+    dispatch(actionSetPageUnit(type));
   }, []);
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchProduct(1, sortingData, {
+        actionFetchUnit(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
           query_data: key == "FILTER_DATA" ? value : queryData,
         })
@@ -75,9 +75,9 @@ const useUserListHook = ({}) => {
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageProductRequests(1));
+      dispatch(actionSetPageUnit(1));
       dispatch(
-        actionFetchProduct(
+        actionFetchUnit(
           1,
           { row, order },
           {
@@ -120,7 +120,7 @@ const useUserListHook = ({}) => {
     handleFilterDataChange,
     handleSearchValueChange,
     handleSortOrderChange,
-    handleEdit,
+   // handleEdit,
     isSidePanel,
     handleSideToggle,
     editData,

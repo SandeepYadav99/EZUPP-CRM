@@ -43,12 +43,12 @@ const UnitsList = (props) => {
     all: allData,
     currentPage,
     is_fetching: isFetching,
-  } = useSelector((state) => state.product);
+  } = useSelector((state) => state.unit);
 
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
-        <img src={user.image} alt="" crossOrigin="anonymous" />
+        {/* <img src={user.image} alt="" crossOrigin="anonymous" /> */}
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
@@ -75,7 +75,7 @@ const UnitsList = (props) => {
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
-        key: "product_code",
+        key: "is_general",
         label: "Is General",
         sortable: false,
         render: (temp, all) => <div>{all?.code}</div>,
@@ -86,12 +86,12 @@ const UnitsList = (props) => {
     //     sortable: false,
     //     render: (temp, all) => <div>{all?.type}</div>,
     //   },
-    //   {
-    //     key: "productLink",
-    //     label: "Link",
-    //     sortable: false,
-    //     render: (temp, all) => <div>{all?.product_link}</div>,
-    //   },
+      // {
+      //   key: "productLink",
+      //   label: "Link",
+      //   sortable: false,
+      //   render: (temp, all) => <div>{all?.product_link}</div>,
+      //  },
       {
         key: "status",
         label: "Status",
