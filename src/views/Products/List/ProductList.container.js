@@ -21,7 +21,7 @@ import useUserListHook from "./ProductListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
-
+import { serviceDeleteProduct } from "../../../services/Product.service";
 const ProductList = (props) => {
   const {
     handleSortOrderChange,
@@ -54,7 +54,12 @@ const ProductList = (props) => {
       </div>
     );
   }, []);
-
+  const handleDelete =(all)=>{
+    let params ={
+      "id":all?.id
+    }
+    serviceDeleteProduct(params)
+  }
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
       return <StatusPill status={"ACTIVE"} color={"active"} />;
@@ -112,14 +117,14 @@ const ProductList = (props) => {
             >
               <Edit fontSize={"small"} />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={()=>handleDelete(all)  }>
               <img src={removeTask} alt="task" width={20} />
             </IconButton>
           </div>
         ),
       },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile]
+    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete,]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -142,6 +147,7 @@ const ProductList = (props) => {
     handleSortOrderChange,
     handlePageChange,
     handleRowSize,
+    handleDelete,
     present,
     currentPage,
   ]);

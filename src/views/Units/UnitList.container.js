@@ -23,6 +23,7 @@ import { ArrowPrimaryButton } from "./../../components/Buttons/PrimaryButton";
 import StatusPill from "./../../components/Status/StatusPill.component";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
 import EventForm from "./Create/UnitCreate.view";
+import { serviceDeleteProduct } from "../../services/Product.service";
 const UnitsList = (props) => {
   const {
     handleSortOrderChange,
@@ -31,7 +32,7 @@ const UnitsList = (props) => {
     handleSideToggle,
     handlePageChange,
     handleEdit,
-    handleDeleteTask,
+    
     handleFilterDataChange,
     handleSearchValueChange,
     handleProfile,
@@ -58,7 +59,12 @@ const UnitsList = (props) => {
       </div>
     );
   }, []);
-
+  const handleDelete =(all)=>{
+    let params ={
+      "id":all?.id
+    }
+    serviceDeleteProduct(params)
+  }
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
       return <StatusPill status={"ACTIVE"} color={"active"} />;
@@ -100,14 +106,14 @@ const UnitsList = (props) => {
             >
               <Edit fontSize={"small"} />
             </IconButton>
-            <IconButton onClick={handleDeleteTask}>
+            <IconButton onClick={()=>handleDelete(all) }>
               <img src={removeTask} alt="task" width={20} />
             </IconButton>
           </div>
         ),
       },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile]
+    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -129,6 +135,7 @@ const UnitsList = (props) => {
     tableStructure,
     handleSortOrderChange,
     handlePageChange,
+    handleDelete,
     handleRowSize,
     present,
     currentPage,

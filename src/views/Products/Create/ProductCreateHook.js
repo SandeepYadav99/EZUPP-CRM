@@ -7,12 +7,15 @@ import LogUtils from "../../../libs/LogUtils";
 import {
   serviceCreateProduct,
   serviceUpdateProduct,
+  serviceDeleteProduct
 } from "../../../services/Product.service";
+import { actionDeleteProduct} from "../../../actions/Product.action";
 import {
   serviceGetList,
   serviceGetTagList,
 } from "../../../services/index.services";
 import { validateUrl } from "../../../libs/RegexUtils";
+import { useDispatch, useSelector } from "react-redux";
 
 function useProductCreateHook() {
   const initialForm = {
@@ -44,6 +47,8 @@ function useProductCreateHook() {
     UNITS: [],
   });
   const [tagList,setTagList] = useState([])
+  const dispatch = useDispatch();
+  const [editData, setEditData] = useState(null);
   useEffect(() => {
     serviceGetList(["ROLES", "UNITS"]).then((res) => {
       if (!res.error) {
@@ -186,7 +191,13 @@ function useProductCreateHook() {
     },
     [checkFormValidation, setErrorData, form, submitToServer]
   );
-
+  const handleDelete = useCallback(
+    (id) => {
+      dispatch(actionDeleteProduct(id));
+      setEditData(null);
+    },
+    [setEditData]
+  );
   return {
     form,
     errorData,
@@ -195,6 +206,7 @@ function useProductCreateHook() {
     onBlurHandler,
     removeError,
     handleSubmit,
+    handleDelete,
     isSubmitting,
     images,
     id,

@@ -7,13 +7,11 @@ import LogUtils from "../../../libs/LogUtils";
 import {
   serviceCreateUnit,
   serviceUpdateUnit,
+  serviceDeleteUnit
 } from "../../../services/Unit.service";
-import {
-  serviceGetList,
-  serviceGetTagList,
-} from "../../../services/index.services";
-import { validateUrl } from "../../../libs/RegexUtils";
+import { actionDeleteProduct} from "../../../actions/Product.action";
 
+import { useDispatch, useSelector } from "react-redux";
 function useUnitCreateHook({handleToggle}) {
   const initialForm = {
     name: "",
@@ -27,26 +25,12 @@ function useUnitCreateHook({handleToggle}) {
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
   const [listData, setListData] = useState({
     ROLES: [],
     UNITS: [],
   });
-  // const [tagList,setTagList] = useState([])
-  // useEffect(() => {
-  //   serviceGetList(["ROLES", "UNITS"]).then((res) => {
-  //     if (!res.error) {
-  //       setListData(res.data);
-  //     }
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   serviceGetTagList({query:"a"}).then((res) => {
-  //     if (!res.error) {
-  //       setTagList(res.data);
-  //     }
-  //   });
-  // }, []);
+  const [editData, setEditData] = useState(null);
 
 
 
@@ -162,10 +146,9 @@ function useUnitCreateHook({handleToggle}) {
           if (!res.error) {
             
             handleToggle();
-            //  historyUtils.goBack();
-            SnackbarUtils.success("Unit saved successfully");
-
-            setErrorData({});
+            //historyUtils.push("/unit");
+            window.location.reload();
+           
           } else {
             
             SnackbarUtils.error(res.message);
@@ -176,13 +159,7 @@ function useUnitCreateHook({handleToggle}) {
     },
     [form, isSubmitting, setIsSubmitting, setErrorData, id]
   );
-  const handleDeleteTask = useCallback((taskData) => {
-    const updatedTasks = form.tasks.filter(task => task.id !== taskData.id);
-  setForm(prevForm => ({
-    ...prevForm,
-    tasks: updatedTasks,
-  }));
-  }, [form, setForm]);
+ 
   const onBlurHandler = useCallback(
     (type) => {
       if (form?.[type]) {
@@ -205,6 +182,13 @@ function useUnitCreateHook({handleToggle}) {
     [checkFormValidation, setErrorData, form, submitToServer]
   );
 
+  const handleDelete = useCallback(
+    (id) => {
+      dispatch( actionDeleteProduct(id));
+      setEditData(null);
+    },
+    [setEditData]
+  );
   return {
     form,
     errorData,
@@ -216,7 +200,7 @@ function useUnitCreateHook({handleToggle}) {
     isSubmitting,
     images,
     id,
-    handleDeleteTask,
+    handleDelete,
   };
 }
 
