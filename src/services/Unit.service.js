@@ -23,4 +23,8 @@ export async function serviceGetUnitList (params) {
 export async function serviceUnitCheck (params) {
     return await postRequest('units/check', params);
 }
+export async function serviceGetUnitDetails (params) {
+    
+    return await postRequest('units/detail', params);
+}
 

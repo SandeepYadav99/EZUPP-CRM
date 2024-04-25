@@ -32,14 +32,15 @@ const UnitsList = (props) => {
     handleSideToggle,
     handlePageChange,
     handleEdit,
-    
+    handleEditSidePannel,
     handleFilterDataChange,
     handleSearchValueChange,
     handleProfile,
     configFilter,
     handleCreate,
+    editData,
   } = useUserListHook({});
-
+ 
   const {
     present,
     all: allData,
@@ -102,18 +103,19 @@ const UnitsList = (props) => {
           <div className={styles.actionButton}>
             <IconButton
               // disabled={is_calling}
-              onClick={() => handleEdit(all)}
+
+              onClick={() => handleEditSidePannel(all)}
             >
               <Edit fontSize={"small"} />
             </IconButton>
-            <IconButton onClick={()=>handleDelete(all) }>
+            {/* <IconButton onClick={()=>handleDelete(all) }>
               <img src={removeTask} alt="task" width={20} />
-            </IconButton>
+            </IconButton> */}
           </div>
         ),
       },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete]
+    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete, handleEditSidePannel]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -165,10 +167,10 @@ const UnitsList = (props) => {
         open={isSidePanel}
         side={"right"}
       >
-        <EventForm isOpen={isSidePanel} handleToggle={handleSideToggle} />
+        <EventForm isOpen={isSidePanel} handleToggle={handleSideToggle} id={editData} />
       </SidePanelComponent>
         </div>
-
+      { console.log("edit: ", editData)}
         <div>
           <FilterComponent
             is_progress={isFetching}

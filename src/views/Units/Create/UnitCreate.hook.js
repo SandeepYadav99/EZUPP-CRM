@@ -7,12 +7,15 @@ import LogUtils from "../../../libs/LogUtils";
 import {
   serviceCreateUnit,
   serviceUpdateUnit,
-  serviceDeleteUnit
+  serviceDeleteUnit,
+  serviceGetUnitDetails,
 } from "../../../services/Unit.service";
 import { actionDeleteProduct} from "../../../actions/Product.action";
 
 import { useDispatch, useSelector } from "react-redux";
-function useUnitCreateHook({handleToggle}) {
+  
+function useUnitCreateHook({handleToggle, editData, id}) {
+ 
   const initialForm = {
     name: "",
     is_general: false,
@@ -21,19 +24,18 @@ function useUnitCreateHook({handleToggle}) {
   };
 
   const [form, setForm] = useState({ ...initialForm });
+  //const [editData, setEditData] = useState(null);
+ 
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
-  const { id } = useParams();
+  //const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
   const [listData, setListData] = useState({
     ROLES: [],
     UNITS: [],
   });
-  const [editData, setEditData] = useState(null);
-
-
-
+ 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = ["name"];
@@ -68,7 +70,7 @@ function useUnitCreateHook({handleToggle}) {
     },
     [setErrorData, errorData]
   );
-
+  
   const changeTextData = useCallback(
     // (text, fieldName) => {
     //   let shouldRemoveError = true;
@@ -76,37 +78,50 @@ function useUnitCreateHook({handleToggle}) {
       (value, fieldName) => {
         let updatedForm = { ...form };
     
-        // Handle different field names
+       
         if (fieldName === "is_general") {
-          updatedForm.is_general = value; // Update is_general directly
+          updatedForm.is_general = value; 
         } else {
           updatedForm[fieldName] = value;
         }
     
-        setForm(updatedForm); // Update the form state
-        removeError(fieldName); // Remove any previous error for this field
+        setForm(updatedForm); 
+        removeError(fieldName); 
       },
-      // if (
-      //   fieldName === "ballpark_cost" ||
-      //   fieldName === "ballpark_price" ||
-      //   fieldName === "discount_value"
-      // ) {
-      //   if (text >= 0) {
-      //     t[fieldName] = text;
-      //   }
-      // } else if (fieldName === "discount_percent") {
-      //   if (text >= 0 && text <= 100) {
-      //     t[fieldName] = text;
-      //   }
-      // } else {
-      //   t[fieldName] = text;
-      // }
-      // setForm(t);
-      // shouldRemoveError && removeError(fieldName);
-    // },
     [removeError, form, setForm]
   );
   console.log(form, "Form");
+ console.log("id: ", id);
+  
+  useEffect(() => {
+    console.log("Inside useEffect with id:", id);
+    if (id) {
+      serviceGetUnitDetails({ id: id }).then((res) => {
+        console.log("API Response:", res);
+        if (!res.error) {
+          const data = res?.data;
+  
+          const formData = {
+            ...form,
+            name: data?.name,
+            is_general: data?.is_general,
+            is_active: data?.is_active,
+           
+            
+          };
+  
+          setForm(formData);
+         
+        } else {
+          SnackbarUtils.error(res?.message);
+        }
+      });
+     
+    }
+    
+  }, [id]);
+  
+  console.log("updated form",form);
   const submitToServer = useCallback(
     () => {
       if (!isSubmitting) {
@@ -129,13 +144,12 @@ function useUnitCreateHook({handleToggle}) {
           name: form.name.trim(),
           is_general: form.is_general,
           is_active: form.is_active,
-      
         };
-  
+
         let req;
         if (id) {
-          
-          formData.id = id;
+          formData.append("id", id);
+          //formData.id = id;
           req = serviceUpdateUnit(formData);
         } else {
          
@@ -157,7 +171,7 @@ function useUnitCreateHook({handleToggle}) {
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting, setErrorData, id]
+    [form, isSubmitting, setIsSubmitting, setErrorData, id, editData]
   );
  
   const onBlurHandler = useCallback(
@@ -182,13 +196,13 @@ function useUnitCreateHook({handleToggle}) {
     [checkFormValidation, setErrorData, form, submitToServer]
   );
 
-  const handleDelete = useCallback(
-    (id) => {
-      dispatch( actionDeleteProduct(id));
-      setEditData(null);
-    },
-    [setEditData]
-  );
+  // const handleDelete = useCallback(
+  //   (id) => {
+  //     dispatch( actionDeleteProduct(id));
+  //     setEditData(null);
+  //   },
+  //   [setEditData]
+  // );
   return {
     form,
     errorData,
@@ -200,7 +214,7 @@ function useUnitCreateHook({handleToggle}) {
     isSubmitting,
     images,
     id,
-    handleDelete,
+    //handleDelete,
   };
 }
 

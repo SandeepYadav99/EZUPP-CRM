@@ -89,10 +89,27 @@ const useUserListHook = ({}) => {
     },
     [query, queryData]
   );
-
-  const handleEdit = useCallback((type) => {
-    history.push(`${RouteName.PRODUCT_DETAILS}${type?.id}`);
-  }, []);
+  const handleEdit = useCallback(
+    (data) => {
+      setEditData(data);
+      setSidePanel((e) => !e);
+    },
+    [setEditData, setSidePanel]
+  );
+  const handleEditSidePannel = useCallback(
+    
+    (data) => {
+      console.log('Edit data:', data);
+      setSidePanel((e) => !e);
+    setEditData(data);
+      // setSidePanel((e) => !e);
+      // setEditData(data?.id);
+    },
+    [setSidePanel, setEditData]
+  );
+  // const handleEdit = useCallback((type) => {
+  //   history.push(`${RouteName.PRODUCT_DETAILS}${type?.id}`);
+  // }, []);
 
   const handleCreate = useCallback(() => {
     history.push(RouteName.PRODUCT_CREATE);
@@ -120,12 +137,12 @@ const useUserListHook = ({}) => {
     handleFilterDataChange,
     handleSearchValueChange,
     handleSortOrderChange,
-   // handleEdit,
+    handleEdit,
     isSidePanel,
     handleSideToggle,
     editData,
     configFilter,
-
+    handleEditSidePannel,
     // handleCreate,
   };
 };

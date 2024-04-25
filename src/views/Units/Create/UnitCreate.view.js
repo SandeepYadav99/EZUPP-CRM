@@ -15,7 +15,7 @@ import {
 } from "./../../../components/Buttons/PrimaryButton";
 // import { Autocomplete } from "@material-ui/lab";
 
-const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
+const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id }) => {
   const {
     changeTextData,
     errorData,
@@ -27,7 +27,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
     isSubmitted,
     isSubmitting,
     listData,
-  } = useUnitCreateHook({ isOpen, handleToggle, candidateId, isInterview });
+  } = useUnitCreateHook({ isOpen, handleToggle, candidateId, isInterview, id });
 
   return (
     <div>
