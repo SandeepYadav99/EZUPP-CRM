@@ -2,9 +2,17 @@
     display: flex;
     flex-direction: column;
   }
-  .card {
+  .cardSelected {
+    border: 2px solid #2063CE;
+    text-align: center;
+    width: 138px;
+height: 86px;
+  }
+  .cardNotSelected{
     border: 1px solid #dfdfe3;
     text-align: center;
+    width: 138px;
+height: 86px;
   }
   .cardGrid1 {
     display: flex;
@@ -13,22 +21,27 @@
     gap: 20px;
   }
   .custom_option {
-    border: 2px solid #666cff;
+    /* border: 2px solid #2063CE; */
     margin: 0;
     border-radius: 0.625rem;
     cursor: pointer;
-    background-color: rgba(102, 108, 255, .12);
+    /* background-color: rgba(102, 108, 255, .12); */
+    padding:10px !important
     /* color: #666cff; */
    
   }
-  .custom_opon {
+  .custom_opon1 {
     cursor: pointer;
-    border: 1px solid #eaeaec;
+    /* border: 1px solid #eaeaec; */
     border-radius: 0.625rem;
-    margin: 1px;
-    border-color: #6d788d;
-    color: #636578;
-    background-color: rgba(102, 108, 255, .12);
+    /* margin: 1px; */
+    /* border-color: #6d788d; */
+    /* color: #636578; */
+    /* background-color: rgba(102, 108, 255, .12); */
+    padding:10px !important
+  }
+  .noPadding{
+    padding: 0;
   }
   .div1 {
     display: flex;
@@ -187,6 +200,36 @@
   .inactive{
     display: none;
   }
+  .nameWrapper{
+    display: flex;
+  }
+  .textbox{
+    margin-top: 0.5rem;
+    flex: 3 1;
+    /* width:80%; */
+  }
+  .dropdown{
+    /* width:20%; */
+    flex: 1 1;
+  }
+  .countryBox{
+    flex: 1;
+  }
+  .countryCodeBox{
+    flex:3;
+    /* padding: 7px 10px; */
+    margin-top: 0.5rem;
+  }
+  .widthfull{
+    width:100%
+  }
+.nosideMargin{
+  margin-left: 0;
+  margin-right: 0;
+}
+.cursor{
+  cursor: pointer;
+}
   @media only screen and (max-width:1296px) {
       .iconCont{
           display: flex;

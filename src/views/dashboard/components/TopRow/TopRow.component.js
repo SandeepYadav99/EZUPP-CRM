@@ -160,7 +160,7 @@ const TopRow = () => {
                     alt="Image"
                     style={{ marginRight: "10px" }}
                     onClick={handleSideToggle}
-                    style={{ pointer: "cursor" }}
+                className={styles.cursor}
                   />
                   <div>
                     <Typography variant={"subtitle1"} color={"text.primary"}>

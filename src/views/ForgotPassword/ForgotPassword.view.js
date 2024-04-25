@@ -17,6 +17,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from "@mui/material";
 import { Button, ButtonBase } from "@mui/material";
 import { withStyles } from "@mui/styles";
@@ -200,7 +201,8 @@ class ForgotPasswordView extends Component {
               >
                 {/*<ArrowBack onClick={this._handleBack}>*/}
                 {/*</ArrowBack>*/}
-                <div className={styles.headingTextBig}>Forgot Password ?</div>
+                {/* <div className={styles.headingTextBig}>Forgot Password ?</div> */}
+                <Typography variant="h3" color="text.secondary">Forgot Password</Typography>
               </div>
               <p
                 className={styles.bottomLine}

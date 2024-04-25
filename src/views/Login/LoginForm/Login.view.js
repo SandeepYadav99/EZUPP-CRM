@@ -9,7 +9,7 @@ import classNames from "classnames";
 import logoImage from "../../../assets/CRMAssets/ezupp_login_logo.png";
 import googleImageContainer from "../../../assets/CRMAssets/google_neutral.png";
 import csx from "classnames";
-import { MenuItem, Button, IconButton, ButtonBase } from "@mui/material";
+import { MenuItem, Button, IconButton, ButtonBase, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import arrowIcon from "../../../assets/CRMAssets/ic_arrow_white.png";
 import useLoginHook from "./Login.hook";
@@ -41,6 +41,7 @@ function LoginView() {
           </div>
           <div className={styles.signContainer}>
             <span className={styles.headingText}>Welcome to Ezupp! </span>
+            {/* <Typography variant="h3">Welcome to Ezupp! </Typography> */}
             <br />
             <span style={{ fontSize: "14px", color: "#888888" }}>
               Enter the details below to login to your account{" "}

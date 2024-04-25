@@ -48,6 +48,7 @@ const CustomMultiComplete = ({
   onTextChange,
   inputProps,
   enableField,
+  nopic,
   ...rest
 }) => {
   const handleChange = useCallback(
@@ -97,7 +98,7 @@ const CustomMultiComplete = ({
         value?.map((option, index) => (
           <StyledChip
             {...getTagProps({ index })}
-            avatar={<Avatar src={option?.image} alt={option?.email} />}
+            avatar={nopic ?"":<Avatar src={option?.image} alt={option?.email} />}
             label={option?.label}
           />
         ))

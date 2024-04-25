@@ -11,23 +11,27 @@ import {
   } from "@mui/material";
   import styles from "./Style.module.css";
   import DomainSharpIcon from '@mui/icons-material/DomainSharp';
+  import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
   import { useState } from "react";
   import useContactList from "./QuickContact/ContactList.hook";
 function CardType({showBusiness,setShowBusiness,handleBusinessToggle}){
   const [selectedOption, setSelectedOption] = useState("Business");
   // onClick={()=>handleBusinessToggle('business')}
   // const {showBusiness,setShowBusiness,handleBusinessToggle} =useContactList({});
-
+console.log(selectedOption)
   const handleRadioChange = (event) => {
-    
-    console.log(event.target.value);
+    console.log(event)
+    console.log('Helloradio');
     console.log("cardType")
     setSelectedOption(event.target.value);
   };
  
     return(   <div className={styles.cardGrid1}>
-       <Card className={styles.card}>
-        <div style={{width:"11rem"}}>
+      {/* <div style={{flex:"1"}}> */}
+       <Card className={  selectedOption === 'Business'
+                ? styles.cardSelected 
+                : styles.cardNotSelected}>
+        <div>
           <CardContent
             className={
               selectedOption === 'Business'
@@ -35,19 +39,19 @@ function CardType({showBusiness,setShowBusiness,handleBusinessToggle}){
                 : styles.custom_opon1
             }
             // onClick={() => setSelectedOption('Business')}
-              onClick={()=>{setSelectedOption('Business')
+              onClick={()=>{setSelectedOption(()=>'Business')
                 handleBusinessToggle('business')}}
           >
             <Typography>
               {" "}
-              <  DomainSharpIcon fontSize="large" />
+              <  DomainSharpIcon fontSize="small" />
             </Typography>
-            <Typography variant="subtitle1"> Business </Typography>
+            <Typography component="p" variant="subtitle3" color="text.secondary"> Business </Typography>
             {/* <Typography>
               {" "}
               Cake sugar plum fruitcake I love sweet roll jelly-o.
             </Typography> */}
-            <FormControl>
+            {/* <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 value={ selectedOption}
@@ -55,17 +59,31 @@ function CardType({showBusiness,setShowBusiness,handleBusinessToggle}){
                 name="radio-buttons-group"
               >
                 <FormControlLabel
+               className={styles.nosideMargin}
                   value={'Business'}
-                  control={<Radio />}
+                  control={<Radio size="small" sx={{padding:"0"}}/>}
                   label=""
                 />
               </RadioGroup>
-            </FormControl>
+            </FormControl> */}
+            <Radio
+            className={styles.noPadding}
+        checked={selectedOption === 'Business'}
+        onChange={(e)=>handleRadioChange(e)}
+        value="Business"
+        name="radio-buttons"
+        size="small"
+        // inputProps={{ 'aria-label': 'A' }}
+      />
           </CardContent>
         </div>
       </Card>
-      <Card className={styles.card}>
-        <div style={{width:"11rem"}}>
+      {/* </div> */}
+     
+      <Card className={ selectedOption === 'Individual'
+                ? styles.cardSelected 
+                : styles.cardNotSelected}>
+        <div>
           <CardContent
             className={
               selectedOption === 'Individual'
@@ -73,32 +91,43 @@ function CardType({showBusiness,setShowBusiness,handleBusinessToggle}){
                 : styles.custom_opon1
             }
             // onClick={() => setSelectedOption('Individual')}
-            onClick={()=>{setSelectedOption('Individual')
+            onClick={()=>{setSelectedOption(()=>'Individual')
               handleBusinessToggle('individual')}}
           >
             <Typography>
               {" "}
-              <  DomainSharpIcon  fontSize="large" />
+              <  PersonOutlineOutlinedIcon  fontSize="small" />
             </Typography>
-            <Typography variant="subtitle1">Individual </Typography>
+            <Typography component="p" variant="subtitle3" color="text.secondary">Individual </Typography>
             {/* <Typography>
               {" "}
               Cake sugar plum fruitcake I love sweet roll jelly-o.
             </Typography> */}
-            <FormControl>
+            {/* <FormControl>
               <RadioGroup
+              
                 aria-labelledby="demo-radio-buttons-group-label"
                 value={ selectedOption}
                 onChange={handleRadioChange}
                 name="radio-buttons-group"
               >
                 <FormControlLabel
+                className={styles.nosideMargin}
                   value={'Individual'}
-                  control={<Radio />}
+                  control={<Radio size="small" sx={{padding:"0"}}/>}
                   label=""
                 />
               </RadioGroup>
-            </FormControl>
+            </FormControl> */}
+            <Radio
+        checked={selectedOption === 'Individual'}
+        className={styles.noPadding}
+        onClick={handleRadioChange}
+        size="small"
+        value="Individual"
+        name="radio-buttons"
+        // inputProps={{ 'aria-label': 'A' }}
+      />
           </CardContent>
         </div>
       </Card>
