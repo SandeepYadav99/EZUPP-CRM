@@ -18,6 +18,7 @@ import DataTables from "./../../Datatables/Datatable.table";
 import Constants from "./../../config/constants";
 import FilterComponent from "./../../components/Filter/Filter.component";
 import useUserListHook from "./UnitListHook";
+import useUnitCreateHook from "./Create/UnitCreate.hook";
 import capitalizeFirstLetter from "./../../hooks/CommonFunction";
 import { ArrowPrimaryButton } from "./../../components/Buttons/PrimaryButton";
 import StatusPill from "./../../components/Status/StatusPill.component";
@@ -40,7 +41,13 @@ const UnitsList = (props) => {
     handleCreate,
     editData,
   } = useUserListHook({});
- 
+  const editDataId = editData ? editData.id : null;
+
+  // Pass the extracted id to useUnitCreateHook
+  useUnitCreateHook({
+    handleToggle: handleSideToggle,
+    id: editDataId,
+  });
   const {
     present,
     all: allData,
@@ -167,10 +174,9 @@ const UnitsList = (props) => {
         open={isSidePanel}
         side={"right"}
       >
-        <EventForm isOpen={isSidePanel} handleToggle={handleSideToggle} id={editData} />
+        <EventForm isOpen={isSidePanel} handleToggle={handleSideToggle} editData={editData} />
       </SidePanelComponent>
         </div>
-      { console.log("edit: ", editData)}
         <div>
           <FilterComponent
             is_progress={isFetching}

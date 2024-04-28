@@ -29,6 +29,7 @@ import HubMasterList from "../views/HubMaster/List/HubMasterList";
 import BlogsComponentList from "../views/Blogs/BlogsList/BlogsList.container";
 import ProductDetailview from "../views/Details/ProductDetails.view";
 import UnitsList from "../views/Units/UnitList.container";
+import NotificationDetails from "../components/NotificationCard/NotificationDetails";
 import {
   Dashboard,
   MeetingRoom,
@@ -75,6 +76,15 @@ const dashboardRoutes = [
     icon: Person,
     component: Profile,
     is_sidebar: true,
+    is_protect: true,
+  },
+  {
+    path: `${RouteName.NOTIFICATION_DETAILS}`,
+    // sidebarName: "My Profile",
+    // navbarName: "My Profile",
+    // icon: Person,
+    component: NotificationDetails,
+    is_sidebar: false,
     is_protect: true,
   },
   {

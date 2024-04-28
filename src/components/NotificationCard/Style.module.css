@@ -45,3 +45,63 @@
 .parentWrapper:not(:last-child) {
   border-bottom: 1px solid #ebedf4;
 }
+.notBox{
+  width: 89%;
+  
+}
+.box1{
+  border: 2px solid #ebedf4;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+.row{
+  display: flex;
+  /* border-bottom: 2px solid #ebedf4 !important; */
+}
+/* .row:not(:last-child) {
+  border-bottom: 2px solid #ebedf4 !important; 
+} */
+.textContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column; 
+}
+.row1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.right{
+  margin-left: auto !important;
+  display: flex;
+  justify-content: flex-end !important;
+  text-align: right !important;
+}
+.title{
+  margin-bottom: 10px;
+}
+.image{
+  width: 41px;
+height: 41px;
+align-items:center;
+margin-right: 10px;
+}
+.line{
+  width: 100% !important;
+  /* margin-top: 10px; */
+  border-bottom: 2px solid #ebedf4;
+  margin-bottom: 10px;
+ 
+
+  /* position: absolute;
+  bottom: 0; */
+ 
+}
+.rowContainer {
+  position: relative;
+
+}

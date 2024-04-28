@@ -90,8 +90,8 @@ function useUnitCreateHook({handleToggle, editData, id}) {
       },
     [removeError, form, setForm]
   );
-  console.log(form, "Form");
- console.log("id: ", id);
+ 
+ console.log("id before useEffect: ", id);
   
   useEffect(() => {
     console.log("Inside useEffect with id:", id);
@@ -118,7 +118,6 @@ function useUnitCreateHook({handleToggle, editData, id}) {
       });
      
     }
-    
   }, [id]);
   
   console.log("updated form",form);
