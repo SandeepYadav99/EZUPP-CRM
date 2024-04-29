@@ -174,7 +174,7 @@ const UnitsList = (props) => {
         open={isSidePanel}
         side={"right"}
       >
-        <EventForm isOpen={isSidePanel} handleToggle={handleSideToggle} editData={editData} />
+        <EventForm isOpen={isSidePanel} handleToggleSidePannel={handleSideToggle} editData={editData} />
       </SidePanelComponent>
         </div>
         <div>

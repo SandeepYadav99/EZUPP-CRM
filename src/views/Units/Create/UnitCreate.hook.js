@@ -35,7 +35,50 @@ function useUnitCreateHook({handleToggle, editData, id}) {
     ROLES: [],
     UNITS: [],
   });
- 
+  // console.log("id before useEffect: ", id);
+  
+  useEffect(() => {
+    //console.log("Inside useEffect with id:", id);
+    if (id) {
+      serviceGetUnitDetails({ id: id }).then((res) => {
+       // console.log("API Response:", res);
+      
+          const data = res?.data?.details;
+          console.log(" updated Data: ", data?.details);
+          
+          // const formData = {
+          //   ...form,
+          //   name: data?.name,
+          //   is_general: data?.is_general,
+          //   is_active: data?.is_active,
+          
+          setTimeout(() => {
+            setForm({
+              ...initialForm,
+              name: data?.name,
+              is_general: data?.is_general,
+              is_active: data?.is_active,
+            });
+          }, 0);
+            
+          // };
+          // setForm(formData);
+          // setForm({
+          //   ...form,
+          //   name: data?.name,
+          //   is_general: data?.is_general,
+          //   is_active: data?.is_active,
+          // });
+        });
+          
+          console.log("set form",form);
+        
+      // });
+     
+    }
+  }, [id]);
+  
+  console.log("updated form",form);
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = ["name"];
@@ -91,36 +134,7 @@ function useUnitCreateHook({handleToggle, editData, id}) {
     [removeError, form, setForm]
   );
  
- console.log("id before useEffect: ", id);
-  
-  useEffect(() => {
-    console.log("Inside useEffect with id:", id);
-    if (id) {
-      serviceGetUnitDetails({ id: id }).then((res) => {
-        console.log("API Response:", res);
-        if (!res.error) {
-          const data = res?.data;
-  
-          const formData = {
-            ...form,
-            name: data?.name,
-            is_general: data?.is_general,
-            is_active: data?.is_active,
-           
-            
-          };
-  
-          setForm(formData);
-         
-        } else {
-          SnackbarUtils.error(res?.message);
-        }
-      });
-     
-    }
-  }, [id]);
-  
-  console.log("updated form",form);
+ 
   const submitToServer = useCallback(
     () => {
       if (!isSubmitting) {
