@@ -65,9 +65,9 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id }) => {
             </div>
             <div className={"formGroup"}>
               <CustomSwitch
-                value={form?.is_active}
+                value={form?.status}
                 handleChange={() => {
-                  changeTextData(!form?.is_active, "is_active");
+                  changeTextData(!form?.status, "status");
                 }}
                 label={`Active ?`}
               />

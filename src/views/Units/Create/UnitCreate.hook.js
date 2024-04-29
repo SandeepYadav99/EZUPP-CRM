@@ -10,22 +10,17 @@ import {
   serviceDeleteUnit,
   serviceGetUnitDetails,
 } from "../../../services/Unit.service";
-import { actionDeleteProduct} from "../../../actions/Product.action";
 
 import { useDispatch, useSelector } from "react-redux";
-  
-function useUnitCreateHook({handleToggle, editData, id}) {
- 
+function useUnitCreateHook({ handleToggle, editData, id }) {
   const initialForm = {
     name: "",
     is_general: false,
-    is_active: true,
-    
+    status: true,
   };
 
   const [form, setForm] = useState({ ...initialForm });
   //const [editData, setEditData] = useState(null);
- 
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
   //const { id } = useParams();
@@ -36,53 +31,26 @@ function useUnitCreateHook({handleToggle, editData, id}) {
     UNITS: [],
   });
   // console.log("id before useEffect: ", id);
-  
   useEffect(() => {
-    //console.log("Inside useEffect with id:", id);
     if (id) {
       serviceGetUnitDetails({ id: id }).then((res) => {
-       // console.log("API Response:", res);
-      
-          const data = res?.data?.details;
-          console.log(" updated Data: ", data?.details);
-          
-          // const formData = {
-          //   ...form,
-          //   name: data?.name,
-          //   is_general: data?.is_general,
-          //   is_active: data?.is_active,
-          
-          setTimeout(() => {
-            setForm({
-              ...initialForm,
-              name: data?.name,
-              is_general: data?.is_general,
-              is_active: data?.is_active,
-            });
-          }, 0);
-            
-          // };
-          // setForm(formData);
-          // setForm({
-          //   ...form,
-          //   name: data?.name,
-          //   is_general: data?.is_general,
-          //   is_active: data?.is_active,
-          // });
+        const data = res?.data?.details;
+        console.log(" updated Data: ", data);
+        setForm({
+          ...initialForm,
+          name: data?.name,
+          is_general: data?.is_general ? true : false,
+          status: data?.status === "ACTIVE",
         });
-          
-          console.log("set form",form);
-        
-      // });
-     
+      });
     }
   }, [id]);
-  
-  console.log("updated form",form);
+
+  console.log("form", form);
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = ["name"];
-    
+
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
@@ -113,80 +81,69 @@ function useUnitCreateHook({handleToggle, editData, id}) {
     },
     [setErrorData, errorData]
   );
-  
+
   const changeTextData = useCallback(
     // (text, fieldName) => {
     //   let shouldRemoveError = true;
     //   const t = { ...form };
-      (value, fieldName) => {
-        let updatedForm = { ...form };
-    
-       
-        if (fieldName === "is_general") {
-          updatedForm.is_general = value; 
-        } else {
-          updatedForm[fieldName] = value;
-        }
-    
-        setForm(updatedForm); 
-        removeError(fieldName); 
-      },
+    (value, fieldName) => {
+      let updatedForm = { ...form };
+
+      if (fieldName === "is_general") {
+        updatedForm.is_general = value;
+      } else {
+        updatedForm[fieldName] = value;
+      }
+
+      setForm(updatedForm);
+      removeError(fieldName);
+    },
     [removeError, form, setForm]
   );
- 
- 
-  const submitToServer = useCallback(
-    () => {
-      if (!isSubmitting) {
-        setIsSubmitting(true);
-  
-      
-        const errors = {};
-        if (!form.name.trim()) {
-          errors.name = "Unit Name is required";
-        }
-       
-        if (Object.keys(errors).length > 0) {
-          setErrorData(errors);
-          setIsSubmitting(false); 
-          return;
-        }
-  
-      
-        const formData = {
-          name: form.name.trim(),
-          is_general: form.is_general,
-          is_active: form.is_active,
-        };
 
-        let req;
-        if (id) {
-          formData.append("id", id);
-          //formData.id = id;
-          req = serviceUpdateUnit(formData);
-        } else {
-         
-          req = serviceCreateUnit(formData);
-        }
-  
-        req.then((res) => {
-          if (!res.error) {
-            
-            handleToggle();
-            //historyUtils.push("/unit");
-            window.location.reload();
-           
-          } else {
-            
-            SnackbarUtils.error(res.message);
-          }
-          setIsSubmitting(false); 
-        });
+  const submitToServer = useCallback(() => {
+    if (!isSubmitting) {
+      setIsSubmitting(true);
+
+      const errors = {};
+      if (!form.name.trim()) {
+        errors.name = "Unit Name is required";
       }
-    },
-    [form, isSubmitting, setIsSubmitting, setErrorData, id, editData]
-  );
- 
+
+      if (Object.keys(errors).length > 0) {
+        setErrorData(errors);
+        setIsSubmitting(false);
+        return;
+      }
+
+      const formData = {
+        name: form.name.trim(),
+        is_general: form.is_general,
+        status: form.status,
+      };
+
+      let req;
+      if (id) {
+        formData.append("id", id);
+        //formData.id = id;
+        req = serviceUpdateUnit(formData);
+      } else {
+        req = serviceCreateUnit(formData);
+      }
+
+      req.then((res) => {
+        if (!res.error) {
+          handleToggle();
+          //historyUtils.push("/unit");
+          window.location.reload();
+        } else {
+          SnackbarUtils.error(res.message);
+        }
+        setIsSubmitting(false);
+      });
+    }
+  }, [form, isSubmitting, setIsSubmitting, setErrorData, id, editData]);
+
   const onBlurHandler = useCallback(
     (type) => {
       if (form?.[type]) {

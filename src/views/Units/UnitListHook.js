@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import RouteName from "./../../routes/Route.name";
 import {
   actionFetchUnit,
-  actionSetPageUnit, 
+  actionSetPageUnit,
 } from "./../../actions/Unit.action";
 import history from "./../../libs/history.utils";
 
@@ -39,6 +39,8 @@ const useUserListHook = ({}) => {
       setSidePanel((e) => !e);
       if (data) {
         setEditData(data?.id);
+      }else{
+        setEditData(null)
       }
     },
     [setEditData, setSidePanel]
@@ -97,11 +99,13 @@ const useUserListHook = ({}) => {
     [setEditData, setSidePanel]
   );
   const handleEditSidePannel = useCallback(
-    
     (data) => {
-      console.log('Edit data:', data);
       setSidePanel((e) => !e);
-    setEditData(data);
+      if (data) {
+        setEditData(data);
+      } else {
+        setEditData(null);
+      }
       // setSidePanel((e) => !e);
       // setEditData(data?.id);
     },

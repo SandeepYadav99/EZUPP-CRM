@@ -43,11 +43,6 @@ const UnitsList = (props) => {
   } = useUserListHook({});
   const editDataId = editData ? editData.id : null;
 
-  // Pass the extracted id to useUnitCreateHook
-  useUnitCreateHook({
-    handleToggle: handleSideToggle,
-    id: editDataId,
-  });
   const {
     present,
     all: allData,
@@ -174,7 +169,7 @@ const UnitsList = (props) => {
         open={isSidePanel}
         side={"right"}
       >
-        <EventForm isOpen={isSidePanel} handleToggleSidePannel={handleSideToggle} editData={editData} />
+        <EventForm isOpen={isSidePanel} handleToggleSidePannel={handleSideToggle} editData={editData} id={editData?.id ? editData?.id : ""}/>
       </SidePanelComponent>
         </div>
         <div>
