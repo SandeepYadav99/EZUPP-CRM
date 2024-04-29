@@ -45,7 +45,7 @@ const ProductList = (props) => {
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
-        <img src={user.image} alt="" crossOrigin="anonymous" />
+        {/* <img src={user.image} alt="" crossOrigin="anonymous" /> */}
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
@@ -104,7 +104,7 @@ const ProductList = (props) => {
         key: "last_login",
         label: "Last Updated At",
         sortable: false,
-        render: (temp, all) => <div>{all?.updatedAtText}</div>,
+        render: (temp, all) => <div>{all?.updatedAtText?.split(' ')[0]}<br/>{all?.updatedAtText?.split(' ')[1]}</div>,
       },
       {
         key: "user_id",
