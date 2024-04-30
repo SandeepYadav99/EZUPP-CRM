@@ -37,11 +37,17 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
         const data = res?.data?.details;
         console.log(" updated Data: ", data);
         setForm({
-          ...initialForm,
+          ...form,
           name: data?.name,
           is_general: data?.is_general ? true : false,
           status: data?.status === "ACTIVE",
         });
+      });
+    }else {
+      setForm({
+        name: '',
+        is_general: false,
+        status: false,
       });
     }
   }, [id]);
@@ -115,20 +121,28 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
         setIsSubmitting(false);
         return;
       }
-
-      const formData = {
-        name: form.name.trim(),
-        is_general: form.is_general,
-        status: form.status,
-      };
-
+      const formField={};
+      //const fd = new FormData();
+      Object.keys(form).forEach((key) => {
+        if (key === "status") {
+          formField.append(key, form[key] ? "ACTIVE" : "INACTIVE");
+        } else if (key === "is_general") {
+          formField.append(key, form[key] ? "Yes" : "No");
+        }else if (key === "name") {
+          formField.append(key, form?.name);
+        } else {
+          formField.append(key, form[key]);
+        }
+      });
       let req;
+      console.log("id", editData?.id);
       if (id) {
-        formData.append("id", id);
+       
+        formField.append("id", id);
         //formData.id = id;
-        req = serviceUpdateUnit(formData);
+        req = serviceUpdateUnit(formField);
       } else {
-        req = serviceCreateUnit(formData);
+        req = serviceCreateUnit(formField);
       }
 
       req.then((res) => {
@@ -142,7 +156,7 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
         setIsSubmitting(false);
       });
     }
-  }, [form, isSubmitting, setIsSubmitting, setErrorData, id, editData]);
+  }, [form, isSubmitting, setIsSubmitting, setErrorData, id, editData, editData?.id]);
 
   const onBlurHandler = useCallback(
     (type) => {
