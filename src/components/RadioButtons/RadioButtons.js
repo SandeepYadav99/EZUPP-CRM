@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -12,15 +12,13 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import styles from "./Style.module.css";
-const RadioButtons = ({ image, title,  checked, handleChange, value  }) => {
-    
-
+const RadioButtons = ({ image, title, checked, handleChange, value }) => {
   return (
     <>
       <Box
         border={1}
-         borderColor={checked ? "#2063CE !important" :"#D8D8DD"}
-       // borderColor={selectedValue === name ? "#007AFF" : "#D8D8DD"}
+        borderColor={checked ? "#2063CE !important" : "#D8D8DD"}
+        // borderColor={selectedValue === name ? "#007AFF" : "#D8D8DD"}
         borderWidth={2}
         padding={1}
         borderRadius={2}
@@ -37,17 +35,15 @@ const RadioButtons = ({ image, title,  checked, handleChange, value  }) => {
           <Typography variant="body3" className="title">
             {title}
           </Typography>
-        
-        <Box paddingBottom={2}>
+
           <FormControlLabel
-            control={<Radio  checked={checked} onChange={handleChange} value={value}/>}
-            labelPlacement="top"
+            control={
+              <Radio checked={checked} onChange={handleChange} size="small" value={value} />
+            }
+            // labelPlacement="top"
             className={styles.radio}
             // sx={{ marginBottom: 8, boxSizing: "border-box" }}
-          
           />
-         </Box>
-          
         </div>
       </Box>
     </>

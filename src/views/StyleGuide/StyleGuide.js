@@ -1,17 +1,25 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from "react";
 import PageBoxComponent from "../../components/PageBox/PageBox.component";
 import CustomSelectField from "../../components/FormFields/SelectField/SelectField.component";
 import CustomDatePicker from "../../components/FormFields/DatePicker/CustomDatePicker";
-import RadioButtons from '../../components/RadioButtons/RadioButtons';
+import RadioButtons from "../../components/RadioButtons/RadioButtons";
+import RadioButtonWithText from "../../components/RadioButtons/RadioButtonWithText";
 import {
-    ActionButton, ArrowActionButton,
-    ArrowOutlineButton,
-    ArrowPrimaryButton,
-    OutlineButton,
-    PrimaryButton
+  ActionButton,
+  ArrowActionButton,
+  ArrowOutlineButton,
+  ArrowPrimaryButton,
+  OutlineButton,
+  PrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
-import styles from './Style.module.css';
-import {MenuItem, Typography,Autocomplete,TextField, Avatar} from "@mui/material";
+import styles from "./Style.module.css";
+import {
+  MenuItem,
+  Typography,
+  Autocomplete,
+  TextField,
+  Avatar,
+} from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
@@ -30,85 +38,77 @@ import { UserCountRadioLables } from "../../components/BasicAndCustomRadio/Radio
 import { CustomOptionRadiosWithIcon } from "../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon";
 import TimeLine from "../../components/TimeLine/TimeLine.component";
 import { useTheme } from "@mui/styles";
-import CustomMultiComplete from '../../components/FormFields/AutoCompleteText/MultiComplete';
+import CustomMultiComplete from "../../components/FormFields/AutoCompleteText/MultiComplete";
 import img from "../../assets/img/1.png";
 import home from "../../assets/Assets/ic_dashboard_grey.png";
 import business from "../../assets/Assets/ic_business.png";
-import individual from "../../assets/Assets/ic_individual.png"
-import ColorPicker from '../../components/ColorPicker/ColorPicker';
+import individual from "../../assets/Assets/ic_individual.png";
+import ColorPicker from "../../components/ColorPicker/ColorPicker";
 
-const avatars=[
-    'A',
-    'B',
-    'C',
-    '2k'
-]
-const AutoCompleteData=[
-    {
-        id:1,
-        title:"Ardeen Batisse",
-        label:"Ardeen Batisse",
-        image:img,
-        email: "user1@example.com",
-    },
-    {
-        id:2,
-        title:"Justinian Hattersley",
-        label:"Justinian Hattersley",
-        image:img,
-        email: "user2@example.com",
-    },
-    {
-        id:1,
-        title:"Graeme Yellowley",
-        label:"Graeme Yellowley",
-        image:img,
-        email: "user3@example.com",
-    },
-
-]
+const avatars = ["A", "B", "C", "2k"];
+const AutoCompleteData = [
+  {
+    id: 1,
+    title: "Ardeen Batisse",
+    label: "Ardeen Batisse",
+    image: img,
+    email: "user1@example.com",
+  },
+  {
+    id: 2,
+    title: "Justinian Hattersley",
+    label: "Justinian Hattersley",
+    image: img,
+    email: "user2@example.com",
+  },
+  {
+    id: 1,
+    title: "Graeme Yellowley",
+    label: "Graeme Yellowley",
+    image: img,
+    email: "user3@example.com",
+  },
+];
 const StyleGuide = ({}) => {
-    const theme = useTheme();
-        const [selectedUsers, setSelectedUsers] = useState([]);
-        const changeTextData = useCallback((text, fieldName)=>{
-            console.log("changeTextData",text,fieldName)
-            setSelectedUsers([...text])
-        },[selectedUsers])
-        const [selectedValue, setSelectedValue] = React.useState("");
+  const theme = useTheme();
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const changeTextData = useCallback(
+    (text, fieldName) => {
+      console.log("changeTextData", text, fieldName);
+      setSelectedUsers([...text]);
+    },
+    [selectedUsers]
+  );
+  const [selectedValue, setSelectedValue] = React.useState("");
 
-        const handleChange = (event) => {
-          setSelectedValue(event.target.value);
-        };
-    return (
-        <PageBoxComponent>
-            <div className={'formFlex'}>
-                <div className={styles.sideMargin}>
-                    <div>
-                        <Typography variant={'h5'}>Normal</Typography></div>
-                    <div className={styles.boxCont}>
-                        <PrimaryButton>
-                            Normal
-                        </PrimaryButton>
-                    </div>
-                    <div className={styles.boxCont}>
-                        <PrimaryButton disabled={true}>
-                            Normal
-                        </PrimaryButton>
-                    </div>
-                </div>
-                <div className={styles.sideMargin}>
-                    <div><Typography variant={'h5'}>Outline</Typography></div>
-                    <div className={styles.boxCont}>
-                        <OutlineButton>
-                            Normal
-                        </OutlineButton>
-                    </div>
-                    <div className={styles.boxCont}>
-                        <OutlineButton disabled={true}>
-                            Normal
-                        </OutlineButton>
-                    </div>
-                </div>
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+  return (
+    <PageBoxComponent>
+      <div className={"formFlex"}>
+        <div className={styles.sideMargin}>
+          <div>
+            <Typography variant={"h5"}>Normal</Typography>
+          </div>
+          <div className={styles.boxCont}>
+            <PrimaryButton>Normal</PrimaryButton>
+          </div>
+          <div className={styles.boxCont}>
+            <PrimaryButton disabled={true}>Normal</PrimaryButton>
+          </div>
+        </div>
+        <div className={styles.sideMargin}>
+          <div>
+            <Typography variant={"h5"}>Outline</Typography>
+          </div>
+          <div className={styles.boxCont}>
+            <OutlineButton>Normal</OutlineButton>
+          </div>
+          <div className={styles.boxCont}>
+            <OutlineButton disabled={true}>Normal</OutlineButton>
+          </div>
+        </div>
 
         <div className={styles.sideMargin}>
           <div>
@@ -188,132 +188,131 @@ const StyleGuide = ({}) => {
             <br />
             <CustomTextField label={"Name"} isError={true} />
 
-                        <br/>
-                        <br/>
-                        <CustomTextField label={'Name'} value={'Electrovese'}/>
-                    </div>
-                </div>
+            <br />
+            <br />
+            <CustomTextField label={"Name"} value={"Electrovese"} />
+          </div>
+        </div>
+      </div>
+      <div className={""}>
+        <div className={styles.sideMargin}>
+          <Typography variant={"h5"}>Select Field</Typography>
+          <div className={styles.boxCont}>
+            <CustomSelectField label={"Name"}>
+              <MenuItem value="Electrovese">Electrovese</MenuItem>
+            </CustomSelectField>
+            <br />
+            <br />
+            <CustomSelectField label={"Name"} value="Electrovese">
+              <MenuItem value="Electrovese">Electrovese</MenuItem>
+            </CustomSelectField>
+            <br />
+            <br />
+            <CustomSelectField label={"Name"} isError={true}>
+              <MenuItem value="Electrovese">Electrovese</MenuItem>
+            </CustomSelectField>
+          </div>
+        </div>
+      </div>
+      <div className={""}>
+        <div className={styles.sideMargin}>
+          <div>
+            <Typography variant={"h5"}>Auto Complete</Typography>
+          </div>
+          <div className={styles.boxCont}>
+            <div className={styles.boxCont}>
+              <Typography variant={"h6"}>Multipe select</Typography>
             </div>
-            <div className={""}>
-              <div className={styles.sideMargin}>
-             <Typography variant={"h5"}>Select Field</Typography>
-             <div className={styles.boxCont}>
-             <CustomSelectField label={"Name"}>
-               <MenuItem value="Electrovese">Electrovese</MenuItem>
-             </CustomSelectField>
-             <br />
-             <br />
-             <CustomSelectField label={"Name"} value="Electrovese">
-               <MenuItem value="Electrovese">Electrovese</MenuItem>
-             </CustomSelectField>
-             <br/>
-             <br/>
-             <CustomSelectField label={"Name"} isError={true}>
-               <MenuItem value="Electrovese">Electrovese</MenuItem>
-             </CustomSelectField>
-           </div>
-           </div>
+            <Autocomplete
+              multiple
+              id="tags-outlined"
+              options={AutoCompleteData ? AutoCompleteData : []}
+              getOptionLabel={(option) => option.title}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined" label="Add Guests" />
+              )}
+            />
+            <br />
+            <CustomMultiComplete
+              AutoCompleteList={AutoCompleteData}
+              label="User Lists"
+              value={selectedUsers}
+              onTextChange={(text) => {
+                changeTextData(text, "user_list");
+              }}
+              enableField={["title", "email"]}
+            />
+            <div className={styles.boxCont}>
+              <Typography variant={"h6"}>single select</Typography>
             </div>
-            <div className={''}>
-                <div className={styles.sideMargin}>
-                    <div><Typography variant={'h5'}>Auto Complete</Typography></div>
-                    <div className={styles.boxCont}>
-                    <div className={styles.boxCont}>
-                        <Typography variant={'h6'}>Multipe select</Typography>
-                        </div>
-                    <Autocomplete
-                     multiple
-                     id="tags-outlined"
-                    options={AutoCompleteData ? AutoCompleteData : []}
-                    getOptionLabel={(option) => option.title}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="outlined"
-                        label="Add Guests"
-                      />
-                    )}
-                      />
-                      <br/>
-                      <CustomMultiComplete
-                        AutoCompleteList={AutoCompleteData}
-                         label="User Lists"
-                         value={selectedUsers}
-                         onTextChange={text => {
-                             changeTextData(text, 'user_list');
-                         }}
-                         enableField={["title","email"]}
-                         />
-                      <div className={styles.boxCont}>
-                        <Typography variant={'h6'}>single select</Typography>
-                        </div>
-                        <Autocomplete
-                         id="tags-outlined"
-                        options={AutoCompleteData ? AutoCompleteData : []}
-                        getOptionLabel={(option) => option.title}
-                        renderInput={(params) => (
-                        <TextField
-                         {...params}
-                        variant="outlined"
-                        label="Add Guests"
-                        />
-                        )}
-                        />
-                         <div className={styles.boxCont}>
-                        <Typography variant={'h6'}>Error Field with Disabled</Typography>
-                        </div>
-                        <Autocomplete
-                        disabled={true}
-                         id="tags-outlined"
-                        options={AutoCompleteData ? AutoCompleteData : []}
-                        getOptionLabel={(option) => option.title}
-                        renderInput={(params) => (
-                        <TextField
-                         {...params}
-                        variant="outlined"
-                        label="Add Guests"
-                        error={true}
-                        />
-                        )}
-                        />
-                    </div>
-                </div>
+            <Autocomplete
+              id="tags-outlined"
+              options={AutoCompleteData ? AutoCompleteData : []}
+              getOptionLabel={(option) => option.title}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined" label="Add Guests" />
+              )}
+            />
+            <div className={styles.boxCont}>
+              <Typography variant={"h6"}>Error Field with Disabled</Typography>
             </div>
-            <div className={''}>
-                <div className={styles.sideMargin}>
-                    <div><Typography variant={'h5'}>DatePicker</Typography></div>
-                    <div className={styles.boxCont}>
-                    <CustomDatePicker
-                     clearable
-                     label={"Select Date"}
-                     maxDate={new Date()}
-                    //  isError={errorData?.end_date}
-                     />
-                    </div>
-                    <br/>
-                    <CustomDatePicker
-                     clearable
-                     disabled={true}
-                     label={"Select Date"}
-                     isError={true}
-                     />
-                    </div>
-                    </div>
-                     <div className={''}>
-                     <div className={styles.sideMargin}>
-                    <br/>
+            <Autocomplete
+              disabled={true}
+              id="tags-outlined"
+              options={AutoCompleteData ? AutoCompleteData : []}
+              getOptionLabel={(option) => option.title}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="Add Guests"
+                  error={true}
+                />
+              )}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={""}>
+        <div className={styles.sideMargin}>
+          <div>
+            <Typography variant={"h5"}>DatePicker</Typography>
+          </div>
+          <div className={styles.boxCont}>
+            <CustomDatePicker
+              clearable
+              label={"Select Date"}
+              maxDate={new Date()}
+              //  isError={errorData?.end_date}
+            />
+          </div>
+          <br />
+          <CustomDatePicker
+            clearable
+            disabled={true}
+            label={"Select Date"}
+            isError={true}
+          />
+        </div>
+      </div>
+      <div className={""}>
+        <div className={styles.sideMargin}>
+          <br />
 
-                    <div><Typography variant={'h5'}>Status</Typography></div>
-                    <div className={styles.boxCont}>
-                        <StatusPill status={'High'} color={'high'}/> &nbsp;
-                        <StatusPill status={'Inactive'} color={'high'}/> &nbsp;
-                        <StatusPill status={'Medium'} color={'medium'}/> &nbsp;
-                        <StatusPill status={'Low'} color={'low'}/>&nbsp;
-                        <StatusPill status={'Active'} color={'active'}/>&nbsp;
-
-                    </div>
-                </div>
-            </div>
+          <div>
+            <Typography variant={"h5"}>Status</Typography>
+          </div>
+          <div className={styles.boxCont}>
+            <StatusPill status={"High"} color={"high"} /> &nbsp;
+            <StatusPill status={"Inactive"} color={"high"} /> &nbsp;
+            <StatusPill status={"Medium"} color={"medium"} /> &nbsp;
+            <StatusPill status={"Low"} color={"low"} />
+            &nbsp;
+            <StatusPill status={"Active"} color={"active"} />
+            &nbsp;
+          </div>
+        </div>
+      </div>
 
       <div className={""}>
         <div className={styles.sideMargin}>
@@ -340,16 +339,32 @@ const StyleGuide = ({}) => {
         </div>
       </div>
 
-            <div className={''}>
-                <div className={styles.sideMargin}>
-                    <div><Typography variant={'h5'}>Status</Typography></div>
-                    <div className={styles.boxCont}>
-                        {
-                            ([{name:'h1',font:"38"}, {name:'h2',font:"30"}, {name:'h3',font:"24"}, {name:'h4',font:"20"}, {name:'h5',font:"16"}, {name:'h6',font:"14"}, {name:'caption',font:"12"}, {name:'body1',font:"14"}, {name:'body2',font:"12"}, {name:'subtitle1',font:"14"}, {name:'subtitle2',font:"12"}, {name:'overline',font:"12"},]).map(key => {
-                                return (<Typography variant={key?.name}>Here is the text - {key?.name} - {key?.font} px</Typography>)
-                            })
-                        }
-
+      <div className={""}>
+        <div className={styles.sideMargin}>
+          <div>
+            <Typography variant={"h5"}>Status</Typography>
+          </div>
+          <div className={styles.boxCont}>
+            {[
+              { name: "h1", font: "38" },
+              { name: "h2", font: "30" },
+              { name: "h3", font: "24" },
+              { name: "h4", font: "20" },
+              { name: "h5", font: "16" },
+              { name: "h6", font: "14" },
+              { name: "caption", font: "12" },
+              { name: "body1", font: "14" },
+              { name: "body2", font: "12" },
+              { name: "subtitle1", font: "14" },
+              { name: "subtitle2", font: "12" },
+              { name: "overline", font: "12" },
+            ].map((key) => {
+              return (
+                <Typography variant={key?.name}>
+                  Here is the text - {key?.name} - {key?.font} px
+                </Typography>
+              );
+            })}
 
             <h5>Color Property</h5>
             {[
@@ -397,16 +412,38 @@ const StyleGuide = ({}) => {
       <br />
       <div>
         <CustomOptionRadiosWithIcon />
-       
       </div>
-      <br/>
+      <br />
+      <div>
+            <Typography variant={"h5"}>Custom Radio options with icons</Typography>
+          </div><br></br>
       <div className={styles.radio}>
-      <RadioButtons image={business} title="Business" checked={selectedValue === "business"}
-        handleChange={handleChange}
-        value="business"/>
-      <RadioButtons image={individual} title="Individual" checked={selectedValue === "individual"}
-        handleChange={handleChange}
-        value="individual"/>
+        <RadioButtons
+          image={business}
+          title="Business"
+          checked={selectedValue === "business"}
+          handleChange={handleChange}
+          value="business"
+        />
+        <RadioButtons
+          image={individual}
+          title="Individual"
+          checked={selectedValue === "individual"}
+          handleChange={handleChange}
+          value="individual"
+        />
+      </div>
+      <div>
+            <Typography variant={"h5"}>Basic Radio Option</Typography>
+          </div><br></br>
+      <div className={styles.radio}>
+        <RadioButtonWithText
+          title="I want to access Newsletter"
+          description="Yes!, I would love the updates."
+          checked={selectedValue === "news"}
+          handleChange={handleChange}
+          value="news"
+        ></RadioButtonWithText>
       </div>
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">
@@ -414,10 +451,10 @@ const StyleGuide = ({}) => {
         </Typography>
         <TimeLine />
       </div>
-            <br/>
-            <div>
-                <ColorPicker/>
-            </div>
+      <br />
+      <div>
+        <ColorPicker />
+      </div>
     </PageBoxComponent>
   );
 };

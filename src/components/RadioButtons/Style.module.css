@@ -56,22 +56,43 @@
     width: 138px;
     height: 86px;
   }
-  .checked {
-    border-color: blue;
-  }
-  /* .card:hover {
-    border-color: #dfdfe3;
-  }
-  .card:not(:hover) {
-    border-color: #fff;
-  } */
+.textcard{
+  border-color: #D8D8DD;
+  width: 299px;
+height: 74px;
+}
+
 .cardContent{
     display: flex;
     flex-direction: column;
     text-align: center;
     margin-bottom: 10px;
 }
+.textContent{
+  display: flex;
+  flex-direction: column;
+  text-align: flex-start;
+  /* margin-left: -10px; */
+  margin-top: 4px;
+
+}
 .radio{
-    margin-bottom: 10px !important;
+    margin-bottom: -10px !important;
+   margin-left: 12px !important;
+   margin-top: -10px !important;
+}
+.radio1{
+  margin-top: -15px !important;
+
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  margin-left: -12px;
 }
   
