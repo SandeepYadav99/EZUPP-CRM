@@ -1,0 +1,77 @@
+.cardGrid {
+    display: grid;
+  
+    grid-gap: 10px;
+  }
+  
+  .flexBox {
+    float: right;
+    margin-top: 10px;
+  }
+  .custom_option {
+    border: 2px solid #666cff;
+    margin: 0;
+    border-radius: 0.625rem;
+    cursor: pointer;
+    background-color: rgba(102, 108, 255, .12);
+    /* color: #666cff; */
+   
+  }
+  .custom_opon {
+    cursor: pointer;
+    border: 1px solid #eaeaec;
+    border-radius: 0.625rem;
+    margin: 1px;
+    border-color: #6d788d;
+    color: #636578;
+    background-color: rgba(102, 108, 255, .12);
+  }
+  .custom_opon1 {
+    cursor: pointer;
+    border: 1px solid #eaeaec;
+    border-radius: 0.625rem;
+    margin: 1px;
+    border-color: #6d788d;
+    color: #636578;
+  
+  }
+  .cardGrid1 {
+    display: grid;
+  
+    justify-content: center;
+    grid-gap: 20px;
+  }
+  @media screen and (min-width: 1010px) {
+    .cardGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .cardGrid1 {
+      grid-template-columns: repeat(3, 250px);
+    }
+  }
+  .card {
+    border-color: #D8D8DD;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 138px;
+    height: 86px;
+  }
+  .checked {
+    border-color: blue;
+  }
+  /* .card:hover {
+    border-color: #dfdfe3;
+  }
+  .card:not(:hover) {
+    border-color: #fff;
+  } */
+.cardContent{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.radio{
+    margin-bottom: 10px !important;
+}
+  

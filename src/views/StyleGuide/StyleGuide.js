@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import PageBoxComponent from "../../components/PageBox/PageBox.component";
 import CustomSelectField from "../../components/FormFields/SelectField/SelectField.component";
 import CustomDatePicker from "../../components/FormFields/DatePicker/CustomDatePicker";
-
+import RadioButtons from '../../components/RadioButtons/RadioButtons';
 import {
     ActionButton, ArrowActionButton,
     ArrowOutlineButton,
@@ -32,7 +32,11 @@ import TimeLine from "../../components/TimeLine/TimeLine.component";
 import { useTheme } from "@mui/styles";
 import CustomMultiComplete from '../../components/FormFields/AutoCompleteText/MultiComplete';
 import img from "../../assets/img/1.png";
+import home from "../../assets/Assets/ic_dashboard_grey.png";
+import business from "../../assets/Assets/ic_business.png";
+import individual from "../../assets/Assets/ic_individual.png"
 import ColorPicker from '../../components/ColorPicker/ColorPicker';
+
 const avatars=[
     'A',
     'B',
@@ -70,7 +74,11 @@ const StyleGuide = ({}) => {
             console.log("changeTextData",text,fieldName)
             setSelectedUsers([...text])
         },[selectedUsers])
+        const [selectedValue, setSelectedValue] = React.useState("");
 
+        const handleChange = (event) => {
+          setSelectedValue(event.target.value);
+        };
     return (
         <PageBoxComponent>
             <div className={'formFlex'}>
@@ -389,6 +397,16 @@ const StyleGuide = ({}) => {
       <br />
       <div>
         <CustomOptionRadiosWithIcon />
+       
+      </div>
+      <br/>
+      <div className={styles.radio}>
+      <RadioButtons image={business} title="Business" checked={selectedValue === "business"}
+        handleChange={handleChange}
+        value="business"/>
+      <RadioButtons image={individual} title="Individual" checked={selectedValue === "individual"}
+        handleChange={handleChange}
+        value="individual"/>
       </div>
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">
