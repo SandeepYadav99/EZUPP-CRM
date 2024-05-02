@@ -206,13 +206,13 @@ class ForgotPasswordView extends Component {
               </div>
               <p
                 className={styles.bottomLine}
-                style={{ color: "grey", fontSize: "14px" }}
+                style={{ color: "grey", fontSize: "14px",marginTop:"10px" }}
               >
                 Enter your email and we'll send you instructions to reset your
                 password
               </p>
-              <div>
-                <br />
+              <div style={{marginTop:"10px"}}>
+                {/* <br /> */}
                 <div>
                   <Field
                     fullWidth={true}
@@ -243,7 +243,7 @@ class ForgotPasswordView extends Component {
                         <CircularProgress size={"18px"} color={"primary"} />
                       </div>
                     ) : (
-                      ""
+                      "SEND REST LINK"
                     )}
                   </ArrowPrimaryButton>
                   <div>
