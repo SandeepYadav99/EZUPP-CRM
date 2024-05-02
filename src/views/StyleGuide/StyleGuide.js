@@ -81,9 +81,10 @@ const StyleGuide = ({}) => {
   );
   const [selectedValue, setSelectedValue] = React.useState("");
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handleChange = (value) => {
+    setSelectedValue(value);
   };
+
   return (
     <PageBoxComponent>
       <div className={"formFlex"}>
@@ -419,14 +420,14 @@ const StyleGuide = ({}) => {
           </div><br></br>
       <div className={styles.radio}>
         <RadioButtons
-          image={business}
+            iconComp={<img src={business}/>}
           title="Business"
           checked={selectedValue === "business"}
           handleChange={handleChange}
           value="business"
         />
         <RadioButtons
-          image={individual}
+            iconComp={<img src={individual} /> }
           title="Individual"
           checked={selectedValue === "individual"}
           handleChange={handleChange}
