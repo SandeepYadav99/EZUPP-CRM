@@ -11,10 +11,10 @@ const RadioButtonWithText = ({
   handleChange,
   value,
   cardStyle,
-  type
+  inputType
 }) => {
   const theme = useTheme();
-  const CheckboxOrRadio = type === "checkbox" ? Checkbox : Radio;
+  //const CheckboxOrRadio = type === "checkbox" ? Checkbox : Radio;
   return (
     <>
       <Box
@@ -36,9 +36,10 @@ const RadioButtonWithText = ({
       >
 
             <div className={styles.row}>
+            {inputType === 'radio' && (
             <FormControlLabel
               control={
-                <CheckboxOrRadio
+                <Radio
                   checked={checked}
                   onChange={() => {
                     // handleChange && handleChange(value)
@@ -50,6 +51,22 @@ const RadioButtonWithText = ({
               }
               className={styles.radio1}
             />
+          )}
+          {inputType === 'checkbox' && (
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={() => {
+                  // handleChange && handleChange(value)
+              }}
+                value={value}
+                size="small"
+              />
+            }
+            className={styles.radio1}
+          />
+        )}
             <div className={styles.textContent}>
             <Typography variant="subtitle1" className="title">
               {title}

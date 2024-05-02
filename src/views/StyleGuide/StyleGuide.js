@@ -82,12 +82,13 @@ const StyleGuide = ({}) => {
   const [selectedValue, setSelectedValue] = React.useState("");
 
   const handleChange = (value) => {
-    //setSelectedValue(value);
-    if (selectedValue === value) {
-      setSelectedValue("");
-    } else {
-      setSelectedValue(value);
-    }
+    setSelectedValue(value);
+    // if (selectedValue === value) {
+    //   setSelectedValue("");
+    // } else {
+    //   setSelectedValue(value);
+    // }
+   
   };
 
   return (
@@ -450,6 +451,7 @@ const StyleGuide = ({}) => {
           handleChange={handleChange}
           value="news"
           //type="checkbox"
+          inputType="radio"
         ></RadioButtonWithText>
         <RadioButtonWithText
           title="I don't want access to Newsletter"
@@ -457,6 +459,7 @@ const StyleGuide = ({}) => {
           checked={selectedValue === "Nonews"}
           handleChange={handleChange}
           value="Nonews"
+          inputType="radio"
           //type="checkbox"
         ></RadioButtonWithText>
          
@@ -472,15 +475,15 @@ const StyleGuide = ({}) => {
           checked={selectedValue === "one"}
           handleChange={handleChange}
           value="one"
-          type="checkbox"
+          inputType="checkbox"
         ></RadioButtonWithText>
         <RadioButtonWithText
           title="Value Add"
           description="Value add help text to be shown here"
-          checked={selectedValue === "ne"}
+         checked={selectedValue === "ne"}
           handleChange={handleChange}
           value="ne"
-          type="checkbox"
+          inputType="checkbox"
         ></RadioButtonWithText>
           </div>
       <div className={styles.timeLineComponent}>
