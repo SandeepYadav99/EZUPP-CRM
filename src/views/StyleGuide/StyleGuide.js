@@ -406,14 +406,14 @@ const StyleGuide = ({}) => {
         </div>
       </div>
       <br />
-      <div>
+      {/* <div>
         <UserCountRadioLables />
       </div>
       <br />
       <div>
         <CustomOptionRadiosWithIcon />
       </div>
-      <br />
+      <br /> */}
       <div>
             <Typography variant={"h5"}>Custom Radio options with icons</Typography>
           </div><br></br>
