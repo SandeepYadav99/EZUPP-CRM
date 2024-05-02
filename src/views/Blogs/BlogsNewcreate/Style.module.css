@@ -1,8 +1,27 @@
+
+.wrapper{
+  /* background: #F7F7F9 0% 0% no-repeat padding-box;
+  padding: 3.281rem 8rem; */
+}
+.heading{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 1rem;
+}
 .paper {
   background-color: white;
   border-radius: 10px;
 }
-
+.slugBox{
+  /* width:100%; */
+  /* width: 533px; */
+    height: 324px;
+}
+.settingsBox{
+  /* width: 533px; */
+height: 192px;
+}
 #inTwo {
   display: flex;
   gap: 10px;
@@ -15,7 +34,10 @@
   /*padding-bottom: 10px;*/
   display: block;
 }
-
+.meta{
+  width: 475px;
+height: 146px!important
+}
 .headerContainer {
   display: flex;
   justify-content: space-between;
@@ -43,18 +65,29 @@
 }
 .headerFlex {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  padding-left: 9px;
+  margin-bottom: 1rem;
 }
 .mainFlex {
   display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 .left {
-  flex: 1;
+  flex: 1.5;
 }
 .right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   flex: 1;
+}
+.marginLeft{
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
 }
 .infoTitle {
   margin-bottom: 15px;
@@ -70,6 +103,7 @@
 
 .heading {
   margin-right: 5px;
+  margin-bottom: 2rem;
 }
 
 .minReads {

@@ -6,23 +6,25 @@ import {sourceList} from "../../../../../helper/Helper";
 import {leadOwnerList} from "../../../../../helper/Helper";
 
 const initialForm = {
-  country:'',
-  userPhone:'',
+  // country:'',
+  // userPhone:'',
+  contact:"",
     email: "",
-    fullName:"",
-    prefixType:'',
-    jobTitle:"",
-    BusinessType:'',
+    full_name:"",
+    prefix_type:'',
+    job_title:"",
+    business_type:'',
     interested_in_type:"",
     company_name_list:null,
-    Associate_tags_list:[],
+    associate_tags_list:[],
     source:null,
-    leadOwner:null,
-    leadStageType:'',
+    lead_owner:null,
+    lead_stage_type:'',
     is_initial_task:false
   };
 function useContactList({ isOpen, handleToggle}) {
   const [showBusiness, setShowBusiness] = useState(true);
+ 
   const [showImage,setShowImage]=useState(false);
   const [form, setForm] = useState(
     JSON.parse(JSON.stringify({ ...initialForm }))
@@ -74,19 +76,20 @@ function useContactList({ isOpen, handleToggle}) {
     const errors = { ...errorData };
    
     let required = [
-      "country",
-      "userPhone",
+      // "country",
+      // "userPhone",
+      "contact",
       "email",
-      "fullName",
-      "prefixType",
-      "BusinessType",
+      "full_name",
+      "prefix_type",
+      "business_type",
       "interested_in_type",
-      "jobTitle",
+      "job_title",
       "company_name_list",
-      " Associate_tags_list",
+      "associate_tags_list",
       "source",
-      "leadOwner",
-      "leadStageType",
+      "lead_owner",
+      "lead_stage_type",
     
     ];
     required.forEach((val) => {
@@ -148,9 +151,15 @@ function useContactList({ isOpen, handleToggle}) {
 
   const handleBusinessToggle = useCallback(
     (data) =>
-      data === "business" ? setShowBusiness(true) : setShowBusiness(false),
+      data === "Business" ? setShowBusiness(true) : setShowBusiness(false),
     [showBusiness, setShowBusiness]
   );
+  // const handleCountryFlagToggle = useCallback(
+  //   () =>setCountryFlagOnly((prev)=>!prev),
+   
+  //   [ countryFlagOnly,setCountryFlagOnly]
+  // );
+
   return { showBusiness, setShowBusiness, handleBusinessToggle, form,
     changeTextData,
     onBlurHandler,

@@ -1,7 +1,13 @@
 import React from "react";
 
 import styles from "./Style.module.css";
-import { MenuItem, Button, IconButton, createMuiTheme } from "@mui/material";
+import {
+  MenuItem,
+  Button,
+  IconButton,
+  createMuiTheme,
+  Typography,
+} from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import MUIRichTextEditor from "mui-rte";
 import {
@@ -10,6 +16,9 @@ import {
   Info as InfoIcon,
 } from "@mui/icons-material";
 import UploadImagePopover from "../component/Popover/Popover.component";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import {ActionButton} from "../../../components/Buttons/PrimaryButton"
+import {PrimaryButton} from "../../../components/Buttons/PrimaryButton"
 import {
   Dialog,
   DialogTitle,
@@ -29,7 +38,10 @@ import CustomCheckBox from "../../../components/FormFields/CustomCheckbox";
 import FileField from "../../../components/FileField/File.component";
 import { useParams } from "react-router-dom";
 import useNewBlogCreateHook from "./BlogsNewCreate.hook";
-
+import PageBox from "../../../components/PageBox/PageBox.component";
+// import Typography from "../../../themes/typography";
+import MultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 const NewBlogsCreate = ({ location }) => {
   const {
     form,
@@ -47,6 +59,7 @@ const NewBlogsCreate = ({ location }) => {
     taglist,
     handleFileUpload,
     handleSave,
+    handleCancel,
     editor_data,
     anchor,
     coverImage,
@@ -56,6 +69,7 @@ const NewBlogsCreate = ({ location }) => {
 
   const defaultTheme = createMuiTheme();
   const params = useParams();
+  console.log("blog", form,errorData);
 
   const renderEditor = () => {
     if (editor_data) {
@@ -138,11 +152,23 @@ const NewBlogsCreate = ({ location }) => {
     }
     return null;
   };
+  console.log("taglist",taglist, industries)
+  
+  console.log("form",form)
 
   return (
-    <>
-      <div className={styles.paper}>
-        <div className={styles.headerFlex}>
+    <div className={styles.wrapper}>
+      <div className={styles.heading}>
+        <ArrowBackIosNewIcon
+          fontSize="medium"
+          onClick={() => history.goBack()}
+        />
+        <Typography variant={"h4"} color={"text.secondary"}>
+          Create Blog
+        </Typography>
+      </div>
+      {/* <div className={styles.paper}> */}
+      {/* <div className={styles.headerFlex}>
           <h4 className={styles.infoTitle}>
             <div className={styles.heading} onClick={() => history.goBack()}>
               Blogs
@@ -161,12 +187,36 @@ const NewBlogsCreate = ({ location }) => {
               <DeleteIcon />
             </IconButton>
           )}
-        </div>
-        <div className={styles.mainFlex}>
-          <div className={styles.left}>
+        </div> */}
+      <div className={styles.mainFlex}>
+        <div className={styles.left}>
+          <ShadowBox width={"100%"}>
+            <div className={styles.headerFlex}>
+              <Typography variant="h5" color={"text.secondary"}>
+                Blog Post
+              </Typography>
+              {/* <h4 className={styles.infoTitle}>
+            <div className={styles.heading} onClick={() => history.goBack()}>
+              Blogs
+            </div>
+
+            <Tooltip title="Info" aria-label="info" placement="right">
+              <InfoIcon fontSize={"small"} />
+            </Tooltip>
+          </h4>
+          {params?.id && (
+            <IconButton
+              variant={"contained"}
+              onClick={handleDelete}
+              type="button"
+            >
+              <DeleteIcon />
+            </IconButton>
+          )} */}
+            </div>
             <div className={"formGroup"}>
               <FileField
-                bannerLabel="Upload Image"
+                bannerLabel="Upload Cover Image"
                 default_image={coverImage}
                 max_size={5 * 1024 * 1024}
                 type={["png", "jpeg", "jpg"]}
@@ -177,6 +227,8 @@ const NewBlogsCreate = ({ location }) => {
                 show_image={true}
                 error={errorData?.image}
                 value={form?.image}
+                not_default_width
+                not_default_height
                 onChange={(file) => {
                   if (file) {
                     changeTextData(file, "image");
@@ -192,6 +244,12 @@ const NewBlogsCreate = ({ location }) => {
               ) : (
                 ""
               )}
+              {/* <label className={styles.enter}>
+              Image should be in JPG, PNG format and should of 16:9 ratio
+            </label> */}
+              <Typography variant="body2" color={"text.secondary"}>
+                Image should be in JPG, PNG format and should of 16:9 ratio
+              </Typography>
             </div>
             <div className={"formGroup"}>
               <CustomTextField
@@ -205,13 +263,20 @@ const NewBlogsCreate = ({ location }) => {
               />
             </div>
             <div className={"formGroup"}>
-              <label className={styles.enter}>Blog Description</label>
+              {/* <label className={styles.enter}>Blog Description</label> */}
+              <Typography variant="body1" color={"text.secondary"}>
+                Description
+              </Typography>
               <NewEditor
+              buttonList={true}
+              // height={400}
+              height={264}
                 editorData={form?.blog_description}
                 handleChangeEditor={(html) => {
                   descriptionRef.current(html, "blog_description");
                 }}
               />
+           
             </div>
             <div className={"formGroup"}>
               <Autocomplete
@@ -234,12 +299,29 @@ const NewBlogsCreate = ({ location }) => {
                   />
                 )}
               />
+              {/* <MultiComplete
+                nopic
+                AutoCompleteList={taglist ? taglist : []}
+                getOptionLabel={(option) => option}
+                label="Associate Tags"
+                defaultValue={form?.tags}
+                value={form?.tags}
+                onTextChange={(text) => {
+                  changeTextData(text, "tags");
+                }}
+                enableField={["tags"]}
+              /> */}
+              <Typography variant="body2" color={"text.secondary"}>
+                Please press enter to add a tag if not found in the search
+                results.
+              </Typography>
             </div>
-            <label className={styles.enter}>
+            {/* <label className={styles.enter}>
               Please press enter to add a tag if not found in the search
               results.
-            </label>
-            <div className={"formGroup"} id={styles.inTwo}>
+            </label> */}
+
+            {/* <div className={"formGroup"} id={styles.inTwo}>
               <div
                 style={{ display: "flex", alignItems: "center" }}
                 className={styles.minReads}
@@ -255,6 +337,24 @@ const NewBlogsCreate = ({ location }) => {
                   }}
                 />
               </div>
+            </div> */}
+            <div className={"formGroup"}>
+              <CustomSelectField
+                isError={errorData?.topic}
+                errorText={errorData?.topic}
+                label={"Topic"}
+                value={form?.topic}
+                handleChange={(value) => {
+                  changeTextData(value, "topic");
+                }}
+              >
+                <MenuItem value={"Xyz"}>Xyz</MenuItem>
+                <MenuItem value={"B"}>B</MenuItem>
+                <MenuItem value={"C"}>C</MenuItem>
+                <MenuItem value={"D"}>D</MenuItem>
+                <MenuItem value={"E"}>E</MenuItem>
+                <MenuItem value={"F"}>F</MenuItem>
+              </CustomSelectField>
             </div>
             <div className={"formGroup"}>
               <CustomSelectField
@@ -274,7 +374,7 @@ const NewBlogsCreate = ({ location }) => {
                 <MenuItem value={"TEST"}>Test</MenuItem>{" "}
               </CustomSelectField>
             </div>
-            <div className={"formGroup"}>
+            {/* <div className={"formGroup"}>
               <CustomTextField
                 isError={errorData?.meta_description}
                 errorText={errorData?.meta_description}
@@ -284,56 +384,131 @@ const NewBlogsCreate = ({ location }) => {
                   changeTextData(text, "meta_description");
                 }}
               />
-            </div>
-          </div>
-          <div className={styles.right}>
-            <label className={styles.enter}>
-              Image should be in JPG, PNG format and should of 16:9 ratio
-            </label>
-
+            </div> */}
+          </ShadowBox>
+        </div>
+        <div className={styles.right}>
+          {/* <div className={"formGroup"}>
+            <CustomCheckBox
+              label={
+                <span style={{ color: "#888888", fontSize: "14px" }}>
+                  Featured
+                </span>
+              }
+              value={form?.is_featured}
+              handleChange={(text) => {
+                changeTextData(text, "is_featured");
+              }}
+            />
+          </div> */}
+          <ShadowBox className={styles.slugBox}>
+            <Typography variant="h5" color={"text.secondary"} className={styles.marginLeft} >
+              SEO
+            </Typography>
             <div className={"formGroup"}>
-              <CustomCheckBox
-                label={
-                  <span style={{ color: "#888888", fontSize: "14px" }}>
-                    Featured
-                  </span>
-                }
-                value={form?.is_featured}
-                handleChange={(text) => {
-                  changeTextData(text, "is_featured");
+              <CustomTextField
+                isError={errorData?.slug}
+                errorText={errorData?.slug}
+                label={"Slug"}
+                value={form?.slug}
+                onTextChange={(text) => {
+                  changeTextData(text, "slug");
                 }}
               />
             </div>
-
+            <div className={"formGroup"}>
+              {/* <CustomTextField
+                isError={errorData?.meta_description}
+                errorText={errorData?.meta_description}
+                label={"Meta Description"}
+                value={form?.meta_description}
+                onTextChange={(text) => {
+                  changeTextData(text, "meta_description");
+                }}
+              /> */}
+                {/* <Typography variant="body1" color={"text.secondary"}>
+                Meta Description
+              </Typography> */}
+               {/* <NewEditor
+               buttonList={false}
+               label={"Meta Description"}
+               height={146}
+                editorData={form?.meta_description}
+                handleChangeEditor={(html) => {
+                  descriptionRef.current(html, "meta_description");
+                }}
+              /> */}
+               <CustomTextField
+                
+                fullWidth
+                inputProps={{
+                  sx: {
+                    height: "146px",
+                  }}}
+                isError={errorData?.meta_description}
+                errorText={errorData?.meta_description}
+                label={"Meta Description"}
+                value={form?.meta_description}
+                onTextChange={(text) => {
+                  changeTextData(text, "meta_description");
+                 
+                }}
+              />
+            </div>
+          </ShadowBox>
+          <ShadowBox className={styles.settingsBox}>
+            <Typography variant="h5" color={"text.secondary"} className={styles.marginLeft}>
+              Settings
+            </Typography>
+            <div className={"formGroup"}>
+              <CustomSelectField
+                isError={errorData?.status}
+                errorText={errorData?.status}
+                label={"Status"}
+                value={form?.status}
+                handleChange={(value) => {
+                  changeTextData(value, "status");
+                }}
+              >
+                <MenuItem value={"Active"}>Active</MenuItem>
+                <MenuItem value={"InActive"}>InActive</MenuItem>
+                
+              </CustomSelectField>
+            </div>
             <div className={"formGroup"}>
               <CustomSwitch
-                value={form?.status}
+                value={form?.is_featured}
                 handleChange={() => {
-                  changeTextData(!form?.status, "status");
+                  changeTextData(!form?.is_featured, "is_featured");
                 }}
-                label={`Active ?`}
+                label={`Is Featured?`}
               />
             </div>
-          </div>
+          </ShadowBox>
         </div>
-
-        <div className={"formGroup"}>
-          <div style={{ float: "right" }}>
-            <Button
-              variant={"contained"}
-              color={"primary"}
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </div>
-        </div>
-
-        <br />
-        <br />
-        {confirmPopUp && <RenderDialog />}
       </div>
-    </>
+
+      <div className={"formGroup"}>
+        <div style={{ float: "right" }}>
+          <PrimaryButton
+            variant={"contained"}
+            color={"primary"}
+            onClick={handleSubmit}
+          >
+            SAVE
+          </PrimaryButton>
+        </div>
+        <div style={{ float: "left" }}>
+        <ActionButton  onClick={handleCancel}>CANCEL</ActionButton>
+        </div>
+        
+      </div>
+
+      <br />
+      <br />
+      {confirmPopUp && <RenderDialog />}
+      {/* </div> */}
+    </div>
   );
 };
 

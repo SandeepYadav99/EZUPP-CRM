@@ -26,7 +26,7 @@ function useNewBlogCreateHook({ location }) {
     is_featured: true,
     blog_description: "",
     publish_on: "",
-    status: "ACTIVE",
+    status: "",
   };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
@@ -42,7 +42,6 @@ function useNewBlogCreateHook({ location }) {
   const params = useParams();
 
   const descriptionRef = useRef(null);
-
 
   useEffect(() => {
     serviceGetTagsList()?.then((res) => {
@@ -82,11 +81,27 @@ function useNewBlogCreateHook({ location }) {
   const handleFileUpload = () => {};
 
   const handleSave = () => {};
-
+  const handleCancel = () => {
+    setForm({
+      ...form,
+      title: "",
+      slug: "",
+      tags: [],
+      topic: "",
+      meta_description: "",
+      author: "",
+      image: null,
+      is_featured: true,
+      blog_description: "",
+      publish_on: "",
+      status: "",
+    });
+  };
   useEffect(() => {
     if (params?.id) {
       serviceBlogsDetails({ id: params?.id })?.then((res) => {
         const data = res?.data;
+        console.log("data", data);
         setCoverImage(data?.image);
         setForm({
           ...form,
@@ -113,6 +128,9 @@ function useNewBlogCreateHook({ location }) {
       "meta_description",
       "image",
       "topic",
+      "slug",
+      "status",
+      "blog_description",
     ];
 
     if (params?.id) {
@@ -152,10 +170,10 @@ function useNewBlogCreateHook({ location }) {
       const t = { ...form };
       if (fieldName === "title") {
         t[fieldName] = text;
-      } else if (fieldName === "topic") {
-        if (text >= 0) {
-          t[fieldName] = text;
-        }
+        // } else if (fieldName === "topic") {
+        //   if (text >= 0) {
+        //     t[fieldName] = text;
+        //   }
       } else {
         t[fieldName] = text;
       }
@@ -166,7 +184,6 @@ function useNewBlogCreateHook({ location }) {
   );
 
   descriptionRef.current = changeTextData;
-
 
   const submitToServer = useCallback(
     (status) => {
@@ -244,7 +261,7 @@ function useNewBlogCreateHook({ location }) {
       historyUtils.push("/blogs");
     });
   };
- 
+
   const handleEditor = (data) => {
     setForm({
       ...form,
@@ -270,6 +287,7 @@ function useNewBlogCreateHook({ location }) {
     taglist,
     handleFileUpload,
     handleSave,
+    handleCancel,
     editor_data,
     anchor,
     coverImage,

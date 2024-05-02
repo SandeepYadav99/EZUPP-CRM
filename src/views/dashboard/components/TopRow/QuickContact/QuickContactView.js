@@ -1,4 +1,5 @@
 import ShadowBox from "../../../../../components/ShadowBox/ShadowBox";
+import CustomCountryFC from "../../../../../components/CountryFC/CustomCountryFC";
 
 import { Typography } from "@mui/material";
 // import CustomAutoComplete from "../../../../../components/FormFields/AutoCompleteText/CustomAutoComplete";
@@ -13,13 +14,20 @@ import { Autocomplete, MenuItem, TextField, Select } from "@mui/material";
 import CustomSelectField from "../../../../../components/FormFields/SelectField/SelectField.component";
 import { countries } from "../../../../../helper/Helper";
 import { Box } from "@mui/material";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import CustomAutoComplete from "../../../../../components/FormFields/AutoCompleteText/CustomAutoComplete";
 import MultiComplete from "../../../../../components/FormFields/AutoCompleteText/MultiComplete";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import DomainSharpIcon from "@mui/icons-material/DomainSharp";
+
 function QuickContactView({ isOpen, handleToggle }) {
+  // debugger;
   const {
     showBusiness,
     setShowBusiness,
+    
+    setCountryFlagOnly,
+    handleCountryFlagToggle,
     handleBusinessToggle,
     changeTextData,
     errorData,
@@ -37,11 +45,16 @@ function QuickContactView({ isOpen, handleToggle }) {
   } = useContactList({ isOpen, handleToggle });
   console.log(showBusiness);
   console.log(errorData);
-  const countryCode = useMemo(() => {
-    return countries?.filter((item) => item.label === form?.country)?.[0]
-      ?.phone;
-  }, [form?.country]);
-  console.log(countryCode, form?.country);
+  // const countryCode = useMemo(() => {
+  //   return countries?.filter((item) => item.label === form?.country)?.[0]
+  //     ?.phone;
+  // }, [form?.country]);
+ const options=[
+  {id:1,title: "Business", avatar:<DomainSharpIcon fontSize="small"/>} ,
+  { id:2,title: "Individual", avatar:<PersonOutlineOutlinedIcon fontSize="small"/>},
+]
+  console.log(options)
+
   return (
     <>
       <ShadowBox style={{ padding: "1rem" }} className={styles.cardWrapper}>
@@ -49,19 +62,50 @@ function QuickContactView({ isOpen, handleToggle }) {
           Personal Information
         </Typography>
         <CardType
-          showBusiness
-          setShowBusiness
+           options={options}
           handleBusinessToggle={handleBusinessToggle}
         />
         <div className={"formFlex"}>
           <div className={styles.countryBox}>
-            <CustomSelectField
+            {/* <CustomSelectField
               isError={errorData?.country}
               errorText={errorData?.country}
               label={"Country"}
               value={form?.country}
               handleChange={(value) => {
                 changeTextData(value, "country");
+              }}
+              countryFlagOnly={countryFlagOnly}
+              handleCountryFlagToggle={handleCountryFlagToggle}
+            >
+              {countries.map((item) => (
+                <MenuItem value={item.label}>
+                  <Box
+                    component="li"
+                    sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                  >
+                    <img
+                      loading="lazy"
+                      width="20"
+                      srcSet={`https://flagcdn.com/w40/${item.code.toLowerCase()}.png 2x`}
+                      src={`https://flagcdn.com/w20/${item.code.toLowerCase()}.png`}
+                      alt=""
+                    />
+                    {item.label} ({item.code}) +{item.phone}
+                  </Box>
+                </MenuItem>
+              ))}
+            </CustomSelectField> */}
+            {/* <Select
+              isError={errorData?.country}
+              errorText={errorData?.country}
+              label={"Country"}
+              value={form?.country}
+              onClick={() => handleCountryFlagToggle()}
+              onChange={(e) => {
+                changeTextData(e.target.value, "country");
+                handleCountryFlagToggle();
+              
               }}
             >
               {countries.map((item) => (
@@ -77,13 +121,25 @@ function QuickContactView({ isOpen, handleToggle }) {
                       src={`https://flagcdn.com/w20/${item.code.toLowerCase()}.png`}
                       alt=""
                     />
-               {item.label} ({item.code}) +{item.phone}
+                    {countryFlagOnly ? "" : item.label} (
+                    {countryFlagOnly ? "" : item.code}) +
+                    {countryFlagOnly ? "" : item.phone}
                   </Box>
                 </MenuItem>
               ))}
-            </CustomSelectField>
+            </Select> */}
+            <CustomCountryFC
+              type="tel"
+              isError={errorData?.contact}
+              errorText={errorData?.contact}
+              label={"Contact"}
+              value={form?.contact}
+              onTextChange={(text) => {
+                changeTextData(text, "contact");
+              }}
+            />
           </div>
-          <div className={styles.countryCodeBox}>
+          {/* <div className={styles.countryCodeBox}>
             {" "}
             <TextField
               className={styles.widthfull}
@@ -102,7 +158,7 @@ function QuickContactView({ isOpen, handleToggle }) {
               }}
               // label={"Phone Number"}
             />
-          </div>
+          </div> */}
         </div>
         <CustomTextField
           isError={errorData?.email}
@@ -119,16 +175,16 @@ function QuickContactView({ isOpen, handleToggle }) {
         <div className={styles.nameWrapper}>
           <div className={styles.dropdown}>
             <CustomSelectField
-              isError={errorData?.prefixType}
-              errorText={errorData?.prefixType}
+              isError={errorData?.prefix_type}
+              errorText={errorData?.prefix_type}
               label={"Prefix"}
-              value={form?.prefixType}
+              value={form?.prefix_type}
               handleChange={(value) => {
-                changeTextData(value, "prefixType");
+                changeTextData(value, "prefix_type");
               }}
             >
-              <MenuItem value="BUSINESS">Mr</MenuItem>
-              <MenuItem value="PERSONAL">Mrs</MenuItem>
+              <MenuItem value="Mr">Mr</MenuItem>
+              <MenuItem value="Mrs">Mrs</MenuItem>
             </CustomSelectField>
           </div>
           {/* <CustomTextField
@@ -146,21 +202,21 @@ function QuickContactView({ isOpen, handleToggle }) {
           <div className={styles.textbox}>
             <TextField
               className={styles.widthfull}
-              error={errorData?.fullName}
-              value={form?.fullName}
+              error={errorData?.full_name}
+              value={form?.full_name}
               onChange={(e) => {
-                changeTextData(e.target.value, "fullName");
+                changeTextData(e.target.value, "full_name");
               }}
               onBlur={() => {
-                onBlurHandler("fullName");
+                onBlurHandler("full_name");
               }}
               label={"Full Name"}
             />
-            {errorData?.fullName && (
+            {/* {errorData?.full_name && (
               <div style={{ textAlign: "right", color: "red" }}>
-                {errorData?.fullName}
+                {errorData?.full_name}
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </ShadowBox>
@@ -207,24 +263,24 @@ function QuickContactView({ isOpen, handleToggle }) {
           value={form?.company_name_list}
         />
         <CustomTextField
-          isError={errorData?.email}
-          errorText={errorData?.jobTitle}
-          value={form?.jobTitle}
+          isError={errorData?.job_title}
+          errorText={errorData?.job_title}
+          value={form?.job_title}
           onTextChange={(text) => {
-            changeTextData(text, "jobTitle");
+            changeTextData(text, "job_title");
           }}
           onBlur={() => {
-            onBlurHandler("jobTitle");
+            onBlurHandler("job_title");
           }}
-          label={"jobTitle"}
+          label={"Job Title"}
         />
         <CustomSelectField
-          isError={errorData?.BusinessType}
-          errorText={errorData?.BusinessType}
+          isError={errorData?.business_type}
+          errorText={errorData?.business_type}
           label={"Decision Making Role"}
-          value={form?.BusinessType}
+          value={form?.business_type}
           handleChange={(value) => {
-            changeTextData(value, "BusinessType");
+            changeTextData(value, "business_type");
           }}
         >
           <MenuItem value="BUSINESS">BUSINESS</MenuItem>
@@ -276,12 +332,12 @@ function QuickContactView({ isOpen, handleToggle }) {
           )}
         /> */}
         <MultiComplete
-        nopic
+          nopic
           AutoCompleteList={associateTagsData ? associateTagsData : []}
           label="Associate Tags"
-          value={form?.Associate_tags_list}
+          value={form?.associate_tags_list}
           onTextChange={(text) => {
-            changeTextData(text, "Associate_tags_list");
+            changeTextData(text, "associate_tags_list");
           }}
           enableField={["title", "email"]}
         />
@@ -305,22 +361,21 @@ function QuickContactView({ isOpen, handleToggle }) {
           )}
         /> */}
         <CustomAutoComplete
-      autoCompleteProps={{
-        freeSolo: false,
-        getOptionLabel: (option) => option?.label,
-      }}
-      dataset={sourceData ? sourceData : []}
-      datasetKey={"label"}
-      onTextChange={(text ) => {
-        changeTextData(text, "source");
-      }}
-      variant={"outlined"}
-      label={"Source"}
-      name={"Source"}
-      isError={errorData?.source}
-      value={form?.source}
-    />
-        
+          autoCompleteProps={{
+            freeSolo: false,
+            getOptionLabel: (option) => option?.label,
+          }}
+          dataset={sourceData ? sourceData : []}
+          datasetKey={"label"}
+          onTextChange={(text) => {
+            changeTextData(text, "source");
+          }}
+          variant={"outlined"}
+          label={"Source"}
+          name={"Source"}
+          isError={errorData?.source}
+          value={form?.source}
+        />
       </ShadowBox>
       <ShadowBox style={{ padding: "1rem" }} className={styles.cardWrapper}>
         <Typography variant={"h5"} color={"text.secondary"}>
@@ -346,29 +401,29 @@ function QuickContactView({ isOpen, handleToggle }) {
           )}
         /> */}
 
-<CustomAutoComplete
-      autoCompleteProps={{
-        freeSolo: false,
-        getOptionLabel: (option) => option?.label,
-      }}
-      dataset={LeadOwnerData ? LeadOwnerData : []}
-      datasetKey={"label"}
-      onTextChange={(text ) => {
-        changeTextData(text, "leadOwner");
-      }}
-      variant={"outlined"}
-      label={"Lead Owner"}
-      name={"Lead Owner"}
-      isError={errorData?.leadOwner}
-      value={form?.leadOwner}
-    />
+        <CustomAutoComplete
+          autoCompleteProps={{
+            freeSolo: false,
+            getOptionLabel: (option) => option?.label,
+          }}
+          dataset={LeadOwnerData ? LeadOwnerData : []}
+          datasetKey={"label"}
+          onTextChange={(text) => {
+            changeTextData(text, "lead_owner");
+          }}
+          variant={"outlined"}
+          label={"Lead Owner"}
+          name={"Lead Owner"}
+          isError={errorData?.lead_owner}
+          value={form?.lead_owner}
+        />
         <CustomSelectField
-          isError={errorData?.leadStageType}
-          errorText={errorData?.leadStageType}
+          isError={errorData?.lead_stage_type}
+          errorText={errorData?.lead_stage_type}
           label={"Lead Stage"}
-          value={form?.leadStageType}
+          value={form?.lead_stage_type}
           handleChange={(value) => {
-            changeTextData(value, "leadStageType");
+            changeTextData(value, "lead_stage_type");
           }}
         >
           <MenuItem value="REAL ESTATES">REAL ESTATES </MenuItem>
