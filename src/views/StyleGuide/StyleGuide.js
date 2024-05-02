@@ -82,7 +82,12 @@ const StyleGuide = ({}) => {
   const [selectedValue, setSelectedValue] = React.useState("");
 
   const handleChange = (value) => {
-    setSelectedValue(value);
+    //setSelectedValue(value);
+    if (selectedValue === value) {
+      setSelectedValue("");
+    } else {
+      setSelectedValue(value);
+    }
   };
 
   return (
@@ -433,7 +438,7 @@ const StyleGuide = ({}) => {
           handleChange={handleChange}
           value="individual"
         />
-      </div>
+      </div><br></br>
       <div>
             <Typography variant={"h5"}>Basic Radio Option</Typography>
           </div><br></br>
@@ -444,8 +449,40 @@ const StyleGuide = ({}) => {
           checked={selectedValue === "news"}
           handleChange={handleChange}
           value="news"
+          //type="checkbox"
         ></RadioButtonWithText>
+        <RadioButtonWithText
+          title="I don't want access to Newsletter"
+          description="I have no interest in staying updated."
+          checked={selectedValue === "Nonews"}
+          handleChange={handleChange}
+          value="Nonews"
+          //type="checkbox"
+        ></RadioButtonWithText>
+         
       </div>
+      <br></br>
+      <div>
+            <Typography variant={"h5"}>Basic Checkbox Option</Typography>
+          </div><br></br>
+          <div className={styles.radio}>
+          <RadioButtonWithText
+          title="Show Public"
+          description="Make the product visible to public"
+          checked={selectedValue === "one"}
+          handleChange={handleChange}
+          value="one"
+          type="checkbox"
+        ></RadioButtonWithText>
+        <RadioButtonWithText
+          title="Value Add"
+          description="Value add help text to be shown here"
+          checked={selectedValue === "ne"}
+          handleChange={handleChange}
+          value="ne"
+          type="checkbox"
+        ></RadioButtonWithText>
+          </div>
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">
           Reusable TimeLine Component

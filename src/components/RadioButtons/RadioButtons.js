@@ -13,7 +13,7 @@ const RadioButtons = ({title, checked, handleChange, value, cardStyle, iconComp}
                 border={1}
                 sx={{
                     display: 'flex',
-                    borderRadius: theme.spacing(2),
+                    borderRadius: theme.spacing(1),
                     padding: theme.spacing(1),
                     borderColor: checked ? `${theme.palette.primary.main}` : "#D8D8DD",
                     cursor: 'pointer'
