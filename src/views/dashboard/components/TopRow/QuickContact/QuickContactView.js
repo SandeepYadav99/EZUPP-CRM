@@ -19,13 +19,14 @@ import CustomAutoComplete from "../../../../../components/FormFields/AutoComplet
 import MultiComplete from "../../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DomainSharpIcon from "@mui/icons-material/DomainSharp";
+import {useTheme} from "@mui/styles";
 
 function QuickContactView({ isOpen, handleToggle }) {
   // debugger;
   const {
     showBusiness,
     setShowBusiness,
-    
+
     setCountryFlagOnly,
     handleCountryFlagToggle,
     handleBusinessToggle,
@@ -43,6 +44,7 @@ function QuickContactView({ isOpen, handleToggle }) {
     sourceData,
     LeadOwnerData,
   } = useContactList({ isOpen, handleToggle });
+  const theme = useTheme();
   console.log(showBusiness);
   console.log(errorData);
   // const countryCode = useMemo(() => {
@@ -105,7 +107,7 @@ function QuickContactView({ isOpen, handleToggle }) {
               onChange={(e) => {
                 changeTextData(e.target.value, "country");
                 handleCountryFlagToggle();
-              
+
               }}
             >
               {countries.map((item) => (
@@ -175,6 +177,9 @@ function QuickContactView({ isOpen, handleToggle }) {
         <div className={styles.nameWrapper}>
           <div className={styles.dropdown}>
             <CustomSelectField
+                outlinedProps={{
+                  sx: { borderTopRightRadius: theme.spacing(0), borderBottomRightRadius: theme.spacing(0) }
+                }}
               isError={errorData?.prefix_type}
               errorText={errorData?.prefix_type}
               label={"Prefix"}
@@ -200,7 +205,7 @@ function QuickContactView({ isOpen, handleToggle }) {
           label={"Full Name"}
         /> */}
           <div className={styles.textbox}>
-            <TextField
+            <CustomTextField
               className={styles.widthfull}
               error={errorData?.full_name}
               value={form?.full_name}

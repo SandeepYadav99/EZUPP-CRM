@@ -74,7 +74,7 @@ const CustomAutoComplete = ({isError, errorText, icon, label, onChange, onTextCh
                     error={isError}
                     helperText={errorText}
                     label={label}
-                    margin="dense"
+                    size="small"
                     variant="outlined"
                     // InputProps={{ ...params.InputProps, type: 'search' }}
                     {...getInputProps()}
