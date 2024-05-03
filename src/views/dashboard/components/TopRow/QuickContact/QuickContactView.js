@@ -50,8 +50,8 @@ function QuickContactView({ isOpen, handleToggle }) {
   //     ?.phone;
   // }, [form?.country]);
  const options=[
-  {id:1,title: "Business", avatar:<DomainSharpIcon fontSize="small"/>} ,
-  { id:2,title: "Individual", avatar:<PersonOutlineOutlinedIcon fontSize="small"/>},
+  {key:1,title: "Business", avatar:<DomainSharpIcon fontSize="small"/>} ,
+  { key:2,title: "Individual", avatar:<PersonOutlineOutlinedIcon fontSize="small"/>},
 ]
   console.log(options)
 
@@ -61,10 +61,11 @@ function QuickContactView({ isOpen, handleToggle }) {
         <Typography variant={"h5"} color={"text.secondary"}>
           Personal Information
         </Typography>
-        <CardType
+        <div className={styles.cardGrid1}> <CardType
            options={options}
           handleBusinessToggle={handleBusinessToggle}
-        />
+        /></div>
+       
         <div className={"formFlex"}>
           <div className={styles.countryBox}>
             {/* <CustomSelectField

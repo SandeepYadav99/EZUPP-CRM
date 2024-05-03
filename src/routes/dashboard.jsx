@@ -437,7 +437,7 @@ const dashboardRoutes = [
   },
   {
     path:`${RouteName?.BLOGS_UPDATE}:id`,
-    component: BlogsCreate ,
+    component:  NewBlogsCreate ,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,

@@ -114,6 +114,7 @@ function useNewBlogCreateHook({ location }) {
           tags: data?.tags,
           blog_description: data?.blog_description,
           meta_description: data?.meta_description,
+          
         });
       });
     }
