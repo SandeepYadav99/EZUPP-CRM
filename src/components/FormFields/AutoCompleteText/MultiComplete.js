@@ -15,7 +15,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-  fontSize: ".875rem",
+  fontSize: ".775rem",
   "&:hover": {
     backgroundColor: theme.palette.error.light,
     border: 0,
