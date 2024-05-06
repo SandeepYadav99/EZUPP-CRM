@@ -3,7 +3,7 @@ import CustomSelectField from "../../../../components/FormFields/SelectField/Sel
 import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
-
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 const ProductCommercials = ({
   errorData,
   changeTextData,
@@ -15,7 +15,7 @@ const ProductCommercials = ({
   console.log(form, "Form");
   return (
     <>
-      <div className={"plainPaper"}>
+      <ShadowBox className={styles.product}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
             <Typography variant={"title"} className={"heading"}>
@@ -129,7 +129,7 @@ const ProductCommercials = ({
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

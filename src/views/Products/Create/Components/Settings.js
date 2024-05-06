@@ -3,7 +3,7 @@ import CustomSelectField from "../../../../components/FormFields/SelectField/Sel
 import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import styles from "../Style.module.css";
-
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 const Settings = ({
   errorData,
   changeTextData,
@@ -15,7 +15,7 @@ const Settings = ({
   console.log(form, "Form");
   return (
     <>
-      <div className={"plainPaper"}>
+      <ShadowBox className={styles.product}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
             <Typography variant={"title"} className={"heading"}>
@@ -90,7 +90,7 @@ const Settings = ({
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

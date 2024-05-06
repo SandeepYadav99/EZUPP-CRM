@@ -5,6 +5,7 @@ import CustomTextField from "../../../../components/FormFields/TextField/TextFie
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
 import img from "../../../../assets/img/1.png";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 const AutoCompleteData = [
   {
     id: 1,
@@ -60,7 +61,7 @@ const ProductInformation = ({
   console.log(form, "Form");
   return (
     <>
-      <div className={"plainPaper"}>
+      <ShadowBox className={styles.product}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
             <Typography variant={"title"} className={"heading"}>
@@ -202,7 +203,7 @@ const ProductInformation = ({
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };
