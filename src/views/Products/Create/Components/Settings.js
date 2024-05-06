@@ -4,7 +4,7 @@ import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import CheckboxWithText from "../../../../components/RadioButtons/CheckboxWithText";
 import useStyleGuide from "../../../StyleGuide/StyleGuide.hook";
-
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import styles from "../Style.module.css";
 
 const Settings = ({
@@ -19,7 +19,7 @@ const Settings = ({
   const {checkboxValue, handleCheckboxChange} = useStyleGuide({});
   return (
     <>
-      <div className={"plainPaper"}>
+      <ShadowBox className={styles.product}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
             <Typography variant={"title"} className={"heading"}>
@@ -97,7 +97,7 @@ const Settings = ({
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

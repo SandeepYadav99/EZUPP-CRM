@@ -30,6 +30,8 @@ import BlogsComponentList from "../views/Blogs/BlogsList/BlogsList.container";
 import ProductDetailview from "../views/Details/ProductDetails.view";
 import UnitsList from "../views/Units/UnitList.container";
 import NotificationDetails from "../components/NotificationCard/NotificationDetails";
+import ContactList from "../views/Contact/ContactList.container";
+import ContactCreate from "../views/Contact/Create/ContactCreate";
 import {
   Dashboard,
   MeetingRoom,
@@ -299,6 +301,26 @@ const dashboardRoutes = [
     is_sidebar: true,
     is_protect: true,
     should_regex: true,
+  },
+  {
+    path: `${RouteName.CONTACT_LIST}`,
+    sidebarName: "Contact",
+    navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: ContactList,
+    is_sidebar: true,
+    is_protect: true,
+    should_regex: true,
+  },
+  {
+    path: `${RouteName.CONTACT_CREATE}`,
+    sidebarName: "Contact",
+    navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: ContactCreate,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
   },
   {
     path: `${RouteName.CALENDAR}`,

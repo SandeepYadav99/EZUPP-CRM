@@ -45,4 +45,6 @@ export default {
   PRODUCT_DETAILS:"/product/details/",
   PRODUCT_CREATE:"/product/create",
   NOTIFICATION_DETAILS:"/notifications",
+  CONTACT_LIST: "/contact",
+  CONTACT_CREATE: "/contact/create"
 };

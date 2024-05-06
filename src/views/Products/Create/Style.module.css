@@ -20,7 +20,10 @@
     margin-bottom: 20px;
     padding: .4rem 1.2rem;
   }
-  
+.product{
+    width: 100%;
+    margin-bottom: 20px;
+}
   .cont{
     display: flex;
     gap: 10px;
