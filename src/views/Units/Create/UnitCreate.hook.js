@@ -122,23 +122,22 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
         return;
       }
       const formField={};
-      //const fd = new FormData();
       Object.keys(form).forEach((key) => {
         if (key === "status") {
-          formField.append(key, form[key] ? "ACTIVE" : "INACTIVE");
+          formField["is_active"] = form[key] ? true: false ;
+          // formField.append(key, form[key] ? "ACTIVE" : "INACTIVE");
         } else if (key === "is_general") {
-          formField.append(key, form[key] ? "Yes" : "No");
-        }else if (key === "name") {
-          formField.append(key, form?.name);
+          //formField[key] = form[key] ? "Yes" : "No";
+          formField[key] = form[key]  ? true: false ;
         } else {
-          formField.append(key, form[key]);
+          formField[key] = form[key] ;
         }
       });
       let req;
       console.log("id", editData?.id);
       if (id) {
        
-        formField.append("id", id);
+        formField.id = id
         //formData.id = id;
         req = serviceUpdateUnit(formField);
       } else {
@@ -147,7 +146,7 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
 
       req.then((res) => {
         if (!res.error) {
-          handleToggle();
+         // handleToggle();
           //historyUtils.push("/unit");
           window.location.reload();
         } else {
