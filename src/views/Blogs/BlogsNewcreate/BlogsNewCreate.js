@@ -162,6 +162,7 @@ const NewBlogsCreate = ({ location }) => {
         <ArrowBackIosNewIcon
           fontSize="medium"
           onClick={() => history.goBack()}
+          sx={{cursor:"pointer"}}
         />
         <Typography variant={"h4"} color={"text.secondary"}>
           Create Blog
@@ -227,8 +228,8 @@ const NewBlogsCreate = ({ location }) => {
                 show_image={true}
                 error={errorData?.image}
                 value={form?.image}
-                not_default_width
-                not_default_height
+                is_not_default_width
+                is_not_default_height
                 onChange={(file) => {
                   if (file) {
                     changeTextData(file, "image");
@@ -259,6 +260,7 @@ const NewBlogsCreate = ({ location }) => {
                 value={form?.title}
                 onTextChange={(text) => {
                   changeTextData(text, "title");
+                  
                 }}
               />
             </div>
@@ -411,6 +413,7 @@ const NewBlogsCreate = ({ location }) => {
                 errorText={errorData?.slug}
                 label={"Slug"}
                 value={form?.slug}
+                disabled
                 onTextChange={(text) => {
                   changeTextData(text, "slug");
                 }}
@@ -443,7 +446,7 @@ const NewBlogsCreate = ({ location }) => {
                 fullWidth
                 inputProps={{
                   sx: {
-                    height: "146px",
+                    '& >fieldset':{height: "146px"}
                   }}}
                 isError={errorData?.meta_description}
                 errorText={errorData?.meta_description}

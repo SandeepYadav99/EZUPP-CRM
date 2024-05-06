@@ -15,20 +15,21 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-  fontSize: ".775rem",
-  "&:hover": {
-    backgroundColor: theme.palette.error.light,
-    border: 0,
-  },
+  // fontSize: ".775rem",
+  fontSize:"0.9rem",
+  // "&:hover": {
+  //   backgroundColor: theme.palette.error.light,
+  //   border: 0,
+  // },
   "&:disabled": {
     backgroundColor: "transparent",
   },
   "& .MuiChip-deleteIcon": {
     backgroundColor: "transparent",
   },
-  "&:hover .MuiChip-deleteIcon": {
-    color: "#FF0000",
-  },
+  // "&:hover .MuiChip-deleteIcon": {
+  //   color: "#FF0000",
+  // },
 }));
 
 const StyledOption = styled("div")(({ theme }) => ({
@@ -48,7 +49,7 @@ const CustomMultiComplete = ({
   onTextChange,
   inputProps,
   enableField,
-  nopic,
+  isPic,
   ...rest
 }) => {
   const handleChange = useCallback(
@@ -98,7 +99,7 @@ const CustomMultiComplete = ({
         value?.map((option, index) => (
           <StyledChip
             {...getTagProps({ index })}
-            avatar={nopic ?"":<Avatar src={option?.image} alt={option?.email} />}
+            avatar={ isPic ?"":<Avatar src={option?.image} alt={option?.email} />}
             label={option?.label}
           />
         ))

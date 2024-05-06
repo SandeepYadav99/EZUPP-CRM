@@ -114,6 +114,7 @@ function useNewBlogCreateHook({ location }) {
           tags: data?.tags,
           blog_description: data?.blog_description,
           meta_description: data?.meta_description,
+        
           
         });
       });
@@ -171,6 +172,7 @@ function useNewBlogCreateHook({ location }) {
       const t = { ...form };
       if (fieldName === "title") {
         t[fieldName] = text;
+        t['slug']=text?.toLowerCase()?.replace(' ','-');
         // } else if (fieldName === "topic") {
         //   if (text >= 0) {
         //     t[fieldName] = text;
