@@ -1,0 +1,42 @@
+.swatch {
+  padding: 1px;
+  background: #F7F7F9;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  cursor: pointer;
+}
+.main{
+  position: relative;
+}
+.card{
+width: 20%;
+}
+.title{
+  margin: 2px 0px 0px 10px;
+}
+.popover {
+  position: absolute;
+  z-index: 20;
+  bottom: 3.5rem;
+}
+
+.cover {
+  /* position: fixed; */
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.color {
+  width: 36px;
+  height: 34px;
+  border-radius: 2px;
+  background: rgba(255, 73, 97, 1);
+}
+
+.colorContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

@@ -1,3 +1,4 @@
+
 import DashboardPage from "../views/dashboard/Dashboard";
 import UserList from "../views/User/List/UserList.container";
 import CustomerList from "../views/Customers/List/CustomerList.container";
@@ -5,16 +6,18 @@ import AppSettings from "../views/AppSettings/AppSettings.container";
 import IndustryList from "../views/Industry/IndustryList.container";
 import MilestoneList from "../views/Milestone/List/MilestoneList";
 import CategoryList from "../views/Category/CategoryList.container";
-import Rolelist from "../views/Role/RoleList.container";
+import RoleList from "../views/Role/List/RoleList";
+
+import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
-import ProductList from "../views/Product/ProductList.container";
-import ProductView from "../views/Product/ProductView";
-import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
+import ProductList from "../views/Products/List/ProductList.container";
+// import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
 import FaqList from "../views/Faq/FaqList.container";
 import SupportList from "../views/Support/SupportList.container";
 import TypeList from "../views/Type/TypeList.container";
 import Profile from "../views/Profile/MyProfile.view";
+
 import CustomerTabs from "../views/Customers/components/UpperTabs/CustomerTabs.view";
 import ManufacturerTabs from "../views/Manufacturer/ManufacturerTabs.view";
 import Support from "../views/Support/Support.view";
@@ -24,8 +27,9 @@ import QuoteList from "../views/Quotes/QuoteList.container";
 import QuoteDetail from "../views/Quotes/Quote.view";
 import HubMasterList from "../views/HubMaster/List/HubMasterList";
 import BlogsComponentList from "../views/Blogs/BlogsList/BlogsList.container";
-
-
+import ProductDetailview from "../views/Details/ProductDetails.view";
+import UnitsList from "../views/Units/UnitList.container";
+import NotificationDetails from "../components/NotificationCard/NotificationDetails";
 import {
   Dashboard,
   MeetingRoom,
@@ -44,6 +48,11 @@ import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
+import UserCreate from "../views/User/Create/UserCreate";
+import ProductCreate from "../views/Products/Create/ProductCreate"
+import React from "react";
+import CalendarList from "../views/Calendar/CalendarList.view";
+import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 
 const dashboardRoutes = [
   {
@@ -67,6 +76,15 @@ const dashboardRoutes = [
     icon: Person,
     component: Profile,
     is_sidebar: true,
+    is_protect: true,
+  },
+  {
+    path: `${RouteName.NOTIFICATION_DETAILS}`,
+    // sidebarName: "My Profile",
+    // navbarName: "My Profile",
+    // icon: Person,
+    component: NotificationDetails,
+    is_sidebar: false,
     is_protect: true,
   },
   {
@@ -107,17 +125,17 @@ const dashboardRoutes = [
     should_regex: true,
     parent: "masters",
   },
-  {
-    path: "/master/milestone",
-    sidebarName: "Master Milestone",
-    navbarName: "Master Milestone",
-    icon: MeetingRoom,
-    component: MilestoneList,
-    is_sidebar: true,
-    is_protect: true,
-    should_regex: true,
-    parent: "masters",
-  },
+  // {
+  //   path: "/master/milestone",
+  //   sidebarName: "Master Milestone",
+  //   navbarName: "Master Milestone",
+  //   icon: MeetingRoom,
+  //   component: MilestoneList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   should_regex: true,
+  //   parent: "masters",
+  // },
 
   {
     path: "/industry/category/:id",
@@ -141,7 +159,7 @@ const dashboardRoutes = [
     // parent: 'masters',
   },
   {
-    path: "/admin/users",
+    path: RouteName.ADMIN_USER,
     sidebarName: "Admin Users",
     navbarName: "Admin Users",
     icon: SupervisedUserCircle,
@@ -151,47 +169,99 @@ const dashboardRoutes = [
     parent: "admin",
     should_regex:true
   },
+  {
+    path: RouteName.ADMIN_USER_CREATE,
+    sidebarName: "Admin Users",
+    navbarName: "Admin Users",
+    icon: SupervisedUserCircle,
+    component: UserCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+    should_regex:true
+  },
+  {
+    path: `${RouteName.ADMIN_USER_UPDATE}:id`,
+    sidebarName: "Admin Users",
+    navbarName: "Admin Users",
+    icon: SupervisedUserCircle,
+    component: UserCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+    should_regex:true
+  },
+  // {
+  //   path: `${RouteName.USER_PROFILE}:id`,
+  //   sidebarName: "Users",
+  //   navbarName: "Users",
+  //   icon: Dashboard,
+  //   component: UpperTabs,
+  //   is_sidebar: false,
+  //   is_protect: true,
+  //   should_regex:false
+  // },
+  // {
+  //   path: `${RouteName.USER_PROFILE_CREATE}`,
+  //   sidebarName: "Users",
+  //   navbarName: "Users",
+  //   icon: Dashboard,
+  //   component: UpperTabs,
+  //   is_sidebar: false,
+  //   is_protect: true,
+  //   should_regex:false
+  // },
 
   {
-    path: `${RouteName.USER_PROFILE}:id`,
-    sidebarName: "Users",
-    navbarName: "Users",
-    icon: Dashboard,
-    component: UpperTabs,
-    is_sidebar: false,
-    is_protect: true,
-    should_regex:false
-  },
-  {
-    path: `${RouteName.USER_PROFILE_CREATE}`,
-    sidebarName: "Users",
-    navbarName: "Users",
-    icon: Dashboard,
-    component: UpperTabs,
-    is_sidebar: false,
-    is_protect: true,
-    should_regex:false
-  },
-  {
-    path: "/role",
+    path: RouteName.ROLE,
     sidebarName: "UserRole",
     navbarName: "UserRole",
     icon: LibraryBooks,
-    component: Rolelist,
+    component: RoleList,
     is_sidebar: true,
     is_protect: true,
     parent: "admin",
   },
   {
-    path: "/badge",
-    sidebarName: "Badge",
-    navbarName: "Badge",
-    icon: VerifiedUser,
-    component: BadgeList,
-    is_sidebar: true,
+    path: RouteName.ROLE_CREATE,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleCreate,
+    is_sidebar: false,
     is_protect: true,
-    parent: "masters",
+    parent: "admin",
   },
+  {
+    path: `${RouteName.ROLE_CREATE_UPDATE}:id`,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+  },
+  // {
+  //   path: "/badge",
+  //   sidebarName: "Badge",
+  //   navbarName: "Badge",
+  //   icon: VerifiedUser,
+  //   component: BadgeList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   parent: "masters",
+  // },
+  // {
+  //   path: "/badge",
+  //   sidebarName: "Badge",
+  //   navbarName: "Badge",
+  //   icon: VerifiedUser,
+  //   component: BadgeList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   parent: "masters",
+  // },
   {
     path: "/products",
     sidebarName: "Products",
@@ -203,15 +273,23 @@ const dashboardRoutes = [
     parent: "masters",
   },
   {
-    path: "/products/edit",
+    path: `${RouteName.PRODUCT_DETAILS}:id`,
     sidebarName: "Products",
     navbarName: "Products",
     icon: LocalOffer,
-    component: ProductView,
+    component: ProductDetailview,
     is_sidebar: false,
     is_protect: true,
   },
-
+  {
+    path: `${RouteName.PRODUCT_CREATE}`,
+    sidebarName: "Products",
+    navbarName: "Products",
+    icon: LocalOffer,
+    component: ProductCreate,
+    is_sidebar: false,
+    is_protect: true,
+  },
   {
     path: `${RouteName.APP_USERS}`,
     sidebarName: "App Users",
@@ -222,7 +300,16 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: true,
   },
-
+  {
+    path: `${RouteName.CALENDAR}`,
+    sidebarName: "Calendar",
+    navbarName: "Calendar",
+    icon: SupervisedUserCircle,
+    component: CalendarList,
+    is_sidebar: true,
+    is_protect: true,
+    should_regex: true,
+  },
   {
     path: `${RouteName.CUSTOMERS_MANUFACTURES}:id`,
     sidebarName: "Manufacturer",
@@ -282,37 +369,37 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
   },
-  {
-    path: "/type",
-    sidebarName: "Type",
-    navbarName: "Type",
-    icon: VerifiedUser,
-    component: TypeList,
-    is_sidebar: true,
-    is_protect: true,
-    parent: "masters",
-  },
+  // {
+  //   path: "/type",
+  //   sidebarName: "Type",
+  //   navbarName: "Type",
+  //   icon: VerifiedUser,
+  //   component: TypeList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   parent: "masters",
+  // },
   {
     path: "/unit",
     sidebarName: "Unit",
     navbarName: "Unit",
     icon: VerifiedUser,
-    component: UnitList,
+    component: UnitsList,
     is_sidebar: true,
     is_protect: true,
     parent: "masters",
   },
-  {
-    path: RouteName.HUB_MASTERS,
-    sidebarName: "Hub Master",
-    navbarName: "Hub Master",
-    icon: EventNote,
-    component: HubMasterList,
-    is_sidebar: true,
-    is_protect: true,
-    // should_regex: false,
-    parent: "masters",
-  },
+  // {
+  //   path: RouteName.HUB_MASTERS,
+  //   sidebarName: "Hub Master",
+  //   navbarName: "Hub Master",
+  //   icon: EventNote,
+  //   component: HubMasterList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   // should_regex: false,
+  //   parent: "masters",
+  // },
 
 
 
@@ -367,7 +454,22 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
-  }
+  },
+  {
+    path:`${RouteName?.BLOGS_CREATE}`,
+    component: BlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path:`${RouteName?.BLOGS_UPDATE}:id`,
+    component: BlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+
 ];
 
 export default dashboardRoutes;

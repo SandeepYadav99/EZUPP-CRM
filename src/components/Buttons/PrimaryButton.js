@@ -1,16 +1,16 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import {Button} from "@mui/material";
-import { ArrowForward } from '@mui/icons-material';
+import { Add, ArrowForward, Lock } from '@mui/icons-material';
 
 const ButtonWrapper = styled(Button)(({ theme }) => ({
 
     '&:hover': {
-        backgroundColor: theme.palette.primaryButton.hover
+        backgroundColor: theme.palette?.primaryButton?.hover
     },
     '&:disabled': {
-        backgroundColor: theme.palette.primaryButton.disabled,
-        color:  theme.palette.primaryButton.disabled_text
+        backgroundColor: theme.palette.primaryButton?.disabled,
+        color:  theme.palette.primaryButton?.disabled_text
     }
 }));
 const PrimaryButton = ({disabled, children, ...props}) => {
@@ -53,6 +53,23 @@ const ActionButtonWrapper = styled(Button)(({ theme }) => ({
     }
 }));
 
+const ActionMultiSelectButtonWrapper = styled(Button)(({ theme }) => ({
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingTop: theme.spacing(0),
+    paddingBottom: theme.spacing(0),
+    backgroundColor: theme.palette.grey[200],
+    border:0,
+    color:theme.palette.common.black,
+    borderRadius:"20px",
+    '&:hover': {
+        backgroundColor: theme.palette.error.light
+    },
+    '&:disabled': {
+        backgroundColor: 'transparent',
+        // color:  theme.palette.primaryButton.disabled_text
+    }
+}));
 const ActionButton = ({disabled, children, ...props}) => {
     return (
         <ActionButtonWrapper variant={'outlined'} color={'error'} disabled={disabled} {...props}>
@@ -61,12 +78,20 @@ const ActionButton = ({disabled, children, ...props}) => {
     );
 }
 
-const ArrowPrimaryButton = ({...props}) =>{
-    return (<PrimaryButton {...props} endIcon={<ArrowForward/>} />);
+const ActionMultiSelectButton = ({disabled, children, ...props}) => {
+    return (
+        <ActionMultiSelectButtonWrapper variant={'outlined'} color={'error'} disabled={disabled} {...props}>
+            {children}
+        </ActionMultiSelectButtonWrapper>
+    );
 }
 
-const ArrowOutlineButton = ({...props}) =>{
-    return (<OutlineButton {...props} endIcon={<ArrowForward/>} />);
+const ArrowPrimaryButton = ({icon, ...props}) =>{
+    return (<PrimaryButton {...props} endIcon={ !icon ? <ArrowForward/> :  icon} />);
+}
+
+const ArrowOutlineButton = ({ icon,...props}) =>{
+    return (<OutlineButton {...props} endIcon={icon ? icon : <ArrowForward/>} />);
 }
 
 const ArrowActionButton = ({...props}) =>{
@@ -79,5 +104,6 @@ export {
     ActionButton,
     ArrowPrimaryButton,
     ArrowOutlineButton,
-    ArrowActionButton
+    ArrowActionButton,
+    ActionMultiSelectButton
 };

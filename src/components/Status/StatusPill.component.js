@@ -8,7 +8,7 @@ import {Typography} from "@mui/material";
 const StatusPill = ({color, status}) => {
     const theme = useTheme();
     const colorCode = useMemo(() => {
-        return ['high', 'medium', 'low'].indexOf(color) >= 0 ? color: 'high';
+        return ['high', 'medium', 'low','active', 'business', "Discuss", "inactive"].indexOf(color) >= 0 ? color: 'high';
     }, [color]);
     return (
         <span className={classNames('status')} style={{

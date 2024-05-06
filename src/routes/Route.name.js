@@ -25,11 +25,24 @@ export default {
 
   CUSTOMERS_CUSTOMER: "/app/users/customers/customer/",
   CUSTOMERS_MANUFACTURES: "/app/users/customers/manufacturer/",
-  PROFILE: "/profile/",
-  USER_PROFILE: "/admin/users/edit/",
+  PROFILE:"/profile",
+  USER_PROFILE:"/admin/users/edit/",
   USER_PROFILE_CREATE: "/admin/users/create/",
   HUB_MASTERS: "/hub/master",
   TASK_DETAIL: "/task/detail/",
   SERVICE_DETAIL: "/service/detail/",
-  BLOGS_CREATE:'/blogs/create',
+
+  ADMIN_USER:"/users",
+  ADMIN_USER_CREATE:"/users/create",
+  ADMIN_USER_UPDATE:"/users/update/",
+  CALENDAR:"/calendar",
+  
+  ROLE:"/roles",
+  ROLE_CREATE:"/role/create",
+  ROLE_CREATE_UPDATE:"/role/update/",
+  BLOGS_CREATE:"/blogs/create",
+  BLOGS_UPDATE:"/blogs/update/",
+  PRODUCT_DETAILS:"/product/details/",
+  PRODUCT_CREATE:"/product/create",
+  NOTIFICATION_DETAILS:"/notifications",
 };

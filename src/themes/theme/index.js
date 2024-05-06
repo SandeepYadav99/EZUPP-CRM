@@ -5,14 +5,16 @@ import {
 
 const primary = "#2063CE";
 const secondary = "#25CEAE";
-const bgcolors = '#ffffff';
+const bgcolors = '#F7F7F9';
 const textColor = "#000000";
 const warning = "#FFC260";
 const success = "#3CD4A0";
 const info = "#9013FE";
 const border = '#E4E4E6'
 const error = '#FF0000';
-const disable = '#d8d8dd';
+const disable = '#d8d8dd';//
+const badgeColor= "#6d788d";
+const badgeColor1="#fdb528";
 const lightenRate = 7.5;
 const darkenRate = 15;
 const textMainColor = '#4A4A4A';
@@ -73,7 +75,10 @@ const Theme = (colors) => {
     status: {
       high: error,
       medium: '#FF9100',
-      low: '#78D90F'
+      low: '#78D90F',
+      active:"#03AE85",
+      business: '#888cff',
+      Discuss:"#636578"
     },
     success: {
       main: success,
@@ -96,7 +101,12 @@ const Theme = (colors) => {
       disabled: disable,
       disabled_text: greyColors[0]
     },
-    grey: greyColors
+    grey: greyColors,
+    badgeColor:{
+      color:badgeColor,
+      color1:badgeColor1,
+      color2:"#ff4d49"
+    },
   };
 };
 

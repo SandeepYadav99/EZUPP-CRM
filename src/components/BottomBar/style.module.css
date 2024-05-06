@@ -16,7 +16,7 @@
 .noScrollbar::-webkit-scrollbar-button {display:none}
 
 .noScrollbar::-webkit-scrollbar {
-    background-color:#fff;
+    background-color:#F7F7F9;
     width:0px
 }
 .sideUpper{

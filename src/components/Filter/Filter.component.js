@@ -113,22 +113,22 @@ class FilterComponent extends Component {
                 />
             );
         }
-        if (val.type == 'date') {
+        if (val?.type === 'date') {
             return (
 
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         disabled={this.state.is_edit}
                         fullWidth
-                        name={val.name}
+                        name={val?.name}
                         variant="outlined"
-                        label={val.label.toUpperCase()}
-                        value={val.value ? val.value : new Date()}
+                        label={val?.label?.toUpperCase()}
+                        value={val?.value ? val?.value : new Date()}
                         onChange={this.detailhandleChange.bind(this, i)}
                         format={
                             "MM/dd/yyyy"
                         }
-                        maxDate={val.options ? val.options.maxDate : null}
+                        maxDate={val?.options ? val?.options?.maxDate : null}
                         mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
                     />
                 </LocalizationProvider>

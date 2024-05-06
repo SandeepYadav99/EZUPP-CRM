@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {lighten, } from "@mui/material/styles";
+import {lighten } from "@mui/material/styles";
 import { withStyles, makeStyles } from '@mui/styles';
 import {
     Table,
@@ -510,7 +510,8 @@ const EnhancedTable = (props) => {
     };
 
     return innerWidth > 769 ? (
-        <PageBox classStyles={classes.pageBox}>
+        <>
+        {/* PageBox classStyles={classes.pageBox} */}
             <div className={classes.root}>
                 <div className={classes.paper}>
                     <div className={classes.tableWrapper}>
@@ -550,7 +551,7 @@ const EnhancedTable = (props) => {
                     )}
                 </div>
             </div>
-        </PageBox>
+        </>
 
     ) : (
         <div className={classes.paper}>

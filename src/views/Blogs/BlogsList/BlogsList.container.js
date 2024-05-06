@@ -1,6 +1,6 @@
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add } from "@material-ui/icons";
+import { Add } from "@mui/icons-material";
 import useBlogsHook from "./BlogsList.hook";
 import styles from "./Style.module.css";
 import React, { useMemo } from "react";
@@ -9,7 +9,6 @@ import PageBox from "../../../components/PageBox/PageBox.component";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import MenuItemView from "../component/MenuItem.component";
-
 
 const BlogListContainer = () => {
   const {
@@ -28,13 +27,13 @@ const BlogListContainer = () => {
 
   const {
     data,
-    all,
+    all: allData,
     currentPage,
     is_fetching: isFetching,
     query,
   } = useSelector((state) => state.blogs);
 
-  const renderStatus =(status)=>{
+  const renderStatus = (status) => {
     if (status === "ACTIVE") {
       return (
         <span
@@ -68,8 +67,7 @@ const BlogListContainer = () => {
         {status}
       </span>
     );
-  }
-
+  };
 
   const tableStructure = useMemo(() => {
     return [
@@ -79,21 +77,11 @@ const BlogListContainer = () => {
         sortable: false,
         render: (temp, all) => (
           <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={all?.cover_image}
-              alt=""
-              height={"50"}
-              width={"50"}
-            />
+            {console.log(all?.image,"image is here")}
+            <img src={all?.image ? all?.image :''} alt="" height={"50"} width={"50"} />
             <div style={{ marginLeft: "10px" }}>{all.title}</div>
           </div>
         ),
-      },
-      {
-        key: "industry",
-        label: "Industry",
-        sortable: false,
-        render: (temp, all) => <div>{all.industry_name}</div>,
       },
       {
         key: "author",
@@ -111,7 +99,7 @@ const BlogListContainer = () => {
         key: "createdAt",
         label: "Date",
         sortable: true,
-        render: (temp, all) => <div>{all.createdAt}</div>,
+        render: (temp, all) => <div>{all.updatedAtText ? all?.updatedAtText :"--"}</div>,
       },
       {
         key: "status",
@@ -125,14 +113,14 @@ const BlogListContainer = () => {
         render: (temp, all) => (
           <div>
             <MenuItemView
-              handleEdit={handleEdit( all)}
+              handleEdit={()=>handleEdit(all)}
               blogId={all.slug}
             />
           </div>
         ),
       },
     ];
-  }, [handleViewDetails, handleEdit, isCalling]);
+  }, [handleViewDetails, handleEdit, isCalling, allData]);
 
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -144,14 +132,14 @@ const BlogListContainer = () => {
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
       columns: tableStructure,
-      data: all,
-      count: all?.length,
+      data: allData?.length > 0 ? allData : [],
+      count: allData?.length > 0 ? allData?.length : 0,
       page: currentPage,
     };
 
     return { datatableFunctions, datatable };
   }, [
-    all,
+    allData,
     tableStructure,
     handleSortOrderChange,
     handlePageChange,
@@ -175,12 +163,12 @@ const BlogListContainer = () => {
         </div>
 
         <div>
-        <FilterComponent
-              is_progress={isFetching}
-              filters={configFilter}
-              handleSearchValueChange={handleSearchValueChange}
-              handleFilterDataChange={handleFilterDataChange}
-            />
+          <FilterComponent
+            is_progress={isFetching}
+            filters={configFilter}
+            handleSearchValueChange={handleSearchValueChange}
+            handleFilterDataChange={handleFilterDataChange}
+          />
           <div>
             <br />
             <div style={{ width: "100%" }}>

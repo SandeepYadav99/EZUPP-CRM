@@ -1,7 +1,3 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 4/8/2020.
- */
-
 import {
     FETCH_NEXT,
     FETCH_INIT,

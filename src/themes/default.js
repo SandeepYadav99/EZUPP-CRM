@@ -2,7 +2,7 @@ import tinycolor from "tinycolor2";
 
 const primary = "#666cff";
 const secondary = "#072ead";
-const bgcolors = '#ffffff';
+const bgcolors = '#F7F7F9';
 const textColor = "#000000";
 const warning = "#FFC260";
 const success = "#3CD4A0";
@@ -217,6 +217,7 @@ export default {
         MuiTableCell: {
             root: {
                 padding: '10px',
+               
                 borderBottom: '1px solid rgba(224, 224, 224, .3)',
                 // fontWeight: '600',
                 fontFamily: ' \'Inter\', sans-serif',
@@ -227,7 +228,7 @@ export default {
             head: {
                 fontSize: '0.9rem',
                 padding: '15px 10px',
-                background: '#f5f5f5',
+                background:"gray",
                 '&:first-child': {
                     borderTopLeftRadius: '10px',
                     borderBottomLeftRadius: '10px',

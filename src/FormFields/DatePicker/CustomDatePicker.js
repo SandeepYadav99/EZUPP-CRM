@@ -19,7 +19,7 @@ const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, cl
 
     const mD = useMemo(() => {
         const d = new Date();
-        d.setFullYear(d.getFullYear() + 10);
+        d?.setFullYear(d.getFullYear() + 10);
         return maxDate ? maxDate : d;
     }, [maxDate]);
 

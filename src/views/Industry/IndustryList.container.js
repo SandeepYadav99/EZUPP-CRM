@@ -28,9 +28,9 @@ import {
   actionUpdateIndustry,
   actionDeleteIndustry,
 } from "../../actions/Industry.action";
-import { serviceGetListData } from "../../services/index.services";
-import { serviceGetCustomList } from "../../services/Common.service";
-import CustomTextField from "../../components/FormFields/TextField/TextField.component";
+import CustomTextField from "../../FormFields/TextField.component";
+
+
 
 let CreateProvider = null;
 
