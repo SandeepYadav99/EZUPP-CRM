@@ -22,6 +22,7 @@ import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import { serviceDeleteProduct } from "../../../services/Product.service";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 const ProductList = (props) => {
   const {
     handleSortOrderChange,
@@ -154,7 +155,7 @@ const ProductList = (props) => {
 
   return (
     <div>
-      <div className={"plainPaper"}>
+      <ShadowBox className={styles.product}>
         <div className={styles.headerContainer}>
           <Typography
             variant={"title"}
@@ -188,7 +189,7 @@ const ProductList = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </div>
   );
 };

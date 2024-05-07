@@ -25,6 +25,7 @@ import StatusPill from "./../../components/Status/StatusPill.component";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
 import EventForm from "./Create/UnitCreate.view";
 import { serviceDeleteProduct } from "../../services/Product.service";
+import ShadowBox from "../../components/ShadowBox/ShadowBox";
 const UnitsList = (props) => {
   const {
     handleSortOrderChange,
@@ -147,7 +148,7 @@ const UnitsList = (props) => {
 
   return (
     <div>
-      <div className={"plainPaper"}>
+      <ShadowBox className={styles.unit}>
         <div className={styles.headerContainer}>
           <Typography
             variant={"title"}
@@ -189,7 +190,7 @@ const UnitsList = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </div>
   );
 };

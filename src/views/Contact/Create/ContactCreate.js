@@ -1,24 +1,47 @@
-import React from 'react'
+import React from "react";
 import styles from "../Styles.module.css";
-import {ButtonBase, Typography } from "@mui/material";
+import {  MenuItem, ButtonBase, Typography } from "@mui/material";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
-import ShadowBox from '../../../components/ShadowBox/ShadowBox';
-const ContactCreate = () => {
+import PersonalInfo from "./Components/PersonalInfo";
+import BusinessInfo from "./Components/BusinessInfo";
+import ProfilingLead from "./Components/ProfilingLead";
+import AdditionalInfo from "./Components/AdditionalInfo";
+const ContactCreate = (errorData, changeTextData, onBlurHandler, form) => {
   return (
-    <div className={styles.outerFlex1}>
+    <>
+      <div className={styles.outerFlex1}>
         <div className={styles.iconButton}>
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant={"title1"}>
-             Create Contact
-          </Typography>
+          <Typography variant={"title1"}>Create Contact</Typography>
         </div>
-    </div>
-  
-     
-  )
-}
+      </div>
+      
+       
+        <PersonalInfo
+        errorData={errorData}
+        form={form}
+        changeTextData={changeTextData}
+        />
+        <BusinessInfo 
+        errorData={errorData}
+        form={form}
+        changeTextData={changeTextData}
+        />
+        <ProfilingLead
+        errorData={errorData}
+        form={form}
+        changeTextData={changeTextData}
+        />
+        <AdditionalInfo
+        errorData={errorData}
+        form={form}
+        changeTextData={changeTextData}
+        />
+    </>
+  );
+};
 
-export default ContactCreate
+export default ContactCreate;

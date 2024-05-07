@@ -151,6 +151,10 @@ export default {
     },
     PROFILE_TYPE: {
         BUSINESS: 'BUSINESS',
-        INDIVIDUAL: 'INDIVIDUAL'
+        INDIVIDUAL: 'INDIVIDUAL',
+        PREFER_NOT: 'PREFER_NOT',
+        FEMALE: 'FEMALE',
+        MALE: 'MALE'
+        
     }
 };

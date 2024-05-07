@@ -70,4 +70,23 @@
 }
 .contact{
     width: 100%;
+    margin-bottom: 20px;
+}
+.radio{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 8px;
+ }
+.prefix{
+    /* width: 30%; */
+    
+    margin-top: -10px;
+    
+}
+.name{
+    width: 300%
+  
+}
+.lineWrapper{
+    display: flex;
 }
