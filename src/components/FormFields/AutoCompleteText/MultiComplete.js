@@ -15,7 +15,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-  fontSize: ".875rem",
+  fontSize: ".775rem",
   "&:hover": {
     backgroundColor: theme.palette.error.light,
     border: 0,
@@ -48,6 +48,7 @@ const CustomMultiComplete = ({
   onTextChange,
   inputProps,
   enableField,
+  nopic,
   ...rest
 }) => {
   const handleChange = useCallback(
@@ -97,7 +98,7 @@ const CustomMultiComplete = ({
         value?.map((option, index) => (
           <StyledChip
             {...getTagProps({ index })}
-            avatar={<Avatar src={option?.image} alt={option?.email} />}
+            avatar={nopic ?"":<Avatar src={option?.image} alt={option?.email} />}
             label={option?.label}
           />
         ))

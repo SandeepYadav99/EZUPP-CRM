@@ -73,7 +73,7 @@ class File extends Component {
 
 
     render() {
-        const {value, children, multiple, accept, error, placeholder,name,component,user_image, title, show_image, default_image,banner, link, circular,bannerLabel,isBlogPage} = this.props;
+        const {value, children, multiple, accept, error, placeholder,name,component,user_image, title, show_image, default_image,banner, link, circular,bannerLabel,isBlogPage,not_default_width,not_default_height} = this.props;
         let tempPlaceHolder = this.props.placeholder;
         if (value != '' && value !== null) {
             if (value instanceof Object && !Array.isArray(value)) {
@@ -110,10 +110,10 @@ class File extends Component {
         if(bannerLabel && !multiple){
             return (
                 <div>
-                <div className={isBlogPage ? styles.aspectWidth :styles.imageBtnContainerShow}>
+                <div className={isBlogPage ?not_default_width?styles.widthBlog:styles.aspectWidth:styles.imageBtnContainerShow}>
                     <div>
                         <div className={csx(styles.imagePlusShow, this.props.imageClass)} style={{ backgroundImage: "url("+(this._getImageUrl(value))+")",
-                            backgroundSize: 'cover', backgroundPosition: 'center',borderColor: (error ? 'red' : '#c2c2c2')}}></div>
+                            backgroundSize: 'cover', backgroundPosition: 'center',borderColor: (error ? 'red' : '#c2c2c2'),height:( not_default_height && "427px")}}></div>
                     </div>
                     <div className={styles.imgLowerContainer}>
                         <div className={styles.imgFileLabelPlusShow}>

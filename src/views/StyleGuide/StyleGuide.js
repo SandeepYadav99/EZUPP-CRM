@@ -391,6 +391,7 @@ const StyleGuide = ({}) => {
                             "subtitle1",
                             "subtitle2",
                             "overline",
+                            "subtitle3",
                         ].map((key) => {
                             return (
                                 <Typography color={"text.secondary"} variant={key}>
