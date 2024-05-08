@@ -30,6 +30,7 @@ import CustomSwitch from "../../../components/FormFields/CustomSwitch";
 import CustomCheckBox from "../../../components/FormFields/CustomCheckbox";
 import FileField from "../../../components/FileField/File.component";
 import { useParams } from "react-router-dom";
+import FileFieldImageComponent from "../../../components/FileField/FileFiledImage";
 
 const BlogsCreate = ({ location }) => {
   const {
@@ -268,6 +269,7 @@ const BlogsCreate = ({ location }) => {
             label="Please Upload Image"
             show_image={true}
             error={errorData?.image}
+            renderImageComponent={(value, url, onChnage) => <FileFieldImageComponent onChange={} value={} url={} />}
             value={form?.image}
             onChange={(file) => {
               if (file) {

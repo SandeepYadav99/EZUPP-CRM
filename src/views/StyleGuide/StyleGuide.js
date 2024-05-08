@@ -235,6 +235,7 @@ const StyleGuide = ({}) => {
                             <Typography variant={"h6"}>Multipe select</Typography>
                         </div>
                         <Autocomplete
+                            size={'small'}
                             multiple
                             id="tags-outlined"
                             options={AutoCompleteData ? AutoCompleteData : []}
