@@ -269,7 +269,6 @@ const BlogsCreate = ({ location }) => {
             label="Please Upload Image"
             show_image={true}
             error={errorData?.image}
-            renderImageComponent={(value, url, onChnage) => <FileFieldImageComponent onChange={} value={} url={} />}
             value={form?.image}
             onChange={(file) => {
               if (file) {
