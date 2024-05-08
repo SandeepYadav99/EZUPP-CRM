@@ -44,31 +44,47 @@
 }
 
 .crud {
-  display: flex;
+  /* display: flex;
   align-items: center;
   flex-direction: row;
-  justify-content: center;
-  border: 1px solid gray;
+  justify-content: center; */
+  display: inline-block !important;
+ justify-content: center !important;
+  border: 1px solid #C5C5C5 !important;
   background-color: #ffffff;
   color: #636578;
   border-radius: 6px;
-  width: 80%;
+  padding: 0% 10% 0% 2% !important;
+  /* width: 80%; */
 }
 .crudHover{
-  display: flex;
+  /* display: flex;
   align-items: center;
   flex-direction: row;
-  justify-content: center;
- 
+  justify-content: center; */
+  display: inline-block !important;
+  justify-content: center !important;
   background-color: #ffffff;
   color: #636578;
   border-radius: 6px;
-  width: 80%;
+  /* width: 80%; */
+  padding: 0% 10% 0% 2% !important;
   border: 1px solid #2063CE;
 }
 .infoFiled {
   display: flex;
   gap: 5px;
+ 
+}
+.subTitle{
+  font-size: 14px !important;
+  color: #888888 !important;
+  font-weight: 600 !important;
+}
+.headerTitle{
+  font-size: 18px !important;
+  color: #888888 !important;
+  font-weight: 600 !important;
 }
 .teamImages {
   height: 30px;

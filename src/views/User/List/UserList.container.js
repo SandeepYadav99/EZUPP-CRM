@@ -55,7 +55,7 @@ const UserList = (props) => {
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
-        <img src={user.image} alt="" />
+        <img src={user.image} alt="" crossOrigin="anonymous"/>
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <div>{`${capitalizeFirstLetter(user?.name)}`} </div>

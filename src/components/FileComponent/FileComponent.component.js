@@ -22,7 +22,6 @@ class File extends Component {
     let totalValid = 0;
     e.preventDefault();
     if (e.target.files[0]) {
-    
       const tempFiles = [];
       Object.keys(e.target.files).forEach((key) => {
         if (multiple && maxCount != 0 && maxCount <= tempTotal) {
@@ -41,7 +40,6 @@ class File extends Component {
             ? allowedArr.indexOf(sFileExtension) > -1
             : true)
         ) {
-       
           tempFiles.push(tempFile);
           totalValid++;
         } else {
@@ -51,7 +49,6 @@ class File extends Component {
               this?.props?.max_size / (1024 * 1024)
             } MB`
           );
-       
         }
         tempTotal++;
       });
@@ -73,7 +70,7 @@ class File extends Component {
 
   _getImageUrl(value) {
     const { default_image, user_image } = this.props;
-
+    console.log(value, default_image);
     if (value) {
       return URL?.createObjectURL(value);
     } else if (default_image) {
@@ -117,13 +114,16 @@ class File extends Component {
           <div className={styles.imageBtnContainer}>
             <div>
               <div
+              
                 className={csx(styles.imagePlus, this.props.imageClass)}
                 style={{
                   backgroundImage: "url(" + this._getImageUrl(value) + ")",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderColor: error ? "red" : "#c2c2c2",
+                 
                 }}
+               
               ></div>
             </div>
             <div className={styles.imgLowerContainer}>

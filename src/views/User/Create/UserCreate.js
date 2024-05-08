@@ -38,7 +38,7 @@ const UserCreate = ({}) => {
       <PersonalInformation
         errorData={errorData}
         form={form}
-        image={image}
+        image={images}
         changeTextData={changeTextData}
         // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
