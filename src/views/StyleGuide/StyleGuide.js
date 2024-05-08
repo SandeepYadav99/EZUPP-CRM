@@ -26,6 +26,7 @@ import UserCountAvatars, {
 } from "../../components/AvatarGroup/AvatarGroup";
 import { UserCountRadioLables } from "../../components/BasicAndCustomRadio/RadioLables";
 import { CustomOptionRadiosWithIcon } from "../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon";
+import { RocketLaunch } from "@mui/icons-material";
 
 const avatars = ["A", "B", "C", "2k"];
 const StyleGuide = ({}) => {
@@ -276,7 +277,20 @@ const StyleGuide = ({}) => {
       </div>
       <br />
       <div>
-        <CustomOptionRadiosWithIcon />
+        <Typography gutterBottom variant="h5">
+          Custom Option Radios With Icons
+        </Typography>
+        <div>
+          <CustomOptionRadiosWithIcon
+            selectedOption={selectedOption}
+            value={"starter"}
+            basicPara={" Cake sugar plum fruitcake I love sweet roll jelly-o."}
+            handleRadioChange={handleRadioChange}
+            setSelectedOption={setSelectedOption}
+            label={"Starter"}
+            headerImage={<RocketLaunch fontSize="large" />}
+          />
+        </div>
       </div>
     </PageBoxComponent>
   );
