@@ -30,7 +30,6 @@ import CustomSwitch from "../../../components/FormFields/CustomSwitch";
 import CustomCheckBox from "../../../components/FormFields/CustomCheckbox";
 import FileField from "../../../components/FileField/File.component";
 import { useParams } from "react-router-dom";
-import FileFieldImageComponent from "../../../components/FileField/FileFiledImage";
 
 const BlogsCreate = ({ location }) => {
   const {
