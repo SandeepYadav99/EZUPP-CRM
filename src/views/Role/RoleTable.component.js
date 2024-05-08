@@ -30,8 +30,8 @@ const RoleTableComponent = ({
   return (
     <ShadowBox width={"100%"}>
       <div className={styles.infoFiled}>
-        <Typography variant="h5">Permissions Granted </Typography>
-        <InfoOutlined />
+        <Typography  className={styles.headerTitle}>Permissions Granted </Typography>
+        <InfoOutlined fontSize="16px" color="#888888"/>
       </div>
       <Table className={classes.table} aria-label="simple table">
         <TableBody>
@@ -40,8 +40,8 @@ const RoleTableComponent = ({
               <TableRow key={index}>
                 <TableCell classes={{ root: classes.tableCell }}>
                   <div className={styles.infoFiled}>
-                    <Typography variant="h5">{permission?.name} </Typography>
-                    <InfoOutlined />
+                    <Typography className={styles.subTitle}>{permission?.name} </Typography>
+                    <InfoOutlined fontSize="16px" color="#888888"/>
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
@@ -62,7 +62,7 @@ const RoleTableComponent = ({
                 </TableCell>
                 
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
+                  <div className={permission?.read ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.read}
@@ -74,7 +74,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
+                  <div className={permission?.create ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.create}
@@ -90,7 +90,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
+                  <div className={permission?.update ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.update}
@@ -106,7 +106,7 @@ const RoleTableComponent = ({
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
+                  <div className={permission?.delete ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
                       checked={permission?.delete}
