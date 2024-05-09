@@ -232,65 +232,89 @@ const StyleGuide = ({}) => {
           </div>
         </div>
       </div>
+      <div className={styles.flexBox}>
+        <div className={styles.boxContFlex}>
+          <div>
+            <Typography gutterBottom variant="h5">
+              Label Initials
+            </Typography>
+            <div style={{ display: "flex" }}>
+              <UserCountAvatarsLabelInitials
+                width={"28px"}
+                height={"28px"}
+                bgcolor={"#e8e9ff"}
+                fontSize={"12px"}
+                color={"#666cff"}
+                title={"PI"}
+              />
+            </div>
+          </div>
+        </div>
+        <div className={styles.boxContFlex}>
+          <div>
+            <Typography gutterBottom variant="h5">
+              Status Indicator
+            </Typography>
+            <div>
+              <UserCountAvatarsStatusIndicator
+                width={"44px"}
+                height={"44px"}
+                bgcolor={"#e8e9ff"}
+                fontSize={"12px"}
+                color={"#666cff"}
+                title={"PI"}
+                imgUrl={require("../../assets/img/1.png")}
+              />
+            </div>
+          </div>
+        </div>
+        <div className={styles.boxContFlex}>
+          <div>
+            <Typography gutterBottom variant="h5">
+              Pull Up with Tooltip
+            </Typography>
+            <div>
+              <UserCountAvatarsLableAvatarGroup
+                width={"44px"}
+                height={"44px"}
+                bgcolor={"#e8e9ff"}
+                fontSize={"12px"}
+                color={"#666cff"}
+                title={"Style Guide"}
+                maxAvator={4}
+                imgUrl={require("../../assets/img/1.png")}
+              />
+            </div>
+          </div>
+        </div>
+        <div className={styles.boxContFlex}>
+          {/* <div>
+          <Typography gutterBottom variant="h5">
+            Pull Up with Tooltip
+          </Typography>
+            <div>
+              <UserCountAvatarsLableAvatarGroup
+                width={"44px"}
+                height={"44px"}
+                bgcolor={"#e8e9ff"}
+                fontSize={"12px"}
+                color={"#666cff"}
+                title={"Style Guide"}
+                maxAvator={4}
+                imgUrl={require("../../assets/img/1.png")}
+              />
+            </div>
+          </div> */}
+        </div>
+      </div>
 
-      <div className={styles.boxContFlex}>
-        {/* <UserCountAvatarsSize /> */}
-        {/* <UserCountAvatarsInitials/> */}
-        <UserCountAvatarsLabelInitials />
-        <UserCountAvatarsShapes />
-        <UserCountAvatarsStatusIndicator />
-        <UserCountAvatarsLableAvatarStatusIndicator />
-      </div>
+      <br />
+      <div></div>
+      <br />
+
       <br />
       <div>
-        <div>
-          <UserCountAvatarsLableAvatarGroup avatars={avatars} />
-        </div>
-      </div>
-      <br />
-      <div>
-        <Typography gutterBottom variant="h5">
-          Basic Radio
-        </Typography>
-        <div className={styles.radioFlex}>
-          <UserCountRadioLables
-            options={"basic"}
-            selectedOption={selectedOption}
-            value={"basic"}
-            basicPara={"Get 1 project with 1 teams members."}
-            price={"Free"}
-            handleRadioChange={handleRadioChange}
-            setSelectedOption={setSelectedOption}
-            label={"Basic"}
-          />
-          <UserCountRadioLables
-            options={"premium"}
-            selectedOption={selectedOption}
-            value={"premium"}
-            basicPara={"Get 5 projects with 5 team members."}
-            price={"$ 5.00"}
-            handleRadioChange={handleRadioChange}
-            setSelectedOption={setSelectedOption}
-            label={"Premium"}
-          />
-        </div>
-      </div>
-      <br />
-      <div>
-        <Typography gutterBottom variant="h5">
-          Custom Option Radios With Icons
-        </Typography>
-        <div>
-          <CustomOptionRadiosWithIcon
-            selectedOption={selectedOption}
-            value={"starter"}
-            basicPara={" Cake sugar plum fruitcake I love sweet roll jelly-o."}
-            handleRadioChange={handleRadioChange}
-            setSelectedOption={setSelectedOption}
-            label={"Starter"}
-            headerImage={<RocketLaunch fontSize="large" />}
-          />
-        </div>
+        <div></div>
       </div>
     </PageBoxComponent>
   );
