@@ -111,11 +111,13 @@ const UploadImage = (
       tempPlaceHolder = value?.length + " Selected";
     }
   }
+
   if (renderImageComponent) {
     return (
       <>{renderImageComponent(value, getImageUrl(value), handleFileChange)}</>
     );
   }
+
   if (show_image && !multiple && !bannerLabel) {
     return (
       <div>
@@ -157,6 +159,7 @@ const UploadImage = (
       </div>
     );
   }
+
   if (bannerLabel && !multiple) {
     return (
       <div>
@@ -207,6 +210,7 @@ const UploadImage = (
       </div>
     );
   }
+  
   if (circular && !multiple) {
     return (
       <div>
