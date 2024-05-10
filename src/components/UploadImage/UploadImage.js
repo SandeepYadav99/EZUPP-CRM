@@ -68,7 +68,6 @@ const UploadImage = (
         tempTotal++;
       });
 
-      console.log(tempFiles[0], "hello it is here");
       if (isError && totalValid < 1) {
         EventEmitter.dispatch(EventEmitter.THROW_ERROR, {
           error: "Invalid Upload",
