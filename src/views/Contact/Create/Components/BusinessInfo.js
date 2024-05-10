@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from "../../Styles.module.css";
-import { MenuItem, ButtonBase, Typography } from "@mui/material";
+import { MenuItem, Tooltip, Typography } from "@mui/material";
 import ShadowBox from '../../../../components/ShadowBox/ShadowBox';
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
+import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
 const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
   return (
     <ShadowBox className={styles.contact}>
@@ -12,6 +13,9 @@ const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
           <Typography variant={"title"} className={"heading"}>
           Business Information
           </Typography>
+          <Tooltip title="Info" aria-label="info" placement="right">
+              <InfoIcon fontSize={"small"} />
+            </Tooltip>
         </h4>
       </div>
       <div className={"formFlex"}>

@@ -7,7 +7,19 @@ import PersonalInfo from "./Components/PersonalInfo";
 import BusinessInfo from "./Components/BusinessInfo";
 import ProfilingLead from "./Components/ProfilingLead";
 import AdditionalInfo from "./Components/AdditionalInfo";
-const ContactCreate = (errorData, changeTextData, onBlurHandler, form) => {
+import {
+  PrimaryButton,
+  ActionButton,
+} from "../../../components/Buttons/PrimaryButton";
+import ContactCreatehook from "./ContactCreatehook";
+const ContactCreate = ( {}) => {
+  const {
+    errorData,
+    changeTextData,
+    form,
+    onBlurHandler,
+    source
+  } = ContactCreatehook();
   return (
     <>
       <div className={styles.outerFlex1}>
@@ -34,12 +46,28 @@ const ContactCreate = (errorData, changeTextData, onBlurHandler, form) => {
         errorData={errorData}
         form={form}
         changeTextData={changeTextData}
+        source={source}
         />
         <AdditionalInfo
         errorData={errorData}
         form={form}
         changeTextData={changeTextData}
         />
+        <div className={styles.buttonContainer}>
+        <div className={styles.cancelButton}>
+          <ActionButton sx={{ mt: 4 }}>CANCEL</ActionButton>
+        </div>
+
+        <div className={styles.saveButton}>
+          <PrimaryButton
+            color={"primary"}
+            sx={{ mt: 4 }}
+           // onClick={handleSubmit}
+          >
+            CREATE
+          </PrimaryButton>
+        </div>
+      </div>
     </>
   );
 };

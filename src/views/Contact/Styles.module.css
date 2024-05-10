@@ -44,12 +44,12 @@
     margin: 0 30%;
 }
 
-.saveButton{
+/* .saveButton{
     display: flex;
     justify-content: flex-end;
     padding-top: 15px;
     padding-bottom: 15px;
-}
+} */
 
 .outerFlex1{
     padding-bottom: 30px;
@@ -89,4 +89,18 @@
 }
 .lineWrapper{
     display: flex;
+}
+.saveButton{
+    text-align: right !important;
+}
+  
+.cancelButton{
+  text-align: left !important;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-between; 
+  }
+.gap{
+  gap: 40px;
 }

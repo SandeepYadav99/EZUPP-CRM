@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "../../Styles.module.css";
-import { MenuItem, ButtonBase, Typography } from "@mui/material";
+import {Autocomplete, MenuItem, Tooltip, Typography, TextField } from "@mui/material";
+import { Clear, Search } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-const ProfilingLead = (errorData, changeTextData, onBlurHandler, form) => {
+import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
+const ProfilingLead = (errorData, changeTextData, onBlurHandler, form, source) => {
   return (
     <>
     <ShadowBox className={styles.contact}>
@@ -13,11 +15,51 @@ const ProfilingLead = (errorData, changeTextData, onBlurHandler, form) => {
           <Typography variant={"title"} className={"heading"}>
             Profiling
           </Typography>
+          <Tooltip title="Info" aria-label="info" placement="right">
+              <InfoIcon fontSize={"small"} />
+            </Tooltip>
         </h4>
       </div>
       <div className={"formFlex"}>
         <div className={"formGroup"}>
-          <CustomTextField
+        <Autocomplete
+              id="tags-outlined"
+              onChange={(e, value) => {
+                changeTextData(value, "source");
+              }}
+              value={form?.source || []}
+              options={source || []} 
+              getOptionLabel={(option) => option}
+              defaultValue={form?.source || []}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label={"Source"}
+                  // error={errorData?.source}
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <>
+                        {form?.source ? (
+                          <Clear
+                            onClick={() =>
+                              changeTextData(null, "source")
+                            }
+                            style={{ cursor: "pointer" }}
+                          />
+                        ) : null}
+                        <Search
+                          style={{ marginRight: -20, cursor: "pointer" }}
+                        />
+                      </>
+                    ),
+                  }}
+                />
+              )}
+               disableClearable
+            />
+          {/* <CustomTextField
             type="name"
             isError={errorData?.source}
             errorText={errorData?.source}
@@ -26,7 +68,7 @@ const ProfilingLead = (errorData, changeTextData, onBlurHandler, form) => {
             onTextChange={(text) => {
               changeTextData(text, "source");
             }}
-          />
+          /> */}
         </div>
         <div className={"formGroup"}>
           <CustomTextField
@@ -93,6 +135,9 @@ const ProfilingLead = (errorData, changeTextData, onBlurHandler, form) => {
         <Typography variant={"title"} className={"heading"}>
         Lead Details
         </Typography>
+        <Tooltip title="Info" aria-label="info" placement="right">
+              <InfoIcon fontSize={"small"} />
+            </Tooltip>
       </h4>
     </div>
     <div className={"formFlex"}>
@@ -111,7 +156,44 @@ const ProfilingLead = (errorData, changeTextData, onBlurHandler, form) => {
         </CustomSelectField>
       </div>
       <div className={"formGroup"}>
-      <CustomSelectField
+      <Autocomplete
+              id="tags-outlined"
+              onChange={(e, value) => {
+                changeTextData(value, "contact_owner");
+              }}
+              value={form?.contact_owner || []}
+              options={source || []} 
+              getOptionLabel={(option) => option}
+              defaultValue={form?.contact_owner || []}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label={"Contact Owner"}
+                  // error={errorData?.source}
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <>
+                        {form?.contact_owner ? (
+                          <Clear
+                            onClick={() =>
+                              changeTextData(null, "contact_owner")
+                            }
+                            style={{ cursor: "pointer" }}
+                          />
+                        ) : null}
+                        <Search
+                          style={{ marginRight: -20, cursor: "pointer" }}
+                        />
+                      </>
+                    ),
+                  }}
+                />
+              )}
+               disableClearable
+            />
+      {/* <CustomSelectField
           isError={errorData?.contact_owner}
           errorText={errorData?.contact_owner}
           label={"Contact Owner"}
@@ -122,7 +204,7 @@ const ProfilingLead = (errorData, changeTextData, onBlurHandler, form) => {
         >
           <MenuItem value=""></MenuItem>
           <MenuItem value="OTHER"></MenuItem>
-        </CustomSelectField>
+        </CustomSelectField> */}
       </div>
     </div>
     <div className={"formFlex"}>

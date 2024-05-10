@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../Styles.module.css";
-import { MenuItem, ButtonBase, Typography } from "@mui/material";
+import { MenuItem, Tooltip, Typography } from "@mui/material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
@@ -10,7 +10,7 @@ import prefer from "../../../../assets/Assets/ic_prefer_not_to_say.png";
 import female from "../../../../assets/Assets/ic_female.png";
 import male from "../../../../assets/Assets/ic_male.png";
 import Constants from "../../../../config/constants";
-
+import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
 const PersonalInfo = (errorData, changeTextData, onBlurHandler, form) => {
   const [selectedValue, setSelectedValue] = React.useState("");
 
@@ -24,6 +24,9 @@ const PersonalInfo = (errorData, changeTextData, onBlurHandler, form) => {
           <Typography variant={"title"} className={"heading"}>
             Personal Information
           </Typography>
+          <Tooltip title="Info" aria-label="info" placement="right">
+              <InfoIcon fontSize={"small"} />
+          </Tooltip>
         </h4>
       </div>
       <div className={styles.outerFlex}>
@@ -108,7 +111,8 @@ const PersonalInfo = (errorData, changeTextData, onBlurHandler, form) => {
                 isError={errorData?.contact}
                 errorText={errorData?.contact}
                 value={form?.contact}
-                label={"Phone No."}
+                contactType="Phone No"
+                // label={"Phone No."}
                 onTextChange={(text) => {
                   changeTextData(text, "contact");
                 }}

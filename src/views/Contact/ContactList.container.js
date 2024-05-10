@@ -22,6 +22,7 @@ import { ArrowPrimaryButton } from "./../../components/Buttons/PrimaryButton";
 import StatusPill from "./../../components/Status/StatusPill.component";
 import { serviceDeleteProduct } from "./../../services/Product.service";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
+import BasicButtonGroup from "../../components/BasicButtonGroup/BasicButtonGroup";
 const ContactList = (props) => {
   const {
     handleSortOrderChange,
@@ -67,8 +68,9 @@ const ContactList = (props) => {
       return <StatusPill status={"INACTIVE"} color={"high"} />;
     }
   }, []);
-
+  
   const tableStructure = useMemo(
+    
     () => [
       {
         key: "name",
@@ -169,8 +171,8 @@ const ContactList = (props) => {
           >
             CREATE
           </ArrowPrimaryButton>
-        </div>
-
+        </div><br></br><br></br>
+        <BasicButtonGroup buttonText={['Pending', 'In Progress', 'Proposal Sent', 'Archived', 'Customers', 'All']}/>
         <div>
           <FilterComponent
             is_progress={isFetching}

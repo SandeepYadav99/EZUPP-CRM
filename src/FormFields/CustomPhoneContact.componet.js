@@ -14,6 +14,7 @@ const CustomPhoneContactField = ({
   inputStyle,
   isValid,
   onMount,
+  contactType,
   ...rest
 }) => {
   // const handleChange = useCallback(
