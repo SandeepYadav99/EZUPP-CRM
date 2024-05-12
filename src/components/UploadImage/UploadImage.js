@@ -4,6 +4,7 @@ import EventEmitter from "../../libs/Events.utils";
 import csx from "classnames";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 
+
 const UploadImage = (
   {
     multiple,
@@ -210,7 +211,7 @@ const UploadImage = (
       </div>
     );
   }
-  
+
   if (circular && !multiple) {
     return (
       <div>
@@ -314,7 +315,6 @@ const UploadImage = (
             }}
           ></div>
           <div className={styles.imgEditBtn}>
-            {/* <CameraAltIcon className={styles.cameraIcon} /> */}
           </div>
         </label>
         <div className={styles.imgLowerContainer}>
