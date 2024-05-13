@@ -11,12 +11,14 @@ import female from "../../../../assets/Assets/ic_female.png";
 import male from "../../../../assets/Assets/ic_male.png";
 import Constants from "../../../../config/constants";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
-const PersonalInfo = (errorData, changeTextData, onBlurHandler, form) => {
+import LogUtils from "../../../../libs/LogUtils";
+const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
   const [selectedValue, setSelectedValue] = React.useState("");
 
   const handleChange = (value) => {
     setSelectedValue(value);
   };
+
   return (
     <ShadowBox className={styles.contact}>
       <div className={"headerFlex"}>
@@ -42,7 +44,7 @@ const PersonalInfo = (errorData, changeTextData, onBlurHandler, form) => {
                   handleChange={(value) => {
                     changeTextData(value, "prefix");
                   }}
-                  className={styles.prefix}
+                  // className={styles.prefix}
                 >
                   <MenuItem value="INDIA">India</MenuItem>
                   <MenuItem value="OTHER">Other</MenuItem>
@@ -111,8 +113,8 @@ const PersonalInfo = (errorData, changeTextData, onBlurHandler, form) => {
                 isError={errorData?.contact}
                 errorText={errorData?.contact}
                 value={form?.contact}
-                contactType="Phone No"
-                 label={"Phone No."}
+                // contactType="Phone No"
+                // label={"Phone No."}
                 onTextChange={(text) => {
                   changeTextData(text, "contact");
                 }}

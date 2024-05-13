@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useEffect, useCallback, useRef} from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {lighten } from "@mui/material/styles";
@@ -279,6 +279,8 @@ const EnhancedTable = (props) => {
     const [orderBy, setOrderBy] = useState("calories");
     const [selected, setSelected] = useState([]);
     const [dense, setDense] = useState(false);
+    const draggedItem = useRef();
+    const draggedOverItem = useRef();
     const {classes} = {...props};
 
     const {columns, data, page, rowsPerPageOptions, rowsPerPage, count, allRowSelected,hidePagination, showSelection, mobileRender} = props;
@@ -471,12 +473,34 @@ const EnhancedTable = (props) => {
 
                 return (
                     <TableRow
+                        draggable={props?.draggable}
+                        onDragStart={(e) => {
+                            console.log('onDragStart',  e.target.id);
+                            draggedItem.current = e.target.id;
+                        }}
+                        onDragOver={e => {
+                            // e.stopPropagation();
+                            e.preventDefault();
+                            draggedOverItem.current = e.currentTarget.id;
+                            if (draggedItem.current && draggedOverItem.current) {
+                                props?.handleDrag && props.handleDrag(draggedItem.current, draggedOverItem.current);
+                            }
+                            // console.log('onDragOver', e.currentTarget.id)
+                        }}
+                        onDragEnd={e => {
+                            if (draggedItem.current && draggedOverItem.current) {
+                                props?.handleDrag && props.handleDrag(draggedItem.current, draggedOverItem.current);
+                            }
+                            draggedOverItem.current = null;
+                            draggedItem.current = null;
+                        }}
                         hover
                         onClick={(event) => {
                         }}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
+                        id={row.id}
                         key={row.id + "" + Math.random()}
                         selected={isItemSelected}
                     >

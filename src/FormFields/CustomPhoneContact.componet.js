@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
-
+// import PhoneInput from "../components/country";
 import PhoneInput from "react-phone-input-2";
+import 'react-phone-input-2/lib/style.css'
 
 const CustomPhoneContactField = ({
   isError,
@@ -24,8 +25,7 @@ const CustomPhoneContactField = ({
   //   },
   //   [onChange, onTextChange]
   // );
-  const handleChange = useCallback(
-    (value, country, e, formattedValue) => {
+  const handleChange = useCallback((value, country, e, formattedValue) => {
 
       const countryCodeRegex = /\+(\d+)/;
       const match = formattedValue.match(countryCodeRegex);
@@ -57,9 +57,7 @@ const CustomPhoneContactField = ({
     <div style={{ display: "flex", flexDirection: "column" }}>
       <PhoneInput
         defaultErrorMessage={isError}
-        inputProps={{
-          name: "Phone No",
-        }}
+        placeholder={"country"}
         country={"in"}
         // country={country_code ? country_code.toLowerCase() : 'us'}
         value={value}
@@ -68,7 +66,6 @@ const CustomPhoneContactField = ({
           width: "100%",
           border: errorText ? "1px solid red" : "1px solid #ccc",
         }}
-         specialLabel=""
         isValid={isValid}
         {...rest}
       />

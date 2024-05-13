@@ -26,6 +26,7 @@ const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChang
            variant={'outlined'}
            color={'primary'}
            size={'small'}
+           margin={'dense'}
            fullWidth
            {...rest}
        />

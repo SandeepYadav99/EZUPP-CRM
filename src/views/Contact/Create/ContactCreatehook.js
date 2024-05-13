@@ -7,8 +7,7 @@ import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
 import { parsePhoneNumber } from "libphonenumber-js";
 import useDebounce from "../../../hooks/DebounceHook";
-const ContactCreatehook = () => {
-  const initialForm = {
+const initialForm = {
     name: "",
     age: "",
     contact: "",
@@ -25,7 +24,10 @@ const ContactCreatehook = () => {
     company_size: "",
     userManage: false,
     invoiteToUser: false,
-  };
+};
+
+const ContactCreatehook = () => {
+
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [source, setSource] = useState([]);
@@ -93,7 +95,13 @@ const ContactCreatehook = () => {
     },
     [ removeError, form, setForm]
   );
-  return {form, errorData, source};
+
+  return {
+      form,
+      errorData,
+      source,
+      changeTextData
+  };
 };
 
 export default ContactCreatehook;

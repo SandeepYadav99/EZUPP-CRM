@@ -17,6 +17,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from "@mui/material";
 import { Button, ButtonBase } from "@mui/material";
 import { withStyles } from "@mui/styles";
@@ -200,17 +201,18 @@ class ForgotPasswordView extends Component {
               >
                 {/*<ArrowBack onClick={this._handleBack}>*/}
                 {/*</ArrowBack>*/}
-                <div className={styles.headingTextBig}>Forgot Password ?</div>
+                {/* <div className={styles.headingTextBig}>Forgot Password ?</div> */}
+                <Typography variant="h3" color="text.secondary">Forgot Password</Typography>
               </div>
               <p
                 className={styles.bottomLine}
-                style={{ color: "grey", fontSize: "14px" }}
+                style={{ color: "grey", fontSize: "14px",marginTop:"10px" }}
               >
                 Enter your email and we'll send you instructions to reset your
                 password
               </p>
-              <div>
-                <br />
+              <div style={{marginTop:"10px"}}>
+                {/* <br /> */}
                 <div>
                   <Field
                     fullWidth={true}
@@ -241,7 +243,7 @@ class ForgotPasswordView extends Component {
                         <CircularProgress size={"18px"} color={"primary"} />
                       </div>
                     ) : (
-                      ""
+                      "SEND REST LINK"
                     )}
                   </ArrowPrimaryButton>
                   <div>

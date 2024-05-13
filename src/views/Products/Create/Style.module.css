@@ -3,7 +3,7 @@
     /* align-items: center; */
     justify-content: space-between;
     /* padding-bottom: 30px; */
-   
+
   }
   .outerFlex1{
     padding-bottom: 30px;
@@ -21,14 +21,14 @@
     padding: .4rem 1.2rem;
   }
 .product{
-    width: 100%;
-    margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
   .cont{
     display: flex;
     gap: 10px;
     /* align-items: center; */
-   
+
   }
 .imgText{
   display: flex;
@@ -71,7 +71,7 @@
 }
 .buttonContainer {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 /* .desc{
   height: 50% !important;

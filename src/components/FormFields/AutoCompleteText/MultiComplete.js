@@ -15,20 +15,21 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-  fontSize: ".875rem",
-  "&:hover": {
-    backgroundColor: theme.palette.error.light,
-    border: 0,
-  },
+  // fontSize: ".775rem",
+  fontSize:"0.8rem",
+  // "&:hover": {
+  //   backgroundColor: theme.palette.error.light,
+  //   border: 0,
+  // },
   "&:disabled": {
     backgroundColor: "transparent",
   },
   "& .MuiChip-deleteIcon": {
     backgroundColor: "transparent",
   },
-  "&:hover .MuiChip-deleteIcon": {
-    color: "#FF0000",
-  },
+  // "&:hover .MuiChip-deleteIcon": {
+  //   color: "#FF0000",
+  // },
 }));
 
 const StyledOption = styled("div")(({ theme }) => ({
@@ -38,16 +39,16 @@ const StyledOption = styled("div")(({ theme }) => ({
 }));
 
 const CustomMultiComplete = ({
-  AutoCompleteList,
-  value,
+  AutoCompleteList = [],
+  value = null,
   isError,
   errorText,
-  icon,
   label,
   onChange,
   onTextChange,
-  inputProps,
-  enableField,
+  enableField = [],
+  showImage = false,
+  multiple = false,
   ...rest
 }) => {
   const handleChange = useCallback(
@@ -58,51 +59,84 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   return (
-    <Autocomplete
-      multiple
-      id="user-autocomplete-new-Auto"
-      options={AutoCompleteList ? AutoCompleteList : []}
-      getOptionLabel={(user) => user.email}
-      onChange={(event, newValue) => {
-        handleChange(newValue);
-      }}
-      renderInput={(params) => (
-        <TextField
-          error={isError}
-          helperText={errorText}
-          label={label}
-          {...params}
-          variant="outlined"
-          color={"primary"}
-          size={"small"}
-          fullWidth
-          {...rest}
+    <>
+      {multiple ? (
+        <Autocomplete
+          multiple
+          id="user-autocomplete-new-Auto"
+          options={AutoCompleteList}
+          onChange={(event, newValue) => {
+            handleChange(newValue);
+          }}
+          renderInput={(params) => (
+            <TextField
+              error={isError}
+              helperText={errorText}
+              label={label}
+              {...params}
+              variant="outlined"
+              color={"primary"}
+              size={"small"}
+              fullWidth
+              {...rest}
+            />
+          )}
+          renderOption={(props, option) => (
+            <StyledOption {...props}>
+              {showImage && <Avatar src={option?.image} alt={"Image"} />}
+              <div>
+                {enableField?.length > 0 &&
+                  enableField?.map((field, index) => (
+                    <div key={`enable_${index}`} className="option_auto_class">
+                      {option[field]}
+                    </div>
+                  ))}
+              </div>
+            </StyledOption>
+          )}
+          value={value}
+          renderTags={(value, getTagProps) =>
+            value?.map((option, index) => (
+              <StyledChip
+                {...getTagProps({ index })}
+                avatar={
+                  showImage ? <Avatar src={option?.image} alt={"Image"} /> : ""
+                }
+                label={option?.label}
+              />
+            ))
+          }
         />
-      )}
-      renderOption={(props, option) => (
-        <StyledOption {...props}>
-          {option?.image && <Avatar src={option?.image} alt={"Image"} />}
-          <div>
-            {enableField?.length > 0 &&
-              enableField?.map((field, index) => (
-                <div key={`enable_${index}`} className="option_auto_class">
-                  {option[field]}
-                </div>
-              ))}
-          </div>
-        </StyledOption>
-      )}
-      value={value}
-      renderTags={(value, getTagProps) =>
-        value?.map((option, index) => (
-          <StyledChip
-            {...getTagProps({ index })}
-            avatar={<Avatar src={option?.image} alt={option?.email} />}
-            label={option?.label}
+      ) : (
+        <>
+          <Autocomplete
+            id="tags-outlined"
+            options={AutoCompleteList ? AutoCompleteList : []}
+            renderInput={(params) => (
+              <TextField
+                error={isError}
+                helperText={errorText}
+                label={label}
+                {...params}
+                variant="outlined"
+                color={"primary"}
+                size={"small"}
+                fullWidth
+                {...rest}
+              />
+            )}
+            onChange={(event, newValue) => {
+              handleChange(newValue);
+            }}
+            variant="outlined"
+            color={"primary"}
+            size={"small"}
+            value={value ? value : null}
+            {...rest}
           />
-        ))
-      }
-    />
+        </>
+      )}
+    </>
   );
 };
 

@@ -41,6 +41,7 @@ const UnitsList = (props) => {
     configFilter,
     handleCreate,
     editData,
+    handleDrag
   } = useUserListHook({});
   const editDataId = editData ? editData.id : null;
 
@@ -91,14 +92,14 @@ const UnitsList = (props) => {
         sortable: false,
         render: (temp, all) => <div>{all?.is_general ?"Yes" : "No" }</div>,
       },
-   
+
       {
         key: "status",
         label: "Status",
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all.status)}</div>,
       },
-   
+
       {
         key: "user_id",
         label: "Action",
@@ -125,6 +126,7 @@ const UnitsList = (props) => {
       onSortOrderChange: handleSortOrderChange,
       onPageChange: handlePageChange,
       onRowSizeChange: handleRowSize,
+      handleDrag: handleDrag
     };
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
@@ -132,6 +134,7 @@ const UnitsList = (props) => {
       data: present,
       count: allData.length,
       page: currentPage,
+      draggable: true
     };
 
     return { datatableFunctions, datatable };
@@ -144,6 +147,7 @@ const UnitsList = (props) => {
     handleRowSize,
     present,
     currentPage,
+    handleDrag,
   ]);
 
   return (
