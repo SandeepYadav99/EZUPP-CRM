@@ -24,6 +24,7 @@ export const SET_SERVER_PAGE = 'SET_SERVER_PAGE_UNIT';
 export const CREATE_DATA = 'CREATE_UNIT';
 export const UPDATE_DATA = 'UPDATE_UNIT';
 export const DELETE_ITEM = 'DELETE_UNIT';
+export const DRAG_ITEM = 'DRAG_UNIT';
 
 export function actionFetchUnit(index = 1, sorting = {}, filter = {}, shouldReset=false) {
     const request = serviceGetUnit({ index, row: sorting.row, order: sorting.order, ...filter });
@@ -129,6 +130,13 @@ export function actionResetFilterUnit() {
         type: RESET_FILTER,
         payload: null,
     };
+}
+
+export function actionDragUnit(dragId, dragOverId) {
+    return {
+        type: DRAG_ITEM,
+        payload: {dragId, dragOverId}
+    }
 }
 
 export function actionSetPageUnit(page) {

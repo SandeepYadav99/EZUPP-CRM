@@ -152,5 +152,8 @@ export default {
     PROFILE_TYPE: {
         BUSINESS: 'BUSINESS',
         INDIVIDUAL: 'INDIVIDUAL'
-    }
+    },
+    LOG_ENABLED: true,
+    WARNING_ENABLED: true,
+    ERROR_ENABLED: true,
 };
