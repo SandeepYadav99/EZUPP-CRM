@@ -13,6 +13,8 @@ import {
 import { serviceGetIndustryList } from "../../../services/Industry.service";
 import constants from "../../../config/constants";
 import { useParams } from "react-router-dom";
+import slugify from "slugify";
+
 
 function useNewBlogCreateHook({ location }) {
   const initialForm = {
@@ -33,7 +35,7 @@ function useNewBlogCreateHook({ location }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checked, setChecked] = useState(false);
   const [industries, setIndustries] = useState([]);
-  const [coverImage, setCoverImage] = useState("");
+  const [coverImage, setCoverImage] = useState('');
   const [confirmPopUp, setConfirmPopUp] = useState(false);
   const [taglist, setTagList] = useState([]);
   const [editor_data, setEditor_Data] = useState(null);
@@ -102,7 +104,8 @@ function useNewBlogCreateHook({ location }) {
       serviceBlogsDetails({ id: params?.id })?.then((res) => {
         const data = res?.data;
         console.log("data", data);
-        setCoverImage(data?.image);
+        setCoverImage((prev)=>data?.image);
+        
         setForm({
           ...form,
           title: data?.title,
@@ -119,7 +122,7 @@ function useNewBlogCreateHook({ location }) {
         });
       });
     }
-  }, [params?.id]);
+  }, [params?.id,setCoverImage]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -172,7 +175,10 @@ function useNewBlogCreateHook({ location }) {
       const t = { ...form };
       if (fieldName === "title") {
         t[fieldName] = text;
-        t['slug']=text?.toLowerCase()?.replace(' ','-');
+        // t['slug']=text?.toLowerCase()?.replace(' ','-');
+       t["slug"]= slugify(text,{replacement:"-",
+          lower:true,
+        })
         // } else if (fieldName === "topic") {
         //   if (text >= 0) {
         //     t[fieldName] = text;
@@ -296,6 +302,7 @@ function useNewBlogCreateHook({ location }) {
     coverImage,
     checked,
     descriptionRef,
+    setCoverImage
   };
 }
 

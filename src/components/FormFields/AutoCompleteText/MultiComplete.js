@@ -16,7 +16,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   borderRadius: "20px",
   fontWeight: "530",
   // fontSize: ".775rem",
-  fontSize:"0.9rem",
+  fontSize:"0.8rem",
   // "&:hover": {
   //   backgroundColor: theme.palette.error.light,
   //   border: 0,
@@ -50,6 +50,7 @@ const CustomMultiComplete = ({
   inputProps,
   enableField,
   isPic,
+  
   ...rest
 }) => {
   const handleChange = useCallback(
