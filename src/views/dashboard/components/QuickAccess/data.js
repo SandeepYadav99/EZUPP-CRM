@@ -6,9 +6,6 @@ const data={
   "title": "Quick Access",
     "Data":[
       {
-       
-      
-          
           "subtitle": "Tasks",
           "bodyText": "Access tasks", 
           "image": task

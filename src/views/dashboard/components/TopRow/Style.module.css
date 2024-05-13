@@ -64,7 +64,7 @@ height: 86px;
   /* margin-left: 175px; */
   float: right;
   align-items: flex-end !important;
-  margin-top: -22%;
+  margin-top: -55px;
 
 }
 .buttonAndImageContainer {
@@ -162,6 +162,7 @@ height: 86px;
     display: flex;
     gap: 10px;
     justify-content: space-between !important;
+    margin-top: 20px;
   }
   
   .iconCont{

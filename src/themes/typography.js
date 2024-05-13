@@ -33,6 +33,21 @@ const Typography = (fontFamily) => ({
     fontSize: "1rem",
     lineHeight: 1.5,
   },
+  title: {
+    fontWeight: 600,
+    fontSize: "1.125rem", //18px
+    lineHeight: 1.5,
+  },
+  title1: {
+    fontWeight: 600,
+    fontSize: "1.375rem", //22px
+    lineHeight: 1.5,
+  },
+  body3: {
+    fontWeight: 600,
+    fontSize: "0.75rem",  // 12px bold
+    lineHeight: 1.66,
+  },
   subtitle: {
     fontWeight: 600,
     fontSize: "0.8rem",
@@ -65,6 +80,7 @@ const Typography = (fontFamily) => ({
     fontWeight: 500,
     lineHeight: 1.66,
   },
+
   overline: {
     lineHeight: 1.66,
     // color: 'red !important'

@@ -3,9 +3,12 @@ import { Typography, Avatar } from "@mui/material";
 import { NotiList } from "../../helper/Helper";
 import styles from "./Style.module.css";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
-
+import NotificationDetailsHook from "./NotificationDetailsHook";
 function NotificationCard() {
   const listData = [...NotiList];
+  const {
+    handleDetail,
+  } = NotificationDetailsHook({});
   const Card = useCallback(
     ({ data }) => {
       return (
@@ -67,7 +70,7 @@ function NotificationCard() {
       ))}
       <div className={styles.btnWrapp}>
         <PrimaryButton style={{ width: "100%" }}>
-          <Typography variant="body1">VIEW ALL NOTIFICATIONS</Typography>
+          <Typography variant="body1" onClick={handleDetail}>VIEW ALL NOTIFICATIONS</Typography>
         </PrimaryButton>
       </div>
     </div>

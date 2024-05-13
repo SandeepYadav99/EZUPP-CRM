@@ -1,6 +1,6 @@
 /* eslint-disable indent,linebreak-style */
 const TABLE_LIMIT = 50;
-const tempLevel = true; 
+const tempLevel = true;
 
 //const tempLevel =  !(!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
 const tempDate = new Date();
@@ -148,5 +148,12 @@ export default {
         'ACTIVE': 'ACTIVE',
         'INACTIVE': 'INACTIVE',
         'PENDING' : 'COMING SOON'
-    }
+    },
+    PROFILE_TYPE: {
+        BUSINESS: 'BUSINESS',
+        INDIVIDUAL: 'INDIVIDUAL'
+    },
+    LOG_ENABLED: true,
+    WARNING_ENABLED: true,
+    ERROR_ENABLED: true,
 };

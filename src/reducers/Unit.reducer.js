@@ -15,7 +15,7 @@ import {
     SET_SERVER_PAGE,
     CREATE_DATA,
     UPDATE_DATA,
-    DELETE_ITEM
+    DELETE_ITEM, DRAG_ITEM
 } from '../actions/Unit.action';
 import Constants from '../config/constants';
 
@@ -51,7 +51,7 @@ export default function (state = JSON.parse(JSON.stringify(initialState)), actio
                 newAll = [...newData];
             } else {
                 newAll = [...state.all, ...newData];
-              
+
             }
             const tableData = mapPresetPRequest(newAll, state.currentPage);
             return {...state, all: newAll, present: tableData, is_fetching: false}; // { ...state , all: newAll, present: tableData, serverPage: 1, currentPage: 1 };
@@ -163,6 +163,22 @@ export default function (state = JSON.parse(JSON.stringify(initialState)), actio
         }
         case SET_SERVER_PAGE: {
             return {...state, serverPage: action.payload};
+        }
+        case DRAG_ITEM: {
+            const { dragId, dragOverId } = action?.payload;
+            const prevState = [...state.all];
+            const dragIndex = prevState.findIndex(item => item?.id === dragId);
+            const draggedOverIndex = prevState.findIndex(item => item?.id === dragOverId);
+            if (dragIndex >= 0 && draggedOverIndex >= 0) {
+                const temp = prevState[dragIndex];
+                prevState.splice(dragIndex, 1);
+                prevState.splice(draggedOverIndex, 0, temp);
+                const tableData = mapPresetPRequest(prevState, state.currentPage);
+                return {...state, all: prevState, present: tableData};
+            }
+            return {
+                ...state
+            }
         }
         default: {
             return state;

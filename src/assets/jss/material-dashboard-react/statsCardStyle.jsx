@@ -41,7 +41,7 @@ const statsCardStyle = {
   cardIcon: {
     width: "40px",
     height: "36px",
-    fill: "#fff"
+    fill: "#F7F7F9"
   },
   cardAvatar: {
     margin: "8px"

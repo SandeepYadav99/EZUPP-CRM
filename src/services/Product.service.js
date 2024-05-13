@@ -14,12 +14,13 @@ export async function serviceUpdateProduct(params) {
 export async function serviceDeleteProduct(params) {
     return await formDataRequest('products/delete', params);
 }
-
-
 export async function serviceGetProduct (params) {
     return await postRequest('products', params);
 }
 
 export async function serviceProductCheck (params) {
     return await postRequest('products/check', params);
+}
+export async function serviceGetProductDetails (params) {
+    return await postRequest('products/detail', params);
 }

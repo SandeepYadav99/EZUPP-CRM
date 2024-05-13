@@ -41,5 +41,8 @@ export default {
   ROLE_CREATE:"/role/create",
   ROLE_CREATE_UPDATE:"/role/update/",
   BLOGS_CREATE:"/blogs/create",
-  BLOGS_UPDATE:"/blogs/update/"
+  BLOGS_UPDATE:"/blogs/update/",
+  PRODUCT_DETAILS:"/product/details/",
+  PRODUCT_CREATE:"/product/create",
+  NOTIFICATION_DETAILS:"/notifications",
 };

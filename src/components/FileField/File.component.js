@@ -75,7 +75,8 @@ class File extends Component {
 
 
     render() {
-        const {value, children, multiple, accept, error, placeholder,name,component,user_image, title, show_image, default_image,banner, link, circular,bannerLabel,isBlogPage, is_not_default_width,is_not_default_height} = this.props;
+        // const {value, children, multiple, accept, error, placeholder,name,component,user_image, title, show_image, default_image,banner, link, circular,bannerLabel,isBlogPage, is_not_default_width,is_not_default_height} = this.props;
+        const {renderImageComponent, value, children, multiple, accept, error, placeholder,name,component,user_image, title, show_image, default_image,banner, link, circular,bannerLabel,isBlogPage,is_not_default_width,is_not_default_height} = this.props;
         let tempPlaceHolder = this.props.placeholder;
         if (value != '' && value !== null) {
             if (value instanceof Object && !Array.isArray(value)) {
@@ -83,6 +84,9 @@ class File extends Component {
             } else {
                 tempPlaceHolder = value?.length + ' Selected';
             }
+        }
+        if (renderImageComponent) {
+            return <>{renderImageComponent(value, this.this._getImageUrl(value), this._handleFileChange)}</>
         }
         if (show_image && !multiple && !bannerLabel) {
             return (
