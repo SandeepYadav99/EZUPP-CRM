@@ -2,7 +2,7 @@ import React from "react";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 
-const NewEditor = ({ editorData, handleChangeEditor, type, value,...rest }) => {
+const NewEditor = ({ editorData, handleChangeEditor, type, value,buttonList,height,...rest }) => {
   
   const handleChange = (content) => {
     handleChangeEditor && handleChangeEditor(content);
@@ -13,8 +13,9 @@ const NewEditor = ({ editorData, handleChangeEditor, type, value,...rest }) => {
       <SunEditor
         defaultValue={editorData}
         setOptions={{
-          height: 400,
-          buttonList: [
+          // height: 400,
+          height: height,
+          buttonList:[
             [
               "undo",
               "redo",

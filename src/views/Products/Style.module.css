@@ -1,6 +1,6 @@
 .mainContainer {
     padding: 10px;
- 
+
 }
 .headerContainer {
     display: flex;
@@ -52,8 +52,8 @@
 }
 
 .profileImage{
-   
-    
+
+
 }
 .actionButton{
     display: flex;
@@ -68,4 +68,3 @@
 .product{
     width: 100%;
 }
-

@@ -14,7 +14,7 @@ const PersonalInformation = ({
   image,
   listData,
 }) => {
-  console.log(form, "Form");
+  console.log(image, "Form");
   return (
     <>
       <div className={"plainPaper"}>

@@ -55,6 +55,7 @@ import ProductCreate from "../views/Products/Create/ProductCreate"
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
+import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 
 const dashboardRoutes = [
   {
@@ -479,14 +480,14 @@ const dashboardRoutes = [
   },
   {
     path:`${RouteName?.BLOGS_CREATE}`,
-    component: BlogsCreate ,
+    component: NewBlogsCreate ,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
   },
   {
     path:`${RouteName?.BLOGS_UPDATE}:id`,
-    component: BlogsCreate ,
+    component:  NewBlogsCreate ,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,

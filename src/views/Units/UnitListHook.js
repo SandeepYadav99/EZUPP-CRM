@@ -4,8 +4,10 @@ import RouteName from "./../../routes/Route.name";
 import {
   actionFetchUnit,
   actionSetPageUnit,
+    actionDragUnit
 } from "./../../actions/Unit.action";
 import history from "./../../libs/history.utils";
+import LogUtils from "../../libs/LogUtils";
 
 const useUserListHook = ({}) => {
   const [editData, setEditData] = useState(null);
@@ -136,6 +138,10 @@ const useUserListHook = ({}) => {
     ];
   }, []);
 
+  const handleDrag = useCallback((dragId, dragOverId) => {
+      dispatch(actionDragUnit(dragId, dragOverId))
+  }, []);
+
   return {
     handlePageChange,
     handleFilterDataChange,
@@ -147,6 +153,7 @@ const useUserListHook = ({}) => {
     editData,
     configFilter,
     handleEditSidePannel,
+      handleDrag,
     // handleCreate,
   };
 };

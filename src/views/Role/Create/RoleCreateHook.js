@@ -22,6 +22,7 @@ import {
 import { useParams } from "react-router-dom";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
+import LogUtils from "../../../libs/LogUtils";
 const initialForm = {
   name: "",
   displayName: "",
@@ -140,12 +141,12 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       const res = await req(updateData);
 
       if (!res.error) {
-       
+
         history.goBack()
       } else {
         SnackbarUtils.error(res.message);
       }
-      
+
     } catch (error) {
     } finally {
       setIsSubmitting(false);

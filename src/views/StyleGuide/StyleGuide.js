@@ -77,12 +77,17 @@ const StyleGuide = ({}) => {
     const theme = useTheme();
     const {checkboxValue, handleCheckboxChange} = useStyleGuide({});
     const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selectedUsersSingle, setSelectedUsersSingle] = useState("");
     const changeTextData = useCallback(
         (text, fieldName) => {
+            if(fieldName === "user_list"){
+                setSelectedUsers([...text]);
+            }else{
+                setSelectedUsersSingle(text)
+            }
             console.log("changeTextData", text, fieldName);
-            setSelectedUsers([...text]);
         },
-        [selectedUsers]
+        [selectedUsers,selectedUsersSingle]
     );
     const [selectedValue, setSelectedValue] = React.useState("");
 
@@ -236,6 +241,7 @@ const StyleGuide = ({}) => {
                             <Typography variant={"h6"}>Multipe select</Typography>
                         </div>
                         <Autocomplete
+                            size={'small'}
                             multiple
                             id="tags-outlined"
                             options={AutoCompleteData ? AutoCompleteData : []}
@@ -246,6 +252,8 @@ const StyleGuide = ({}) => {
                         />
                         <br/>
                         <CustomMultiComplete
+                            multiple
+                            showImage
                             AutoCompleteList={AutoCompleteData}
                             label="User Lists"
                             value={selectedUsers}
@@ -253,18 +261,34 @@ const StyleGuide = ({}) => {
                                 changeTextData(text, "user_list");
                             }}
                             enableField={["title", "email"]}
+                            getOptionLabel={(option) => option.email}
+                        />
+                        <br/>
+                         <CustomMultiComplete
+                            AutoCompleteList={AutoCompleteData}
+                            label="User Lists Single"
+                            value={selectedUsersSingle}
+                            onTextChange={(text) => {
+                                changeTextData(text, "user_list_single");
+                            }}
+                            getOptionLabel={(option) => option.email}
+                            renderInput={(params) => (
+                                <TextField {...params} variant="outlined" label="Add Guests"/>
+                            )}
+                            isError={true}
+
                         />
                         <div className={styles.boxCont}>
                             <Typography variant={"h6"}>single select</Typography>
                         </div>
-                        <Autocomplete
+                        {/* <Autocomplete
                             id="tags-outlined"
                             options={AutoCompleteData ? AutoCompleteData : []}
                             getOptionLabel={(option) => option.title}
                             renderInput={(params) => (
                                 <TextField {...params} variant="outlined" label="Add Guests"/>
                             )}
-                        />
+                        /> */}
                         <div className={styles.boxCont}>
                             <Typography variant={"h6"}>Error Field with Disabled</Typography>
                         </div>
@@ -392,6 +416,7 @@ const StyleGuide = ({}) => {
                             "subtitle1",
                             "subtitle2",
                             "overline",
+                            "subtitle3",
                         ].map((key) => {
                             return (
                                 <Typography color={"text.secondary"} variant={key}>

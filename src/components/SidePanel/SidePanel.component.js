@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import classnames from 'classnames';
 import ReactDOM from 'react-dom';
 import styles from './style.module.css';
-import {ButtonBase} from '@mui/material';
+import {ButtonBase, Typography} from '@mui/material';
 import {withTheme} from '@mui/styles';
 import {Close} from '@mui/icons-material';
 
@@ -140,9 +140,10 @@ class SidePanelComponent extends Component {
                             <Close></Close>
                         </ButtonBase>
                         <div style={{padding: '0px 15px', flex: 1}}>
-                        <h3 style={{}}>
+                        {/* <h3 style={{}}>
                             {this.props.title}
-                        </h3>
+                        </h3> */}
+                        <Typography variant='h4' color="text.secondary"> {this.props.title}</Typography>
                         </div>
                     </div>
                     <br/>

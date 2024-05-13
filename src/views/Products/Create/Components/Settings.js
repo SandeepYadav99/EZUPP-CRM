@@ -6,7 +6,7 @@ import CheckboxWithText from "../../../../components/RadioButtons/CheckboxWithTe
 import useStyleGuide from "../../../StyleGuide/StyleGuide.hook";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import styles from "../Style.module.css";
-
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 const Settings = ({
   errorData,
   changeTextData,

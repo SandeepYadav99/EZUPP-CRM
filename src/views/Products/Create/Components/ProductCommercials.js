@@ -4,7 +4,6 @@ import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
-
 const ProductCommercials = ({
   errorData,
   changeTextData,

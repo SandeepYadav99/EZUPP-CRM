@@ -155,6 +155,8 @@ export default {
         PREFER_NOT: 'PREFER_NOT',
         FEMALE: 'FEMALE',
         MALE: 'MALE'
-        
-    }
+    },
+    LOG_ENABLED: true,
+    WARNING_ENABLED: true,
+    ERROR_ENABLED: true,
 };
