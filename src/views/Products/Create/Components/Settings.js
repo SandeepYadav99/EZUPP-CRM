@@ -6,7 +6,6 @@ import CheckboxWithText from "../../../../components/RadioButtons/CheckboxWithTe
 import useStyleGuide from "../../../StyleGuide/StyleGuide.hook";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import styles from "../Style.module.css";
-import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 const Settings = ({
   errorData,
   changeTextData,
@@ -50,16 +49,16 @@ const Settings = ({
               <div className={"formGroup"}></div>
             </div>
             <div className={`formFlex ${styles.space}`}>
-                
+
               <div className={styles.box}>
                 <div className={"formGroup "}>
-               
+
                   <CustomCheckbox
                     value={form?.is_show_public}
                     handleChange={() => {
                       changeTextData(!form?.is_show_public, "is_show_public");
                     }}
-                    
+
                     label={
                       <Typography variant="subtitle1">Show Public</Typography>
                     }

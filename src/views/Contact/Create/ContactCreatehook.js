@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router";
 import {serviceProviderProfileGetKeyword} from "../../../services/ProviderUser.service";
-const ContactCreatehook = () => {
-  const initialForm = {
+const initialForm = {
     name: "",
     userName: "",
     image: "",
@@ -18,7 +17,10 @@ const ContactCreatehook = () => {
     end_date: "",
     userManage: false,
     invoiteToUser: false,
-  };
+};
+
+const ContactCreatehook = () => {
+
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
@@ -58,7 +60,13 @@ const ContactCreatehook = () => {
     },
     [ removeError, form, setForm]
   );
-  return {form, errorData, source};
+
+  return {
+      form,
+      errorData,
+      source,
+      changeTextData
+  };
 };
 
 export default ContactCreatehook;
