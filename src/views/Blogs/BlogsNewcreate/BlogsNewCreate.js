@@ -286,7 +286,7 @@ const NewBlogsCreate = ({ location }) => {
               />
             </div>
             <div className={"formGroup"}>
-              <Autocomplete
+              {/* <Autocomplete
                 multiple
                 id="tags-outlined"
                 onChange={(e, value) => {
@@ -320,9 +320,10 @@ const NewBlogsCreate = ({ location }) => {
                     }}
                   />
                 )}
-              />
-              {/* <MultiComplete
-                nopic
+              /> */}
+              <MultiComplete
+                multiple
+               isArray
                 AutoCompleteList={taglist ? taglist : []}
                 getOptionLabel={(option) => option}
                 label="Associate Tags"
@@ -331,8 +332,8 @@ const NewBlogsCreate = ({ location }) => {
                 onTextChange={(text) => {
                   changeTextData(text, "tags");
                 }}
-                enableField={["tags"]}
-              /> */}
+               
+              />
               <Typography variant="body2" color={"text.secondary"}>
                 Please press enter to add a tag if not found in the search
                 results.
@@ -467,11 +468,11 @@ const NewBlogsCreate = ({ location }) => {
               /> */}
               <CustomTextField
                 fullWidth
-                inputProps={{
-                  sx: {
-                    "& >fieldset": { height: "146px" },
-                  },
-                }}
+                // inputProps={{
+                //   sx: {
+                //     "& >fieldset": { height: "146px" },
+                //   },
+                // }}
                 isError={errorData?.meta_description}
                 errorText={errorData?.meta_description}
                 label={"Meta Description"}
@@ -479,6 +480,8 @@ const NewBlogsCreate = ({ location }) => {
                 onTextChange={(text) => {
                   changeTextData(text, "meta_description");
                 }}
+                multiline
+                rows={5}
               />
             </div>
           </ShadowBox>

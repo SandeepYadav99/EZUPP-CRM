@@ -338,14 +338,15 @@ function QuickContactView({ isOpen, handleToggle }) {
           )}
         /> */}
         <MultiComplete
-          isPic
+        
+          multiple
           AutoCompleteList={associateTagsData ? associateTagsData : []}
           label="Associate Tags"
           value={form?.associate_tags_list}
           onTextChange={(text) => {
             changeTextData(text, "associate_tags_list");
           }}
-          enableField={["title", "email"]}
+          enableField={["title"]}
           // getTagProps={{sx:{textAlign:"left",
           //   font:"normal normal normal 14px/16px Arial",
           //   letterSpacing:"0px",
