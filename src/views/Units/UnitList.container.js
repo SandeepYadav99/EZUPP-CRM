@@ -134,6 +134,7 @@ const UnitsList = (props) => {
       data: present,
       count: allData.length,
       page: currentPage,
+      draggable: true
     };
 
     return { datatableFunctions, datatable };
@@ -146,7 +147,7 @@ const UnitsList = (props) => {
     handleRowSize,
     present,
     currentPage,
-    handleDrag
+    handleDrag,
   ]);
 
   return (
