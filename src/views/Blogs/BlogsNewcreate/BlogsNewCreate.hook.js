@@ -15,21 +15,21 @@ import constants from "../../../config/constants";
 import { useParams } from "react-router-dom";
 import slugify from "slugify";
 
+const initialForm = {
+  title: "",
+  slug: "",
+  tags: [],
+  topic: "",
+  meta_description: "",
+  author: "",
+  image: null,
+  is_featured: true,
+  blog_description: "",
+  publish_on: "",
+  status: "",
+};
 
 function useNewBlogCreateHook({ location }) {
-  const initialForm = {
-    title: "",
-    slug: "",
-    tags: [],
-    topic: "",
-    meta_description: "",
-    author: "",
-    image: null,
-    is_featured: true,
-    blog_description: "",
-    publish_on: "",
-    status: "",
-  };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,19 +43,32 @@ function useNewBlogCreateHook({ location }) {
 
   const params = useParams();
 
-  const descriptionRef = useRef(null);
-
   useEffect(() => {
-    serviceGetTagsList()?.then((res) => {
-      setTagList(res?.data);
-    });
+    (async ()=> {
+      const promises = await Promise.allSettled([
+        serviceGetTagsList(),
+        serviceGetIndustryList()
+      ]);
+      const tagList = ((promises[0]).value)?.data;
+      const industryList = ((promises[1]).value)?.data;
+
+      setTagList(tagList);
+      setIndustries(industryList);
+
+    })();
   }, []);
 
-  useEffect(() => {
-    serviceGetIndustryList()?.then((res) => {
-      setIndustries(res?.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   ?.then((res) => {
+  //     setTagList(res?.data);
+  //   });
+  // }, []);
+  //
+  // useEffect(() => {
+  //   ?.then((res) => {
+  //     setIndustries(res?.data);
+  //   });
+  // }, []);
 
   const onChangeCheckBox = () => {
     setChecked(!checked);
@@ -84,20 +97,7 @@ function useNewBlogCreateHook({ location }) {
 
   const handleSave = () => {};
   const handleCancel = () => {
-    setForm({
-      ...form,
-      title: "",
-      slug: "",
-      tags: [],
-      topic: "",
-      meta_description: "",
-      author: "",
-      image: null,
-      is_featured: true,
-      blog_description: "",
-      publish_on: "",
-      status: "",
-    });
+    setForm({...initialForm});
   };
   useEffect(() => {
     if (params?.id) {
@@ -105,9 +105,10 @@ function useNewBlogCreateHook({ location }) {
         const data = res?.data;
         console.log("data", data);
         setCoverImage((prev)=>data?.image);
-        
+
         setForm({
           ...form,
+          ...data,
           title: data?.title,
           slug: data?.slug,
           topic: data?.topic,
@@ -117,12 +118,12 @@ function useNewBlogCreateHook({ location }) {
           tags: data?.tags,
           blog_description: data?.blog_description,
           meta_description: data?.meta_description,
-        
-          
         });
       });
     }
-  }, [params?.id,setCoverImage]);
+  }, [params?.id]);
+
+
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -166,8 +167,7 @@ function useNewBlogCreateHook({ location }) {
       temp[title] = false;
       setErrorData(temp);
     },
-    [setErrorData, errorData]
-  );
+    [setErrorData, errorData]);
 
   const changeTextData = useCallback(
     (text, fieldName) => {
@@ -176,13 +176,7 @@ function useNewBlogCreateHook({ location }) {
       if (fieldName === "title") {
         t[fieldName] = text;
         // t['slug']=text?.toLowerCase()?.replace(' ','-');
-       t["slug"]= slugify(text,{replacement:"-",
-          lower:true,
-        })
-        // } else if (fieldName === "topic") {
-        //   if (text >= 0) {
-        //     t[fieldName] = text;
-        //   }
+       t["slug"]= slugify(text,{replacement:"-", lower:true});
       } else {
         t[fieldName] = text;
       }
@@ -192,7 +186,6 @@ function useNewBlogCreateHook({ location }) {
     [removeError, form, setForm]
   );
 
-  descriptionRef.current = changeTextData;
 
   const submitToServer = useCallback(
     (status) => {
@@ -230,7 +223,7 @@ function useNewBlogCreateHook({ location }) {
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting]
+    [form, isSubmitting, setIsSubmitting, params]
   );
 
   const onBlurHandler = useCallback(
@@ -239,7 +232,7 @@ function useNewBlogCreateHook({ location }) {
         changeTextData(form?.[type].trim(), type);
       }
     },
-    [changeTextData]
+    [changeTextData, form]
   );
 
   const handleSubmit = useCallback(
@@ -252,7 +245,7 @@ function useNewBlogCreateHook({ location }) {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, submitToServer]
   );
 
   const handleDelete = () => {
@@ -301,7 +294,6 @@ function useNewBlogCreateHook({ location }) {
     anchor,
     coverImage,
     checked,
-    descriptionRef,
     setCoverImage
   };
 }
