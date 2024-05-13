@@ -69,7 +69,6 @@ const NewBlogsCreate = ({ location }) => {
     setCoverImage,
 
     checked,
-    descriptionRef,
   } = useNewBlogCreateHook({ location });
 
   const defaultTheme = createMuiTheme();
@@ -281,7 +280,7 @@ const NewBlogsCreate = ({ location }) => {
                 height={264}
                 editorData={form?.blog_description}
                 handleChangeEditor={(html) => {
-                  descriptionRef.current(html, "blog_description");
+                  changeTextData(html, "blog_description");
                 }}
               />
             </div>
