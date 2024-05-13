@@ -19,7 +19,7 @@ const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
         </h4>
       </div>
       <div className={"formFlex"}>
-            <div className={"formGroup"}>
+            <div className={"formGroup"} style={{'marginTop':'8px'}}>
             <CustomTextField
                 type="name"
                 isError={errorData?.business_name}
@@ -33,12 +33,12 @@ const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
             </div>
             <div className={"formGroup"}>
               <CustomSelectField
-                isError={errorData?.country}
-                errorText={errorData?.country}
+                isError={errorData?.industry}
+                errorText={errorData?.industry}
                 label={"Industry"}
-                value={form?.country}
+                value={form?.industry}
                 handleChange={(value) => {
-                  changeTextData(value, "country");
+                  changeTextData(value, "industry");
                 }}
               >
                 <MenuItem value=""></MenuItem>

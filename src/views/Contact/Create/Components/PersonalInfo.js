@@ -112,7 +112,7 @@ const PersonalInfo = (errorData, changeTextData, onBlurHandler, form) => {
                 errorText={errorData?.contact}
                 value={form?.contact}
                 contactType="Phone No"
-                // label={"Phone No."}
+                 label={"Phone No."}
                 onTextChange={(text) => {
                   changeTextData(text, "contact");
                 }}

@@ -1,28 +1,35 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router";
-import {serviceProviderProfileGetKeyword} from "../../../services/ProviderUser.service";
+import {serviceProviderProfileGetKeyword, serviceProviderIsExist} from "../../../services/ProviderUser.service";
+import {isEmail} from  "../../../libs/RegexUtils";
+import SnackbarUtils from "../../../libs/SnackbarUtils";
+import historyUtils from "../../../libs/history.utils";
+import LogUtils from "../../../libs/LogUtils";
+import { parsePhoneNumber } from "libphonenumber-js";
+import useDebounce from "../../../hooks/DebounceHook";
 const ContactCreatehook = () => {
   const initialForm = {
     name: "",
-    userName: "",
-    image: "",
+    age: "",
     contact: "",
     email: "",
-    role: "",
-    type: "",
-    employee_id: "",
-    joining_date: "",
+     role: "",
+     type: "",
+    job_title: "",
+    country: "",
     source: "",
-    designation: "",
-    manager: "",
-    end_date: "",
+    address: "",
+    business_name: "",
+    website: "",
+    buying_role: "",
+    company_size: "",
     userManage: false,
     invoiteToUser: false,
   };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
-  const [images, setImages] = useState(null);
   const [source, setSource] = useState([]);
+  const emailDebouncer = useDebounce(form.email, 500);
   const { id } = useParams();
 
   useEffect(() => {
@@ -33,6 +40,34 @@ const ContactCreatehook = () => {
       }
     });
   }, []);
+
+  const validateField = useCallback(
+    (field, values, errorKey, existsMessage) => {
+      serviceProviderIsExist({ [field]: values, id: id || null }).then(
+        (res) => {
+          if (!res.error) {
+            const errors = { ...errorData };
+            if (res.data.is_exists) {
+              errors[errorKey] = existsMessage;
+            } else {
+              delete errors[errorKey];
+            }
+            setErrorData(errors);
+          }
+        }
+      );
+    },
+    [errorData, setErrorData, id]
+  );
+
+  const checkCodeValidation = useCallback(() => {
+    validateField("email", form.email, "email", "Email Already Exist");
+  }, [form.email, id]);
+
+  useEffect(() => {
+    if (emailDebouncer) checkCodeValidation();
+  }, [emailDebouncer]);
+  
   const removeError = useCallback(
     (title) => {
       const temp = JSON.parse(JSON.stringify(errorData));
