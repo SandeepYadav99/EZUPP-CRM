@@ -1,10 +1,7 @@
 import React from "react";
 
 import styles from "./Style.module.css";
-import {
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { MenuItem, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { ActionButton } from "../../../components/Buttons/PrimaryButton";
 import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
@@ -26,9 +23,8 @@ const NewBlogsCreate = ({ location }) => {
     taglist,
     handleCancel,
     coverImage,
-    descriptionRef
+    descriptionRef,
   } = useNewBlogCreateHook({ location });
-
 
   return (
     <div className={styles.wrapper}>
@@ -138,7 +134,7 @@ const NewBlogsCreate = ({ location }) => {
               />
             </div>
             <div className={"formGroup"}>
-              {/* <label className={styles.enter}>Blog Description</label> */}
+              
               <Typography variant="body1" color={"text.secondary"}>
                 Description
               </Typography>
@@ -148,50 +144,15 @@ const NewBlogsCreate = ({ location }) => {
                 height={264}
                 editorData={form?.blog_description}
                 handleChangeEditor={(html) => {
-                 descriptionRef.current(html, "blog_description");
-                  // changeTextData(html, "blog_description");
+                  descriptionRef.current(html, "blog_description");
                 }}
               />
             </div>
             <div className={"formGroup"}>
-              {/* <Autocomplete
-                multiple
-                id="tags-outlined"
-                onChange={(e, value) => {
-                  changeTextData(value, "tags");
-                }}
-                value={form?.tags}
-                options={taglist ? taglist : []}
-                getOptionLabel={(option) => option}
-                defaultValue={form?.tags}
-                error={errorData?.tags}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="outlined"
-                    label="Tags"
-                    error={errorData?.tags}
-                    fullWidth
-                    InputProps={{
-                      ...params.InputProps,
-                      sx: {
-                        paddingRight: theme.spacing(0),
-                        paddingLeft: theme.spacing(0),
-                      },
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton>
-                            <SearchIcon fontSize="small" />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                )}
-              /> */}
               <MultiComplete
+              isError={errorData?.tags}
                 multiple
-               isArray
+                isArray
                 AutoCompleteList={taglist ? taglist : []}
                 getOptionLabel={(option) => option}
                 label="Associate Tags"
@@ -200,35 +161,13 @@ const NewBlogsCreate = ({ location }) => {
                 onTextChange={(text) => {
                   changeTextData(text, "tags");
                 }}
-               
               />
               <Typography variant="body2" color={"text.secondary"}>
                 Please press enter to add a tag if not found in the search
                 results.
               </Typography>
             </div>
-            {/* <label className={styles.enter}>
-              Please press enter to add a tag if not found in the search
-              results.
-            </label> */}
 
-            {/* <div className={"formGroup"} id={styles.inTwo}>
-              <div
-                style={{ display: "flex", alignItems: "center" }}
-                className={styles.minReads}
-              >
-                <CustomTextField
-                  isError={errorData?.topic}
-                  errorText={errorData?.topic}
-                  label={"No. of Mins of Read"}
-                  value={form?.topic}
-                  type="number"
-                  onTextChange={(text) => {
-                    changeTextData(text, "topic");
-                  }}
-                />
-              </div>
-            </div> */}
             <div className={"formGroup"}>
               <CustomSelectField
                 isError={errorData?.topic}
@@ -265,33 +204,9 @@ const NewBlogsCreate = ({ location }) => {
                 <MenuItem value={"TEST"}>Test</MenuItem>{" "}
               </CustomSelectField>
             </div>
-            {/* <div className={"formGroup"}>
-              <CustomTextField
-                isError={errorData?.meta_description}
-                errorText={errorData?.meta_description}
-                label={"Meta Description"}
-                value={form?.meta_description}
-                onTextChange={(text) => {
-                  changeTextData(text, "meta_description");
-                }}
-              />
-            </div> */}
           </ShadowBox>
         </div>
         <div className={styles.right}>
-          {/* <div className={"formGroup"}>
-            <CustomCheckBox
-              label={
-                <span style={{ color: "#888888", fontSize: "14px" }}>
-                  Featured
-                </span>
-              }
-              value={form?.is_featured}
-              handleChange={(text) => {
-                changeTextData(text, "is_featured");
-              }}
-            />
-          </div> */}
           <ShadowBox className={styles.slugBox}>
             <Typography
               variant="h5"
@@ -313,34 +228,8 @@ const NewBlogsCreate = ({ location }) => {
               />
             </div>
             <div className={"formGroup"}>
-              {/* <CustomTextField
-                isError={errorData?.meta_description}
-                errorText={errorData?.meta_description}
-                label={"Meta Description"}
-                value={form?.meta_description}
-                onTextChange={(text) => {
-                  changeTextData(text, "meta_description");
-                }}
-              /> */}
-              {/* <Typography variant="body1" color={"text.secondary"}>
-                Meta Description
-              </Typography> */}
-              {/* <NewEditor
-               buttonList={false}
-               label={"Meta Description"}
-               height={146}
-                editorData={form?.meta_description}
-                handleChangeEditor={(html) => {
-                  descriptionRef.current(html, "meta_description");
-                }}
-              /> */}
               <CustomTextField
                 fullWidth
-                // inputProps={{
-                //   sx: {
-                //     "& >fieldset": { height: "146px" },
-                //   },
-                // }}
                 isError={errorData?.meta_description}
                 errorText={errorData?.meta_description}
                 label={"Meta Description"}
@@ -380,7 +269,6 @@ const NewBlogsCreate = ({ location }) => {
                 value={form?.is_featured}
                 handleChange={() => {
                   changeTextData(!form?.is_featured, "is_featured");
-                  
                 }}
                 label={`Is Featured?`}
               />

@@ -172,7 +172,7 @@ function useNewBlogCreateHook({ location }) {
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting, id, coverImage]
+    [form, isSubmitting, setIsSubmitting, id,]
   );
 
   const onBlurHandler = useCallback(
