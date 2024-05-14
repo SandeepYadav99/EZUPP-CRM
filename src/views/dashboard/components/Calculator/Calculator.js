@@ -10,6 +10,11 @@ const Calculator = () => {
   console.log(inputValue, "inputValue");
   const handleButtonClick = (value) => {
     if (inputValue.length <= 15) {
+
+      if (result !== "") {
+        setInputValue(result.toString());
+        setResult("");
+      }
       const operators = {
         "÷": "/",
         x: "*",
@@ -59,6 +64,7 @@ const Calculator = () => {
       const calculatedResult = eval(evaluatedExpression);
       const formattedResult = Number(calculatedResult.toPrecision(15));
       setResult(formattedResult);
+      setInputValue(formattedResult.toString());
       //setResult(calculatedResult);
     } catch (error) {
       setResult("Error");
