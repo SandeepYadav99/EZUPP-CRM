@@ -43,7 +43,7 @@ const RadioTextWrapper = ({
                             {title}
                         </Typography>
 
-                        <Typography variant="body1" className="title">
+                        <Typography variant="body1" className="title" color={"text.secondary"}>
                             {description}
                         </Typography>
                     </div>
