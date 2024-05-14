@@ -12,13 +12,14 @@ import male from "../../../../assets/Assets/ic_male.png";
 import Constants from "../../../../config/constants";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
 import LogUtils from "../../../../libs/LogUtils";
+import {useTheme} from "@mui/styles";
 const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
   const [selectedValue, setSelectedValue] = React.useState("");
 
   const handleChange = (value) => {
     setSelectedValue(value);
   };
-
+  const theme = useTheme();
   return (
     <ShadowBox className={styles.contact}>
       <div className={"headerFlex"}>
@@ -37,6 +38,9 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
             <div className={"formGroup"}>
               <div className={styles.lineWrapper}>
                 <CustomSelectField
+                  outlinedProps={{
+                    sx: { borderTopRightRadius: theme.spacing(0), borderBottomRightRadius: theme.spacing(0) }
+                  }}
                   isError={errorData?.prefix}
                   errorText={errorData?.prefix}
                   label={"Prefix"}

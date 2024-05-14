@@ -5,7 +5,8 @@ import ShadowBox from '../../../../components/ShadowBox/ShadowBox';
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
-const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
+const BusinessInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
+  
   return (
     <ShadowBox className={styles.contact}>
      <div className={"headerFlex"}>
@@ -19,18 +20,19 @@ const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
         </h4>
       </div>
       <div className={"formFlex"}>
-            <div className={"formGroup"} style={{'marginTop':'8px'}}>
+            <div className={"formGroup"} >
             <CustomTextField
                 type="name"
                 isError={errorData?.business_name}
                 errorText={errorData?.business_name}
                 label={"Business Name"}
-                value={form?.age}
+                value={form?.business_name}
                 onTextChange={(text) => {
                   changeTextData(text, "business_name");
                 }}
               />
             </div>
+            {console.log()}
             <div className={"formGroup"}>
               <CustomSelectField
                 isError={errorData?.industry}
@@ -54,7 +56,7 @@ const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
                 isError={errorData?.website}
                 errorText={errorData?.website}
                 label={"Website"}
-                value={form?.age}
+                value={form?.website}
                 onTextChange={(text) => {
                   changeTextData(text, "website");
                 }}
@@ -82,7 +84,7 @@ const BusinessInfo = (errorData, changeTextData, onBlurHandler, form) => {
                 isError={errorData?.company_size}
                 errorText={errorData?.company_size}
                 label={"Company Size"}
-                value={form?.age}
+                value={form?.company_size}
                 onTextChange={(text) => {
                   changeTextData(text, "company_size");
                 }}

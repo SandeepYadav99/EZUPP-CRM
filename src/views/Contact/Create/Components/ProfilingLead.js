@@ -6,7 +6,7 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
-const ProfilingLead = (errorData, changeTextData, onBlurHandler, form, source) => {
+const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source}) => {
   return (
     <>
     <ShadowBox className={styles.contact}>

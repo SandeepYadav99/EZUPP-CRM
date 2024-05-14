@@ -22,6 +22,7 @@ const ProductCreate = ({}) => {
     form,
     onBlurHandler,
     handleSubmit,
+    handleCancel,
     image,
     id,
     images,
@@ -72,7 +73,7 @@ const ProductCreate = ({}) => {
       />
       <div className={styles.buttonContainer}>
         <div className={styles.cancelButton}>
-          <ActionButton sx={{ mt: 4 }}>CANCEL</ActionButton>
+          <ActionButton sx={{ mt: 4 }} onClick={handleCancel}>CANCEL</ActionButton>
         </div>
 
         <div className={styles.saveButton}>

@@ -20,7 +20,9 @@ const ContactCreate = ({}) => {
         form,
         onBlurHandler,
         source,
-        changeTextData
+        changeTextData,
+        handleSubmit,
+        handleCancel
     } = ContactCreatehook();
     return (
         <>
@@ -29,7 +31,7 @@ const ContactCreate = ({}) => {
                     <ButtonBase onClick={() => history.goBack()}>
                         <ArrowBackIos fontSize={"small"}/>{" "}
                     </ButtonBase>
-                    <Typography variant={"title1"}>Create Contact</Typography>
+                    <Typography variant={"title1"} >Create Contact</Typography>
                 </div>
             </div>
             <PersonalInfo
@@ -55,14 +57,14 @@ const ContactCreate = ({}) => {
             />
             <div className={styles.buttonContainer}>
                 <div className={styles.cancelButton}>
-                    <ActionButton sx={{mt: 4}}>CANCEL</ActionButton>
+                    <ActionButton sx={{mt: 4}} onClick={handleCancel}>CANCEL</ActionButton>
                 </div>
 
                 <div className={styles.saveButton}>
                     <PrimaryButton
                         color={"primary"}
                         sx={{mt: 4}}
-                        // onClick={handleSubmit}
+                        onClick={handleSubmit}
                     >
                         CREATE
                     </PrimaryButton>

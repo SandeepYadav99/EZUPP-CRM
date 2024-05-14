@@ -6,7 +6,7 @@ import CustomTextField from "../../../../components/FormFields/TextField/TextFie
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import RadioButtonWithText from "../../../../components/RadioButtons/RadioButtonWithText";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
-const AdditionalInfo = (errorData, changeTextData, onBlurHandler, form) => {
+const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
   const [selectedValue, setSelectedValue] = React.useState("");
 
   const handleChange = (value) => {
