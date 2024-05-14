@@ -3,164 +3,32 @@ import React from "react";
 import styles from "./Style.module.css";
 import {
   MenuItem,
-  Button,
-  IconButton,
-  createMuiTheme,
   Typography,
 } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import MUIRichTextEditor from "mui-rte";
-import {
-  Backup as BackupIcon,
-  Delete as DeleteIcon,
-  Info as InfoIcon,
-} from "@mui/icons-material";
-import UploadImagePopover from "../component/Popover/Popover.component";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { ActionButton } from "../../../components/Buttons/PrimaryButton";
 import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Tooltip,
-  TextField,
-} from "@mui/material";
-import Autocomplete from "@mui/lab/Autocomplete";
 import NewEditor from "../../../components/NewEditor/NewEditor.component";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import history from "../../../libs/history.utils";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
-import CustomCheckBox from "../../../components/FormFields/CustomCheckbox";
 import FileField from "../../../components/FileField/File.component";
-import { useParams } from "react-router-dom";
 import useNewBlogCreateHook from "./BlogsNewCreate.hook";
-import PageBox from "../../../components/PageBox/PageBox.component";
-// import Typography from "../../../themes/typography";
 import MultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
-import SearchIcon from "@mui/icons-material/Search";
-import { InputAdornment } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 const NewBlogsCreate = ({ location }) => {
   const {
     form,
     changeTextData,
     errorData,
     handleSubmit,
-    onChangeCheckBox,
-    handleEditor,
-    industries,
-    dataMapped,
-   
-    confirmPopUp,
-    handleDialogClose,
     taglist,
-    handleFileUpload,
-    handleSave,
     handleCancel,
-    editor_data,
-    anchor,
     coverImage,
-    setCoverImage,
-    suspendItem,
-
-    checked,
+    descriptionRef
   } = useNewBlogCreateHook({ location });
 
-  const defaultTheme = createMuiTheme();
-  const params = useParams();
-  const theme = useTheme();
-  console.log("blog", form, errorData);
-  console.log("blog", coverImage);
-
-  const renderEditor = () => {
-    if (editor_data) {
-      return (
-        <>
-          <UploadImagePopover
-            anchor={anchor}
-            onSubmit={(data, insert) => {
-              if (insert && data.file) {
-                handleFileUpload(data.file);
-              }
-              this._setAnchor(null);
-            }}
-          />
-          <ThemeProvider theme={defaultTheme}>
-            <MUIRichTextEditor
-              ref={(ref) => {
-                this.editorRef = ref;
-              }}
-              defaultValue={editor_data}
-              onChange={handleEditor}
-              onSave={handleSave}
-              label="Start typing..."
-              controls={[
-                "bold",
-                "italic",
-                "underline",
-                "strikethrough",
-                "undo",
-                "redo",
-                "numberList",
-                "bulletList",
-                "quote",
-                "link",
-              ]}
-              inlineToolbar={true}
-              draftEditorProps={{
-                handleDroppedFiles: (_selectionState, files) => {
-                  if (files.length && files[0].name !== undefined) {
-                    handleFileUpload(files[0]);
-                    return "handled";
-                  }
-                  return "not-handled";
-                },
-              }}
-            />
-          </ThemeProvider>
-        </>
-      );
-    }
-  };
-
-  const RenderDialog = () => {
-    if (confirmPopUp) {
-      return (
-        <Dialog
-          keepMounted
-          open={confirmPopUp}
-          onClose={handleDialogClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Are You Sure"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Do you really want to delete the item?
-              <br />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDialogClose} color="primary">
-              Disagree
-            </Button>
-            <Button onClick={suspendItem} color="primary">
-              Agree
-            </Button>
-          </DialogActions>
-        </Dialog>
-      );
-    }
-    return null;
-  };
-  console.log("taglist", taglist, industries);
-
-  console.log("form", form, coverImage);
 
   return (
     <div className={styles.wrapper}>
@@ -280,7 +148,8 @@ const NewBlogsCreate = ({ location }) => {
                 height={264}
                 editorData={form?.blog_description}
                 handleChangeEditor={(html) => {
-                  changeTextData(html, "blog_description");
+                 descriptionRef.current(html, "blog_description");
+                  // changeTextData(html, "blog_description");
                 }}
               />
             </div>
@@ -502,8 +371,8 @@ const NewBlogsCreate = ({ location }) => {
                   changeTextData(value, "status");
                 }}
               >
-                <MenuItem value={"Active"}>Active</MenuItem>
-                <MenuItem value={"InActive"}>InActive</MenuItem>
+                <MenuItem value={"ACTIVE"}>ACTIVE</MenuItem>
+                <MenuItem value={"INACTIVE"}>INACTIVE</MenuItem>
               </CustomSelectField>
             </div>
             <div className={"formGroup"}>
@@ -537,7 +406,6 @@ const NewBlogsCreate = ({ location }) => {
 
       <br />
       <br />
-      {confirmPopUp && <RenderDialog />}
       {/* </div> */}
     </div>
   );

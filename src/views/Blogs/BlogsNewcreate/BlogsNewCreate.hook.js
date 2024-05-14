@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useState } from "react";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import LogUtils from "../../../libs/LogUtils";
@@ -33,15 +33,12 @@ function useNewBlogCreateHook({ location }) {
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [industries, setIndustries] = useState([]);
   const [coverImage, setCoverImage] = useState("");
   const [confirmPopUp, setConfirmPopUp] = useState(false);
   const [taglist, setTagList] = useState([]);
-  const [editor_data, setEditor_Data] = useState(null);
-  const [anchor, _setAnchor] = useState(null);
+  const descriptionRef = useRef(null);
 
-  const params = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     (async () => {
@@ -49,12 +46,11 @@ function useNewBlogCreateHook({ location }) {
         serviceGetTagsList(),
         serviceGetIndustryList(),
       ]);
-    
+  
       const tagList = promises[0].value?.data;
       const industryList = promises[1].value?.data;
 
       setTagList(tagList);
-      setIndustries(industryList);
     })();
   }, []);
 
@@ -62,11 +58,11 @@ function useNewBlogCreateHook({ location }) {
     setForm({ ...initialForm });
   };
   useEffect(() => {
-    if (params?.id) {
-      serviceBlogsDetails({ id: params?.id })?.then((res) => {
+    if (id) {
+      serviceBlogsDetails({ id: id })?.then((res) => {
         const data = res?.data;
         console.log("data", data);
-        setCoverImage((prev) => data?.image);
+        setCoverImage(data?.image);
 
         setForm({
           ...form,
@@ -76,14 +72,14 @@ function useNewBlogCreateHook({ location }) {
           topic: data?.topic,
           author: data?.author,
           is_featured: data?.is_featured,
-          status: data?.status === constants.GENERAL_STATUS.ACTIVE,
+          status: data?.status,
           tags: data?.tags,
           blog_description: data?.blog_description,
           meta_description: data?.meta_description,
         });
       });
     }
-  }, [params?.id]);
+  }, [id]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -92,16 +88,14 @@ function useNewBlogCreateHook({ location }) {
       "tags",
       "author",
       "meta_description",
-      "image",
       "topic",
       "slug",
       "status",
       "blog_description",
     ];
 
-    if (params?.id) {
-      const index = required.indexOf("image");
-      required.splice(index, 1);
+    if (!id) {
+      required.push("image");
     }
 
     required.forEach((val) => {
@@ -119,7 +113,7 @@ function useNewBlogCreateHook({ location }) {
       }
     });
     return errors;
-  }, [form, errorData, params?.id]);
+  }, [form, errorData, id]);
 
   const removeError = useCallback(
     (title) => {
@@ -152,21 +146,18 @@ function useNewBlogCreateHook({ location }) {
       if (!isSubmitting) {
         setIsSubmitting(true);
         const fd = new FormData();
-        if (params?.id) {
-          fd.append("image", coverImage);
-        }
+
         Object.keys(form).forEach((key) => {
-          if (key === "status") {
-            fd.append(key, form[key] ? "ACTIVE" : "INACTIVE");
-          } else if (key === "blog_description") {
-            fd.append("blog_description", form?.blog_description);
-          } else {
+          if (key !== "image") {
             fd.append(key, form[key]);
           }
         });
+        if (form?.image) {
+          fd.append("image", form?.image);
+        }
         let req;
-        if (params?.id) {
-          fd.append("id", params?.id);
+        if (id) {
+          fd.append("id", id);
           req = serviceUpdateBlogs(fd);
         } else {
           req = serviceCreateBlogs(fd);
@@ -181,7 +172,7 @@ function useNewBlogCreateHook({ location }) {
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting, params?.id,coverImage]
+    [form, isSubmitting, setIsSubmitting, id, coverImage]
   );
 
   const onBlurHandler = useCallback(
@@ -206,52 +197,27 @@ function useNewBlogCreateHook({ location }) {
     [checkFormValidation, setErrorData, submitToServer]
   );
 
-  const handleDelete = () => {
-    setConfirmPopUp(true);
-  };
-
-  const handleDialogClose = () => {
-    setConfirmPopUp(false);
-  };
-
   const suspendItem = () => {
-    serviceDeleteBlogs({ id: params?.id })?.then((res) => {
+    serviceDeleteBlogs({ id: id })?.then((res) => {
       SnackbarUtils.success("Deleted SuccessFully");
       setConfirmPopUp(false);
       historyUtils.push("/blogs");
     });
   };
-
-  const handleEditor = (data) => {
-    setForm({
-      ...form,
-      blog_description: data,
-    });
-  };
+  descriptionRef.current = changeTextData;
 
   return {
     form,
     errorData,
     changeTextData,
-    onBlurHandler,
-    removeError,
     handleSubmit,
     isSubmitting,
-
-    handleEditor,
-    industries,
-   
     confirmPopUp,
     suspendItem,
-    handleDialogClose,
     taglist,
- 
     handleCancel,
-    editor_data,
-    anchor,
     coverImage,
-
-    setCoverImage,
+    descriptionRef,
   };
 }
 
