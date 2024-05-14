@@ -94,8 +94,9 @@ const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source})
               changeTextData(value, "priority");
             }}
           >
-            <MenuItem value=""></MenuItem>
-            <MenuItem value="OTHER"></MenuItem>
+            <MenuItem value="Low">LOW</MenuItem>
+            <MenuItem value="Medium">MEDIUM</MenuItem>
+            <MenuItem value="High">HIGH</MenuItem>
           </CustomSelectField>
         </div>
         <div className={"formGroup"}>
@@ -151,8 +152,8 @@ const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source})
             changeTextData(value, "contact_type");
           }}
         >
-          <MenuItem value=""></MenuItem>
-          <MenuItem value="OTHER"></MenuItem>
+          <MenuItem value="Business">BUSINESS</MenuItem>
+          <MenuItem value="Indvidual">INDVIDUAL</MenuItem>
         </CustomSelectField>
       </div>
       <div className={"formGroup"}>

@@ -50,8 +50,9 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
                   }}
                   // className={styles.prefix}
                 >
-                  <MenuItem value="INDIA">India</MenuItem>
-                  <MenuItem value="OTHER">Other</MenuItem>
+                  <MenuItem value="Mr">Mr.</MenuItem>
+                  <MenuItem value="Ms">Ms.</MenuItem>
+                  <MenuItem value="Ms">Mrs.</MenuItem>
                 </CustomSelectField>
                 <CustomTextField
                   type="name"
@@ -153,23 +154,23 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
             <div className={"formGroup"}>
               <CustomTextField
                 type="email"
-                isError={errorData?.email}
-                errorText={errorData?.email}
+                isError={errorData?.alternate_email}
+                errorText={errorData?.alternate_email}
                 label={"Alternate Email"}
-                value={form?.email}
+                value={form?.alternate_email}
                 onTextChange={(text) => {
-                  changeTextData(text, "email");
+                  changeTextData(text, "alternate_email");
                 }}
               />
             </div>
             <div className={"formGroup"}>
               <CustomPhoneContactField
-                isError={errorData?.contact}
-                errorText={errorData?.contact}
-                value={form?.contact}
+                isError={errorData?.wa_contact}
+                errorText={errorData?.wa_contact}
+                value={form?.wa_contact}
                 label={"Phone No."}
                 onTextChange={(text) => {
-                  changeTextData(text, "contact");
+                  changeTextData(text, "wa_contact");
                 }}
                 isValid={(value) => {
                   if (value.match(/12345/)) {
