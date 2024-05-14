@@ -7,20 +7,23 @@ import { styled } from "@mui/material/styles";
 import { InputAdornment, InputBase } from "@mui/material";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import {useTheme} from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  paddingLeft: theme.spacing(1),
-  paddingRight: theme.spacing(1),
+  paddingLeft: theme.spacing(0),
+  paddingRight: theme.spacing(0),
   paddingTop: theme.spacing(0),
   paddingBottom: theme.spacing(0),
-  backgroundColor: theme.palette.grey[200],
+  // backgroundColor: theme.palette.grey[200],
+  backgroundColor: theme.palette.primary,
   border: 0,
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-  // fontSize: ".775rem",
+
   fontSize: "0.8rem",
+  height: "1.5rem",
+
   // "&:hover": {
   //   backgroundColor: theme.palette.error.light,
   //   border: 0,
@@ -63,7 +66,7 @@ const CustomMultiComplete = ({
     },
     [onChange, onTextChange, value]
   );
-  const theme=useTheme();
+  const theme = useTheme();
 
   return (
     <>
@@ -86,17 +89,18 @@ const CustomMultiComplete = ({
               size={"small"}
               fullWidth
               {...rest}
-             
               InputProps={{
                 ...params.InputProps,
-                sx:{
-                  paddingRight:`${theme?.spacing(0)} !important`,
-                  position: 'relative'
+                sx: {
+                  paddingRight: `${theme?.spacing(0)} !important`,
+                  position: "relative",
                 },
 
                 endAdornment: (
-                  <InputAdornment position="end" 
-                  sx={{position:"absolute",right:"0",top:"50%"}}>
+                  <InputAdornment
+                    position="end"
+                    sx={{ position: "absolute", right: "0", top: "50%" }}
+                  >
                     <IconButton>
                       <SearchIcon fontSize="small" />
                     </IconButton>
@@ -155,10 +159,10 @@ const CustomMultiComplete = ({
                 {...rest}
                 InputProps={{
                   ...params.InputProps,
-                  sx:{
-                    paddingRight:`${theme?.spacing(0)} !important`,
+                  sx: {
+                    paddingRight: `${theme?.spacing(0)} !important`,
                   },
-  
+
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton>
@@ -167,7 +171,6 @@ const CustomMultiComplete = ({
                     </InputAdornment>
                   ),
                 }}
-                
               />
             )}
             onChange={(event, newValue) => {
