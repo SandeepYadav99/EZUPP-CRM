@@ -91,10 +91,12 @@ const CustomMultiComplete = ({
                 ...params.InputProps,
                 sx:{
                   paddingRight:`${theme?.spacing(0)} !important`,
+                  position: 'relative'
                 },
 
                 endAdornment: (
-                  <InputAdornment position="end">
+                  <InputAdornment position="end" 
+                  sx={{position:"absolute",right:"0",top:"50%"}}>
                     <IconButton>
                       <SearchIcon fontSize="small" />
                     </IconButton>
@@ -151,6 +153,21 @@ const CustomMultiComplete = ({
                 size={"small"}
                 fullWidth
                 {...rest}
+                InputProps={{
+                  ...params.InputProps,
+                  sx:{
+                    paddingRight:`${theme?.spacing(0)} !important`,
+                  },
+  
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton>
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                
               />
             )}
             onChange={(event, newValue) => {

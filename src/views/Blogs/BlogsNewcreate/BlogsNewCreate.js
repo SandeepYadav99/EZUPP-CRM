@@ -55,9 +55,8 @@ const NewBlogsCreate = ({ location }) => {
     handleEditor,
     industries,
     dataMapped,
-    handleDelete,
+   
     confirmPopUp,
-    suspendItem,
     handleDialogClose,
     taglist,
     handleFileUpload,
@@ -67,6 +66,7 @@ const NewBlogsCreate = ({ location }) => {
     anchor,
     coverImage,
     setCoverImage,
+    suspendItem,
 
     checked,
   } = useNewBlogCreateHook({ location });
@@ -511,6 +511,7 @@ const NewBlogsCreate = ({ location }) => {
                 value={form?.is_featured}
                 handleChange={() => {
                   changeTextData(!form?.is_featured, "is_featured");
+                  
                 }}
                 label={`Is Featured?`}
               />
