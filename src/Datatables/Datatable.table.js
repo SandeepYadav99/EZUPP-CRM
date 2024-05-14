@@ -475,7 +475,7 @@ const EnhancedTable = (props) => {
                     <TableRow
                         draggable={props?.draggable}
                         onDragStart={(e) => {
-                            console.log('onDragStart',  e.target.id);
+                            // console.log('onDragStart',  e.target);
                             draggedItem.current = e.target.id;
                         }}
                         onDragOver={e => {
