@@ -18,9 +18,8 @@ import { useMemo } from "react";
 import { Padding } from "@mui/icons-material";
 function CardType({ handleBusinessToggle, options }) {
   const [selectedOption, setSelectedOption] = useState("Business");
-  // onClick={()=>handleBusinessToggle('business')}
-  // const {showBusiness,setShowBusiness,handleBusinessToggle} =useContactList({});
-  console.log(selectedOption); //logutils.log
+ 
+  
   const handleRadioChange = (event) => {
     console.log(event);
     console.log("Helloradio");
@@ -46,7 +45,7 @@ function CardType({ handleBusinessToggle, options }) {
                   ? styles.custom_option
                   : styles.custom_opon1
               }
-              // onClick={() => setSelectedOption('Business')}
+              
               onClick={() => {
                 setSelectedOption(() => item?.title);
                 handleBusinessToggle(item?.title);
