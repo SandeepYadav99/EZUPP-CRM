@@ -338,7 +338,7 @@ function QuickContactView({ isOpen, handleToggle }) {
           )}
         /> */}
         <MultiComplete
-          nopic
+          isPic
           AutoCompleteList={associateTagsData ? associateTagsData : []}
           label="Associate Tags"
           value={form?.associate_tags_list}
@@ -346,6 +346,11 @@ function QuickContactView({ isOpen, handleToggle }) {
             changeTextData(text, "associate_tags_list");
           }}
           enableField={["title", "email"]}
+          // getTagProps={{sx:{textAlign:"left",
+          //   font:"normal normal normal 14px/16px Arial",
+          //   letterSpacing:"0px",
+          //   backgroundColor:"#636578",
+          //   opacity:"1"}}}
         />
         {/* <Autocomplete
           id="tags-outlined"

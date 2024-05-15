@@ -15,20 +15,21 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-  fontSize: ".775rem",
-  "&:hover": {
-    backgroundColor: theme.palette.error.light,
-    border: 0,
-  },
+  // fontSize: ".775rem",
+  fontSize:"0.8rem",
+  // "&:hover": {
+  //   backgroundColor: theme.palette.error.light,
+  //   border: 0,
+  // },
   "&:disabled": {
     backgroundColor: "transparent",
   },
   "& .MuiChip-deleteIcon": {
     backgroundColor: "transparent",
   },
-  "&:hover .MuiChip-deleteIcon": {
-    color: "#FF0000",
-  },
+  // "&:hover .MuiChip-deleteIcon": {
+  //   color: "#FF0000",
+  // },
 }));
 
 const StyledOption = styled("div")(({ theme }) => ({

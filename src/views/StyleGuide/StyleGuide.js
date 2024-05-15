@@ -4,6 +4,7 @@ import CustomSelectField from "../../components/FormFields/SelectField/SelectFie
 import CustomDatePicker from "../../components/FormFields/DatePicker/CustomDatePicker";
 import RadioButtons from "../../components/RadioButtons/RadioButtons";
 import RadioButtonWithText from "../../components/RadioButtons/RadioButtonWithText";
+import BasicButtonGroup from "../../components/BasicButtonGroup/BasicButtonGroup";
 import {
     ActionButton,
     ArrowActionButton,
@@ -345,6 +346,8 @@ const StyleGuide = ({}) => {
                         &nbsp;
                         <StatusPill status={"Active"} color={"active"}/>
                         &nbsp;
+                        <StatusPill status={"Service"} color={"service"}/> &nbsp;
+                        <StatusPill status={"Warm"} color={"warm"}/> &nbsp;
                     </div>
                 </div>
             </div>
@@ -520,6 +523,11 @@ const StyleGuide = ({}) => {
                     value="ne"
                 ></CheckboxWithText>
             </div>
+            <br></br>
+            <div>
+                <Typography variant={"h5"}>Basic Button Group</Typography>
+            </div><br></br>
+            <BasicButtonGroup buttonText={['Pending', 'In Progress', 'Proposal Sent', 'Archived', 'Customers', 'All']}/>
             <div className={styles.timeLineComponent}>
                 <Typography gutterBottom variant="h5">
                     Reusable TimeLine Component

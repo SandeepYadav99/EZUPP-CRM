@@ -16,7 +16,7 @@ import {
 } from "../../../services/index.services";
 import { validateUrl } from "../../../libs/RegexUtils";
 import { useDispatch, useSelector } from "react-redux";
-
+import history from "../../../libs/history.utils";
 function useProductCreateHook() {
   const initialForm = {
     name: "",
@@ -191,6 +191,11 @@ function useProductCreateHook() {
     },
     [checkFormValidation, setErrorData, form, submitToServer]
   );
+
+  
+  const handleCancel = useCallback(() => {
+    history.push("/products");
+  }, []);
   const handleDelete = useCallback(
     (id) => {
       dispatch(actionDeleteProduct(id));
@@ -210,7 +215,8 @@ function useProductCreateHook() {
     isSubmitting,
     images,
     id,
-    tagList
+    tagList,
+    handleCancel
   };
 }
 

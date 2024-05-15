@@ -2,8 +2,10 @@ import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
-import styles from "../Style.module.css";
+import CheckboxWithText from "../../../../components/RadioButtons/CheckboxWithText";
+import useStyleGuide from "../../../StyleGuide/StyleGuide.hook";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import styles from "../Style.module.css";
 const Settings = ({
   errorData,
   changeTextData,
@@ -13,6 +15,7 @@ const Settings = ({
   listData,
 }) => {
   console.log(form, "Form");
+  const {checkboxValue, handleCheckboxChange} = useStyleGuide({});
   return (
     <>
       <ShadowBox className={styles.product}>
@@ -46,13 +49,16 @@ const Settings = ({
               <div className={"formGroup"}></div>
             </div>
             <div className={`formFlex ${styles.space}`}>
+
               <div className={styles.box}>
                 <div className={"formGroup "}>
+
                   <CustomCheckbox
                     value={form?.is_show_public}
                     handleChange={() => {
                       changeTextData(!form?.is_show_public, "is_show_public");
                     }}
+
                     label={
                       <Typography variant="subtitle1">Show Public</Typography>
                     }

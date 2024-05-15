@@ -10,7 +10,8 @@
     height: 86px;
   }
 .textcard{
-
+/* display: flex;
+flex: 1; */
   width: 299px;
 height: 74px;
 }

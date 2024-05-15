@@ -1,0 +1,14 @@
+.buttonGroup{
+    display: flex;
+    flex: 1;
+    flex-wrap: nowrap !important;
+}
+.button {
+    flex: 1; 
+    height: 50px;
+    flex-wrap: nowrap !important;
+  }
+.grey-outlined {
+    border-color: grey;
+    color: grey;
+  }

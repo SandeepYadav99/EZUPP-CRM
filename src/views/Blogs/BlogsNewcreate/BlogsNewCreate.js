@@ -17,8 +17,8 @@ import {
 } from "@mui/icons-material";
 import UploadImagePopover from "../component/Popover/Popover.component";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import {ActionButton} from "../../../components/Buttons/PrimaryButton"
-import {PrimaryButton} from "../../../components/Buttons/PrimaryButton"
+import { ActionButton } from "../../../components/Buttons/PrimaryButton";
+import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import {
   Dialog,
   DialogTitle,
@@ -42,6 +42,9 @@ import PageBox from "../../../components/PageBox/PageBox.component";
 // import Typography from "../../../themes/typography";
 import MultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import SearchIcon from "@mui/icons-material/Search";
+import { InputAdornment } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 const NewBlogsCreate = ({ location }) => {
   const {
     form,
@@ -63,13 +66,16 @@ const NewBlogsCreate = ({ location }) => {
     editor_data,
     anchor,
     coverImage,
+    setCoverImage,
+
     checked,
-    descriptionRef,
   } = useNewBlogCreateHook({ location });
 
   const defaultTheme = createMuiTheme();
   const params = useParams();
-  console.log("blog", form,errorData);
+  const theme = useTheme();
+  console.log("blog", form, errorData);
+  console.log("blog", coverImage);
 
   const renderEditor = () => {
     if (editor_data) {
@@ -152,9 +158,9 @@ const NewBlogsCreate = ({ location }) => {
     }
     return null;
   };
-  console.log("taglist",taglist, industries)
-  
-  console.log("form",form)
+  console.log("taglist", taglist, industries);
+
+  console.log("form", form, coverImage);
 
   return (
     <div className={styles.wrapper}>
@@ -162,6 +168,7 @@ const NewBlogsCreate = ({ location }) => {
         <ArrowBackIosNewIcon
           fontSize="medium"
           onClick={() => history.goBack()}
+          sx={{ cursor: "pointer" }}
         />
         <Typography variant={"h4"} color={"text.secondary"}>
           Create Blog
@@ -227,8 +234,8 @@ const NewBlogsCreate = ({ location }) => {
                 show_image={true}
                 error={errorData?.image}
                 value={form?.image}
-                not_default_width
-                not_default_height
+                is_not_default_width
+                is_not_default_height
                 onChange={(file) => {
                   if (file) {
                     changeTextData(file, "image");
@@ -237,13 +244,13 @@ const NewBlogsCreate = ({ location }) => {
                 isBlogPage
                 imageClass={"fileClass"}
               />
-              {params?.id ? (
+              {/* {params?.id ? (
                 <a href={coverImage} target="_blank">
                   Preview
                 </a>
               ) : (
                 ""
-              )}
+              )} */}
               {/* <label className={styles.enter}>
               Image should be in JPG, PNG format and should of 16:9 ratio
             </label> */}
@@ -268,15 +275,14 @@ const NewBlogsCreate = ({ location }) => {
                 Description
               </Typography>
               <NewEditor
-              buttonList={true}
-              // height={400}
-              height={264}
+                buttonList={true}
+                // height={400}
+                height={264}
                 editorData={form?.blog_description}
                 handleChangeEditor={(html) => {
-                  descriptionRef.current(html, "blog_description");
+                  changeTextData(html, "blog_description");
                 }}
               />
-           
             </div>
             <div className={"formGroup"}>
               <Autocomplete
@@ -296,6 +302,21 @@ const NewBlogsCreate = ({ location }) => {
                     variant="outlined"
                     label="Tags"
                     error={errorData?.tags}
+                    fullWidth
+                    InputProps={{
+                      ...params.InputProps,
+                      sx: {
+                        paddingRight: theme.spacing(0),
+                        paddingLeft: theme.spacing(0),
+                      },
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton>
+                            <SearchIcon fontSize="small" />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 )}
               />
@@ -402,7 +423,11 @@ const NewBlogsCreate = ({ location }) => {
             />
           </div> */}
           <ShadowBox className={styles.slugBox}>
-            <Typography variant="h5" color={"text.secondary"} className={styles.marginLeft} >
+            <Typography
+              variant="h5"
+              color={"text.secondary"}
+              className={styles.marginLeft}
+            >
               SEO
             </Typography>
             <div className={"formGroup"}>
@@ -411,6 +436,7 @@ const NewBlogsCreate = ({ location }) => {
                 errorText={errorData?.slug}
                 label={"Slug"}
                 value={form?.slug}
+                disabled
                 onTextChange={(text) => {
                   changeTextData(text, "slug");
                 }}
@@ -426,10 +452,10 @@ const NewBlogsCreate = ({ location }) => {
                   changeTextData(text, "meta_description");
                 }}
               /> */}
-                {/* <Typography variant="body1" color={"text.secondary"}>
+              {/* <Typography variant="body1" color={"text.secondary"}>
                 Meta Description
               </Typography> */}
-               {/* <NewEditor
+              {/* <NewEditor
                buttonList={false}
                label={"Meta Description"}
                height={146}
@@ -438,26 +464,29 @@ const NewBlogsCreate = ({ location }) => {
                   descriptionRef.current(html, "meta_description");
                 }}
               /> */}
-               <CustomTextField
-                
+              <CustomTextField
                 fullWidth
                 inputProps={{
                   sx: {
-                    height: "146px",
-                  }}}
+                    "& >fieldset": { height: "146px" },
+                  },
+                }}
                 isError={errorData?.meta_description}
                 errorText={errorData?.meta_description}
                 label={"Meta Description"}
                 value={form?.meta_description}
                 onTextChange={(text) => {
                   changeTextData(text, "meta_description");
-                 
                 }}
               />
             </div>
           </ShadowBox>
           <ShadowBox className={styles.settingsBox}>
-            <Typography variant="h5" color={"text.secondary"} className={styles.marginLeft}>
+            <Typography
+              variant="h5"
+              color={"text.secondary"}
+              className={styles.marginLeft}
+            >
               Settings
             </Typography>
             <div className={"formGroup"}>
@@ -472,7 +501,6 @@ const NewBlogsCreate = ({ location }) => {
               >
                 <MenuItem value={"Active"}>Active</MenuItem>
                 <MenuItem value={"InActive"}>InActive</MenuItem>
-                
               </CustomSelectField>
             </div>
             <div className={"formGroup"}>
@@ -499,9 +527,8 @@ const NewBlogsCreate = ({ location }) => {
           </PrimaryButton>
         </div>
         <div style={{ float: "left" }}>
-        <ActionButton  onClick={handleCancel}>CANCEL</ActionButton>
+          <ActionButton onClick={handleCancel}>CANCEL</ActionButton>
         </div>
-        
       </div>
 
       <br />
