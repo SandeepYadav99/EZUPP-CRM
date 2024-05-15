@@ -19,7 +19,7 @@ import CustomAutoComplete from "../../../../../components/FormFields/AutoComplet
 import MultiComplete from "../../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DomainSharpIcon from "@mui/icons-material/DomainSharp";
-import {useTheme} from "@mui/styles";
+import { useTheme } from "@mui/styles";
 
 function QuickContactView({ isOpen, handleToggle }) {
   // debugger;
@@ -51,11 +51,15 @@ function QuickContactView({ isOpen, handleToggle }) {
   //   return countries?.filter((item) => item.label === form?.country)?.[0]
   //     ?.phone;
   // }, [form?.country]);
- const options=[
-  {key:1,title: "Business", avatar:<DomainSharpIcon fontSize="small"/>} ,
-  { key:2,title: "Individual", avatar:<PersonOutlineOutlinedIcon fontSize="small"/>},
-]
-  console.log(options)
+  const options = [
+    { key: 1, title: "Business", avatar: <DomainSharpIcon fontSize="small" /> },
+    {
+      key: 2,
+      title: "Individual",
+      avatar: <PersonOutlineOutlinedIcon fontSize="small" />,
+    },
+  ];
+  console.log(options);
 
   return (
     <>
@@ -63,11 +67,14 @@ function QuickContactView({ isOpen, handleToggle }) {
         <Typography variant={"h5"} color={"text.secondary"}>
           Personal Information
         </Typography>
-        <div className={styles.cardGrid1}> <CardType
-           options={options}
-          handleBusinessToggle={handleBusinessToggle}
-        /></div>
-       
+        <div className={styles.cardGrid1}>
+          {" "}
+          <CardType
+            options={options}
+            handleBusinessToggle={handleBusinessToggle}
+          />
+        </div>
+
         <div className={"formFlex"}>
           <div className={styles.countryBox}>
             {/* <CustomSelectField
@@ -178,9 +185,12 @@ function QuickContactView({ isOpen, handleToggle }) {
         <div className={styles.nameWrapper}>
           <div className={styles.dropdown}>
             <CustomSelectField
-                outlinedProps={{
-                  sx: { borderTopRightRadius: theme.spacing(0), borderBottomRightRadius: theme.spacing(0) }
-                }}
+              outlinedProps={{
+                sx: {
+                  borderTopRightRadius: theme.spacing(0),
+                  borderBottomRightRadius: theme.spacing(0),
+                },
+              }}
               isError={errorData?.prefix_type}
               errorText={errorData?.prefix_type}
               label={"Prefix"}
@@ -252,7 +262,7 @@ function QuickContactView({ isOpen, handleToggle }) {
             />
           )}
         /> */}
-        <CustomAutoComplete
+        {/* <CustomAutoComplete
           autoCompleteProps={{
             freeSolo: false,
             getOptionLabel: (option) => option?.label,
@@ -267,6 +277,17 @@ function QuickContactView({ isOpen, handleToggle }) {
           name={"Company"}
           isError={errorData?.company_name_list}
           value={form?.company_name_list}
+        /> */}
+
+        <MultiComplete
+        isError={errorData?.company_name_list}
+          AutoCompleteList={companylistData ? companylistData : []}
+          label="Company"
+          value={form?.company_name_list}
+          onTextChange={(text) => {
+            changeTextData(text, "company_name_list");
+          }}
+          enableField={["title"]}
         />
         <CustomTextField
           isError={errorData?.job_title}
@@ -338,14 +359,15 @@ function QuickContactView({ isOpen, handleToggle }) {
           )}
         /> */}
         <MultiComplete
-          nopic
+          isError={errorData?.associate_tags_list}
+          multiple
           AutoCompleteList={associateTagsData ? associateTagsData : []}
           label="Associate Tags"
           value={form?.associate_tags_list}
           onTextChange={(text) => {
             changeTextData(text, "associate_tags_list");
           }}
-          enableField={["title", "email"]}
+          enableField={["title"]}
         />
         {/* <Autocomplete
           id="tags-outlined"
@@ -366,7 +388,7 @@ function QuickContactView({ isOpen, handleToggle }) {
             />
           )}
         /> */}
-        <CustomAutoComplete
+        {/* <CustomAutoComplete
           autoCompleteProps={{
             freeSolo: false,
             getOptionLabel: (option) => option?.label,
@@ -381,6 +403,16 @@ function QuickContactView({ isOpen, handleToggle }) {
           name={"Source"}
           isError={errorData?.source}
           value={form?.source}
+        /> */}
+        <MultiComplete
+          isError={errorData?.source}
+          AutoCompleteList={sourceData ? sourceData : []}
+          label="Source"
+          value={form?.source}
+          onTextChange={(text) => {
+            changeTextData(text, "source");
+          }}
+          enableField={["title"]}
         />
       </ShadowBox>
       <ShadowBox style={{ padding: "1rem" }} className={styles.cardWrapper}>
@@ -407,7 +439,7 @@ function QuickContactView({ isOpen, handleToggle }) {
           )}
         /> */}
 
-        <CustomAutoComplete
+        {/* <CustomAutoComplete
           autoCompleteProps={{
             freeSolo: false,
             getOptionLabel: (option) => option?.label,
@@ -422,6 +454,16 @@ function QuickContactView({ isOpen, handleToggle }) {
           name={"Lead Owner"}
           isError={errorData?.lead_owner}
           value={form?.lead_owner}
+        /> */}
+         <MultiComplete
+          isError={errorData?.lead_owner}
+          AutoCompleteList={LeadOwnerData ? LeadOwnerData : []}
+          label="Lead Owner"
+          value={form?.lead_owner}
+          onTextChange={(text) => {
+            changeTextData(text, "lead_owner");
+          }}
+          enableField={["title"]}
         />
         <CustomSelectField
           isError={errorData?.lead_stage_type}

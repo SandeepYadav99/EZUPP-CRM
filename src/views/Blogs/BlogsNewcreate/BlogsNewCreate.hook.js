@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useState } from "react";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import LogUtils from "../../../libs/LogUtils";
@@ -13,112 +13,73 @@ import {
 import { serviceGetIndustryList } from "../../../services/Industry.service";
 import constants from "../../../config/constants";
 import { useParams } from "react-router-dom";
+import slugify from "slugify";
+
+const initialForm = {
+  title: "",
+  slug: "",
+  tags: [],
+  topic: "",
+  meta_description: "",
+  author: "",
+  image: null,
+  is_featured: true,
+  blog_description: "",
+  publish_on: "",
+  status: "",
+};
 
 function useNewBlogCreateHook({ location }) {
-  const initialForm = {
-    title: "",
-    slug: "",
-    tags: [],
-    topic: "",
-    meta_description: "",
-    author: "",
-    image: null,
-    is_featured: true,
-    blog_description: "",
-    publish_on: "",
-    status: "",
-  };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [checked, setChecked] = useState(false);
-  const [industries, setIndustries] = useState([]);
   const [coverImage, setCoverImage] = useState("");
   const [confirmPopUp, setConfirmPopUp] = useState(false);
   const [taglist, setTagList] = useState([]);
-  const [editor_data, setEditor_Data] = useState(null);
-  const [anchor, _setAnchor] = useState(null);
-
-  const params = useParams();
-
   const descriptionRef = useRef(null);
 
+  const { id } = useParams();
+
   useEffect(() => {
-    serviceGetTagsList()?.then((res) => {
-      setTagList(res?.data);
-    });
+    (async () => {
+      const promises = await Promise.allSettled([
+        serviceGetTagsList(),
+        serviceGetIndustryList(),
+      ]);
+  
+      const tagList = promises[0].value?.data;
+      const industryList = promises[1].value?.data;
+
+      setTagList(tagList);
+    })();
   }, []);
 
-  useEffect(() => {
-    serviceGetIndustryList()?.then((res) => {
-      setIndustries(res?.data);
-    });
-  }, []);
-
-  const onChangeCheckBox = () => {
-    setChecked(!checked);
-  };
-
-  useEffect(() => {
-    if (form?.is_featured) {
-      setForm({
-        ...form,
-        is_featured: checked,
-      });
-    } else {
-      setForm({
-        ...form,
-        is_featured: checked,
-      });
-    }
-  }, [checked]);
-
-  const DataValue = new Date();
-  const Day = DataValue?.getDate();
-  const Month = DataValue?.getMonth() + 1;
-  const Year = DataValue?.getFullYear();
-
-  const handleFileUpload = () => {};
-
-  const handleSave = () => {};
   const handleCancel = () => {
-    setForm({
-      ...form,
-      title: "",
-      slug: "",
-      tags: [],
-      topic: "",
-      meta_description: "",
-      author: "",
-      image: null,
-      is_featured: true,
-      blog_description: "",
-      publish_on: "",
-      status: "",
-    });
+    setForm({ ...initialForm });
   };
   useEffect(() => {
-    if (params?.id) {
-      serviceBlogsDetails({ id: params?.id })?.then((res) => {
+    if (id) {
+      serviceBlogsDetails({ id: id })?.then((res) => {
         const data = res?.data;
         console.log("data", data);
         setCoverImage(data?.image);
+
         setForm({
           ...form,
+          // ...data,
           title: data?.title,
           slug: data?.slug,
           topic: data?.topic,
           author: data?.author,
           is_featured: data?.is_featured,
-          status: data?.status === constants.GENERAL_STATUS.ACTIVE,
+          status: data?.status,
           tags: data?.tags,
           blog_description: data?.blog_description,
           meta_description: data?.meta_description,
-          
         });
       });
     }
-  }, [params?.id]);
+  }, [id]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -127,16 +88,14 @@ function useNewBlogCreateHook({ location }) {
       "tags",
       "author",
       "meta_description",
-      "image",
       "topic",
       "slug",
       "status",
       "blog_description",
     ];
 
-    if (params?.id) {
-      const index = required.indexOf("image");
-      required.splice(index, 1);
+    if (!id) {
+      required.push("image");
     }
 
     required.forEach((val) => {
@@ -154,7 +113,7 @@ function useNewBlogCreateHook({ location }) {
       }
     });
     return errors;
-  }, [form, errorData]);
+  }, [form, errorData, id]);
 
   const removeError = useCallback(
     (title) => {
@@ -171,10 +130,8 @@ function useNewBlogCreateHook({ location }) {
       const t = { ...form };
       if (fieldName === "title") {
         t[fieldName] = text;
-        // } else if (fieldName === "topic") {
-        //   if (text >= 0) {
-        //     t[fieldName] = text;
-        //   }
+        // t['slug']=text?.toLowerCase()?.replace(' ','-');
+        t["slug"] = slugify(text, { replacement: "-", lower: true });
       } else {
         t[fieldName] = text;
       }
@@ -184,30 +141,23 @@ function useNewBlogCreateHook({ location }) {
     [removeError, form, setForm]
   );
 
-  descriptionRef.current = changeTextData;
-
   const submitToServer = useCallback(
     (status) => {
       if (!isSubmitting) {
         setIsSubmitting(true);
         const fd = new FormData();
-        if (params?.id) {
-          fd.append("image", coverImage);
-        }
+
         Object.keys(form).forEach((key) => {
-          if (key === "status") {
-            fd.append(key, form[key] ? "ACTIVE" : "INACTIVE");
-          } else if (key === "publish_on") {
-            fd.append(key, `${Day}-${Month}-${Year}`);
-          } else if (key === "blog_description") {
-            fd.append("blog_description", form?.blog_description);
-          } else {
+          if (key !== "image") {
             fd.append(key, form[key]);
           }
         });
+        if (form?.image) {
+          fd.append("image", form?.image);
+        }
         let req;
-        if (params?.id) {
-          fd.append("id", params?.id);
+        if (id) {
+          fd.append("id", id);
           req = serviceUpdateBlogs(fd);
         } else {
           req = serviceCreateBlogs(fd);
@@ -222,7 +172,7 @@ function useNewBlogCreateHook({ location }) {
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting]
+    [form, isSubmitting, setIsSubmitting, id,]
   );
 
   const onBlurHandler = useCallback(
@@ -231,7 +181,7 @@ function useNewBlogCreateHook({ location }) {
         changeTextData(form?.[type].trim(), type);
       }
     },
-    [changeTextData]
+    [changeTextData, form]
   );
 
   const handleSubmit = useCallback(
@@ -244,55 +194,29 @@ function useNewBlogCreateHook({ location }) {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, submitToServer]
   );
 
-  const handleDelete = () => {
-    setConfirmPopUp(true);
-  };
-
-  const handleDialogClose = () => {
-    setConfirmPopUp(false);
-  };
-
   const suspendItem = () => {
-    serviceDeleteBlogs({ id: params?.id })?.then((res) => {
+    serviceDeleteBlogs({ id: id })?.then((res) => {
       SnackbarUtils.success("Deleted SuccessFully");
       setConfirmPopUp(false);
       historyUtils.push("/blogs");
     });
   };
-
-  const handleEditor = (data) => {
-    setForm({
-      ...form,
-      blog_description: data,
-    });
-  };
+  descriptionRef.current = changeTextData;
 
   return {
     form,
     errorData,
     changeTextData,
-    onBlurHandler,
-    removeError,
     handleSubmit,
     isSubmitting,
-    onChangeCheckBox,
-    handleEditor,
-    industries,
-    handleDelete,
     confirmPopUp,
     suspendItem,
-    handleDialogClose,
     taglist,
-    handleFileUpload,
-    handleSave,
     handleCancel,
-    editor_data,
-    anchor,
     coverImage,
-    checked,
     descriptionRef,
   };
 }
