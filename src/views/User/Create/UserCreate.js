@@ -16,7 +16,7 @@ const UserCreate = ({}) => {
     changeTextData,
     form,
     onBlurHandler,
-    handleSubmit,
+    handleSubmit, 
     image,
     id,
     images,

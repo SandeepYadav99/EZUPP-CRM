@@ -5,6 +5,7 @@ import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.c
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
+import UploadImage from "../../../../components/UploadImage/UploadImage";
 
 const PersonalInformation = ({
   errorData,
@@ -14,7 +15,6 @@ const PersonalInformation = ({
   image,
   listData,
 }) => {
-  console.log(image, "Form");
   return (
     <>
       <div className={"plainPaper"}>
@@ -26,14 +26,12 @@ const PersonalInformation = ({
         <div className={styles.outerFlex}>
           <div className={styles.count}>
             <File
-              // bannerLabel="Profile"
               max_size={2 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
               name="image"
               accept={"image/*"}
               label="Profile"
-              // show_image={true}
               link={""}
               user_image
               error={errorData?.image}

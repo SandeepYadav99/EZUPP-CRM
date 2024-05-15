@@ -19,7 +19,7 @@ export async function serviceGetIndustry (params) {
 }
 
 export async function serviceGetIndustryList (params) {
-    return await getRequest('/industries', params);
+    return await getRequest('industries', params);
 }
 
 export async function serviceIndustryCheck (params) {

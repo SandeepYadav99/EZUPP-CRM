@@ -2,7 +2,7 @@ import React, {useMemo, useRef, useEffect, useState} from 'react';
 import { InputLabel, Select, OutlinedInput, FormHelperText, FormControl} from "@mui/material";
 import LogUtils from "../../../libs/LogUtils";
 
-const CustomSelectField = ({ isError, errorText, label, handleChange, icon, children, ...rest}) => {
+const CustomSelectField = ({ isError, errorText, label, handleChange, icon, children, outlinedProps, ...rest}) => {
     const [labelWidth, setLabelWidth] = useState(0);
     const inputLabelRef = useRef(null);
 
@@ -19,7 +19,7 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
     };
 
     return (
-        <FormControl fullWidth margin={'dense'} variant={'outlined'} error={isError}>
+        <FormControl   size={'small'} fullWidth margin={'dense'} variant={'outlined'} error={isError} >
             <InputLabel
                 ref={inputLabelRef}
                 htmlFor={`selectField${id}`}
@@ -33,10 +33,11 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
                     {...rest}
                     input={
                         <OutlinedInput
-                            margin={'dense'}
+                            size={'small'}
                             fullWidth
                             // labelWidth={labelWidth}
                             id={`selectField${id}`}
+                            {...outlinedProps}
                         />
                     }
                     onChange={(e) => { handleChangeLocal && handleChangeLocal(e); }}

@@ -1,0 +1,102 @@
+.paper {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 8px #00000029;
+  width: 40% !important;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.headerAlign {
+  display: flex;
+  justify-content: space-between !important;
+}
+.alignDataValue {
+  display: flex !important;
+  width: 70%;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.wrapComponent {
+  display: flex;
+  width: 100%;
+  justify-content: space-around !important;
+  margin-top: 20px;
+}
+.cardComponent {
+  display: flex;
+}
+.bgColor1 {
+  background-image: url("../../../../assets/CRMAssets/ic_total_sent.png");
+  width: 60px;
+  border-radius: 10px !important;
+  background-repeat: no-repeat;
+}
+.bgColor2 {
+  background-image: url("../../../../assets/CRMAssets/ic_opened.png");
+  width: 60px;
+  border-radius: 10px !important;
+  background-repeat: no-repeat;
+}
+.bgColor3 {
+  background-image: url("../../../../assets/CRMAssets/ic_not_opened.png");
+  width: 60px;
+  border-radius: 10px !important;
+  background-repeat: no-repeat;
+}
+.chartsDesktop {
+  display: flex;
+  gap: 10px;
+}
+#pageBox1 {
+  width: 40%;
+}
+
+.underLine{
+   color:#2063CE;
+   text-decoration: underline;
+   padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 1296px) {
+  .cardComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+  }
+  .bgColor1 {
+    background-image: url("../../../../assets/CRMAssets/ic_total_sent.png");
+    width: 60px;
+    border-radius: 10px !important;
+    background-repeat: no-repeat;
+    height: 60px;
+  }
+  .bgColor2 {
+    background-image: url("../../../../assets/CRMAssets/ic_opened.png");
+    width: 60px;
+    border-radius: 10px !important;
+    background-repeat: no-repeat;
+    height: 60px;
+  }
+  .bgColor3 {
+    background-image: url("../../../../assets/CRMAssets/ic_not_opened.png");
+    width: 60px;
+    border-radius: 10px !important;
+    background-repeat: no-repeat;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .paper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 8px #00000029;
+    width: 100% !important;
+  }
+}
+ 

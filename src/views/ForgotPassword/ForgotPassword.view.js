@@ -17,10 +17,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from '@mui/material';
-import { Button, ButtonBase } from '@mui/material';
-import {withStyles} from '@mui/styles';
-import { ArrowBack } from '@mui/icons-material';
+  Typography,
+} from "@mui/material";
+import { Button, ButtonBase } from "@mui/material";
+import { withStyles } from "@mui/styles";
+import { ArrowBack } from "@mui/icons-material";
 import { serviceForgotPassword } from "../../services/index.services";
 import DashboardSnackbar from "../../components/Snackbar.component";
 import { Link } from "react-router-dom";
@@ -30,7 +31,7 @@ import EventEmitter from "../../libs/Events.utils";
 import { updateTitle } from "../../libs/general.utils";
 import backArrow from "../../assets/CRMAssets/ic_back.png";
 import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
-
+import { ArrowPrimaryButton } from "../../components/Buttons/PrimaryButton";
 
 const validate = (values) => {
   const errors = {};
@@ -183,7 +184,11 @@ class ForgotPasswordView extends Component {
           <div className={styles.signContainer}>
             <form onSubmit={handleSubmit(this._handleSubmit)}>
               <div className={styles.logoImageData}>
-                <img src={logoImage} alt="text_data" style={{width:"250px"}}/>
+                <img
+                  src={logoImage}
+                  alt="text_data"
+                  style={{ width: "250px" }}
+                />
               </div>
               <div
                 className={styles.loginSignupText}
@@ -196,14 +201,18 @@ class ForgotPasswordView extends Component {
               >
                 {/*<ArrowBack onClick={this._handleBack}>*/}
                 {/*</ArrowBack>*/}
-                <div className={styles.headingTextBig}>Forgot Password ?</div>
+                {/* <div className={styles.headingTextBig}>Forgot Password ?</div> */}
+                <Typography variant="h3" color="text.secondary">Forgot Password</Typography>
               </div>
-              <p className={styles.bottomLine} style={{ color: "grey",fontSize:"14px" }}>
+              <p
+                className={styles.bottomLine}
+                style={{ color: "grey", fontSize: "14px",marginTop:"10px" }}
+              >
                 Enter your email and we'll send you instructions to reset your
                 password
               </p>
-              <div>
-                <br />
+              <div style={{marginTop:"10px"}}>
+                {/* <br /> */}
                 <div>
                   <Field
                     fullWidth={true}
@@ -223,7 +232,7 @@ class ForgotPasswordView extends Component {
                   }}
                   className={styles.mobileRender}
                 >
-                  <ButtonBase
+                  <ArrowPrimaryButton
                     disabled={this.state.is_calling}
                     variant={"contained"}
                     type="submit"
@@ -234,14 +243,9 @@ class ForgotPasswordView extends Component {
                         <CircularProgress size={"18px"} color={"primary"} />
                       </div>
                     ) : (
-                      <div style={{display:"flex",gap:"5px",alignItems:"center"}}>
-                      <span>
-                        SEND RESET LINK
-                      </span>
-                      <img src={arrowIcon} alt="arrow" style={{height:"15px"}}/>
-                      </div>
+                      "SEND REST LINK"
                     )}
-                  </ButtonBase>
+                  </ArrowPrimaryButton>
                   <div>
                     <span className={styles.bottomSignup}>
                       <ButtonBase
@@ -269,11 +273,6 @@ class ForgotPasswordView extends Component {
       <>
         <div className={styles.overlay}></div>
         <div className={styles.mainLoginView}>
-          {/* <div className={styles.loginFlex1}>
-          <img src={require("../../assets/img/logo.png")} />
-        </div> */}
-          {/* <div className={styles.loginFlex2}>{this._renderForm()}</div>
-        <DashboardSnackbar /> */}
         </div>
         <div className={styles.container}>
           <div className={styles.loginFlex2}>{this._renderForm()}</div>

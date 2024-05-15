@@ -7,10 +7,10 @@ import IndustryList from "../views/Industry/IndustryList.container";
 import MilestoneList from "../views/Milestone/List/MilestoneList";
 import CategoryList from "../views/Category/CategoryList.container";
 import RoleList from "../views/Role/List/RoleList";
+
 import RoleCreate from "../views/Role/Create/RoleCreate";
 import BadgeList from "../views/Badge/List/BadgeList.container";
-import ProductList from "../views/Product/ProductList.container";
-import ProductView from "../views/Product/ProductView";
+import ProductList from "../views/Products/List/ProductList.container";
 // import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
 import FaqList from "../views/Faq/FaqList.container";
@@ -26,8 +26,12 @@ import SubCategoryList from "../views/SubCategory/SubCategoryList.container";
 import QuoteList from "../views/Quotes/QuoteList.container";
 import QuoteDetail from "../views/Quotes/Quote.view";
 import HubMasterList from "../views/HubMaster/List/HubMasterList";
-
-
+import BlogsComponentList from "../views/Blogs/BlogsList/BlogsList.container";
+import ProductDetailview from "../views/Details/ProductDetails.view";
+import UnitsList from "../views/Units/UnitList.container";
+import NotificationDetails from "../components/NotificationCard/NotificationDetails";
+import ContactList from "../views/Contact/ContactList.container";
+import ContactCreate from "../views/Contact/Create/ContactCreate";
 import {
   Dashboard,
   MeetingRoom,
@@ -47,8 +51,11 @@ import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
+import ProductCreate from "../views/Products/Create/ProductCreate"
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
+import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
+import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 
 const dashboardRoutes = [
   {
@@ -72,6 +79,15 @@ const dashboardRoutes = [
     icon: Person,
     component: Profile,
     is_sidebar: true,
+    is_protect: true,
+  },
+  {
+    path: `${RouteName.NOTIFICATION_DETAILS}`,
+    // sidebarName: "My Profile",
+    // navbarName: "My Profile",
+    // icon: Person,
+    component: NotificationDetails,
+    is_sidebar: false,
     is_protect: true,
   },
   {
@@ -112,17 +128,17 @@ const dashboardRoutes = [
     should_regex: true,
     parent: "masters",
   },
-  {
-    path: "/master/milestone",
-    sidebarName: "Master Milestone",
-    navbarName: "Master Milestone",
-    icon: MeetingRoom,
-    component: MilestoneList,
-    is_sidebar: true,
-    is_protect: true,
-    should_regex: true,
-    parent: "masters",
-  },
+  // {
+  //   path: "/master/milestone",
+  //   sidebarName: "Master Milestone",
+  //   navbarName: "Master Milestone",
+  //   icon: MeetingRoom,
+  //   component: MilestoneList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   should_regex: true,
+  //   parent: "masters",
+  // },
 
   {
     path: "/industry/category/:id",
@@ -198,7 +214,7 @@ const dashboardRoutes = [
   //   is_protect: true,
   //   should_regex:false
   // },
-  
+
   {
     path: RouteName.ROLE,
     sidebarName: "UserRole",
@@ -229,16 +245,26 @@ const dashboardRoutes = [
     is_protect: true,
     parent: "admin",
   },
-  {
-    path: "/badge",
-    sidebarName: "Badge",
-    navbarName: "Badge",
-    icon: VerifiedUser,
-    component: BadgeList,
-    is_sidebar: true,
-    is_protect: true,
-    parent: "masters",
-  },
+  // {
+  //   path: "/badge",
+  //   sidebarName: "Badge",
+  //   navbarName: "Badge",
+  //   icon: VerifiedUser,
+  //   component: BadgeList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   parent: "masters",
+  // },
+  // {
+  //   path: "/badge",
+  //   sidebarName: "Badge",
+  //   navbarName: "Badge",
+  //   icon: VerifiedUser,
+  //   component: BadgeList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   parent: "masters",
+  // },
   {
     path: "/products",
     sidebarName: "Products",
@@ -250,15 +276,23 @@ const dashboardRoutes = [
     parent: "masters",
   },
   {
-    path: "/products/edit",
+    path: `${RouteName.PRODUCT_DETAILS}:id`,
     sidebarName: "Products",
     navbarName: "Products",
     icon: LocalOffer,
-    component: ProductView,
+    component: ProductDetailview,
     is_sidebar: false,
     is_protect: true,
   },
-
+  {
+    path: `${RouteName.PRODUCT_CREATE}`,
+    sidebarName: "Products",
+    navbarName: "Products",
+    icon: LocalOffer,
+    component: ProductCreate,
+    is_sidebar: false,
+    is_protect: true,
+  },
   {
     path: `${RouteName.APP_USERS}`,
     sidebarName: "App Users",
@@ -268,6 +302,26 @@ const dashboardRoutes = [
     is_sidebar: true,
     is_protect: true,
     should_regex: true,
+  },
+  {
+    path: `${RouteName.CONTACT_LIST}`,
+    sidebarName: "Contact",
+    navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: ContactList,
+    is_sidebar: true,
+    is_protect: true,
+    should_regex: true,
+  },
+  {
+    path: `${RouteName.CONTACT_CREATE}`,
+    sidebarName: "Contact",
+    navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: ContactCreate,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
   },
   {
     path: `${RouteName.CALENDAR}`,
@@ -304,7 +358,7 @@ const dashboardRoutes = [
     sidebarName: "Blogs",
     navbarName: "Blogs",
     icon: BubbleChart,
-    component: BlogsList,
+    component: BlogsComponentList,
     is_sidebar: true,
     is_parent: false,
   },
@@ -338,37 +392,37 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
   },
-  {
-    path: "/type",
-    sidebarName: "Type",
-    navbarName: "Type",
-    icon: VerifiedUser,
-    component: TypeList,
-    is_sidebar: true,
-    is_protect: true,
-    parent: "masters",
-  },
+  // {
+  //   path: "/type",
+  //   sidebarName: "Type",
+  //   navbarName: "Type",
+  //   icon: VerifiedUser,
+  //   component: TypeList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   parent: "masters",
+  // },
   {
     path: "/unit",
     sidebarName: "Unit",
     navbarName: "Unit",
     icon: VerifiedUser,
-    component: UnitList,
+    component: UnitsList,
     is_sidebar: true,
     is_protect: true,
     parent: "masters",
   },
-  {
-    path: RouteName.HUB_MASTERS,
-    sidebarName: "Hub Master",
-    navbarName: "Hub Master",
-    icon: EventNote,
-    component: HubMasterList,
-    is_sidebar: true,
-    is_protect: true,
-    // should_regex: false,
-    parent: "masters",
-  },
+  // {
+  //   path: RouteName.HUB_MASTERS,
+  //   sidebarName: "Hub Master",
+  //   navbarName: "Hub Master",
+  //   icon: EventNote,
+  //   component: HubMasterList,
+  //   is_sidebar: true,
+  //   is_protect: true,
+  //   // should_regex: false,
+  //   parent: "masters",
+  // },
 
 
 
@@ -423,7 +477,22 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
-  }
+  },
+  {
+    path:`${RouteName?.BLOGS_CREATE}`,
+    component: NewBlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path:`${RouteName?.BLOGS_UPDATE}:id`,
+    component:  NewBlogsCreate ,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+
 ];
 
 export default dashboardRoutes;

@@ -39,5 +39,12 @@ export default {
   
   ROLE:"/roles",
   ROLE_CREATE:"/role/create",
-  ROLE_CREATE_UPDATE:"/role/update/"
+  ROLE_CREATE_UPDATE:"/role/update/",
+  BLOGS_CREATE:"/blogs/create",
+  BLOGS_UPDATE:"/blogs/update/",
+  PRODUCT_DETAILS:"/product/details/",
+  PRODUCT_CREATE:"/product/create",
+  NOTIFICATION_DETAILS:"/notifications",
+  CONTACT_LIST: "/contact",
+  CONTACT_CREATE: "/contact/create"
 };

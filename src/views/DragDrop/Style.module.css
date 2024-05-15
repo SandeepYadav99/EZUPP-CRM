@@ -1,0 +1,22 @@
+.dragWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.listWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.itemWrap {
+  padding: 5px 10px;
+  background: #e7e7e7;
+  /* cursor: pointer; */
+  border-radius: 10px;
+  /* transition: background-color 0.3s ease; */
+}
+.itemWrap:hover {
+  background-color: #e1d2d2;
+}

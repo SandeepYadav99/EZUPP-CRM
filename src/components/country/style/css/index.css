@@ -732,8 +732,11 @@
     border-radius: 5px;
     width: 100%;
     outline: none;
-    padding: 10.5px 14px 10.5px 58px;
+    /*padding: 10.5px 14px 10.5px 58px;*/
+    padding: 7.5px 8px 7.5px 50px;
     transition: box-shadow ease 0.25s, border-color ease 0.25s;
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 .react-tel-input .form-control:hover {
     border-color: #000;
@@ -763,13 +766,13 @@
 .react-tel-input .form-control + div:before {
     content: 'Contact';
     position: absolute;
-    top: -7px;
+    top: -0px;
     left: 19px;
     display: block;
     background: white;
     color: #6E6E6E;
     /*padding: 0 5px;*/
-    font-size: 13px;
+    font-size: 0.75rem;
     /*width: 70px;*/
 }
 .react-tel-input .flag-dropdown {
@@ -868,7 +871,7 @@
     z-index: 2;
     position: sticky;
     top: 0;
-    background-color: #fff;
+    background-color: #F7F7F9;
     padding: 10px 0 6px 10px;
 }
 .react-tel-input .country-list .search-emoji {

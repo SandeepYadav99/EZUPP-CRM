@@ -102,7 +102,7 @@ const headerLinksStyle = theme => ({
     fontSize: "14px",
     textAlign: "left",
     listStyle: "none",
-    backgroundColor: "#fff",
+    backgroundColor: "#F7F7F9",
     backgroundClip: "padding-box"
   },
   pooperResponsive: {

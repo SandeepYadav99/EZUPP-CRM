@@ -67,7 +67,7 @@ const UserList = (props) => {
 
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
-      return <StatusPill status={"ACTIVE"} color={"active"}  />;
+      return <StatusPill status={"ACTIVE"} color={"active"} />;
     } else if (status === "INACTIVE") {
       return <StatusPill status={"INACTIVE"} color={"high"} />;
     }
@@ -178,7 +178,6 @@ const UserList = (props) => {
           <span className={styles.title}>User List</span>
           <ArrowPrimaryButton
             onClick={handleCreate}
-            
             icon={<Add fontSize="normal" />}
           >
             CREATE
@@ -194,7 +193,7 @@ const UserList = (props) => {
           />
           <div>
             <br />
-            <div style={{ width: "100%" }} >
+            <div style={{ width: "100%" }}>
               <DataTables
                 {...tableData.datatable}
                 {...tableData.datatableFunctions}

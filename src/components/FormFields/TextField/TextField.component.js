@@ -9,9 +9,10 @@ const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChang
     }, [onChange, onTextChange]);
 
    return (
+    <>
        <TextField
            error={isError}
-           helperText={errorText}
+        //    helperText={errorText}
            label={label}
            InputProps={{
                startAdornment: icon ? (
@@ -25,9 +26,14 @@ const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChang
            variant={'outlined'}
            color={'primary'}
            size={'small'}
+           margin={'dense'}
            fullWidth
            {...rest}
        />
+       {isError && (
+        <div style={{textAlign:"right", color:"red"}}>{errorText}</div>
+      )}
+    </>
    )
 }
 

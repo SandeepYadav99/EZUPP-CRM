@@ -3,7 +3,8 @@
     --secondary_color: '#25CEAE';
     --alert_color: '#FF0000';
     --border_color: '#E4E4E6';
-    --text_primary_color: '#2063CE'
+    --text_primary_color: '#2063CE';
+
 }
 
 @font-face {
@@ -24,7 +25,7 @@
 
 .formFlex {
     display: flex;
-    /*margin-bottom: 10px;*/
+    /* margin-bottom: 10px; */
 }
 .formFlex1 {
     display: flex;
@@ -91,7 +92,7 @@
 .file-upload__label {
     display: block;
     padding: 10px 5px;
-    color: #fff;
+    color: #F7F7F9;
     background: #4962FE;
     transition: background 0.3s;
 }
@@ -142,7 +143,7 @@ input[type=radio] {
     border-radius: 10px;
     padding: 0.4rem 1.2rem;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #F7F7F9;
     box-shadow: 0 0 8px rgb(0 0 0 / 15%);
 }
 .badge {
@@ -588,14 +589,27 @@ input[type=radio] + label:hover {
     position: absolute;
     z-index: 2;
 }
-
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
 .Demo__suggestion-item {
     padding: 8px;
     text-align: left;
-    background-color: #fff;
+    background-color: #F7F7F9;
     cursor: pointer;
 }
-
+.option_auto_class{
+    display: flex;
+    margin-left: 10px;
+}
+.multipe_auto_options{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 10px;
+}
 .Demo__suggestion-item--active {
     background-color: #fafafa;
 }
@@ -628,7 +642,7 @@ input[type=radio] + label:hover {
     border-radius: 10px;
     padding: 0.4rem 1.2rem;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #F7F7F9;
     box-shadow: 0 0 8px rgb(0 0 0 / 15%);
 }
 
@@ -1126,6 +1140,98 @@ input[type=radio] + label:hover {
 .MuiPickersDay-dayOutsideMonth {
   color: #d8d8dd;
 }
+.fileClass{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+}
+.menus {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    list-style: none;
+    padding-left: 20px;
+    /* overflow-x: scroll; */
+  }
+  .menu-items {
+    position: relative;
+    font-size: 14px;
+  }
+  
+  .menu-items a {
+    display: block;
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .menu-items button {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-size: inherit;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  button span {
+    margin-left: 3px;
+  }
+  
+  .menu-items > a,
+  .menu-items button {
+    text-align: left;
+    padding: 0.7rem 1rem;
+  }
+  
+  .menu-items a:hover,
+  .menu-items button:hover {
+    background-color: #f2f2f2;
+  }
+  /* .arrow::after {
+    content: "";
+    display: inline-block;
+    margin-left: 0.28em;
+    vertical-align: 0.09em;
+    border-top: 0.42em solid;
+    border-right: 0.32em solid transparent;
+    border-left: 0.32em solid transparent;
+  } */
+  .dropdown {
+    position: absolute;
+    right: 0;
+    left: auto;
+    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+      0 4px 6px -2px rgba(71, 63, 79, 0.16);
+    font-size: 0.875rem;
+    z-index: 9999;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    list-style: none;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    display: none;
+  }
+  
+  .dropdown.show {
+    display: block;
+  }
+  
+  .dropdown .dropdown-submenu {
+    position: absolute;
+    left: 100%;
+    top: -7px;
+  }
+  .logo {
+    text-decoration: none;
+    font-size: 25px;
+    color: inherit;
+    margin-right: 20px;
+  }
+  
 @media (max-width: 767px) {
     .iconTabsEvents{
         padding: 6px 8px !important;

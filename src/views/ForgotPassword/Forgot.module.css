@@ -11,8 +11,10 @@
   background-image: url("../../assets/CRMAssets/waves_background.png");
   background-size: cover;
   background-position: center;
-  z-index: -1; /* Set a lower z-index for the pseudo-element */
+  z-index: -1;
+  /* Set a lower z-index for the pseudo-element */
 }
+
 .container {
   width: 100vw;
   height: 100%;
@@ -23,6 +25,7 @@
   z-index: 2 !important;
   margin-top: -100vh;
 }
+
 .mainLoginView {
   display: flex;
   width: 100vw;
@@ -30,23 +33,6 @@
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(to left, #2063ce, #25ceae) !important;
-  padding-top: 40px;
-  padding-bottom: 40px !important;
-  background-size: cover;
-  background-position: center;
-  position: relative !important;
-  z-index: -2;
-  /*background-image: url('../../assets/img/background.jpg');*/
-  /*background-size: cover;*/
-  /*background-repeat: no-repeat;*/
-}
-.mainLoginView1 {
-  display: flex;
-  width: 100vw;
-  height: 100vh !important;
-  justify-content: center;
-  align-items: center;
-  /* background-image: linear-gradient(to left, #2063ce, #25ceae) !important; */
   padding-top: 40px;
   padding-bottom: 40px !important;
   background-size: cover;
@@ -85,7 +71,7 @@
 }
 
 .loginFlex2 {
-  background-color: #fff;
+  background-color: #F7F7F9;
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
@@ -96,17 +82,7 @@
   width: 550px !important;
   border-radius: 12px !important;
 }
-.loginFlexReset {
-  background-color: #fff;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  box-sizing: border-box;
-  flex-direction: column;
-  justify-content: space-between;
 
-  border-radius: 12px !important;
-}
 /*.loginFlex1:after {*/
 /*position:absolute;*/
 /*top:0;*/
@@ -151,7 +127,7 @@
 }
 
 .back {
-  color: #5f63f2 !important;
+  color: #2063CE !important;
   font-size: 0.8rem;
   font-weight: 700;
   display: flex;
@@ -181,6 +157,7 @@
   display: flex;
   align-items: center;
 }
+
 .icons {
   height: 70px;
   width: 70px;
@@ -199,6 +176,7 @@
   font-size: 14px;
   /*font-family: CircularStd-Book;*/
 }
+
 .resetButton {
   background-color: #5f63f2 !important;
   color: white !important;
@@ -209,9 +187,10 @@
 .signContainer {
   /* padding: 10% 15%; */
 }
+
 .signContainer2 {
-  padding-left: 5% !important;
-  padding-right: 5% !important;
+  padding-left: 15% !important;
+  padding-right: 15% !important;
   padding-top: 20px !important;
   padding-bottom: 20px !important;
 }
@@ -227,32 +206,7 @@
   transition: all 0.5s ease-out;
   width: 240px;
 }
-.login1 {
-  padding: 10px 20px 10px 20px !important;
-  border-radius: 7px !important;
-  color: white !important;
-  background: #2063ce !important;
-  margin-top: 15px !important;
-  background-size: 200% 100%;
-  background-position: right bottom;
-  /* transition: all 0.5s ease-out; */
-  width: 240px;
-}
-.login1:hover{
-  background-color: #03AE85 !important;
-}
-.cancel{
-  padding: 10px 20px 10px 20px !important;
-  border-radius: 7px !important;
-  color: #FF0000 !important;
-  background: #fff !important;
-  margin-top: 15px !important;
- border: 1px solid #FF0000;
-  
-}
-.cancel:hover{
-  background-color: #FBECE0 !important;
-}
+
 .login:hover {
   padding: 10px 20px 10px 20px !important;
   border-radius: 7px !important;
@@ -277,8 +231,8 @@
 
 @media only screen and (max-width: 1024px) {
   .loginFlex2 {
-    background-color: #fff;
-    border-radius: 18px;
+    background-color: #F7F7F9;
+    /* border-radius: 18px; */
     display: flex;
     padding-bottom: 15px !important;
     width: 100vw !important;
@@ -288,24 +242,9 @@
   }
 }
 
-
 @media only screen and (max-width: 769px) {
   .mobileRender {
     display: flex;
     flex-direction: column !important;
   }
-}
-
-.closeButton {
-  padding:  10px 20px;
-  margin: 10px 10px 0px 0px;
-  display: flex;
-  justify-content: space-between;
-}
-.logoImageDataReset {
-  text-align: center !important;
-}
-.actionButton{
-  display: flex;
-  justify-content: space-between;
 }

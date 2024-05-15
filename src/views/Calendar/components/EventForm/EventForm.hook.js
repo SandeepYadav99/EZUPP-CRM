@@ -69,6 +69,8 @@ const useEventFormHook = ({ isOpen, handleToggle, candidateId }) => {
       "guest_name",
       "event_url",
       "description",
+      "start_date",
+      "end_date"
     ];
     required.forEach((val) => {
       if (
