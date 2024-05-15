@@ -456,7 +456,9 @@ const StyleGuide = ({}) => {
             </div>
           </div>
         </div>
+
         <div className={styles.boxContFlex}>
+            
           <div>
             <Typography gutterBottom variant="h5">
               Status Indicator
