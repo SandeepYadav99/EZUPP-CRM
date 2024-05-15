@@ -158,11 +158,13 @@ function useNewBlogCreateHook({ location }) {
         let req;
         if (id) {
           fd.append("id", id);
+         
           req = serviceUpdateBlogs(fd);
         } else {
           req = serviceCreateBlogs(fd);
         }
         req.then((res) => {
+          
           if (!res.error) {
             historyUtils.push("/blogs");
           } else {

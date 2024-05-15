@@ -146,19 +146,15 @@ function useContactList({ isOpen, handleToggle}) {
         changeTextData(form?.[type].trim(), type);
       }
     },
-    [changeTextData]
+    [changeTextData,form]
   );
 
   const handleBusinessToggle = useCallback(
     (data) =>
       data === "Business" ? setShowBusiness(true) : setShowBusiness(false),
-    [showBusiness, setShowBusiness]
+    [ setShowBusiness]
   );
-  // const handleCountryFlagToggle = useCallback(
-  //   () =>setCountryFlagOnly((prev)=>!prev),
-   
-  //   [ countryFlagOnly,setCountryFlagOnly]
-  // );
+ 
 
   return { showBusiness, setShowBusiness, handleBusinessToggle, form,
     changeTextData,
