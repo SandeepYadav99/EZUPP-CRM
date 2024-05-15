@@ -1,11 +1,12 @@
 import React, { useMemo } from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
+import {Tooltip, MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
 import img from "../../../../assets/img/1.png";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
 const AutoCompleteData = [
   {
     id: 1,
@@ -70,11 +71,16 @@ const ProductInformation = ({
           </h4>
         </div>
         <div className={styles.outerFlex}>
-          <div className={styles.count} style={{ margin: "7px 10px 0 14px" }}>
+          <div className={`${styles.count}`} style={{ margin: "14px 10px 0 14px" }}>
             {renderImage}
+            <div className={styles.headerFlex}>
             <Typography variant="subtitle3" className={styles.imgText}>
               Image Guide
             </Typography>
+            <Tooltip title="Info" aria-label="info" placement="right">
+              <InfoIcon fontSize={"small"} />
+            </Tooltip>
+            </div>
           </div>
           <div className={styles.lowerWrap}>
             <div className={"formFlex"}>

@@ -13,7 +13,7 @@ import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import useProductDetailHook from "./ProductDetailsHook";
 
 const ProductDetailview = () => {
-  const { isLoading, handleSideToggle, handleDetailPage, profileDetails } =
+  const { isLoading, handleSideToggle, handleDetailPage, profileDetails, handleDelete } =
     useProductDetailHook({});
     const img="http://91.205.173.97:8118/public/product_images/1713506777190_red-ball-hitting-wicket-stumps-with-bat-black-abstract-splash-background-cricket-fever-concept_1302-5492.jpg"
   console.log("profileDetails", profileDetails);
@@ -37,7 +37,7 @@ const ProductDetailview = () => {
           <div></div>
           <div className={styles.profileHeading}></div>
           <div>
-            <ActionButton>
+            <ActionButton onClick={handleDelete }>
               DELETE
               <span className={styles.imageContainer}>
                 <img

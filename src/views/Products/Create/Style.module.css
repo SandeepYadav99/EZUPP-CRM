@@ -3,7 +3,7 @@
     /* align-items: center; */
     justify-content: space-between;
     /* padding-bottom: 30px; */
-   
+
   }
   .outerFlex1{
     padding-bottom: 30px;
@@ -28,8 +28,13 @@
     display: flex;
     gap: 10px;
     /* align-items: center; */
-   
+
   }
+.headerFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .imgText{
   display: flex;
   flex-direction: column;
@@ -71,7 +76,7 @@
 }
 .buttonContainer {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 /* .desc{
   height: 50% !important;
