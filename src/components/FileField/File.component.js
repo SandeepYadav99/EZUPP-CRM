@@ -45,6 +45,8 @@ class File extends Component {
                 }
                 tempTotal++;
             });
+            console.log(tempFiles[0],"hello it is here")
+
             if (isError && totalValid < 1) {
                 EventEmitter.dispatch(EventEmitter.THROW_ERROR, {error: 'Invalid Upload', type: 'error'});
             }
@@ -61,7 +63,6 @@ class File extends Component {
 
     _getImageUrl (value) {
         const {default_image,user_image} = this.props;
-        // console.log('_getImageUrl', value);
         if (value) {
             return URL.createObjectURL(value)
         } else if (default_image) {

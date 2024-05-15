@@ -10,6 +10,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import jsonData from "./TimeLine.json";
 import styles from "./Style.module.css";
+import PdfMeeting from "./CardComponent/Pdf.component";
+import MeetingCard from "./CardComponent/MeetingCard";
+import CreateMeeting from "./CardComponent/CreateMeeting";
 
 const theme = createTheme({
   components: {
@@ -38,6 +41,7 @@ const TimelineComponent = () => {
   return (
     <ThemeProvider theme={theme}>
       <ShadowBox className={styles.containerData}>
+        <span className={styles.heading}>Basic Timeline</span>
         <Timeline>
           {jsonData?.data?.map((val, id) => {
             return (
@@ -60,7 +64,20 @@ const TimelineComponent = () => {
                   />
                   <TimelineConnector />
                 </TimelineSeparator>
-                <TimelineContent>
+                {val?.type === "pdf" ? (
+                  <TimelineContent>
+                    <PdfMeeting data={val} />{" "}
+                  </TimelineContent>
+                ) : val?.type === "meeting" ? (
+                  <TimelineContent>
+                    <MeetingCard data={val} />{" "}
+                  </TimelineContent>
+                ) : (
+                  <TimelineContent>
+                    <CreateMeeting data={val} />{" "}
+                  </TimelineContent>
+                )}
+                {/* <TimelineContent>
                   <div
                     className={`${
                       id === 0 ? styles?.underline : styles.underlineOther
@@ -86,10 +103,10 @@ const TimelineComponent = () => {
                   </div>
                   <div className={styles.underline3}>
                     <Typography variant="subtitle1" sx={{ color: "#6E6E6E" }}>
-                      {val?.t1} <br /> 
+                      {val?.t1} <br />
                     </Typography>
                   </div>
-                </TimelineContent>
+                </TimelineContent> */}
               </TimelineItem>
             );
           })}

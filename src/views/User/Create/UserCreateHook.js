@@ -139,13 +139,10 @@ function useUserCreateHook() {
           const formData = {
             ...form,
             name: data?.name,
-
             userName: data?.user_name,
-
             contact: data?.contact,
             email: data?.email,
             role: data?.role?.id,
-            // type: string;
             employee_id: data?.employee_id,
             joining_date: data?.joining_date,
             department: data?.department,
@@ -153,11 +150,7 @@ function useUserCreateHook() {
             manager: data?.manager?.id,
             end_date: data?.exit_date,
             userManage: data?.is_manager,
-
             invoiteToUser: data?.is_primary_user,
-
-            // is_access_invite: data?.is_access_invite,
-            // is_active: data?.status === Constants.GENERAL_STATUS.ACTIVE,
           };
 
           setForm(formData);
@@ -168,7 +161,6 @@ function useUserCreateHook() {
       });
     }
   }, [id]);
-console.log(images, "Image")
   // const checkCodeValidation = useCallback(() => {
   //   "serviceUpdateAdminUserSearch"({
   //     contact: form?.contact,
