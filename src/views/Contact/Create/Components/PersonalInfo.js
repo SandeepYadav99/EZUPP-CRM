@@ -60,7 +60,7 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
                   errorText={errorData?.full_name}
                   label={"Full Name"}
                   value={form?.full_name}
-                  className={styles.full_name}
+                  className={styles.name}
                   onTextChange={(text) => {
                     changeTextData(text, "full_name");
                   }}
