@@ -46,11 +46,19 @@ const initialForm = {
   wa_broadcast_channel: "",
   utm: "",
 };
-
+const sourceDDValues=[
+  "Website",
+  "Social",
+  "Affilate",
+  "Referal",
+  "Call",
+  "Database",
+  "Other"
+]
 const ContactCreatehook = () => {
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
-  const [source, setSource] = useState([]);
+  const [source, setSource] = useState([...sourceDDValues]);
   const [sourceData, setSorceData] = useState([]);
   const [contactOwnerlistData, setContactOwnerListData] = useState([]);
   const emailDebouncer = useDebounce(form.email, 500);
@@ -60,7 +68,7 @@ const ContactCreatehook = () => {
     serviceProviderProfileGetKeyword({}).then((res) => {
       if (!res?.error) {
         const data = res?.data;
-        setSource(data);
+        // setSource(data);
       }
     });
   }, []);
@@ -92,6 +100,7 @@ const ContactCreatehook = () => {
     if (emailDebouncer) checkCodeValidation();
   }, [emailDebouncer]);
 
+  console.log("form",form)
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [

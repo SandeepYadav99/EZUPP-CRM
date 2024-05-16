@@ -13,6 +13,7 @@ import CustomTextField from "../../../../components/FormFields/TextField/TextFie
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import { InfoOutlined as InfoIcon } from "@mui/icons-material";
+import { leadStatus } from "../../../../helper/Helper";
 const ProfilingLead = ({
   errorData,
   changeTextData,
@@ -20,7 +21,7 @@ const ProfilingLead = ({
   form,
   source,
   sourceData,
-  contactOwnerlistData
+  contactOwnerlistData,
 }) => {
   return (
     <>
@@ -37,51 +38,17 @@ const ProfilingLead = ({
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-          <MultiComplete
-          isError={errorData?.source}
-          AutoCompleteList={sourceData ? sourceData : []}
-          label="Source"
-          value={form?.source}
-          onTextChange={(text) => {
-            changeTextData(text, "source");
-          }}
-          enableField={["title"]}
-          style={{"marginTop": '4px'}}
-        />
-            {/* <Autocomplete
-              id="tags-outlined"
-              onChange={(e, value) => {
-                changeTextData(value, "source");
+            <MultiComplete
+              isError={errorData?.source}
+              AutoCompleteList={source ? source : []}
+              label="Source"
+              value={form?.source}
+              onTextChange={(text) => {
+                changeTextData(text, "source");
               }}
-              value={form?.source || []}
-              options={source || []}
-              getOptionLabel={(option) => option}
-              defaultValue={form?.source || []}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="outlined"
-                  label={"Source"}
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <>
-                        {form?.source ? (
-                          <Clear
-                            onClick={() => changeTextData(null, "source")}
-                            style={{ cursor: "pointer" }}
-                          />
-                        ) : null}
-                        <Search
-                          style={{ marginRight: -20, cursor: "pointer" }}
-                        />
-                      </>
-                    ),
-                  }}
-                />
-              )}
-              disableClearable
-            /> */}
+              enableField={["title"]}
+              style={{ marginTop: "4px" }}
+            />
           </div>
           <div className={"formGroup"}>
             <CustomTextField
@@ -122,8 +89,8 @@ const ProfilingLead = ({
                 changeTextData(value, "seniority");
               }}
             >
-              <MenuItem value=""></MenuItem>
-              <MenuItem value="OTHER"></MenuItem>
+              <MenuItem value="JUNIOR">JUNIOR</MenuItem>
+              <MenuItem value="SENIOR">SENIOR</MenuItem>
             </CustomSelectField>
           </div>
         </div>
@@ -170,54 +137,19 @@ const ProfilingLead = ({
             </CustomSelectField>
           </div>
           <div className={"formGroup"}>
-          <MultiComplete
-          isError={errorData?.contact_owner}
-          AutoCompleteList={contactOwnerlistData ? contactOwnerlistData : []}
-          label="Contact Owner"
-          value={form?.contact_owner}
-          onTextChange={(text) => {
-            changeTextData(text, "contact_owner");
-          }}
-          enableField={["title"]}
-          style={{"marginTop": '4px'}}
-        />
-            {/* <Autocomplete
-              id="tags-outlined"
-              onChange={(e, value) => {
-                changeTextData(value, "contact_owner");
+            <MultiComplete
+              isError={errorData?.contact_owner}
+              AutoCompleteList={
+                contactOwnerlistData ? contactOwnerlistData : []
+              }
+              label="Contact Owner"
+              value={form?.contact_owner}
+              onTextChange={(text) => {
+                changeTextData(text, "contact_owner");
               }}
-              value={form?.contact_owner || []}
-              options={source || []}
-              getOptionLabel={(option) => option}
-              defaultValue={form?.contact_owner || []}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="outlined"
-                  label={"Contact Owner"}
-                 
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <>
-                        {form?.contact_owner ? (
-                          <Clear
-                            onClick={() =>
-                              changeTextData(null, "contact_owner")
-                            }
-                            style={{ cursor: "pointer" }}
-                          />
-                        ) : null}
-                        <Search
-                          style={{ marginRight: -20, cursor: "pointer" }}
-                        />
-                      </>
-                    ),
-                  }}
-                />
-              )}
-              disableClearable
-            /> */}
+              enableField={["title"]}
+              style={{ marginTop: "4px" }}
+            />
           </div>
         </div>
         <div className={"formFlex"}>
@@ -231,8 +163,11 @@ const ProfilingLead = ({
                 changeTextData(value, "lead_status");
               }}
             >
-              <MenuItem value=""></MenuItem>
-              <MenuItem value="OTHER"></MenuItem>
+              {leadStatus?.map((item, index) => (
+                <MenuItem value={item?.value} key={`status_${index}`}>
+                  {item?.label}
+                </MenuItem>
+              ))}
             </CustomSelectField>
           </div>
           <div className={"formGroup"}>
@@ -245,8 +180,9 @@ const ProfilingLead = ({
                 changeTextData(value, "lead_type");
               }}
             >
-              <MenuItem value=""></MenuItem>
-              <MenuItem value="OTHER"></MenuItem>
+              <MenuItem value="Hot">Hot</MenuItem>
+              <MenuItem value="Regular">Regular</MenuItem>
+              <MenuItem value="Cold">Cold</MenuItem>
             </CustomSelectField>
           </div>
         </div>
