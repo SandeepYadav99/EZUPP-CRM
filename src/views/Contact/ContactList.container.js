@@ -5,11 +5,7 @@ import { useSelector } from "react-redux";
 import {
   Add,
   Info as EditIcon,
-  Info,
-  Person,
   OpenInNew as OpenInNewIcon,
-  Edit,
-  Topic,
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import styles from "./Styles.module.css";

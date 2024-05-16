@@ -10,15 +10,10 @@ import prefer from "../../../../assets/Assets/ic_prefer_not_to_say.png";
 import female from "../../../../assets/Assets/ic_female.png";
 import male from "../../../../assets/Assets/ic_male.png";
 import Constants from "../../../../config/constants";
-import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
+import { InfoOutlined as InfoIcon } from "@mui/icons-material";
 import LogUtils from "../../../../libs/LogUtils";
-import {useTheme} from "@mui/styles";
-const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
-  const [selectedValue, setSelectedValue] = React.useState("");
-
-  const handleChange = (value) => {
-    setSelectedValue(value);
-  };
+import { useTheme } from "@mui/styles";
+const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
   const theme = useTheme();
   return (
     <ShadowBox className={styles.contact}>
@@ -28,7 +23,7 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
             Personal Information
           </Typography>
           <Tooltip title="Info" aria-label="info" placement="right">
-              <InfoIcon fontSize={"small"} />
+            <InfoIcon fontSize={"small"} />
           </Tooltip>
         </h4>
       </div>
@@ -39,7 +34,10 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
               <div className={styles.lineWrapper}>
                 <CustomSelectField
                   outlinedProps={{
-                    sx: { borderTopRightRadius: theme.spacing(0), borderBottomRightRadius: theme.spacing(0) }
+                    sx: {
+                      borderTopRightRadius: theme.spacing(0),
+                      borderBottomRightRadius: theme.spacing(0),
+                    },
                   }}
                   isError={errorData?.prefix}
                   errorText={errorData?.prefix}
@@ -48,11 +46,10 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
                   handleChange={(value) => {
                     changeTextData(value, "prefix");
                   }}
-                  // className={styles.prefix}
                 >
                   <MenuItem value="Mr">Mr.</MenuItem>
                   <MenuItem value="Ms">Ms.</MenuItem>
-                  <MenuItem value="Ms">Mrs.</MenuItem>
+                  <MenuItem value="Mrs">Mrs.</MenuItem>
                 </CustomSelectField>
                 <CustomTextField
                   type="name"
@@ -91,22 +88,22 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
                 <RadioButtons
                   iconComp={<img src={prefer} />}
                   title="Prefer not to say"
-                  checked={selectedValue === Constants.PROFILE_TYPE.PREFER_NOT}
-                  handleChange={handleChange}
+                  checked={form?.gender === Constants.PROFILE_TYPE.PREFER_NOT}
+                  handleChange={(val) => changeTextData(val, "gender")}
                   value={Constants.PROFILE_TYPE.PREFER_NOT}
                 />
                 <RadioButtons
                   iconComp={<img src={female} />}
                   title="Female"
-                  checked={selectedValue === Constants.PROFILE_TYPE.FEMALE}
-                  handleChange={handleChange}
+                  checked={form?.gender === Constants.PROFILE_TYPE.FEMALE}
+                  handleChange={(val) => changeTextData(val, "gender")}
                   value={Constants.PROFILE_TYPE.FEMALE}
                 />
                 <RadioButtons
                   iconComp={<img src={male} />}
                   title="Male"
-                  checked={selectedValue === Constants.PROFILE_TYPE.MALE}
-                  handleChange={handleChange}
+                  checked={form?.gender === Constants.PROFILE_TYPE.MALE}
+                  handleChange={(val) => changeTextData(val, "gender")}
                   value={Constants.PROFILE_TYPE.MALE}
                 />
               </div>

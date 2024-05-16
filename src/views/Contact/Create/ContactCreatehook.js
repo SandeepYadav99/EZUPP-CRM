@@ -1,10 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router";
-import {
-  serviceProviderProfileGetKeyword,
-  serviceProviderIsExist,
-} from "../../../services/ProviderUser.service";
-import { isEmail } from "../../../libs/RegexUtils";
+import { serviceProviderIsExist } from "../../../services/ProviderUser.service";
+import { isEmail, validateUrl } from "../../../libs/RegexUtils";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
@@ -12,8 +9,10 @@ import { parsePhoneNumber } from "libphonenumber-js";
 import useDebounce from "../../../hooks/DebounceHook";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
+import { removeUnderScore } from "../../../helper/Helper";
 const initialForm = {
   full_name: "",
+  gender:"",
   age: "",
   contact: "",
   email: "",
@@ -38,7 +37,7 @@ const initialForm = {
   lead_type: "",
   lead_details: "",
   time_zone: "",
-  linkedIn_url: "",
+  linkedin_url: "",
   instagram_url: "",
   twitter_url: "",
   facebook_url: "",
@@ -46,32 +45,21 @@ const initialForm = {
   wa_broadcast_channel: "",
   utm: "",
 };
-const sourceDDValues=[
+const sourceDDValues = [
   "Website",
   "Social",
   "Affilate",
   "Referal",
   "Call",
   "Database",
-  "Other"
-]
+  "Other",
+];
 const ContactCreatehook = () => {
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [source, setSource] = useState([...sourceDDValues]);
-  const [sourceData, setSorceData] = useState([]);
-  const [contactOwnerlistData, setContactOwnerListData] = useState([]);
   const emailDebouncer = useDebounce(form.email, 500);
   const { id } = useParams();
-
-  useEffect(() => {
-    serviceProviderProfileGetKeyword({}).then((res) => {
-      if (!res?.error) {
-        const data = res?.data;
-        // setSource(data);
-      }
-    });
-  }, []);
 
   const validateField = useCallback(
     (field, values, errorKey, existsMessage) => {
@@ -100,7 +88,7 @@ const ContactCreatehook = () => {
     if (emailDebouncer) checkCodeValidation();
   }, [emailDebouncer]);
 
-  console.log("form",form)
+  console.log("form", form);
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [
@@ -123,26 +111,25 @@ const ContactCreatehook = () => {
       ) {
         errors[val] = true;
       }
-      if (val === "contact" && form?.contact) {
-        const phoneNumber = parsePhoneNumber(form?.contact);
-
-        if (phoneNumber) {
-          if (phoneNumber.isValid() === false) {
-            errors.contact = "Invalid Number";
-          }
-        } else {
-          errors.contact = "Invalid Number";
-        }
-      }
     });
 
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
-    // if (form?.url && !validateUrl(form?.url)) {
-    //   errors.url = true;
-    //   SnackbarUtils.error("Please Enter the Valid Url");
-    // }
+    [
+      "instagram_url",
+      "facebook_url",
+      "twitter_url",
+      "linkedin_url",
+      "youtube_url",
+      "website",
+    ]?.forEach((key) => {
+      if (form[key] && !validateUrl(form[key])) {
+        errors[key] = true;
+        SnackbarUtils.error(`Please Enter a Valid ${removeUnderScore(key)}`);
+      }
+    });
+
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -200,7 +187,7 @@ const ContactCreatehook = () => {
     source,
     changeTextData,
     handleSubmit,
-    handleCancel
+    handleCancel,
   };
 };
 

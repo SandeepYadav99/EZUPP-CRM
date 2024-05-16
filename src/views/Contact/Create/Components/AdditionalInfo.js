@@ -42,11 +42,11 @@ const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
         </div>
         <div className={"formGroup"}>
           <CustomTextField
-            isError={errorData?.linkedIn_url}
-            errorText={errorData?.linkedIn_url}
+            isError={errorData?.linkedin_url}
+            errorText={errorData?.linkedin_url}
             label={"LinkedIn URL"}
             onTextChange={(text) => {
-              changeTextData(text, "linkedIn_url");
+              changeTextData(text, "linkedin_url");
             }}
             className={styles.desc}
           />
