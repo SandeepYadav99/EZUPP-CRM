@@ -4,7 +4,7 @@ import RouteName from "./../../routes/Route.name";
 import {
   actionFetchUnit,
   actionSetPageUnit,
-    actionDragUnit
+  actionDragUnit,
 } from "./../../actions/Unit.action";
 import history from "./../../libs/history.utils";
 import LogUtils from "../../libs/LogUtils";
@@ -41,8 +41,8 @@ const useUserListHook = ({}) => {
       setSidePanel((e) => !e);
       if (data) {
         setEditData(data?.id);
-      }else{
-        setEditData(null)
+      } else {
+        setEditData(null);
       }
     },
     [setEditData, setSidePanel]
@@ -138,9 +138,28 @@ const useUserListHook = ({}) => {
     ];
   }, []);
 
-  const handleDrag = useCallback((dragId, dragOverId) => {
-      dispatch(actionDragUnit(dragId, dragOverId))
-  }, []);
+  const handleDrag = useCallback(
+    (dragId, dragOverId) => {
+      const dragIndex = all?.findIndex((item) => item?.id === dragId);
+      const draggedOverIndex = all?.findIndex(
+        (item) => item?.id === dragOverId
+      );
+      if (dragIndex >= 0 && draggedOverIndex >= 0) {
+        const temp = all[dragIndex];
+        all.splice(dragIndex, 1);
+        all.splice(draggedOverIndex, 0, temp);
+        const priority = all?.map((item, index) => {
+          return {
+            ...item,
+            priority: index,
+          };
+        });
+      console.log(">",priority)
+      }
+      dispatch(actionDragUnit(dragId, dragOverId));
+    },
+    [all]
+  );
 
   return {
     handlePageChange,
@@ -153,7 +172,7 @@ const useUserListHook = ({}) => {
     editData,
     configFilter,
     handleEditSidePannel,
-      handleDrag,
+    handleDrag,
     // handleCreate,
   };
 };

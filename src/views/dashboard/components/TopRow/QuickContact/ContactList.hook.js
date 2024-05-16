@@ -1,31 +1,34 @@
 import React, { useState } from "react";
-import { useCallback ,useEffect } from "react";
-import {companyList} from "../../../../../helper/Helper";
-import {associateTagsList} from "../../../../../helper/Helper";
-import {sourceList} from "../../../../../helper/Helper";
-import {leadOwnerList} from "../../../../../helper/Helper";
+import { useCallback, useEffect } from "react";
+import { cleanContactNumber, companyList } from "../../../../../helper/Helper";
+import { sourceList } from "../../../../../helper/Helper";
+import { leadOwnerList } from "../../../../../helper/Helper";
+import { serviceGetTagsList } from "../../../../../services/Blogs.service";
+import { serviceGetList } from "../../../../../services/index.services";
+import { isEmail } from "../../../../../libs/RegexUtils";
+import { serviceCreateContactQuick } from "../../../../../services/Contact.service";
+import SnackbarUtils from "../../../../../libs/SnackbarUtils";
+import historyUtils from "../../../../../libs/history.utils";
 
 const initialForm = {
-  // country:'',
-  // userPhone:'',
-  contact:"",
-    email: "",
-    full_name:"",
-    prefix_type:'',
-    job_title:"",
-    business_type:'',
-    interested_in_type:"",
-    company_name_list:null,
-    associate_tags_list:[],
-    source:null,
-    lead_owner:null,
-    lead_stage_type:'',
-    is_initial_task:false
-  };
-function useContactList({ isOpen, handleToggle}) {
+  contact_type: "BUSINESS",
+  contact: "",
+  email: "",
+  full_name: "",
+  prefix_type: "",
+  job_title: "",
+  buying_role: "",
+  service_product: [],
+  company: "",
+  tags: [],
+  source: "",
+  contact_owner: "",
+  lead_stage_type: "",
+  is_lead_owner_task: false,
+};
+function useContactList({ isOpen, handleToggle }) {
   const [showBusiness, setShowBusiness] = useState(true);
- 
-  const [showImage,setShowImage]=useState(false);
+  const [showImage, setShowImage] = useState(false);
   const [form, setForm] = useState(
     JSON.parse(JSON.stringify({ ...initialForm }))
   );
@@ -34,11 +37,13 @@ function useContactList({ isOpen, handleToggle}) {
   const [resData, setResData] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [declaration, setDeclaration] = useState(false);
   const [companylistData, setCompanyListData] = useState([]);
-  const [associateTagsData,setAssociateTagsData]=useState([]);
-  const [sourceData,setSorceData]=useState([]);
-  const [LeadOwnerData,setLeadOwnerData]=useState([]);
+  const [associateTagsData, setAssociateTagsData] = useState([]);
+  const [sourceData, setSorceData] = useState([]);
+  const [LeadOwnerData, setLeadOwnerData] = useState([]);
+  const [listData, setListData] = useState({
+    PRODUCTS: [],
+  });
   useEffect(() => {
     if (isOpen) {
       setForm({ ...initialForm });
@@ -46,12 +51,25 @@ function useContactList({ isOpen, handleToggle}) {
       setIsSubmitted(false);
       setIsVerified(false);
       setErrorData({});
-      setCompanyListData([...companyList])
-      setAssociateTagsData([...associateTagsList])
-      setSorceData([...sourceList])
-      setLeadOwnerData([...leadOwnerList])
+      setCompanyListData([...companyList]);
+      setSorceData([...sourceList]);
+      setLeadOwnerData([...leadOwnerList]);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    (async () => {
+      const promises = await Promise.allSettled([
+        serviceGetTagsList(),
+        serviceGetList(["PRODUCTS"]),
+      ]);
+      const tagList = promises[0].value?.data;
+      const ProductList = promises[1].value?.data;
+      setAssociateTagsData([...tagList]);
+      setListData(ProductList);
+    })();
+  }, []);
+
   const removeError = useCallback(
     (title) => {
       const temp = JSON.parse(JSON.stringify(errorData));
@@ -60,7 +78,6 @@ function useContactList({ isOpen, handleToggle}) {
     },
     [setErrorData, errorData]
   );
-  console.log("form", form);
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
@@ -74,24 +91,22 @@ function useContactList({ isOpen, handleToggle}) {
   );
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-   
+
     let required = [
-      // "country",
-      // "userPhone",
       "contact",
       "email",
       "full_name",
       "prefix_type",
-      "business_type",
-      "interested_in_type",
+      "buying_role",
+      "service_product",
       "job_title",
-      "company_name_list",
-      "associate_tags_list",
+      "company",
+      "tags",
       "source",
-      "lead_owner",
+      "contact_owner",
       "lead_stage_type",
-    
     ];
+
     required.forEach((val) => {
       if (
         !form?.[val] ||
@@ -102,6 +117,9 @@ function useContactList({ isOpen, handleToggle}) {
         delete errors[val];
       }
     });
+    if (form?.email && !isEmail(form?.email)) {
+      errors.email = true;
+    }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -109,26 +127,40 @@ function useContactList({ isOpen, handleToggle}) {
     });
     return errors;
   }, [form, errorData]);
+
   const submitToServer = useCallback(() => {
     if (!isSubmitting) {
       setIsSubmitting(true);
-      //   serviceApproveCLaim({
-      //     review_id: candidateId,
-      //     ...form,
-      //   }).then((res) => {
-      //     if (!res.error) {
-      //       SnackbarUtils.success("Request Approved");
-      //       historyUtils.goBack();
-      //       // historyUtils.push(RouteName.CLAIMS_LIST);
-      //       handleToggle();
-      //       SnackbarUtils.success("Request Approved");
-      //     } else {
-      //       SnackbarUtils.error(res?.message);
-      //     }
-      setIsSubmitting(false);
-      //   });
+      const updatedFd = {};
+      Object.keys({ ...initialForm }).forEach((key) => {
+        if (key === "service_product") {
+          const getId =
+            form[key]?.length > 0 ? form[key]?.map((item) => item?.id) : [];
+          updatedFd[key] = getId;
+        } else if (key === "tags") {
+          updatedFd[key] =
+            form[key]?.length > 0 ? form[key]?.join(",") : "";
+        } else {
+          updatedFd[key] = form[key];
+        }
+      });
+      console.log(">>>>>", { updatedFd, form });
+      serviceCreateContactQuick({
+        ...form,
+        contact: `${cleanContactNumber(form?.contact)}`,
+      }).then((res) => {
+        if (!res.error) {
+          SnackbarUtils.success("Request Approved");
+          historyUtils.goBack();
+          // historyUtils.push(RouteName.CLAIMS_LIST);
+        } else {
+          SnackbarUtils.error(res?.message);
+        }
+        setIsSubmitting(false);
+      });
     }
   }, [form, isSubmitting, setIsSubmitting, handleToggle]);
+  console.log("form", form);
   const handleSubmit = useCallback(() => {
     const errors = checkFormValidation();
     console.log("===?", form, errors);
@@ -137,7 +169,6 @@ function useContactList({ isOpen, handleToggle}) {
       return true;
     }
     submitToServer();
-  
   }, [checkFormValidation, setErrorData, form, submitToServer]);
 
   const onBlurHandler = useCallback(
@@ -146,21 +177,13 @@ function useContactList({ isOpen, handleToggle}) {
         changeTextData(form?.[type].trim(), type);
       }
     },
-    [changeTextData]
+    [changeTextData, form]
   );
 
-  const handleBusinessToggle = useCallback(
-    (data) =>
-      data === "Business" ? setShowBusiness(true) : setShowBusiness(false),
-    [showBusiness, setShowBusiness]
-  );
-  // const handleCountryFlagToggle = useCallback(
-  //   () =>setCountryFlagOnly((prev)=>!prev),
-   
-  //   [ countryFlagOnly,setCountryFlagOnly]
-  // );
-
-  return { showBusiness, setShowBusiness, handleBusinessToggle, form,
+  return {
+    showBusiness,
+    setShowBusiness,
+    form,
     changeTextData,
     onBlurHandler,
     removeError,
@@ -169,6 +192,14 @@ function useContactList({ isOpen, handleToggle}) {
     isSubmitting,
     resData,
     isSubmitted,
-    isVerified,companylistData,associateTagsData,sourceData,LeadOwnerData,showImage,setShowImage};
+    isVerified,
+    companylistData,
+    associateTagsData,
+    sourceData,
+    LeadOwnerData,
+    showImage,
+    setShowImage,
+    listData,
+  };
 }
 export default useContactList;
