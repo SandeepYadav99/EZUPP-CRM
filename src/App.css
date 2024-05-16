@@ -1191,15 +1191,15 @@ input[type=radio] + label:hover {
   .menu-items button:hover {
     background-color: #f2f2f2;
   }
-  .arrow::after {
+  /* .arrow::after {
     content: "";
     display: inline-block;
     margin-left: 0.28em;
     vertical-align: 0.09em;
     border-top: 0.42em solid;
-    /* border-right: 0.32em solid transparent;
-    border-left: 0.32em solid transparent; */
-  }
+    border-right: 0.32em solid transparent;
+    border-left: 0.32em solid transparent;
+  } */
   .dropdown {
     position: absolute;
     right: 0;

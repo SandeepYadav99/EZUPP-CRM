@@ -36,7 +36,7 @@ export async function serviceProviderIsExist(params) {
 }
 
 export async function serviceProviderProfileGetKeyword(params) {
-    return await postRequest('profile/get/keyword', params); 
+    return await postRequest('keywords', params); 
 }
 export async function serviceProfileDetail(params) {
     return await postRequest('profile/details', params); 

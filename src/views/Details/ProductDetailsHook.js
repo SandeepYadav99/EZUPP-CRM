@@ -2,13 +2,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import historyUtils from "../../libs/history.utils";
 import { useParams } from "react-router-dom";
 import RouteName from "../../routes/Route.name";
+import { useDispatch} from "react-redux";
 import { serviceGetProductDetails } from "../../services/Product.service";
-
+import { actionDeleteProduct} from "../../actions/Product.action";
 const useProductDetailHook = () => {
   const [profileDetails, setProfileDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSidePanel, setSidePanel] = useState(false);
   const [profileId, setProfileId] = useState(null);
+  const [editData, setEditData] = useState(null);
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
@@ -34,6 +37,14 @@ const useProductDetailHook = () => {
     // historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
   }, []);
 
+  const handleDelete = useCallback(
+    (id) => {
+      dispatch(actionDeleteProduct(id));
+      setEditData(null);
+    },
+    [setEditData]
+  );
+
   return {
     profileDetails,
     isLoading,
@@ -41,6 +52,7 @@ const useProductDetailHook = () => {
     handleSideToggle,
     profileId,
     handleDetailPage,
+    handleDelete,
     id,
   };
 };

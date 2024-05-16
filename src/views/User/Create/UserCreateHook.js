@@ -61,7 +61,6 @@ function useUserCreateHook() {
     ROLES: [],
   });
 
-  
   useEffect(() => {
     serviceGetList(["ROLES"]).then((res) => {
       if (!res.error) {
@@ -69,7 +68,6 @@ function useUserCreateHook() {
       }
     });
   }, []);
-
 
   useEffect(() => {
     serviceProfileManager({}).then((res) => {
@@ -131,7 +129,6 @@ function useUserCreateHook() {
 
   useEffect(() => {
     if (id) {
-      
       serviceGetProviderUserDetail({ id: id }).then((res) => {
         if (!res.error) {
           const data = res?.data;
@@ -168,7 +165,7 @@ function useUserCreateHook() {
       });
     }
   }, [id]);
-console.log(images, "Image")
+  console.log(images, "Image");
   // const checkCodeValidation = useCallback(() => {
   //   "serviceUpdateAdminUserSearch"({
   //     contact: form?.contact,
@@ -207,7 +204,7 @@ console.log(images, "Image")
   //   });
   // }, [form, id, form?.contact]);
 
-  // useEffect(() => { 
+  // useEffect(() => {
   //   if (codeDebouncer) {
   //     checkCodeValidation();
   //   }
@@ -324,7 +321,7 @@ console.log(images, "Image")
           user_name: form?.userName,
           is_primary_user: true,
           is_manager: form?.userManage,
-          email_send:form?.invoiteToUser,
+          email_send: form?.invoiteToUser,
           country_code: 91,
         };
 

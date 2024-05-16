@@ -2,17 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import RouteName from "./../../routes/Route.name";
 import {
-  actionFetchUnit,
-  actionSetPageUnit,
-  actionDragUnit,
-} from "./../../actions/Unit.action";
+  actionFetchProduct,
+  actionSetPageProductRequests,
+} from "./../../actions/Product.action";
 import history from "./../../libs/history.utils";
-import LogUtils from "../../libs/LogUtils";
 
 const useUserListHook = ({}) => {
   const [editData, setEditData] = useState(null);
-  const [isSidePanel, setSidePanel] = useState(false);
-  const [data, setData] = useState();
+
   const dispatch = useDispatch();
   const isMountRef = useRef(false);
   const {
@@ -21,11 +18,11 @@ const useUserListHook = ({}) => {
     query,
     query_data: queryData,
     all,
-  } = useSelector((state) => state?.unit);
+  } = useSelector((state) => state?.product);
 
   useEffect(() => {
     dispatch(
-      actionFetchUnit(
+      actionFetchProduct(
         1,
         {},
         {
@@ -36,25 +33,15 @@ const useUserListHook = ({}) => {
     );
     isMountRef.current = true;
   }, []);
-  const handleSideToggle = useCallback(
-    (data) => {
-      setSidePanel((e) => !e);
-      if (data) {
-        setEditData(data?.id);
-      } else {
-        setEditData(null);
-      }
-    },
-    [setEditData, setSidePanel]
-  );
+
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageUnit(type));
+    dispatch(actionSetPageProductRequests(type));
   }, []);
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchUnit(1, sortingData, {
+        actionFetchProduct(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
           query_data: key == "FILTER_DATA" ? value : queryData,
         })
@@ -79,9 +66,9 @@ const useUserListHook = ({}) => {
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageUnit(1));
+      dispatch(actionSetPageProductRequests(1));
       dispatch(
-        actionFetchUnit(
+        actionFetchProduct(
           1,
           { row, order },
           {
@@ -93,32 +80,13 @@ const useUserListHook = ({}) => {
     },
     [query, queryData]
   );
-  const handleEdit = useCallback(
-    (data) => {
-      setEditData(data);
-      setSidePanel((e) => !e);
-    },
-    [setEditData, setSidePanel]
-  );
-  const handleEditSidePannel = useCallback(
-    (data) => {
-      setSidePanel((e) => !e);
-      if (data) {
-        setEditData(data);
-      } else {
-        setEditData(null);
-      }
-      // setSidePanel((e) => !e);
-      // setEditData(data?.id);
-    },
-    [setSidePanel, setEditData]
-  );
-  // const handleEdit = useCallback((type) => {
-  //   history.push(`${RouteName.PRODUCT_DETAILS}${type?.id}`);
-  // }, []);
+
+  const handleEdit = useCallback((type) => {
+    history.push(`${RouteName.PRODUCT_DETAILS}${type?.id}`);
+  }, []);
 
   const handleCreate = useCallback(() => {
-    history.push(RouteName.PRODUCT_CREATE);
+    history.push(RouteName.CONTACT_CREATE);
   }, []);
 
   const configFilter = useMemo(() => {
@@ -138,42 +106,15 @@ const useUserListHook = ({}) => {
     ];
   }, []);
 
-  const handleDrag = useCallback(
-    (dragId, dragOverId) => {
-      const dragIndex = all?.findIndex((item) => item?.id === dragId);
-      const draggedOverIndex = all?.findIndex(
-        (item) => item?.id === dragOverId
-      );
-      if (dragIndex >= 0 && draggedOverIndex >= 0) {
-        const temp = all[dragIndex];
-        all.splice(dragIndex, 1);
-        all.splice(draggedOverIndex, 0, temp);
-        const priority = all?.map((item, index) => {
-          return {
-            ...item,
-            priority: index,
-          };
-        });
-      console.log(">",priority)
-      }
-      dispatch(actionDragUnit(dragId, dragOverId));
-    },
-    [all]
-  );
-
   return {
     handlePageChange,
     handleFilterDataChange,
     handleSearchValueChange,
     handleSortOrderChange,
     handleEdit,
-    isSidePanel,
-    handleSideToggle,
     editData,
     configFilter,
-    handleEditSidePannel,
-    handleDrag,
-    // handleCreate,
+    handleCreate,
   };
 };
 
