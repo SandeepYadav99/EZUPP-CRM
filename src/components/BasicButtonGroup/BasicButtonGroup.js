@@ -4,11 +4,14 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import {useTheme} from "@mui/styles";
 import styles from "./Styles.module.css"
 import { Typography } from '@mui/material';
-export default function BasicButtonGroup({ buttonText, selectedIndex }) {
-    const [selectedButton, setSelectedButton] = useState(null);
-    const handleButtonClick = (index) => {
-        setSelectedButton(index);
-      };
+
+
+export default function BasicButtonGroup({ buttonText,  selectedIndex, onButtonClick}) {
+  const [selectedButton, setSelectedButton] = useState(selectedIndex);
+  const handleButtonClick = (index) => {
+      setSelectedButton(index);
+      onButtonClick(index);
+    };
       const theme = useTheme();
   return (
     <ButtonGroup  aria-label="Basic button group" className={styles.buttonGroup}>
