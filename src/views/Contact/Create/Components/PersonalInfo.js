@@ -56,13 +56,13 @@ const PersonalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
                 </CustomSelectField>
                 <CustomTextField
                   type="name"
-                  isError={errorData?.name}
-                  errorText={errorData?.name}
+                  isError={errorData?.full_name}
+                  errorText={errorData?.full_name}
                   label={"Full Name"}
-                  value={form?.name}
-                  className={styles.name}
+                  value={form?.full_name}
+                  className={styles.full_name}
                   onTextChange={(text) => {
-                    changeTextData(text, "name");
+                    changeTextData(text, "full_name");
                   }}
                 />
               </div>

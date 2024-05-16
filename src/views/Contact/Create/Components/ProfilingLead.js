@@ -1,34 +1,60 @@
 import React from "react";
 import styles from "../../Styles.module.css";
-import {Autocomplete, MenuItem, Tooltip, Typography, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  MenuItem,
+  Tooltip,
+  Typography,
+  TextField,
+} from "@mui/material";
 import { Clear, Search } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
-const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source}) => {
+import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+import { InfoOutlined as InfoIcon } from "@mui/icons-material";
+const ProfilingLead = ({
+  errorData,
+  changeTextData,
+  onBlurHandler,
+  form,
+  source,
+  sourceData,
+  contactOwnerlistData
+}) => {
   return (
     <>
-    <ShadowBox className={styles.contact}>
-      <div className={"headerFlex"}>
-        <h4 className={"infoTitle"}>
-          <Typography variant={"title"} className={"heading"}>
-            Profiling
-          </Typography>
-          <Tooltip title="Info" aria-label="info" placement="right">
+      <ShadowBox className={styles.contact}>
+        <div className={"headerFlex"}>
+          <h4 className={"infoTitle"}>
+            <Typography variant={"title"} className={"heading"}>
+              Profiling
+            </Typography>
+            <Tooltip title="Info" aria-label="info" placement="right">
               <InfoIcon fontSize={"small"} />
             </Tooltip>
-        </h4>
-      </div>
-      <div className={"formFlex"}>
-        <div className={"formGroup"}>
-        <Autocomplete
+          </h4>
+        </div>
+        <div className={"formFlex"}>
+          <div className={"formGroup"}>
+          <MultiComplete
+          isError={errorData?.source}
+          AutoCompleteList={sourceData ? sourceData : []}
+          label="Source"
+          value={form?.source}
+          onTextChange={(text) => {
+            changeTextData(text, "source");
+          }}
+          enableField={["title"]}
+          style={{"marginTop": '4px'}}
+        />
+            {/* <Autocomplete
               id="tags-outlined"
               onChange={(e, value) => {
                 changeTextData(value, "source");
               }}
               value={form?.source || []}
-              options={source || []} 
+              options={source || []}
               getOptionLabel={(option) => option}
               defaultValue={form?.source || []}
               renderInput={(params) => (
@@ -36,16 +62,13 @@ const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source})
                   {...params}
                   variant="outlined"
                   label={"Source"}
-                  // error={errorData?.source}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
                       <>
                         {form?.source ? (
                           <Clear
-                            onClick={() =>
-                              changeTextData(null, "source")
-                            }
+                            onClick={() => changeTextData(null, "source")}
                             style={{ cursor: "pointer" }}
                           />
                         ) : null}
@@ -57,113 +80,114 @@ const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source})
                   }}
                 />
               )}
-               disableClearable
-            />
-          {/* <CustomTextField
-            type="name"
-            isError={errorData?.source}
-            errorText={errorData?.source}
-            label={"Source"}
-            value={form?.source}
-            onTextChange={(text) => {
-              changeTextData(text, "source");
-            }}
-          /> */}
-        </div>
-        <div className={"formGroup"}>
-          <CustomTextField
-            type="name"
-            isError={errorData?.service_product}
-            errorText={errorData?.service_product}
-            label={"Service/Product"}
-            value={form?.service_product}
-            onTextChange={(text) => {
-              changeTextData(text, "service_product");
-            }}
-          />
-        </div>
-      </div>
-      <div className={"formFlex"}>
-        <div className={"formGroup"}>
-          <CustomSelectField
-            isError={errorData?.priority}
-            errorText={errorData?.priority}
-            label={"Priority"}
-            value={form?.priority}
-            handleChange={(value) => {
-              changeTextData(value, "priority");
-            }}
-          >
-            <MenuItem value="Low">LOW</MenuItem>
-            <MenuItem value="Medium">MEDIUM</MenuItem>
-            <MenuItem value="High">HIGH</MenuItem>
-          </CustomSelectField>
-        </div>
-        <div className={"formGroup"}>
-          <CustomSelectField
-            isError={errorData?.seniority}
-            errorText={errorData?.seniority}
-            label={"Seniority"}
-            value={form?.seniority}
-            handleChange={(value) => {
-              changeTextData(value, "seniority");
-            }}
-          >
-            <MenuItem value=""></MenuItem>
-            <MenuItem value="OTHER"></MenuItem>
-          </CustomSelectField>
-        </div>
-      </div>
-      <div className={`formFlex `}>
-            <div className={"formGroup"}>
-              <CustomTextField
-                isError={errorData?.description}
-                errorText={errorData?.description}
-                label={"Description"}
-                multiline
-                rows="3"
-                onTextChange={(text) => {
-                  changeTextData(text, "description");
-                }}
-                className={styles.desc}
-              />
-            </div>
+              disableClearable
+            /> */}
           </div>
-    </ShadowBox>
-    <ShadowBox className={styles.contact}>
-    <div className={"headerFlex"}>
-      <h4 className={"infoTitle"}>
-        <Typography variant={"title"} className={"heading"}>
-        Lead Details
-        </Typography>
-        <Tooltip title="Info" aria-label="info" placement="right">
+          <div className={"formGroup"}>
+            <CustomTextField
+              type="name"
+              isError={errorData?.service_product}
+              errorText={errorData?.service_product}
+              label={"Service/Product"}
+              value={form?.service_product}
+              onTextChange={(text) => {
+                changeTextData(text, "service_product");
+              }}
+            />
+          </div>
+        </div>
+        <div className={"formFlex"}>
+          <div className={"formGroup"}>
+            <CustomSelectField
+              isError={errorData?.priority}
+              errorText={errorData?.priority}
+              label={"Priority"}
+              value={form?.priority}
+              handleChange={(value) => {
+                changeTextData(value, "priority");
+              }}
+            >
+              <MenuItem value="Low">LOW</MenuItem>
+              <MenuItem value="Medium">MEDIUM</MenuItem>
+              <MenuItem value="High">HIGH</MenuItem>
+            </CustomSelectField>
+          </div>
+          <div className={"formGroup"}>
+            <CustomSelectField
+              isError={errorData?.seniority}
+              errorText={errorData?.seniority}
+              label={"Seniority"}
+              value={form?.seniority}
+              handleChange={(value) => {
+                changeTextData(value, "seniority");
+              }}
+            >
+              <MenuItem value=""></MenuItem>
+              <MenuItem value="OTHER"></MenuItem>
+            </CustomSelectField>
+          </div>
+        </div>
+        <div className={`formFlex `}>
+          <div className={"formGroup"}>
+            <CustomTextField
+              isError={errorData?.description}
+              errorText={errorData?.description}
+              label={"Description"}
+              multiline
+              rows="3"
+              onTextChange={(text) => {
+                changeTextData(text, "description");
+              }}
+              className={styles.desc}
+            />
+          </div>
+        </div>
+      </ShadowBox>
+      <ShadowBox className={styles.contact}>
+        <div className={"headerFlex"}>
+          <h4 className={"infoTitle"}>
+            <Typography variant={"title"} className={"heading"}>
+              Lead Details
+            </Typography>
+            <Tooltip title="Info" aria-label="info" placement="right">
               <InfoIcon fontSize={"small"} />
             </Tooltip>
-      </h4>
-    </div>
-    <div className={"formFlex"}>
-      <div className={"formGroup"}>
-      <CustomSelectField
-          isError={errorData?.contact_type}
-          errorText={errorData?.contact_type}
-          label={"Contact Type"}
-          value={form?.contact_type}
-          handleChange={(value) => {
-            changeTextData(value, "contact_type");
+          </h4>
+        </div>
+        <div className={"formFlex"}>
+          <div className={"formGroup"}>
+            <CustomSelectField
+              isError={errorData?.contact_type}
+              errorText={errorData?.contact_type}
+              label={"Contact Type"}
+              value={form?.contact_type}
+              handleChange={(value) => {
+                changeTextData(value, "contact_type");
+              }}
+            >
+              <MenuItem value="Business">BUSINESS</MenuItem>
+              <MenuItem value="Indvidual">INDVIDUAL</MenuItem>
+            </CustomSelectField>
+          </div>
+          <div className={"formGroup"}>
+          <MultiComplete
+          isError={errorData?.contact_owner}
+          AutoCompleteList={contactOwnerlistData ? contactOwnerlistData : []}
+          label="Contact Owner"
+          value={form?.contact_owner}
+          onTextChange={(text) => {
+            changeTextData(text, "contact_owner");
           }}
-        >
-          <MenuItem value="Business">BUSINESS</MenuItem>
-          <MenuItem value="Indvidual">INDVIDUAL</MenuItem>
-        </CustomSelectField>
-      </div>
-      <div className={"formGroup"}>
-      <Autocomplete
+          enableField={["title"]}
+          style={{"marginTop": '4px'}}
+        />
+            {/* <Autocomplete
               id="tags-outlined"
               onChange={(e, value) => {
                 changeTextData(value, "contact_owner");
               }}
               value={form?.contact_owner || []}
-              options={source || []} 
+              options={source || []}
               getOptionLabel={(option) => option}
               defaultValue={form?.contact_owner || []}
               renderInput={(params) => (
@@ -171,7 +195,7 @@ const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source})
                   {...params}
                   variant="outlined"
                   label={"Contact Owner"}
-                  // error={errorData?.source}
+                 
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
@@ -192,53 +216,41 @@ const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source})
                   }}
                 />
               )}
-               disableClearable
-            />
-      {/* <CustomSelectField
-          isError={errorData?.contact_owner}
-          errorText={errorData?.contact_owner}
-          label={"Contact Owner"}
-          value={form?.contact_owner}
-          handleChange={(value) => {
-            changeTextData(value, "contact_owner");
-          }}
-        >
-          <MenuItem value=""></MenuItem>
-          <MenuItem value="OTHER"></MenuItem>
-        </CustomSelectField> */}
-      </div>
-    </div>
-    <div className={"formFlex"}>
-      <div className={"formGroup"}>
-        <CustomSelectField
-          isError={errorData?.lead_status}
-          errorText={errorData?.lead_status}
-          label={"Lead Status"}
-          value={form?.lead_status}
-          handleChange={(value) => {
-            changeTextData(value, "lead_status");
-          }}
-        >
-          <MenuItem value=""></MenuItem>
-          <MenuItem value="OTHER"></MenuItem>
-        </CustomSelectField>
-      </div>
-      <div className={"formGroup"}>
-        <CustomSelectField
-          isError={errorData?.lead_type}
-          errorText={errorData?.lead_type}
-          label={"Lead Type"}
-          value={form?.lead_type}
-          handleChange={(value) => {
-            changeTextData(value, "lead_type");
-          }}
-        >
-          <MenuItem value=""></MenuItem>
-          <MenuItem value="OTHER"></MenuItem>
-        </CustomSelectField>
-      </div>
-    </div>
-    <div className={`formFlex `}>
+              disableClearable
+            /> */}
+          </div>
+        </div>
+        <div className={"formFlex"}>
+          <div className={"formGroup"}>
+            <CustomSelectField
+              isError={errorData?.lead_status}
+              errorText={errorData?.lead_status}
+              label={"Lead Status"}
+              value={form?.lead_status}
+              handleChange={(value) => {
+                changeTextData(value, "lead_status");
+              }}
+            >
+              <MenuItem value=""></MenuItem>
+              <MenuItem value="OTHER"></MenuItem>
+            </CustomSelectField>
+          </div>
+          <div className={"formGroup"}>
+            <CustomSelectField
+              isError={errorData?.lead_type}
+              errorText={errorData?.lead_type}
+              label={"Lead Type"}
+              value={form?.lead_type}
+              handleChange={(value) => {
+                changeTextData(value, "lead_type");
+              }}
+            >
+              <MenuItem value=""></MenuItem>
+              <MenuItem value="OTHER"></MenuItem>
+            </CustomSelectField>
+          </div>
+        </div>
+        <div className={`formFlex `}>
           <div className={"formGroup"}>
             <CustomTextField
               isError={errorData?.lead_details}
@@ -253,8 +265,8 @@ const ProfilingLead = ({errorData, changeTextData, onBlurHandler, form, source})
             />
           </div>
         </div>
-  </ShadowBox>
-  </>
+      </ShadowBox>
+    </>
   );
 };
 

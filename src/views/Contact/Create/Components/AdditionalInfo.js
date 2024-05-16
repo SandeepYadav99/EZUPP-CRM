@@ -103,11 +103,11 @@ const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
       <div className={"formFlex"}>
         <div className={"formGroup"}>
           <CustomTextField
-            isError={errorData?.whatsApp_broadcast_channel}
-            errorText={errorData?.whatsApp_broadcast_channel}
+            isError={errorData?.wa_broadcast_channel}
+            errorText={errorData?.wa_broadcast_channel}
             label={"WhatsApp Broadcast Channel"}
             onTextChange={(text) => {
-              changeTextData(text, "whatsApp_broadcast_channel");
+              changeTextData(text, "wa_broadcast_channel");
             }}
             className={styles.desc}
           />
