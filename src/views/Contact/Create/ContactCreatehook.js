@@ -5,14 +5,13 @@ import { isEmail, validateUrl } from "../../../libs/RegexUtils";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
-import { parsePhoneNumber } from "libphonenumber-js";
 import useDebounce from "../../../hooks/DebounceHook";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import { removeUnderScore } from "../../../helper/Helper";
 const initialForm = {
   full_name: "",
-  gender:"",
+  gender: "PREFER_NOT",
   age: "",
   contact: "",
   email: "",
@@ -43,6 +42,7 @@ const initialForm = {
   facebook_url: "",
   youtube_url: "",
   wa_broadcast_channel: "",
+  is_newsletter_subscribed: "NEWS",
   utm: "",
 };
 const sourceDDValues = [
@@ -150,10 +150,14 @@ const ContactCreatehook = () => {
     (text, fieldName) => {
       let shouldRemoveError = true;
       const t = { ...form };
-      if (fieldName === "name") {
-        t[fieldName] = text;
-      } else if (fieldName === "source") {
-        t[fieldName] = text;
+      if (fieldName === "full_name") {
+        if (text?.length <= 60) {
+          t[fieldName] = text;
+        }
+      } else if (fieldName === "age") {
+        if (text >= 0) {
+          t[fieldName] = text;
+        }
       } else {
         t[fieldName] = text;
       }
