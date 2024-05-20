@@ -29,6 +29,7 @@ const TaskListItem = ({
       await completedHandler(task);
     }
   };
+  
   const formattedDescription = task?.description
   ? task.description.split('\n').map((line, index) => (
       <React.Fragment key={index}>
