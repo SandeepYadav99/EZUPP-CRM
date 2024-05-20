@@ -199,31 +199,27 @@ class ForgotPasswordView extends Component {
                   alignItems: "center",
                 }}
               >
-                {/*<ArrowBack onClick={this._handleBack}>*/}
-                {/*</ArrowBack>*/}
-                {/* <div className={styles.headingTextBig}>Forgot Password ?</div> */}
-                <Typography variant="h3" color="text.secondary">Forgot Password</Typography>
+                <Typography variant="h3" color="text.secondary" className={styles.headingText}>
+                  Forgot Password?
+                </Typography>
               </div>
               <p
                 className={styles.bottomLine}
-                style={{ color: "grey", fontSize: "14px",marginTop:"10px" }}
+                style={{ color: "grey", fontSize: "14px", marginTop: "10px" }}
               >
-                Enter your email and we'll send you instructions to reset your
-                password
+               Enter your email and we'll send you instructions to reset your password
               </p>
-              <div style={{marginTop:"10px"}}>
+              <div style={{ marginTop: "10px" }}>
                 {/* <br /> */}
                 <div>
                   <Field
                     fullWidth={true}
                     name="email"
                     component={renderOutlinedTextField}
-                    label="E-Mail*"
+                    label="Email ID"
                   />
                 </div>
-                {/*<span style={{float:'right',marginTop:'5px'}}><Link to='/login'>Back To Login</Link></span>*/}
                 <br />
-
                 <div
                   style={{
                     display: "flex",
@@ -243,7 +239,7 @@ class ForgotPasswordView extends Component {
                         <CircularProgress size={"18px"} color={"primary"} />
                       </div>
                     ) : (
-                      "SEND REST LINK"
+                      "SEND RESET LINK"
                     )}
                   </ArrowPrimaryButton>
                   <div>
@@ -272,8 +268,7 @@ class ForgotPasswordView extends Component {
     return (
       <>
         <div className={styles.overlay}></div>
-        <div className={styles.mainLoginView}>
-        </div>
+        <div className={styles.mainLoginView}></div>
         <div className={styles.container}>
           <div className={styles.loginFlex2}>{this._renderForm()}</div>
           <DashboardSnackbar />
