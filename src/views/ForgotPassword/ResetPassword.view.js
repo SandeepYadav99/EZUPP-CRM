@@ -10,13 +10,13 @@ import {
   renderOutlinedTextField,
 } from "../../libs/redux-material.utils";
 import {
+  Button,
   ButtonBase,
   CircularProgress,
   Dialog,
   IconButton,
 } from "@mui/material";
-import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
-import { Button } from "@mui/material";
+
 import { withStyles } from "@mui/styles";
 import { serviceResetProfilePassword } from "../../services/index.services";
 import DashboardSnackbar from "../../components/Snackbar.component";
@@ -29,6 +29,7 @@ import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 import {
   ActionButton,
   ArrowActionButton,
+  ArrowOutlineButton,
   OutlineButton,
 } from "../../components/Buttons/PrimaryButton";
 import { ArrowPrimaryButton } from "../../components/Buttons/PrimaryButton";
@@ -203,103 +204,84 @@ class ResetPasswordView extends Component {
     const { showPassword, showConfirmPassword } = this.state;
     return (
       <>
-        <div className={styles.signContainer}>
-          <form onSubmit={handleSubmit(this._handleSubmit)}>
-            <div className={styles.logoImageData}>
-              <img src={logoImage} alt="text_data" style={{ width: "250px" }} />
-            </div>
+        <form onSubmit={handleSubmit(this._handleSubmit)}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div
-              className={styles.loginSignupText}
+              className={styles.loginSignupTextRESET}
+              style={{ fontWeight: "700", fontSize: "24px" }}
+            >
+              Reset Password
+            </div>
+            <ButtonBase onClick={this._handleCloseDialog}>
+              <Close fontSize="small" />
+            </ButtonBase>
+          </div>
+
+          <div>
+            <br />
+            <div style={{ display: "flex" }}>
+              <Field
+                type={showPassword ? "text" : "password"}
+                fullWidth={true}
+                name="password"
+                component={renderTextField}
+                label="New Password*"
+              />
+              <IconButton
+                style={{ marginLeft: "-30px" }}
+                onClick={this._togglePasswordVisibility}
+              >
+                {!showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </div>
+            <br />
+            <div style={{ display: "flex" }}>
+              <Field
+                type={showConfirmPassword ? "text" : "password"}
+                fullWidth={true}
+                name="confirm_password"
+                component={renderTextField}
+                label="Confirm Password*"
+              />
+              <IconButton
+                style={{ marginLeft: "-30px" }}
+                onClick={this._toggleConfirmPasswordVisibility}
+              >
+                {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </div>
+            <br />
+
+            <div
               style={{
-                fontWeight: "600",
-                fontSize: "24px",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "space-between",
               }}
+              className={styles.mobileRender}
             >
-              <div className={styles.headingTextBig}>Reset Password</div>
-            </div>
-            <span
-              className={styles.bottomLine}
-              style={{ color: "grey", fontSize: "14px" }}
-            >
-              Your new password must be different from previously used passwords
-            </span>
-            <div>
-              <br />
               <div>
-                <div style={{ display: "flex" }}>
-                  <Field
-                    type={showPassword ? "text" : "password"}
-                    fullWidth={true}
-                    name="password"
-                    component={renderOutlinedTextField}
-                    label="Password"
-                  />
-                  <IconButton
-                    style={{ marginLeft: "-40px", padding: "0px" }}
-                    onClick={this._togglePasswordVisibility}
-                  >
-                    {!showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </div>
-                <br />
-                <div style={{ display: "flex" }}>
-                  <Field
-                    type={showConfirmPassword ? "text" : "password"}
-                    fullWidth={true}
-                    name="confirm_password"
-                    component={renderOutlinedTextField}
-                    label="Confirm Password"
-                  />
-                  <IconButton
-                    style={{ marginLeft: "-40px", padding: "0px" }}
-                    onClick={this._toggleConfirmPasswordVisibility}
-                  >
-                    {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </div>
+                <span className={styles.bottomSignup}>
+                  <ActionButton onClick={this._handleBack}>CANCEL</ActionButton>
+                </span>
               </div>
-              <br />
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-                className={styles.mobileRender}
+              <ArrowPrimaryButton
+                disabled={this.state.is_calling}
+                variant={"contained"}
+                type="submit"
+                className={styles.login}
               >
-                <ArrowPrimaryButton
-                  disabled={this.state.is_calling}
-                  variant={"contained"}
-                  type="submit"
-                  className={styles.login}
-                >
-                  {this.state.is_calling ? (
-                    <div style={{ padding: "5px 20px", display: "flex" }}>
-                      <CircularProgress size={"18px"} color={"primary"} />
-                    </div>
-                  ) : (
-                    "SET NEW PASSWORD"
-                  )}
-                </ArrowPrimaryButton>
-                <div>
-                  <span className={styles.bottomSignup}>
-                    <ButtonBase
-                      onClick={this._handleLoginClick}
-                      className={styles.back}
-                    >
-                      <img src={backArrow} alt="backtext" />
-                      Back To Login
-                    </ButtonBase>
-                  </span>
-                </div>
-              </div>
+                {/* {this.state.is_calling ? (
+                      <div style={{ padding: "5px 20px", display: "flex" }}>
+                        <CircularProgress size={"18px"} color={"primary"} />
+                      </div>
+                    ) : ( */}
+                SET NEW PASSWORD
+                {/* )} */}
+              </ArrowPrimaryButton>
             </div>
-          </form>
-        </div>
-        <div></div>
+          </div>
+        </form>
       </>
     );
   }
@@ -307,14 +289,18 @@ class ResetPasswordView extends Component {
   render() {
     const { handleSubmit, classes } = this.props;
     return (
-      <>
-        <div className={styles.overlay}></div>
-        <div className={styles.mainLoginView}></div>
-        <div className={styles.container}>
-          <div className={styles.loginFlex2}>{this._renderForm()}</div>
+      <div className={styles.mainLoginViewReset}>
+        <Dialog
+          open={this.props.open}
+          onClose={this._handleCloseDialog}
+          TransitionComponent={Transition}
+          maxWidth={"sm"}
+          fullWidth={true}
+        >
+          <div className={styles.formContainer}>{this._renderForm()}</div>
           <DashboardSnackbar />
-        </div>
-      </>
+        </Dialog>
+      </div>
     );
   }
 }
