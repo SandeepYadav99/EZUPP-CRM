@@ -19,6 +19,15 @@
   margin-bottom: 20px;
   padding: .4rem 1.2rem;
 }
+.imageGuideFlex{
+  display: flex !important;
+
+}
+.imageGuide{
+  color: #636578 !important;
+  font-weight: bold;
+  font-size: 12px;
+}
 
 .cont{
   display: flex;

@@ -62,7 +62,8 @@ const styles = theme => ({
         paddingBottom: theme.spacing(2),
         paddingRight: theme.spacing(2),
         paddingLeft: theme.spacing(2),
-        background:"#F7F7F9"
+        // background:"#F7F7F9"
+        background:"#FFF"
 
     },
     noPadding: {

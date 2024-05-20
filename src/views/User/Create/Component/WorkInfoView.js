@@ -7,10 +7,17 @@ import { Autocomplete, MenuItem, TextField } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import { Clear, Search } from "@mui/icons-material";
-const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager, department}) => {
+const WorkInfoView = ({
+  errorData,
+  form,
+  changeTextData,
+  onBlurHandler,
+  manager,
+  department,
+}) => {
   return (
     <>
-      <div className={"plainPaper"}>
+      <div className={"plainPaper"} style={{ backgroundColor: "#FFFFFF" }}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
             <div className={"heading"}>Work Information</div>
@@ -49,53 +56,53 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
                   ))}
                 </CustomSelectField>
               </div> */}
-               
-          <div className={"formGroup"}>
-            <Autocomplete
-              id="tags-outlined"
-              onChange={(e, value) => {
-                changeTextData(value, "department");
-              }}
-              value={form.department || []}
-               options={department || []} // listData ||
-              getOptionLabel={(option) => option}
-              defaultValue={form?.department || []}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="outlined"
-                  label={"Department"}
-                  error={errorData?.department}
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <>
-                        {form?.department ? (
-                          <Clear
-                            onClick={() =>
-                              changeTextData(null, "department")
-                            }
-                            style={{ cursor: "pointer" }}
-                          />
-                        ) : null}
-                        <Search
-                          style={{ marginRight: -20, cursor: "pointer" }}
-                        />
-                      </>
-                    ),
+
+              <div className={"formGroup"}>
+                <Autocomplete
+                  id="tags-outlined"
+                  onChange={(e, value) => {
+                    changeTextData(value, "department");
                   }}
+                  value={form.department || []}
+                  options={department || []} // listData ||
+                  getOptionLabel={(option) => option}
+                  defaultValue={form?.department || []}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      label={"Department"}
+                      error={errorData?.department}
+                      InputProps={{
+                        ...params.InputProps,
+                        style: { padding: '1px 10px', marginTop:"3.5px" },
+                        endAdornment: (
+                          <>
+                            {form?.department ? (
+                              <Clear
+                                onClick={() =>
+                                  changeTextData(null, "department")
+                                }
+                                style={{ cursor: "pointer" }}
+                              />
+                            ) : null}
+                            <Search
+                              style={{ marginRight: 5, cursor: "pointer" }}
+                            />
+                          </>
+                        ),
+                      }}
+                    />
+                  )}
+                  disableClearable
                 />
-              )}
-               disableClearable
-            />
-         
-        </div>
+              </div>
             </div>
           </div>
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-          {/* <div className={"formGroup"}>
+            {/* <div className={"formGroup"}>
             <Autocomplete
               id="tags-outlined"
               onChange={(e, value) => {
@@ -135,7 +142,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
             />
          
         </div> */}
-             <CustomTextField
+            <CustomTextField
               isError={errorData?.designation}
               errorText={errorData?.designation}
               label={"Designation"}
@@ -146,7 +153,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               // onBlur={() => {
               //   onBlurHandler("designation");
               // }}
-            /> 
+            />
           </div>
           <div className={"formGroup"}>
             <CustomSelectField
@@ -159,11 +166,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               }}
             >
               {manager?.map((item) => {
-                return (
-                  <MenuItem
-                    value={item?.id}
-                  >{`${item?.name} `}</MenuItem>
-                );
+                return <MenuItem value={item?.id}>{`${item?.name} `}</MenuItem>;
               })}
             </CustomSelectField>
           </div>
@@ -196,7 +199,6 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               onChange={(value) => {
                 changeTextData(value, "end_date");
               }}
-              
               value={form?.end_date}
               isError={errorData?.end_date}
               errorText={errorData?.end_date}

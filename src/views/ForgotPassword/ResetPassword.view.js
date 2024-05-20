@@ -262,7 +262,7 @@ class ResetPasswordView extends Component {
             >
               <div>
                 <span className={styles.bottomSignup}>
-                  <ActionButton onClick={this._handleBack}>CANCEL</ActionButton>
+                  <ActionButton  onClick={this._handleCloseDialog}>CANCEL</ActionButton>
                 </span>
               </div>
               <ArrowPrimaryButton

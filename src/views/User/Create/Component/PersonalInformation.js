@@ -6,6 +6,7 @@ import CustomTextField from "../../../../components/FormFields/TextField/TextFie
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
 import UploadImage from "../../../../components/UploadImage/UploadImage";
+import { InfoOutlined } from "@mui/icons-material";
 
 const PersonalInformation = ({
   errorData,
@@ -17,7 +18,7 @@ const PersonalInformation = ({
 }) => {
   return (
     <>
-      <div className={"plainPaper"}>
+      <div className={"plainPaper"} style={{backgroundColor:"#FFFFFF"}}>
         <div className={"headerFlex"}>
           <h4 className={"infoTitle"}>
             <div className={"heading"}>Personal Information</div>
@@ -32,8 +33,10 @@ const PersonalInformation = ({
               name="image"
               accept={"image/*"}
               label="Profile"
-              link={""}
-              user_image
+              // link={""}
+              // bannerLabel
+              banner={true}
+              cirularBanner={true}
               error={errorData?.image}
               value={form?.image}
               default_image={image ? image : ""}
@@ -43,6 +46,10 @@ const PersonalInformation = ({
                 }
               }}
             />
+            <div className={styles.imageGuide}>
+              <span className={styles.imageGuideSpan}> Image Guide<InfoOutlined fontSize="small" /></span>
+              
+            </div>
           </div>
           <div className={styles.lowerWrap}>
             <div className={"formFlex"}>

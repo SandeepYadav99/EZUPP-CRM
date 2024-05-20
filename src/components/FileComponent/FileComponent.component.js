@@ -4,6 +4,7 @@ import EventEmitter from "../../libs/Events.utils";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import csx from "classnames";
 import SnackbarUtils from "../../libs/SnackbarUtils";
+import { Person } from "@mui/icons-material";
 
 class File extends Component {
   constructor(props) {
@@ -98,6 +99,7 @@ class File extends Component {
       link,
       circular,
       bannerLabel,
+      cirularBanner
     } = this.props;
     let tempPlaceHolder = this.props.placeholder;
     if (value != "" && value !== null) {
@@ -246,7 +248,7 @@ class File extends Component {
           <div className={styles.imageBtnContainerNew}>
             <div>
               <div
-                className={styles.imagePlusNew}
+                className={ cirularBanner ? styles.imageProfileNew : styles.imagePlusNew}
                 style={{
                   backgroundImage: "url(" + this._getImageUrl(value) + ")",
                   backgroundSize: "cover",
@@ -255,12 +257,12 @@ class File extends Component {
                 }}
               >
                 <div className={styles.imgLowerContainer}>
-                  <div>
+                  <div style={{marginTop:"20px"}}>
                     <span className={styles.plus}>
-                      {!value && !default_image ? "+" : ""}
+                      {!value && !default_image ? cirularBanner ? <img alt=""  width={"25"} src={require("../../assets/img/ic_add_image.png")}/> : "+" : ""}
                     </span>
                     <div className={styles.textUpload} style={error ? {} : {}}>
-                      {!value && !default_image ? "Upload Banner Image" : ""}
+                      {!value && !default_image ? cirularBanner ? "" : "Upload Banner Image" : ""}
                     </div>
                   </div>
                   <input

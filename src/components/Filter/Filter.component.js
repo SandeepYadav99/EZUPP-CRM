@@ -15,9 +15,11 @@ import _ from 'lodash';
 // import Add from 'material-ui/svg-icons/content/add';
 import cstyles from './Style.module.css';
 
+
 const styles = {
     flatButton: {
         float: 'right',
+        color:"#636578"
     },
 };
 const useStyles = {
@@ -287,7 +289,7 @@ class FilterComponent extends Component {
                             {/*    containerElement={<FilterIcon/>}*/}
                             {/*    primary*/}
                             {/*/>*/}
-                            <Button style={styles.flatButton} onClick={this.handleTouchTap} ><FilterIcon/></Button>
+                            <Button style={styles.flatButton} onClick={this.handleTouchTap} ><FilterIcon /></Button>
                             {/*<Menu*/}
                             {/*    id="simple-menu"*/}
                             {/*    anchorEl={this.state.anchorEl}*/}
