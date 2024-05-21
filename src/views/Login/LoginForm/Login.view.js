@@ -49,7 +49,7 @@ function LoginView() {
             <span className={styles.headingText}>Welcome to Ezupp! </span>
             <br />
             <span style={{ fontSize: "14px", color: "#888888" }}>
-              Enter the details below to login to your account{" "}
+              Enter the details below to login to your account
             </span>
             <br />
             <br />
@@ -59,7 +59,16 @@ function LoginView() {
                   <CustomTextField
                     isError={errorData?.email}
                     errorText={errorData?.email}
-                    label={"Email ID"}
+                    label={
+                      <span
+                        style={{
+                          color: "#636578",
+                          opacity: 1,
+                        }}
+                      >
+                        Email ID
+                      </span>
+                    }
                     value={form?.email}
                     onTextChange={(text) => {
                       changeTextData(text, "email");
@@ -69,14 +78,22 @@ function LoginView() {
                     }}
                   />
                 </div>
-                <br />
                 <div>
                   <div style={{ display: "flex" }}>
                     <CustomTextField
                       type={showPassword ? "text" : "password"}
                       isError={errorData?.password}
                       errorText={errorData?.password}
-                      label={"Password"}
+                      label={
+                        <span
+                          style={{
+                            color: "#636578",
+                            opacity: 1,
+                          }}
+                        >
+                          Password
+                        </span>
+                      }
                       value={form?.password}
                       onTextChange={(text) => {
                         changeTextData(text, "password");
@@ -89,7 +106,7 @@ function LoginView() {
                       style={{
                         marginLeft: "-37px",
                         padding: "0px",
-                        marginTop: "8px"
+                        marginTop: "8px",
                       }}
                       onClick={togglePasswordVisibility}
                     >
@@ -102,7 +119,13 @@ function LoginView() {
                   <div className={classNames(styles.negativeSpacing, "log")}>
                     <CustomCheckBox
                       label={
-                        <span style={{ color: "#888888", fontSize: "14px" }}>
+                        <span
+                          style={{
+                            color: "#888888",
+                            fontSize: "14px",
+                            opacity: 1,
+                          }}
+                        >
                           Remember Me
                         </span>
                       }
@@ -140,7 +163,11 @@ function LoginView() {
               <div className={styles.lineMaker}></div>
             </div>
             <div className={styles.containerBtn}>
-              <img src={googleImageContainer} alt="google-image" />
+              <img
+                src={googleImageContainer}
+                alt="google-image"
+                style={{ backgroundColor: "#F2F2F2", borderRadius: "4px" }}
+              />
             </div>
           </div>
         </div>
