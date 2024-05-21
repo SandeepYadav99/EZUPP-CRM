@@ -30,6 +30,7 @@ const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChang
            fullWidth
            {...rest}
        />
+       
        {isError && (
         <div style={{textAlign:"right", color:"red", fontSize:"12px"}}>{errorText}</div>
       )}
