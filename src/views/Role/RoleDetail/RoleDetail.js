@@ -17,7 +17,8 @@ const RoleDetail = () => {
   const [roleDetail, setRoleDetail] = useState({});
   const { id } = useParams();
   console.log(roleDetail);
-  const { description, status } = roleDetail;
+  const { description , status
+  } = roleDetail;
   useEffect(() => {
     if (id) {
       serviceDetailRole({ id: id }).then((res) => {
@@ -61,7 +62,7 @@ const RoleDetail = () => {
               </p>
             </div>
             <div>
-              <StatusPill status={status} />
+              <StatusPill status={status} color={status === "ACTIVE" && "active"} />
             </div>
           </div>
           <hr className={styles.hrLine} />

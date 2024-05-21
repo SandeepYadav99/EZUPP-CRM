@@ -48,7 +48,7 @@ const RoleList = (props) => {
   } = useSelector((state) => state.role);
 
   const renderFirstCell = useCallback((user) => {
-    console.log(user, "User ");
+  
     const tempEmailRender = user?.email ? (
       <span style={{ textTransform: "lowercase" }}>{user?.email}</span>
     ) : null;
