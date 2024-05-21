@@ -30,7 +30,7 @@ const useMyProfileHook = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    serviceProfileDetail({ id: id ? id : userObject?.user?.id })
+    serviceProfileDetail({ id: id ? id : userObject?.user_id })
       .then((res) => {
         if (!res?.error) {
           setProfileDetails(res?.data);

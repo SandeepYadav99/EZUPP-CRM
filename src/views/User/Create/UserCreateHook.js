@@ -294,7 +294,7 @@ function useUserCreateHook() {
       } else if (fieldName === "contact") {
         t[fieldName] = text;
       } else if (fieldName === "userName") {
-        t[fieldName] = text;
+        t[fieldName] = text?.toLowerCase();
       } else if (fieldName === "email") {
         t[fieldName] = text;
       } else if (fieldName === "contact") {
