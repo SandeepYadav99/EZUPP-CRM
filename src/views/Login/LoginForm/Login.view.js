@@ -89,6 +89,7 @@ function LoginView() {
                       style={{
                         marginLeft: "-37px",
                         padding: "0px",
+                        marginTop: "8px"
                       }}
                       onClick={togglePasswordVisibility}
                     >
