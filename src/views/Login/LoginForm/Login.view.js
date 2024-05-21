@@ -148,7 +148,7 @@ function LoginView() {
                 </div>
 
                 <div style={{ marginTop: "7px" }}>
-                  <ArrowPrimaryButton onClick={handleSubmit}>
+                  <ArrowPrimaryButton variant={"h6"} onClick={handleSubmit}>
                     LOGIN
                   </ArrowPrimaryButton>
                 </div>
