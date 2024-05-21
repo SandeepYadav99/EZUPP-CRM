@@ -92,7 +92,6 @@ const ContactCreatehook = () => {
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [
-      "name",
       "email",
       "contact",
       "job_title",
@@ -101,9 +100,6 @@ const ContactCreatehook = () => {
       "address",
       "business_name",
     ];
-    if (!id) {
-      required.push("image");
-    }
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) !== 0) ||
@@ -154,7 +150,7 @@ const ContactCreatehook = () => {
         if (text?.length <= 60) {
           t[fieldName] = text;
         }
-      } else if (fieldName === "age") {
+      } else if (fieldName === "age" || fieldName === "company_size") {
         if (text >= 0) {
           t[fieldName] = text;
         }

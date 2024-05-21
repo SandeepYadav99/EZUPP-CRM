@@ -37,7 +37,7 @@ const ContactList = (props) => {
     all: allData,
     currentPage,
     is_fetching: isFetching,
-  } = useSelector((state) => state.product);
+  } = useSelector((state) => state.contact);
 
   const renderFirstCell = useCallback((user) => {
     return (
