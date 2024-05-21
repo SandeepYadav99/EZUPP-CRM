@@ -22,6 +22,7 @@ import useRoleListHook from "./RoleListHook";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import ImageStack from "../../../components/AvatarGroup/ImageStack";
+import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
 
 const RoleList = (props) => {
   const {
@@ -55,7 +56,7 @@ const RoleList = (props) => {
     return (
       <div className={styles.firstCellFlex}>
         <div>
-          <img src={user?.logo} alt="" crossOrigin="anonymous"/>
+          <img src={user?.logo} alt="" crossOrigin="anonymous" />
         </div>
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <span>
@@ -96,8 +97,10 @@ const RoleList = (props) => {
         key: "description",
         label: "Description",
         sortable: false,
-       
-        render: (temp, all) => <div className={styles.description}>{all?.description} </div>,
+
+        render: (temp, all) => (
+          <div className={styles.description}>{all?.description} </div>
+        ),
       },
       {
         key: "users",
@@ -113,7 +116,7 @@ const RoleList = (props) => {
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all?.status)} </div>,
       },
-      
+
       // {
       //   key: "user_id",
       //   label: "Action",
@@ -129,7 +132,7 @@ const RoleList = (props) => {
       //         }}
       //       >
       //         <Edit fontSize={"small"} />
-      //       </IconButton> 
+      //       </IconButton>
       //     </>
       //   ),
       // },
@@ -162,18 +165,13 @@ const RoleList = (props) => {
   ]);
 
   return (
-    <div>
-      <PageBox>
-        <div className={styles.headerContainer}>
-          <span className={styles.title}>Roles List</span>
-          <ArrowPrimaryButton
-            onClick={handleCreate}
-            icon={<Add fontSize="normal" />}
-          >
-            Create
-          </ArrowPrimaryButton>
-        </div>
-
+    <>
+      <div className={"plainPaper"}>
+        <CustomListHeader
+          title={"Create"}
+          handleCreate={handleCreate}
+          sideTitlle={"Roles List"}
+        />
         <div>
           <FilterComponent
             is_progress={isFetching}
@@ -193,8 +191,8 @@ const RoleList = (props) => {
             </div>
           </div>
         </div>
-      </PageBox>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -32,7 +32,7 @@ export default {
   TASK_DETAIL: "/task/detail/",
   SERVICE_DETAIL: "/service/detail/",
 
-  ADMIN_USER:"/users",
+  ADMIN_USER:"/admin/users",
   ADMIN_USER_CREATE:"/users/create",
   ADMIN_USER_UPDATE:"/users/update/",
   CALENDAR:"/calendar",

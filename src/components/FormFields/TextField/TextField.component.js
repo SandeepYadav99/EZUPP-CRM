@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback} from "react";
 import {TextField, InputAdornment} from "@mui/material";
 
 const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChange, inputProps, ...rest }) => {
