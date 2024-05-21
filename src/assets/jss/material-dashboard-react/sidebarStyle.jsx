@@ -27,7 +27,7 @@ const sidebarStyle = theme => ({
       backgroundColor: sidebarColor,
     // overflow: 'auto',
     // ...boxShadow,
-    borderRight: '1px solid rgba(0, 0, 0, 0.12)',
+    borderRight: '1px solid #00000029',
     // width: drawerWidth,
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
@@ -56,7 +56,7 @@ const sidebarStyle = theme => ({
   },
   logo: {
     position: "relative",
-    padding: "30px 25px",
+    padding: "15px 25px",
     zIndex: "4",
     "&:after": {
       content: '""',
