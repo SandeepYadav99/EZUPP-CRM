@@ -16,6 +16,7 @@ const PersonalInformation = ({
   image,
   listData,
 }) => {
+  console.log({listData})
   return (
     <>
       <div className={"plainPaper"} style={{backgroundColor:"#FFFFFF"}}>
