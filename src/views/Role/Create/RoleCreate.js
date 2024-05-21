@@ -46,7 +46,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     changeTextData,
     isSubmitting,
     data,
-    
+    cancelRole,
     permisionChangeHandler,
     id,
     
@@ -138,7 +138,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
         </>
 
         <div className={styles.actionButton}>
-          <ActionButton onClick={handleSubmit}>CANCEL</ActionButton>
+          <ActionButton onClick={cancelRole}>CANCEL</ActionButton>
           <PrimaryButton
             variant={"contained"}
             color={"primary"}
