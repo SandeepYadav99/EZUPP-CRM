@@ -5,6 +5,8 @@ import RouteName from "../../routes/Route.name";
 import { useDispatch} from "react-redux";
 import { serviceGetProductDetails } from "../../services/Product.service";
 import { actionDeleteProduct} from "../../actions/Product.action";
+import {serviceDeleteProduct} from "../../services/Product.service";
+import SnackbarUtils from "../../libs/SnackbarUtils";
 const useProductDetailHook = () => {
   const [profileDetails, setProfileDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,12 +39,34 @@ const useProductDetailHook = () => {
     // historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
   }, []);
 
+  // const handleDelete = useCallback(
+  //   (id) => {
+  //     dispatch(actionDeleteProduct(id));
+  //     setEditData(null);
+  //   },
+  //   [setEditData]
+  // );
   const handleDelete = useCallback(
-    (id) => {
-      dispatch(actionDeleteProduct(id));
-      setEditData(null);
+    async (id) => {
+      if (id) {
+
+        const formattedId = String(id);
+  
+        try {
+          const response = await serviceDeleteProduct({ id: formattedId });
+  
+          if (!response.error) {
+            console.log(`Product with id: ${formattedId} deleted successfully.`);
+            window.location.reload();
+          } else {
+            SnackbarUtils.error(response.message);
+          }
+        } catch (error) {
+          console.error('Error deleting unit:', error);
+        }
+      }
     },
-    [setEditData]
+    
   );
 
   return {
