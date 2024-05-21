@@ -40,6 +40,7 @@ export default {
   ROLE:"/roles",
   ROLE_CREATE:"/role/create",
   ROLE_CREATE_UPDATE:"/role/update/",
+  ROLE_DETAIL:"/role/details/",
   BLOGS_CREATE:"/blogs/create",
   BLOGS_UPDATE:"/blogs/update/",
   PRODUCT_DETAILS:"/product/details/",

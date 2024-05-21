@@ -7,7 +7,7 @@ import PageBox from "../../../components/PageBox/PageBox.component";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add, Create, Edit } from "@mui/icons-material";
+import { Add, Create, Details, Edit } from "@mui/icons-material";
 import {
   Avatar,
   AvatarGroup,
@@ -36,7 +36,7 @@ const RoleList = (props) => {
     configFilter,
     handleCreate,
     isSidePanel,
-    editId,
+    handleDetail,
     handleEdit,
   } = useRoleListHook({});
 
@@ -132,6 +132,17 @@ const RoleList = (props) => {
       //         }}
       //       >
       //         <Edit fontSize={"small"} />
+      //       </IconButton>
+      //       <IconButton
+      //         className={"tableActionBtn"}
+      //         color="secondary"
+      //         disabled={isCalling}
+      //         onClick={() => {
+      //           // handleSideToggle(all?.id);
+      //           handleDetail(all);
+      //         }}
+      //       >
+      //         <Details fontSize={"small"} />
       //       </IconButton>
       //     </>
       //   ),

@@ -1,13 +1,12 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import RouteName from "../../../routes/Route.name";
-import history from "../../../libs/history.utils";
-import { actionFetchRole, actionSetPageRole } from "../../../actions/Role.action";
 
-const useRoleListHook = ({}) => {
+
+const useAssociatedUsersHook = ({id}) => {
   const [isSidePanel, setSidePanel] = useState(false);
   const [isCalling, setIsCalling] = useState(false);
   const [editData, setEditData] = useState(null);
@@ -21,33 +20,33 @@ const useRoleListHook = ({}) => {
     query,
     query_data: queryData,
     all,
-  } = useSelector((state) => state.role);
+  } = useSelector((state) => state.associatedManufactures);
 
   useEffect(() => {
-    dispatch(
-      actionFetchRole(
-        1,
-        {},
-        {
-          query: isMountRef.current ? query : null,
-          query_data: isMountRef.current ? queryData : null,
-        }
-      )
-    );
+    // dispatch(
+    //   actionFetchAssociatedManufactures(
+    //     1,
+    //     {},
+    //     {
+    //       query: isMountRef.current ? query : null,
+    //       query_data: isMountRef.current ? queryData : null,
+    //     }, id
+    //   )
+    // );
     isMountRef.current = true;
   }, []);
 
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageRole(type));
+    // dispatch(actionSetPageHubMasterRequests(type));
   }, []);
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchRole(1, sortingData, {
-          query: key == "SEARCH_TEXT" ? value : query,
-          query_data: key == "FILTER_DATA" ? value : queryData,
-        })
+        // actionFetchHubMaster(1, sortingData, {
+        //   query: key == "SEARCH_TEXT" ? value : query,
+        //   query_data: key == "FILTER_DATA" ? value : queryData,
+        // })
       );
     },
     [sortingData, query, queryData]
@@ -69,17 +68,17 @@ const useRoleListHook = ({}) => {
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageRole(1));
-      dispatch(
-        actionFetchRole(
-          1,
-          { row, order },
-          {
-            query: query,
-            query_data: queryData,
-          }
-        )
-      );
+      // dispatch(actionSetPageHubMasterRequests(1));
+      // dispatch(
+      //   actionFetchHubMaster(
+      //     1,
+      //     { row, order },
+      //     {
+      //       query: query,
+      //       query_data: queryData,
+      //     }
+      //   )
+      // );
     },
     [query, queryData]
   );
@@ -93,29 +92,15 @@ const useRoleListHook = ({}) => {
     [setEditId, setSidePanel, setEditData]
   );
 
-  
-  const handleEdit = useCallback(
+  const handleEditHubMaster = useCallback(
     (data) => {
-      // setSidePanel((e) => !e);
-      // setEditId(data?.id);
-      // setEditData(data);
-      history.push(`${RouteName.ROLE_CREATE_UPDATE}${data?.id}`)
+      setSidePanel((e) => !e);
+      setEditId(data?.id);
+      setEditData(data);
     },
     [setEditData, setSidePanel, setEditId]
   );
 
-  const handleDetail = useCallback(
-    (data) => {
- 
-      history.push(`${RouteName.ROLE_DETAIL}${data?.id}`)
-    },
-    [setEditData, setSidePanel, setEditId]
-  );
-
-  const handleCreate = useCallback(() => {
-    history.push(RouteName.ROLE_CREATE);
-  }, []);
-  
   const configFilter = useMemo(() => {
     return [
       { label: "Created On", name: "createdAt", type: "date" },
@@ -139,10 +124,8 @@ const useRoleListHook = ({}) => {
     isSidePanel,
     configFilter,
     editId,
-    handleEdit,
-    handleCreate,
-    handleDetail
+    handleEditHubMaster,
   };
 };
 
-export default useRoleListHook;
+export default useAssociatedUsersHook;
