@@ -258,6 +258,13 @@
   justify-content: center !important;
 }
 
+.headingText {
+  margin: 0px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #636578;
+}
+
 @media only screen and (max-width: 1024px) {
   .loginFlex2 {
     background-color: #F7F7F9;
