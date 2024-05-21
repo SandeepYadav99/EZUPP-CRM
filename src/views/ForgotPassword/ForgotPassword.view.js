@@ -77,6 +77,9 @@ const useStyles = {
   dialog: {
     padding: "10px 25px",
   },
+  labelRoot: {
+    background: "#f7f7f9",
+  },
 };
 
 class ForgotPasswordView extends Component {
@@ -199,18 +202,26 @@ class ForgotPasswordView extends Component {
                   alignItems: "center",
                 }}
               >
-                <Typography variant="h3" color="text.secondary" className={styles.headingText}>
+                <Typography
+                  variant="h3"
+                  color="text.secondary"
+                  className={styles.headingText}
+                >
                   Forgot Password?
                 </Typography>
               </div>
               <p
                 className={styles.bottomLine}
-                style={{ color: "grey", fontSize: "14px", marginTop: "10px" }}
+                style={{
+                  color: "#888888",
+                  fontSize: "14px",
+                  marginTop: "10px",
+                }}
               >
-               Enter your email and we'll send you instructions to reset your password
+                Enter your email and we'll send you instructions to reset your
+                password
               </p>
-              <div style={{ marginTop: "10px" }}>
-                {/* <br /> */}
+              <div style={{ marginTop: "20px" }}>
                 <div>
                   <Field
                     fullWidth={true}
@@ -233,14 +244,9 @@ class ForgotPasswordView extends Component {
                     variant={"contained"}
                     type="submit"
                     className={styles.login}
+                    Typography={"h6"}
                   >
-                    {this.state.is_calling ? (
-                      <div style={{ padding: "5px 20px", display: "flex" }}>
-                        <CircularProgress size={"18px"} color={"primary"} />
-                      </div>
-                    ) : (
-                      "SEND RESET LINK"
-                    )}
+                    SEND RESET LINK
                   </ArrowPrimaryButton>
                   <div>
                     <span className={styles.bottomSignup}>

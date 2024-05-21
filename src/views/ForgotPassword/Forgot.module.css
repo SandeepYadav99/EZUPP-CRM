@@ -25,19 +25,15 @@
   z-index: 2 !important;
   margin-top: -100vh;
 }
-.back{
-  color: #FF0000 !important;
-}
-.formContainer{
+
+.formContainer {
   padding: 35px !important;
- 
- 
 }
-.mainLoginViewReset{
+.mainLoginViewReset {
   display: flex;
   width: 100vw;
   /* height: 100vh; */
- 
+
   /*background-image: url('../../assets/img/background.jpg');*/
   /*background-size: cover;*/
   /*background-repeat: no-repeat;*/
@@ -89,14 +85,14 @@
   background-color: #fff;
   flex: 1.5;
   display: flex;
- 
+
   box-sizing: border-box;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
 }
 .loginFlex2 {
-  background-color: #F7F7F9;
+  background-color: #f7f7f9;
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
@@ -156,12 +152,16 @@
 }
 
 .back {
-  color: #2063CE !important;
-  font-size: 0.8rem;
+  font-size: 13px;
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 4px !important;
+  letter-spacing: 0px;
+  color: #2063ce;
+  opacity: 1;
+  gap: 5px;
+  justify-content: center !important;
+  text-decoration: underline;
 }
 
 .bottomSignup {
@@ -171,7 +171,7 @@
 .forgotBtn {
   color: #5f63f2 !important;
   text-decoration: underline !important;
-  font-size: 0.8rem;
+  font-size: 13px;
 }
 
 .heading {
@@ -233,7 +233,10 @@
   background-size: 200% 100%;
   background-position: right bottom;
   transition: all 0.5s ease-out;
-  width: 240px;
+  width: 207px;
+  height: 52px;
+
+  
 }
 
 .login:hover {
@@ -245,8 +248,8 @@
   background-size: 200% 100%;
   background-position: right bottom;
   transition: all 0.5s ease-out;
-  width: 240px;
-}
+  width: 207px;
+  height: 52px;}
 
 .title {
   color: #072ead;
@@ -261,13 +264,13 @@
 .headingText {
   margin: 0px;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 24px !important;
   color: #636578;
 }
 
 @media only screen and (max-width: 1024px) {
   .loginFlex2 {
-    background-color: #F7F7F9;
+    background-color: #f7f7f9;
     /* border-radius: 18px; */
     display: flex;
     padding-bottom: 15px !important;
