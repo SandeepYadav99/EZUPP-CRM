@@ -43,7 +43,7 @@
   margin-left: 15px;
 }
 .imageContainer{
-  margin-right: 30%;
+  margin-right: 30% !important;
   display: flex !important;
  
 }
