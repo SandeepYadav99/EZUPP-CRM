@@ -53,7 +53,7 @@ const RoleDetail = () => {
         </div>
       </div>
       <div className={styles.detailContainer}>
-        <section className={"plainPaper"} style={{ width: "70%" }}>
+        <section className={"plainPaper"} style={{ width: "75%" }}>
           <div className={styles.boxleft}>
             <div>
               <p>
@@ -69,7 +69,7 @@ const RoleDetail = () => {
           <h3>Description</h3>
           <p>{description}</p>
         </section>
-        <section className={"plainPaper"} style={{ width: "30%" }}>
+        <section className={"plainPaper"} style={{ width: "25%" }}>
           <div>
             <p>
               <span className={styles.title}>Permissions Granted</span>{" "}
