@@ -145,8 +145,10 @@ function useContactList({ isOpen, handleToggle }) {
         }
       });
       console.log(">>>>>", { updatedFd, form });
+      const contactWithCD = cleanContactNumber(form?.contact);
+        console.log("contactWithCD",contactWithCD)
       serviceCreateContactQuick({
-        ...form,
+        ...updatedFd,
         contact: `${cleanContactNumber(form?.contact)}`,
       }).then((res) => {
         if (!res.error) {

@@ -16,7 +16,7 @@ export async function serviceGetContactDetails(params) {
 }
 
 export async function serviceCreateContact(params) {
-  return await formDataRequest("contacts/create", params);
+  return await postRequest("contacts/create", params);
 }
 
 export async function serviceDeleteContact(params) {

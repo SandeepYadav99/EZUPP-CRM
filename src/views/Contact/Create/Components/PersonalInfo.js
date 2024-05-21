@@ -217,6 +217,7 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                 label={"Address"}
                 multiline
                 rows="3"
+                value={form?.address}
                 onTextChange={(text) => {
                   changeTextData(text, "address");
                 }}

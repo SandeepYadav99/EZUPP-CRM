@@ -8,33 +8,38 @@ import LogUtils from "../../../libs/LogUtils";
 import useDebounce from "../../../hooks/DebounceHook";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
-import { removeUnderScore } from "../../../helper/Helper";
+import { cleanContactNumber, removeUnderScore } from "../../../helper/Helper";
+import { serviceCreateContact } from "../../../services/Contact.service";
+import { serviceGetTagsList } from "../../../services/Blogs.service";
+import { serviceGetList } from "../../../services/index.services";
 const initialForm = {
-  full_name: "",
+  prefix: "Mr",
+  contact_name: "contact",
+  full_name: "TESTER",
   gender: "PREFER_NOT",
-  age: "",
+  age: "21",
   contact: "",
-  email: "",
+  email: "test@gmail.com",
   wa_contact: "",
-  alternate_email: "",
-  job_title: "",
-  country: "",
-  address: "",
-  business_name: "",
-  industry: "",
-  website: "",
-  buying_role: "",
-  company_size: "",
-  source: "",
-  service_product: "",
-  priority: "",
-  seniority: "",
-  description: "",
-  contact_type: "",
+  alternate_email: "user@gmail.com",
+  job_title: "USER",
+  country: "INDIA",
+  address: "Chandigarh",
+  business_name: "Business Name",
+  industry: "MANUFACTURING",
+  website: "https://www.youtube.com/",
+  buying_role: "INTRODUCER",
+  company_size: "30",
+  source: "Affilate",
+  service_product: [],
+  priority: "Medium",
+  seniority: "JUNIOR",
+  description: "Description",
+  contact_type: "BUSINESS",
   contact_owner: "",
-  lead_status: "",
-  lead_type: "",
-  lead_details: "",
+  lead_status: "New",
+  lead_type: "Hot",
+  lead_details: "Lead Details",
   time_zone: "",
   linkedin_url: "",
   instagram_url: "",
@@ -59,34 +64,25 @@ const ContactCreatehook = () => {
   const [errorData, setErrorData] = useState({});
   const [source, setSource] = useState([...sourceDDValues]);
   const emailDebouncer = useDebounce(form.email, 500);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [listData, setListData] = useState({
+    PRODUCTS: [],
+  });
+
   const { id } = useParams();
 
-  const validateField = useCallback(
-    (field, values, errorKey, existsMessage) => {
-      serviceProviderIsExist({ [field]: values, id: id || null }).then(
-        (res) => {
-          if (!res.error) {
-            const errors = { ...errorData };
-            if (res.data.is_exists) {
-              errors[errorKey] = existsMessage;
-            } else {
-              delete errors[errorKey];
-            }
-            setErrorData(errors);
-          }
-        }
-      );
-    },
-    [errorData, setErrorData, id]
-  );
-
-  const checkCodeValidation = useCallback(() => {
-    validateField("email", form.email, "email", "Email Already Exist");
-  }, [form.email, id]);
-
   useEffect(() => {
-    if (emailDebouncer) checkCodeValidation();
-  }, [emailDebouncer]);
+    (async () => {
+      const promises = await Promise.allSettled([
+        serviceGetTagsList(),
+        serviceGetList(["PRODUCTS"]),
+      ]);
+      const tagList = promises[0].value?.data;
+      const ProductList = promises[1].value?.data;
+      // setAssociateTagsData([...tagList]);
+      setListData(ProductList);
+    })();
+  }, []);
 
   console.log("form", form);
   const checkFormValidation = useCallback(() => {
@@ -163,7 +159,42 @@ const ContactCreatehook = () => {
     },
     [removeError, form, setForm]
   );
-
+  const submitToServer = useCallback(() => {
+    if (!isSubmitting) {
+      setIsSubmitting(true);
+      const updatedFd = {};
+      Object.keys({ ...initialForm }).forEach((key) => {
+        if (key === "service_product") {
+          const getId =
+            form[key]?.length > 0 ? form[key]?.map((item) => item?.id) : [];
+          updatedFd[key] = getId;
+        } else if (key === "tags") {
+          updatedFd[key] = form[key]?.length > 0 ? form[key]?.join(",") : "";
+        } else if (key === "is_newsletter_subscribed") {
+          updatedFd[key] = form[key] === "NEWS";
+        } else {
+          updatedFd[key] = form[key];
+        }
+      });
+      const cleanContact = cleanContactNumber(form?.contact);
+      const contactValues = cleanContact.length ? cleanContact?.split(" ") : [];
+      console.log(">>>>>", { updatedFd, form }, cleanContact?.split(" "));
+      serviceCreateContact({
+        ...updatedFd,
+        country_code: contactValues?.length > 0 ? contactValues[0] : "",
+        contact: contactValues?.length > 1 ? contactValues?.[1] : "",
+      }).then((res) => {
+        if (!res.error) {
+          SnackbarUtils.success("Request Approved");
+          historyUtils.goBack();
+          // historyUtils.push(RouteName.CLAIMS_LIST);
+        } else {
+          SnackbarUtils.error(res?.message);
+        }
+        setIsSubmitting(false);
+      });
+    }
+  }, [form, isSubmitting, setIsSubmitting]);
   const handleSubmit = useCallback(
     async (status) => {
       const errors = checkFormValidation();
@@ -172,7 +203,7 @@ const ContactCreatehook = () => {
         setErrorData(errors);
         return true;
       }
-      //submitToServer(status);
+      submitToServer(status);
     },
     [checkFormValidation, setErrorData, form]
   );
@@ -188,6 +219,7 @@ const ContactCreatehook = () => {
     changeTextData,
     handleSubmit,
     handleCancel,
+    listData,
   };
 };
 
