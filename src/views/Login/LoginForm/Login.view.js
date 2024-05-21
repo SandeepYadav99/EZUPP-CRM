@@ -59,7 +59,7 @@ function LoginView() {
                   <CustomTextField
                     isError={errorData?.email}
                     errorText={errorData?.email}
-                    label={<span style={{ color: "#636578" }}>Email ID</span>}
+                    label={"Email ID"}
                     value={form?.email}
                     onTextChange={(text) => {
                       changeTextData(text, "email");
@@ -76,7 +76,7 @@ function LoginView() {
                       type={showPassword ? "text" : "password"}
                       isError={errorData?.password}
                       errorText={errorData?.password}
-                      label={<span style={{ color: "#636578" }}>Password</span>}
+                      label={"Password"}
                       value={form?.password}
                       onTextChange={(text) => {
                         changeTextData(text, "password");
