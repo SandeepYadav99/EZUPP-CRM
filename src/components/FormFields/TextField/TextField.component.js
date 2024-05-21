@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback} from "react";
 import {TextField, InputAdornment} from "@mui/material";
 
 const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChange, inputProps, ...rest }) => {
@@ -30,8 +30,9 @@ const CustomTextField = ({isError, errorText, icon, label, onChange, onTextChang
            fullWidth
            {...rest}
        />
+       
        {isError && (
-        <div style={{textAlign:"right", color:"red"}}>{errorText}</div>
+        <div style={{textAlign:"right", color:"red", fontSize:"12px"}}>{errorText}</div>
       )}
     </>
    )

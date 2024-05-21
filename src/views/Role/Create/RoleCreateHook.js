@@ -222,6 +222,14 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     [changeTextData, errorData, setErrorData]
   );
 
+  const cancelRole = useCallback(
+    (type) => {
+     history.goBack()
+    },
+    []
+  );
+
+
   const suspendItem = useCallback(async () => {
     dispatch(actionDeleteMasterDelete(empId));
     dispatch(actionFetchHubMaster(1));
@@ -253,6 +261,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     toggleAcceptDialog,
     isAcceptPopUp,
     suspendItem,
+    cancelRole
   };
 };
 

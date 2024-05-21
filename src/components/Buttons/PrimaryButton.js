@@ -94,8 +94,8 @@ const ArrowOutlineButton = ({ icon,...props}) =>{
     return (<OutlineButton {...props} endIcon={icon ? icon : <ArrowForward/>} />);
 }
 
-const ArrowActionButton = ({...props}) =>{
-    return (<ActionButton {...props} endIcon={<ArrowForward/>} />);
+const ArrowActionButton = ({icon, ...props}) =>{
+    return (<ActionButton {...props} endIcon={!icon ?  <ArrowForward/> : icon} />);
 }
 
 export {

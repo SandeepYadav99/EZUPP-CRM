@@ -56,6 +56,7 @@ import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
+import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
 
 const dashboardRoutes = [
   {
@@ -241,6 +242,16 @@ const dashboardRoutes = [
     navbarName: "UserRole",
     icon: LibraryBooks,
     component: RoleCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+  },
+  {
+    path: `${RouteName.ROLE_DETAIL}:id`,
+    sidebarName: "UserRole",
+    navbarName: "UserRole",
+    icon: LibraryBooks,
+    component: RoleDetail,
     is_sidebar: false,
     is_protect: true,
     parent: "admin",

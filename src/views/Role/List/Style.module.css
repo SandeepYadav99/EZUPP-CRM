@@ -43,7 +43,10 @@
   margin-left: 15px;
 }
 .imageContainer{
-  margin-right: 30%;
+  margin-right: 10% !important;
+  display: flex !important;
+  gap: -5px !important;
+ 
 }
 .infoTitle {
   margin-bottom: 15px;

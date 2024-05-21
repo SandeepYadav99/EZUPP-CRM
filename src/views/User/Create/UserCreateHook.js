@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import { useState } from "react";
 import {
   HexCodeValid,
@@ -46,25 +46,43 @@ function useUserCreateHook() {
     userManage: false,
     invoiteToUser: false,
   };
+  const initialState = {
+    manager: [],
+    department: [],
+    ROLES:[],
+    images:null
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'SET_MANAGER':
+        return { ...state, manager: action.payload };
+      case 'SET_DEPARTMENT':
+        return { ...state, department: action.payload };
+        case 'ROLES':
+        return { ...state, ROLES: action.payload };
+        case 'IMAGES':
+          return { ...state, images: action.payload };
+      default:
+        return state;
+    }
+  };
 
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
-  const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const emailDebouncer = useDebounce(form.email, 500);
   const empIdDebouncer = useDebounce(form.employee_id, 500);
-  const [manager, setManager] = useState([]);
-  const [department, setDepartment] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [listData, setListData] = useState({
-    ROLES: [],
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     serviceGetList(["ROLES"]).then((res) => {
       if (!res.error) {
-        setListData(res.data);
+        const data = res?.data;
+        dispatch({type:"ROLES", payload: data})
+        // setListData(res.data);
       }
     });
   }, []);
@@ -73,7 +91,8 @@ function useUserCreateHook() {
     serviceProfileManager({}).then((res) => {
       if (!res?.error) {
         const data = res?.data;
-        setManager(data);
+        // setManager(data);
+        dispatch({ type: 'SET_MANAGER', payload: data });
       }
     });
   }, []);
@@ -82,7 +101,8 @@ function useUserCreateHook() {
     serviceProviderProfileGetKeyword({}).then((res) => {
       if (!res?.error) {
         const data = res?.data;
-        setDepartment(data);
+        dispatch({ type: 'SET_DEPARTMENT', payload: data });
+        // setDepartment(data);
       }
     });
   }, []);
@@ -151,7 +171,8 @@ function useUserCreateHook() {
           };
 
           setForm(formData);
-          setImages(data?.image);
+          dispatch({type:"IMAGES", payload:data?.image})
+          // setImages(data?.image);
         } else {
           SnackbarUtils.error(res?.message);
         }
@@ -273,7 +294,7 @@ function useUserCreateHook() {
       } else if (fieldName === "contact") {
         t[fieldName] = text;
       } else if (fieldName === "userName") {
-        t[fieldName] = text;
+        t[fieldName] = text?.toLowerCase();
       } else if (fieldName === "email") {
         t[fieldName] = text;
       } else if (fieldName === "contact") {
@@ -365,22 +386,24 @@ function useUserCreateHook() {
     },
     [checkFormValidation, setErrorData, form, submitToServer]
   );
-
+console.log({state})
   return {
     form,
     errorData,
-    listData,
+    listData:state?.ROLES,
     changeTextData,
     onBlurHandler,
     removeError,
     handleSubmit,
     isSubmitting,
-    images,
+    images:state?.images,
     id,
     // isContactInList,
-    isOpen,
-    manager,
-    department,
+    
+    // manager,
+    // department,
+    manager: state.manager,
+    department: state.department,
   };
 }
 

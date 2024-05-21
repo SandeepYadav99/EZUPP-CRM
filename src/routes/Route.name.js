@@ -32,7 +32,7 @@ export default {
   TASK_DETAIL: "/task/detail/",
   SERVICE_DETAIL: "/service/detail/",
 
-  ADMIN_USER:"/users",
+  ADMIN_USER:"/admin/users",
   ADMIN_USER_CREATE:"/users/create",
   ADMIN_USER_UPDATE:"/users/update/",
   CALENDAR:"/calendar",
@@ -40,6 +40,7 @@ export default {
   ROLE:"/roles",
   ROLE_CREATE:"/role/create",
   ROLE_CREATE_UPDATE:"/role/update/",
+  ROLE_DETAIL:"/role/details/",
   BLOGS_CREATE:"/blogs/create",
   BLOGS_UPDATE:"/blogs/update/",
   PRODUCT_DETAILS:"/product/details/",

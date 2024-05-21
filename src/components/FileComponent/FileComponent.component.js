@@ -71,11 +71,11 @@ class File extends Component {
 
   _getImageUrl(value) {
     const { default_image, user_image } = this.props;
-    console.log(value, default_image);
+   
     if (value) {
       return URL?.createObjectURL(value);
     } else if (default_image) {
-      return default_image;
+      return default_image ;
     } else if (user_image) {
       return require("../../assets/img/profile.png");
     }
