@@ -590,7 +590,7 @@ input[type=radio] + label:hover {
     z-index: 2;
 }
 .css-hip9hq-MuiPaper-root-MuiAppBar-root{
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 3px 3px 6px #00000029;
 }
 .Demo__suggestion-item {
     padding: 8px;
