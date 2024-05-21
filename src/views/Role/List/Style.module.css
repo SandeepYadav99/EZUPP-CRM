@@ -44,6 +44,8 @@
 }
 .imageContainer{
   margin-right: 30%;
+  display: flex !important;
+ 
 }
 .infoTitle {
   margin-bottom: 15px;

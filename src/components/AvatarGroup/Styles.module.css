@@ -35,8 +35,12 @@
   object-fit: cover;
   border-radius: 0px;
 }
-
-
+.avatarImage{
+  margin-left: -80px !important;
+}
+.avatar_group{
+  margin-left: -70px !important;
+}
 .avatar_group2 .avatar:hover{
   transform : translateY(-10px);
   z-index: 8;
