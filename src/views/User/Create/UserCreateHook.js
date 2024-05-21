@@ -60,9 +60,9 @@ function useUserCreateHook() {
       case 'SET_DEPARTMENT':
         return { ...state, department: action.payload };
         case 'ROLES':
-        return { ...state, department: action.payload };
+        return { ...state, ROLES: action.payload };
         case 'IMAGES':
-          return { ...state, department: action.payload };
+          return { ...state, images: action.payload };
       default:
         return state;
     }
@@ -76,7 +76,7 @@ function useUserCreateHook() {
   const emailDebouncer = useDebounce(form.email, 500);
   const empIdDebouncer = useDebounce(form.employee_id, 500);
   const [state, dispatch] = useReducer(reducer, initialState);
- 
+
   useEffect(() => {
     serviceGetList(["ROLES"]).then((res) => {
       if (!res.error) {
@@ -390,7 +390,7 @@ console.log({state})
   return {
     form,
     errorData,
-    listData:state,
+    listData:state?.ROLES,
     changeTextData,
     onBlurHandler,
     removeError,
