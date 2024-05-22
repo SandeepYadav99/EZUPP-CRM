@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Style.module.css";
-import { ButtonBase, Typography } from "@mui/material";
+import { ButtonBase, CircularProgress, Typography } from "@mui/material";
 
 import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import WorkInfoView from "./Component/WorkInfoView";
@@ -23,6 +23,7 @@ const UserCreate = ({}) => {
     manager,
     department,
     listData,
+    isSubmitting
   } = useUserCreateHook();
 
   return (
@@ -58,11 +59,11 @@ const UserCreate = ({}) => {
 
       <div className={styles.saveButton}>
         <PrimaryButton color={"primary"} onClick={handleSubmit}>
-          {/* {isSubmitting ? ( */}
-          {/* <CircularProgress color="success" size="20px" />
-              ) : (  */}
-          Save
-          {/* )} */}
+          {isSubmitting ? ( 
+           <CircularProgress color="success" size="20px" />
+              ) : (  
+          "Save"
+           )} 
         </PrimaryButton>
       </div>
     </>
