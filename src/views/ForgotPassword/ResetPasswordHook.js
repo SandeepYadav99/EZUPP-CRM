@@ -132,6 +132,7 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     [changeTextData]
   );
 
+  
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
     setErrorData({});
