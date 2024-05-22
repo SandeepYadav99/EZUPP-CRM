@@ -9,7 +9,10 @@ import useDebounce from "../../../hooks/DebounceHook";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import { cleanContactNumber, removeUnderScore } from "../../../helper/Helper";
-import { serviceContactCheck, serviceCreateContact } from "../../../services/Contact.service";
+import {
+  serviceContactCheck,
+  serviceCreateContact,
+} from "../../../services/Contact.service";
 import { serviceGetTagsList } from "../../../services/Blogs.service";
 import { serviceGetList } from "../../../services/index.services";
 import debounce from "lodash.debounce";
@@ -144,6 +147,26 @@ const ContactCreatehook = () => {
     },
     [setErrorData, errorData]
   );
+  const checkForCandidateInfo = (data) => {
+    if (data?.contact || data?.email) {
+      let req = serviceContactCheck({
+        email: data?.email,
+        id: id,
+      });
+      req.then((res) => {
+        if (!res.error) {
+          const salaryData = res.data;
+          if(data){
+            setConfirmPopUp(true)
+          }
+          // setCandidateData([...salaryData]);
+          // if (salaryData?.length > 0) {
+          //   setIsDialog(true);
+          // }
+        }
+      });
+    }
+  };
   const checkCandidateExistDebouncer = useMemo(() => {
     return debounce((e) => {
       checkForCandidateInfo(e);
@@ -166,32 +189,14 @@ const ContactCreatehook = () => {
       }
 
       setForm(t);
-      if (["name", "email", "contact"]?.includes(fieldName)) {
+      if (["email"]?.includes(fieldName)) {
         checkCandidateExistDebouncer(t);
       }
       shouldRemoveError && removeError(fieldName);
     },
     [removeError, form, setForm, checkCandidateExistDebouncer]
   );
-  const checkForCandidateInfo = (data) => {
-    if (data?.contact || data?.email) {
-      let req = serviceContactCheck({
-        contact: data?.contact,
-        email: data?.email,
-        candidate_id: id,
-      });
-      req.then((res) => {
-        if (!res.error) {
-          // const salaryData = res.data;
-          // setCandidateData([...salaryData]);
-          // if (salaryData?.length > 0) {
-          //   setIsDialog(true);
-          // }
-        }
-      });
-    }
-  };
-  
+
   const submitToServer = useCallback(() => {
     if (!isSubmitting) {
       setIsSubmitting(true);
