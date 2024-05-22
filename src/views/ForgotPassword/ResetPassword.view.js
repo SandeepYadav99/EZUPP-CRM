@@ -417,7 +417,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 {!showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </div>
-            <br />
+           
             <div className={"formGroup"}>
               <CustomTextField
                 isError={errorData?.confirm_password}

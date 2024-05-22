@@ -49,10 +49,9 @@ function useUserCreateHook() {
   const initialState = {
     manager: [],
     department: [],
-    ROLES:[],
-    images:null,
-    isSubmitting:false
-    
+    ROLES: [],
+    images: null,
+    isSubmitting: false,
   };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
@@ -62,16 +61,16 @@ function useUserCreateHook() {
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'SET_MANAGER':
+      case "SET_MANAGER":
         return { ...state, manager: action.payload };
-      case 'SET_DEPARTMENT':
+      case "SET_DEPARTMENT":
         return { ...state, department: action.payload };
-        case 'ROLES':
+      case "ROLES":
         return { ...state, ROLES: action.payload };
-        case 'IMAGES':
-          return { ...state, images: action.payload };
-          case 'IS_SUBMITING':
-            return { ...state, isSubmitting: action.payload };
+      case "IMAGES":
+        return { ...state, images: action.payload };
+      case "IS_SUBMITING":
+        return { ...state, isSubmitting: action.payload };
       default:
         return state;
     }
@@ -83,22 +82,19 @@ function useUserCreateHook() {
     Promise.all([
       serviceGetList(["ROLES"]),
       serviceProfileManager({}),
-      serviceProviderProfileGetKeyword({})
+      serviceProviderProfileGetKeyword({}),
     ]).then(([rolesRes, managerRes, departmentRes]) => {
       if (!rolesRes.error) {
-        
-        dispatch({ type: 'ROLES', payload: rolesRes.data
-      });
+        dispatch({ type: "ROLES", payload: rolesRes.data });
       }
       if (!managerRes.error) {
-        dispatch({ type: 'SET_MANAGER', payload: managerRes.data });
+        dispatch({ type: "SET_MANAGER", payload: managerRes.data });
       }
       if (!departmentRes.error) {
-        dispatch({ type: 'SET_DEPARTMENT', payload: departmentRes.data });
+        dispatch({ type: "SET_DEPARTMENT", payload: departmentRes.data });
       }
     });
   }, []);
-
 
   const validateField = useCallback(
     (field, values, errorKey, existsMessage) => {
@@ -164,7 +160,7 @@ function useUserCreateHook() {
           };
 
           setForm(formData);
-          dispatch({type:"IMAGES", payload:data?.image})
+          dispatch({ type: "IMAGES", payload: data?.image });
           // setImages(data?.image);
         } else {
           SnackbarUtils.error(res?.message);
@@ -172,7 +168,6 @@ function useUserCreateHook() {
       });
     }
   }, [id]);
-
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -267,8 +262,8 @@ function useUserCreateHook() {
   const submitToServer = useCallback(
     (status) => {
       if (!state?.isSubmitting) {
-        dispatch({ type: 'IS_SUBMITING', payload: true});
-        
+        dispatch({ type: "IS_SUBMITING", payload: true });
+
         const fd = new FormData();
 
         const formDataFields = {
@@ -310,7 +305,7 @@ function useUserCreateHook() {
           } else {
             SnackbarUtils.error(res?.message);
           }
-          dispatch({ type: 'IS_SUBMITING', payload: false});
+          dispatch({ type: "IS_SUBMITING", payload: false });
         });
       }
     },
@@ -338,20 +333,20 @@ function useUserCreateHook() {
     },
     [checkFormValidation, setErrorData, form, submitToServer]
   );
-console.log({state})
+  console.log({ state });
   return {
     form,
     errorData,
-    listData:state?.ROLES,
+    listData: state?.ROLES,
     changeTextData,
     onBlurHandler,
     removeError,
     handleSubmit,
-    isSubmitting:state?.isSubmitting,
-    images:state?.images,
+    isSubmitting: state?.isSubmitting,
+    images: state?.images,
     id,
     // isContactInList,
-    
+
     // manager,
     // department,
     manager: state.manager,
