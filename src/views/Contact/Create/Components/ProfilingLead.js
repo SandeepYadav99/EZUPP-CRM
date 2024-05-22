@@ -76,9 +76,9 @@ const ProfilingLead = ({
                 changeTextData(value, "priority");
               }}
             >
-              <MenuItem value="Low">LOW</MenuItem>
-              <MenuItem value="Medium">MEDIUM</MenuItem>
-              <MenuItem value="High">HIGH</MenuItem>
+              <MenuItem value="LOW">LOW</MenuItem>
+              <MenuItem value="MEDIUM">MEDIUM</MenuItem>
+              <MenuItem value="HIGH">HIGH</MenuItem>
             </CustomSelectField>
           </div>
           <div className={"formGroup"}>

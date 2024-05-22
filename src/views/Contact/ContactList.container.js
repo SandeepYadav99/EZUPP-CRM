@@ -42,10 +42,10 @@ const ContactList = (props) => {
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
-        <img src={user.image} alt="" crossOrigin="anonymous" />
+        {/* <img src={user.image} alt="" crossOrigin="anonymous" /> */}
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
-          <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
+          <div>{`${capitalizeFirstLetter(user?.first_name)}`} </div>
           <div> {user?.employee_id}</div>
         </div>
       </div>
@@ -74,16 +74,34 @@ const ContactList = (props) => {
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
-        key: "product_code",
+        key: "contact",
         label: "Contact",
         sortable: false,
-        render: (temp, all) => <div>{all?.code}</div>,
+        render: (temp, all) => (
+          <div>
+            {all?.full_contact}
+            <br />
+            {all?.email}
+          </div>
+        ),
       },
       {
         key: "role",
         label: "Interest Area",
         sortable: false,
-        render: (temp, all) => <div>{all?.type}</div>,
+        render: (temp, all) => (
+          <div className={styles.prodWrpa}>
+            {all?.serviceProduct?.map((item, index) => (
+              <Typography
+                variant={"body1"}
+                className={styles.tags}
+                key={`tags_${index}`}
+              >
+                {item?.name}
+              </Typography>
+            ))}
+          </div>
+        ),
       },
       {
         key: "productLink",

@@ -152,7 +152,7 @@ export default {
     PROFILE_TYPE: {
         BUSINESS: 'BUSINESS',
         INDIVIDUAL: 'INDIVIDUAL',
-        PREFER_NOT: 'PREFER_NOT',
+        NOT_PREFER: 'NOT_PREFER',
         FEMALE: 'FEMALE',
         MALE: 'MALE'
     },

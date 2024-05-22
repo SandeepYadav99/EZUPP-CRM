@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router";
 import { serviceProviderIsExist } from "../../../services/ProviderUser.service";
 import { isEmail, validateUrl } from "../../../libs/RegexUtils";
@@ -9,14 +9,16 @@ import useDebounce from "../../../hooks/DebounceHook";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import { cleanContactNumber, removeUnderScore } from "../../../helper/Helper";
-import { serviceCreateContact } from "../../../services/Contact.service";
+import { serviceContactCheck, serviceCreateContact } from "../../../services/Contact.service";
 import { serviceGetTagsList } from "../../../services/Blogs.service";
 import { serviceGetList } from "../../../services/index.services";
+import debounce from "lodash.debounce";
+
 const initialForm = {
   prefix: "Mr",
   contact_name: "contact",
   full_name: "TESTER",
-  gender: "PREFER_NOT",
+  gender: "NOT_PREFER",
   age: "21",
   contact: "",
   email: "test@gmail.com",
@@ -32,7 +34,7 @@ const initialForm = {
   company_size: "30",
   source: "Affilate",
   service_product: [],
-  priority: "Medium",
+  priority: "MEDIUM",
   seniority: "JUNIOR",
   description: "Description",
   contact_type: "BUSINESS",
@@ -61,6 +63,7 @@ const sourceDDValues = [
 ];
 const ContactCreatehook = () => {
   const [form, setForm] = useState({ ...initialForm });
+  const [confirmPopUp, setConfirmPopUp] = useState(false);
   const [errorData, setErrorData] = useState({});
   const [source, setSource] = useState([...sourceDDValues]);
   const emailDebouncer = useDebounce(form.email, 500);
@@ -84,6 +87,9 @@ const ContactCreatehook = () => {
     })();
   }, []);
 
+  const handleDialogClose = () => {
+    setConfirmPopUp(false);
+  };
   console.log("form", form);
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -138,6 +144,11 @@ const ContactCreatehook = () => {
     },
     [setErrorData, errorData]
   );
+  const checkCandidateExistDebouncer = useMemo(() => {
+    return debounce((e) => {
+      checkForCandidateInfo(e);
+    }, 1000);
+  }, []);
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
@@ -155,10 +166,32 @@ const ContactCreatehook = () => {
       }
 
       setForm(t);
+      if (["name", "email", "contact"]?.includes(fieldName)) {
+        checkCandidateExistDebouncer(t);
+      }
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm]
+    [removeError, form, setForm, checkCandidateExistDebouncer]
   );
+  const checkForCandidateInfo = (data) => {
+    if (data?.contact || data?.email) {
+      let req = serviceContactCheck({
+        contact: data?.contact,
+        email: data?.email,
+        candidate_id: id,
+      });
+      req.then((res) => {
+        if (!res.error) {
+          // const salaryData = res.data;
+          // setCandidateData([...salaryData]);
+          // if (salaryData?.length > 0) {
+          //   setIsDialog(true);
+          // }
+        }
+      });
+    }
+  };
+  
   const submitToServer = useCallback(() => {
     if (!isSubmitting) {
       setIsSubmitting(true);
@@ -220,6 +253,9 @@ const ContactCreatehook = () => {
     handleSubmit,
     handleCancel,
     listData,
+    confirmPopUp,
+    handleDialogClose,
+    // suspendItem
   };
 };
 

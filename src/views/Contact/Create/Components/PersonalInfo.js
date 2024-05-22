@@ -88,9 +88,9 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                 <RadioButtons
                   iconComp={<img src={prefer} />}
                   title="Prefer not to say"
-                  checked={form?.gender === Constants.PROFILE_TYPE.PREFER_NOT}
+                  checked={form?.gender === Constants.PROFILE_TYPE.NOT_PREFER}
                   handleChange={(val) => changeTextData(val, "gender")}
-                  value={Constants.PROFILE_TYPE.PREFER_NOT}
+                  value={Constants.PROFILE_TYPE.NOT_PREFER}
                 />
                 <RadioButtons
                   iconComp={<img src={female} />}
