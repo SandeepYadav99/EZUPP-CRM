@@ -15,6 +15,7 @@ import ShadowBox from "../../components/ShadowBox/ShadowBox";
 
 import ProfileSection from "./Componet/ProfileSection/ProfileSection";
 import TaskSection from "./Componet/TaskSection/TaskSection";
+import RouteName from "../../routes/Route.name";
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const {
@@ -41,7 +42,7 @@ const Profile = () => {
       ) : (
         <div>
           <div className={styles.upperFlex}>
-            <ButtonBase onClick={() => history.push("/users")}>
+            <ButtonBase onClick={() => history.push(RouteName.ADMIN_USER)}>
               <ArrowBackIos fontSize={"small"} />{" "}
               <span>
                 <b>My Profile</b>

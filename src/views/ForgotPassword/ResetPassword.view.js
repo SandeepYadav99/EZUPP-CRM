@@ -342,50 +342,21 @@ import {
   Dialog,
   IconButton,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { serviceResetProfilePassword } from "../../services/index.services";
+
 import DashboardSnackbar from "../../components/Snackbar.component";
 import Slide from "@mui/material/Slide";
-import EventEmitter from "../../libs/Events.utils";
-import SnackbarUtils from "../../libs/SnackbarUtils";
-import historyUtils from "../../libs/history.utils";
+
 import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
-import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
+
 import {
   ActionButton,
   ArrowPrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
-import backArrow from "../../assets/CRMAssets/ic_back.png";
+
 import useResetPasswordHook from "./ResetPasswordHook";
 import CustomTextField from "../../FormFields/TextField.component";
 
-const useStyles = makeStyles({
-  btnColor: {
-    backgroundColor: "white",
-    marginTop: "20px",
-    paddingLeft: "20px",
-    color: "#2196F3",
-    marginRight: "15px",
-    paddingRight: "20px",
-    "&:hover": {
-      backgroundColor: "white",
-    },
-  },
-  btnBottom: {
-    backgroundColor: "white",
-    paddingLeft: "20px",
-    color: "#2196F3",
-    marginRight: "10px",
-    marginLeft: "15px",
-    paddingRight: "20px",
-    "&:hover": {
-      backgroundColor: "white",
-    },
-  },
-  dialog: {
-    padding: "10px 25px",
-  },
-});
+
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;

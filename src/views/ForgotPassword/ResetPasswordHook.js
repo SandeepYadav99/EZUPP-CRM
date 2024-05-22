@@ -17,7 +17,7 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
 
-  const [listData, setListData] = useState(null);
+ 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -132,7 +132,7 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     [changeTextData]
   );
 
-  
+
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
     setErrorData({});
@@ -148,7 +148,7 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     handleSubmit,
     isLoading,
     isSubmitting,
-    listData,
+  
     errorData,
     showConfirmPassword,
     showPassword,
