@@ -51,13 +51,12 @@ function useUserCreateHook() {
     department: [],
     ROLES:[],
     images:null,
+    isSubmitting:false
     
   };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const { id } = useParams();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
   const emailDebouncer = useDebounce(form.email, 500);
   const empIdDebouncer = useDebounce(form.employee_id, 500);
 
@@ -71,6 +70,8 @@ function useUserCreateHook() {
         return { ...state, ROLES: action.payload };
         case 'IMAGES':
           return { ...state, images: action.payload };
+          case 'IS_SUBMITING':
+            return { ...state, isSubmitting: action.payload };
       default:
         return state;
     }
@@ -79,34 +80,25 @@ function useUserCreateHook() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    serviceGetList(["ROLES"]).then((res) => {
-      if (!res.error) {
-        const data = res?.data;
-        dispatch({type:"ROLES", payload: data})
-        // setListData(res.data);
+    Promise.all([
+      serviceGetList(["ROLES"]),
+      serviceProfileManager({}),
+      serviceProviderProfileGetKeyword({})
+    ]).then(([rolesRes, managerRes, departmentRes]) => {
+      if (!rolesRes.error) {
+        
+        dispatch({ type: 'ROLES', payload: rolesRes.data
+      });
+      }
+      if (!managerRes.error) {
+        dispatch({ type: 'SET_MANAGER', payload: managerRes.data });
+      }
+      if (!departmentRes.error) {
+        dispatch({ type: 'SET_DEPARTMENT', payload: departmentRes.data });
       }
     });
   }, []);
 
-  useEffect(() => {
-    serviceProfileManager({}).then((res) => {
-      if (!res?.error) {
-        const data = res?.data;
-        // setManager(data);
-        dispatch({ type: 'SET_MANAGER', payload: data });
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    serviceProviderProfileGetKeyword({}).then((res) => {
-      if (!res?.error) {
-        const data = res?.data;
-        dispatch({ type: 'SET_DEPARTMENT', payload: data });
-        // setDepartment(data);
-      }
-    });
-  }, []);
 
   const validateField = useCallback(
     (field, values, errorKey, existsMessage) => {
@@ -180,49 +172,7 @@ function useUserCreateHook() {
       });
     }
   }, [id]);
-  // const checkCodeValidation = useCallback(() => {
-  //   "serviceUpdateAdminUserSearch"({
-  //     contact: form?.contact,
-  //     id: id ? id : "",
-  //   }).then((res) => {
-  //     if (!res.error) {
-  //       const data = res?.data;
 
-  //       // if (data?.full_contact === form?.contact) {
-  //       //   setIsContactInList(true);
-  //       // }
-  //       if (data) {
-  //         const tForm = {
-  //           ...form,
-  //           contact: data?.full_contact,
-  //           email: data?.email,
-  //           reg_id: data?.reg_id,
-  //           name2: data?.name,
-  //           member_id: data?.member?.id,
-  //           title: data?.title,
-  //           company_name:data?.member
-  //           ?.name
-
-  //         };
-  //         setForm(tForm);
-  //       } else {
-  //         if (data?.contact !== form?.contact) {
-  //           // setIsContactInList(false);
-  //         }
-  //         setForm({
-  //           ...form,
-  //           id: "",
-  //         });
-  //       }
-  //     }
-  //   });
-  // }, [form, id, form?.contact]);
-
-  // useEffect(() => {
-  //   if (codeDebouncer) {
-  //     checkCodeValidation();
-  //   }
-  // }, [codeDebouncer]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -316,8 +266,9 @@ function useUserCreateHook() {
   console.log(form, "Form");
   const submitToServer = useCallback(
     (status) => {
-      if (!isSubmitting) {
-        setIsSubmitting(true);
+      if (!state?.isSubmitting) {
+        dispatch({ type: 'IS_SUBMITING', payload: true});
+        
         const fd = new FormData();
 
         const formDataFields = {
@@ -359,11 +310,11 @@ function useUserCreateHook() {
           } else {
             SnackbarUtils.error(res?.message);
           }
-          setIsSubmitting(false);
+          dispatch({ type: 'IS_SUBMITING', payload: false});
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting]
+    [form, state]
   );
 
   const onBlurHandler = useCallback(
@@ -396,7 +347,7 @@ console.log({state})
     onBlurHandler,
     removeError,
     handleSubmit,
-    isSubmitting,
+    isSubmitting:state?.isSubmitting,
     images:state?.images,
     id,
     // isContactInList,
