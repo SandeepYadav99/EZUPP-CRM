@@ -50,8 +50,16 @@ function useUserCreateHook() {
     manager: [],
     department: [],
     ROLES:[],
-    images:null
+    images:null,
+    
   };
+  const [form, setForm] = useState({ ...initialForm });
+  const [errorData, setErrorData] = useState({});
+  const { id } = useParams();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const emailDebouncer = useDebounce(form.email, 500);
+  const empIdDebouncer = useDebounce(form.employee_id, 500);
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -68,13 +76,6 @@ function useUserCreateHook() {
     }
   };
 
-  const [form, setForm] = useState({ ...initialForm });
-  const [errorData, setErrorData] = useState({});
-  const { id } = useParams();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const emailDebouncer = useDebounce(form.email, 500);
-  const empIdDebouncer = useDebounce(form.employee_id, 500);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {

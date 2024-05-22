@@ -223,7 +223,10 @@
   padding-top: 20px !important;
   padding-bottom: 20px !important;
 }
-
+.visibleIcon{
+  margin-left: -40px !important;
+  margin-top: 10px !important;
+}
 .login {
   padding: 10px 20px 10px 20px !important;
   border-radius: 7px !important;
