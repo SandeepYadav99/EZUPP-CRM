@@ -4,19 +4,26 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import { styled } from "@mui/material/styles";
+import { InputAdornment, InputBase } from "@mui/material";
+import { IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { useTheme } from "@mui/material/styles";
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  paddingLeft: theme.spacing(1),
-  paddingRight: theme.spacing(1),
+  paddingLeft: theme.spacing(0),
+  paddingRight: theme.spacing(0),
   paddingTop: theme.spacing(0),
   paddingBottom: theme.spacing(0),
-  backgroundColor: theme.palette.grey[200],
+  // backgroundColor: theme.palette.grey[200],
+  backgroundColor: theme.palette.primary,
   border: 0,
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-  // fontSize: ".775rem",
-  fontSize:"0.8rem",
+
+  fontSize: "0.8rem",
+  height: "1.5rem",
+
   // "&:hover": {
   //   backgroundColor: theme.palette.error.light,
   //   border: 0,
@@ -49,6 +56,7 @@ const CustomMultiComplete = ({
   enableField = [],
   showImage = false,
   multiple = false,
+  isArray = false,
   ...rest
 }) => {
   const handleChange = useCallback(
@@ -58,6 +66,8 @@ const CustomMultiComplete = ({
     },
     [onChange, onTextChange, value]
   );
+  const theme = useTheme();
+
   return (
     <>
       {multiple ? (
@@ -79,18 +89,42 @@ const CustomMultiComplete = ({
               size={"small"}
               fullWidth
               {...rest}
+              InputProps={{
+                ...params.InputProps,
+                sx: {
+                  paddingRight: `${theme?.spacing(0)} !important`,
+                  position: "relative",
+                },
+
+                endAdornment: (
+                  <InputAdornment
+                    position="end"
+                    sx={{ position: "absolute", right: "0", top: "50%" }}
+                  >
+                    <IconButton>
+                      <SearchIcon fontSize="small" />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
           )}
           renderOption={(props, option) => (
             <StyledOption {...props}>
               {showImage && <Avatar src={option?.image} alt={"Image"} />}
               <div>
-                {enableField?.length > 0 &&
+                {isArray ? (
+                  <div key={`enable_${option}`} className="option_auto_class">
+                    {option}
+                  </div>
+                ) : (
+                  enableField?.length > 0 &&
                   enableField?.map((field, index) => (
                     <div key={`enable_${index}`} className="option_auto_class">
                       {option[field]}
                     </div>
-                  ))}
+                  ))
+                )}
               </div>
             </StyledOption>
           )}
@@ -102,7 +136,7 @@ const CustomMultiComplete = ({
                 avatar={
                   showImage ? <Avatar src={option?.image} alt={"Image"} /> : ""
                 }
-                label={option?.label}
+                label={isArray ? option : option?.label}
               />
             ))
           }
@@ -123,6 +157,20 @@ const CustomMultiComplete = ({
                 size={"small"}
                 fullWidth
                 {...rest}
+                InputProps={{
+                  ...params.InputProps,
+                  sx: {
+                    paddingRight: `${theme?.spacing(0)} !important`,
+                  },
+
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton>
+                        <SearchIcon fontSize="small" />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             )}
             onChange={(event, newValue) => {

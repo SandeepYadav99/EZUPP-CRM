@@ -4,8 +4,8 @@ import styles from "./Style.module.css";
 import CustomTextField from "./../../../components/FormFields/TextField/TextField.component";
 import useUnitCreateHook from "./UnitCreate.hook";
 import CustomSelectField from "./../../../components/FormFields/SelectField/SelectField.component";
-import {  Tooltip, Typography } from "@mui/material";
-
+import {  Tooltip, Typography, IconButton } from "@mui/material";
+import { useSelector } from "react-redux";
 import CustomSwitch from "./../../../components/FormFields/CustomSwitch";
 import CustomCheckbox from "./../../../components/FormFields/CustomCheckbox";
 import { Delete as DeleteIcon, Info as InfoIcon } from "@mui/icons-material";
@@ -13,26 +13,37 @@ import {
   OutlineButton,
   PrimaryButton,
 } from "./../../../components/Buttons/PrimaryButton";
+import removeTask from "../../../assets/Assets/ic_delete@2x.png";
 // import { Autocomplete } from "@material-ui/lab";
-
-const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id }) => {
+import { useParams } from "react-router";
+const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit}) => {
   const {
     changeTextData,
     errorData,
     form,
     handleSubmit,
     onBlurHandler,
+    handleDelete,
+    editData,
     removeError,
     resData,
     isSubmitted,
     isSubmitting,
     listData,
-  } = useUnitCreateHook({ isOpen, handleToggle, candidateId, isInterview, id });
+  } = useUnitCreateHook({ isOpen, handleToggle, candidateId, isInterview, id});
 
+  const {
+    present,
+    all: allData,
+    currentPage,
+    is_fetching: isFetching,
+  } = useSelector((state) => state.unit);
+  
   return (
     <div>
       <div className={styles.resetPasswordWrapper}>
         <div className={styles.fieldWrapper}>
+          <div className={styles.wrapper}>
           <div className={styles.infoTitle}>
             <div className={styles.heading}>
             <Typography variant="subtitle1">Type</Typography> 
@@ -40,6 +51,14 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id }) => {
             <Tooltip title="Info" aria-label="info" placement="right">
               <InfoIcon fontSize={"small"} />
             </Tooltip>
+            
+          </div>
+          {isEdit && (
+            <IconButton onClick={() => handleDelete(id)}>
+                  
+                  <img src={removeTask} alt="task" width={20} />
+                  </IconButton>
+            )}
           </div>
           <CustomTextField
             isError={errorData?.name}

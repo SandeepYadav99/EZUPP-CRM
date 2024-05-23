@@ -35,6 +35,7 @@ const NewEditor = ({ editorData, handleChangeEditor, type, value,buttonList,heig
             ],
           ],
         }}
+        setContents={editorData}
         onChange={(text) => {
           handleChange(text);
         }}

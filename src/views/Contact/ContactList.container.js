@@ -5,11 +5,7 @@ import { useSelector } from "react-redux";
 import {
   Add,
   Info as EditIcon,
-  Info,
-  Person,
   OpenInNew as OpenInNewIcon,
-  Edit,
-  Topic,
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import styles from "./Styles.module.css";
@@ -68,9 +64,8 @@ const ContactList = (props) => {
       return <StatusPill status={"INACTIVE"} color={"high"} />;
     }
   }, []);
-  
+
   const tableStructure = useMemo(
-    
     () => [
       {
         key: "name",
@@ -157,39 +152,52 @@ const ContactList = (props) => {
   return (
     <ShadowBox className={styles.contact}>
       {/* <div className={"plainPaper"}> */}
-        <div className={styles.headerContainer}>
-          <Typography
-            variant={"title"}
-            color={"text.primary"}
-            className={styles.title}
-          >
-            Contact List
-          </Typography>
-          <ArrowPrimaryButton
-            onClick={handleCreate}
-            icon={<Add fontSize="normal" />}
-          >
-            CREATE
-          </ArrowPrimaryButton>
-        </div><br></br><br></br>
-        <BasicButtonGroup buttonText={['Pending', 'In Progress', 'Proposal Sent', 'Archived', 'Customers', 'All']}/>
+      <div className={styles.headerContainer}>
+        <Typography
+          variant={"title"}
+          color={"text.primary"}
+          className={styles.title}
+        >
+          Contact List
+        </Typography>
+        <ArrowPrimaryButton
+          onClick={handleCreate}
+          icon={<Add fontSize="normal" />}
+        >
+          CREATE
+        </ArrowPrimaryButton>
+      </div>
+      <br></br>
+      <br></br>
+      <BasicButtonGroup
+        buttonText={[
+          "Pending",
+          "In Progress",
+          "Proposal Sent",
+          "Archived",
+          "Customers",
+          "All",
+        ]}
+        selectedIndex={5}
+        onButtonClick={(index) => console.log(`Button ${index} clicked`)}
+      />
+      <div>
+        <FilterComponent
+          is_progress={isFetching}
+          filters={configFilter}
+          handleSearchValueChange={handleSearchValueChange}
+          handleFilterDataChange={handleFilterDataChange}
+        />
         <div>
-          <FilterComponent
-            is_progress={isFetching}
-            filters={configFilter}
-            handleSearchValueChange={handleSearchValueChange}
-            handleFilterDataChange={handleFilterDataChange}
-          />
-          <div>
-            <br />
-            <div style={{ width: "100%" }}>
-              <DataTables
-                {...tableData.datatable}
-                {...tableData.datatableFunctions}
-              />
-            </div>
+          <br />
+          <div style={{ width: "100%" }}>
+            <DataTables
+              {...tableData.datatable}
+              {...tableData.datatableFunctions}
+            />
           </div>
         </div>
+      </div>
       {/* </div> */}
     </ShadowBox>
   );

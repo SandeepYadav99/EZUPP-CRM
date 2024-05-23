@@ -42,8 +42,10 @@ const BusinessInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
               changeTextData(value, "industry");
             }}
           >
-            <MenuItem value=""></MenuItem>
-            <MenuItem value="OTHER"></MenuItem>
+            <MenuItem value="PHARMACEUTICALS">PHARMACEUTICALS</MenuItem>
+            <MenuItem value="MANUFACTURING">MANUFACTURING</MenuItem>
+            <MenuItem value="SERVICES">SERVICES</MenuItem>
+            <MenuItem value="DOCTORS/HOSPITALS">DOCTORS/HOSPITALS</MenuItem>
           </CustomSelectField>
         </div>
       </div>
@@ -65,13 +67,20 @@ const BusinessInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
             isError={errorData?.buying_role}
             errorText={errorData?.buying_role}
             label={"Buying Role"}
-            value={form?.country}
+            value={form?.buying_role}
             handleChange={(value) => {
               changeTextData(value, "buying_role");
             }}
           >
-            <MenuItem value=""></MenuItem>
-            <MenuItem value="OTHER"></MenuItem>
+            <MenuItem value="CXO">CXO</MenuItem>
+            <MenuItem value="INFLUENCER_IN_COMMERCIAL">
+              INFLUENCER IN COMMERCIAL
+            </MenuItem>
+            <MenuItem value="INFLUENCER_IN_SOLUTION">
+              INFLUENCER IN SOLUTION
+            </MenuItem>
+            <MenuItem value="INTRODUCER">INTRODUCER</MenuItem>
+            <MenuItem value="NONE">NONE</MenuItem>
           </CustomSelectField>
         </div>
       </div>

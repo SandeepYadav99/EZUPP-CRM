@@ -10,7 +10,7 @@ import {
   serviceDeleteUnit,
   serviceGetUnitDetails,
 } from "../../../services/Unit.service";
-
+import {actionDeleteUnit} from "../../../actions/Unit.action";
 import { useDispatch, useSelector } from "react-redux";
 function useUnitCreateHook({ handleToggle, editData, id }) {
   const initialForm = {
@@ -20,7 +20,7 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
   };
 
   const [form, setForm] = useState({ ...initialForm });
-  //const [editData, setEditData] = useState(null);
+ // const [ed, setEditData] = useState(null);
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
   //const { id } = useParams();
@@ -47,7 +47,7 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
       setForm({
         name: '',
         is_general: false,
-        status: false,
+        status: true,
       });
     }
   }, [id]);
@@ -180,12 +180,46 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
   );
 
   // const handleDelete = useCallback(
+  
   //   (id) => {
-  //     dispatch( actionDeleteProduct(id));
-  //     setEditData(null);
-  //   },
-  //   [setEditData]
+  //   if (id) {
+  //     console.log('Deleting unit with id:', id);
+  //     dispatch( actionDeleteUnit(id));
+  //     handleToggle();
+  //   } 
+  // },
+  //   [dispatch, handleToggle]
   // );
+  const handleDelete = useCallback(
+    async (id) => {
+      if (id) {
+        console.log('Deleting unit with id:', id);
+        const formattedId = String(id);
+        console.log('Formatted id:', formattedId);
+  
+        try {
+          const response = await serviceDeleteUnit({ id: formattedId });
+  
+          if (!response.error) {
+            console.log(`Unit with id: ${formattedId} deleted successfully.`);
+            setListData((prevListData) => ({
+              ...prevListData,
+              UNITS: prevListData.UNITS.filter((unit) => unit.id !== formattedId),
+            }));
+            //handleToggle();
+            window.location.reload();
+          } else {
+            SnackbarUtils.error(response.message);
+          }
+        } catch (error) {
+          console.error('Error deleting unit:', error);
+        }
+      }
+    },
+    [handleToggle]
+  );
+  
+  
   return {
     form,
     errorData,
@@ -197,7 +231,8 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
     isSubmitting,
     images,
     id,
-    //handleDelete,
+    handleDelete,
+    editData
   };
 }
 
