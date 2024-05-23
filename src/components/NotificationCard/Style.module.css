@@ -52,13 +52,14 @@
 .box1{
   border: 2px solid #ebedf4;
   border-radius: 10px;
-  padding: 15px;
+
   margin-top: 15px;
   margin-bottom: 20px;
   margin-right: 10px;
 }
 .row{
   display: flex;
+  padding: 15px;
   /* border-bottom: 2px solid #ebedf4 !important; */
 }
 /* .row:not(:last-child) {
@@ -94,7 +95,7 @@ margin-right: 10px;
   width: 100% !important;
   /* margin-top: 10px; */
   border-bottom: 2px solid #ebedf4;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
  
 
   /* position: absolute;

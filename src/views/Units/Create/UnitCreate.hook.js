@@ -47,7 +47,7 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
       setForm({
         name: '',
         is_general: false,
-        status: false,
+        status: true,
       });
     }
   }, [id]);
