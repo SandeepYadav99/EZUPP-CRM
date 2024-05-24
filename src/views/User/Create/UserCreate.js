@@ -17,7 +17,7 @@ const UserCreate = ({}) => {
     form,
     onBlurHandler,
     handleSubmit, 
-    image,
+   
     id,
     images,
     manager,
@@ -41,7 +41,7 @@ const UserCreate = ({}) => {
         form={form}
         image={images}
         changeTextData={changeTextData}
-        // handleSubmit={handleSubmit}
+       
         onBlurHandler={onBlurHandler}
         listData={listData}
       />
@@ -49,9 +49,9 @@ const UserCreate = ({}) => {
       <WorkInfoView
         errorData={errorData}
         form={form}
-        // image={image}
+       
         changeTextData={changeTextData}
-        // handleSubmit={handleSubmit}
+       
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}

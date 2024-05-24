@@ -258,7 +258,7 @@ function useUserCreateHook() {
     },
     [removeError, form, setForm]
   );
-  console.log(form, "Form");
+
   const submitToServer = useCallback(
     (status) => {
       if (!state?.isSubmitting) {
@@ -333,7 +333,7 @@ function useUserCreateHook() {
     },
     [checkFormValidation, setErrorData, form, submitToServer]
   );
-  console.log({ state });
+  
   return {
     form,
     errorData,

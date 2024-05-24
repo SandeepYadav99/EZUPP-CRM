@@ -48,6 +48,7 @@ const RoleTableComponent = ({
                   <div className={permission?.all_data ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
+                      className={styles.checkBox}
                       checked={permission?.all_data}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -65,6 +66,7 @@ const RoleTableComponent = ({
                   <div className={permission?.read ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
+                      className={styles.checkBox}
                       checked={permission?.read}
                       onChange={(event) =>
                         handleCheckboxChange(!permission?.read, `read`, index)
@@ -77,6 +79,7 @@ const RoleTableComponent = ({
                   <div className={permission?.create ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
+                      className={styles.checkBox}
                       checked={permission?.create}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -93,6 +96,7 @@ const RoleTableComponent = ({
                   <div className={permission?.update ? styles.crudHover : styles.crud}>
                     <Checkbox
                       color={"primary"}
+                      className={styles.checkBox}
                       checked={permission?.update}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -108,6 +112,8 @@ const RoleTableComponent = ({
                 <TableCell classes={{ root: classes.tableCell }}>
                   <div className={permission?.delete ? styles.crudHover : styles.crud}>
                     <Checkbox
+                   
+                    className={styles.checkBox}
                       color={"primary"}
                       checked={permission?.delete}
                       onChange={(event) =>

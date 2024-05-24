@@ -9,6 +9,9 @@
 .headerContainer .title {
   font-size: 1rem;
 }
+.checkBox{
+  padding: 5px !important;
+}
 .bottomLine {
   opacity: 0.4;
   color: grey;
@@ -55,6 +58,7 @@
   color: #636578;
   border-radius: 6px;
   padding: 0% 10% 0% 2% !important;
+  text-align: center;
   /* width: 80%; */
 }
 .crudHover{
@@ -68,6 +72,7 @@
   color: #636578;
   border-radius: 6px;
   /* width: 80%; */
+  text-align: center;
   padding: 0% 10% 0% 2% !important;
   border: 1px solid #2063CE;
 }
