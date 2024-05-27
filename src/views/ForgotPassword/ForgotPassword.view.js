@@ -32,6 +32,7 @@ import { updateTitle } from "../../libs/general.utils";
 import backArrow from "../../assets/CRMAssets/ic_back.png";
 import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
 import { ArrowPrimaryButton } from "../../components/Buttons/PrimaryButton";
+import SnackbarUtils from "../../libs/SnackbarUtils";
 
 const validate = (values) => {
   const errors = {};
@@ -117,10 +118,7 @@ class ForgotPasswordView extends Component {
       });
       serviceForgotPassword(data).then((val) => {
         if (!val.error) {
-          EventEmitter.dispatch(EventEmitter.THROW_ERROR, {
-            error: "Password Reset Email Sent",
-            type: "success",
-          });
+          SnackbarUtils.success("Password Reset Email Sent")
           this.setState({
             is_sent: true,
             is_calling: false,
@@ -129,10 +127,7 @@ class ForgotPasswordView extends Component {
           this.setState({
             is_calling: false,
           });
-          EventEmitter.dispatch(EventEmitter.THROW_ERROR, {
-            error: "Invalid Email Address",
-            type: "error",
-          });
+          SnackbarUtils.error("Invalid Email Address")
         }
       });
     }
@@ -221,7 +216,7 @@ class ForgotPasswordView extends Component {
                 Enter your email and we'll send you instructions to reset your
                 password
               </p>
-              <div style={{ marginTop: "20px" }}>
+              <div style={{ marginTop: "0px" }}>
                 <div>
                   <Field
                     fullWidth={true}
@@ -253,9 +248,12 @@ class ForgotPasswordView extends Component {
                       <ButtonBase
                         onClick={this._handleBack}
                         className={styles.back}
+                        id={styles.forgotBtn}
                       >
                         <img src={backArrow} alt="backtext" />
-                        Back To Login
+                        <Typography variant={"caption"}>
+                          Back To Login
+                        </Typography>
                       </ButtonBase>
                     </span>
                   </div>

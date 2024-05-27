@@ -159,7 +159,7 @@
   letter-spacing: 0px;
   color: #2063ce;
   opacity: 1;
-  gap: 5px;
+  gap: 2px;
   justify-content: center !important;
   text-decoration: underline;
 }
@@ -235,8 +235,6 @@
   transition: all 0.5s ease-out;
   width: 207px;
   height: 52px;
-
-  
 }
 
 .login:hover {
@@ -249,7 +247,8 @@
   background-position: right bottom;
   transition: all 0.5s ease-out;
   width: 207px;
-  height: 52px;}
+  height: 52px;
+}
 
 .title {
   color: #072ead;
@@ -285,5 +284,12 @@
   .mobileRender {
     display: flex;
     flex-direction: column !important;
+    gap: 10px;
   }
+}
+
+#forgotBtn {
+  color: #2063ce !important;
+  font-size: 12px;
+  font-weight: 600;
 }
