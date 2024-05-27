@@ -119,15 +119,15 @@ function LoginView() {
                   <div className={classNames(styles.negativeSpacing, "log")}>
                     <CustomCheckBox
                       label={
-                        <span
+                        <Typography
+                          variant={"caption"}
                           style={{
                             color: "#888888",
-                            fontSize: "14px",
                             opacity: 1,
                           }}
                         >
                           Remember Me
-                        </span>
+                        </Typography>
                       }
                       value={form?.logged_in}
                       handleChange={(text) => {
@@ -141,7 +141,9 @@ function LoginView() {
                         onClick={handleForgotPassword}
                         className={styles.forgotBtn}
                       >
-                        Forgot Password?
+                        <Typography variant={"caption"}>
+                          Forgot Password?
+                        </Typography>
                       </ButtonBase>
                     </span>
                   </div>
