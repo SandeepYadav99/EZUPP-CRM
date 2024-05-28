@@ -36,10 +36,10 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
     return (
       <>
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" ,  padding:"10px"}}>
             <div
               className={styles.loginSignupTextRESET}
-              style={{ fontWeight: "700", fontSize: "24px" }}
+             
             >
               Reset Password
             </div>
@@ -58,7 +58,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 errorText={errorData?.password}
                 type={showPassword ? "text" : "password"}
                 margin={"dense"}
-                label="New Password*"
+                label="New Password"
                 value={form?.password}
                 onTextChange={(text) => {
                   changeTextData(text, "password");
@@ -83,7 +83,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirm_password"
                 margin={"dense"}
-                label="Confirm Password*"
+                label="Confirm Password"
                 value={form?.confirm_password}
                 onTextChange={(text) => {
                   changeTextData(text, "confirm_password");
@@ -107,6 +107,8 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
+                padding:"10px",
+                width:"100%"
               }}
               className={styles.mobileRender}
             >
@@ -116,7 +118,10 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 </span>
               </div>
               <ArrowPrimaryButton onClick={handleSubmit}>
+                <span className={styles.newPassword}>
+
                 SET NEW PASSWORD
+                </span>
               </ArrowPrimaryButton>
             </div>
           </div>
@@ -131,8 +136,18 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
-        maxWidth={"sm"}
+        
         fullWidth={true}
+       
+        PaperProps={{
+          style: {
+            borderRadius: '10px',
+            maxWidth: '600px',
+            width:  'calc(100% - 64px)',
+          }
+        }}
+      
+        
       >
         <div className={styles.formContainer}>{renderForm()}</div>
         <DashboardSnackbar />

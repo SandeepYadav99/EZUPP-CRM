@@ -29,18 +29,27 @@
   color: #FF0000 !important;
 }
 .formContainer{
-  padding: 35px !important;
- 
+  background-color: #fff;
+  flex: 1.5;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  
  
 }
 .mainLoginViewReset{
-  display: flex;
-  width: 100vw;
+  display: flex; 
+   width: 100vw;
   /* height: 100vh; */
  
   /*background-image: url('../../assets/img/background.jpg');*/
   /*background-size: cover;*/
   /*background-repeat: no-repeat;*/
+  border-radius: 60px !important;
 }
 .mainLoginView {
   display: flex;
@@ -130,6 +139,8 @@
 .loginSignupTextRESET {
   text-align: left;
   color: #636578;
+  font-size: 18px !important;
+  font-weight: bold !important;
 }
 .bottomSignUp {
   font-size: 14px;
@@ -274,9 +285,15 @@
   }
 }
 
-@media only screen and (max-width: 769px) {
+
+@media only screen and (max-width: 1024px) {
   .mobileRender {
-    display: flex;
+    gap: 10px !important;
     flex-direction: column !important;
   }
+}
+
+.newPassword{
+  font-size: 14px !important;
+  font-weight: bold !important;
 }
