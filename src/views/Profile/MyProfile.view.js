@@ -81,6 +81,7 @@ const Profile = () => {
                 <ProfileSection
                   profileDetails={profileDetails}
                   handleEdit={handleEdit}
+                  
                 />
               </div>
               <div className={styles.rightSection}>
