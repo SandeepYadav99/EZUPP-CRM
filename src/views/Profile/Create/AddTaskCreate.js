@@ -144,8 +144,8 @@ const AddTaskCreate = ({
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomDateTimePicker
-              clearable
+             {/* <CustomDateTimePicker
+              // clearable
               label={"Due Date"}
               // errorText={errorData?.due_date}
               onChange={(date) => {
@@ -165,7 +165,7 @@ const AddTaskCreate = ({
               value={form?.due_date}
               isError={errorData?.due_date}
                helperText={helperText}
-            />
+            />  */}
           </div>
         </div>
 

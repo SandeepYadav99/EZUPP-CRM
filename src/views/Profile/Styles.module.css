@@ -19,6 +19,11 @@
 .bgProfile{
   margin: 0px 60px !important;
 }
+.profileTitle{
+  font-size: 22px !important;
+  font-weight: bold !important;
+  color: #636578 !important;
+}
 .profileHeaderAction{
   display: flex !important;
   gap: 15px !important;

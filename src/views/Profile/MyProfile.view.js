@@ -22,6 +22,8 @@ import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import ProfileSection from "./Componet/ProfileSection/ProfileSection";
 import TaskSection from "./Componet/TaskSection/TaskSection";
 import RouteName from "../../routes/Route.name";
+import AddTaskCreate from "./Create/AddTaskCreate";
+import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const {
@@ -35,6 +37,8 @@ const Profile = () => {
     markAsCompleted,
     completedHandler,
     filterCompltedTask,
+    isSidePanel,
+    handleCreatedTask
   } = useMyProfileHook();
 
   const handleClose = () => {
@@ -48,13 +52,14 @@ const Profile = () => {
       ) : (
         <div>
           <div className={styles.upperFlex}>
+          <div>
             <ButtonBase onClick={() => history.push(RouteName.ADMIN_USER)}>
-              <ArrowBackIos fontSize={"small"} />{" "}
-              <span>
+              <ArrowBackIos fontSize={"medium"} />{" "}
+              <span className={styles.profileTitle}>
                 <b>Profile View</b>
               </span>
             </ButtonBase>
-            <div></div>
+            </div>
             <div className={styles.profileHeading}></div>
             <div className={styles.profileHeaderAction}>
               <ArrowOutlineButton
@@ -102,6 +107,20 @@ const Profile = () => {
             handleClose={handleClose}
             email={profileDetails?.email}
           />
+            <SidePanelComponent
+            handleToggle={handleSideToggle}
+            title={"Create New Task"} // profileId ? "Update Hubs" :
+            open={isSidePanel}
+            side={"right"}
+          >
+            <AddTaskCreate
+              handleSideToggle={handleSideToggle}
+              isSidePanel={isSidePanel}
+              // empId={profileId}
+              profileDetails={profileDetails}
+              handleCreatedTask={handleCreatedTask}
+            />
+          </SidePanelComponent> 
         </div>
       )}
     </div>
