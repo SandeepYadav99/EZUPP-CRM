@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import styles from './style.module.css';
 import {ButtonBase, Typography} from '@mui/material';
 import {withTheme} from '@mui/styles';
-import {Close} from '@mui/icons-material';
+import {ArrowBackIos, Close} from '@mui/icons-material';
 
 class ResizablePanels extends React.Component {
 
@@ -139,13 +139,13 @@ class SidePanelComponent extends Component {
                 }}>
                     <div className={styles.sideUpper}>
                         <ButtonBase className={styles.btnIcon} onClick={this._handleOpen}>
-                            <Close></Close>
+                        <ArrowBackIos  color={"#636578"}/>
                         </ButtonBase>
-                        <div style={{padding: '0px 15px', flex: 1}}>
+                        <div style={{padding: '0px 0px', flex: 1}}>
                         {/* <h3 style={{}}>
                             {this.props.title}
                         </h3> */}
-                        <Typography variant='h4' color="text.secondary"> {this.props.title}</Typography>
+                        <Typography variant='h4' color="#636578"> {this.props.title}</Typography>
                         </div>
                     </div>
                    

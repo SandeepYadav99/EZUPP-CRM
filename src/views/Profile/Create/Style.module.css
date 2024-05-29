@@ -85,5 +85,6 @@
 .paragraph{
     font-size: 0.6rem;
     font-weight: 400;
-    margin-left: 14px;
+   display: flex;
+   justify-content: end;
 }

@@ -17,6 +17,10 @@ import { Clear, Search } from "@mui/icons-material";
 import CustomSelectField from "../../../FormFields/SelectField/SelectField.component";
 import CustomDateTimePicker from "../../../FormFields/DatePicker/CustomDateTimePicker";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import {
+  ActionButton,
+  PrimaryButton,
+} from "../../../components/Buttons/PrimaryButton";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -201,12 +205,13 @@ const AddTaskCreate = ({
                   />
                 )}
               />
-            </div>
-          </div>
-          <label className={styles.paragraph}>
+                <label className={styles.paragraph}>
             Please press enter to add a category if not found in the search
             results.
           </label>
+            </div>
+          </div>
+        
           <div className="formFlex">
             <div className={"formGroup"}></div>
           </div>
@@ -342,12 +347,8 @@ const AddTaskCreate = ({
           </div>
         </div>
       </ShadowBox>
-      <div style={{ float: "right" , marginTop:"15px"}}>
-        <Button
-          variant={"contained"}
-          color={"primary"}
-          type={"submit"}
-          style={{ marginBottom: "10px" }}
+      <div style={{ float: "right", marginTop: "15px" }}>
+        <PrimaryButton
           onClick={() => {
             handleSubmit();
           }}
@@ -355,9 +356,9 @@ const AddTaskCreate = ({
           {isSubmitting ? (
             <CircularProgress color="success" size="20px" />
           ) : (
-            "Create"
+            "ADD"
           )}
-        </Button>
+        </PrimaryButton>
       </div>
     </div>
   );
