@@ -27,12 +27,13 @@
 
 .sideUpper {
     display: flex;
-    position: fixed;
+    /* position: fixed; */
     width: calc(45vw);
-    background: #F7F7F9;
+    /* background: #F7F7F9; */
     z-index: 19;
     top: 0px;
-    padding: 1rem;
+    /* padding: 1rem; */
+   
 }
 
 .btnIcon {

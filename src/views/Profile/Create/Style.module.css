@@ -14,6 +14,10 @@
     color: grey;
     margin-bottom: 5px;
 }
+.mainContainer{
+    padding: 10px !important;
+    
+}
 .headerContainer {
     display: flex;
     justify-content: space-between;
@@ -47,7 +51,7 @@
     margin-bottom: 15px;
     padding-bottom: 5px;
     margin-left: 15px;
-    border-bottom: 1px solid;
+    /* border-bottom: 1px solid; */
     width: 100%;
     font-weight: 600;
     display: flex;
@@ -56,6 +60,9 @@
 
 .heading{
     margin-right: 5px;
+    font-size: 18px !important;
+    color: #636578 !important;
+    font-weight: 600 !important;
 }
 
 .serchImage{

@@ -11,19 +11,20 @@ import history from "../../../libs/history.utils";
 import useUserCreateHook from "./UserCreateHook";
 
 const UserCreate = ({}) => {
+
   const {
     errorData,
     changeTextData,
     form,
     onBlurHandler,
-    handleSubmit, 
-   
+    handleSubmit,
+userId,
     id,
     images,
     manager,
     department,
     listData,
-    isSubmitting
+    isSubmitting,
   } = useUserCreateHook();
 
   return (
@@ -41,29 +42,29 @@ const UserCreate = ({}) => {
         form={form}
         image={images}
         changeTextData={changeTextData}
-       
         onBlurHandler={onBlurHandler}
         listData={listData}
+        userId={userId}
+        id={id}
       />
       {/* Work flow  */}
-      <WorkInfoView
-        errorData={errorData}
-        form={form}
-       
-        changeTextData={changeTextData}
-       
-        onBlurHandler={onBlurHandler}
-        manager={manager}
-        department={department}
-      />
-
+      {userId !== id && (
+        <WorkInfoView
+          errorData={errorData}
+          form={form}
+          changeTextData={changeTextData}
+          onBlurHandler={onBlurHandler}
+          manager={manager}
+          department={department}
+        />
+      )}
       <div className={styles.saveButton}>
         <PrimaryButton color={"primary"} onClick={handleSubmit}>
-          {isSubmitting ? ( 
-           <CircularProgress color="success" size="20px" />
-              ) : (  
-          "Save"
-           )} 
+          {isSubmitting ? (
+            <CircularProgress color="success" size="20px" />
+          ) : (
+            "Save"
+          )}
         </PrimaryButton>
       </div>
     </>

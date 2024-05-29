@@ -114,11 +114,12 @@ class SidePanelComponent extends Component {
                 ? "calc(45vw)"
                 : window.innerWidth - this.state.delta,
             height: '100%',
-            backgroundColor: theme.palette.bgColor.main,
+             backgroundColor: theme.palette.bgColor.main,
             color: theme.palette.textColor,
             top: '0px',
             position: 'fixed',
             zIndex: '9',
+           
         };
         if (this.props.side == "left") {
             tempStyle["left"] = this.props.open ? "0px" : "calc(-45vw)";
@@ -133,7 +134,8 @@ class SidePanelComponent extends Component {
                     overflowY: 'scroll',
                     width: 'calc(100% - 20px)',
                     height: 'calc(100% - 20px)',
-                    padding: '10px'
+                    padding: '10px',
+                  
                 }}>
                     <div className={styles.sideUpper}>
                         <ButtonBase className={styles.btnIcon} onClick={this._handleOpen}>
@@ -146,8 +148,7 @@ class SidePanelComponent extends Component {
                         <Typography variant='h4' color="text.secondary"> {this.props.title}</Typography>
                         </div>
                     </div>
-                    <br/>
-                    <br/>
+                   
 
                     {this.props.children}
                     <div>

@@ -75,7 +75,7 @@ const WorkInfoView = ({
                       error={errorData?.department}
                       InputProps={{
                         ...params.InputProps,
-                        style: { padding: '1px 10px', marginTop:"3.5px" },
+                        style: { padding: "1px 10px", marginTop: "3.5px" },
                         endAdornment: (
                           <>
                             {form?.department ? (
@@ -182,7 +182,9 @@ const WorkInfoView = ({
                 changeTextData(value, "joining_date");
               }}
               // format={"dd-MM-yyyy"}
-
+              // onBlur={() => {
+              //   onBlurHandler("joining_date");
+              // }}
               className={styles.dateContainer}
               value={form?.joining_date}
               isError={errorData?.joining_date}

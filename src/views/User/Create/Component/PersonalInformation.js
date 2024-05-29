@@ -15,6 +15,8 @@ const PersonalInformation = ({
   form,
   image,
   listData,
+  userId, 
+  id
 }) => {
  
   return (
@@ -125,6 +127,7 @@ const PersonalInformation = ({
                   isError={errorData?.role}
                   errorText={errorData?.role}
                   label={"Role"}
+                  disabled={userId === id ? true : false}
                   value={form?.role}
                   handleChange={(value) => {
                     changeTextData(value, "role");

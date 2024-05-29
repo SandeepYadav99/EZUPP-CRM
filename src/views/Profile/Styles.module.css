@@ -16,6 +16,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.profileTitle{
+  display: flex !important;
+  align-items: center !important;
+}
 .bgProfile{
   margin: 0px 60px !important;
 }
