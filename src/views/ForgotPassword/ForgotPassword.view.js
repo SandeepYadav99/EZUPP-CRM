@@ -238,7 +238,6 @@ class ForgotPasswordView extends Component {
                     disabled={this.state.is_calling}
                     variant={"contained"}
                     type="submit"
-                    className={styles.login}
                     Typography={"h6"}
                   >
                     SEND RESET LINK
