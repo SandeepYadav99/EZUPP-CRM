@@ -21,6 +21,7 @@ import {
   ActionButton,
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
+import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -148,30 +149,23 @@ const AddTaskCreate = ({
               />
             </div>
           </div>
+         
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              {/* <CustomDateTimePicker
-              // clearable
+            <CustomDatePicker
+              clearable
               label={"Due Date"}
-              // errorText={errorData?.due_date}
+               errorText={errorData?.due_date}
               onChange={(date) => {
                  changeTextData(date, "due_date");
-                // if (date && !isNaN(date)) {
-                //   // Date is valid
-                //   changeTextData(date, "due_date");
-                //   setHelperText("");
-                // } else {
-                //   // Date is invalid
-                //   setHelperText("Invalid date/time format.");
-                // }
+               
               }}
-              // onBlur={() => {
-              //   onBlurHandler("due_date");
-              // }}
+            
+              className={styles.dateContainer}
               value={form?.due_date}
               isError={errorData?.due_date}
-               helperText={helperText}
-            />  */}
+              //  helperText={helperText}
+            />  
             </div>
           </div>
 
@@ -205,13 +199,13 @@ const AddTaskCreate = ({
                   />
                 )}
               />
-                <label className={styles.paragraph}>
-            Please press enter to add a category if not found in the search
-            results.
-          </label>
+              <label className={styles.paragraph}>
+                Please press enter to add a category if not found in the search
+                results.
+              </label>
             </div>
           </div>
-        
+
           <div className="formFlex">
             <div className={"formGroup"}></div>
           </div>

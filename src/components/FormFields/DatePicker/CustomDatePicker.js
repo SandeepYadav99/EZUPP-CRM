@@ -9,7 +9,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
 
-const CustomDatePicker = ({onChange, minDate, isError, maxDate, value, label, clearable,...rest}) => {
+const CustomDatePicker = ({onChange, minDate, isError,errorText, maxDate, value, label, clearable,...rest}) => {
     const handleOnChange = (e, d) => {
         // const tempDate  = new Date(e);
         // const formattedDate = tempDate.getDate() + "-" + (tempDate.getMonth() + 1) + "-" + tempDate.getFullYear();

@@ -1,10 +1,16 @@
-import { ButtonBase } from '@mui/material';
+import {
+  ButtonBase,
+  FormControl,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import historyUtils from "../../../libs/history.utils";
 import styles from "./Style.module.css";
 import { makeStyles } from "@mui/styles";
-import { Edit } from '@mui/icons-material';
+import { Edit } from "@mui/icons-material";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import { serviceTaskMnagmentUpdateStatus } from "../../../services/TaskManage.service";
 import TaskDetailHeader from "./TaskDetailView/TaskDetailHeader";
@@ -18,6 +24,12 @@ import AddTaskUpdate from "./Update/UpdateDetail";
 import WaitingComponent from "../../../components/Waiting.component";
 import { serviceTaskManagementDetail } from "../../../services/ProviderUser.service";
 import { useParams } from "react-router-dom";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import {
+  OutlineButton,
+  PrimaryButton,
+} from "../../../components/Buttons/PrimaryButton";
+import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 
 const useStyles = makeStyles((theme) => ({
   boldTitle: {
@@ -130,34 +142,52 @@ const TaskDetailView = ({}) => {
         </div>
 
         <div className={styles.editAction}>
-          <ButtonBase onClick={handleSideToggle}>
-            <Edit fontSize={"small"} />
-            <span>Edit</span>
-          </ButtonBase>
+          <div className={"myprofile"}>
+            <FormControl variant={"outlined"} className={styles.selectWidth}>
+              <Select
+                disableUnderline
+                //  value={filterValue}
+                value={"ALL"}
+                // onChange={filterCompltedTask}
+              >
+                <MenuItem value={"PENDING"}>Pending</MenuItem>
+                <MenuItem value={"COMPLETED"}>Completed</MenuItem>
+                <MenuItem value={"ALL"}>All</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <OutlineButton
+            onClick={handleSideToggle}
+            className={styles.actionOutline}
+          >
+            <Typography variant="subtitle1">EDIT</Typography>
+            <Edit fontSize={"20px"} />
+          </OutlineButton>
         </div>
       </div>
-
-      <div className={styles.plainPaper}>
-        <div className={styles.newContainer}>
-          <TaskDetailHeader
-            details={details}
-            markAsCompleted={markAsCompleted}
-            styles={styles}
-            completedHandler={completedHandler}
-          />
-          <PillContainer details={details} styles={styles} />
-          <AssignedContainer
-            styles={styles}
-            details={details}
-            classes={classes}
-          />
-          <TaskAssignedContainer
-            classes={classes}
-            styles={styles}
-            details={details}
-          />
+      <ShadowBox width={"100%"}>
+        <div>
+          <div className={styles.newContainer}>
+            <TaskDetailHeader
+              details={details}
+              markAsCompleted={markAsCompleted}
+              styles={styles}
+              completedHandler={completedHandler}
+            />
+            <PillContainer details={details} styles={styles} />
+            <AssignedContainer
+              styles={styles}
+              details={details}
+              classes={classes}
+            />
+            <TaskAssignedContainer
+              classes={classes}
+              styles={styles}
+              details={details}
+            />
+          </div>
         </div>
-      </div>
+      </ShadowBox>
 
       <AddNoteContainer
         details={details}

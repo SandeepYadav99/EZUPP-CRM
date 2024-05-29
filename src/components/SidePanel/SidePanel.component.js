@@ -108,6 +108,7 @@ class SidePanelComponent extends Component {
 
     render() {
         const { theme } = this.props;
+        
         const tempStyle = {
             width:
                 this.state.delta == 0 || !this.props.open
@@ -135,6 +136,7 @@ class SidePanelComponent extends Component {
                     width: 'calc(100% - 20px)',
                     height: 'calc(100% - 20px)',
                     padding: '10px',
+                  
                   
                 }}>
                     <div className={styles.sideUpper}>
