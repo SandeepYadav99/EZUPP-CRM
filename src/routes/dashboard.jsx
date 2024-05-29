@@ -195,6 +195,17 @@ const dashboardRoutes = [
     parent: "admin",
     should_regex:true
   },
+  {
+    path: `${RouteName.USER_UPDATE_MY_PROFILE}:id`,
+    sidebarName: "Admin Users",
+    navbarName: "Admin Users",
+    icon: SupervisedUserCircle,
+    component: UserCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parent: "admin",
+    should_regex:true
+  },
   // {
   //   path: `${RouteName.USER_PROFILE}:id`,
   //   sidebarName: "Users",
