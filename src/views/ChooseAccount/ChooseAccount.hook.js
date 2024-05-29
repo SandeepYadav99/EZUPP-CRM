@@ -1,18 +1,18 @@
 import React, { useCallback, useState } from "react";
-import history from "../../../libs/history.utils";
-import { serviceLoginUser } from "../../../services/index.services";
-import { actionLoginUser } from "../../../actions/Auth.action";
-import SnackbarUtils from "../../../libs/SnackbarUtils";
-import historyUtils from "../../../libs/history.utils";
+import history from "../../libs/history.utils";
+import { serviceLoginUser } from "../../services/index.services";
+import { actionLoginUser } from "../../actions/Auth.action";
+import SnackbarUtils from "../../libs/SnackbarUtils";
+import historyUtils from "../../libs/history.utils";
 import { useDispatch } from "react-redux";
-import { isEmail } from "../../../libs/RegexUtils";
+import { isEmail } from "../../libs/RegexUtils";
 
 const initialForm = {
   email: "",
   password: "",
   logged_in: "",
 };
-const useLoginHook = () => {
+const useAccountHook = () => {
   const [form, setForm] = useState({ ...initialForm });
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
@@ -125,4 +125,4 @@ const useLoginHook = () => {
   };
 };
 
-export default useLoginHook;
+export default useAccountHook;
