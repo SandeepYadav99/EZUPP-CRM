@@ -25,18 +25,31 @@
   z-index: 2 !important;
   margin-top: -100vh;
 }
-
-.formContainer {
-  padding: 35px !important;
+.back{
+  color: #FF0000 !important;
 }
-.mainLoginViewReset {
+.formContainer{
+  background-color: #fff;
+  flex: 1.5;
   display: flex;
-  width: 100vw;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+
+
+}
+.mainLoginViewReset{
+  display: flex;
+   width: 100vw;
   /* height: 100vh; */
 
   /*background-image: url('../../assets/img/background.jpg');*/
   /*background-size: cover;*/
   /*background-repeat: no-repeat;*/
+  border-radius: 60px !important;
 }
 .mainLoginView {
   display: flex;
@@ -126,6 +139,8 @@
 .loginSignupTextRESET {
   text-align: left;
   color: #636578;
+  font-size: 18px !important;
+  font-weight: bold !important;
 }
 .bottomSignUp {
   font-size: 14px;
@@ -283,16 +298,11 @@
   }
 }
 
-@media only screen and (max-width: 769px) {
+
+@media only screen and (max-width: 1024px) {
   .mobileRender {
-    display: flex;
+    gap: 10px !important;
     flex-direction: column !important;
     gap: 10px;
   }
-}
-
-#forgotBtn {
-  color: #2063ce !important;
-  font-size: 12px;
-  font-weight: 600;
 }
