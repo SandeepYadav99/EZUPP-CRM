@@ -145,7 +145,7 @@ console.log(location)
   );
 
   const handleDetailPage = useCallback((data) => {
-    // historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
+     historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
   }, []);
 
   const filterCompltedTask = useCallback(

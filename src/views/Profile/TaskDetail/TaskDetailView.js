@@ -142,8 +142,8 @@ const TaskDetailView = ({}) => {
         </div>
 
         <div className={styles.editAction}>
-          <div className={"myprofile"}>
-            <FormControl variant={"outlined"} className={styles.selectWidth}>
+          {/* <div className={"myprofile"}> */}
+            {/* <FormControl variant={"outlined"} className={styles.selectWidth}>
               <Select
                 disableUnderline
                 //  value={filterValue}
@@ -154,8 +154,13 @@ const TaskDetailView = ({}) => {
                 <MenuItem value={"COMPLETED"}>Completed</MenuItem>
                 <MenuItem value={"ALL"}>All</MenuItem>
               </Select>
-            </FormControl>
-          </div>
+            </FormControl> */}
+            <CustomSelectField label={"ALL"}  onChange={()=>{}} className={styles.selectWidth}>
+            <MenuItem value={"PENDING"}>Pending</MenuItem>
+                <MenuItem value={"COMPLETED"}>Completed</MenuItem>
+                <MenuItem value={"ALL"}>All</MenuItem>
+            </CustomSelectField>
+          {/* </div> */}
           <OutlineButton
             onClick={handleSideToggle}
             className={styles.actionOutline}
