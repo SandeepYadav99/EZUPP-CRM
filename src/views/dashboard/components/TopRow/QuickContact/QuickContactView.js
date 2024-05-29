@@ -113,6 +113,8 @@ function QuickContactView({ isOpen, handleToggle }) {
             >
               <MenuItem value="Mr">Mr</MenuItem>
               <MenuItem value="Mrs">Mrs</MenuItem>
+              <MenuItem value="Mrs">Miss. </MenuItem>
+              <MenuItem value="Mrs">Dr. </MenuItem>
             </CustomSelectField>
           </div>
 
