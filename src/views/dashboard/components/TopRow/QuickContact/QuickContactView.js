@@ -36,6 +36,7 @@ function QuickContactView({ isOpen, handleToggle }) {
   } = useContactList({ isOpen, handleToggle });
   const theme = useTheme();
   const [selectedValue, setSelectedValue] = useState("");
+  console.log("contact",form)
 
   const options = [
     {
