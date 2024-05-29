@@ -14,6 +14,7 @@ import {
   serviceGetList,
   serviceGetTagList,
 } from "../../../services/index.services";
+import {serviceGetUnitList} from "../../../services/Unit.service";
 import { validateUrl } from "../../../libs/RegexUtils";
 import { useDispatch, useSelector } from "react-redux";
 import history from "../../../libs/history.utils";
@@ -43,14 +44,22 @@ function useProductCreateHook() {
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [listData, setListData] = useState({
-    ROLES: [],
     UNITS: [],
   });
   const [tagList,setTagList] = useState([])
   const dispatch = useDispatch();
   const [editData, setEditData] = useState(null);
+  
+
+  // useEffect(() => {
+  //   serviceGetList(["ROLES", "UNITS"]).then((res) => {
+  //     if (!res.error) {
+  //       setListData(res.data);
+  //     }
+  //   });
+  // }, []);
   useEffect(() => {
-    serviceGetList(["ROLES", "UNITS"]).then((res) => {
+    serviceGetUnitList(["UNITS"]).then((res) => {
       if (!res.error) {
         setListData(res.data);
       }
@@ -238,7 +247,8 @@ function useProductCreateHook() {
     images,
     id,
     tagList,
-    handleCancel
+    handleCancel,
+  
   };
 }
 

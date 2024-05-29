@@ -37,7 +37,7 @@ const AdditionalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
               </MenuItem>
             ))}
           </CustomSelectField>
-        </div>
+        </div>  
         <div className={"formGroup"}>
           <CustomTextField
             isError={errorData?.linkedin_url}
