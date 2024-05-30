@@ -10,11 +10,13 @@ import Palette from './palette';
 import Typography from './typography';
 import CustomShadows from './shadows';
 import componentsOverride from './overrides';
+import {useSelector} from "react-redux";
 
 // ==============================|| DEFAULT THEME - MAIN  ||============================== //
 
 export default function ThemeCustomization({ children }) {
-  const theme = Palette('light', 'default');
+    // const {colorTheme} = useSelector(state => state.common);
+  const theme = Palette( 'light', 'default');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const themeTypography = Typography([
