@@ -21,6 +21,23 @@
     justify-content: space-between;
     align-items: center;
 }
+.dialogWrap{
+    padding: 1.2rem;
+    max-width: 500px;
+}
+.prodWrpa{
+    display: flex;
+    gap: 10px;
+    /* max-width: 150px; */
+    flex-wrap: wrap;
+}
+.tags{
+    background: #E4E4E6 0% 0% no-repeat padding-box;
+    border-radius: 18px;
+    padding: 5px 10px;
+    text-align: center;
+    /* max-width: 40px; */
+  }
 .firstCellFlex {
     display: flex;
     align-items: center;
