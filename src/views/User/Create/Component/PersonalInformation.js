@@ -1,6 +1,6 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Typography } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
@@ -15,17 +15,16 @@ const PersonalInformation = ({
   form,
   image,
   listData,
-  userId, 
-  id
+  userId,
+  id,
 }) => {
- 
   return (
     <>
-      <div className={"plainPaper"} style={{backgroundColor:"#FFFFFF"}}>
+      <div className={"plainPaper"} style={{ backgroundColor: "#FFFFFF" }}>
         <div className={"headerFlex"}>
-          <h4 className={"infoTitle"}>
-            <div className={"heading"}>Personal Information</div>
-          </h4>
+          <Typography fontSize={18} color={"#636578"} fontWeight={600} marginTop={1.5} marginBottom={1.5}>
+            Personal Information
+          </Typography>
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.count}>
@@ -50,8 +49,11 @@ const PersonalInformation = ({
               }}
             />
             <div className={styles.imageGuide}>
-              <span className={styles.imageGuideSpan}> Image Guide<InfoOutlined fontSize="small" /></span>
-              
+              <span className={styles.imageGuideSpan}>
+                {" "}
+                Image Guide
+                <InfoOutlined fontSize="small" />
+              </span>
             </div>
           </div>
           <div className={styles.lowerWrap}>

@@ -3,9 +3,9 @@ import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { Add, ArrowForward, Lock } from "@mui/icons-material";
 
-const ButtonWrapper = styled(Button)(({ theme, padding , paddingTB, borderRadius}) => ({
-  paddingLeft: padding ? theme.spacing(padding) : "",
-  paddingRight: padding ? theme.spacing(padding) : "",
+const ButtonWrapper = styled(Button)(({ theme, paddingLR , paddingTB, borderRadius}) => ({
+  paddingLeft: paddingLR ? theme.spacing(paddingLR) : "",
+  paddingRight: paddingLR ? theme.spacing(paddingLR) : "",
   paddingTop: paddingTB ? theme.spacing(paddingTB) : "",
   paddingBottom: paddingTB ? theme.spacing(paddingTB) : "",
   borderRadius:borderRadius ? borderRadius : "",
@@ -22,7 +22,7 @@ const PrimaryButton = ({ disabled, paddingLR, paddingTB,borderRadius, children, 
   return (
     <ButtonWrapper
       {...props}
-      padding={paddingLR}
+      paddingLR={paddingLR}
       paddingTB={paddingTB}
       borderRadius={borderRadius}
       variant={"contained"}
@@ -122,7 +122,7 @@ const ArrowPrimaryButton = ({ icon, paddingLR, paddingTB, borderRadius ,...props
   return (
     <PrimaryButton
       {...props}
-      padding={paddingLR}
+      paddingLR={paddingLR}
       paddingTB={paddingTB}
       borderRadius={borderRadius}
       endIcon={!icon ? <ArrowForward /> : icon}
