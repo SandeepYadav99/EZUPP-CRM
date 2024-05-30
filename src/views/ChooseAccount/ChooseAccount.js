@@ -41,7 +41,6 @@ function ChooseAccount() {
      setState(DataValue)
   },[state])
 
-  console.log(state,"stata is here")
 
   return (
     <div className={"login"}>

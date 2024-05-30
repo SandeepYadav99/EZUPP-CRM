@@ -10,7 +10,6 @@ import { Route, Switch } from "react-router-dom";
 import HorizontalNav from "../views/HorizontalNav/HorizontalNav.js";
 import DragDrop from "../views/DragDrop/DragDrop.jsx";
 import ChooseAccount from "../views/ChooseAccount/ChooseAccount.js";
-import Hello from "../views/Hello/Hello.js";
 
 
 const App = () => {
@@ -24,8 +23,6 @@ const RouteComponent = () => (
     <Route path={"/tester"} component={HorizontalNav} />
     <Route path={"/drag"} component={DragDrop} />
     <Route path={"/already"} component={ChooseAccount} />
-
-
     <Route path={"/"} component={Dashboard} />
   </Switch>
 );
