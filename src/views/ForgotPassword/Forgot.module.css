@@ -25,9 +25,7 @@
   z-index: 2 !important;
   margin-top: -100vh;
 }
-.back{
-  color: #FF0000 !important;
-}
+
 .formContainer{
   background-color: #fff;
   flex: 1.5;
