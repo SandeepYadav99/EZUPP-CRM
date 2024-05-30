@@ -71,6 +71,7 @@ const RoleDetail = () => {
         </section>
         <section className={"plainPaper"} style={{ width: "25%" }}>
           <div>
+            
             <p>
               <span className={styles.title}>Permissions Granted</span>{" "}
             </p>

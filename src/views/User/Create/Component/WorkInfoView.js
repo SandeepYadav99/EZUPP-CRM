@@ -3,7 +3,7 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { Autocomplete, MenuItem, TextField } from "@mui/material";
+import { Autocomplete, MenuItem, TextField, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import { Clear, Search } from "@mui/icons-material";
@@ -19,9 +19,15 @@ const WorkInfoView = ({
     <>
       <div className={"plainPaper"} style={{ backgroundColor: "#FFFFFF" }}>
         <div className={"headerFlex"}>
-          <h4 className={"infoTitle"}>
-            <div className={"heading"}>Work Information</div>
-          </h4>
+          <Typography
+            fontSize={18}
+            color={"#636578"}
+            fontWeight={600}
+            marginTop={1.5}
+            marginBottom={1.5}
+          >
+            Work Information
+          </Typography>
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.lowerWrap}>
