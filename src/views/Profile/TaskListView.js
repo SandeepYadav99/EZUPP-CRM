@@ -10,18 +10,7 @@ const TaskListItem = ({
   markAsCompleted,
   completedHandler,
 }) => {
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case "HIGH":
-        return "#FF0000";
-      case "MEDIUM":
-        return "#FA8B55";
-      case "LOW":
-        return "#EDF9DE";
-      default:
-        return "#FFFFFF";
-    }
-  };
+
 
   const handleCheckboxClick = async (e) => {
     if (e.target.checked) {
