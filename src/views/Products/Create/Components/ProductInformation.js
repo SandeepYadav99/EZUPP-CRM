@@ -7,6 +7,8 @@ import styles from "../Style.module.css";
 import img from "../../../../assets/img/1.png";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
+import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+
 const AutoCompleteData = [
   {
     id: 1,
@@ -149,7 +151,7 @@ const ProductInformation = ({
             </div>
             <div className={"formFlex"}>
               <div className={"formGroup"}>
-                <Autocomplete
+                {/* <Autocomplete
                   isError={errorData?.tags}
                   errorText={errorData?.tags}
                   multiple
@@ -167,26 +169,20 @@ const ProductInformation = ({
                       label="Associate Tags"
                     />
                   )}
-                />
-                {/* <Autocomplete
-                  isError={errorData?.tags}
-                  errorText={errorData?.tags}
-                  multiple
-                  id="tags-outlined"
-                  options={AutoCompleteData ? AutoCompleteData : []}
-                  value={form?.tags}
-                  getOptionLabel={(option) => option.title}
-                  onChange={(e, value) => {
-                    changeTextData(value, "tags");
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant="outlined"
-                      label="Associate Tags"
-                    />
-                  )}
                 /> */}
+                  <MultiComplete
+                    isError={errorData?.tags}
+                    multiple
+                    isArray
+                    AutoCompleteList={tagList ? tagList : []}
+                    getOptionLabel={(option) => option}
+                    label="Associate Tags"
+                    defaultValue={form?.tags}
+                    value={form?.tags}
+                    onTextChange={(text) => {
+                      changeTextData(text, "tags");
+                    }}
+                  />
               </div>
             </div>
             <div className={`formFlex ${styles.space}`}>

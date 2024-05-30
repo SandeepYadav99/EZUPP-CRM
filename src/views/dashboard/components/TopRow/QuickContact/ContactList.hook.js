@@ -82,7 +82,16 @@ function useContactList({ isOpen, handleToggle }) {
     (text, fieldName) => {
       let shouldRemoveError = true;
       const t = { ...form };
-      t[fieldName] = text;
+      if (fieldName === "contact_type") {
+        if (text === "INDIVIDUAL") {
+          t["job_title"] = "";
+          t["buying_role"] = "";
+          t["company"] = "";
+        }
+        t[fieldName] = text;
+      } else {
+        t[fieldName] = text;
+      }
       setForm(t);
       shouldRemoveError && removeError(fieldName);
       setIsVerified(false);
@@ -90,23 +99,25 @@ function useContactList({ isOpen, handleToggle }) {
     [removeError, form, setForm, setIsVerified]
   );
   const checkFormValidation = useCallback(() => {
-    const errors = { ...errorData };
+    const errors = {};
 
     let required = [
       "contact",
       "email",
       "full_name",
       "prefix_type",
-      "buying_role",
       "service_product",
-      "job_title",
-      "company",
+      // "buying_role",
+      // "job_title",
+      // "company",
       "tags",
       "source",
       "contact_owner",
       "lead_stage_type",
     ];
-
+    if (form?.contact_type === "BUSINESS") {
+      required.push(...["buying_role", "job_title", "company"]);
+    }
     required.forEach((val) => {
       if (
         !form?.[val] ||
@@ -138,15 +149,16 @@ function useContactList({ isOpen, handleToggle }) {
             form[key]?.length > 0 ? form[key]?.map((item) => item?.id) : [];
           updatedFd[key] = getId;
         } else if (key === "tags") {
-          updatedFd[key] =
-            form[key]?.length > 0 ? form[key]?.join(",") : "";
+          updatedFd[key] = form[key]?.length > 0 ? form[key]?.join(",") : "";
         } else {
           updatedFd[key] = form[key];
         }
       });
       console.log(">>>>>", { updatedFd, form });
+      const contactWithCD = cleanContactNumber(form?.contact);
+      console.log("contactWithCD", contactWithCD);
       serviceCreateContactQuick({
-        ...form,
+        ...updatedFd,
         contact: `${cleanContactNumber(form?.contact)}`,
       }).then((res) => {
         if (!res.error) {

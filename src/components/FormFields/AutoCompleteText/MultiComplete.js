@@ -20,23 +20,15 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-
   fontSize: "0.8rem",
   height: "1.5rem",
-
-  // "&:hover": {
-  //   backgroundColor: theme.palette.error.light,
-  //   border: 0,
-  // },
   "&:disabled": {
     backgroundColor: "transparent",
   },
   "& .MuiChip-deleteIcon": {
     backgroundColor: "transparent",
   },
-  // "&:hover .MuiChip-deleteIcon": {
-  //   color: "#FF0000",
-  // },
+  
 }));
 
 const StyledOption = styled("div")(({ theme }) => ({
@@ -78,6 +70,7 @@ const CustomMultiComplete = ({
           onChange={(event, newValue) => {
             handleChange(newValue);
           }}
+          freeSolo
           renderInput={(params) => (
             <TextField
               error={isError}

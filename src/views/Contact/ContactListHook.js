@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import RouteName from "./../../routes/Route.name";
 import {
-  actionFetchProduct,
-  actionSetPageProductRequests,
-} from "./../../actions/Product.action";
+  actionFetchContact,
+  actionSetPageContactRequests,
+} from "./../../actions/Contact.action";
 import history from "./../../libs/history.utils";
 
 const useUserListHook = ({}) => {
@@ -18,11 +18,11 @@ const useUserListHook = ({}) => {
     query,
     query_data: queryData,
     all,
-  } = useSelector((state) => state?.product);
+  } = useSelector((state) => state?.contact);
 
   useEffect(() => {
     dispatch(
-      actionFetchProduct(
+      actionFetchContact(
         1,
         {},
         {
@@ -35,13 +35,13 @@ const useUserListHook = ({}) => {
   }, []);
 
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageProductRequests(type));
+    dispatch(actionSetPageContactRequests(type));
   }, []);
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchProduct(1, sortingData, {
+        actionFetchContact(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
           query_data: key == "FILTER_DATA" ? value : queryData,
         })
@@ -66,9 +66,9 @@ const useUserListHook = ({}) => {
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageProductRequests(1));
+      dispatch(actionSetPageContactRequests(1));
       dispatch(
-        actionFetchProduct(
+        actionFetchContact(
           1,
           { row, order },
           {

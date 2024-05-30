@@ -32,7 +32,7 @@ const AdditionalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
             }}
           >  
             {allTimeZone?.map((item, index) => (
-              <MenuItem value={item?.UTC} key={`timezone_${index}`}>
+              <MenuItem value={`${item?.MobileCode}_${item?.UTC}`} key={`timezone_${index}`}>
                 {`${item?.Name} ( ${item?.MobileCode} , ${item?.UTC})`}
               </MenuItem>
             ))}

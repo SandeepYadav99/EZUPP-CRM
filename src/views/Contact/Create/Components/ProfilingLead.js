@@ -22,6 +22,7 @@ const ProfilingLead = ({
   source,
   sourceData,
   contactOwnerlistData,
+  listData
 }) => {
   return (
     <>
@@ -51,16 +52,17 @@ const ProfilingLead = ({
             />
           </div>
           <div className={"formGroup"}>
-            <CustomTextField
-              type="name"
-              isError={errorData?.service_product}
-              errorText={errorData?.service_product}
-              label={"Service/Product"}
-              value={form?.service_product}
-              onTextChange={(text) => {
-                changeTextData(text, "service_product");
-              }}
-            />
+          <MultiComplete
+          isError={errorData?.service_product}
+          multiple
+          AutoCompleteList={listData?.PRODUCTS ? listData?.PRODUCTS : []}
+          label={"Service/Product"}
+          value={form?.service_product}
+          onTextChange={(text) => {
+            changeTextData(text, "service_product");
+          }}
+          enableField={["label"]}
+        />
           </div>
         </div>
         <div className={"formFlex"}>
@@ -74,9 +76,9 @@ const ProfilingLead = ({
                 changeTextData(value, "priority");
               }}
             >
-              <MenuItem value="Low">LOW</MenuItem>
-              <MenuItem value="Medium">MEDIUM</MenuItem>
-              <MenuItem value="High">HIGH</MenuItem>
+              <MenuItem value="LOW">LOW</MenuItem>
+              <MenuItem value="MEDIUM">MEDIUM</MenuItem>
+              <MenuItem value="HIGH">HIGH</MenuItem>
             </CustomSelectField>
           </div>
           <div className={"formGroup"}>
