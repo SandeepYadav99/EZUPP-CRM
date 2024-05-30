@@ -58,6 +58,8 @@ function useUserCreateHook() {
   const { id } = useParams();
   const emailDebouncer = useDebounce(form.email, 500);
   const empIdDebouncer = useDebounce(form.employee_id, 500);
+  const userData = localStorage.getItem("user");
+  const userObject = JSON.parse(userData);
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -176,13 +178,8 @@ function useUserCreateHook() {
       "email",
       "contact",
       "userName",
-      // "role",
-      "employee_id",
-      "joining_date",
-      "department",
-      "designation",
-      "manager",
-      "end_date",
+      // "role",  
+      ...(userObject?.user_id === id ? [] : ['employee_id', "end_date","joining_date","department","designation", "manager",])
     ];
     if (!id) {
       required.push("image");
@@ -270,20 +267,30 @@ function useUserCreateHook() {
           name: form?.name,
           image: form?.image,
           contact: form?.contact,
-          role_id: form?.role,
+          // role_id: form?.role || { },
           email: form?.email,
-          employee_id: form?.employee_id,
-          joining_date: form?.joining_date,
-          exit_date: form?.end_date,
-          department: form?.department,
-          designation: form?.designation,
-          manager: form?.manager,
+          // employee_id: form?.employee_id,
+          // joining_date: form?.joining_date,
+          // exit_date: form?.end_date,
+          // department: form?.department,
+          // designation: form?.designation,
+          // manager: form?.manager,
           user_name: form?.userName,
           is_primary_user: true,
-          is_manager: form?.userManage,
-          email_send: form?.invoiteToUser,
+          // is_manager: form?.userManage,
+          // email_send: form?.invoiteToUser,
           country_code: 91,
         };
+        if (userObject?.user_id !== id) {
+          formDataFields.employee_id = form?.employee_id;
+          formDataFields.joining_date = form?.joining_date;
+          formDataFields.exit_date = form?.end_date;
+          formDataFields.department = form?.department;
+          formDataFields.designation = form?.designation;
+          formDataFields.manager = form?.manager;
+          formDataFields.is_primary_user= true;
+          formDataFields.is_manager= form?.userManage;
+        }
 
         for (const field in formDataFields) {
           if (formDataFields.hasOwnProperty(field)) {
@@ -349,6 +356,7 @@ function useUserCreateHook() {
 
     // manager,
     // department,
+    userId:userObject?.user_id,
     manager: state.manager,
     department: state.department,
   };

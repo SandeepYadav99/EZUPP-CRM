@@ -6,6 +6,7 @@ import {
 const primary = "#2063CE";
 const secondary = "#25CEAE";
 const bgcolors = '#F7F7F9';
+const bgcolors1 = '#FFFFFF';
 const textColor = "#000000";
 const warning = "#FFC260";
 const success = "#3CD4A0";
@@ -56,7 +57,7 @@ const Theme = (colors) => {
       dark: alpha(error, 0.9)
     },
     bgColor: {
-      main: bgcolors,
+      main: bgcolors1,
       light: alpha(bgcolors, 0.5),
       dark: alpha(bgcolors, 0.9)
     },

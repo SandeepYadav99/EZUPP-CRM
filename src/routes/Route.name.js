@@ -35,6 +35,7 @@ export default {
   ADMIN_USER:"/admin/users",
   ADMIN_USER_CREATE:"/users/create",
   ADMIN_USER_UPDATE:"/users/update/",
+  USER_UPDATE_MY_PROFILE:"/users/updatemyprofile/",
   CALENDAR:"/calendar",
   
   ROLE:"/roles",

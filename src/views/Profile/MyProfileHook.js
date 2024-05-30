@@ -21,7 +21,7 @@ const useMyProfileHook = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
- 
+console.log(location)
   const [taskLists, setTaskList] = useState(null);
   const [taskCreated, setTaskCreated] = useState(false);
   const userData = localStorage.getItem("user");
@@ -134,8 +134,8 @@ const useMyProfileHook = () => {
     setTaskCreated(true);
   };
   const handleEdit = useCallback((profile) => {
-     historyUtils.push(`${RouteName.ADMIN_USER_UPDATE}${profile?.id}`);
-  });
+     historyUtils.push(`${RouteName.USER_UPDATE_MY_PROFILE}${profile?.id}`);
+  },[]);
 
   const handleSideToggle = useCallback(
     (data) => {
@@ -145,7 +145,7 @@ const useMyProfileHook = () => {
   );
 
   const handleDetailPage = useCallback((data) => {
-    // historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
+     historyUtils.push(`${RouteName.TASK_DETAIL}${data?.id}`);
   }, []);
 
   const filterCompltedTask = useCallback(
@@ -194,7 +194,9 @@ const useMyProfileHook = () => {
     filterCompltedTask,
     filterValue,
     id,
-    
+    userId:userObject?.user_id,
+    location:location?.pathname
+
   };
 };
 

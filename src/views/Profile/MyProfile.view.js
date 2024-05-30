@@ -38,13 +38,16 @@ const Profile = () => {
     completedHandler,
     filterCompltedTask,
     isSidePanel,
-    handleCreatedTask
+    handleCreatedTask,
+    userId, 
+    id,
+    location
   } = useMyProfileHook();
 
   const handleClose = () => {
     setOpen(!open);
   };
-
+console.log(userId, id)
   return (
     <div className={styles.bgProfile}>
       {isLoading ? (
@@ -52,13 +55,14 @@ const Profile = () => {
       ) : (
         <div>
           <div className={styles.upperFlex}>
-          <div>
-            <ButtonBase onClick={() => history.push(RouteName.ADMIN_USER)}>
+          <div className={styles.profileTitle}>
+            {location !== "/profile" && 
+            <ButtonBase onClick={() => history.push("/")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
+            </ButtonBase>}
               <span className={styles.profileTitle}>
                 <b>Profile View</b>
               </span>
-            </ButtonBase>
             </div>
             <div className={styles.profileHeading}></div>
             <div className={styles.profileHeaderAction}>
@@ -109,7 +113,7 @@ const Profile = () => {
           />
             <SidePanelComponent
             handleToggle={handleSideToggle}
-            title={"Create New Task"} // profileId ? "Update Hubs" :
+            title={"Add New Task"} // profileId ? "Update Hubs" :
             open={isSidePanel}
             side={"right"}
           >

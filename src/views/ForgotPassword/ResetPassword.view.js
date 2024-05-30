@@ -108,7 +108,8 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 padding:"10px",
-                width:"100%"
+                width:"100%", 
+                marginBottom:"15px"
               }}
               className={styles.mobileRender}
             >
