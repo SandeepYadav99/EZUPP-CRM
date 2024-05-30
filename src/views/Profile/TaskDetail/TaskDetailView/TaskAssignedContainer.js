@@ -1,4 +1,4 @@
-import { Avatar, CardHeader } from '@mui/material';
+import { Avatar, CardHeader, Typography } from '@mui/material';
 import React, { memo } from "react";
 import RouteName from "../../../../routes/Route.name";
 import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
@@ -14,7 +14,7 @@ console.log(details?.completedOnText)
           <div>
             <CardHeader
               title={
-                <span className={classes.subTitle}>Task assigned on:</span>
+                <Typography variant="subtitle1" color={"text.secondary"}>Task assigned on:</Typography>
               }
               subheader={details?.assignedOnDetailText}
             />
@@ -25,7 +25,7 @@ console.log(details?.completedOnText)
           <div >
             <CardHeader
               title={
-                <span className={classes.subTitle}>Task completed on:</span>
+                <Typography variant="subtitle1" color={"text.secondary"} >Task completed on:</Typography>
               }
               subheader={details?.completedOnText} // completedOnText
             />

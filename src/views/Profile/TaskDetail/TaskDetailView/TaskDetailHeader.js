@@ -1,4 +1,4 @@
-import { ButtonBase } from '@mui/material';
+import { ButtonBase, Typography } from '@mui/material';
 import { Check } from '@mui/icons-material';
 import React, { useState } from "react";
 
@@ -21,7 +21,7 @@ const TaskDetailHeader = ({
   return (
   
       <div className={styles.headerTitle}>
-        <div className={styles.subTitle}>{details?.title}</div>
+        <Typography fontSize={18} color={"#636578"} fontWeight={600} >{details?.title}</Typography>
         <div className={styles.complte}>
         <div  className={`${styles.transition} ${
           details?.is_completed ? styles.completed : styles.markComplete

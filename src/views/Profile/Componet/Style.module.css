@@ -119,14 +119,9 @@
   }
   
   .status {
+    margin-top: 5px;
     margin-bottom: 12px;
-    font-size: 14px;
-    color: #20c997;
-    background: rgba(32, 201, 151, 0.1);
-    padding: 3px 10px;
-    border-radius: 20px;
-    text-transform: capitalize;
-    display: inline-block;
+   
    /* float: right; */
   }
   

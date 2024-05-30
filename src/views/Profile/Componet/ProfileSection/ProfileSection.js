@@ -26,7 +26,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             {/* )} */}
           </div>
           <div>
-            <Typography fontSize={18} color={"#636578"} fontWeight={600} marginLeft={2} >
+            <Typography fontSize={18} color={"#636578"} fontWeight={600}  >
               {capitalizeFirstLetter(profileDetails?.name)}
             </Typography>
             <Typography variant="h6" color={"#888888"} fontWeight={600}  >
