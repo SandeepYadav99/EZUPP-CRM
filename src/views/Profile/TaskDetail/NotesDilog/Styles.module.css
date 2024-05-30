@@ -9,7 +9,8 @@
 
 .printFlex {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  margin-left: 8px;
 }
 
 .btmBtn {

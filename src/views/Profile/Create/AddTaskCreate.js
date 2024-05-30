@@ -177,7 +177,7 @@ const AddTaskCreate = ({
                 onChange={(e, value) => {
                   changeTextData(value, "category");
                 }}
-                options={categoryLists}
+                options={categoryLists || []}
                 value={form?.category}
                 freeSolo
                 selectOnFocus={false}
