@@ -15,8 +15,10 @@ import {useSelector} from "react-redux";
 // ==============================|| DEFAULT THEME - MAIN  ||============================== //
 
 export default function ThemeCustomization({ children }) {
-    // const {colorTheme} = useSelector(state => state.common);
-  const theme = Palette( 'light', 'default');
+    const {theme:colorTheme} = useSelector(state => state.app_setting);
+   const theme = Palette( colorTheme ? colorTheme : 'light', 'default');
+
+   console.log("colorTheme",colorTheme);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const themeTypography = Typography([
