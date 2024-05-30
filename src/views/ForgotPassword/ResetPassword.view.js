@@ -39,7 +39,10 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               padding: "10px",
             }}
           >
-            <div className={styles.loginSignupTextRESET}>Reset Password</div>
+            <Typography variant="h4" color={"#636578"}>
+              Reset Password
+            </Typography>
+
             <ButtonBase onClick={handleClose}>
               <Close fontSize="small" />
             </ButtonBase>
