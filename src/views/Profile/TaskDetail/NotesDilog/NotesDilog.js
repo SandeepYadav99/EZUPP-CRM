@@ -6,6 +6,7 @@ import Dialog from "@mui/material/Dialog";
 import styles from "./Styles.module.css";
 import { makeStyles } from "@mui/styles";
 import CustomTextField from "../../../../FormFields/TextField.component";
+import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 
 const useStyles = makeStyles((theme) => ({
   flex: {
@@ -86,20 +87,18 @@ const NotesDilog = ({
           </div>
 
           <div className={styles.printFlex}>
-            <div style={{ float: "right" }}>
-              <Button
-                variant={"contained"}
-                color={"primary"}
-                type={"submit"}
+            <div style={{  }}>
+              <PrimaryButton
+               
                 onClick={handleSubmit} // handleSubmit
               >
 
                 {isSubmitting ? (
                   <CircularProgress color="success" size="20px" />
                 ) : (
-                  " SAVE & SUBMIT"
+                  "SAVE & EXIT"
                 )}
-              </Button>
+              </PrimaryButton>
             </div>
           </div>
         </div>

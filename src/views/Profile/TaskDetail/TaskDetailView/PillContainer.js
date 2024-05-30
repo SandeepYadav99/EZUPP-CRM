@@ -1,5 +1,7 @@
 import React, { memo } from "react";
 import { formattedDescription } from "../../../../hooks/CommonFunction";
+import StatusPill from "../../../../components/Status/StatusPill.component";
+import { Typography } from "@mui/material";
 
 const PillContainer = ({ details, styles }) => {
   const getPriorityColor = (priority) => {
@@ -21,11 +23,11 @@ const PillContainer = ({ details, styles }) => {
       <div className={styles.pillContainer}>
         <div>
           <div>Task Priority</div>
-          <div
-            className={styles.priority}
-            style={{ backgroundColor: getPriorityColor(details?.priority) }}
-          >
-            {details?.priority}
+          <div>
+            <StatusPill
+              status={details?.priority}
+              color={details?.priority.toLowerCase()}
+            />
           </div>
         </div>
         <div>
@@ -33,8 +35,10 @@ const PillContainer = ({ details, styles }) => {
           <div className={styles.section}>{details?.type}</div>
         </div>
       </div>
-      <div className={styles.des} ><strong>Description: </strong></div>
-      <div className={styles.des}>{formattedDescription(details)}</div>
+      <div className={styles.des}>
+        <Typography variant="subtitle1" color={"text.secondary"} >Description: </Typography>
+      </div>
+      <Typography variant="subtitle2" >{formattedDescription(details)}</Typography>
       <div className={styles.gaps} />
     </div>
   );
