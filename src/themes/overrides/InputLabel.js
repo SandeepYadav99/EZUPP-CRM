@@ -8,7 +8,7 @@ export default function InputLabel(theme) {
       styleOverrides: {
         root: {
           color: theme.palette.grey[500],
-            background: "#f7f7f9",
+            background: "transparent",
           },
         outlined: {
           lineHeight: '1rem',
@@ -18,7 +18,7 @@ export default function InputLabel(theme) {
           '&.MuiInputLabel-shrink': {
             // background: theme.palette.background.paper,
             padding: '0 0px',
-            marginLeft: -6,
+            // marginLeft: -6,
             lineHeight: '1.4375em'
           }
         }
