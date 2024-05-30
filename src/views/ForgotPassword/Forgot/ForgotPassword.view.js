@@ -62,13 +62,14 @@ const ForgotPasswordView = () => {
           <div style={{ marginTop: "0px" }}>
             <div>
               <CustomTextField
+               style={{display:"flex",alignItems:"center"}}
+               size="small"
                 isError={errorData?.email}
                 errorText={errorData?.email}
                 label={
                   <span
                     style={{
                       color: "#636578",
-                      opacity: 1,
                     }}
                   >
                     Email ID
