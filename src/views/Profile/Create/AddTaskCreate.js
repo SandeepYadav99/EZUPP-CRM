@@ -22,6 +22,7 @@ import {
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
+import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -64,7 +65,7 @@ const AddTaskCreate = ({
         <div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <Autocomplete
+              {/* <Autocomplete
                 id="tags-outlined"
                 onChange={(e, value) => {
                   changeTextData(value, "assigned_to");
@@ -111,7 +112,21 @@ const AddTaskCreate = ({
                   />
                 )}
                 disableClearable
-              />
+              /> */}
+                <CustomMultiComplete
+              // multiple
+              showImage
+              AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
+              label="Assigned To"
+              error={errorData?.assigned_to}
+              getOptionLabel={(option) => option.email }
+              value={form.assigned_to || fetchedAssignedUser || []}
+              onTextChange={(text) => {
+                changeTextData(text, "assigned_to");
+              }}
+              enableField={["name", "email"]}
+             
+            />
             </div>
           </div>
           <div className={"formFlex"}>
@@ -177,7 +192,7 @@ const AddTaskCreate = ({
                 onChange={(e, value) => {
                   changeTextData(value, "category");
                 }}
-                options={categoryLists}
+                options={categoryLists || []}
                 value={form?.category}
                 freeSolo
                 selectOnFocus={false}

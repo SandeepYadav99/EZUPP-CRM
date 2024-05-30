@@ -23,6 +23,7 @@ import {
 } from "../../../../components/Buttons/PrimaryButton";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import useAddTaskUpdate from "./UpdateDetailHook";
+import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 
 const AddTaskUpdate = ({
   handleSideToggle,
@@ -65,7 +66,7 @@ const AddTaskUpdate = ({
         <div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <Autocomplete
+              {/* <Autocomplete
                 id="tags-outlined"
                 onChange={(e, value) => {
                   changeTextData(value, "assigned_to");
@@ -112,7 +113,21 @@ const AddTaskUpdate = ({
                   />
                 )}
                 disableClearable
-              />
+              /> */}
+               <CustomMultiComplete
+              // multiple
+              showImage
+              AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
+              label="Assigned To"
+              error={errorData?.assigned_to}
+              getOptionLabel={(option) => option.email }
+              value={form.assigned_to || fetchedAssignedUser || []}
+              onTextChange={(text) => {
+                changeTextData(text, "assigned_to");
+              }}
+              enableField={["name", "email"]}
+             
+            />
             </div>
           </div>
           <div className={"formFlex"}>
@@ -178,7 +193,7 @@ const AddTaskUpdate = ({
                 onChange={(e, value) => {
                   changeTextData(value, "category");
                 }}
-                options={categoryLists}
+                options={categoryLists || []}
                 value={form?.category}
                 freeSolo
                 selectOnFocus={false}

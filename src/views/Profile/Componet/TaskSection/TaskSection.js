@@ -71,48 +71,7 @@ const taskLists = [
       assignedOnDetailText: "31/01/2024  | 05:15 PM",
       associateUserName: "Vishal verma"
   },
-  {
-      _id: "65bb34acd15ddf1f7a1b584a",
-      category: ["test"],
-      is_overdue: true,
-      is_completed: false,
-      status: "ACTIVE",
-      title: "Task 2",
-      description: "Test",
-      due_date: "2024-02-14T06:30:00.000Z",
-      type: "DISCUSS",
-      priority: "HIGH",
-      comment: "Task",
-      createdAt: "2024-02-01T06:05:32.409Z",
-      updatedAt: "2024-05-28T22:00:00.431Z",
-      completed_on: null,
-      assignedTo: {
-          name: "Rajat singh",
-          email: "31pankajkumar@gmail.com",
-          image: "http://91.205.173.97:2444/public/user_images/default_user.jpg",
-          employee_id: "EMP/212",
-          id: "65b9fa8496aeebef1df24b88"
-      },
-      assignedBy: {
-          name: "Pankaj kumar",
-          image: "http://91.205.173.97:2444/public/business/1706092503596_Astral.jpg",
-          employee_id: "EMP/111",
-          id: "65ae5fc2bf709170e2585056",
-          email: "ipankajkumarlpu@gmail.com"
-      },
-      id: "65bb34acd15ddf1f7a1b584a",
-      associatedUser: {
-          image: null
-      },
-      createdAtText: "01-02-2024",
-      updatedAtText: "29-05-2024",
-      dueDateText: "14/02/2024 | 12:00 PM",
-      dueDateListText: "14 February 2024  12:00 PM",
-      completedOnText: "N/A",
-      assignedOnText: "01 February 2024  11:35 AM",
-      assignedOnDetailText: "01/02/2024  | 11:35 AM",
-      associateUserName: "N/A"
-  },
+ 
   {
       _id: "65bb34cad15ddf1f7a1b585b",
       category: ["Sandeep"],

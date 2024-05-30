@@ -1,4 +1,4 @@
-import { Avatar, CardHeader } from '@mui/material';
+import { Avatar, CardHeader, Typography } from '@mui/material';
 import React, { memo } from "react";
 import StatusPill from "../../../../components/Status/StatusPill.component";
 
@@ -7,14 +7,14 @@ const AssignedContainer = ({ details, styles, classes }) => {
     <div className={styles.mainFlex}>
       <div className={styles.backgroundStatus}>
         <div className={styles.getfiledSpace}>
-          <div className={styles.titleFiledSpace}>Due Date:</div>{" "}
+          <Typography variant="subtitle1" color={"text.secondary"}  marginLeft={2}>Due Date:</Typography>{" "}
 
           <div>
             <CardHeader subheader={details?.dueDateText} />
           </div>
         </div>
         <div className={styles.getfiledSpace}>
-          <div className={styles.titleFiledSpace}>Assigned To:</div>{" "}
+          <Typography variant="subtitle1" color={"text.secondary"} marginLeft={2}>Assigned To:</Typography>{" "}
 
           <div>
             <CardHeader
@@ -37,7 +37,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
           </div>
         </div>
         <div className={styles.getfiledSpace}>
-          <div className={styles.titleFiledSpace}>Assigned By:</div>{" "}
+          <Typography variant="subtitle1" color={"text.secondary"} marginLeft={2}>Assigned By:</Typography>{" "}
 
           <div>
             <CardHeader
@@ -54,7 +54,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
           </div>
         </div>
         <div className={styles.getfiledSpace}>
-          <div className={styles.titleFiledSpace}>Task Category:</div>{" "}
+          <Typography variant="subtitle1" color={"text.secondary"}  marginLeft={2}>Task Category:</Typography>{" "}
 
           <CardHeader
             subheader={
@@ -69,7 +69,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
                   <span key={index}>
                     <StatusPill
                       status={cat}
-                      style={{ backgroundColor: "blue", color: "white" }}
+                      color={cat.toLowerCase()}
                     />
                     {index < details.category.length - 1 && " , "}
                   </span>

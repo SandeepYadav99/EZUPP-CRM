@@ -26,6 +26,7 @@ import { serviceTaskManagementDetail } from "../../../services/ProviderUser.serv
 import { useParams } from "react-router-dom";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import {
+  ArrowOutlineButton,
   OutlineButton,
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
@@ -55,6 +56,49 @@ const useStyles = makeStyles((theme) => ({
     color: "#000",
   },
 }));
+
+const jsontoJs = {
+  _id: "65ba32d7fb1f30fe28028455",
+  category: ["CHECK", "Category"],
+  is_overdue: true,
+  is_completed: true,
+  status: "ACTIVE",
+  title: "Assign the task for FG",
+  description: "STEPS TO REGENERATE\n1. Check\n2. Priority",
+  due_date: "2024-01-23T16:30:00.000Z",
+  type: "DISCUSS",
+  priority: "HIGH",
+  comment: "Task",
+  createdAt: "2024-01-31T11:45:27.730Z",
+  updatedAt: "2024-05-29T22:00:00.382Z",
+  completed_on: "2024-05-29T18:12:58.754Z",
+  assignedTo: {
+    name: "Rajat singh",
+    email: "31pankajkumar@gmail.com",
+    image: "http://91.205.173.97:2444/public/user_images/default_user.jpg",
+    employee_id: "EMP/212",
+    id: "65b9fa8496aeebef1df24b88",
+  },
+  assignedBy: {
+    name: "Pankaj kumar",
+    image: "http://91.205.173.97:2444/public/business/1706092503596_Astral.jpg",
+    employee_id: "EMP/111",
+    id: "65ae5fc2bf709170e2585056",
+    email: "ipankajkumarlpu@gmail.com",
+  },
+  id: "65ba32d7fb1f30fe28028455",
+  associatedUser: {
+    image: null,
+  },
+  createdAtText: "31-01-2024",
+  updatedAtText: "30-05-2024",
+  dueDateText: "23/01/2024 | 10:00 PM",
+  dueDateListText: "23 January 2024  10:00 PM",
+  completedOnText: "29/05/2024 | 11:42 PM",
+  assignedOnText: "31 January 2024  05:15 PM",
+  assignedOnDetailText: "31/01/2024  | 05:15 PM",
+  associateUserName: "N/A",
+};
 
 const TaskDetailView = ({}) => {
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
@@ -132,18 +176,16 @@ const TaskDetailView = ({}) => {
   return (
     <div>
       <div className={styles.outerFlex}>
-        <div>
+        <div className={styles.arrowBack}>
           <ButtonBase onClick={() => historyUtils.goBack()}>
             <ArrowBackIosIcon fontSize={"small"} />{" "}
-            <span>
-              <b>Task Detail</b>
-            </span>
           </ButtonBase>
+          <Typography variant="h5">Task Detail</Typography>
         </div>
 
         <div className={styles.editAction}>
           {/* <div className={"myprofile"}> */}
-            {/* <FormControl variant={"outlined"} className={styles.selectWidth}>
+          {/* <FormControl variant={"outlined"} className={styles.selectWidth}>
               <Select
                 disableUnderline
                 //  value={filterValue}
@@ -155,52 +197,64 @@ const TaskDetailView = ({}) => {
                 <MenuItem value={"ALL"}>All</MenuItem>
               </Select>
             </FormControl> */}
-            <CustomSelectField label={"ALL"}  onChange={()=>{}} className={styles.selectWidth}>
+          <CustomSelectField
+            label={"ALL"}
+            onChange={() => {}}
+            className={styles.selectWidth}
+          >
             <MenuItem value={"PENDING"}>Pending</MenuItem>
-                <MenuItem value={"COMPLETED"}>Completed</MenuItem>
-                <MenuItem value={"ALL"}>All</MenuItem>
-            </CustomSelectField>
-          {/* </div> */}
-          <OutlineButton
+            <MenuItem value={"COMPLETED"}>Completed</MenuItem>
+            <MenuItem value={"ALL"}>All</MenuItem>
+          </CustomSelectField>
+
+          <ArrowOutlineButton
             onClick={handleSideToggle}
+            icon={<Edit fontSize={"20px"} />}
             className={styles.actionOutline}
+            paddingLR={3}
+            borderRadius={8}
           >
             <Typography variant="subtitle1">EDIT</Typography>
-            <Edit fontSize={"20px"} />
-          </OutlineButton>
+            {/* */}
+          </ArrowOutlineButton>
         </div>
       </div>
       <ShadowBox width={"100%"}>
         <div>
           <div className={styles.newContainer}>
             <TaskDetailHeader
-              details={details}
+              details={jsontoJs} // details
               markAsCompleted={markAsCompleted}
               styles={styles}
               completedHandler={completedHandler}
             />
-            <PillContainer details={details} styles={styles} />
+            <PillContainer details={jsontoJs} styles={styles} />
+            {/* details */}
             <AssignedContainer
               styles={styles}
-              details={details}
+              details={jsontoJs}
               classes={classes}
             />
             <TaskAssignedContainer
               classes={classes}
               styles={styles}
-              details={details}
+              details={jsontoJs}
             />
           </div>
         </div>
       </ShadowBox>
 
-      <AddNoteContainer
-        details={details}
-        styles={styles}
-        classes={classes}
-        toggleAcceptDialog={toggleAcceptDialog}
-        isAcceptPopUp={isAcceptPopUp}
-      />
+      <div className={styles.newNotes}>
+        <ShadowBox width={"100%"}>
+          <AddNoteContainer
+            details={jsontoJs}
+            styles={styles}
+            classes={classes}
+            toggleAcceptDialog={toggleAcceptDialog}
+            isAcceptPopUp={isAcceptPopUp}
+          />
+        </ShadowBox>
+      </div>
 
       <SidePanelComponent
         handleToggle={handleSideToggle}
@@ -212,7 +266,7 @@ const TaskDetailView = ({}) => {
           handleSideToggle={handleSideToggle}
           isSidePanel={isSidePanel}
           empId={id}
-          details={details}
+          details={jsontoJs}
         />
       </SidePanelComponent>
     </div>
