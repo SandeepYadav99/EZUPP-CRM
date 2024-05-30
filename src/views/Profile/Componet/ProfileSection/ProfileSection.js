@@ -35,8 +35,14 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               {profileDetails?.status || "N/A"}
             </div>
             <div className={styles.saveButton}>
-              <PrimaryButton onClick={() => handleEdit(profileDetails)} className={styles.editAction}>
-                <Typography  variant={"subtitle1"}>EDIT</Typography>
+              <PrimaryButton
+                onClick={() => handleEdit(profileDetails)}
+                paddingLR={2}
+                borderRadius={4}
+               
+               
+              >
+                <Typography variant={"subtitle1"}>EDIT</Typography>
               </PrimaryButton>
             </div>
           </div>
@@ -142,7 +148,9 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <div className={styles.activityFlex}>
           <div className={styles.sideTitle}>Updated By:</div>
 
-          <span className={styles.activity}>{profileDetails?.updated_by?.name || "N/A"}</span>
+          <span className={styles.activity}>
+            {profileDetails?.updated_by?.name || "N/A"}
+          </span>
         </div>
         <div className={styles.activityFlex}>
           <div className={styles.sideTitle}>Last Login:</div>

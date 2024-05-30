@@ -245,9 +245,7 @@
   .detailView {
     cursor: pointer;
   }
-  .editAction{
-    padding: 5px 12px !important;
-  }
+
   .gaps {
     padding: 5px;
   }

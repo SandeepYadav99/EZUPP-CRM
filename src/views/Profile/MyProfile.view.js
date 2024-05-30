@@ -67,8 +67,11 @@ console.log(userId, id)
             <div className={styles.profileHeading}></div>
             <div className={styles.profileHeaderAction}>
               <ArrowOutlineButton
-                className={styles.resetPassworedAction}
+               
                 onClick={handleClose}
+                paddingLR={2}
+                paddingTB={1}
+                borderRadius={8}
                 icon={<Lock fontSize="normal" />}
               >
                  <Typography variant={"subtitle1"}>RESET PASSWORD</Typography>
@@ -76,7 +79,10 @@ console.log(userId, id)
               </ArrowOutlineButton>
               <ArrowPrimaryButton
                 icon={<Add fontSize={"small"} />}
-                className={styles.resetPassworedAction}
+                
+                paddingLR={2}
+                paddingTB={1}
+                borderRadius={8}
                 onClick={handleSideToggle}
               >
                 

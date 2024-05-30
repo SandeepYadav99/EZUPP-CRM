@@ -3,9 +3,12 @@ import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { Add, ArrowForward, Lock } from "@mui/icons-material";
 
-const ButtonWrapper = styled(Button)(({ theme, padding }) => ({
+const ButtonWrapper = styled(Button)(({ theme, padding , paddingTB, borderRadius}) => ({
   paddingLeft: padding ? theme.spacing(padding) : "",
   paddingRight: padding ? theme.spacing(padding) : "",
+  paddingTop: paddingTB ? theme.spacing(paddingTB) : "",
+  paddingBottom: paddingTB ? theme.spacing(paddingTB) : "",
+  borderRadius:borderRadius ? borderRadius : "",
   "&:hover": {
     backgroundColor: theme.palette?.primaryButton?.hover,
   },
@@ -15,11 +18,13 @@ const ButtonWrapper = styled(Button)(({ theme, padding }) => ({
   },
 }));
 
-const PrimaryButton = ({ disabled, padding, children, ...props }) => {
+const PrimaryButton = ({ disabled, paddingLR, paddingTB,borderRadius, children, ...props }) => {
   return (
     <ButtonWrapper
       {...props}
-      padding={padding}
+      padding={paddingLR}
+      paddingTB={paddingTB}
+      borderRadius={borderRadius}
       variant={"contained"}
       disabled={disabled ? true : false}
     >
@@ -28,9 +33,12 @@ const PrimaryButton = ({ disabled, padding, children, ...props }) => {
   );
 };
 
-const OutlineButtonWrapper = styled(Button)(({ theme, padding }) => ({
+const OutlineButtonWrapper = styled(Button)(({ theme, padding , paddingTB, borderRadius}) => ({
   paddingLeft: padding ? theme.spacing(padding) : theme.spacing(4),
   paddingRight: padding ? theme.spacing(padding) : theme.spacing(4),
+  paddingTop: paddingTB ? theme.spacing(paddingTB) : "",
+  paddingBottom: paddingTB ? theme.spacing(paddingTB) : "",
+  borderRadius:borderRadius ? borderRadius : "",
   "&:hover": {
     backgroundColor: theme.palette.primary.light,
   },
@@ -40,11 +48,13 @@ const OutlineButtonWrapper = styled(Button)(({ theme, padding }) => ({
   },
 }));
 
-const OutlineButton = ({ disabled, padding, children, ...props }) => {
+const OutlineButton = ({ disabled, padding, children,paddingTB,borderRadius, ...props }) => {
   return (
     <OutlineButtonWrapper
       variant={"outlined"}
       padding={padding}
+      paddingTB={paddingTB}
+      borderRadius={borderRadius}
       disabled={disabled}
       {...props}
     >
@@ -108,21 +118,25 @@ const ActionMultiSelectButton = ({ disabled, children, ...props }) => {
   );
 };
 
-const ArrowPrimaryButton = ({ icon, paddingLR, ...props }) => {
+const ArrowPrimaryButton = ({ icon, paddingLR, paddingTB, borderRadius ,...props }) => {
   return (
     <PrimaryButton
       {...props}
       padding={paddingLR}
+      paddingTB={paddingTB}
+      borderRadius={borderRadius}
       endIcon={!icon ? <ArrowForward /> : icon}
     />
   );
 };
 
-const ArrowOutlineButton = ({ paddingLR, icon, ...props }) => {
+const ArrowOutlineButton = ({ paddingLR, icon,paddingTB, borderRadius , ...props }) => {
   return (
     <OutlineButton
       {...props}
       padding={paddingLR}
+      paddingTB={paddingTB}
+      borderRadius={borderRadius}
       endIcon={icon ? icon : <ArrowForward />}
     />
   );
