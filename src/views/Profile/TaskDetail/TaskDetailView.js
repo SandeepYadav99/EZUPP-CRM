@@ -212,6 +212,7 @@ const TaskDetailView = ({}) => {
             icon={<Edit fontSize={"20px"} />}
             className={styles.actionOutline}
             paddingLR={3}
+            borderRadius={8}
           >
             <Typography variant="subtitle1">EDIT</Typography>
             {/* */}
@@ -243,8 +244,8 @@ const TaskDetailView = ({}) => {
         </div>
       </ShadowBox>
 
-        <div className={styles.newNotes}>
-      <ShadowBox width={"100%"}>
+      <div className={styles.newNotes}>
+        <ShadowBox width={"100%"}>
           <AddNoteContainer
             details={jsontoJs}
             styles={styles}
@@ -252,8 +253,8 @@ const TaskDetailView = ({}) => {
             toggleAcceptDialog={toggleAcceptDialog}
             isAcceptPopUp={isAcceptPopUp}
           />
-      </ShadowBox>
-        </div>
+        </ShadowBox>
+      </div>
 
       <SidePanelComponent
         handleToggle={handleSideToggle}
