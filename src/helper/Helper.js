@@ -2,6 +2,14 @@ export const removeUnderScore = (value) => {
   return value ? value.replace(/_/g, " ") : "";
 };
 
+export const cleanContactNumber = (value) => {
+  const contactStr = value.replace(/[()+-]/g, '');
+  const arr = contactStr.split(" ");
+  if (arr.length > 1) {
+    return `${arr[0]} ${arr.slice(1, arr.length).join('')}`
+  } return arr[0];
+}
+
 export const getTextColor = (title) => {
   switch (title) {
     case "personal":
@@ -124,23 +132,23 @@ export const guestList = [
 ]
 export const companyList=[ {
   id:1,
-  label :"xyz",
-  title:"xyz"
+  label :"Tester",
+  title:"Tester"
 },
 {
   id:2,
-  label :"abc",
-  title:"abc"
+  label :"Company",
+  title:"Company"
 },
 {
   id:3,
-  label :"def",
-  title:"def"
+  label :"Unit",
+  title:"Unit"
 },
 {
   id:4,
-  label :"ghi",
-  title:"ghi"
+  label :"StartUp",
+  title:"StartUp"
 }]
 
 export const associateTagsList=[ {
@@ -654,3 +662,21 @@ export const NotiList = [
       dateTime: "1h ago"
     }
 ]
+export const leadStatus = [
+  {
+    label: "New",
+    value: "New",
+  },
+  {
+    label: "Contact in Future",
+    value: "Contact in Future",
+  },
+  {
+    label: "Contacted",
+    value: "Contacted",
+  },
+  {
+    label: "Junk Lead",
+    value: "Junk Lead",
+  },
+];

@@ -208,7 +208,8 @@
 
 .imgFileLabelPlusShow {
   position: absolute;
-  top: 95px;
+  /* top: 95px; */
+  top:185px;
   width: 100%;
   display: flex;
   flex-direction: column;

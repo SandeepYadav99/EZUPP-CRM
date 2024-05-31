@@ -106,6 +106,9 @@
 .heading{
     margin-right: 5px;
 } 
+.wrapper{
+  display: flex;
+}
 .headerFlex {
     display: flex;
     justify-content: space-between;

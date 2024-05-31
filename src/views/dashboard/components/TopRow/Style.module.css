@@ -205,7 +205,7 @@ height: 86px;
     display: flex;
   }
   .textbox{
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     flex: 3 1;
     /* width:80%; */
   }

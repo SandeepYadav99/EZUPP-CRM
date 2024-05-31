@@ -5,6 +5,7 @@ import { createTheme } from '@mui/material/styles';
 
 // project import
 import ThemeOption from './theme';
+import DarkTheme from "./theme/dark";
 
 // ==============================|| DEFAULT THEME - PALETTE  ||============================== //
 
@@ -33,6 +34,7 @@ const Palette = (mode) => {
   colors.grey = [...greyPrimary, ...greyAscent, ...greyConstant];
 
   const paletteColor = ThemeOption(colors);
+  const darkPaletteColor = DarkTheme(colors);
 
   return createTheme({
     palette: {
@@ -42,7 +44,7 @@ const Palette = (mode) => {
         // white: '#fff'
         white:'#F7F7F9'
       },
-      ...paletteColor,
+      ...(mode === 'light' ? paletteColor : darkPaletteColor),
       // text: {
       //   primary: paletteColor.grey[700],
       //   secondary: paletteColor.grey[500],

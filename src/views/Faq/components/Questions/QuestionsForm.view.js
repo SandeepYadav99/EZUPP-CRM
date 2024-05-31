@@ -107,19 +107,19 @@ class QuestionsFormView extends Component {
         this._suspendItem = this._suspendItem.bind(this);
     }
 
+
     componentDidMount() {
         const {data,category} = this.props;
         if(category){
             console.log(category)
              this.props.change('title', category.title);
-             this.props.change('visible_to', category.visible_to);
         }
         let htmlData = '';
         if (data) {
             this.setState({
                 is_active: data.status == 'ACTIVE'
             })
-            requiredFields = ['title','visible_to','priority','question'];
+            requiredFields = ['title','priority','question'];
             Object.keys(data).forEach((val) => {
                 if (['description', 'status'].indexOf(val) < 0) {
                     const temp = data[val];
@@ -129,7 +129,7 @@ class QuestionsFormView extends Component {
             htmlData = data.description;
         } else {
             htmlData = ''
-            requiredFields = ['title','visible_to','priority','question'];
+            requiredFields = ['title','priority','question'];
         }
 
         const contentHTML = convertFromHTML(htmlData)
@@ -150,9 +150,12 @@ class QuestionsFormView extends Component {
 
     }
 
+
     _handleSubmit(tData) {
         const {category} = this.props;
         const { editor } = this.state;
+
+
         if (editor) {
             const status = this.state.is_active ? 'ACTIVE' : 'INACTIVE'
             const {data} = this.props;

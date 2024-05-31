@@ -32,6 +32,7 @@ import { updateTitle } from "../../libs/general.utils";
 import backArrow from "../../assets/CRMAssets/ic_back.png";
 import arrowIcon from "../../assets/CRMAssets/ic_arrow_white.png";
 import { ArrowPrimaryButton } from "../../components/Buttons/PrimaryButton";
+import SnackbarUtils from "../../libs/SnackbarUtils";
 
 const validate = (values) => {
   const errors = {};
@@ -77,6 +78,9 @@ const useStyles = {
   dialog: {
     padding: "10px 25px",
   },
+  labelRoot: {
+    background: "#f7f7f9",
+  },
 };
 
 class ForgotPasswordView extends Component {
@@ -114,10 +118,7 @@ class ForgotPasswordView extends Component {
       });
       serviceForgotPassword(data).then((val) => {
         if (!val.error) {
-          EventEmitter.dispatch(EventEmitter.THROW_ERROR, {
-            error: "Password Reset Email Sent",
-            type: "success",
-          });
+          SnackbarUtils.success("Password Reset Email Sent")
           this.setState({
             is_sent: true,
             is_calling: false,
@@ -126,10 +127,7 @@ class ForgotPasswordView extends Component {
           this.setState({
             is_calling: false,
           });
-          EventEmitter.dispatch(EventEmitter.THROW_ERROR, {
-            error: "Invalid Email Address",
-            type: "error",
-          });
+          SnackbarUtils.error("Invalid Email Address")
         }
       });
     }
@@ -199,31 +197,35 @@ class ForgotPasswordView extends Component {
                   alignItems: "center",
                 }}
               >
-                {/*<ArrowBack onClick={this._handleBack}>*/}
-                {/*</ArrowBack>*/}
-                {/* <div className={styles.headingTextBig}>Forgot Password ?</div> */}
-                <Typography variant="h3" color="text.secondary">Forgot Password</Typography>
+                <Typography
+                  variant="h3"
+                  color="text.secondary"
+                  className={styles.headingText}
+                >
+                  Forgot Password?
+                </Typography>
               </div>
               <p
                 className={styles.bottomLine}
-                style={{ color: "grey", fontSize: "14px",marginTop:"10px" }}
+                style={{
+                  color: "#888888",
+                  fontSize: "14px",
+                  marginTop: "10px",
+                }}
               >
                 Enter your email and we'll send you instructions to reset your
                 password
               </p>
-              <div style={{marginTop:"10px"}}>
-                {/* <br /> */}
+              <div style={{ marginTop: "0px" }}>
                 <div>
                   <Field
                     fullWidth={true}
                     name="email"
                     component={renderOutlinedTextField}
-                    label="E-Mail*"
+                    label="Email ID"
                   />
                 </div>
-                {/*<span style={{float:'right',marginTop:'5px'}}><Link to='/login'>Back To Login</Link></span>*/}
                 <br />
-
                 <div
                   style={{
                     display: "flex",
@@ -236,24 +238,21 @@ class ForgotPasswordView extends Component {
                     disabled={this.state.is_calling}
                     variant={"contained"}
                     type="submit"
-                    className={styles.login}
+                    Typography={"h6"}
                   >
-                    {this.state.is_calling ? (
-                      <div style={{ padding: "5px 20px", display: "flex" }}>
-                        <CircularProgress size={"18px"} color={"primary"} />
-                      </div>
-                    ) : (
-                      "SEND REST LINK"
-                    )}
+                    SEND RESET LINK
                   </ArrowPrimaryButton>
                   <div>
                     <span className={styles.bottomSignup}>
                       <ButtonBase
                         onClick={this._handleBack}
                         className={styles.back}
+                        id={styles.forgotBtn}
                       >
                         <img src={backArrow} alt="backtext" />
-                        Back To Login
+                        <Typography variant={"caption"}>
+                          Back To Login
+                        </Typography>
                       </ButtonBase>
                     </span>
                   </div>
@@ -272,8 +271,7 @@ class ForgotPasswordView extends Component {
     return (
       <>
         <div className={styles.overlay}></div>
-        <div className={styles.mainLoginView}>
-        </div>
+        <div className={styles.mainLoginView}></div>
         <div className={styles.container}>
           <div className={styles.loginFlex2}>{this._renderForm()}</div>
           <DashboardSnackbar />

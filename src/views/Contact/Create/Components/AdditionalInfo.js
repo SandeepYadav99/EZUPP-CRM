@@ -5,13 +5,9 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import RadioButtonWithText from "../../../../components/RadioButtons/RadioButtonWithText";
-import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
-const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
-  const [selectedValue, setSelectedValue] = React.useState("");
-
-  const handleChange = (value) => {
-    setSelectedValue(value);
-  };
+import { InfoOutlined as InfoIcon } from "@mui/icons-material";
+import { allTimeZone } from "../../../../helper/TimeZoneCountries";
+const AdditionalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
   return (
     <ShadowBox className={styles.contact}>
       <div className={"headerFlex"}>
@@ -20,10 +16,9 @@ const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
             Additional Information
           </Typography>
           <Tooltip title="Info" aria-label="info" placement="right">
-              <InfoIcon fontSize={"small"} />
-            </Tooltip>
+            <InfoIcon fontSize={"small"} />
+          </Tooltip>
         </h4>
-        
       </div>
       <div className={"formFlex"}>
         <div className={"formGroup"}>
@@ -35,18 +30,21 @@ const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
             handleChange={(value) => {
               changeTextData(value, "time_zone");
             }}
-          >
-            <MenuItem value=""></MenuItem>
-            <MenuItem value="OTHER"></MenuItem>
+          >  
+            {allTimeZone?.map((item, index) => (
+              <MenuItem value={`${item?.MobileCode}_${item?.UTC}`} key={`timezone_${index}`}>
+                {`${item?.Name} ( ${item?.MobileCode} , ${item?.UTC})`}
+              </MenuItem>
+            ))}
           </CustomSelectField>
         </div>
         <div className={"formGroup"}>
           <CustomTextField
-            isError={errorData?.linkedIn_url}
-            errorText={errorData?.linkedIn_url}
+            isError={errorData?.linkedin_url}
+            errorText={errorData?.linkedin_url}
             label={"LinkedIn URL"}
             onTextChange={(text) => {
-              changeTextData(text, "linkedIn_url");
+              changeTextData(text, "linkedin_url");
             }}
             className={styles.desc}
           />
@@ -103,11 +101,11 @@ const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
       <div className={"formFlex"}>
         <div className={"formGroup"}>
           <CustomTextField
-            isError={errorData?.whatsApp_broadcast_channel}
-            errorText={errorData?.whatsApp_broadcast_channel}
+            isError={errorData?.wa_broadcast_channel}
+            errorText={errorData?.wa_broadcast_channel}
             label={"WhatsApp Broadcast Channel"}
             onTextChange={(text) => {
-              changeTextData(text, "whatsApp_broadcast_channel");
+              changeTextData(text, "wa_broadcast_channel");
             }}
             className={styles.desc}
           />
@@ -130,24 +128,27 @@ const AdditionalInfo = ({errorData, changeTextData, onBlurHandler, form}) => {
             <RadioButtonWithText
               title="I want to access Newsletter"
               description="Yes!, I would love the updates."
-              checked={selectedValue === "news"}
-              handleChange={handleChange}
-              value="news"
+              checked={form?.is_newsletter_subscribed === "NEWS"}
+              handleChange={(val) =>
+                changeTextData(val, "is_newsletter_subscribed")
+              }
+              value="NEWS"
               inputType="radio"
             ></RadioButtonWithText>
             <RadioButtonWithText
               title="I don't want access to Newsletter"
               description="I have no interest in staying updated."
-              checked={selectedValue === "Nonews"}
-              handleChange={handleChange}
-              value="Nonews"
+              checked={form?.is_newsletter_subscribed === "NO_NEWS"}
+              handleChange={(val) =>
+                changeTextData(val, "is_newsletter_subscribed")
+              }
+              value="NO_NEWS"
               inputType="radio"
             ></RadioButtonWithText>
           </div>
         </div>
         <div className="formGroup"></div>
       </div>
-      
     </ShadowBox>
   );
 };

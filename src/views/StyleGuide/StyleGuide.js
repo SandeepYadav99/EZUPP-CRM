@@ -427,65 +427,30 @@ const StyleGuide = ({}) => {
           </div>
         </div>
       </div>
-      <br></br>
-      <div className={styles.flexBox}>
-        <div className={styles.boxContFlex}>
-          <div>
-            <Typography gutterBottom variant="h5">
-              Label Initials
-            </Typography>
-            <div style={{ display: "flex" }}>
-              <UserCountAvatarsLabelInitials
-                width={"28px"}
-                height={"28px"}
-                bgcolor={"#e8e9ff"}
-                fontSize={"12px"}
-                color={"#666cff"}
-                title={"PI"}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div className={styles.boxContFlex}>
-          <div>
-            <Typography gutterBottom variant="h5">
-              Status Indicator
-            </Typography>
-            <div>
-              <UserCountAvatarsStatusIndicator
-                width={"44px"}
-                height={"44px"}
-                bgcolor={"#e8e9ff"}
-                fontSize={"12px"}
-                color={"#666cff"}
-                title={"PI"}
-                imgUrl={require("../../assets/img/1.png")}
-              />
-            </div>
-          </div>
-        </div>
-        <div className={styles.boxContFlex}>
-          <div>
-            <Typography gutterBottom variant="h5">
-              Pull Up with Tooltip
-            </Typography>
-            <div>
-              <UserCountAvatarsLableAvatarGroup
-                width={"44px"}
-                height={"44px"}
-                bgcolor={"#e8e9ff"}
-                fontSize={"12px"}
-                color={"#666cff"}
-                title={"Style Guide"}
-                maxAvator={4}
-                imgUrl={require("../../assets/img/1.png")}
-              />
-            </div>
-          </div>
+      <div className={styles.boxContFlex}>
+        <UserCountAvatarsSize />
+        <UserCountAvatarsInitials />
+        <UserCountAvatarsLabelInitials />
+        <UserCountAvatarsShapes />
+        <UserCountAvatarsStatusIndicator />
+        <UserCountAvatarsLableAvatarStatusIndicator />
+      </div>
+      <br />
+      <div>
+        <div>
+          <UserCountAvatarsLableAvatarGroup avatars={avatars} />
         </div>
       </div>
-      <br></br>
+      <br />
+      {/* <div>
+        <UserCountRadioLables />
+      </div>
+      <br />
+      <div>
+        <CustomOptionRadiosWithIcon />
+      </div>
+      <br /> */}
       <div>
         <Typography variant={"h5"}>Custom Radio options with icons</Typography>
       </div>
@@ -571,6 +536,8 @@ const StyleGuide = ({}) => {
           "Customers",
           "All",
         ]}
+        selectedIndex={0}
+    onButtonClick={(index) => console.log(`Button ${index} clicked`)}
       />
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">

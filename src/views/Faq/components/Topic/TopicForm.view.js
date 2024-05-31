@@ -257,8 +257,6 @@ class Faq extends Component {
                                    margin={'dense'}
                                    label="Applies To">
                                 <MenuItem value={'BOTH'}>General</MenuItem>
-                                <MenuItem value={'CUSTOMER'}>Customers</MenuItem>
-                                <MenuItem value={'MANUFACTURE'}>Manufacturers</MenuItem>
                             </Field>
                         </div>
                     </div>

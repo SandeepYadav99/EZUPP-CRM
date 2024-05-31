@@ -1,0 +1,24 @@
+.container {
+  border: 1px solid #c5c5c5;
+  width: 228px;
+  height: 206px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+  grid: 10px;
+}
+
+.companyname {
+  font: normal normal bold 18px/36px Arial;
+  letter-spacing: 0px;
+  color: #636578;
+  opacity: 1;
+}
+.email {
+  font: normal normal normal 14px/16px Arial;
+  letter-spacing: 0px;
+  color: #888888;
+  opacity: 1;
+}

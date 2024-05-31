@@ -28,7 +28,7 @@ export async function serviceUploadBlogImage(params) {
 }
 
 export async function serviceGetTagsList(params) {
-    return await postRequest('/profile/get/keyword', params);
+    return await postRequest('keywords', params);
 }
 
 export async function serviceBlogsDetails(params){

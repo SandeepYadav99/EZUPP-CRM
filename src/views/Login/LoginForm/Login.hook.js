@@ -78,7 +78,7 @@ const useLoginHook = () => {
         if (!res.error) {
           dispatch(actionLoginUser(res?.data));
         } else {
-          SnackbarUtils.error(res?.message);
+          SnackbarUtils.error("Invalid Username/Password");
         }
         setIsSubmitting(false);
       });
