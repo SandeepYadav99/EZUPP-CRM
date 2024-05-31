@@ -62,6 +62,7 @@ const ProductCreate = ({}) => {
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
+        listData={listData}
       />
       <Settings
         errorData={errorData}

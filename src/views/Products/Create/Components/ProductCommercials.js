@@ -5,7 +5,7 @@ import CustomTextField from "../../../../components/FormFields/TextField/TextFie
 import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useState, useEffect } from "react";
-import {serviceGetUnitList} from "../../../../services/Unit.service";
+
 const ProductCommercials = ({
   errorData,
   changeTextData,
@@ -13,26 +13,11 @@ const ProductCommercials = ({
   form,
   image,
   listData,
-  unitsList,
-  allData,
-  ...props
+ 
+
 }) => {
   console.log(form, "Form");
-  const [units, setUnits] = useState([]);
 
-  useEffect(() => {
-    const fetchUnits = async () => {
-      try {
-        const response = await serviceGetUnitList(); 
-        setUnits(response.data); 
-      } catch (error) {
-        console.error("Error fetching unit list:", error);
-        
-      }
-    };
-
-    fetchUnits();
-  }, []);
   return (
     <>
       <ShadowBox className={styles.product}>
@@ -72,17 +57,12 @@ const ProductCommercials = ({
                   handleChange={(value) => {
                     changeTextData(value, "unit_id");
                   }}
-                  unitsList={allData}
+                  
                 >
                   {listData?.UNITS?.map((unit) => (
-                    <MenuItem value={unit?.id}>{unit?.name}</MenuItem>
+                    <MenuItem key={unit?.id} value={unit?.id}>{unit?.name}</MenuItem>
                   ))}
-                  {/* {unitsList &&
-    unitsList.map((unit) => (
-      <MenuItem key={unit.id} value={unit.id}>
-        {unit.name}
-      </MenuItem>
-    ))} */}
+                  
                 </CustomSelectField>
               </div>
             </div>
