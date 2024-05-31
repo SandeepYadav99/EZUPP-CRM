@@ -225,11 +225,13 @@
 }
 .selectWidth {
   background-color: #FFF !important;
+ 
+
 }
 .editAction {
   display: flex;
   gap: 10px;
-  width: 18%;
+ 
 }
 
 .notFound {
