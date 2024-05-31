@@ -17,11 +17,11 @@ const WorkInfoView = ({
 }) => {
   return (
     <>
-      <div className={"plainPaper"} style={{ backgroundColor: "#FFFFFF" }}>
+      <ShadowBox className={styles.mainBox}>
         <div className={"headerFlex"}>
           <Typography
             fontSize={18}
-            color={"#636578"}
+            // color={"#636578"}
             fontWeight={600}
             marginTop={1.5}
             marginBottom={1.5}
@@ -235,7 +235,7 @@ const WorkInfoView = ({
             />
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

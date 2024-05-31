@@ -11,7 +11,7 @@ import StatusPill from "../../../../components/Status/StatusPill.component";
 const ProfileSection = ({ profileDetails, handleEdit }) => {
   return (
     <ShadowBox width={"100%"}>
-      <div className={styles.plain}>
+      <div >
         <div className={styles.profileContainer}>
           <div>
             {/* {profileDetails?.image && ( */}
@@ -26,7 +26,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             {/* )} */}
           </div>
           <div>
-            <Typography fontSize={18} color={"#636578"} fontWeight={600}  >
+            <Typography fontSize={18}  fontWeight={600}  >
               {capitalizeFirstLetter(profileDetails?.name)}
             </Typography>
             <Typography variant="h6" color={"#888888"} fontWeight={600}  >
@@ -49,7 +49,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </div>
           </div>
         </div>
-        <Typography fontSize={18} color={"#636578"} marginTop={3} fontWeight={600} >Personal Details</Typography>
+        <Typography fontSize={18}  marginTop={3} fontWeight={600} >Personal Details</Typography>
         <div className={styles.gaps} />
         <div>
           {/* <div className={styles.contactFlex}>
@@ -60,21 +60,21 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </span>
           </div> */}
           <div className={styles.contactFlex}>
-            <Typography variant="h6" color={"#636578"}  fontWeight={600} >Email:</Typography>
+            <Typography variant="h6"   fontWeight={600} >Email:</Typography>
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2} >
               {" "}
               {profileDetails?.email || "N/A"}
             </Typography>
           </div>
           <div className={styles.contactFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >Contact:</Typography>
+            <Typography variant="h6"  fontWeight={600} >Contact:</Typography>
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}  >
               {" "}
               {profileDetails?.contact || "N/A"}
             </Typography>
           </div>
           <div className={styles.contactFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >Role:</Typography>
+            <Typography variant="h6"  fontWeight={600} >Role:</Typography>
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2} >
               {" "}
               {profileDetails?.role?.name || "N/A"}
@@ -83,46 +83,46 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         </div>
         <div className={styles.gaps} />
         <hr className={styles.hrColor} />
-        <Typography fontSize={18} color={"#636578"} marginTop={3} fontWeight={600} >Work Details</Typography>
+        <Typography fontSize={18}  marginTop={3} fontWeight={600} >Work Details</Typography>
         <div className={styles.gaps} />
         <div>
           <div className={styles.activityFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >Department:</Typography>
+            <Typography variant="h6"  fontWeight={600} >Department:</Typography>
 
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
               {formatString(profileDetails?.department || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >Designation:</Typography>
+            <Typography variant="h6"  fontWeight={600} >Designation:</Typography>
 
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
               {formatString(profileDetails?.designation || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >Manager:</Typography>
+            <Typography variant="h6"  fontWeight={600} >Manager:</Typography>
 
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
               {formatString(profileDetails?.manager?.name || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >Joining Date:</Typography>
+            <Typography variant="h6"  fontWeight={600} >Joining Date:</Typography>
 
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
               {profileDetails?.joiningDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >Exit Date:</Typography>
+            <Typography variant="h6"  fontWeight={600} >Exit Date:</Typography>
 
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
               {profileDetails?.exitDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h6" color={"#636578"} fontWeight={600} >User is a Manager:</Typography>
+            <Typography variant="h6"  fontWeight={600} >User is a Manager:</Typography>
 
             <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
               {profileDetails?.is_manager ? "Yes" : "No"}
@@ -131,31 +131,31 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         </div>
         <div className={styles.gaps} />
         <hr className={styles.hrColor} />
-        <Typography fontSize={18} color={"#636578"} marginTop={3} fontWeight={600} >Activity Information</Typography>
+        <Typography fontSize={18}  marginTop={3} fontWeight={600} >Activity Information</Typography>
         <div className={styles.gaps} />
         <div className={styles.activityFlex}>
-          <Typography variant="h6" color={"#636578"} fontWeight={600} >Created On:</Typography>
+          <Typography variant="h6"  fontWeight={600} >Created On:</Typography>
 
           <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
             {profileDetails?.createdAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
-          <Typography variant="h6" color={"#636578"} fontWeight={600} >Updated On:</Typography>
+          <Typography variant="h6"  fontWeight={600} >Updated On:</Typography>
 
           <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
             {profileDetails?.updatedAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
-          <Typography variant="h6" color={"#636578"} fontWeight={600} >Updated By:</Typography>
+          <Typography variant="h6"  fontWeight={600} >Updated By:</Typography>
 
           <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
             {profileDetails?.updated_by?.name || "N/A"}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
-          <Typography variant="h6" color={"#636578"} fontWeight={600} >Last Login:</Typography>
+          <Typography variant="h6"  fontWeight={600} >Last Login:</Typography>
 
           <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
             {profileDetails?.lastLoginText}

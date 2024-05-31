@@ -38,6 +38,9 @@
 .avatarImage{
   margin-left: -80px !important;
 }
+.boldTitle{
+  font-weight: 600;
+}
 .avatar_group{
   margin-left: -45px !important;
   

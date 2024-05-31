@@ -110,7 +110,7 @@ const TaskDetailView = ({}) => {
   const { id } = useParams();
   const [details, setDetails] = useState([]);
   // const { present: details } = useSelector((state) => state.common);
-
+  const [filterValue, setFilterValue] = useState("ALL");
   const toggleAcceptDialog = useCallback(
     (obj) => {
       setIsAcceptPopUp((e) => !e);
@@ -118,6 +118,12 @@ const TaskDetailView = ({}) => {
     [isAcceptPopUp]
   );
 
+  const filterCompltedTask = useCallback(
+    (event) => {
+      setFilterValue(event);
+    },
+    [filterValue]
+  );
   const fetchTaskDetails = useCallback(() => {
     // setTimeout(() => {
     serviceTaskManagementDetail({ id: id }).then((res) => {
@@ -184,22 +190,9 @@ const TaskDetailView = ({}) => {
         </div>
 
         <div className={styles.editAction}>
-          {/* <div className={"myprofile"}> */}
-          {/* <FormControl variant={"outlined"} className={styles.selectWidth}>
-              <Select
-                disableUnderline
-                //  value={filterValue}
-                value={"ALL"}
-                // onChange={filterCompltedTask}
-              >
-                <MenuItem value={"PENDING"}>Pending</MenuItem>
-                <MenuItem value={"COMPLETED"}>Completed</MenuItem>
-                <MenuItem value={"ALL"}>All</MenuItem>
-              </Select>
-            </FormControl> */}
           <CustomSelectField
-            label={"ALL"}
-            onChange={() => {}}
+            value={filterValue}
+            handleChange={filterCompltedTask}
             className={styles.selectWidth}
           >
             <MenuItem value={"PENDING"}>Pending</MenuItem>
@@ -210,9 +203,12 @@ const TaskDetailView = ({}) => {
           <ArrowOutlineButton
             onClick={handleSideToggle}
             icon={<Edit fontSize={"20px"} />}
-            className={styles.actionOutline}
+            className={styles.boxHeight}
             paddingLR={3}
+            paddingTB={0}
             borderRadius={8}
+           
+           
           >
             <Typography variant="subtitle1">EDIT</Typography>
             {/* */}

@@ -10,6 +10,7 @@ import {
 } from "../../components/Buttons/PrimaryButton";
 import useResetPasswordHook from "./ResetPasswordHook";
 import CustomTextField from "../../FormFields/TextField.component";
+import ShadowBox from "../../components/ShadowBox/ShadowBox";
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -39,7 +40,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               padding: "10px",
             }}
           >
-            <Typography variant="h4" color={"#636578"}>
+            <Typography variant="h4" >
               Reset Password
             </Typography>
 
@@ -145,7 +146,9 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
           },
         }}
       >
-        <div className={styles.formContainer}>{renderForm()}</div>
+        <ShadowBox width={"100%"}>
+          <div className={styles.formContainer}>{renderForm()}</div>
+        </ShadowBox>
         <DashboardSnackbar />
       </Dialog>
     </div>

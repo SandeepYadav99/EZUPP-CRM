@@ -142,13 +142,13 @@ const useAddTaskCreate = ({
         delete errors[val];
       }
     });
-    if (!form.due_date || isNaN(new Date(form?.due_date))) {
-      setHelperText("Invalid date/time format.");
-      errors.due_date = true;
-    } else {
-      // delete form?.due_date;
-      setHelperText("");
-    }
+    // if (!form.due_date || isNaN(new Date(form?.due_date))) {
+    //   setHelperText("Invalid date/time format.");
+    //   errors.due_date = true;
+    // } else {
+    //   // delete form?.due_date;
+    //   setHelperText("");
+    // }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];

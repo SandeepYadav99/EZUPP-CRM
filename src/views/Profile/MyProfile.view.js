@@ -24,6 +24,7 @@ import TaskSection from "./Componet/TaskSection/TaskSection";
 import RouteName from "../../routes/Route.name";
 import AddTaskCreate from "./Create/AddTaskCreate";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
+
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const {
@@ -74,7 +75,7 @@ console.log(userId, id)
                 borderRadius={8}
                 icon={<Lock fontSize="normal" />}
               >
-                 <Typography variant={"subtitle1"}>RESET PASSWORD</Typography>
+                 <Typography variant={"subtitle1"} color={""}>RESET PASSWORD</Typography>
               
               </ArrowOutlineButton>
               <ArrowPrimaryButton
