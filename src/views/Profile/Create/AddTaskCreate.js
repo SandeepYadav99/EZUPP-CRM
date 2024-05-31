@@ -175,7 +175,9 @@ const AddTaskCreate = ({
                  changeTextData(date, "due_date");
                
               }}
-            
+              onBlur={() => {
+                onBlurHandler("description");
+              }}
               className={styles.dateContainer}
               value={form?.due_date}
               isError={errorData?.due_date}
@@ -258,7 +260,7 @@ const AddTaskCreate = ({
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <Autocomplete
+              {/* <Autocomplete
                 id="tags-outlined"
                 onChange={(e, value) => {
                   changeTextData(value, "associated_user");
@@ -310,48 +312,40 @@ const AddTaskCreate = ({
                   />
                 )}
                 disableClearable
-              />
+              /> */}
+                     <CustomMultiComplete
+              // multiple
+              showImage
+              AutoCompleteList={filteredUsers || form.associated_user || []}
+              label="Associated User (Optional)"
+              error={errorData?.associated_user}
+              getOptionLabel={(option) => option.email }
+              value={form.associated_user || []}
+              onTextChange={(text) => {
+                changeTextData(text, "associated_user");
+              }}
+              enableField={["name"]}
+             
+            />
             </div>
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <Autocomplete
-                id="tags-outlined"
-                onChange={(e, value) => {
-                  changeTextData(value, "associated_task");
-                }}
-                value={form.associated_task || []}
-                options={filteredTask || []} // listData ||
-                getOptionLabel={(option) => option?.title}
-                defaultValue={form?.associated_task || []}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="outlined"
-                    label="Associated Task (Optional)"
-                    error={errorData?.associated_task}
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          {form?.associated_task ? (
-                            <Clear
-                              onClick={() =>
-                                changeTextData(null, "associated_task")
-                              }
-                              style={{ cursor: "pointer" }}
-                            />
-                          ) : null}
-                          <Search
-                            style={{ marginRight: -20, cursor: "pointer" }}
-                          />
-                        </>
-                      ),
-                    }}
-                  />
-                )}
-                disableClearable
-              />
+             
+                 <CustomMultiComplete
+              // multiple
+              showImage
+              AutoCompleteList={filteredTask || form.associated_task || []}
+              label="Associated Task (Optional)"
+              error={errorData?.associated_task}
+              getOptionLabel={(option) => option.email }
+              value={form.associated_task || []}
+              onTextChange={(text) => {
+                changeTextData(text, "associated_task");
+              }}
+              enableField={["name"]}
+             
+            />
             </div>
           </div>
         </div>

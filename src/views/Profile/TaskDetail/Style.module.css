@@ -234,9 +234,12 @@
 .editAction {
   display: flex;
   gap: 10px;
+  align-items: center;
  
 }
+.boxHeight{
 
+}
 .notFound {
   text-align: center;
   font-size: 18px;

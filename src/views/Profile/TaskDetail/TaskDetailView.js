@@ -203,7 +203,7 @@ const TaskDetailView = ({}) => {
           <ArrowOutlineButton
             onClick={handleSideToggle}
             icon={<Edit fontSize={"20px"} />}
-            className={styles.actionOutline}
+            className={styles.boxHeight}
             paddingLR={3}
             paddingTB={0}
             borderRadius={8}
