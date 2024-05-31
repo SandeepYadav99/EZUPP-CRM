@@ -228,6 +228,9 @@
  
 
 }
+.boxHeight{
+  height: 45px !important;
+}
 .editAction {
   display: flex;
   gap: 10px;

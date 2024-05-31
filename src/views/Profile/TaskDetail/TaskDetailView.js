@@ -205,8 +205,10 @@ const TaskDetailView = ({}) => {
             icon={<Edit fontSize={"20px"} />}
             className={styles.actionOutline}
             paddingLR={3}
-            paddingTB={1}
+            paddingTB={0}
             borderRadius={8}
+           
+           
           >
             <Typography variant="subtitle1">EDIT</Typography>
             {/* */}
