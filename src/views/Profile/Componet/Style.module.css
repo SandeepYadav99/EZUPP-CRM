@@ -181,7 +181,7 @@
     margin-bottom: 0px;
     margin-top: 0px;
     border-bottom: 1px solid rgb(241, 242, 246);
-    color: #636578 !important;
+    /* color: #636578 !important; */
   }
   .check {
     margin-top: 15px;

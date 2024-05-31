@@ -174,7 +174,7 @@ const UserList = (props) => {
 
   return (
     <div>
-      <div className={"plainPaper"}>
+      <ShadowBox  width={"100%"}>
         <CustomListHeader
           title={"CREATE"}
           handleCreate={handleCreate}
@@ -199,7 +199,7 @@ const UserList = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </div>
   );
 };

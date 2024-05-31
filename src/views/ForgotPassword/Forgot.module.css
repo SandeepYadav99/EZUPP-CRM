@@ -27,7 +27,7 @@
 }
 
 .formContainer{
-  background-color: #fff;
+  /* background-color: #fff; */
   flex: 1.5;
   display: flex;
   -webkit-box-pack: center;

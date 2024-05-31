@@ -7,6 +7,7 @@ import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
 import UploadImage from "../../../../components/UploadImage/UploadImage";
 import { InfoOutlined } from "@mui/icons-material";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 
 const PersonalInformation = ({
   errorData,
@@ -20,9 +21,9 @@ const PersonalInformation = ({
 }) => {
   return (
     <>
-      <div className={"plainPaper"} style={{ backgroundColor: "#FFFFFF" }}>
+      <ShadowBox width={"100%"}>
         <div className={"headerFlex"}>
-          <Typography fontSize={18} color={"#636578"} fontWeight={600} marginTop={1.5} marginBottom={1.5}>
+          <Typography fontSize={18} fontWeight={600} marginTop={1.5} marginBottom={1.5}>
             Personal Information
           </Typography>
         </div>
@@ -145,7 +146,7 @@ const PersonalInformation = ({
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

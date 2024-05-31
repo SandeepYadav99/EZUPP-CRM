@@ -15,6 +15,8 @@ import StatusPill from "../../../../components/Status/StatusPill.component";
 import useAssociatedUsersHook from "./AssociatedUsersHook";
 import { IconButton } from "@mui/material";
 import { Edit } from "@mui/icons-material";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+
 
 const AssociatedUsers = ({ listData, id }) => {
   const {
@@ -128,14 +130,14 @@ const AssociatedUsers = ({ listData, id }) => {
   ]);
 
   return (
-    <div>
+    <ShadowBox width={"100%"}>
       <div style={{ width: "100%" }}>
         <DataTables
           {...tableData.datatable}
           {...tableData.datatableFunctions}
         />
       </div>
-    </div>
+    </ShadowBox>
   );
 };
 

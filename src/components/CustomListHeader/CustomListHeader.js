@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 export const CustomListHeader = ({ handleCreate, title, sideTitlle }) => {
   return (
     <div className={"HeaderCustom"}>
-      <Typography fontSize={18} color={"#636578"} fontWeight={600}>
+      <Typography fontSize={18}  fontWeight={600}>
         {sideTitlle}
       </Typography>
       <ArrowPrimaryButton

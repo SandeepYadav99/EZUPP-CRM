@@ -13,6 +13,7 @@ import {
 } from "../../../components/Buttons/PrimaryButton";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 const RoleDetail = () => {
   const [roleDetail, setRoleDetail] = useState({});
   const { id } = useParams();
@@ -53,7 +54,7 @@ const RoleDetail = () => {
         </div>
       </div>
       <div className={styles.detailContainer}>
-        <section className={"plainPaper"} style={{ width: "75%" }}>
+        <ShadowBox width={"75%"}>
           <div className={styles.boxleft}>
             <div>
               <p>
@@ -68,8 +69,8 @@ const RoleDetail = () => {
           <hr className={styles.hrLine} />
           <h3>Description</h3>
           <p>{description}</p>
-        </section>
-        <section className={"plainPaper"} style={{ width: "25%" }}>
+        </ShadowBox>
+        <ShadowBox width={"25%"}>
           <div>
             
             <p>
@@ -90,7 +91,7 @@ const RoleDetail = () => {
               </div>
             </div>
           </div>
-        </section>
+        </ShadowBox>
       </div>
       <section className={styles.plainPaper}>
         <div className={styles.headingWrap}>
