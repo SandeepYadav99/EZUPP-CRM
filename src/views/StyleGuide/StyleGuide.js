@@ -428,20 +428,9 @@ const StyleGuide = ({}) => {
         </div>
       </div>
 
-      <div className={styles.boxContFlex}>
-        <UserCountAvatarsSize />
-        <UserCountAvatarsInitials />
-        <UserCountAvatarsLabelInitials />
-        <UserCountAvatarsShapes />
-        <UserCountAvatarsStatusIndicator />
-        <UserCountAvatarsLableAvatarStatusIndicator />
-      </div>
+    
       <br />
-      <div>
-        <div>
-          <UserCountAvatarsLableAvatarGroup avatars={avatars} />
-        </div>
-      </div>
+     
       <br />
       {/* <div>
         <UserCountRadioLables />
