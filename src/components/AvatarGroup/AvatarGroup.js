@@ -4,6 +4,7 @@ import {
   Badge,
   Card,
   CardContent,
+  CardHeader,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -40,6 +41,31 @@ const StyledBadge3 = styled(Badge)(({ theme }) => ({
   },
 }));
 
+export function UserCountAvatarsLabel({
+  width,
+  height,
+  bgcolor,
+  fontSize,
+  color,
+  title,
+  imgPath,
+  id,
+  name
+}) {
+  return (
+    <CardHeader
+      avatar={<Avatar src={imgPath}></Avatar>}
+      title={
+        <a
+          className={styles.boldTitle}
+          href={`${"/profile/"}?id=${id}`}
+        >
+          {name}
+        </a>
+      }
+    />
+  );
+}
 export function UserCountAvatarsLabelInitials({
   width,
   height,
@@ -47,12 +73,13 @@ export function UserCountAvatarsLabelInitials({
   fontSize,
   color,
   title,
+  imgPath,
 }) {
   return (
     <div className={styles.flexBox}>
       <Avatar
-        src=""
-        alt=""
+        src={imgPath}
+        alt=".."
         sx={{
           width: width,
           height: height,
@@ -65,8 +92,9 @@ export function UserCountAvatarsLabelInitials({
         {title}
       </Avatar>
     </div>
-  )}
-  
+  );
+}
+
 export function UserCountAvatarsSize({ avatars, title }) {
   return (
     <Card>
@@ -550,7 +578,6 @@ export function UserCountAvatarsLableAvatarStatusIndicator({ avatars, title }) {
 //         Avatar Group
 //       </Typography>
 //       <div className={styles.flexGrid}>
-     
 
 //         <CardContent>
 //           <Typography gutterBottom variant="h5">
@@ -632,6 +659,5 @@ export function UserCountAvatarsLableAvatarGroup({
         </AvatarGroup>
       </div>
     </div>
-    
   );
 }
