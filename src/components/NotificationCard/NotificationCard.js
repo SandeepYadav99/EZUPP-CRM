@@ -4,6 +4,7 @@ import { NotiList } from "../../helper/Helper";
 import styles from "./Style.module.css";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 import NotificationDetailsHook from "./NotificationDetailsHook";
+import ShadowBox from "../ShadowBox/ShadowBox";
 function NotificationCard() {
   const listData = [...NotiList];
   const {
