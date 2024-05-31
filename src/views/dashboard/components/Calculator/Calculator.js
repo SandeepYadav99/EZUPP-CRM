@@ -78,7 +78,6 @@ const Calculator = () => {
       style={{ background: "linear-gradient(to top left, #2063CE, #25CEAE)" }}
     >
       <div>
-        {/* <div style={{ fontSize: '52px', color: 'white', textAlign: 'right', fontWeight: 'bold', marginRight: '10px', fontFamily: 'Arial'}}>{value || '0'}</div> */}
         <Typography
           variant={"h1"}
           className={styles.value}
@@ -92,7 +91,6 @@ const Calculator = () => {
           }}
         >
           {result !== "" ? result : inputValue || "0"}
-          {/* {inputValue || '0'} */}
         </Typography>
       </div>
       
@@ -189,17 +187,11 @@ const Calculator = () => {
         </Button>
         <div
         className={`${styles.buttonWrap}`}
-          // style={{
-          //   display: "flex",
-          //   alignItems: "center",
-          //   justifyContent: "center",
-            
-          // }}
+        
         >
           <Button
             className={`${styles.buttonH}`}
             onClick={handleCalculate}
-            // style={{ height: "188%" }}
           >
             <Typography variant={"h5"}>=</Typography>
           </Button>
@@ -221,7 +213,6 @@ const Calculator = () => {
         </Button>
       </div>
     </div>
-    // </div>
   );
 };
 

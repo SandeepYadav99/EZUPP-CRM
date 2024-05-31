@@ -59,7 +59,7 @@ height: 20px;
   /* padding: 10px 12px; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  background-color: white !important;
+  /* background-color: white !important; */
   height: 336px;
   /* overflow: auto; */
 }
@@ -71,7 +71,7 @@ height: 20px;
 }
 .birthdayEventWrapper {
   /* background-color: yellow; */
-  background-color: white !important;
+  /* background-color: white !important; */
 
   display: flex;
   justify-content: space-between;
@@ -183,7 +183,7 @@ padding: 0px;
 
 .TaskListEventWrapper{
   width: 75%;
-  background-color: white !important;
+  /* background-color: white !important; */
 
   display: flex;
   flex-direction: column;
@@ -230,7 +230,7 @@ padding: 0px;
   padding: 7px !important;
 }
 .addTaskwrapper{
-  background-color: white !important;
+  /* background-color: white !important; */
 
   display: flex;
   justify-content: space-between;
@@ -265,7 +265,7 @@ padding: 0px;
     padding: 10px 12px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    background-color: white !important;
+    /* background-color: white !important; */
     height: 300px !important;
 
     /* height: 85vh; */
