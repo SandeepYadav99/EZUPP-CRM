@@ -3,7 +3,7 @@ import {
     alpha,
 } from '@mui/material/styles';
 
-const primary = "#FF0000";
+const primary = "#347BEC";
 const secondary = "#25CEAE";
 const bgcolors = '#F7F7F9';
 const bgcolors1 = '#FFFFFF';
@@ -52,7 +52,7 @@ const DarkTheme = (colors) => {
             disabled: grey[3]
         },
         background: {
-            paper: greyColors[800]
+            paper: "#30334E"
         },
         error: {
             main: error,
@@ -97,8 +97,8 @@ const DarkTheme = (colors) => {
             dark: alpha(info, 0.9)
         },
         text: {
-            primary: "#FFF",
-            secondary: "#6E6E6E",
+            primary: "#D7D8ED",
+            secondary: "#9698AF",
             hint: "#B9B9B9",
             error: '#ff0000'
         },
