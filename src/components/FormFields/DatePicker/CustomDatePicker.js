@@ -7,6 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
+import { TextField } from '@mui/material';
 
 
 const CustomDatePicker = ({onChange, minDate, isError,errorText, maxDate, value, label, clearable,...rest}) => {
@@ -32,7 +33,7 @@ const CustomDatePicker = ({onChange, minDate, isError,errorText, maxDate, value,
                     variant="inline"
                     id="time-picker"
                     fullWidth
-
+                  
                     label={label}
                     value={value ? dayjs(value) : (null)}
                     onChange={handleOnChange}
@@ -40,11 +41,24 @@ const CustomDatePicker = ({onChange, minDate, isError,errorText, maxDate, value,
                     // format={
                     //     "dd-MM-yyyy"
                     // }
-                    format="DD-MM-YYYY"
+                    inputFormat="DD/MM/yyyy"
                     error={isError ? true : false}
                     minDate={minDate && dayjs(minDate)}
                     maxDate={mD ? dayjs(mD) : dayjs()}
-                    showTodayButton
+                    // showTodayButton
+                    InputProps={{
+                        disableUnderline: true
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          sx={{
+                            ".MuiInputBase-input": {
+                              padding: "2px 110px"
+                            }
+                          }}
+                        />
+                      )}
                     {...rest}
                     // KeyboardButtonProps={{
                     //     'aria-label': 'change time',
