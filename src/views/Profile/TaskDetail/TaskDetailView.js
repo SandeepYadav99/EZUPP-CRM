@@ -200,6 +200,7 @@ const TaskDetailView = ({}) => {
           <CustomSelectField
             label={"ALL"}
             onChange={() => {}}
+            
             className={styles.selectWidth}
           >
             <MenuItem value={"PENDING"}>Pending</MenuItem>
@@ -212,6 +213,7 @@ const TaskDetailView = ({}) => {
             icon={<Edit fontSize={"20px"} />}
             className={styles.actionOutline}
             paddingLR={3}
+            paddingTB={1}
             borderRadius={8}
           >
             <Typography variant="subtitle1">EDIT</Typography>
