@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { TextField, InputAdornment } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 const CustomTextField = ({
   isError,
@@ -11,6 +12,9 @@ const CustomTextField = ({
   inputProps,
   ...rest
 }) => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+
   const handleChange = useCallback(
     (e) => {
       onChange && onChange(e);
@@ -18,7 +22,7 @@ const CustomTextField = ({
     },
     [onChange, onTextChange]
   );
-
+  console.log(theme);
   return (
     <>
       <TextField
@@ -34,10 +38,16 @@ const CustomTextField = ({
             ""
           ),
           ...(inputProps ? inputProps : {}),
+          sx: {
+            color: isDarkMode ? theme.palette.common.white : "primary",
+            "& .MuiInputBase-input": {
+              color: isDarkMode ? theme.palette.common.white : "primary",
+            },
+          },
         }}
         onChange={handleChange}
         variant={"outlined"}
-        color={"primary"}
+        // color={"primary"}
         size={"small"}
         margin={"dense"}
         fullWidth
