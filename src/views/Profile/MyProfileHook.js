@@ -21,7 +21,7 @@ const useMyProfileHook = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
-console.log(location)
+
   const [taskLists, setTaskList] = useState(null);
   const [taskCreated, setTaskCreated] = useState(false);
   const userData = localStorage.getItem("user");
