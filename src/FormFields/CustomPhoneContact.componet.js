@@ -48,6 +48,7 @@ const CustomPhoneContactField = ({
   const handleValidation = useCallback((value, country, e, formattedValue) => {
     return formattedValue.length >= 10;
   }, []);
+  console.log(theme)
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <PhoneInput
@@ -63,8 +64,8 @@ const CustomPhoneContactField = ({
         inputStyle={{
           width: "100%",
           border: errorText ? "1px solid red" : "1px solid #ccc",
-          color:  theme.palette.common.text.primary,
-          backgroundColor: theme.palette.common.text.primary,
+          color:  theme.palette.text.primary,
+          backgroundColor: theme.palette.background?.paper
         }}
         specialLabel=""
         isValid={isValid}
