@@ -13,7 +13,7 @@ const CustomTextField = ({
   ...rest
 }) => {
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === "dark";
+ 
 
   const handleChange = useCallback(
     (e) => {
@@ -31,7 +31,7 @@ const CustomTextField = ({
         label={label}
         InputLabelProps={{
           sx: {
-            color: isDarkMode ? theme.palette.common.white : "",
+            color:  theme.palette.text.primary,
           },
         }}
         InputProps={{
@@ -44,9 +44,9 @@ const CustomTextField = ({
           ),
           ...(inputProps ? inputProps : {}),
           sx: {
-            color: isDarkMode ? theme.palette.common.white : "primary",
+            color:theme.palette.text.primary,
             "& .MuiInputBase-input": {
-              color: isDarkMode ? theme.palette.common.white : "primary",
+              color:theme.palette.text.primary,
             },
           },
         }}

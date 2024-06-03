@@ -60,7 +60,7 @@ const CustomMultiComplete = ({
   );
   const theme = useTheme();
  
-    const isDarkMode = theme.palette.mode === "dark";
+ 
   return (
     <>
       {multiple ? (

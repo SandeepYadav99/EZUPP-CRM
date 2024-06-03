@@ -25,7 +25,7 @@ const CustomPhoneContactField = ({
   //   [onChange, onTextChange]
   // );
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === "dark";
+ 
   const handleChange = useCallback(
     (value, country, e, formattedValue) => {
       const countryCodeRegex = /\+(\d+)/;
@@ -63,10 +63,8 @@ const CustomPhoneContactField = ({
         inputStyle={{
           width: "100%",
           border: errorText ? "1px solid red" : "1px solid #ccc",
-          color: isDarkMode ? theme.palette.common.white : "",
-          backgroundColor: isDarkMode
-            ? theme.palette.background.paper
-            : "white",
+          color:  theme.palette.common.text.primary,
+          backgroundColor: theme.palette.common.text.primary,
         }}
         specialLabel=""
         isValid={isValid}

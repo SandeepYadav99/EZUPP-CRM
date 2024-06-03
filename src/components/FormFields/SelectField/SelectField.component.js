@@ -7,7 +7,7 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
     const [labelWidth, setLabelWidth] = useState(0);
     const inputLabelRef = useRef(null);
     const theme = useTheme();
-    const isDarkMode = theme.palette.mode === "dark";
+
 
     const id = useMemo(() => {
         return Date.now()+'SELECTED_LABEL'+label;
@@ -22,16 +22,16 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
 
     return (
         <FormControl   size={'small'} fullWidth margin={'dense'} variant={'outlined'} error={isError}    sx= {{
-            color: isDarkMode ? theme.palette.common.white : "primary",
+            color:  theme.palette.text.primary,
             "& .MuiInputBase-input": {
-              color: isDarkMode ? theme.palette.common.white : "primary",
+              color: theme.palette.text.primary,
             },
           }}>
             <InputLabel
                 ref={inputLabelRef}
                 htmlFor={`selectField${id}`}
                 sx={{
-                    color: isDarkMode ? theme.palette.common.white : "",
+                    color: theme.palette.text.primary,
                   }}
             >
                 {label}

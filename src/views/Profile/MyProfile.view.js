@@ -50,7 +50,7 @@ const Profile = () => {
     setOpen(!open);
   };
   const theme = useTheme();
-    const isDarkMode = theme.palette.mode === "dark";
+   
   return (
     <div className={styles.bgProfile}>
       {isLoading ? (
@@ -63,7 +63,7 @@ const Profile = () => {
             <ButtonBase onClick={() => history.push("/")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
-            <Typography fontSize={24} fontWeight={600} color={isDarkMode ? theme.palette.common.white  : ""}>Profile View</Typography>
+            <Typography fontSize={24} fontWeight={600} color={theme.palette.text.primary}>Profile View</Typography>
            
             </div>
             <div className={styles.profileHeading}></div>

@@ -54,15 +54,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     permission,
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
-  const theme = useTheme();
-    const isDarkMode = theme.palette.mode === "dark";
+  // const theme = useTheme();
+  //  console.log(theme)
   return (
     <>
       <div className={styles.iconButton}>
         <ButtonBase onClick={() => history.goBack()}>
           <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
         </ButtonBase>
-        <Typography variant={"h4"} fontWeight={600} color={isDarkMode ? theme.palette.common.white  :"#636578"}>{id ? "Update" : "Create"} Role</Typography>
+        <Typography variant={"h4"} fontWeight={600} >{id ? "Update" : "Create"} Role</Typography>
       </div>
 
       {/* {empId && (
