@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import ReactDOM from "react-dom";
 import { Search } from '@mui/icons-material';
+import { useTheme } from "@emotion/react";
 const CustomTextField = ({
   isError,
   errorText,
@@ -22,6 +23,8 @@ const CustomTextField = ({
     [onChange, onTextChange]
   );
 
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <TextField
       error={isError}
@@ -51,6 +54,13 @@ const CustomTextField = ({
           ""
         ),
         ...(inputProps ? inputProps : {}),
+        sx: {
+          color: isDarkMode ? theme.palette.common.white : "primary",
+          "& .MuiInputBase-input": {
+            color: isDarkMode ? theme.palette.common.white : "primary",
+          },
+        },
+        
       }}
       onChange={handleChange}
       variant={"outlined"}
