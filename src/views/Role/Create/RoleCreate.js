@@ -49,8 +49,8 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     cancelRole,
     permisionChangeHandler,
     id,
-    
-    permission
+
+    permission,
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
 
@@ -58,9 +58,9 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     <>
       <div className={styles.iconButton}>
         <ButtonBase onClick={() => history.goBack()}>
-          <ArrowBackIos fontSize={"small"} />{" "}
+          <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
         </ButtonBase>
-        <Typography variant={"h4"}>{id ? "Update" : "Create"} Role</Typography>
+        <Typography variant={"h4"} fontWeight={600} color={"#636578"}>{id ? "Update" : "Create"} Role</Typography>
       </div>
 
       {/* {empId && (
@@ -76,8 +76,14 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
 
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
-          <Typography variant="h5">Role Details</Typography>
-
+          <Typography
+            fontSize={18}
+            // color={"#636578"}
+            fontWeight={600}
+            
+          >
+            Role Details
+          </Typography>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField

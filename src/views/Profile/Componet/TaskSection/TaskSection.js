@@ -126,7 +126,7 @@ const TaskSection = ({
   return (
     <ShadowBox width={"100%"}>
      
-        <div className={styles.plain}>
+        <div >
           <div className={styles.upperFlex}>
             <h3 className={styles.taskHeading}>Tasks Lists</h3>
             <div className={"myprofile"}>

@@ -1,4 +1,3 @@
-import { AppBar } from "@mui/material";
 import React from "react";
 import { useCallback } from "react";
 import { useState } from "react";
@@ -7,9 +6,6 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import PropTypes from "prop-types";
 import data from "./data";
-// import BirthdayEvent from "./BirthdayEvent";
-import { useSelector } from "react-redux";
-// import WaitingComponent  from "../../../../../components/Waiting.component";
 import { makeStyles, useTheme } from "@mui/styles";
 import EventCard from "./EventCard.component";
 
@@ -24,7 +20,6 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { Typography } from "@mui/material";
 import TaskList from "./TaskListCard";
 import MessageCard from "./MessageCard";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,7 +68,6 @@ function EmployeeTab() {
   );
 
   return (
-    // <div className={styles.eventBirthdayWrapper}>
     <ShadowBox className={styles.containerWidth}>
       <Tabs
         classes={{ root: classes.root }}
@@ -159,16 +153,18 @@ function EmployeeTab() {
           <EventCard data={data?.contacts} item={"contact"} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={"ltr"}>
-          {/* <EventCard data={data?.messages} item={'messages'} /> */}
           <MessageCard data={data?.messages} item={"messages"} />
         </TabPanel>
-        <TabPanel value={value} index={2} dir={"ltr"} style={{overflow:"scroll"}}>
-          {/* <EventCard data={data?.tasksList} item={'taskList'} /> */}
+        <TabPanel
+          value={value}
+          index={2}
+          dir={"ltr"}
+          style={{ overflow: "scroll" }}
+        >
           <TaskList data={data?.tasksList} item={"taskList"} />
         </TabPanel>
       </div>
     </ShadowBox>
-    /* </div> */
   );
 }
 

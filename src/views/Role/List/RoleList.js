@@ -23,6 +23,7 @@ import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import ImageStack from "../../../components/AvatarGroup/ImageStack";
 import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 
 const RoleList = (props) => {
   const {
@@ -177,7 +178,7 @@ const RoleList = (props) => {
 
   return (
     <>
-      <div className={"plainPaper"}>
+      <ShadowBox width={"100%"}>
         <CustomListHeader
           title={"Create"}
           handleCreate={handleCreate}
@@ -202,7 +203,7 @@ const RoleList = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

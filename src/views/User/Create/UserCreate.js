@@ -32,9 +32,9 @@ userId,
       <div className={styles.outerFlex1}>
         <div className={styles.iconButton}>
           <ButtonBase onClick={() => history.goBack()}>
-            <ArrowBackIos fontSize={"small"} />{" "}
+            <ArrowBackIos fontSize={"medium"} />{" "}
           </ButtonBase>
-          <Typography variant={"h4"}>{id ? "Update" : "Add"} User</Typography>
+          <Typography fontSize={22} fontWeight={600} color={"#636578"}>{id ? "Update" : "Add"} User</Typography>
         </div>
       </div>
       <PersonalInformation
