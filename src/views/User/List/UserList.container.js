@@ -178,7 +178,7 @@ const UserList = (props) => {
         <CustomListHeader
           title={"CREATE"}
           handleCreate={handleCreate}
-          styles={styles}
+          
           sideTitlle={"User List"}
         />
 
