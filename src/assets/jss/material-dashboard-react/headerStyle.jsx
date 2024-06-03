@@ -36,7 +36,7 @@ const headerStyle = theme => ({
         //   top: 0,
         overflow: 'hidden',
         maxHeight: 57,
-        backgroundColor: sidebarColor,
+        background:theme.palette.tableHeadColor,
         color: textColor,
     },
     container: {

@@ -66,7 +66,7 @@ const appStyle = theme => ({
 		padding: '30px 15px',
 		// minHeight: 'calc(100% - 123px)',
 		minHeight: '100vh',
-		background:"#F7F7F9"
+		background:theme.palette.contentDark
 	},
 	container,
 	map: {
