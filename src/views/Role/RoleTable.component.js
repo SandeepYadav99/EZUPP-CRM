@@ -45,7 +45,7 @@ const theme=useTheme()
                     <Typography variant="h6" fontWeight={600}  color={theme.palette.text.primary}>
                       {permission?.name}{" "}
                     </Typography>
-                    <InfoOutlined fontSize="16px"  color={"action"}/>
+                    <InfoOutlined fontSize="16px"  color={theme.palette.text.primary}/>
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
