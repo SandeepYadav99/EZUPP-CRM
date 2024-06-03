@@ -19,6 +19,8 @@ const badgeColor1="#fdb528";
 const lightenRate = 7.5;
 const darkenRate = 15;
 const textMainColor = '#4A4A4A';
+const tableHeadColor= "#F5F5F5";
+const darkContent = "#ffffff"
 
 const Theme = (colors) => {
   const { grey } = colors;
@@ -110,6 +112,8 @@ const Theme = (colors) => {
       color1:badgeColor1,
       color2:"#ff4d49"
     },
+    tableHeadColor:tableHeadColor,
+    contentDark:darkContent
   };
 };
 

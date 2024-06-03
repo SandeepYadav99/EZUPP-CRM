@@ -4,6 +4,8 @@ import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import { useState, useEffect } from "react";
+
 const ProductCommercials = ({
   errorData,
   changeTextData,
@@ -11,8 +13,11 @@ const ProductCommercials = ({
   form,
   image,
   listData,
+ 
+
 }) => {
   console.log(form, "Form");
+
   return (
     <>
       <ShadowBox className={styles.product}>
@@ -52,12 +57,12 @@ const ProductCommercials = ({
                   handleChange={(value) => {
                     changeTextData(value, "unit_id");
                   }}
-                  // className={styles.custonCSS}
+                  
                 >
-                  {listData?.ROLES?.map((role) => (
-                    <MenuItem value={role?.id}>{role?.name}</MenuItem>
+                  {listData?.UNITS?.map((unit) => (
+                    <MenuItem key={unit?.id} value={unit?.id}>{unit?.name}</MenuItem>
                   ))}
-                  {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
+                  
                 </CustomSelectField>
               </div>
             </div>

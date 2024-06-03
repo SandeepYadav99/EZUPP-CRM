@@ -126,7 +126,6 @@ const ForgotPasswordView = () => {
       <div className={styles.container}>
         <div className={styles.loginFlex2}>{renderDataField()}</div>
         <DashboardSnackbar />
-
       </div>
     </>
   );

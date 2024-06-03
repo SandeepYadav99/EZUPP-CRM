@@ -1,14 +1,18 @@
 import React, { useCallback, useState } from "react";
-import history from "../../../libs/history.utils";
-import { serviceForgotPassword } from "../../../services/index.services";
-import SnackbarUtils from "../../../libs/SnackbarUtils";
+import history from "../../libs/history.utils";
+import { serviceLoginUser } from "../../services/index.services";
+import { actionLoginUser } from "../../actions/Auth.action";
+import SnackbarUtils from "../../libs/SnackbarUtils";
+import historyUtils from "../../libs/history.utils";
 import { useDispatch } from "react-redux";
-import { isEmail } from "../../../libs/RegexUtils";
+import { isEmail } from "../../libs/RegexUtils";
 
 const initialForm = {
   email: "",
+  password: "",
+  logged_in: "",
 };
-const useForgotPasswordHook = () => {
+const useSuccessPage = () => {
   const [form, setForm] = useState({ ...initialForm });
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
@@ -19,7 +23,7 @@ const useForgotPasswordHook = () => {
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["email"];
+    let required = ["email", "password"];
 
     required.forEach((val) => {
       if (!form?.[val]) {
@@ -49,6 +53,10 @@ const useForgotPasswordHook = () => {
     [setErrorData, errorData]
   );
 
+  const handleForgotPassword = () => {
+    history.push("/forgot/password");
+  };
+
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
@@ -64,14 +72,14 @@ const useForgotPasswordHook = () => {
     (status) => {
       setIsSubmitting(true);
 
-      serviceForgotPassword(form).then((val) => {
-        if (!val?.error) {
-          SnackbarUtils.success("Password Reset Email Sent");
-          history.push("/password/resend");
-        } else {
-          SnackbarUtils.error("Invalid Email Address");
-        }
+      delete form.logged_in;
 
+      serviceLoginUser(form).then((res) => {
+        if (!res.error) {
+          dispatch(actionLoginUser(res?.data));
+        } else {
+          SnackbarUtils.error("Invalid Username/Password");
+        }
         setIsSubmitting(false);
       });
     },
@@ -91,20 +99,8 @@ const useForgotPasswordHook = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = useCallback(
-    async (status) => {
-      const errors = checkFormValidation();
-      if (Object.keys(errors)?.length > 0) {
-        setErrorData(errors);
-        return true;
-      }
-      submitToServer(status);
-    },
-    [checkFormValidation, setErrorData, form, submitToServer]
-  );
-
-  const handleReturn = useCallback(() => {
-    history.push("/login");
+  const handleSubmit = useCallback(() => {
+    historyUtils.push("/login");
   }, []);
 
   return {
@@ -114,10 +110,10 @@ const useForgotPasswordHook = () => {
     form,
     errorData,
     isSubmitting,
+    handleForgotPassword,
     showPassword,
     togglePasswordVisibility,
-    handleReturn,
   };
 };
 
-export default useForgotPasswordHook;
+export default useSuccessPage;
