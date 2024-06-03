@@ -19,7 +19,7 @@ import {
 } from "./actions/AppSettings.action";
 
 setAxiosTimezone();
-if (localStorage.theme && false) {
+if (localStorage.theme) {
   store.dispatch(actionChangeTheme(localStorage.theme));
 } else {
   store.dispatch(actionChangeTheme("light"));
