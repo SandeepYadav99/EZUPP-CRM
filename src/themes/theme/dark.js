@@ -102,7 +102,8 @@ const DarkTheme = (colors) => {
             primary: "#D7D8ED",
             secondary: "#9698AF",
             hint: "#B9B9B9",
-            error: '#ff0000'
+            error: '#ff0000',
+            bright: '#FFF'
         },
         primaryButton: {
             hover: secondary,
