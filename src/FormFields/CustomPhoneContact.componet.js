@@ -55,16 +55,18 @@ const CustomPhoneContactField = ({
         inputProps={{
           name: "Phone No",
         }}
+        
         country={"in"}
         // country={country_code ? country_code.toLowerCase() : 'us'}
         value={value}
         onChange={handleChange}
-    
         inputStyle={{
           width: "100%",
           border: errorText ? "1px solid red" : "1px solid #ccc",
           color: isDarkMode ? theme.palette.common.white : "",
-          backgroundColor: isDarkMode ? theme.palette.contentDark : 'white'
+          backgroundColor: isDarkMode
+            ? theme.palette.background.paper
+            : "white",
         }}
         specialLabel=""
         isValid={isValid}

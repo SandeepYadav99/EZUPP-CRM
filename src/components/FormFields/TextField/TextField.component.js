@@ -29,6 +29,11 @@ const CustomTextField = ({
         error={isError}
         //    helperText={errorText}
         label={label}
+        InputLabelProps={{
+          sx: {
+            color: isDarkMode ? theme.palette.common.white : "",
+          },
+        }}
         InputProps={{
           startAdornment: icon ? (
             <InputAdornment position="start">

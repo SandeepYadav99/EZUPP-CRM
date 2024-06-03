@@ -30,7 +30,9 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
             <InputLabel
                 ref={inputLabelRef}
                 htmlFor={`selectField${id}`}
-                
+                sx={{
+                    color: isDarkMode ? theme.palette.common.white : "",
+                  }}
             >
                 {label}
             </InputLabel>
