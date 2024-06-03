@@ -394,11 +394,13 @@ const StyleGuide = ({}) => {
               { name: "subtitle1", font: "14" },
               { name: "subtitle2", font: "12" },
               { name: "overline", font: "12" },
+              { name: "login1", font: "14" },
+              { name: "remember", font: "12" },
             ].map((key) => {
               return (
-                <Typography variant={key?.name}>
-                  Here is the text - {key?.name} - {key?.font} px
-                </Typography>
+                  <Typography variant={key?.name}>
+                    Here is the text - {key?.name} - {key?.font}px  {" "}
+                  </Typography>
               );
             })}
 
@@ -417,11 +419,13 @@ const StyleGuide = ({}) => {
               "subtitle2",
               "overline",
               "subtitle3",
+              "login1",
+              "remember",
             ].map((key) => {
               return (
-                <Typography color={"text.secondary"} variant={key}>
-                  Here is the text - {key}
-                </Typography>
+                  <Typography color={"text.secondary"} variant={key}>
+                    Here is the text - {key} {" "}
+                  </Typography>
               );
             })}
           </div>
@@ -537,7 +541,7 @@ const StyleGuide = ({}) => {
           "All",
         ]}
         selectedIndex={0}
-    onButtonClick={(index) => console.log(`Button ${index} clicked`)}
+        onButtonClick={(index) => console.log(`Button ${index} clicked`)}
       />
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">

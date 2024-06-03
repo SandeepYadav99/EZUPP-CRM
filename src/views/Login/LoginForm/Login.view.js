@@ -48,9 +48,9 @@ function LoginView() {
           <div className={styles.signContainer}>
             <span className={styles.headingText}>Welcome to Ezupp! </span>
             <br />
-            <span style={{ fontSize: "14px", color: "#888888" }}>
+            <Typography variant={"login1"} >
               Enter the details below to login to your account
-            </span>
+            </Typography>
             <br />
             <br />
             <div>
@@ -120,11 +120,7 @@ function LoginView() {
                     <CustomCheckBox
                       label={
                         <Typography
-                          variant={"caption"}
-                          style={{
-                            color: "#888888",
-                            opacity: 1,
-                          }}
+                          variant={"remember"}
                         >
                           Remember Me
                         </Typography>

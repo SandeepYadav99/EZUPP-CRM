@@ -148,7 +148,6 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     handleSubmit,
     isLoading,
     isSubmitting,
-  
     errorData,
     showConfirmPassword,
     showPassword,

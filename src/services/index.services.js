@@ -19,7 +19,7 @@ export async function serviceGetList(list, otherParams = {}) {
     return await postRequest('list', { list: list, ...otherParams });
 }
 export async function serviceForgotPassword(params) {
-    return await postRequest('forgot/password', params);
+    return await postRequest('auth/forgot/password', params);
 }
 export async function serviceGetTagList(params) {
     return await postRequest('keywords', params);
