@@ -101,7 +101,7 @@ const StyleGuide = ({}) => {
   };
 
   return (
-    <PageBoxComponent>
+    <ShadowBox style={{width:"100%"}}>
       <div className={"formFlex"}>
         <div className={styles.sideMargin}>
           <div>
@@ -542,7 +542,7 @@ const StyleGuide = ({}) => {
       <div>
         <ColorPicker />
       </div>
-    </PageBoxComponent>
+    </ShadowBox >
   );
 };
 
