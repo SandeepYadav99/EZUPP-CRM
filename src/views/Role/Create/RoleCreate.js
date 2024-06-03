@@ -6,6 +6,7 @@ import {
   IconButton,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
@@ -53,14 +54,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     permission,
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
-
+  const theme = useTheme();
+    const isDarkMode = theme.palette.mode === "dark";
   return (
     <>
       <div className={styles.iconButton}>
         <ButtonBase onClick={() => history.goBack()}>
           <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
         </ButtonBase>
-        <Typography variant={"h4"} fontWeight={600} color={"#636578"}>{id ? "Update" : "Create"} Role</Typography>
+        <Typography variant={"h4"} fontWeight={600} color={isDarkMode ? theme.palette.common.white  :"#636578"}>{id ? "Update" : "Create"} Role</Typography>
       </div>
 
       {/* {empId && (

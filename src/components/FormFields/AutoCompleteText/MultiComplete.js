@@ -59,7 +59,8 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   const theme = useTheme();
-
+ 
+    const isDarkMode = theme.palette.mode === "dark";
   return (
     <>
       {multiple ? (
@@ -77,16 +78,20 @@ const CustomMultiComplete = ({
               helperText={errorText}
               label={label}
               {...params}
+              
               variant="outlined"
               color={"primary"}
               size={"small"}
               fullWidth
               {...rest}
+          
               InputProps={{
                 ...params.InputProps,
+               
                 sx: {
                   paddingRight: `${theme?.spacing(0)} !important`,
                   position: "relative",
+                 
                 },
 
                 endAdornment: (

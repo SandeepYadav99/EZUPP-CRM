@@ -15,6 +15,7 @@ import {
   MenuItem,
   Select,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { Add, ArrowBackIos, Lock } from "@mui/icons-material";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
@@ -48,7 +49,8 @@ const Profile = () => {
   const handleClose = () => {
     setOpen(!open);
   };
-console.log(userId, id)
+  const theme = useTheme();
+    const isDarkMode = theme.palette.mode === "dark";
   return (
     <div className={styles.bgProfile}>
       {isLoading ? (
@@ -61,9 +63,8 @@ console.log(userId, id)
             <ButtonBase onClick={() => history.push("/")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
-              <span className={styles.profileTitle}>
-                <b>Profile View</b>
-              </span>
+            <Typography fontSize={24} fontWeight={600} color={isDarkMode ? theme.palette.common.white  : ""}>Profile View</Typography>
+           
             </div>
             <div className={styles.profileHeading}></div>
             <div className={styles.profileHeaderAction}>

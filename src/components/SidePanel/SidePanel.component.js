@@ -141,13 +141,13 @@ class SidePanelComponent extends Component {
                 }}>
                     <div className={styles.sideUpper}>
                         <ButtonBase className={styles.btnIcon} onClick={this._handleOpen}>
-                        <ArrowBackIos  color={"#636578"}/>
+                        <ArrowBackIos  color={ theme.palette.mode === "dark" ? "action" :""}/>
                         </ButtonBase>
                         <div style={{padding: '0px 0px', flex: 1}}>
                         {/* <h3 style={{}}>
                             {this.props.title}
                         </h3> */}
-                        <Typography variant='h4' color="#636578"> {this.props.title}</Typography>
+                        <Typography variant='h4' color={theme.palette.mode === "dark" ? "#FFF" :"#636578"}> {this.props.title}</Typography>
                         </div>
                     </div>
                    

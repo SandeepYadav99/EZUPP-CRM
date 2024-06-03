@@ -33,7 +33,7 @@ const UserCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"medium"} />{" "}
           </ButtonBase>
-          <Typography fontSize={22} fontWeight={600} color={"#636578"}>
+          <Typography fontSize={22} fontWeight={600} >
             {id ? "Update" : "Add"} User
           </Typography>
         </div>
