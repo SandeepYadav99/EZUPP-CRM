@@ -54,7 +54,7 @@ const WorkInfoView = ({
                   label={"Department"}
                   value={form?.department}
                   handleChange={(value) => {
-                    console.log(value, "Value")
+                  
                     changeTextData(value, "department");
                   }}
                 >

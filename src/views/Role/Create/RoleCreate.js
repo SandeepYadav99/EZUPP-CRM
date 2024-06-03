@@ -54,8 +54,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     permission,
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
-  // const theme = useTheme();
-  //  console.log(theme)
+  
   return (
     <>
       <div className={styles.iconButton}>
@@ -64,17 +63,6 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
         </ButtonBase>
         <Typography variant={"h4"} fontWeight={600} >{id ? "Update" : "Create"} Role</Typography>
       </div>
-
-      {/* {empId && (
-          <IconButton
-            variant={"contained"}
-            className={classes.iconBtnError}
-            onClick={toggleAcceptDialog}
-            type="button"
-          >
-            <DeleteIcon />
-          </IconButton>
-        )} */}
 
       <div className={styles.container}>
         <ShadowBox width={"100%"}>

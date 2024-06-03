@@ -8,15 +8,7 @@ import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import { Add, Create, Details, Edit } from "@mui/icons-material";
-import {
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Card,
-  CardContent,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import useRoleListHook from "./RoleListHook";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";

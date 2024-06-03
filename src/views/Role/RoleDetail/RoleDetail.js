@@ -17,7 +17,7 @@ import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 const RoleDetail = () => {
   const [roleDetail, setRoleDetail] = useState({});
   const { id } = useParams();
-  console.log(roleDetail);
+ 
   const { description , status
   } = roleDetail;
   useEffect(() => {
