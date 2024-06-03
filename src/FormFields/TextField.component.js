@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import ReactDOM from "react-dom";
-import { Search } from '@mui/icons-material';
+import { Search } from "@mui/icons-material";
+import { useTheme } from "@emotion/react";
+
 const CustomTextField = ({
   isError,
   errorText,
@@ -22,11 +24,18 @@ const CustomTextField = ({
     [onChange, onTextChange]
   );
 
+  const theme = useTheme();
   return (
     <TextField
       error={isError}
       helperText={errorText}
       label={label}
+      InputLabelProps={{
+        sx: {
+          color:  theme.palette.text.primary,
+          marginTop: "-5px",
+        },
+      }}
       InputProps={{
         startAdornment: iconStart ? (
           <InputAdornment position="start">
@@ -51,6 +60,12 @@ const CustomTextField = ({
           ""
         ),
         ...(inputProps ? inputProps : {}),
+        sx: {
+          color: theme.palette.text.primary,
+          "& .MuiInputBase-input": {
+            color: theme.palette.text.primary,
+          },
+        },
       }}
       onChange={handleChange}
       variant={"outlined"}

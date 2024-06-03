@@ -150,7 +150,8 @@ console.log(location)
 
   const filterCompltedTask = useCallback(
     (event) => {
-      const newValue = event.target.value;
+      // const newValue = event.target.value;
+      const newValue = event;
       setFilterValue(newValue);
       const queryValue = newValue === "PENDING" ? false : true;
       if (newValue === "ALL") {

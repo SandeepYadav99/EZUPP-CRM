@@ -108,14 +108,14 @@ class SidePanelComponent extends Component {
 
     render() {
         const { theme } = this.props;
-        
+     
         const tempStyle = {
             width:
                 this.state.delta == 0 || !this.props.open
                 ? "calc(45vw)"
                 : window.innerWidth - this.state.delta,
             height: '100%',
-             backgroundColor: theme.palette.bgColor.main,
+             backgroundColor:theme.palette.contentDark ,
             color: theme.palette.textColor,
             top: '0px',
             position: 'fixed',
@@ -141,13 +141,13 @@ class SidePanelComponent extends Component {
                 }}>
                     <div className={styles.sideUpper}>
                         <ButtonBase className={styles.btnIcon} onClick={this._handleOpen}>
-                        <ArrowBackIos  color={"#636578"}/>
+                        <ArrowBackIos  color={"action"}/>
                         </ButtonBase>
                         <div style={{padding: '0px 0px', flex: 1}}>
                         {/* <h3 style={{}}>
                             {this.props.title}
                         </h3> */}
-                        <Typography variant='h4' color="#636578"> {this.props.title}</Typography>
+                        <Typography variant='h4' color={theme.palette.text.primary}> {this.props.title}</Typography>
                         </div>
                     </div>
                    

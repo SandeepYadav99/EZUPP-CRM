@@ -6,6 +6,7 @@ import {
   MenuItem,
   TextField,
   Tooltip,
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import CustomTextField from "../../../FormFields/TextField.component";
@@ -14,7 +15,7 @@ import useAddTaskCreate from "./AddTaskCreateHook";
 import InfoIcon from "@mui/icons-material/Info";
 import { Autocomplete } from "@mui/lab";
 import { Clear, Search } from "@mui/icons-material";
-import CustomSelectField from "../../../FormFields/SelectField/SelectField.component";
+
 import CustomDateTimePicker from "../../../FormFields/DatePicker/CustomDateTimePicker";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import {
@@ -23,6 +24,7 @@ import {
 } from "../../../components/Buttons/PrimaryButton";
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
+import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -55,7 +57,7 @@ const AddTaskCreate = ({
       <ShadowBox width={"100%"}>
         <div className={styles.headerFlex}>
           <h4 className={styles.infoTitle}>
-            <div className={styles.heading}>Task Details</div>
+            <Typography fontSize={18} fontWeight={600}>Task Details</Typography>
             {/* <Tooltip title="Info" aria-label="info" placement="right">
               <InfoIcon fontSize={"small"} />
             </Tooltip> */}

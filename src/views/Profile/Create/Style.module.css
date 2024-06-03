@@ -14,10 +14,7 @@
     color: grey;
     margin-bottom: 5px;
 }
-.mainContainer{
-    padding: 10px !important;
-    
-}
+
 .headerContainer {
     display: flex;
     justify-content: space-between;

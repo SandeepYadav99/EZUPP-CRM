@@ -7,6 +7,7 @@ import { Autocomplete, MenuItem, TextField, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import { Clear, Search } from "@mui/icons-material";
+import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 const WorkInfoView = ({
   errorData,
   form,
@@ -64,7 +65,7 @@ const WorkInfoView = ({
               </div> */}
 
               <div className={"formGroup"}>
-                <Autocomplete
+                {/* <Autocomplete
                   id="tags-outlined"
                   onChange={(e, value) => {
                     changeTextData(value, "department");
@@ -101,7 +102,20 @@ const WorkInfoView = ({
                     />
                   )}
                   disableClearable
-                />
+                /> */}
+                     <CustomMultiComplete
+                // multiple
+                showImage
+                AutoCompleteList={department || form?.department  || []}
+                label={"Department"}
+                error={errorData?.department}
+                getOptionLabel={(option) => option}
+                value={form?.department ||  []}
+                onTextChange={(text) => {
+                  changeTextData(text, "department");
+                }}
+                enableField={["name"]}
+              />
               </div>
             </div>
           </div>

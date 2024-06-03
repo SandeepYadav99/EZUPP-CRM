@@ -7,7 +7,40 @@
 .outerFlex1{
   padding-bottom: 30px;
 }
-.claimListWrapper {
+.iconButton{
+  display: flex;
+  gap: 5px;
+}
+
+.saveButton{
+  text-align: right !important;
+  margin-top: 10px !important;
+}
+.imageGuide{
+  color: #636578 !important;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.cont{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lowerWrap{
+  flex: 1;
+}
+
+.mainBox{
+  width: 100% !important;
+  margin-top: 20px;
+}
+
+
+
+
+/* .claimListWrapper {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -23,35 +56,13 @@
   display: flex !important;
 
 }
-.imageGuide{
-  color: #636578 !important;
-  font-weight: bold;
-  font-size: 12px;
-}
 
-.cont{
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.lowerWrap{
-  flex: 1;
-}
-.saveButton{
-  text-align: right !important;
-  margin-top: 10px !important;
-}
+
+
 .dateContainer{
   width: 100% !important;
 }
-.mainBox{
-  width: 100% !important;
-  margin-top: 20px;
-}
-.iconButton{
-  display: flex;
-  gap: 5px;
-}
+
 .custonCSS{
   width: 50% ;
-}
+} */

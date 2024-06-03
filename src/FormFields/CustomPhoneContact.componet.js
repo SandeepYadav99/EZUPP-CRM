@@ -1,3 +1,4 @@
+import { useTheme } from "@emotion/react";
 import React, { useCallback } from "react";
 
 import PhoneInput from "react-phone-input-2";
@@ -23,9 +24,10 @@ const CustomPhoneContactField = ({
   //   },
   //   [onChange, onTextChange]
   // );
+  const theme = useTheme();
+ 
   const handleChange = useCallback(
     (value, country, e, formattedValue) => {
-
       const countryCodeRegex = /\+(\d+)/;
       const match = formattedValue.match(countryCodeRegex);
       const countryCode = match ? match[1] : null;
@@ -43,15 +45,10 @@ const CustomPhoneContactField = ({
     [onChange, onTextChange]
   );
 
-  const handleValidation = useCallback(
-    (value, country, e, formattedValue) => {
-      // Perform custom validation here
-      // Return true if the phone number is valid, false otherwise
-      // Example: return formattedValue.length >= 10;
-      return formattedValue.length >= 10;
-    },
-    []
-  );
+  const handleValidation = useCallback((value, country, e, formattedValue) => {
+    return formattedValue.length >= 10;
+  }, []);
+  console.log(theme)
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <PhoneInput
@@ -59,6 +56,7 @@ const CustomPhoneContactField = ({
         inputProps={{
           name: "Phone No",
         }}
+        
         country={"in"}
         // country={country_code ? country_code.toLowerCase() : 'us'}
         value={value}
@@ -66,12 +64,14 @@ const CustomPhoneContactField = ({
         inputStyle={{
           width: "100%",
           border: errorText ? "1px solid red" : "1px solid #ccc",
+          color:  theme.palette.text.primary,
+          backgroundColor: theme.palette.background?.paper
         }}
-         specialLabel=""
+        specialLabel=""
         isValid={isValid}
         {...rest}
       />
-     {errorText ? (
+      {errorText ? (
         <span style={{ color: "red", textAlign: "right", fontSize: "12px" }}>
           {errorText}
         </span>

@@ -11,14 +11,13 @@ import history from "../../../libs/history.utils";
 import useUserCreateHook from "./UserCreateHook";
 
 const UserCreate = ({}) => {
-
   const {
     errorData,
     changeTextData,
     form,
     onBlurHandler,
     handleSubmit,
-userId,
+    userId,
     id,
     images,
     manager,
@@ -34,7 +33,9 @@ userId,
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"medium"} />{" "}
           </ButtonBase>
-          <Typography fontSize={22} fontWeight={600} color={"#636578"}>{id ? "Update" : "Add"} User</Typography>
+          <Typography fontSize={22} fontWeight={600} >
+            {id ? "Update" : "Add"} User
+          </Typography>
         </div>
       </div>
       <PersonalInformation

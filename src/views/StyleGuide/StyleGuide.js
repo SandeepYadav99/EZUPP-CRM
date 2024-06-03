@@ -75,6 +75,7 @@ const AutoCompleteData = [
 ];
 const StyleGuide = ({}) => {
   const theme = useTheme();
+
   const { checkboxValue, handleCheckboxChange } = useStyleGuide({});
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [selectedUsersSingle, setSelectedUsersSingle] = useState("");
@@ -432,10 +433,39 @@ const StyleGuide = ({}) => {
         </div>
       </div>
 
-    
       <br />
-     
+
       <br />
+      <div className={styles.avatorFlex}>
+        <div>
+          <Typography variant="h5" marginBottom={3}>Size</Typography>
+          <UserCountAvatarsLabelInitials
+            width={34}
+            height={34}
+            bgcolor={"skyblue"}
+            title="PI"
+          />
+        </div>
+        <div>
+        <Typography variant="h5" marginBottom={3}>Status Indicator </Typography>
+          <UserCountAvatarsStatusIndicator
+            width={44}
+            height={44}
+            bgcolor={"skyblue"}
+            imgUrl={require("../../assets/img/8.png")}
+          />
+        </div>
+        <div>
+        <Typography variant="h5" marginBottom={3}>Pull Up </Typography>
+          <UserCountAvatarsLableAvatarGroup
+            width={54}
+            height={54}
+            bgcolor={"skypink"}
+            title="Ezupp"
+            imgUrl={require("../../assets/img/8.png")}
+          />
+        </div>
+      </div>
       {/* <div>
         <UserCountRadioLables />
       </div>
