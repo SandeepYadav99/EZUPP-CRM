@@ -12,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .profileTitle {
   display: flex !important;
   align-items: center !important;
@@ -28,6 +29,17 @@
   display: flex !important;
   gap: 15px !important;
   flex-wrap: wrap !important;
+}
+@media (max-width:892px) {
+  .upperFlex {
+   flex-direction: column;
+   gap: 10px;
+  }
+  .profileHeaderAction {
+  justify-content: center;
+    
+    
+  }
 }
 .resetPassworedAction {
   padding: 10px 18px !important;

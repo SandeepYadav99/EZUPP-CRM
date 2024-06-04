@@ -36,7 +36,9 @@
   margin-top: 20px;
 }
 
-
+.dateContainer{
+  width: 100% !important;
+}
 
 
 /* .claimListWrapper {
@@ -58,9 +60,7 @@
 
 
 
-.dateContainer{
-  width: 100% !important;
-}
+
 
 .custonCSS{
   width: 50% ;
