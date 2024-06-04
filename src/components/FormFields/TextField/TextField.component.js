@@ -22,7 +22,7 @@ const CustomTextField = ({
     },
     [onChange, onTextChange]
   );
-  console.log(theme);
+ 
   return (
     <>
       <TextField
