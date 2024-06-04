@@ -64,7 +64,8 @@
     border-radius: 18px;
     display: flex;
     padding-bottom: 15px !important;
-    width: 550px !important;
+    width: 778px !important;
+    height: 653px !important;
     flex-direction: column;
     height: fit-content !important;
   }
@@ -109,6 +110,8 @@
     font-weight: 600;
     font-size: 24px;
     color: #636578;
+    display: flex;
+    justify-content: center !important;
   }
   
   .bottomSignup {

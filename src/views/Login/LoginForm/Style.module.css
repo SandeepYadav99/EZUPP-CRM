@@ -236,8 +236,9 @@
 .lineMaker {
   display: block !important;
   border-bottom: 1px solid #ccc;
-  width: 30% !important;
+  width:45%  !important;
 }
+
 .containerBtn {
   display: flex;
   justify-content: center !important;
