@@ -18,7 +18,7 @@ import { serviceGetList } from "../../../services/index.services";
 import debounce from "lodash.debounce";
 
 const initialForm = {
-  prefix: "Mr",
+  prefix: "",
   contact_name: "contact",
   full_name: "TESTER",
   gender: "NOT_PREFER",

@@ -32,6 +32,10 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
                 htmlFor={`selectField${id}`}
                 sx={{
                     color: theme.palette.text.primary,
+                    "&.MuiInputLabel-outlined.MuiInputLabel-shrink": {
+                        color: theme.palette.text.primary,
+                        background:theme.palette.background.paper,
+                    },
                   }}
             >
                 {label}
