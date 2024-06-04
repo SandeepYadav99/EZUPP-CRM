@@ -17,9 +17,8 @@
   margin-top: 10px !important;
 }
 .imageGuide{
-  color: #636578 !important;
-  font-weight: bold;
-  font-size: 12px;
+ display: flex;
+
 }
 
 .cont{
