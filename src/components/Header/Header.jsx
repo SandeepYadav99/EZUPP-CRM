@@ -97,7 +97,7 @@ class Header extends React.Component {
 
 
   render() {
-    const { classes, color, themeType ,userData} = this.props;
+    const { classes, color, themeType ,userData,theme} = this.props;
     const { anchorEl, note } = this.state;
     const appBarClasses = cx({
       [" " + classes[color]]: color,
@@ -157,7 +157,9 @@ class Header extends React.Component {
                     horizontal: "right",
                   }}
               >
-                <div className={classes.innercontent}>
+                <div className={classes.innercontent} 
+                style={{background:theme.palette.background.paper}}
+                >
                 <NotificationCard/>
                 </div>
               </Popover>
