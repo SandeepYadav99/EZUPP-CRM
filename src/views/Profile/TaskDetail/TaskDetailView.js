@@ -1,8 +1,8 @@
 import {
   ButtonBase,
-  FormControl,
+  
   MenuItem,
-  Select,
+ 
   Typography,
 } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
@@ -21,7 +21,6 @@ import AddNoteContainer from "./NotesDilog/AddNoteContainer";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
 import AddTaskUpdate from "./Update/UpdateDetail";
 
-import WaitingComponent from "../../../components/Waiting.component";
 import { serviceTaskManagementDetail } from "../../../services/ProviderUser.service";
 import { useParams } from "react-router-dom";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
@@ -193,7 +192,7 @@ const TaskDetailView = ({}) => {
           <CustomSelectField
             value={filterValue}
             handleChange={filterCompltedTask}
-            className={styles.selectWidth}
+            
           >
             <MenuItem value={"PENDING"}>Pending</MenuItem>
             <MenuItem value={"COMPLETED"}>Completed</MenuItem>
