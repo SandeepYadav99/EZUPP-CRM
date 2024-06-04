@@ -767,13 +767,13 @@
 .react-tel-input .form-control + div:before {
     content: 'Contact';
     position: absolute;
-    top: -10px;
+    top: -3px;
     left: 19px;
     display: block;
     /* background:  transparent ; */
     /* color: #6E6E6E; */
     /*padding: 0 5px;*/
-    font-size: 1rem;
+    font-size: 0.75rem;
     z-index: 1;
     /*width: 70px;*/
 }
