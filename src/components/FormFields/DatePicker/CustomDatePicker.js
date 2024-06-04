@@ -7,7 +7,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import { TextField, useTheme } from "@mui/material";
+import { TextField } from "@mui/material";
+import { useTheme } from "@mui/styles";
 
 const CustomDatePicker = ({
   onChange,
@@ -38,14 +39,14 @@ const CustomDatePicker = ({
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          clearable={clearable}
+          clearable
           margin="dense"
           variant="inline"
           id="time-picker"
           fullWidth
           label={label}
-          InputLabelProps={{
-            sx: {
+          sx={{
+            "& .MuiInputLabel-root": {
               color: theme.palette.text.primary,
             },
           }}
@@ -59,24 +60,24 @@ const CustomDatePicker = ({
           error={isError ? true : false}
           minDate={minDate && dayjs(minDate)}
           maxDate={mD ? dayjs(mD) : dayjs()}
-          // showTodayButton
+           showTodayButton
           InputProps={{
             disableUnderline: true,
           }}
+          {...rest}
           renderInput={(params) => (
             <TextField
               {...params}
               sx={{
                 color: theme.palette.text.primary,
-                ".MuiInputBase-input": {
+                "& .MuiInputBase-input": {
                   padding: "2px 110px",
                   color: theme.palette.text.primary,
-                  
                 },
               }}
             />
           )}
-          {...rest}
+
           // KeyboardButtonProps={{
           //     'aria-label': 'change time',
           // }}
@@ -92,11 +93,11 @@ const CustomDatePicker = ({
         id="time-picker"
         fullWidth
         label={label}
-        InputLabelProps={{
-            sx: {
-              color: theme.palette.text.primary,
-            },
-          }}
+        sx={{
+          "& .MuiInputLabel-root": {
+            color: theme.palette.text.primary,
+          },
+        }}
         value={value ? value : new Date()}
         onChange={handleOnChange}
         inputVariant={"outlined"}
@@ -104,7 +105,7 @@ const CustomDatePicker = ({
         error={isError}
         minDate={minDate}
         maxDate={mD}
-        
+
         // KeyboardButtonProps={{
         //     'aria-label': 'change time',
         // }}

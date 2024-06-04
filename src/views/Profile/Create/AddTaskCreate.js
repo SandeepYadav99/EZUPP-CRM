@@ -1,25 +1,20 @@
 import {
-  Avatar,
-  Button,
-  Chip,
+
   CircularProgress,
   MenuItem,
-  TextField,
-  Tooltip,
+
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import CustomTextField from "../../../FormFields/TextField.component";
 import styles from "./Style.module.css";
 import useAddTaskCreate from "./AddTaskCreateHook";
-import InfoIcon from "@mui/icons-material/Info";
-import { Autocomplete } from "@mui/lab";
-import { Clear, Search } from "@mui/icons-material";
 
-import CustomDateTimePicker from "../../../FormFields/DatePicker/CustomDateTimePicker";
+
+
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import {
-  ActionButton,
+ 
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
@@ -57,7 +52,9 @@ const AddTaskCreate = ({
       <ShadowBox width={"100%"}>
         <div className={styles.headerFlex}>
           <h4 className={styles.infoTitle}>
-            <Typography fontSize={18} fontWeight={600}>Task Details</Typography>
+            <Typography fontSize={18} fontWeight={600}>
+              Task Details
+            </Typography>
             {/* <Tooltip title="Info" aria-label="info" placement="right">
               <InfoIcon fontSize={"small"} />
             </Tooltip> */}
@@ -67,54 +64,6 @@ const AddTaskCreate = ({
         <div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              {/* <Autocomplete
-                id="tags-outlined"
-                onChange={(e, value) => {
-                  changeTextData(value, "assigned_to");
-                }}
-                value={form.assigned_to || fetchedAssignedUser || []}
-                options={filteredAssignedTo || []}
-                defaultValue={form?.assigned_to || []}
-                getOptionLabel={(option) =>
-                  `${option?.name} (${option?.email})`
-                }
-                renderOption={(option) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <Avatar src={option?.image} style={{ marginRight: 8 }} />
-                    <div>{`${option?.name} (${option?.email})`}</div>
-                  </div>
-                )}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="outlined"
-                    label="Assigned To"
-                    error={errorData?.assigned_to}
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          <Search
-                            style={{ marginRight: -20, cursor: "pointer" }}
-                          />
-                        </>
-                      ),
-                      startAdornment: (
-                        <>
-                          <Avatar
-                            src={
-                              form?.assigned_to?.image ||
-                              fetchedAssignedUser?.image
-                            }
-                            style={{ marginRight: 8, cursor: "pointer" }}
-                          />
-                        </>
-                      ),
-                    }}
-                  />
-                )}
-                disableClearable
-              /> */}
               <CustomMultiComplete
                 // multiple
                 showImage
@@ -184,33 +133,19 @@ const AddTaskCreate = ({
 
           <div className="formFlex">
             <div className={"formGroup"}>
-              <Autocomplete
+             
+              <CustomMultiComplete
                 multiple
-                id="tags-outlined"
-                onChange={(e, value) => {
+                // showImage
+                AutoCompleteList={filteredUsers || []}
+                label="Task Category"
+                error={errorData?.category}
+                isArray={true}
+                value={form?.category}
+                onTextChange={(value) => {
                   changeTextData(value, "category");
                 }}
-                options={categoryLists || []}
-                value={form?.category}
-                freeSolo
-                selectOnFocus={false}
-                renderTags={(value, getTagProps) =>
-                  value.map((option, index) => (
-                    <Chip
-                      variant="outlined"
-                      label={option}
-                      {...getTagProps({ index })}
-                    /> // disabled={option.length < 2}
-                  ))
-                }
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="outlined"
-                    label="Task Category"
-                    error={errorData?.category}
-                  />
-                )}
+                 enableField={["name"]}
               />
               <label className={styles.paragraph}>
                 Please press enter to add a category if not found in the search
@@ -219,7 +154,6 @@ const AddTaskCreate = ({
             </div>
           </div>
 
-      
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomSelectField
@@ -227,7 +161,6 @@ const AddTaskCreate = ({
                 errorText={errorData?.type}
                 label={"Task Type"}
                 value={form?.type}
-             
                 handleChange={(value) => {
                   changeTextData(value, "type");
                 }}
@@ -255,59 +188,6 @@ const AddTaskCreate = ({
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-               {/* <Autocomplete
-                id="tags-outlined"
-                onChange={(e, value) => {
-                  changeTextData(value, "associated_user");
-                }}
-                value={form?.associated_user || []}
-                options={filteredUsers || []}
-                getOptionLabel={(option) =>
-                  `${option?.name || ""} ${
-                    option?.email ? `(${option?.email})` : ""
-                  }`
-                }
-                renderOption={(option) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <Avatar src={option?.image} style={{ marginRight: 8 }} />
-                    <div>{`${option?.name} (${option?.email})`}</div>
-                  </div>
-                )}
-                defaultValue={form?.associated_user || []}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="outlined"
-                    label="Associated User (Optional)"
-                    error={errorData?.associated_user}
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          {form?.associated_user ? (
-                            <Clear
-                              onClick={() =>
-                                changeTextData(null, "associated_user")
-                              }
-                              style={{ cursor: "pointer" }}
-                            />
-                          ) : null}
-                          <Search
-                            style={{ marginRight: -20, cursor: "pointer" }}
-                          />
-                        </>
-                      ),
-                      startAdornment: (
-                        <Avatar
-                          src={form?.associated_user?.image || ""}
-                          style={{ marginRight: 8, cursor: "pointer" }}
-                        />
-                      ),
-                    }}
-                  />
-                )}
-                disableClearable
-              />  */}
               <CustomMultiComplete
                 // multiple
                 showImage
@@ -328,7 +208,7 @@ const AddTaskCreate = ({
               <CustomMultiComplete
                 // multiple
                 showImage
-                AutoCompleteList={filteredTask || ["Hi"]}
+                AutoCompleteList={filteredTask || []}
                 label="Associated Task (Optional)"
                 error={errorData?.associated_task}
                 getOptionLabel={(option) => option.name}
