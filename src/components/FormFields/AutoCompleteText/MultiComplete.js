@@ -75,6 +75,11 @@ const CustomMultiComplete = ({
               error={isError}
               helperText={errorText}
               label={label}
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: theme.palette.text.primary,
+                },
+              }}
               InputLabelProps={{
                 sx: {
                   color: theme.palette.text.primary,
