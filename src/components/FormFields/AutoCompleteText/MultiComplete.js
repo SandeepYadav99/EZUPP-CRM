@@ -28,7 +28,6 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   "& .MuiChip-deleteIcon": {
     backgroundColor: "transparent",
   },
-  
 }));
 
 const StyledOption = styled("div")(({ theme }) => ({
@@ -59,8 +58,7 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   const theme = useTheme();
- 
- 
+
   return (
     <>
       {multiple ? (
@@ -77,21 +75,27 @@ const CustomMultiComplete = ({
               error={isError}
               helperText={errorText}
               label={label}
+              InputLabelProps={{
+                sx: {
+                  color: theme.palette.text.primary,
+                },
+              }}
               {...params}
-              
               variant="outlined"
               color={"primary"}
               size={"small"}
               fullWidth
               {...rest}
-          
               InputProps={{
                 ...params.InputProps,
-               
+
                 sx: {
                   paddingRight: `${theme?.spacing(0)} !important`,
                   position: "relative",
-                 
+                  color: theme.palette.text.primary,
+                  "& .MuiInputBase-input": {
+                    color: theme.palette.text.primary,
+                  },
                 },
 
                 endAdornment: (
@@ -149,6 +153,11 @@ const CustomMultiComplete = ({
                 error={isError}
                 helperText={errorText}
                 label={label}
+                InputLabelProps={{
+                  sx: {
+                    color: theme.palette.text.primary,
+                  },
+                }}
                 {...params}
                 variant="outlined"
                 color={"primary"}
@@ -159,6 +168,10 @@ const CustomMultiComplete = ({
                   ...params.InputProps,
                   sx: {
                     paddingRight: `${theme?.spacing(0)} !important`,
+                    color: theme.palette.text.primary,
+                    "& .MuiInputBase-input": {
+                      color: theme.palette.text.primary,
+                    },
                   },
 
                   endAdornment: (

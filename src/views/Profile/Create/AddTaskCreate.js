@@ -255,7 +255,7 @@ const AddTaskCreate = ({
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              {/* <Autocomplete
+               {/* <Autocomplete
                 id="tags-outlined"
                 onChange={(e, value) => {
                   changeTextData(value, "associated_user");
@@ -307,14 +307,14 @@ const AddTaskCreate = ({
                   />
                 )}
                 disableClearable
-              /> */}
+              />  */}
               <CustomMultiComplete
                 // multiple
                 showImage
-                AutoCompleteList={filteredUsers || form.associated_user || []}
+                AutoCompleteList={filteredUsers || []}
                 label="Associated User (Optional)"
                 error={errorData?.associated_user}
-                getOptionLabel={(option) => option.email}
+                getOptionLabel={(option) => option.name}
                 value={form.associated_user || []}
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
@@ -328,10 +328,10 @@ const AddTaskCreate = ({
               <CustomMultiComplete
                 // multiple
                 showImage
-                AutoCompleteList={filteredTask || form.associated_task || []}
+                AutoCompleteList={filteredTask || ["Hi"]}
                 label="Associated Task (Optional)"
                 error={errorData?.associated_task}
-                getOptionLabel={(option) => option.email}
+                getOptionLabel={(option) => option.name}
                 value={form.associated_task || []}
                 onTextChange={(text) => {
                   changeTextData(text, "associated_task");
