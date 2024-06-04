@@ -21,6 +21,7 @@
     justify-content: space-between;
     align-items: center;
 }
+/* 1 */
 .firstCellFlex {
     display: flex;
     align-items: center;
@@ -31,10 +32,16 @@
     border-radius: 50%;
     display: block !important;
 }
+
 .firstCellInfo {
     margin-left: 10px;
 }
-.headerFlex {
+.actionButton{
+    display: flex;
+    gap: 2px;
+}
+/* end */
+/* .headerFlex {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,17 +58,14 @@
     padding-bottom: 15px;
 }
 
-.profileImage{
+/* .profileImage{
    
     
 }
-.actionButton{
-    display: flex;
-    gap: 2px;
-}
+
 
 .formContainer{
   max-width: 40%;
   min-width: 30rem;
   margin: auto;
-}
+} */ 

@@ -35,6 +35,7 @@ const CustomDatePicker = ({onChange, minDate, isError,errorText, maxDate, value,
                     fullWidth
                   
                     label={label}
+                 
                     value={value ? dayjs(value) : (null)}
                     onChange={handleOnChange}
                     inputVariant={'outlined'}

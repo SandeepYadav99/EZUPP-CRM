@@ -1,10 +1,12 @@
 import React, {useMemo, useRef, useEffect, useState} from 'react';
 import { InputLabel, Select, OutlinedInput, FormHelperText, FormControl} from "@mui/material";
 import LogUtils from "../../../libs/LogUtils";
+import { useTheme } from '@emotion/react';
 
 const CustomSelectField = ({ isError, errorText, label, handleChange, icon, children, outlinedProps, ...rest}) => {
     const [labelWidth, setLabelWidth] = useState(0);
     const inputLabelRef = useRef(null);
+    const theme = useTheme();
 
 
     const id = useMemo(() => {
@@ -19,10 +21,22 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
     };
 
     return (
-        <FormControl   size={'small'} fullWidth margin={'dense'} variant={'outlined'} error={isError} >
+        <FormControl   size={'small'} fullWidth margin={'dense'} variant={'outlined'} error={isError}    sx= {{
+            color:  theme.palette.text.primary,
+            "& .MuiInputBase-input": {
+              color: theme.palette.text.primary,
+            },
+          }}>
             <InputLabel
                 ref={inputLabelRef}
                 htmlFor={`selectField${id}`}
+                sx={{
+                    color: theme.palette.text.primary,
+                    "&.MuiInputLabel-outlined.MuiInputLabel-shrink": {
+                        color: theme.palette.text.primary,
+                        background:theme.palette.background.paper,
+                    },
+                  }}
             >
                 {label}
             </InputLabel>
@@ -38,6 +52,7 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
                             // labelWidth={labelWidth}
                             id={`selectField${id}`}
                             {...outlinedProps}
+                            
                         />
                     }
                     onChange={(e) => { handleChangeLocal && handleChangeLocal(e); }}

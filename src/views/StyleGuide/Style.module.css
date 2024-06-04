@@ -32,4 +32,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.avatorFlex{
+  display: flex;
+  justify-content: space-between;
+}
 

@@ -763,16 +763,18 @@
 .react-tel-input .form-control.open {
     z-index: 2;
 }
+
 .react-tel-input .form-control + div:before {
     content: 'Contact';
     position: absolute;
-    top: -0px;
+    top: -10px;
     left: 19px;
     display: block;
-    background: white;
-    color: #6E6E6E;
+    /* background:  transparent ; */
+    /* color: #6E6E6E; */
     /*padding: 0 5px;*/
-    font-size: 0.75rem;
+    font-size: 1rem;
+    z-index: 1;
     /*width: 70px;*/
 }
 .react-tel-input .flag-dropdown {

@@ -34,7 +34,7 @@ function NotificationCard() {
                 component="div"
                 variant="body2"
                 className={styles.desWrap2}
-                
+               
               >
                 {data?.title}
               </Typography>{" "}
@@ -42,7 +42,7 @@ function NotificationCard() {
                 component="div"
                 variant="body2"
                 className={styles.desWrap2}
-               
+                
               >
                 {data?.body}
               </Typography>

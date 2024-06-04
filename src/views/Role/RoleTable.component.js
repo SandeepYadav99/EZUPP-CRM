@@ -10,7 +10,7 @@ import {
   Checkbox,
   Typography,
 } from "@mui/material";
-import { withStyles } from "@mui/styles";
+import { useTheme, withStyles } from "@mui/styles";
 import styles from "./Style.module.css";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import { Info, InfoOutlined } from "@mui/icons-material";
@@ -26,7 +26,7 @@ const RoleTableComponent = ({
     },
     [permisionChangeHandler, permissions]
   );
-
+const theme=useTheme()
   return (
     <ShadowBox width={"100%"}>
       <div className={styles.infoFiled}>
@@ -42,10 +42,10 @@ const RoleTableComponent = ({
               <TableRow key={index}>
                 <TableCell classes={{ root: classes.tableCell }}>
                   <div className={styles.infoFiled}>
-                    <Typography variant="h6" fontWeight={600}  color={"#636578"}>
+                    <Typography variant="h6" fontWeight={600}  color={theme.palette.text.primary}>
                       {permission?.name}{" "}
                     </Typography>
-                    <InfoOutlined fontSize="16px"  color={"#636578"}/>
+                    <InfoOutlined fontSize="16px"  color={theme.palette.text.primary}/>
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>

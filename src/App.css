@@ -323,7 +323,9 @@ input[type="radio"] + label:hover {
 .innerHtml {
   word-wrap: break-word;
 }
-
+/* .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  background: white;
+} */
 .Selected {
   color: #20c997;
 }

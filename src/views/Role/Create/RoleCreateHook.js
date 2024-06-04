@@ -75,7 +75,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const permisionChangeHandler = useCallback(
     (index, data) => {
       const t = [...permission];
-      console.log(data, "t");
+   
       t[index] = { ...t[index], ...data };
 
       setPermissions(t);
@@ -191,13 +191,13 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const changeTextData = useCallback(
     (text, fieldName) => {
-      console.log(text, "Text");
+    
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
         t[fieldName] = text;
       } else if (fieldName === "industry_id") {
-        console.log(text, "Text");
+      
         t[fieldName] = text?.filter((item, index, self) => {
           return (
             index ===
