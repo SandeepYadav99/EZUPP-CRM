@@ -13,7 +13,7 @@ import {
 
 import {actionDeleteUnit} from "../../../actions/Unit.action";
 import { useDispatch, useSelector } from "react-redux";
-function useUnitCreateHook({ handleToggle, editData, id }) {
+function useUnitCreateHook({isOpen, handleToggle, editData, id }) {
   const initialForm = {
     name: "",
     is_general: false,
@@ -26,11 +26,31 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
   const [images, setImages] = useState(null);
   //const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [resData, setResData] = useState([]);
   const dispatch = useDispatch();
   const [listData, setListData] = useState({
     ROLES: [],
     UNITS: [],
   });
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+  
+  useEffect(() => {
+    if (isOpen) {
+      setForm({ ...initialForm });
+      setResData([]);
+      setIsSubmitting(false);
+      setErrorData({});
+    }
+  }, [isOpen]);
+
   // console.log("id before useEffect: ", id);
   useEffect(() => {
     if (id) {
@@ -152,8 +172,12 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
           window.location.reload();
         } else {
           SnackbarUtils.error(res.message);
+          if (res.message.includes("Name already exists")) {
+            setErrorData((prev) => ({ ...prev, name: true }));
+          }
+          setIsSubmitting(false);
         }
-        setIsSubmitting(false);
+       // setIsSubmitting(false);
       });
     }
   }, [form, isSubmitting, setIsSubmitting, setErrorData, id, editData, editData?.id]);
@@ -225,6 +249,7 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
     form,
     errorData,
     listData,
+    resData,
     changeTextData,
     onBlurHandler,
     removeError,
@@ -233,7 +258,10 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
     images,
     id,
     handleDelete,
-    editData
+    editData,
+    openDialog,
+    closeDialog,
+    isDialogOpen
   };
 }
 
