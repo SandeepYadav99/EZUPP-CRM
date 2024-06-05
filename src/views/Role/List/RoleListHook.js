@@ -12,6 +12,7 @@ const useRoleListHook = ({}) => {
   const [isCalling, setIsCalling] = useState(false);
   const [editData, setEditData] = useState(null);
   const [editId, setEditId] = useState("");
+  const [isOpenImageStack, setIsOpenImageStack]=useState(false)
   const dispatch = useDispatch();
   const isMountRef = useRef(false);
 
@@ -116,9 +117,16 @@ const useRoleListHook = ({}) => {
     history.push(RouteName.ROLE_CREATE);
   }, []);
   
+  const openProfilePopUp = useCallback(
+    (data) => {
+      setIsOpenImageStack((e) => !e);
+     
+    },
+    [setIsOpenImageStack]
+  );
   const configFilter = useMemo(() => {
     return [
-      { label: "Created On", name: "createdAt", type: "date" },
+      // { label: "Created On", name: "createdAt", type: "date" },
       {
         label: "Status",
         name: "status",
@@ -141,7 +149,9 @@ const useRoleListHook = ({}) => {
     editId,
     handleEdit,
     handleCreate,
-    handleDetail
+    handleDetail,
+    openProfilePopUp,
+    isOpenImageStack
   };
 };
 

@@ -52,7 +52,7 @@
 }
 
 .avatar {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 .avatar_size {
   cursor: pointer;

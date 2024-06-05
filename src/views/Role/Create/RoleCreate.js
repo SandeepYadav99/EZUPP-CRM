@@ -1,20 +1,18 @@
 import React from "react";
 import {
-  Button,
+  
   ButtonBase,
   CircularProgress,
-  IconButton,
-  TextField,
+ 
   Typography,
   useTheme,
 } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
-import Tooltip from "@mui/material/Tooltip";
-import InfoIcon from "@mui/icons-material/Info";
+
 import { makeStyles } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
-import { Autocomplete } from "@mui/lab";
+
 import useRoleCreateHook from "./RoleCreateHook";
 import RoleTableComponent from "../RoleTable.component";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
@@ -22,12 +20,11 @@ import history from "../../../libs/history.utils";
 
 import {
   ActionButton,
-  OutlineButton,
+ 
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
+import CustomSwitch from "../../../components/FormFields/CustomSwitch";
 
-// import CustomSwitch from "../../../FormFields/CustomSwitch";
-// import CustomCheckbox from "../../../FormFields/CustomCheckbox";
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -61,7 +58,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
         <ButtonBase onClick={() => history.goBack()}>
           <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
         </ButtonBase>
-        <Typography variant={"h4"} fontWeight={600} >{id ? "Update" : "Create"} Role</Typography>
+        <Typography variant={"h4"} fontWeight={600} >{id ? "Edit" : "Create"} Role</Typography>
       </div>
 
       <div className={styles.container}>
@@ -122,6 +119,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               />
             </div>
           </div>
+          <div className={"formGroup"}>
+              <CustomSwitch
+                value={form?.is_active}
+                handleChange={() => {
+                  changeTextData(!form?.is_active, "is_active");
+                }}
+                label={form?.is_active ? `Active` : "Inactive"}
+              />
+            </div>
         </ShadowBox>
         <>
           <RoleTableComponent
@@ -143,7 +149,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           >
             {isSubmitting ? (
               <CircularProgress color="success" size="20px" />
-            ) : empId ? (
+            ) : id ? (
               "UPDATE"
             ) : (
               "SAVE"

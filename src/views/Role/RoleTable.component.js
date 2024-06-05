@@ -10,6 +10,7 @@ import {
   Checkbox,
   Typography,
   Card,
+ 
 } from "@mui/material";
 import { useTheme, withStyles } from "@mui/styles";
 import styles from "./Style.module.css";
@@ -51,25 +52,24 @@ const RoleTableComponent = ({
                     >
                       {permission?.name}{" "}
                     </Typography>
-                    <InfoOutlined
-                      fontSize="16px"
-                      color={"action"}
-                    />
+                    <InfoOutlined fontSize="16px" color={"action"} />
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <Card sx={{
-                     textAlign:"center",
-                    width:"70%",
-                    "& .MuiPaper-root-MuiCard-root":{
-                      backgroundColor:theme.palette.text.primary
+                  <Card
+                    sx={{
+                      textAlign: "center",
+                      width: "70%",
+                      border: permission?.all_data
+                      ? `1px solid ${theme.palette.primary.ractange}`
+                      : `1px solid ${theme.palette.primary.ractangeborder}`,
+                      "& .MuiPaper-root-MuiCard-root": {
+                        backgroundColor: theme.palette.text.primary,
+                      },
                     }}
-                    }
                   >
                     <Checkbox
-                    
-                      sx={{
-                      }}
+                      sx={{}}
                       checked={permission?.all_data}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -84,16 +84,19 @@ const RoleTableComponent = ({
                 </TableCell>
 
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <Card sx={{
-                     textAlign:"center",
-                     width:"70%",
-                    "& .MuiPaper-root-MuiCard-root":{
-                      backgroundColor:theme.palette.text.primary
+                  <Card
+                    sx={{
+                      textAlign: "center",
+                      width: "70%",
+                      border: permission?.read
+                        ? `1px solid ${theme.palette.primary.ractange}`
+                        : `1px solid ${theme.palette.primary.ractangeborder}`,
+                      "& .MuiPaper-root-MuiCard-root": {
+                        backgroundColor: theme.palette.text.primary,
+                      },
                     }}
-                    }
                   >
                     <Checkbox
-                    
                       checked={permission?.read}
                       onChange={(event) =>
                         handleCheckboxChange(!permission?.read, `read`, index)
@@ -103,16 +106,19 @@ const RoleTableComponent = ({
                   </Card>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <Card sx={{
-                     textAlign:"center",
-                     width:"70%",
-                    "& .MuiPaper-root-MuiCard-root":{
-                      backgroundColor:theme.palette.text.primary
+                  <Card
+                    sx={{
+                      textAlign: "center",
+                      width: "70%",
+                      border: permission?.create
+                      ? `1px solid ${theme.palette.primary.ractange}`
+                      : `1px solid ${theme.palette.primary.ractangeborder}`,
+                      "& .MuiPaper-root-MuiCard-root": {
+                        backgroundColor: theme.palette.text.primary,
+                      },
                     }}
-                    }
                   >
                     <Checkbox
-                     
                       checked={permission?.create}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -126,16 +132,19 @@ const RoleTableComponent = ({
                   </Card>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <Card sx={{
-                    textAlign:"center",
-                     width:"70%",
-                    "& .MuiPaper-root-MuiCard-root":{
-                      backgroundColor:theme.palette.text.primary
+                  <Card
+                    sx={{
+                      textAlign: "center",
+                      width: "70%",
+                      border: permission?.update
+                      ? `1px solid ${theme.palette.primary.ractange}`
+                      : `1px solid ${theme.palette.primary.ractangeborder}`,
+                      "& .MuiPaper-root-MuiCard-root": {
+                        backgroundColor: theme.palette.text.primary,
+                      },
                     }}
-                    }
                   >
                     <Checkbox
-                     
                       checked={permission?.update}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -149,16 +158,19 @@ const RoleTableComponent = ({
                   </Card>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <Card sx={{
-                    textAlign:"center",
-                     width:"70%",
-                    "& .MuiPaper-root-MuiCard-root":{
-                      backgroundColor:theme.palette.text.primary,
+                  <Card
+                    sx={{
+                      textAlign: "center",
+                      width: "70%",
+                      border: permission?.delete
+                      ? `1px solid ${theme.palette.primary.ractange}`
+                      : `1px solid ${theme.palette.primary.ractangeborder}`,
+                      "& .MuiPaper-root-MuiCard-root": {
+                        backgroundColor: theme.palette.text.primary,
+                      },
                     }}
-                    }
                   >
                     <Checkbox
-                   
                       checked={permission?.delete}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -175,7 +187,6 @@ const RoleTableComponent = ({
               </TableRow>
             );
           })}
-        
         </TableBody>
       </Table>
     </ShadowBox>

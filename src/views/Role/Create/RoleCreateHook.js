@@ -1,13 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from "react";
-import { serviceBadgeIndustry } from "../../../services/Badge.service";
+
 import SnackbarUtils from "../../../libs/SnackbarUtils";
-import {
-  serviceHubMasterCreate,
-  serviceHubMasterDetail,
-  serviceHubMasterUpdate,
-} from "../../../services/HubMaster.service";
-import constants from "../../../config/constants";
+
 import { useDispatch } from "react-redux";
 import {
   actionDeleteMasterDelete,
@@ -21,12 +15,12 @@ import {
 } from "../../../services/Role.service";
 import { useParams } from "react-router-dom";
 import history from "../../../libs/history.utils";
-import RouteName from "../../../routes/Route.name";
-import LogUtils from "../../../libs/LogUtils";
+
 const initialForm = {
   name: "",
   displayName: "",
   description: "",
+  is_active: false,
 };
 
 const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
@@ -39,13 +33,6 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const [permission, setPermissions] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
-  // useEffect(() => {
-  //   serviceBadgeIndustry({ id: id }).then((res) => {
-  //     if (!res.error) {
-  //       setListData(res.data);
-  //     }
-  //   });
-  // }, []);
 
   useEffect(() => {
     if (id) {
@@ -56,7 +43,8 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
             ...form,
             name: data?.name,
             description: data?.description,
-            displayName:data?.display_name
+            displayName: data?.display_name,
+            is_active: data?.is_active === "ACTIVE" ? true : false,
           });
         } else {
         }
@@ -75,9 +63,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const permisionChangeHandler = useCallback(
     (index, data) => {
       const t = [...permission];
-   
       t[index] = { ...t[index], ...data };
-
       setPermissions(t);
     },
     [permission, setPermissions]
@@ -98,14 +84,14 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "description"];
+    let required = ["name", "displayName"];
     required.forEach((val) => {
       if (
         !form?.[val] ||
         (Array.isArray(form?.[val]) && form?.[val].length === 0)
       ) {
         errors[val] = true;
-        SnackbarUtils.error("Please enter values");
+        // SnackbarUtils.error("Please enter values");
       } else if (["code"].indexOf(val) < 0) {
         delete errors[val];
       }
@@ -127,30 +113,25 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     const updateData = {
       name: form?.name,
       permissions: permission,
-       display_name:form?.displayName,
+      display_name: form?.displayName,
       description: form?.description,
-      is_active: true,
+      is_active: form?.is_active === true ? true : false,
     };
 
     if (id) {
       updateData.id = id;
     }
 
-    try {
-      const req = id ? serviceUpdateRole : serviceCreateRole;
-      const res = await req(updateData);
+    const req = id ? serviceUpdateRole : serviceCreateRole;
+    const res = await req(updateData);
 
-      if (!res.error) {
-
-        history.goBack()
-      } else {
-        SnackbarUtils.error(res.message);
-      }
-
-    } catch (error) {
-    } finally {
-      setIsSubmitting(false);
+    if (!res.error) {
+      history.goBack();
+    } else {
+      SnackbarUtils.error(res.message);
     }
+
+    setIsSubmitting(false);
   }, [
     form,
     isSubmitting,
@@ -191,13 +172,11 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const changeTextData = useCallback(
     (text, fieldName) => {
-    
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
         t[fieldName] = text;
       } else if (fieldName === "industry_id") {
-      
         t[fieldName] = text?.filter((item, index, self) => {
           return (
             index ===
@@ -222,13 +201,9 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     [changeTextData, errorData, setErrorData]
   );
 
-  const cancelRole = useCallback(
-    (type) => {
-     history.goBack()
-    },
-    []
-  );
-
+  const cancelRole = useCallback((type) => {
+    history.goBack();
+  }, []);
 
   const suspendItem = useCallback(async () => {
     dispatch(actionDeleteMasterDelete(empId));
@@ -261,7 +236,8 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     toggleAcceptDialog,
     isAcceptPopUp,
     suspendItem,
-    cancelRole
+    cancelRole,
+    id,
   };
 };
 
