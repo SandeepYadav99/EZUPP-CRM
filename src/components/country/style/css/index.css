@@ -5,10 +5,7 @@
   width: 100%;
   margin-top: -8px;
 }
-.special-label{
-    margin-left: 15px;
-   
-}
+
 .react-tel-input :disabled {
   cursor: not-allowed;
 }
@@ -771,10 +768,10 @@
 
 .react-tel-input .form-control + div:before {
   /* content: 'Contact'; */
-  position: absolute;
+  /* position: absolute;
   top: -10px;
-  left: 19px;
-  display: block;
+  left: 19px; */
+  /* display: block; */
   /* background:  transparent ; */
   /* color: #6E6E6E; */
   /*padding: 0 5px;*/

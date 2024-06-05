@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 
@@ -23,17 +23,40 @@ const initialForm = {
   is_active: false,
 };
 
+const initialState = {
+  manager: [],
+  department: [],
+  ROLES: [],
+  images: null,
+  isSubmitting: false,
+};
 const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
-  const [geofenceCoordinates, setGeofenceCoordinates] = useState([]);
-  const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
   const [permission, setPermissions] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "SET_MANAGER":
+        return { ...state, manager: action.payload };
+      case "SET_DEPARTMENT":
+        return { ...state, department: action.payload };
+      case "ROLES":
+        return { ...state, ROLES: action.payload };
+      case "IMAGES":
+        return { ...state, images: action.payload };
+      case "IS_SUBMITING":
+        return { ...state, isSubmitting: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatchRoles] = useReducer(reducer, initialState);
   useEffect(() => {
     if (id) {
       serviceDetailRole({ id: id }).then((res) => {
@@ -195,7 +218,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm, listData]
+    [removeError, form, setForm]
   );
 
   const onBlurHandler = useCallback(
@@ -220,9 +243,9 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
-    setGeofenceCoordinates([]);
+
     setErrorData({});
-  }, [form, setForm, geofenceCoordinates, setErrorData]);
+  }, [form, setForm, setErrorData]);
 
   return {
     form,
@@ -231,12 +254,11 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     removeError,
     handleSubmit,
     isSubmitting,
-    listData,
+
     errorData,
     handleReset,
     empId,
-    geofenceCoordinates,
-    setGeofenceCoordinates,
+
     permisionChangeHandler,
     permission,
     toggleAcceptDialog,

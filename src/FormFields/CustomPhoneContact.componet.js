@@ -66,13 +66,26 @@ const CustomPhoneContactField = ({
           border: errorText ? "1px solid red" : "1px solid #ccc",
           color: theme.palette.text.primary,
           backgroundColor: theme.palette.background?.paper,
-          marginTop: theme.spacing(-0.5),
+          marginTop: theme.spacing(2),
         }}
         dropdownStyle={{
           backgroundColor: theme.palette.background?.paper,
         }}
-      
-        specialLabel="Contact"
+       
+        specialLabel={
+          <span
+            style={{
+              color: theme.palette.text.primary,
+              backgroundColor: theme.palette.background?.paper,
+              position: "absolute",
+              top: theme.spacing(0.5),
+              left: theme.spacing(2),
+              display: "block",
+            }}
+          >
+            Contact
+          </span>
+        }
         isValid={isValid}
         {...rest}
       />
