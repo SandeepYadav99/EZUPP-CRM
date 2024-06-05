@@ -9,6 +9,7 @@ import {
   TableRow,
   Checkbox,
   Typography,
+  Card,
 } from "@mui/material";
 import { useTheme, withStyles } from "@mui/styles";
 import styles from "./Style.module.css";
@@ -26,14 +27,15 @@ const RoleTableComponent = ({
     },
     [permisionChangeHandler, permissions]
   );
-const theme=useTheme()
+  const theme = useTheme();
+ 
   return (
     <ShadowBox width={"100%"}>
       <div className={styles.infoFiled}>
-        <Typography fontSize={18}  fontWeight={600}>
+        <Typography fontSize={18} fontWeight={600}>
           Permissions Granted
         </Typography>
-        <InfoOutlined fontSize="16px"  />
+        <InfoOutlined fontSize="16px" />
       </div>
       <Table className={classes.table} aria-label="simple table">
         <TableBody>
@@ -42,21 +44,32 @@ const theme=useTheme()
               <TableRow key={index}>
                 <TableCell classes={{ root: classes.tableCell }}>
                   <div className={styles.infoFiled}>
-                    <Typography variant="h6" fontWeight={600}  color={theme.palette.text.primary}>
+                    <Typography
+                      variant="h6"
+                      fontWeight={600}
+                      color={theme.palette.text.primary}
+                    >
                       {permission?.name}{" "}
                     </Typography>
-                    <InfoOutlined fontSize="16px"  color={theme.palette.text.primary}/>
+                    <InfoOutlined
+                      fontSize="16px"
+                      color={"action"}
+                    />
                   </div>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div
-                    className={
-                      permission?.all_data ? styles.crudHover : styles.crud
+                  <Card sx={{
+                     textAlign:"center",
+                    width:"70%",
+                    "& .MuiPaper-root-MuiCard-root":{
+                      backgroundColor:theme.palette.text.primary
+                    }}
                     }
                   >
                     <Checkbox
-                      color={"primary"}
-                      className={styles.checkBox}
+                    
+                      sx={{
+                      }}
                       checked={permission?.all_data}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -67,35 +80,39 @@ const theme=useTheme()
                       }
                     />{" "}
                     All Data
-                  </div>
+                  </Card>
                 </TableCell>
 
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div
-                    className={
-                      permission?.read ? styles.crudHover : styles.crud
+                  <Card sx={{
+                     textAlign:"center",
+                     width:"70%",
+                    "& .MuiPaper-root-MuiCard-root":{
+                      backgroundColor:theme.palette.text.primary
+                    }}
                     }
                   >
                     <Checkbox
-                      color={"primary"}
-                      className={styles.checkBox}
+                    
                       checked={permission?.read}
                       onChange={(event) =>
                         handleCheckboxChange(!permission?.read, `read`, index)
                       }
                     />
                     Read
-                  </div>
+                  </Card>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div
-                    className={
-                      permission?.create ? styles.crudHover : styles.crud
+                  <Card sx={{
+                     textAlign:"center",
+                     width:"70%",
+                    "& .MuiPaper-root-MuiCard-root":{
+                      backgroundColor:theme.palette.text.primary
+                    }}
                     }
                   >
                     <Checkbox
-                      color={"primary"}
-                      className={styles.checkBox}
+                     
                       checked={permission?.create}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -106,17 +123,19 @@ const theme=useTheme()
                       }
                     />
                     Write
-                  </div>
+                  </Card>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div
-                    className={
-                      permission?.update ? styles.crudHover : styles.crud
+                  <Card sx={{
+                    textAlign:"center",
+                     width:"70%",
+                    "& .MuiPaper-root-MuiCard-root":{
+                      backgroundColor:theme.palette.text.primary
+                    }}
                     }
                   >
                     <Checkbox
-                      color={"primary"}
-                      className={styles.checkBox}
+                     
                       checked={permission?.update}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -127,17 +146,19 @@ const theme=useTheme()
                       }
                     />
                     Update
-                  </div>
+                  </Card>
                 </TableCell>
                 <TableCell classes={{ root: classes.tableCell }}>
-                  <div
-                    className={
-                      permission?.delete ? styles.crudHover : styles.crud
+                  <Card sx={{
+                    textAlign:"center",
+                     width:"70%",
+                    "& .MuiPaper-root-MuiCard-root":{
+                      backgroundColor:theme.palette.text.primary,
+                    }}
                     }
                   >
                     <Checkbox
-                      className={styles.checkBox}
-                      color={"primary"}
+                   
                       checked={permission?.delete}
                       onChange={(event) =>
                         handleCheckboxChange(
@@ -148,19 +169,13 @@ const theme=useTheme()
                       }
                     />
                     Delete
-                  </div>
+                  </Card>
                 </TableCell>
                 <hr />
               </TableRow>
             );
           })}
-          {/* <TableRow>
-                        <TableCell>Customer</TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                    </TableRow> */}
+        
         </TableBody>
       </Table>
     </ShadowBox>
