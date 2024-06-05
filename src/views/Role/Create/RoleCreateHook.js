@@ -96,6 +96,12 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
         delete errors[val];
       }
     });
+    if (form?.name?.length <= 2) {
+      errors.name = true;
+    }
+    if (form?.displayName?.length <= 2) {
+      errors.displayName = true;
+    }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
