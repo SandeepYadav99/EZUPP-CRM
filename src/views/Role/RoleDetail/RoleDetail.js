@@ -13,6 +13,7 @@ import { ArrowActionButton } from "../../../components/Buttons/PrimaryButton";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
 
 const initialState = {
   roleDetail: {},
@@ -20,6 +21,7 @@ const initialState = {
 };
 const RoleDetail = () => {
   const { id } = useParams();
+  const theme= useTheme()
   const reducer = (state, action) => {
     switch (action.type) {
       case "ROLE_DETAIL":
@@ -77,7 +79,7 @@ const RoleDetail = () => {
               <Typography fontSize={18} fontWeight={600}>
                 {name}
               </Typography>
-              <Typography variant="subtitle1">{display_name}</Typography>
+              <Typography variant="body1">{display_name}</Typography>
             </div>
             <div>
               <StatusPill
@@ -88,7 +90,7 @@ const RoleDetail = () => {
           </div>
           <hr className={styles.hrLine} />
           <Typography variant="subtitle1">Description</Typography>
-          <Typography variant="subtitle1">{description || "N/A"}</Typography>
+          <Typography variant="body1">{description || "N/A"}</Typography>
         </ShadowBox>
         <ShadowBox className={styles.leftSection}>
           <div>
@@ -97,16 +99,18 @@ const RoleDetail = () => {
             </Typography>
             <div className={styles.rightContaiiner}>
               <div>
-                <p>Roles:</p>
-                <p>Users:</p>
-                <p>Products:</p>
-                <p>Contact:</p>
+                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Roles:</Typography>
+                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Users:</Typography>
+                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Products:</Typography>
+                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Contact:</Typography>
+               
               </div>
               <div>
-                <p>All Data</p>
-                <p>Update, Delete</p>
-                <p>Read, Write</p>
-                <p>All Data</p>
+              <Typography variant="body1" margin={theme.spacing(1.5)}>All Data</Typography>
+                <Typography variant="body1" margin={theme.spacing(1.5)}>Update, Delete</Typography>
+                <Typography variant="body1" margin={theme.spacing(1.5)}>Read, Write</Typography>
+                <Typography variant="body1" margin={theme.spacing(1.5)}>All Data</Typography>
+               
               </div>
             </div>
           </div>
