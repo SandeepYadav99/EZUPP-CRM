@@ -21,7 +21,7 @@ const initialState = {
 };
 const RoleDetail = () => {
   const { id } = useParams();
-  const theme= useTheme()
+  const theme = useTheme();
   const reducer = (state, action) => {
     switch (action.type) {
       case "ROLE_DETAIL":
@@ -33,8 +33,7 @@ const RoleDetail = () => {
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
- 
- 
+
   useEffect(() => {
     Promise.all([
       serviceDetailRole({ id: id }),
@@ -99,26 +98,58 @@ const RoleDetail = () => {
             </Typography>
             <div className={styles.rightContaiiner}>
               <div>
-                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Roles:</Typography>
-                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Users:</Typography>
-                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Products:</Typography>
-                <Typography variant="subtitle1" margin={theme.spacing(1.5)} fontWeight={600}>Contact:</Typography>
-               
+                <Typography
+                  variant="subtitle1"
+                  margin={theme.spacing(1.5)}
+                  fontWeight={600}
+                >
+                  Roles:
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  margin={theme.spacing(1.5)}
+                  fontWeight={600}
+                >
+                  Users:
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  margin={theme.spacing(1.5)}
+                  fontWeight={600}
+                >
+                  Products:
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  margin={theme.spacing(1.5)}
+                  fontWeight={600}
+                >
+                  Contact:
+                </Typography>
               </div>
               <div>
-              <Typography variant="body1" margin={theme.spacing(1.5)}>All Data</Typography>
-                <Typography variant="body1" margin={theme.spacing(1.5)}>Update, Delete</Typography>
-                <Typography variant="body1" margin={theme.spacing(1.5)}>Read, Write</Typography>
-                <Typography variant="body1" margin={theme.spacing(1.5)}>All Data</Typography>
-               
+                <Typography variant="body1" margin={theme.spacing(1.5)}>
+                  All Data
+                </Typography>
+                <Typography variant="body1" margin={theme.spacing(1.5)}>
+                  Update, Delete
+                </Typography>
+                <Typography variant="body1" margin={theme.spacing(1.5)}>
+                  Read, Write
+                </Typography>
+                <Typography variant="body1" margin={theme.spacing(1.5)}>
+                  All Data
+                </Typography>
               </div>
             </div>
           </div>
         </ShadowBox>
       </div>
-      <section className={styles.bottomSection}>
-        <AssociatedUsers id={id ? id : "userObject?.user?.id"} />
-      </section>
+      <div>
+        <section className={styles.bottomSection}>
+          <AssociatedUsers id={id ? id : "userObject?.user?.id"} />
+        </section>
+      </div>
       {/* Table Bottom */}
     </div>
   );
