@@ -15,6 +15,7 @@ import {
   actionResetFilterFaq,
   actionSetPageFaq,
   actionUpdateFaq,
+  actionDragFaq,
 } from "../../../../actions/Faq.action";
 import { connect } from "react-redux";
 import { arrayMove } from "react-sortable-hoc";
@@ -31,6 +32,8 @@ const TopicView = (props) => {
     prevDataRef.current = props.data;
   });
   const prevData = prevDataRef.current;
+  const draggedItem = useRef();
+  const draggedOverItem = useRef();
 
   useEffect(() => {
     props.actionFetchData();
@@ -102,12 +105,15 @@ const TopicView = (props) => {
     },
     [topics]
   );
+  const handleDrag = useCallback((dragId, dragOverId) => {
+    props.actionDragFaq(dragId, dragOverId);
+  }, []);
 
   const renderList = () => {
     const { data, selectedCategory } = props;
     if (data.length > 0) {
       return data.map((val, index) => (
-        <ul key={val.id} className={styles.list}>
+        <ul key={`list_val_${val.id}`} className={styles.list}>
           <li className={styles.item}>
             <ButtonBase
               className={
@@ -117,7 +123,33 @@ const TopicView = (props) => {
               }
               onClick={() => handleChangeType(index, val)}
             >
-              <span>{val.title}</span>
+              <span
+                id={val.id}
+                draggable={true}
+                onDragStart={(e) => {
+                  console.log("onDragStart", e.target.id);
+                  draggedItem.current = e.target.id;
+                }}
+                onDragOver={(e) => {
+                  // e.stopPropagation();
+                  e.preventDefault();
+                  draggedOverItem.current = e.currentTarget.id;
+                  if (draggedItem.current && draggedOverItem.current) {
+                    handleDrag &&
+                      handleDrag(draggedItem.current, draggedOverItem.current);
+                  }
+                }}
+                onDragEnd={(e) => {
+                  if (draggedItem.current && draggedOverItem.current) {
+                    handleDrag &&
+                      handleDrag(draggedItem.current, draggedOverItem.current);
+                  }
+                  draggedOverItem.current = null;
+                  draggedItem.current = null;
+                }}
+              >
+                {val.title}
+              </span>
             </ButtonBase>
             <IconButton onClick={() => handleEdit(val)}>
               <Edit color={"primary"} fontSize={"small"} />
@@ -188,6 +220,7 @@ const mapDispatchToProps = (dispatch) =>
       actionCreateFaq: actionCreateFaq,
       actionUpdateFaq: actionUpdateFaq,
       actionDelete: actionDeleteFaq,
+      actionDragFaq: actionDragFaq,
     },
     dispatch
   );
