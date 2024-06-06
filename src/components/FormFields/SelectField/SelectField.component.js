@@ -8,7 +8,7 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
     const inputLabelRef = useRef(null);
     const theme = useTheme();
 
-
+console.log(theme)
     const id = useMemo(() => {
         return Date.now()+'SELECTED_LABEL'+label;
     }, [label]);
@@ -34,7 +34,7 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
                     color: theme.palette.text.primary,
                     "&.MuiInputLabel-outlined.MuiInputLabel-shrink": {
                         color: theme.palette.text.primary,
-                        background:theme.palette.background.paper,
+                        background:theme.palette.tableHeadColor,
                     },
                   }}
             >
