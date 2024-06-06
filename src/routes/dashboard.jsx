@@ -14,6 +14,7 @@ import ProductList from "../views/Products/List/ProductList.container";
 // import UpperTabs from "../views/User/components/UpperTabs/UpperTabs.view";
 import BlogsList from "../views/Blogs/BlogsList.container";
 import FaqList from "../views/Faq/FaqList.container";
+import UpdatedFaqList from "../views/NewFaq/FaqList.container";
 import SupportList from "../views/Support/SupportList.container";
 import TypeList from "../views/Type/TypeList.container";
 import Profile from "../views/Profile/MyProfile.view";
@@ -390,6 +391,16 @@ const dashboardRoutes = [
     navbarName: "FAQ",
     icon: BubbleChart,
     component: FaqList,
+    is_sidebar: true,
+    is_protect: true,
+    parent: "masters",
+  },
+  {
+    path: "/new/faq",
+    sidebarName: "New FAQ",
+    navbarName: "New FAQ",
+    icon: BubbleChart,
+    component: UpdatedFaqList,
     is_sidebar: true,
     is_protect: true,
     parent: "masters",
