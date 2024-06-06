@@ -1,36 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import styles from "./Style.module.css";
 import { useParams } from "react-router-dom";
-import { serviceDetailRole } from "../../../services/Role.service";
+import {
+  serviceDetailPermissions,
+  serviceDetailRole,
+} from "../../../services/Role.service";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import AssociatedUsers from "./AssociatedUsers/AssociatedUsers";
 import { ButtonBase, Typography } from "@mui/material";
 import { ArrowBackIos, Delete } from "@mui/icons-material";
-import {
-  ArrowActionButton,
- 
-} from "../../../components/Buttons/PrimaryButton";
+import { ArrowActionButton } from "../../../components/Buttons/PrimaryButton";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 
+const initialState = {
+  roleDetail: {},
+  permissions: [],
+};
 const RoleDetail = () => {
-  const [roleDetail, setRoleDetail] = useState({});
   const { id } = useParams();
-
-  const { description, status, name, display_name } = roleDetail;
-  useEffect(() => {
-    if (id) {
-      serviceDetailRole({ id: id }).then((res) => {
-        if (!res.error) {
-          const data = res?.data?.details;
-          setRoleDetail(data);
-        } else {
-        }
-      });
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "ROLE_DETAIL":
+        return { ...state, roleDetail: action.payload };
+      case "PERMISSIONS":
+        return { ...state, permissions: action.payload };
+      default:
+        return state;
     }
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+ 
+ 
+  useEffect(() => {
+    Promise.all([
+      serviceDetailRole({ id: id }),
+      serviceDetailPermissions({ id: id }),
+    ]).then(([roleDetail, permissions]) => {
+      const data = roleDetail?.data?.details;
+      if (!roleDetail.error) {
+        dispatch({ type: "ROLE_DETAIL", payload: data });
+      }
+      if (!permissions.error) {
+        dispatch({ type: "PERMISSIONS", payload: permissions.data });
+      }
+    });
   }, [id]);
 
+  const { description, status, name, display_name } = state?.roleDetail;
   return (
     <div>
       <div className={styles.upperFlex}>
