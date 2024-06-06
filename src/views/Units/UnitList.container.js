@@ -10,7 +10,7 @@ import {
   Person,
   OpenInNew as OpenInNewIcon,
   Edit,
-  Topic,
+  Topic, 
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import removeTask from "./../../assets/Assets/ic_delete@2x.png";
@@ -158,7 +158,7 @@ const UnitsList = (props) => {
     currentPage,
     handleDrag,
   ]);
-
+  const panelTitle = editData ? "Update Unit" : "New Unit";
   return (
     <div>
       <ShadowBox className={styles.unit}>
@@ -179,7 +179,7 @@ const UnitsList = (props) => {
           </ArrowPrimaryButton>
           <SidePanelComponent
             handleToggle={handleSideToggle}
-            title={"New Unit"}
+            title={panelTitle}
             open={isSidePanel}
             side={"right"}
           >
