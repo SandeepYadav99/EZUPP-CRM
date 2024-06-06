@@ -20,7 +20,7 @@ const lightenRate = 7.5;
 const darkenRate = 15;
 const textMainColor = '#4A4A4A';
 const tableHeadColor= "#F5F5F5";
-const darkContent = "#ffffff";
+const darkContent = "#F7F7F9"
 const ractangeborder="#C5C5C5";
 const ractange="#347BEC";
 

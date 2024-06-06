@@ -158,7 +158,7 @@ class Header extends React.Component {
                   }}
               >
                 <div className={classes.innercontent} 
-                style={{background:theme.palette.background.paper}}
+                style={{background:theme.palette.background.paper, color:theme.palette.text.primary}}
                 >
                 <NotificationCard/>
                 </div>

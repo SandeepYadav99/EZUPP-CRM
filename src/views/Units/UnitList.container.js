@@ -10,7 +10,7 @@ import {
   Person,
   OpenInNew as OpenInNewIcon,
   Edit,
-  Topic,
+  Topic, 
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import removeTask from "./../../assets/Assets/ic_delete@2x.png";
@@ -110,7 +110,9 @@ const UnitsList = (props) => {
             <IconButton
               // disabled={is_calling}
 
-              onClick={() => handleEditSidePannel(all)}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleEditSidePannel(all)}}
             >
               <Edit fontSize={"small"} />
             </IconButton>
@@ -136,6 +138,7 @@ const UnitsList = (props) => {
       onPageChange: handlePageChange,
       onRowSizeChange: handleRowSize,
       handleDrag: handleDrag,
+      clickableRow:handleEditSidePannel
     };
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
@@ -158,7 +161,7 @@ const UnitsList = (props) => {
     currentPage,
     handleDrag,
   ]);
-
+  const panelTitle = editData ? "Update Unit" : "New Unit";
   return (
     <div>
       <ShadowBox className={styles.unit}>
@@ -179,7 +182,7 @@ const UnitsList = (props) => {
           </ArrowPrimaryButton>
           <SidePanelComponent
             handleToggle={handleSideToggle}
-            title={"New Unit"}
+            title={panelTitle}
             open={isSidePanel}
             side={"right"}
           >

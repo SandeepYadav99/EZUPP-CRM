@@ -184,6 +184,8 @@ class Faq extends Component {
     }
 
     _handleEditor(data, b) {
+
+        // console.log('data',convertFromRaw(data));
         const html = stateToHTML(data.getCurrentContent());
         console.log('data', data);
         this.setState({
@@ -198,6 +200,8 @@ class Faq extends Component {
     }
 
     _renderStatus() {
+        // const {data} = this.props;
+        // if (data) {
             return (<FormControlLabel
                 control={
                     <Switch color={'primary'} checked={this.state.is_active} onChange={this._handleActive.bind(this)}
@@ -205,11 +209,16 @@ class Faq extends Component {
                 }
                 label="Active ?"
             />);
+        // } else {
+        //     return null;
+        // }
     }
     handleEditorChange = (content, editor) => {
+        // console.log('Content was updated:', content);
     }
 
     async _handleFileUpload (file) {
+        console.log(this.editorRef);
         if (this.editorRef) {
             this.editorRef.insertAtomicBlockAsync("IMAGE", this._uploadImage(file), "Uploading now...")
         }
@@ -219,6 +228,7 @@ class Faq extends Component {
         console.log('handleSave', (data));
         const tData = JSON.parse(data);
         const state = convertFromRaw(tData)
+        console.log('state', state);
     }
 
     _uploadImage(file) {
@@ -233,8 +243,9 @@ class Faq extends Component {
                         src:req.data.image,
                         url: req.data.image,
                         width: 300,
-                        alignment: "left",
-                        type: "image" 
+                        // height: 200,
+                        alignment: "left", // or "center", "right"
+                        type: "image" // or "video"
                     }
                 })
             } else {
@@ -253,6 +264,15 @@ class Faq extends Component {
         const { editor_data, anchor } = this.state;
         if (editor_data) {
             return (<>
+                {/*<UploadImagePopover*/}
+                {/*    anchor={anchor}*/}
+                {/*    onSubmit={(data, insert) => {*/}
+                {/*        if (insert && data.file) {*/}
+                {/*            this._handleFileUpload(data.file)*/}
+                {/*        }*/}
+                {/*        this._setAnchor(null);*/}
+                {/*    }}*/}
+                {/*/>*/}
                 <ThemeProvider theme={defaultTheme}>
                     <MUIRichTextEditor
                         ref={(ref) => { this.editorRef = ref; }}
@@ -508,7 +528,14 @@ const useStyle = theme => ({
 
 const ReduxForm = reduxForm({
     form: 'blogs',  // a unique identifier for this form
-    validate,    
+    validate,
+    // enableReinitialize: true,
+    // asyncValidate
+    // onSubmitFail: errors => {
+    //     console.log(errors);
+    //     EventEmitter.dispatch(EventEmitter.THROW_ERROR, {error: 'Please enter values', type: 'error'});
+    //
+    // }
 })(withStyles(useStyle, {withTheme: true})(Faq));
 
 export default connect(null, null)(ReduxForm);

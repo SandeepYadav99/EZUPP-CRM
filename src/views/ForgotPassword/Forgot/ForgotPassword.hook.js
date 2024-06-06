@@ -67,7 +67,9 @@ const useForgotPasswordHook = () => {
       serviceForgotPassword(form).then((val) => {
         if (!val?.error) {
           SnackbarUtils.success("Password Reset Email Sent");
-          history.push("/password/resend");
+          history.push("/password/resend",{
+            emailAddress:form?.email,
+          });
         } else {
           SnackbarUtils.error("Invalid Email Address");
         }

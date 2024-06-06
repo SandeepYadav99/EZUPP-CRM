@@ -48,7 +48,7 @@ const ProfilingLead = ({
                 changeTextData(text, "source");
               }}
               enableField={["title"]}
-              style={{ marginTop: "4px" }}
+              // style={{ marginTop: "4px" }}
             />
           </div>
           <div className={"formGroup"}>

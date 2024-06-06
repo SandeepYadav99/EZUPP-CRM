@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import { serviceResetProfilePassword } from "../../services/index.services";
+import history from "../../libs/history.utils";
 
 const initialForm = {
   password: "",
@@ -132,6 +133,10 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     [changeTextData]
   );
 
+  const handleReturn =()=>{
+    history.push("/login")
+  }
+
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
@@ -153,6 +158,7 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     showPassword,
     togglePasswordVisibility,
     toggleConfirmPasswordVisibility,
+    handleReturn,
   };
 };
 
