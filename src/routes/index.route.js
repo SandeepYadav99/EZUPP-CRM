@@ -24,7 +24,6 @@ const RouteComponent = () => (
     <Route path={"/drag"} component={DragDrop} />
     <Route path={"/already"} component={ChooseAccount} />
     <Route path={"/password/resend"} component={SuccessPageView} />
-
     <Route path={"/"} component={Dashboard} />
   </Switch>
 );
