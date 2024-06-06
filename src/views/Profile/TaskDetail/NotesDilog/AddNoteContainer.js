@@ -1,12 +1,11 @@
-import { ButtonBase, Typography } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import {  Typography } from "@mui/material";
+
 import React, { memo } from "react";
 import NotesDilog from "./NotesDilog";
 import useNotesDilogHook from "./NotesDilogHook";
 import NoteItem from "./NoteItems";
-import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import {
-  ArrowPrimaryButton,
+ 
   PrimaryButton,
 } from "../../../../components/Buttons/PrimaryButton";
 
@@ -26,7 +25,7 @@ const AddNoteContainer = ({ details, styles, classes }) => {
     <div className={styles.plainPaper}>
       <div className={styles.newContainer}>
         <div className={styles.notesContainer}>
-          <Typography variant="h4" color={"#636578"}>Notes</Typography>
+          <Typography variant="h4" >Notes</Typography>
           <div>
             <PrimaryButton
               // className={styles.addTask}

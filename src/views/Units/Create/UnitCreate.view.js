@@ -4,13 +4,14 @@ import styles from "./Style.module.css";
 import CustomTextField from "./../../../components/FormFields/TextField/TextField.component";
 import useUnitCreateHook from "./UnitCreate.hook";
 import CustomSelectField from "./../../../components/FormFields/SelectField/SelectField.component";
-import {  Tooltip, Typography, IconButton } from "@mui/material";
+import {  Dialog, Tooltip, Typography, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import CustomSwitch from "./../../../components/FormFields/CustomSwitch";
 import CustomCheckbox from "./../../../components/FormFields/CustomCheckbox";
 import { Delete as DeleteIcon, Info as InfoIcon } from "@mui/icons-material";
 import {
-  OutlineButton,
+  ActionButton,
   PrimaryButton,
 } from "./../../../components/Buttons/PrimaryButton";
 import removeTask from "../../../assets/Assets/ic_delete@2x.png";
@@ -24,6 +25,9 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
     handleSubmit,
     onBlurHandler,
     handleDelete,
+    openDialog,
+    closeDialog,
+    isDialogOpen,
     editData,
     removeError,
     resData,
@@ -38,7 +42,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
     currentPage,
     is_fetching: isFetching,
   } = useSelector((state) => state.unit);
-  
+ 
   return (
     <div>
       <div className={styles.resetPasswordWrapper}>
@@ -54,7 +58,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
             
           </div>
           {isEdit && (
-            <IconButton onClick={() => handleDelete(id)}>
+            <IconButton onClick={openDialog}>
                   
                   <img src={removeTask} alt="task" width={20} />
                   </IconButton>
@@ -88,15 +92,47 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
                 handleChange={() => {
                   changeTextData(!form?.status, "status");
                 }}
-                label={`Active ?`}
+                //label={`Active ?`}
+                label={form?.status ? "Active" : "Inactive"}
               />
             </div>
           </div>
         </div>
         <div style={{ float: "right" }}>
-          <PrimaryButton onClick={handleSubmit}>SUBMIT</PrimaryButton>
+          <PrimaryButton onClick={handleSubmit}>{isEdit ? "UPDATE" : "SUBMIT"}</PrimaryButton>
         </div>
       </div>
+      <Dialog
+        open={isDialogOpen}
+        onClose={closeDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <div className={styles.dialogWrap}>
+            <Typography variant="subtitle1">
+              {"Are your sure you want to delete the unit ?"}
+            </Typography>
+            
+            <div className={styles.buttonContainer}>
+              <div className={styles.cancelButton}>
+                <ActionButton sx={{ mt: 4 }} onClick={closeDialog}>
+                  CANCEL
+                </ActionButton>
+              </div>
+
+              <div className={styles.saveButton}>
+                <PrimaryButton
+                  color={"primary"}
+                  sx={{ mt: 4 , ml: 4}}
+               
+                onClick={() => handleDelete(id)}
+                >
+                  CONFIRM
+                </PrimaryButton>
+              </div>
+            </div>
+          </div>
+      </Dialog>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            color={"text.secondary"}
+           
             marginLeft={2}
           >
             Due Date:
@@ -25,7 +25,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            color={"text.secondary"}
+            
             marginLeft={2}
           >
             Assigned To:
@@ -42,7 +42,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            color={"text.secondary"}
+           
             marginLeft={2}
           >
             Assigned By:
@@ -59,7 +59,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            color={"text.secondary"}
+           
             marginLeft={2}
           >
             Task Category:
