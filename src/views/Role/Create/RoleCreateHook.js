@@ -21,7 +21,7 @@ const initialForm = {
   name: "",
   displayName: "",
   description: "",
-  is_active: false,
+  is_active: true,
 };
 
 const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
