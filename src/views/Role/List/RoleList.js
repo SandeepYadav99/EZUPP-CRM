@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Button, IconButton } from "@mui/material";
+import { Avatar, Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import styles from "./Style.module.css";
@@ -71,11 +71,12 @@ const RoleList = (props) => {
   const renderAssociatedIndustriesName = useCallback(
     (industryData) => (
       <div className={styles.imageContainer}>
+        {industryData?.length > 0  ? 
         <ImageStack
           industryData={industryData}
           open={isOpenImageStack}
           openProfilePopUp={openProfilePopUp}
-        />
+        /> : <Avatar src={require("../../../assets/img/profile.png")}></Avatar>}
       </div>
     ),
     [isOpenImageStack, openProfilePopUp]
