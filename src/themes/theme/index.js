@@ -87,7 +87,8 @@ const Theme = (colors) => {
       business: '#888cff',
       Discuss:"#636578",
       service: "#636578",
-      warm: "#EBC50B"
+      warm: "#EBC50B",
+      draft: "#2063CE",
     },
     success: {
       main: success,
