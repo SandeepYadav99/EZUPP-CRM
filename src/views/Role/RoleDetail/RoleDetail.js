@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { serviceDetailRole } from "../../../services/Role.service";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import AssociatedUsers from "./AssociatedUsers/AssociatedUsers";
-import { ButtonBase } from "@mui/material";
+import { ButtonBase, Typography } from "@mui/material";
 import { ArrowBackIos, Delete } from "@mui/icons-material";
 import {
   ArrowActionButton,
@@ -14,12 +14,12 @@ import {
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
 const RoleDetail = () => {
   const [roleDetail, setRoleDetail] = useState({});
   const { id } = useParams();
- 
-  const { description , status
-  } = roleDetail;
+
+  const { description, status, name, display_name } = roleDetail;
   useEffect(() => {
     if (id) {
       serviceDetailRole({ id: id }).then((res) => {
@@ -54,28 +54,30 @@ const RoleDetail = () => {
         </div>
       </div>
       <div className={styles.detailContainer}>
-        <ShadowBox width={"75%"}>
+        <ShadowBox className={styles.rightSection}>
           <div className={styles.boxleft}>
             <div>
-              <p>
-                <span className={styles.title}>Sales Executive </span> <br />{" "}
-                <span className={styles.subTitle}>Sales Head</span>
-              </p>
+              <Typography fontSize={18} fontWeight={600}>
+                {name}
+              </Typography>
+              <Typography variant="subtitle1">{display_name}</Typography>
             </div>
             <div>
-              <StatusPill status={status} color={status === "ACTIVE" && "active"} />
+              <StatusPill
+                status={status}
+                color={status === "ACTIVE" && "active"}
+              />
             </div>
           </div>
           <hr className={styles.hrLine} />
-          <h3>Description</h3>
-          <p>{description}</p>
+          <Typography variant="subtitle1">Description</Typography>
+          <Typography variant="subtitle1">{description || "N/A"}</Typography>
         </ShadowBox>
-        <ShadowBox width={"25%"}>
+        <ShadowBox className={styles.leftSection}>
           <div>
-            
-            <p>
-              <span className={styles.title}>Permissions Granted</span>{" "}
-            </p>
+            <Typography fontSize={18} fontWeight={600}>
+              Permissions Granted
+            </Typography>
             <div className={styles.rightContaiiner}>
               <div>
                 <p>Roles:</p>
@@ -93,15 +95,7 @@ const RoleDetail = () => {
           </div>
         </ShadowBox>
       </div>
-      <section className={styles.plainPaper}>
-        <div className={styles.headingWrap}>
-          <div className={styles.newLineWrap}>
-            <span className={styles.title}>
-              <b>Associated Users</b>
-            </span>
-            <div className={styles.newLine2} />
-          </div>
-        </div>
+      <section className={styles.bottomSection}>
         <AssociatedUsers id={id ? id : "userObject?.user?.id"} />
       </section>
       {/* Table Bottom */}

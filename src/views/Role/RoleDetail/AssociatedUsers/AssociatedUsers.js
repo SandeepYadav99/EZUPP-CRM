@@ -8,9 +8,10 @@ import classNames from "classnames";
 import { useSelector } from "react-redux";
 import StatusPill from "../../../../components/Status/StatusPill.component";
 import useAssociatedUsersHook from "./AssociatedUsersHook";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { Edit } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
 
 
 const AssociatedUsers = ({ listData, id }) => {
@@ -22,7 +23,7 @@ const AssociatedUsers = ({ listData, id }) => {
     handleViewDetails,
     isCalling,
   } = useAssociatedUsersHook({ listData, id });
-
+  const theme= useTheme()
   const {
     present,
     all: allData,
@@ -125,7 +126,8 @@ const AssociatedUsers = ({ listData, id }) => {
   ]);
 
   return (
-    <ShadowBox width={"100%"}>
+    <ShadowBox className={styles.bottomSection}>
+       <Typography fontSize={18} margin={theme.spacing(1)}>Associated Users</Typography>
       <div style={{ width: "100%" }}>
         <DataTables
           {...tableData.datatable}

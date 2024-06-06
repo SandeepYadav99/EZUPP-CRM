@@ -78,7 +78,7 @@ const CustomPhoneContactField = ({
               color: theme.palette.text.primary,
               backgroundColor: theme.palette.background?.paper,
               position: "absolute",
-              top: theme.spacing(0.5),
+              top: theme.spacing(-0.3),
               left: theme.spacing(2),
               display: "block",
             }}

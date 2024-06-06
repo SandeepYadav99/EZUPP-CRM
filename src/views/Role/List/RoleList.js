@@ -110,7 +110,7 @@ const RoleList = (props) => {
         sortable: false,
 
         render: (temp, all) => (
-          <div className={styles.description}>{all?.description} </div>
+          <div className={styles.description}>{all?.description || "N/A"} </div>
         ),
       },
       {
