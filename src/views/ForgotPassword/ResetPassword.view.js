@@ -1,16 +1,17 @@
 import React from "react";
-import styles from "./Forgot.module.css";
+import styles from "./Style.module.css";
 import { ButtonBase, Dialog, IconButton, Typography } from "@mui/material";
 import DashboardSnackbar from "../../components/Snackbar.component";
 import Slide from "@mui/material/Slide";
-import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
-  ActionButton,
   ArrowPrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
 import useResetPasswordHook from "./ResetPasswordHook";
 import CustomTextField from "../../FormFields/TextField.component";
-import ShadowBox from "../../components/ShadowBox/ShadowBox";
+import backArrow from "../../assets/CRMAssets/ic_back.png";
+import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
+
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -27,31 +28,30 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
     showPassword,
     togglePasswordVisibility,
     toggleConfirmPasswordVisibility,
+    handleReturn,
   } = useResetPasswordHook({ handleClose, open, email });
 
   const renderForm = () => {
     return (
       <>
         <div>
+        <div className={styles.logoImageData}>
+            <img src={logoImage} alt="text_data" style={{ width: "250px" }} />
+          </div>
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "10px",
             }}
           >
-            <Typography variant="h4" >
-              Reset Password
-            </Typography>
-
-            <ButtonBase onClick={handleClose}>
-              <Close fontSize="small" />
-            </ButtonBase>
+            <span className={styles.headingText}>Reset Password </span>
           </div>
+          <Typography variant={"login1"}>
+            Your new password must be different from previously used passwords.
+          </Typography>
 
           <div>
             <br />
-            <div className={"formGroup"}>
               <CustomTextField
                 fullWidth={true}
                 name="password"
@@ -74,9 +74,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               >
                 {!showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
-            </div>
 
-            <div className={"formGroup"}>
               <CustomTextField
                 isError={errorData?.confirm_password}
                 errorText={errorData?.confirm_password}
@@ -100,30 +98,33 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               >
                 {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
-            </div>
             <br />
-
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "10px",
                 width: "100%",
                 marginBottom: "15px",
+                marginTop:"30px",
               }}
               className={styles.mobileRender}
             >
-              <div>
-                <span className={styles.bottomSignup}>
-                  <ActionButton onClick={handleClose}>
-                    <Typography variant=" body1">CANCEL</Typography>
-                  </ActionButton>
-                </span>
-              </div>
               <ArrowPrimaryButton onClick={handleSubmit}>
                 <Typography variant=" body1">SET NEW PASSWORD</Typography>
               </ArrowPrimaryButton>
+              <div>
+                <span className={styles.bottomSignup}>
+                  <ButtonBase
+                    onClick={handleReturn}
+                    className={styles.back}
+                    id={styles.forgotBtn}
+                  >
+                    <img src={backArrow} alt="backtext" />
+                    <Typography variant={"caption"}>Back To Login</Typography>
+                  </ButtonBase>{" "}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -132,26 +133,14 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
   };
 
   return (
-    <div className={styles.mainLoginViewReset}>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-        fullWidth={true}
-        PaperProps={{
-          style: {
-            borderRadius: "10px",
-            maxWidth: "600px",
-            width: "calc(100% - 64px)",
-          },
-        }}
-      >
-        <ShadowBox width={"100%"}>
-          <div className={styles.formContainer}>{renderForm()}</div>
-        </ShadowBox>
+    <>
+      <div className={styles.overlay}></div>
+      <div className={styles.mainLoginView}></div>
+      <div className={styles.container}>
+        <div className={styles.loginFlex2}>{renderForm()}</div>
         <DashboardSnackbar />
-      </Dialog>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -39,7 +39,7 @@ const validate = (values) => {
     const errors = {};
     requiredFields.forEach(field => {
         if (!values[field]) {
-            errors[field] = 'Required'
+            errors[field] = true;
         }
     });
     // if (values.title && !/^[A-Z ]*$/i.test(values.title)) {
@@ -86,7 +86,7 @@ class Faq extends Component {
             editor: null,
             editor_data: null,
             anchor: null,
-            is_active: false,
+            is_active: true,
             show_confirm: false,
             keywords:[]
         };
@@ -144,7 +144,7 @@ class Faq extends Component {
                 <Switch color={'primary'} checked={this.state.is_active} onChange={this._handleActive.bind(this)}
                         value="is_active"/>
             }
-            label="Active ?"
+            label={`${this.state.is_active  ? "ACTIVE" :"INACTIVE "}`}
         />);
         // } else {
         //     return null;
@@ -256,7 +256,7 @@ class Faq extends Component {
                                    component={renderOutlinedSelectField}
                                    margin={'dense'}
                                    label="Applies To">
-                                <MenuItem value={'BOTH'}>General</MenuItem>
+                                <MenuItem value={'GENERAL'}>General</MenuItem>
                             </Field>
                         </div>
                     </div>
