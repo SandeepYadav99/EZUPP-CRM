@@ -1,4 +1,3 @@
-
 import DashboardPage from "../views/dashboard/Dashboard";
 import UserList from "../views/User/List/UserList.container";
 import CustomerList from "../views/Customers/List/CustomerList.container";
@@ -45,14 +44,14 @@ import {
   EventNote,
   ContactSupport,
   Settings,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 import RouteName from "./Route.name";
 import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
 import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
-import ProductCreate from "../views/Products/Create/ProductCreate"
+import ProductCreate from "../views/Products/Create/ProductCreate";
 import React from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
@@ -97,7 +96,7 @@ const dashboardRoutes = [
     sidebarName: "My Profile",
     navbarName: "My Profile",
     icon: Person,
-    component:TaskDetailView,
+    component: TaskDetailView,
     is_sidebar: false,
     is_protect: true,
   },
@@ -172,7 +171,7 @@ const dashboardRoutes = [
     is_sidebar: true,
     is_protect: true,
     parent: "admin",
-    should_regex:true
+    should_regex: true,
   },
   {
     path: RouteName.ADMIN_USER_CREATE,
@@ -183,7 +182,7 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     parent: "admin",
-    should_regex:true
+    should_regex: true,
   },
   {
     path: `${RouteName.ADMIN_USER_UPDATE}:id`,
@@ -194,7 +193,7 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     parent: "admin",
-    should_regex:true
+    should_regex: true,
   },
   {
     path: `${RouteName.USER_UPDATE_MY_PROFILE}:id`,
@@ -205,7 +204,7 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     parent: "admin",
-    should_regex:true
+    should_regex: true,
   },
   // {
   //   path: `${RouteName.USER_PROFILE}:id`,
@@ -230,43 +229,37 @@ const dashboardRoutes = [
 
   {
     path: RouteName.ROLE,
-    sidebarName: "UserRole",
-    navbarName: "UserRole",
+    sidebarName: "User Role",
+    navbarName: "User Role",
     icon: LibraryBooks,
     component: RoleList,
     is_sidebar: true,
     is_protect: true,
     parent: "admin",
+    
   },
   {
     path: RouteName.ROLE_CREATE,
-    sidebarName: "UserRole",
-    navbarName: "UserRole",
-    icon: LibraryBooks,
     component: RoleCreate,
     is_sidebar: false,
     is_protect: true,
-    parent: "admin",
+    parentRoute:`${RouteName.ROLE}`
   },
   {
     path: `${RouteName.ROLE_CREATE_UPDATE}:id`,
-    sidebarName: "UserRole",
-    navbarName: "UserRole",
-    icon: LibraryBooks,
+    should_regex:false,
     component: RoleCreate,
     is_sidebar: false,
     is_protect: true,
-    parent: "admin",
+    parentRoute:`${RouteName.ROLE}`
   },
   {
     path: `${RouteName.ROLE_DETAIL}:id`,
-    sidebarName: "UserRole",
-    navbarName: "UserRole",
-    icon: LibraryBooks,
+    should_regex: false,
     component: RoleDetail,
     is_sidebar: false,
     is_protect: true,
-    parent: "admin",
+    parentRoute:`${RouteName.ROLE}`
   },
   // {
   //   path: "/badge",
@@ -457,8 +450,6 @@ const dashboardRoutes = [
   //   parent: "masters",
   // },
 
-
-
   {
     path: "/app/settings",
     sidebarName: "App Settings",
@@ -506,26 +497,25 @@ const dashboardRoutes = [
     sidebarName: "Service list",
     navbarName: "service List",
     icon: SupervisedUserCircle,
-    component: ServiceDetailView ,
+    component: ServiceDetailView,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
   },
   {
-    path:`${RouteName?.BLOGS_CREATE}`,
-    component: NewBlogsCreate ,
+    path: `${RouteName?.BLOGS_CREATE}`,
+    component: NewBlogsCreate,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
   },
   {
-    path:`${RouteName?.BLOGS_UPDATE}:id`,
-    component:  NewBlogsCreate ,
+    path: `${RouteName?.BLOGS_UPDATE}:id`,
+    component: NewBlogsCreate,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
   },
-
 ];
 
 export default dashboardRoutes;

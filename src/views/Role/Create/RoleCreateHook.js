@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
 
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 
@@ -15,21 +15,15 @@ import {
 } from "../../../services/Role.service";
 import { useParams } from "react-router-dom";
 import history from "../../../libs/history.utils";
+import { isAlphaNum, isAlphaNumChars } from "../../../libs/RegexUtils";
 
 const initialForm = {
   name: "",
   displayName: "",
   description: "",
-  is_active: false,
+  is_active: true,
 };
 
-const initialState = {
-  manager: [],
-  department: [],
-  ROLES: [],
-  images: null,
-  isSubmitting: false,
-};
 const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,24 +33,6 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "SET_MANAGER":
-        return { ...state, manager: action.payload };
-      case "SET_DEPARTMENT":
-        return { ...state, department: action.payload };
-      case "ROLES":
-        return { ...state, ROLES: action.payload };
-      case "IMAGES":
-        return { ...state, images: action.payload };
-      case "IS_SUBMITING":
-        return { ...state, isSubmitting: action.payload };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatchRoles] = useReducer(reducer, initialState);
   useEffect(() => {
     if (id) {
       serviceDetailRole({ id: id }).then((res) => {
@@ -105,6 +81,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     [isAcceptPopUp, empId]
   );
 
+
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = ["name", "displayName"];
@@ -119,17 +96,20 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
         delete errors[val];
       }
     });
+
     if (form?.name?.length <= 2) {
       errors.name = true;
     }
     if (form?.displayName?.length <= 2) {
       errors.displayName = true;
     }
+
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
       }
     });
+
     return errors;
   }, [form, errorData]);
 
@@ -172,12 +152,24 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     dispatch,
   ]);
 
+  const checkPermissions = (data) => {
+    return data.every(obj =>
+        Object.keys(obj).some(key => ["all_data", "create", "read", "update", "delete"].includes(key) && obj[key])
+    );
+};
+
   const handleSubmit = useCallback(async () => {
     const errors = checkFormValidation();
+   const hasPermission = checkPermissions(permission);
+   
     if (Object.keys(errors).length > 0) {
       setErrorData(errors);
     } else {
-      await submitToServer();
+      if (!hasPermission) {
+        SnackbarUtils.error("Permission should be required");
+      } else {
+        await submitToServer();
+      }
     }
   }, [
     checkFormValidation,
@@ -203,8 +195,10 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     (text, fieldName) => {
       let shouldRemoveError = true;
       const t = { ...form };
-      if (fieldName === "name") {
-        t[fieldName] = text;
+      if (fieldName === "name" || fieldName === "displayName") {
+        if (!text || (isAlphaNum(text) && text.toString().length <= 20)) {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "industry_id") {
         t[fieldName] = text?.filter((item, index, self) => {
           return (
