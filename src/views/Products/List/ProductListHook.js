@@ -33,6 +33,15 @@ const useUserListHook = ({}) => {
     );
     isMountRef.current = true;
   }, []);
+const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+const openDialog = () => {
+  setIsDialogOpen(true);
+};
+
+const closeDialog = () => {
+  setIsDialogOpen(false);
+};
 
   const handlePageChange = useCallback((type) => {
     dispatch(actionSetPageProductRequests(type));
@@ -91,17 +100,17 @@ const useUserListHook = ({}) => {
 
   const configFilter = useMemo(() => {
     return [
-      {
-        label: "Created On",
-        name: "createdAt",
-        type: "date",
-        options: { maxDate: new Date() },
-      },
+      // {
+      //   label: "Created On",
+      //   name: "createdAt",
+      //   type: "date",
+      //   options: { maxDate: new Date() },
+      // },
       {
         label: "Status",
         name: "status",
         type: "select",
-        fields: ["PENDING", "ACTIVE"],
+        fields: ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
       },
     ];
   }, []);
@@ -115,6 +124,9 @@ const useUserListHook = ({}) => {
     editData,
     configFilter,
     handleCreate,
+    openDialog,
+    closeDialog,
+    isDialogOpen
   };
 };
 
