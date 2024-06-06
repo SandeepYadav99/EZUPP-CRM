@@ -21,6 +21,8 @@ const darkenRate = 15;
 const textMainColor = '#4A4A4A';
 const tableHeadColor= "#F5F5F5";
 const darkContent = "#F7F7F9"
+const ractangeborder="#C5C5C5";
+const ractange="#347BEC";
 
 const Theme = (colors) => {
   const { grey } = colors;
@@ -51,7 +53,9 @@ const Theme = (colors) => {
       light: alpha(primary, 0.2),
       dark: alpha(primary, 0.9),
       hover: alpha(secondary, 0.9),
-      disabled: grey[3]
+      disabled: grey[3],
+      ractange:ractange,
+      ractangeborder:ractangeborder
     },
     error: {
       main: error,
