@@ -1,14 +1,11 @@
 import React, {useMemo, useRef, useEffect, useState} from 'react';
 import { InputLabel, Select, OutlinedInput, FormHelperText, FormControl} from "@mui/material";
-import LogUtils from "../../../libs/LogUtils";
 import { useTheme } from '@emotion/react';
 
 const CustomSelectField = ({ isError, errorText, label, handleChange, icon, children, outlinedProps, ...rest}) => {
     const [labelWidth, setLabelWidth] = useState(0);
     const inputLabelRef = useRef(null);
     const theme = useTheme();
-
-console.log(theme)
     const id = useMemo(() => {
         return Date.now()+'SELECTED_LABEL'+label;
     }, [label]);
