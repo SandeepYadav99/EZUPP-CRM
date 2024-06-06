@@ -495,7 +495,9 @@ const EnhancedTable = (props) => {
                             draggedItem.current = null;
                         }}
                         hover
-                        onClick={(event) => {
+                        onClick={() => {
+                            props?.clickableRow && 
+                            props?.clickableRow(row)
                         }}
                         role="checkbox"
                         aria-checked={isItemSelected}

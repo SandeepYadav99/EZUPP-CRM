@@ -4,7 +4,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form'
 import {connect} from 'react-redux';
-import styles from './Faq.module.css'
+import styles from './Style.module.css'
 import csx from 'classnames';
 import {MenuItem, Button, IconButton} from '@mui/material';
 import {withStyles} from '@mui/styles';
@@ -16,9 +16,10 @@ import {
     renderOutlinedTextField,
     renderOutlinedTextFieldWithLimit,
     renderOutlinedSelectField, renderCheckbox, renderAutoComplete, renderFileField,
-} from '../../libs/redux-material.utils';
-import {serviceBlogsExists, serviceUploadBlogImage} from "../../services/Blogs.service";
-import EventEmitter from "../../libs/Events.utils";
+} from '../../../../libs/redux-material.utils';
+import {serviceBlogsExists, serviceUploadBlogImage} from "../../../../services/Blogs.service";
+import EventEmitter from "../../../../libs/Events.utils";
+import {Backup as BackupIcon, Info as InfoIcon, Delete as DeleteIcon} from '@mui/icons-material'
 import {FormControlLabel, Switch,
     Dialog,
     DialogTitle,
@@ -28,41 +29,12 @@ import {FormControlLabel, Switch,
     Slide,
     Tooltip,
 } from "@mui/material";
-import {Delete as DeleteIcon, Info as InfoIcon, Backup as BackupIcon} from "@mui/icons-material";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-let lastValue = '';
-let isExists = false;
-
-// const asyncValidate = (values, dispatch, props) => {
-//     return new Promise((resolve, reject) => {
-//         if (values.slug) {
-//             const value = values.slug;
-//             if (lastValue == value && isExists) {
-//                 reject({slug: 'Slug Already Exists'});
-//             } else {
-//                 const data = props.data;
-//                 serviceBlogsExists({slug: value, id: data ? data.id : null}).then((data) => {
-//                     console.log(data);
-//                     lastValue = value;
-//                     if (!data.error) {
-//                         if (data.data.is_exists) {
-//                             reject({slug: 'Slug Already Exists'});
-//                         }
-//                     }
-//                     resolve({});
-//                 })
-//             }
-//         } else {
-//             resolve({});
-//         }
-//     });
-// };
 
 
 let requiredFields = [];
@@ -78,6 +50,19 @@ const validate = (values) => {
         errors.title = 'Only alphabets are allowed';
     }
     return errors
+};
+
+const descNormalize = (value, prevValue) => {
+    if (value.length > 500) {
+        return prevValue;
+    }
+    return value;
+};
+
+const negativeNormalize = (value, prevValue) => {
+    if (!value || value >= 0 && value.length < 5) {
+        return value
+    } return prevValue;
 };
 
 const defaultTheme = createTheme()
@@ -97,7 +82,7 @@ Object.assign(defaultTheme, {
 })
 
 
-class Faq extends Component {
+class QuestionsFormView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -112,7 +97,6 @@ class Faq extends Component {
         this.editorRef = null;
         this._handleSubmit = this._handleSubmit.bind(this);
         this._handleChange = this._handleChange.bind(this);
-        this._handleTitleChange = this._handleTitleChange.bind(this);
         this._handleEditor = this._handleEditor.bind(this);
         this._setAnchor = this._setAnchor.bind(this);
         this._handleFileUpload = this._handleFileUpload.bind(this);
@@ -121,27 +105,31 @@ class Faq extends Component {
         this._handleDelete = this._handleDelete.bind(this);
         this._handleDialogClose = this._handleDialogClose.bind(this);
         this._suspendItem = this._suspendItem.bind(this);
-        this._handleChangeKeywords = this._handleChangeKeywords.bind(this)
     }
 
+
     componentDidMount() {
-        const {data} = this.props;
+        const {data,category} = this.props;
+        if(category){
+            console.log(category)
+             this.props.change('title', category.title);
+        }
         let htmlData = '';
         if (data) {
             this.setState({
                 is_active: data.status == 'ACTIVE'
             })
-            requiredFields = ['title', 'tags', 'city_id', 'slug'];
+            requiredFields = ['title','priority','question'];
             Object.keys(data).forEach((val) => {
-                if (['image', 'content', 'status'].indexOf(val) < 0) {
+                if (['description', 'status'].indexOf(val) < 0) {
                     const temp = data[val];
                     this.props.change(val, temp);
                 }
             });
-            htmlData = data.content;
+            htmlData = data.description;
         } else {
             htmlData = ''
-            requiredFields = ['title', 'tags', 'city_id', 'image', 'slug'];
+            requiredFields = ['title','priority','question'];
         }
 
         const contentHTML = convertFromHTML(htmlData)
@@ -162,33 +150,39 @@ class Faq extends Component {
 
     }
 
+
     _handleSubmit(tData) {
+        const {category} = this.props;
         const { editor } = this.state;
+
+
         if (editor) {
-            const fd = new FormData();
-            Object.keys(tData).forEach((key) => {
-                fd.append(key, tData[key]);
-            });
-            fd.append('content', editor);
-            fd.append('status', (this.state.is_active ? 'ACTIVE' : 'INACTIVE'));
+            const status = this.state.is_active ? 'ACTIVE' : 'INACTIVE'
             const {data} = this.props;
             if (data) {
-                this.props.handleDataSave(fd, 'UPDATE')
+                this.props.handleDataSave({...tData, status: status, faq_category_id: category.id,description:editor, id: data.id}, 'UPDATE')
             } else {
-                this.props.handleDataSave(fd, 'CREATE')
+                this.props.handleDataSave({...tData, status: status, faq_category_id: category.id,description:editor}, 'CREATE')
             }
         } else {
-            EventEmitter.dispatch(EventEmitter.THROW_ERROR, 'Please Write Content');
+            EventEmitter.dispatch(EventEmitter.THROW_ERROR, {error: 'Please Enter Description',type:'error'});
         }
 
     }
 
     _handleEditor(data, b) {
-        const html = stateToHTML(data.getCurrentContent());
-        console.log('data', data);
-        this.setState({
-            editor: html
-        })
+        // console.log('data',convertFromRaw(data));
+        if (!data.getCurrentContent().hasText()) {
+            this.setState({
+                editor: null
+            })
+        } else {
+            const html = stateToHTML(data.getCurrentContent());
+            console.log('data', data);
+            this.setState({
+                editor: html
+            })
+        }
     }
 
     _handleActive() {
@@ -198,18 +192,25 @@ class Faq extends Component {
     }
 
     _renderStatus() {
-            return (<FormControlLabel
-                control={
-                    <Switch color={'primary'} checked={this.state.is_active} onChange={this._handleActive.bind(this)}
-                            value="is_active"/>
-                }
-                label="Active ?"
-            />);
+        // const {data} = this.props;
+        // if (data) {
+        return (<FormControlLabel
+            control={
+                <Switch color={'primary'} checked={this.state.is_active} onChange={this._handleActive.bind(this)}
+                        value="is_active"/>
+            }
+            label="Active ?"
+        />);
+        // } else {
+        //     return null;
+        // }
     }
     handleEditorChange = (content, editor) => {
+        // console.log('Content was updated:', content);
     }
 
     async _handleFileUpload (file) {
+        console.log(this.editorRef);
         if (this.editorRef) {
             this.editorRef.insertAtomicBlockAsync("IMAGE", this._uploadImage(file), "Uploading now...")
         }
@@ -219,29 +220,31 @@ class Faq extends Component {
         console.log('handleSave', (data));
         const tData = JSON.parse(data);
         const state = convertFromRaw(tData)
+        console.log('state', state);
     }
 
     _uploadImage(file) {
-        console.log(file);
-        return new Promise(async (res, rej) => {
-            const fd = new FormData();
-            fd.append('image', file);
-            const req = await serviceUploadBlogImage(fd );
-            if (!req.error) {
-                res({
-                    data: {
-                        src:req.data.image,
-                        url: req.data.image,
-                        width: 300,
-                        alignment: "left",
-                        type: "image" 
-                    }
-                })
-            } else {
-                rej();
-            }
-
-        })
+        // console.log(file);
+        // return new Promise(async (res, rej) => {
+        //     const fd = new FormData();
+        //     fd.append('image', file);
+        //     const req = await serviceUploadBlogImage(fd );
+        //     if (!req.error) {
+        //         res({
+        //             data: {
+        //                 src:req.data.image,
+        //                 url: req.data.image,
+        //                 width: 300,
+        //                 // height: 200,
+        //                 alignment: "left", // or "center", "right"
+        //                 type: "image" // or "video"
+        //             }
+        //         })
+        //     } else {
+        //         rej();
+        //     }
+        //
+        // })
     }
 
     _setAnchor(anchor) {
@@ -249,48 +252,56 @@ class Faq extends Component {
             anchor: anchor
         })
     }
+
     _renderEditor() {
         const { editor_data, anchor } = this.state;
         if (editor_data) {
             return (<>
-                <ThemeProvider theme={defaultTheme}>
-                    <MUIRichTextEditor
-                        ref={(ref) => { this.editorRef = ref; }}
-                        defaultValue={editor_data}
-                        onChange={this._handleEditor}
-                        onSave={this._handleSave}
-                        label="Start typing..."
-                        controls={["bold", "italic", "underline","link"]}
-                        inlineToolbar={true}
-                        customControls={[
-                            {
-                                name: "upload-image",
-                                icon: <BackupIcon />,
-                                type: "callback",
-                                onClick: (_editorState, _name, anchor) => {
-                                    this._setAnchor(anchor)
+                    {/*<UploadImagePopover*/}
+                    {/*    anchor={anchor}*/}
+                    {/*    onSubmit={(data, insert) => {*/}
+                    {/*        if (insert && data.file) {*/}
+                    {/*            this._handleFileUpload(data.file)*/}
+                    {/*        }*/}
+                    {/*        this._setAnchor(null);*/}
+                    {/*    }}*/}
+                    {/*/>*/}
+                    <ThemeProvider theme={defaultTheme}>
+                        <MUIRichTextEditor
+                            ref={(ref) => { this.editorRef = ref; }}
+                            defaultValue={editor_data}
+                            onChange={this._handleEditor}
+                            onSave={this._handleSave}
+                            label="Start typing..."
+                            controls={["bold", "italic", "underline","link"]}
+                            inlineToolbar={true}
+                            customControls={[
+                                {
+                                    name: "upload-image",
+                                    icon: <BackupIcon />,
+                                    type: "callback",
+                                    onClick: (_editorState, _name, anchor) => {
+                                        this._setAnchor(anchor)
+                                    }
                                 }
-                            }
-                        ]}
-                        draftEditorProps={{
-                            handleDroppedFiles: (_selectionState, files) => {
-                                if (files.length && (files[0]).name !== undefined) {
-                                    this._handleFileUpload(files[0])
-                                    return "handled"
+                            ]}
+                            draftEditorProps={{
+                                handleDroppedFiles: (_selectionState, files) => {
+                                    if (files.length && (files[0]).name !== undefined) {
+                                        this._handleFileUpload(files[0])
+                                        return "handled"
+                                    }
+                                    return "not-handled"
                                 }
-                                return "not-handled"
-                            }
-                        }}
-                    />
-                </ThemeProvider>
+                            }}
+                        />
+                    </ThemeProvider>
                 </>
             )
         }
     }
 
-    _handleTitleChange(e) {
-        this.props.change('slug', e.target.value.replace(/ /g,'-').replace(/[^\w-]+/g,'').toLowerCase());
-    }
+
 
     _handleChange() {
         this.setState({
@@ -298,13 +309,7 @@ class Faq extends Component {
         })
     }
 
-    _convertData(data) {
-        const temp = {};
-        data.forEach((val) => {
-            temp[val.id] = val.name;
-        });
-        return temp;
-    }
+
     _suspendItem() {
         const {data} = this.props;
         this.setState({
@@ -358,55 +363,14 @@ class Faq extends Component {
         } return null;
     }
 
-    _handleChangeKeywords(event, value){
-        console.log('onchange', event, value);
-        const {keywords} = this.state
-        this.setState({
-            keywords: value
-        })
-    }
-
-    _renderFullEditor(){
-        const {faq_type} = this.props;
-        if(faq_type == 'QUESTION'){
-            return(
-                <div>
-                    <div className={styles.lblTxt}>Answer</div>
-                    <div className={'formFlex'}>
-                        <div className={csx('formGroup', styles.editorContainer)}>
-                            {this._renderEditor()}
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    }
-
-    _renderQuestionName(){
-        const {faq_type} = this.props;
-        if(faq_type == 'QUESTION') {
-            return (
-                <div className={'formFlex'}>
-                    <div className={'formGroup'}>
-                        <Field
-                            fullWidth={true}
-                            name="question_name"
-                            margin={'dense'}
-                            component={renderOutlinedTextField}
-                            label="Question Name"/>
-                    </div>
-                </div>
-            )
-        }
-    }
 
     render() {
-        const {handleSubmit, cities, data,faq_type} = this.props;
+        const {handleSubmit, cities, data,faq_type,category} = this.props;
         return (
             <div>
                 <div className={styles.headerFlex}>
                     <h4 className={styles.infoTitle}>
-                        <div className={styles.heading}>FAQ</div>
+                        <div className={styles.heading}>Questions</div>
                         <Tooltip title="Info" aria-label="info" placement="right">
                             <InfoIcon fontSize={'small'}/>
                         </Tooltip>
@@ -414,32 +378,54 @@ class Faq extends Component {
                     </h4>
                 </div>
                 <form onSubmit={handleSubmit(this._handleSubmit)}>
-                    <div className={'formFlex'}>
+                    <div className={styles.category}>
+                        <b>Title</b> - {category.title}
+                    </div>
 
+                    <div className={styles.category}>
+                        <b>Applies To</b> - {category.visible_to}
+                    </div>
+                    {/*<div className={'formFlex'}>*/}
+                    {/*    <div className={'formGroup'}>*/}
+                    {/*        <Field*/}
+                    {/*            fullWidth={true}*/}
+                    {/*            name="title"*/}
+                    {/*            component={renderOutlinedTextFieldWithLimit}*/}
+                    {/*            maxLimit={100}*/}
+                    {/*            margin={'dense'}*/}
+                    {/*            inputProps={{readOnly: 'true'}}*/}
+                    {/*            label="Topic Header/Question"/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+
+                    <div className={'formFlex'}>
                         <div className={'formGroup'}>
                             <Field
                                 fullWidth={true}
-                                name="title"
+                                name="question"
                                 component={renderOutlinedTextFieldWithLimit}
-                                maxLimit={100}
+                                maxLimit={500}
                                 margin={'dense'}
-                                label="Topic Header/Question"/>
+                                normalize={descNormalize}
+                                label="Question Name"/>
                         </div>
                     </div>
 
-                    {this._renderQuestionName()}
 
-                    <div className={'formFlex'}>
-                        <div className={'formGroup'}>
-                            <Field fullWidth={true}
-                                   name="visible_to"
-                                   component={renderOutlinedSelectField}
-                                   margin={'dense'}
-                                   label="Applies To">
-                                <MenuItem value={'BOTH'}>General</MenuItem>
-                            </Field>
-                        </div>
-                    </div>
+                    {/*<div className={'formFlex'}>*/}
+                    {/*    <div className={'formGroup'}>*/}
+                    {/*        <Field fullWidth={true}*/}
+                    {/*               name="visible_to"*/}
+                    {/*               component={renderOutlinedSelectField}*/}
+                    {/*               margin={'dense'}*/}
+                    {/*               inputProps={{readOnly: 'true'}}*/}
+                    {/*               label="Applies To">*/}
+                    {/*            <MenuItem value={'BOTH'}>General</MenuItem>*/}
+                    {/*            <MenuItem value={'CUSTOMER'}>Customers</MenuItem>*/}
+                    {/*            <MenuItem value={'MANUFACTURE'}>Manufacturers</MenuItem>*/}
+                    {/*        </Field>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className={'formFlex'}>
                         <div className={'formGroup'}>
@@ -449,11 +435,19 @@ class Faq extends Component {
                                 type={'number'}
                                 component={renderOutlinedTextField}
                                 margin={'dense'}
+                                normalize={negativeNormalize}
                                 label="Priority"/>
                         </div>
                     </div>
 
-                    {this._renderFullEditor()}
+                    <div>
+                        <div className={styles.lblTxt}>Answer</div>
+                        <div className={'formFlex'}>
+                            <div className={csx('formGroup', styles.editorContainer)}>
+                                {this._renderEditor()}
+                            </div>
+                        </div>
+                    </div>
 
 
                     <br/>
@@ -465,7 +459,8 @@ class Faq extends Component {
                                         onClick={this._handleDelete}
                                         type="button">
                                 <DeleteIcon />
-                            </IconButton><span className={styles.delete}>Delete Permanently</span>
+                            </IconButton>
+                            {/*<span className={styles.delete}>Delete Permanently</span>*/}
                         </div>
                     </div>
 
@@ -507,8 +502,11 @@ const useStyle = theme => ({
 });
 
 const ReduxForm = reduxForm({
-    form: 'blogs',  // a unique identifier for this form
-    validate,    
-})(withStyles(useStyle, {withTheme: true})(Faq));
+    form: 'questions',  // a unique identifier for this form
+    validate,
+    // enableReinitialize: true,
+    // asyncValidate
+
+})(withStyles(useStyle, {withTheme: true})(QuestionsFormView));
 
 export default connect(null, null)(ReduxForm);

@@ -21,6 +21,7 @@ import CustomTextField from "../../components/FormFields/TextField/TextField.com
 import CustomCheckBox from "../../components/FormFields/CustomCheckbox";
 import { ArrowPrimaryButton } from "../../components/Buttons/PrimaryButton";
 import ResetPasswordImage from "../../assets/Assets/reset_password_email@2x.png";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function SuccessPageView() {
   const {
@@ -35,6 +36,10 @@ function SuccessPageView() {
     showPassword,
   } = useSuccessPage();
 
+  const location = useLocation();
+
+  const AddressData = location?.state?.emailAddress;
+
   return (
     <div className={"login"}>
       <div className={styles.overlay}></div>
@@ -48,14 +53,14 @@ function SuccessPageView() {
             <img src={ResetPasswordImage} className={styles.imageadjust} />
           </div>
           <div className={styles.signContainer}>
-            <span className={styles.headingText}>
+            <div className={styles.headingText}>
               Reset Password email sent successfully!
-            </span>
+            </div>
             <br />
             <div className={styles.text}>
               <div>
                 We have successfully sent the reset password email to
-                <b className={styles.fontAdjustWeight}>abhishek02@gmail.com.</b>
+                <b className={styles.fontAdjustWeight}>{AddressData}.</b>
               </div>
               <div> Please check your email for further instructions.</div>
             </div>

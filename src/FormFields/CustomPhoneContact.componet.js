@@ -1,4 +1,5 @@
 import { useTheme } from "@emotion/react";
+
 import React, { useCallback } from "react";
 
 import PhoneInput from "react-phone-input-2";
@@ -25,7 +26,7 @@ const CustomPhoneContactField = ({
   //   [onChange, onTextChange]
   // );
   const theme = useTheme();
- 
+
   const handleChange = useCallback(
     (value, country, e, formattedValue) => {
       const countryCodeRegex = /\+(\d+)/;
@@ -48,7 +49,7 @@ const CustomPhoneContactField = ({
   const handleValidation = useCallback((value, country, e, formattedValue) => {
     return formattedValue.length >= 10;
   }, []);
-  console.log(theme)
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <PhoneInput
@@ -56,7 +57,6 @@ const CustomPhoneContactField = ({
         inputProps={{
           name: "Phone No",
         }}
-        
         country={"in"}
         // country={country_code ? country_code.toLowerCase() : 'us'}
         value={value}
@@ -64,10 +64,28 @@ const CustomPhoneContactField = ({
         inputStyle={{
           width: "100%",
           border: errorText ? "1px solid red" : "1px solid #ccc",
-          color:  theme.palette.text.primary,
-          backgroundColor: theme.palette.background?.paper
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.background?.paper,
+          marginTop: theme.spacing(2),
         }}
-        specialLabel=""
+        dropdownStyle={{
+          backgroundColor: theme.palette.background?.paper,
+        }}
+       
+        specialLabel={
+          <span
+            style={{
+              color: theme.palette.text.primary,
+              backgroundColor: theme.palette.background?.paper,
+              position: "absolute",
+              top: theme.spacing(0.5),
+              left: theme.spacing(2),
+              display: "block",
+            }}
+          >
+            Contact
+          </span>
+        }
         isValid={isValid}
         {...rest}
       />

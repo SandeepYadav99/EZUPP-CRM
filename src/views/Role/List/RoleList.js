@@ -1,21 +1,26 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import styles from "./Style.module.css";
-import PageBox from "../../../components/PageBox/PageBox.component";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add, Create, Details, Edit } from "@mui/icons-material";
+import {
+ 
+  Edit,
+  Info,
+
+} from "@mui/icons-material";
 
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import useRoleListHook from "./RoleListHook";
-import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
+
 import StatusPill from "../../../components/Status/StatusPill.component";
 import ImageStack from "../../../components/AvatarGroup/ImageStack";
 import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import ImageStackPopUp from "./ImageStackPopUp/ImageStackPopUp";
 
 const RoleList = (props) => {
   const {
@@ -31,8 +36,10 @@ const RoleList = (props) => {
     isSidePanel,
     handleDetail,
     handleEdit,
+    openProfilePopUp,
+    isOpenImageStack,
   } = useRoleListHook({});
-
+  const [renderImageStackData, setRenderImageStackData] = useState([]);
   const {
     present,
     all: allData,
@@ -41,7 +48,6 @@ const RoleList = (props) => {
   } = useSelector((state) => state.role);
 
   const renderFirstCell = useCallback((user) => {
-  
     const tempEmailRender = user?.email ? (
       <span style={{ textTransform: "lowercase" }}>{user?.email}</span>
     ) : null;
@@ -65,10 +71,14 @@ const RoleList = (props) => {
   const renderAssociatedIndustriesName = useCallback(
     (industryData) => (
       <div className={styles.imageContainer}>
-        <ImageStack industryData={industryData} />
+        <ImageStack
+          industryData={industryData}
+          open={isOpenImageStack}
+          openProfilePopUp={openProfilePopUp}
+        />
       </div>
     ),
-    []
+    [isOpenImageStack, openProfilePopUp]
   );
 
   const renderStatus = useCallback((status) => {
@@ -87,6 +97,14 @@ const RoleList = (props) => {
         render: (value, all) => <>{capitalizeFirstLetter(all?.name)} </>,
       },
       {
+        key: "display_name",
+        label: "Display Name",
+        sortable: false,
+        render: (value, all) => (
+          <>{capitalizeFirstLetter(all?.display_name)} </>
+        ),
+      },
+      {
         key: "description",
         label: "Description",
         sortable: false,
@@ -100,7 +118,9 @@ const RoleList = (props) => {
         label: "Users",
         sortable: false,
         render: (temp, all) => (
-          <>{renderAssociatedIndustriesName(all?.users)} </>
+          <div onClick={() => setRenderImageStackData(all?.users)}>
+            {renderAssociatedIndustriesName(all?.users)}{" "}
+          </div>
         ),
       },
       {
@@ -115,9 +135,18 @@ const RoleList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <>
-           <IconButton
-              className={"tableActionBtn"}
-              color="secondary"
+            <IconButton
+              color="inherit"
+              disabled={isCalling}
+              onClick={() => {
+                // handleSideToggle(all?.id);
+                handleDetail(all);
+              }}
+            >
+              <Info fontSize={"small"} />
+            </IconButton>
+            <IconButton
+              color="inherit"
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
@@ -126,17 +155,6 @@ const RoleList = (props) => {
             >
               <Edit fontSize={"small"} />
             </IconButton>
-            {/* <IconButton
-              className={"tableActionBtn"}
-              color="secondary"
-              disabled={isCalling}
-              onClick={() => {
-                // handleSideToggle(all?.id);
-                handleDetail(all);
-              }}
-            >
-              <Details fontSize={"small"} />
-            </IconButton> */}
           </>
         ),
       },
@@ -196,6 +214,13 @@ const RoleList = (props) => {
           </div>
         </div>
       </ShadowBox>
+      {renderImageStackData.length > 2 && (
+        <ImageStackPopUp
+          open={isOpenImageStack}
+          handleClose={openProfilePopUp}
+          industryData={renderImageStackData}
+        />
+      )}
     </>
   );
 };

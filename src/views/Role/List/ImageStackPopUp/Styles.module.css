@@ -1,0 +1,33 @@
+.mainImg {
+  display: flex;
+  width: 100vw;
+
+  border-radius: 60px !important;
+}
+
+.imgContainer {
+  flex: 1.5;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 20px !important;
+
+}
+.imageHeader {
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 20px !important;
+}
+.imageRow{
+  display: flex !important;
+  align-items: center !important;
+  gap: 10%;
+  margin-bottom: 15px !important;
+}
+.hrlines{
+  border: 1px solid #E4E4E6;
+}

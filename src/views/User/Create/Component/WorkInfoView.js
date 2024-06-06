@@ -47,121 +47,30 @@ const WorkInfoView = ({
                   }}
                 />
               </div>
-              {/* <div className={"formGroup"}>
-                <CustomSelectField
-                  isError={errorData?.department}
-                  errorText={errorData?.department}
-                  label={"Department"}
-                  value={form?.department}
-                  handleChange={(value) => {
-                  
-                    changeTextData(value, "department");
-                  }}
-                >
-                  {department?.map((option, index) => (
-                    <MenuItem value={option}>{option}</MenuItem>
-                  ))}
-                </CustomSelectField>
-              </div> */}
+         
 
               <div className={"formGroup"}>
-                {/* <Autocomplete
-                  id="tags-outlined"
-                  onChange={(e, value) => {
-                    changeTextData(value, "department");
+                <CustomMultiComplete
+                  // multiple
+                  // showImage
+                  AutoCompleteList={department }
+                  label={"Department"}
+                  error={errorData?.department}
+                 
+                  value={form?.department || []}
+                  onTextChange={(text) => {
+                    changeTextData(text, "department");
                   }}
-                  value={form.department || []}
-                  options={department || []} // listData ||
-                  getOptionLabel={(option) => option}
-                  defaultValue={form?.department || []}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant="outlined"
-                      label={"Department"}
-                      error={errorData?.department}
-                      InputProps={{
-                        ...params.InputProps,
-                        style: { padding: "1px 10px", marginTop: "3.5px" },
-                        endAdornment: (
-                          <>
-                            {form?.department ? (
-                              <Clear
-                                onClick={() =>
-                                  changeTextData(null, "department")
-                                }
-                                style={{ cursor: "pointer" }}
-                              />
-                            ) : null}
-                            <Search
-                              style={{ marginRight: 5, cursor: "pointer" }}
-                            />
-                          </>
-                        ),
-                      }}
-                    />
-                  )}
-                  disableClearable
-                /> */}
-                     <CustomMultiComplete
-                // multiple
-                showImage
-                AutoCompleteList={department || form?.department  || []}
-                label={"Department"}
-                error={errorData?.department}
-                getOptionLabel={(option) => option}
-                value={form?.department ||  []}
-                onTextChange={(text) => {
-                  changeTextData(text, "department");
-                }}
-                enableField={["name"]}
-              />
+                  enableField={["name"]}
+                />
+                
               </div>
             </div>
           </div>
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            {/* <div className={"formGroup"}>
-            <Autocomplete
-              id="tags-outlined"
-              onChange={(e, value) => {
-                changeTextData(value, "designation");
-              }}
-              value={form.designation || []}
-                options={ []} // listData ||
-              getOptionLabel={(option) => option}
-              defaultValue={form?.designation || []}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="outlined"
-                  label={"Designation"}
-                  error={errorData?.designation}
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <>
-                        {form?.designation ? (
-                          <Clear
-                            onClick={() =>
-                              changeTextData(null, "designation")
-                            }
-                            style={{ cursor: "pointer" }}
-                          />
-                        ) : null}
-                        <Search
-                          style={{ marginRight: -20, cursor: "pointer" }}
-                        />
-                      </>
-                    ),
-                  }}
-                />
-              )}
-               disableClearable
-            />
-         
-        </div> */}
+       
             <CustomTextField
               isError={errorData?.designation}
               errorText={errorData?.designation}
@@ -196,15 +105,9 @@ const WorkInfoView = ({
             <CustomDatePicker
               clearable
               label={"Joining Date"}
-              // maxDate={new Date()}
-              //maxDate={new Date(new Date().getFullYear(), 11, 31)}
               onChange={(value) => {
                 changeTextData(value, "joining_date");
               }}
-              // format={"dd-MM-yyyy"}
-              // onBlur={() => {
-              //   onBlurHandler("joining_date");
-              // }}
               className={styles.dateContainer}
               value={form?.joining_date}
               isError={errorData?.joining_date}
@@ -216,8 +119,6 @@ const WorkInfoView = ({
               clearable
               className={styles.dateContainer}
               label={"End Date"}
-              //  maxDate={new Date()}
-              // maxDate={new Date(new Date().getFullYear(), 11, 31)}
               onChange={(value) => {
                 changeTextData(value, "end_date");
               }}

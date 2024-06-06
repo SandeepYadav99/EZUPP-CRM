@@ -17,9 +17,8 @@
   margin-top: 10px !important;
 }
 .imageGuide{
-  color: #636578 !important;
-  font-weight: bold;
-  font-size: 12px;
+ display: flex;
+
 }
 
 .cont{
@@ -37,7 +36,9 @@
   margin-top: 20px;
 }
 
-
+.dateContainer{
+  width: 100% !important;
+}
 
 
 /* .claimListWrapper {
@@ -59,9 +60,7 @@
 
 
 
-.dateContainer{
-  width: 100% !important;
-}
+
 
 .custonCSS{
   width: 50% ;

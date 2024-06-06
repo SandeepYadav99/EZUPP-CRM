@@ -8,6 +8,7 @@ import styles from "../Style.module.css";
 import UploadImage from "../../../../components/UploadImage/UploadImage";
 import { InfoOutlined } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
 
 const PersonalInformation = ({
   errorData,
@@ -19,6 +20,7 @@ const PersonalInformation = ({
   userId,
   id,
 }) => {
+  const theme=useTheme()
   return (
     <>
       <ShadowBox width={"100%"}>
@@ -50,11 +52,11 @@ const PersonalInformation = ({
               }}
             />
             <div className={styles.imageGuide}>
-              <span className={styles.imageGuideSpan}>
+              <Typography variant={"subtitle1"} color={theme.palette.text.primary} >
                 {" "}
                 Image Guide
-                <InfoOutlined fontSize="small" />
-              </span>
+              </Typography>
+                <InfoOutlined fontSize="small" color="action"/>
             </div>
           </div>
           <div className={styles.lowerWrap}>

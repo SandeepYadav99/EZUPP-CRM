@@ -4,18 +4,6 @@ import StatusPill from "../../../../components/Status/StatusPill.component";
 import { Typography } from "@mui/material";
 
 const PillContainer = ({ details, styles }) => {
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case "HIGH":
-        return "#FF0000";
-      case "MEDIUM":
-        return "#FA8B55";
-      case "LOW":
-        return "#15F205";
-      default:
-        return "#FFFFFF";
-    }
-  };
 
   return (
     <div>
@@ -36,7 +24,7 @@ const PillContainer = ({ details, styles }) => {
         </div>
       </div>
       <div className={styles.des}>
-        <Typography variant="subtitle1" color={"text.secondary"} >Description: </Typography>
+        <Typography variant="subtitle1"  >Description: </Typography>
       </div>
       <Typography variant="subtitle2" >{formattedDescription(details)}</Typography>
       <div className={styles.gaps} />

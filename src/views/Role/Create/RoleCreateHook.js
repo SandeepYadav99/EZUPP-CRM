@@ -1,13 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from "react";
-import { serviceBadgeIndustry } from "../../../services/Badge.service";
+import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
+
 import SnackbarUtils from "../../../libs/SnackbarUtils";
-import {
-  serviceHubMasterCreate,
-  serviceHubMasterDetail,
-  serviceHubMasterUpdate,
-} from "../../../services/HubMaster.service";
-import constants from "../../../config/constants";
+
 import { useDispatch } from "react-redux";
 import {
   actionDeleteMasterDelete,
@@ -21,31 +15,23 @@ import {
 } from "../../../services/Role.service";
 import { useParams } from "react-router-dom";
 import history from "../../../libs/history.utils";
-import RouteName from "../../../routes/Route.name";
-import LogUtils from "../../../libs/LogUtils";
+import { isAlphaNum, isAlphaNumChars } from "../../../libs/RegexUtils";
+
 const initialForm = {
   name: "",
   displayName: "",
   description: "",
+  is_active: true,
 };
 
 const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
-  const [geofenceCoordinates, setGeofenceCoordinates] = useState([]);
-  const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
   const [permission, setPermissions] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
-  // useEffect(() => {
-  //   serviceBadgeIndustry({ id: id }).then((res) => {
-  //     if (!res.error) {
-  //       setListData(res.data);
-  //     }
-  //   });
-  // }, []);
 
   useEffect(() => {
     if (id) {
@@ -56,7 +42,8 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
             ...form,
             name: data?.name,
             description: data?.description,
-            displayName:data?.display_name
+            displayName: data?.display_name,
+            is_active: data?.is_active === "ACTIVE" ? true : false,
           });
         } else {
         }
@@ -75,9 +62,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const permisionChangeHandler = useCallback(
     (index, data) => {
       const t = [...permission];
-   
       t[index] = { ...t[index], ...data };
-
       setPermissions(t);
     },
     [permission, setPermissions]
@@ -96,25 +81,35 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     [isAcceptPopUp, empId]
   );
 
+
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "description"];
+    let required = ["name", "displayName"];
     required.forEach((val) => {
       if (
         !form?.[val] ||
         (Array.isArray(form?.[val]) && form?.[val].length === 0)
       ) {
         errors[val] = true;
-        SnackbarUtils.error("Please enter values");
+        // SnackbarUtils.error("Please enter values");
       } else if (["code"].indexOf(val) < 0) {
         delete errors[val];
       }
     });
+
+    if (form?.name?.length <= 2) {
+      errors.name = true;
+    }
+    if (form?.displayName?.length <= 2) {
+      errors.displayName = true;
+    }
+
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
       }
     });
+
     return errors;
   }, [form, errorData]);
 
@@ -127,30 +122,25 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     const updateData = {
       name: form?.name,
       permissions: permission,
-       display_name:form?.displayName,
+      display_name: form?.displayName,
       description: form?.description,
-      is_active: true,
+      is_active: form?.is_active === true ? true : false,
     };
 
     if (id) {
       updateData.id = id;
     }
 
-    try {
-      const req = id ? serviceUpdateRole : serviceCreateRole;
-      const res = await req(updateData);
+    const req = id ? serviceUpdateRole : serviceCreateRole;
+    const res = await req(updateData);
 
-      if (!res.error) {
-
-        history.goBack()
-      } else {
-        SnackbarUtils.error(res.message);
-      }
-
-    } catch (error) {
-    } finally {
-      setIsSubmitting(false);
+    if (!res.error) {
+      history.goBack();
+    } else {
+      SnackbarUtils.error(res.message);
     }
+
+    setIsSubmitting(false);
   }, [
     form,
     isSubmitting,
@@ -162,12 +152,24 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     dispatch,
   ]);
 
+  const checkPermissions = (data) => {
+    return data.every(obj =>
+        Object.keys(obj).some(key => ["all_data", "create", "read", "update", "delete"].includes(key) && obj[key])
+    );
+};
+
   const handleSubmit = useCallback(async () => {
     const errors = checkFormValidation();
+   const hasPermission = checkPermissions(permission);
+   
     if (Object.keys(errors).length > 0) {
       setErrorData(errors);
     } else {
-      await submitToServer();
+      if (!hasPermission) {
+        SnackbarUtils.error("Permission should be required");
+      } else {
+        await submitToServer();
+      }
     }
   }, [
     checkFormValidation,
@@ -191,13 +193,13 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const changeTextData = useCallback(
     (text, fieldName) => {
-    
       let shouldRemoveError = true;
       const t = { ...form };
-      if (fieldName === "name") {
-        t[fieldName] = text;
+      if (fieldName === "name" || fieldName === "displayName") {
+        if (!text || (isAlphaNum(text) && text.toString().length <= 20)) {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "industry_id") {
-      
         t[fieldName] = text?.filter((item, index, self) => {
           return (
             index ===
@@ -210,7 +212,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm, listData]
+    [removeError, form, setForm]
   );
 
   const onBlurHandler = useCallback(
@@ -222,13 +224,9 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     [changeTextData, errorData, setErrorData]
   );
 
-  const cancelRole = useCallback(
-    (type) => {
-     history.goBack()
-    },
-    []
-  );
-
+  const cancelRole = useCallback((type) => {
+    history.goBack();
+  }, []);
 
   const suspendItem = useCallback(async () => {
     dispatch(actionDeleteMasterDelete(empId));
@@ -239,9 +237,9 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
-    setGeofenceCoordinates([]);
+
     setErrorData({});
-  }, [form, setForm, geofenceCoordinates, setErrorData]);
+  }, [form, setForm, setErrorData]);
 
   return {
     form,
@@ -250,18 +248,18 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     removeError,
     handleSubmit,
     isSubmitting,
-    listData,
+
     errorData,
     handleReset,
     empId,
-    geofenceCoordinates,
-    setGeofenceCoordinates,
+
     permisionChangeHandler,
     permission,
     toggleAcceptDialog,
     isAcceptPopUp,
     suspendItem,
-    cancelRole
+    cancelRole,
+    id,
   };
 };
 
