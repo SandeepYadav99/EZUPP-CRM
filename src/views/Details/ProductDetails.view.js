@@ -18,13 +18,7 @@ const ProductDetailview = () => {
     isDialogOpen,} =
     useProductDetailHook({});
     const img="http://91.205.173.97:8118/public/product_images/1713506777190_red-ball-hitting-wicket-stumps-with-bat-black-abstract-splash-background-cricket-fever-concept_1302-5492.jpg"
-    const {
-      present,
-      all: allData,
-      currentPage,
-      is_fetching: isFetching,
-    } = useSelector((state) => state.product);
-    const [productToDelete, setProductToDelete] = useState(null);
+ 
   console.log("profileDetails", profileDetails);
   const getStatusPillColor = () => {
     if (profileDetails?.status === "ACTIVE") {
