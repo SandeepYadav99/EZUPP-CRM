@@ -8,13 +8,12 @@ import { ButtonBase, Typography } from "@mui/material";
 import { ArrowBackIos, Delete } from "@mui/icons-material";
 import {
   ArrowActionButton,
-  ArrowOutlineButton,
-  ArrowPrimaryButton,
+ 
 } from "../../../components/Buttons/PrimaryButton";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
-import { useTheme } from "@mui/styles";
+
 const RoleDetail = () => {
   const [roleDetail, setRoleDetail] = useState({});
   const { id } = useParams();
