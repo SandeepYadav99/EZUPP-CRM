@@ -110,7 +110,9 @@ const UnitsList = (props) => {
             <IconButton
               // disabled={is_calling}
 
-              onClick={() => handleEditSidePannel(all)}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleEditSidePannel(all)}}
             >
               <Edit fontSize={"small"} />
             </IconButton>
@@ -136,6 +138,7 @@ const UnitsList = (props) => {
       onPageChange: handlePageChange,
       onRowSizeChange: handleRowSize,
       handleDrag: handleDrag,
+      clickableRow:handleEditSidePannel
     };
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
