@@ -28,6 +28,7 @@ import {
   ActionButton,
   PrimaryButton,
 } from "./../../../components/Buttons/PrimaryButton";
+import DeleteDialog from "./component/DeleteDialog/DeleteDialog";
 const ProductList = (props) => {
   const {
     handleSortOrderChange,
@@ -64,8 +65,8 @@ const ProductList = (props) => {
       </div>
     );
   }, []);
-  
-  const handleDelete =(all)=>{
+
+  const handleDelete = (all) => {
     // let params ={
     //   "id":all?.id
     // }
@@ -77,18 +78,15 @@ const ProductList = (props) => {
       closeDialog();
       setProductToDelete(null);
     });
-  }
+  };
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
       return <StatusPill status={"ACTIVE"} color={"active"} />;
-    }
-    else if (status === "DELETED") {
+    } else if (status === "DELETED") {
       return <StatusPill status={"DELETED"} color={"high"} />;
-    }
-    else if (status === "DRAFT") {
+    } else if (status === "DRAFT") {
       return <StatusPill status={"DRAFT"} color={"draft"} />;
-    }
-     else if (status === "INACTIVE") {
+    } else if (status === "INACTIVE") {
       return <StatusPill status={"INACTIVE"} color={"high"} />;
     }
   }, []);
@@ -129,7 +127,13 @@ const ProductList = (props) => {
         key: "last_login",
         label: "Last Updated At",
         sortable: false,
-        render: (temp, all) => <div>{all?.updatedAtText?.split(' ')[0]}<br/>{all?.updatedAtText?.split(' ')[1]}</div>,
+        render: (temp, all) => (
+          <div>
+            {all?.updatedAtText?.split(" ")[0]}
+            <br />
+            {all?.updatedAtText?.split(" ")[1]}
+          </div>
+        ),
       },
       {
         key: "user_id",
@@ -143,17 +147,19 @@ const ProductList = (props) => {
               {/* <Edit fontSize={"small"} /> */}
               <img src={taskDetail} alt="task" width={20} />
             </IconButton>
-            <IconButton onClick={() => {
+            <IconButton
+              onClick={() => {
                 setProductToDelete(all);
                 openDialog();
-              }} >
+              }}
+            >
               <img src={removeTask} alt="task" width={20} />
             </IconButton>
           </div>
         ),
       },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete,]
+    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -218,37 +224,11 @@ const ProductList = (props) => {
           </div>
         </div>
       </ShadowBox>
-      <Dialog
-        open={isDialogOpen}
-        onClose={closeDialog}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <div className={styles.dialogWrap}>
-            <Typography variant="subtitle1">
-              {"Are your sure you want to delete this item ?"}
-            </Typography>
-            
-            <div className={styles.buttonContainer}>
-              <div className={styles.cancelButton}>
-                <ActionButton sx={{ mt: 4 }} onClick={closeDialog}>
-                  CANCEL
-                </ActionButton>
-              </div>
-
-              <div className={styles.savebutton}>
-                <PrimaryButton
-                  color={"primary"}
-                  sx={{ mt: 4 , ml: 4}}
-               
-                  onClick={handleDelete}
-                >
-                  CONFIRM
-                </PrimaryButton>
-              </div>
-            </div>
-          </div>
-      </Dialog>
+      <DeleteDialog
+        isOpen={isDialogOpen}
+        handleCLose={closeDialog}
+        handleSubmit={handleDelete}
+      />
     </div>
   );
 };

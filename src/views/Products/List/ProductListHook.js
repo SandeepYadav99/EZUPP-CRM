@@ -33,15 +33,18 @@ const useUserListHook = ({}) => {
     );
     isMountRef.current = true;
   }, []);
-const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-const openDialog = () => {
-  setIsDialogOpen(true);
-};
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
 
-const closeDialog = () => {
-  setIsDialogOpen(false);
-};
+  // const closeDialog = () => {
+  //   setIsDialogOpen(false);
+  // };
+  const closeDialog = useCallback(() => {
+    setIsDialogOpen((s) => !s);
+  }, [isDialogOpen, setIsDialogOpen]);
 
   const handlePageChange = useCallback((type) => {
     dispatch(actionSetPageProductRequests(type));
@@ -126,7 +129,7 @@ const closeDialog = () => {
     handleCreate,
     openDialog,
     closeDialog,
-    isDialogOpen
+    isDialogOpen,
   };
 };
 
