@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import styles from './Style.module.css';
 import {IconButton} from "@mui/material";
 import {AddCircleOutline} from "@mui/icons-material";
-import QuestionsView from "./Questions.view";
 import SidePanelComponent from "../../../../components/SidePanel/SidePanel.component";
 import QuestionsForm from './QuestionsForm.view'
 import {bindActionCreators} from "redux";

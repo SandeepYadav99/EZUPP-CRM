@@ -55,6 +55,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               <CustomTextField
                 fullWidth={true}
                 name="password"
+                size="small"
                 isError={errorData?.password}
                 errorText={errorData?.password}
                 type={showPassword ? "text" : "password"}
@@ -79,6 +80,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 isError={errorData?.confirm_password}
                 errorText={errorData?.confirm_password}
                 fullWidth={true}
+                size="small"
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirm_password"
                 margin={"dense"}
