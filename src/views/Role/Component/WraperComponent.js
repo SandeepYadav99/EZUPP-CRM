@@ -2,10 +2,10 @@ import { Card, TableCell } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import React from 'react'
 
-const WraperComponentCheckBox = ({children, permission, classes, index}) => {
+const WraperComponentCheckBox = ({children, permission,  index}) => {
     const theme= useTheme()
   return (
-    <TableCell classes={{ root: classes.tableCell }} sx={{
+    <TableCell sx={{
         [theme.breakpoints.down('sm')]: {
          display: 'block',
          width: '100%',
