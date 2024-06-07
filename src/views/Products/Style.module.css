@@ -58,6 +58,7 @@
 .actionButton{
     display: flex;
     gap: 2px;
+    /* justify-content: center; */
 }
 
 .formContainer{
@@ -82,3 +83,7 @@
 .savebutton{
     text-align: right !important;
   }
+.breakWord{
+    word-break: break-all;
+  white-space: pre-wrap;
+}

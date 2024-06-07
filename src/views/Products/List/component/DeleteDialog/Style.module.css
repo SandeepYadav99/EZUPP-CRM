@@ -1,0 +1,14 @@
+.dialogWrap{
+    padding: 1.5rem;
+    max-width: 500px;
+  }
+  .cancelButton{
+    text-align: left !important;
+  }
+  .buttonContainer {
+      display: flex;
+      justify-content: space-between; 
+  }
+  .savebutton{
+    text-align: right !important;
+  }
