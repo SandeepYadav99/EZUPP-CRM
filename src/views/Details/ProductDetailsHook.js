@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import historyUtils from "../../libs/history.utils";
 import { useParams } from "react-router-dom";
 import RouteName from "../../routes/Route.name";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { serviceGetProductDetails } from "../../services/Product.service";
-import { actionDeleteProduct} from "../../actions/Product.action";
-import {serviceDeleteProduct} from "../../services/Product.service";
+import { actionDeleteProduct } from "../../actions/Product.action";
+import { serviceDeleteProduct } from "../../services/Product.service";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 const useProductDetailHook = () => {
   const [profileDetails, setProfileDetails] = useState(null);
@@ -15,6 +15,15 @@ const useProductDetailHook = () => {
   const [editData, setEditData] = useState(null);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
 
   useEffect(() => {
     serviceGetProductDetails({ id: id ? id : "" }).then((res) => {
@@ -46,28 +55,18 @@ const useProductDetailHook = () => {
   //   },
   //   [setEditData]
   // );
-  const handleDelete = useCallback(
-    async (id) => {
-      if (id) {
-
-        const formattedId = String(id);
-  
-        try {
-          const response = await serviceDeleteProduct({ id: formattedId });
-  
-          if (!response.error) {
-            console.log(`Product with id: ${formattedId} deleted successfully.`);
-            window.location.reload();
-          } else {
-            SnackbarUtils.error(response.message);
-          }
-        } catch (error) {
-          console.error('Error deleting unit:', error);
-        }
+  const handleDelete = useCallback(() => {
+    if (id) {
+      const response = serviceDeleteProduct({ id: id });
+      if (!response.error) {
+        console.log(`Deleted successfully.`);
+        historyUtils.goBack();
+        // window.location.reload();
+      } else {
+        SnackbarUtils.error(response.message);
       }
-    },
-    
-  );
+    }
+  }, [id]);
 
   return {
     profileDetails,
@@ -78,6 +77,9 @@ const useProductDetailHook = () => {
     handleDetailPage,
     handleDelete,
     id,
+    openDialog,
+    closeDialog,
+    isDialogOpen,
   };
 };
 

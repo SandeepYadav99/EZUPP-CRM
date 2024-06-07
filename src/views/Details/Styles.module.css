@@ -90,10 +90,13 @@
   text-align: right !important;
 }
   .product{
-    height: 508px;
+    /* height: 508px; */
     margin-top: 25px;
     width: 70%;
+    overflow: auto;
   }
+
+  
   .addTask {
     color: white !important;
     background-color: #5f63f2 !important;
@@ -350,4 +353,22 @@
 .title{
   margin-top: 15px !important ;
   margin-bottom: 10px !important;
+}
+.dialogWrap{
+  padding: 1.5rem;
+  max-width: 500px;
+}
+.cancelButton{
+  text-align: left !important;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-between; 
+}
+.savebutton{
+  text-align: right !important;
+}
+.buttonRow{
+  display: flex;
+  gap: 20px;
 }

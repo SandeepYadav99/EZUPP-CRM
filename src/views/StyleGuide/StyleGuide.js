@@ -347,6 +347,7 @@ const StyleGuide = ({}) => {
             &nbsp;
             <StatusPill status={"Service"} color={"service"} /> &nbsp;
             <StatusPill status={"Warm"} color={"warm"} /> &nbsp;
+            <StatusPill status={"Draft"} color={"draft"} /> &nbsp;
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@mui/material";
+import React, { useCallback, useMemo, useState } from "react";
+import { Dialog, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import {
@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import removeTask from "../../../assets/Assets/ic_delete@2x.png";
+import taskDetail from "../../../assets/Assets/ic_info@2x.png";
 import styles from "../Style.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
@@ -23,6 +24,12 @@ import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import { serviceDeleteProduct } from "../../../services/Product.service";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import {
+  ActionButton,
+  PrimaryButton,
+} from "./../../../components/Buttons/PrimaryButton";
+import DeleteDialog from "./component/DeleteDialog/DeleteDialog";
+import {useTheme} from "@mui/styles";
 const ProductList = (props) => {
   const {
     handleSortOrderChange,
@@ -34,6 +41,9 @@ const ProductList = (props) => {
     handleProfile,
     configFilter,
     handleCreate,
+    openDialog,
+    closeDialog,
+    isDialogOpen,
   } = useUserListHook({});
 
   const {
@@ -42,7 +52,8 @@ const ProductList = (props) => {
     currentPage,
     is_fetching: isFetching,
   } = useSelector((state) => state.product);
-
+  const [productToDelete, setProductToDelete] = useState(null);
+  const theme = useTheme();
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
@@ -55,15 +66,27 @@ const ProductList = (props) => {
       </div>
     );
   }, []);
-  const handleDelete =(all)=>{
-    let params ={
-      "id":all?.id
-    }
-    serviceDeleteProduct(params)
-  }
+
+  const handleDelete = (all) => {
+    // let params ={
+    //   "id":all?.id
+    // }
+    // serviceDeleteProduct(params)
+    let params = {
+      id: productToDelete?.id,
+    };
+    serviceDeleteProduct(params).then(() => {
+      closeDialog();
+      setProductToDelete(null);
+    });
+  };
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
       return <StatusPill status={"ACTIVE"} color={"active"} />;
+    } else if (status === "DELETED") {
+      return <StatusPill status={"DELETED"} color={"high"} />;
+    } else if (status === "DRAFT") {
+      return <StatusPill status={"DRAFT"} color={"draft"} />;
     } else if (status === "INACTIVE") {
       return <StatusPill status={"INACTIVE"} color={"high"} />;
     }
@@ -93,7 +116,10 @@ const ProductList = (props) => {
         key: "productLink",
         label: "Link",
         sortable: false,
-        render: (temp, all) => <div>{all?.product_link}</div>,
+        render: (temp, all) =><div className={styles.breakWord}> <a href={all?.product_link} style={{color: theme.palette.primary.main}}>
+           {all?.product_link}
+          
+          </a></div>,
       },
       {
         key: "status",
@@ -105,7 +131,13 @@ const ProductList = (props) => {
         key: "last_login",
         label: "Last Updated At",
         sortable: false,
-        render: (temp, all) => <div>{all?.updatedAtText?.split(' ')[0]}<br/>{all?.updatedAtText?.split(' ')[1]}</div>,
+        render: (temp, all) => (
+          <div>
+            {all?.updatedAtText?.split(" ")[0]}
+            <br />
+            {all?.updatedAtText?.split(" ")[1]}
+          </div>
+        ),
       },
       {
         key: "user_id",
@@ -116,16 +148,24 @@ const ProductList = (props) => {
               // disabled={is_calling}
               onClick={() => handleEdit(all)}
             >
-              <Edit fontSize={"small"} />
+              {/* <Edit fontSize={"small"} /> */}
+              <img src={taskDetail} alt="task" width={20} />
             </IconButton>
-            <IconButton onClick={()=>handleDelete(all)  }>
+            {all?.status !== "DELETED" && (
+            <IconButton
+              onClick={() => {
+                setProductToDelete(all);
+                openDialog();
+              }}
+            >
               <img src={removeTask} alt="task" width={20} />
             </IconButton>
+            )}
           </div>
         ),
       },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete,]
+    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -190,6 +230,11 @@ const ProductList = (props) => {
           </div>
         </div>
       </ShadowBox>
+      <DeleteDialog
+        isOpen={isDialogOpen}
+        handleCLose={closeDialog}
+        handleSubmit={handleDelete}
+      />
     </div>
   );
 };
