@@ -8,7 +8,7 @@ import styles from "../Style.module.css";
 
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
-import ImageInfoToolTip from "../../../../components/ImageInfoToolTip/ImageInfoToolTip";
+import ImageInfoToolTip from "../../../../components/ImageInfo/ImageInfoToolTip";
 import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 
 const PersonalInformation = ({
