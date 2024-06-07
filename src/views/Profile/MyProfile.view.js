@@ -3,7 +3,6 @@ import styles from "./Styles.module.css";
 import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
 import WaitingComponent from "../../components/Waiting.component";
-
 import history from "../../libs/history.utils";
 import {
   ArrowOutlineButton,
@@ -11,16 +10,12 @@ import {
 } from "../../components/Buttons/PrimaryButton";
 import {
   ButtonBase,
- 
   Typography,
   useTheme,
 } from "@mui/material";
 import { Add, ArrowBackIos, Lock } from "@mui/icons-material";
-
-
 import ProfileSection from "./Componet/ProfileSection/ProfileSection";
 import TaskSection from "./Componet/TaskSection/TaskSection";
-
 import AddTaskCreate from "./Create/AddTaskCreate";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
 
@@ -39,8 +34,6 @@ const Profile = () => {
     filterCompltedTask,
     isSidePanel,
     handleCreatedTask,
-    userId, 
-    id,
     location
   } = useMyProfileHook();
 
@@ -62,12 +55,9 @@ const Profile = () => {
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
             <Typography fontSize={24} fontWeight={600} color={theme.palette.text.primary}>Profile View</Typography>
-           
             </div>
-           
             <div className={styles.profileHeaderAction}>
               <ArrowOutlineButton
-               
                 onClick={handleClose}
                 paddingLR={2}
                 paddingTB={1}
@@ -75,17 +65,14 @@ const Profile = () => {
                 icon={<Lock fontSize="normal" />}
               >
                  <Typography variant={"subtitle1"} color={""}>RESET PASSWORD</Typography>
-              
               </ArrowOutlineButton>
               <ArrowPrimaryButton
                 icon={<Add fontSize={"small"} />}
-                
                 paddingLR={2}
                 paddingTB={1}
                 borderRadius={8}
                 onClick={handleSideToggle}
               >
-                
                 <Typography variant={"subtitle1"}>ADD TASK</Typography>
               </ArrowPrimaryButton>
             </div>
@@ -96,8 +83,7 @@ const Profile = () => {
                 <ProfileSection
                   profileDetails={profileDetails}
                   handleEdit={handleEdit}
-                  
-                />
+                 />
               </div>
               <div className={styles.rightSection}>
                 <TaskSection
