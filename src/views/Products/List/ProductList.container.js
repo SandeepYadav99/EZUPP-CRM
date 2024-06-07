@@ -29,6 +29,7 @@ import {
   PrimaryButton,
 } from "./../../../components/Buttons/PrimaryButton";
 import DeleteDialog from "./component/DeleteDialog/DeleteDialog";
+import {useTheme} from "@mui/styles";
 const ProductList = (props) => {
   const {
     handleSortOrderChange,
@@ -52,7 +53,7 @@ const ProductList = (props) => {
     is_fetching: isFetching,
   } = useSelector((state) => state.product);
   const [productToDelete, setProductToDelete] = useState(null);
-
+  const theme = useTheme();
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
@@ -115,7 +116,10 @@ const ProductList = (props) => {
         key: "productLink",
         label: "Link",
         sortable: false,
-        render: (temp, all) => <div>{all?.product_link}</div>,
+        render: (temp, all) =><div className={styles.breakWord}> <a href={all?.product_link} style={{color: theme.palette.primary.main}}>
+           {all?.product_link}
+          
+          </a></div>,
       },
       {
         key: "status",
@@ -147,6 +151,7 @@ const ProductList = (props) => {
               {/* <Edit fontSize={"small"} /> */}
               <img src={taskDetail} alt="task" width={20} />
             </IconButton>
+            {all?.status !== "DELETED" && (
             <IconButton
               onClick={() => {
                 setProductToDelete(all);
@@ -155,6 +160,7 @@ const ProductList = (props) => {
             >
               <img src={removeTask} alt="task" width={20} />
             </IconButton>
+            )}
           </div>
         ),
       },

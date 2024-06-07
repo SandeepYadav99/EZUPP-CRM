@@ -90,10 +90,13 @@
   text-align: right !important;
 }
   .product{
-    height: 508px;
+    /* height: 508px; */
     margin-top: 25px;
     width: 70%;
+    overflow: auto;
   }
+
+  
   .addTask {
     color: white !important;
     background-color: #5f63f2 !important;
@@ -364,4 +367,8 @@
 }
 .savebutton{
   text-align: right !important;
+}
+.buttonRow{
+  display: flex;
+  gap: 20px;
 }

@@ -295,7 +295,7 @@ const dashboardRoutes = [
   //   parent: "masters",
   // },
   {
-    path: "/products",
+    path: RouteName.PRODUCT,
     sidebarName: "Products",
     navbarName: "Products",
     icon: AccountBox,
@@ -312,6 +312,7 @@ const dashboardRoutes = [
     component: ProductDetailview,
     is_sidebar: false,
     is_protect: true,
+    parentRoute:`${RouteName.PRODUCT}`
   },
   {
     path: `${RouteName.PRODUCT_CREATE}`,
@@ -321,6 +322,7 @@ const dashboardRoutes = [
     component: ProductCreate,
     is_sidebar: false,
     is_protect: true,
+    parentRoute:`${RouteName.PRODUCT}`
   },
   {
     path: `${RouteName.APP_USERS}`,
