@@ -126,6 +126,14 @@ function useProductCreateHook() {
         if (text >= 0 && text <= 100) {
           t[fieldName] = text;
         }
+      }else if (fieldName === "code"){
+        if(text?.length <= 40){
+          t[fieldName] = text;
+        }
+      }else if (fieldName === "name"){
+        if(text?.length <= 100){
+          t[fieldName] = text;
+        }
       } else if (fieldName === "tags") {
         console.log(">>>>",text)
         const tempKeywords = text?.filter((val, index) => {
