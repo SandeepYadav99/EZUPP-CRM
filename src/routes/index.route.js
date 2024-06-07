@@ -11,6 +11,7 @@ import HorizontalNav from "../views/HorizontalNav/HorizontalNav.js";
 import DragDrop from "../views/DragDrop/DragDrop.jsx";
 import ChooseAccount from "../views/ChooseAccount/ChooseAccount.js";
 import SuccessPageView from "../views/PasswordSucessful/SucessPage.view.js";
+import FirstResetPassowrd from "../views/ForgotPassword/FirstResetPassword/FirstResetPassword.component.js";
 
 const App = () => {
   return <div> hi</div>;
@@ -19,11 +20,11 @@ const RouteComponent = () => (
   <Switch>
     <Route path={"/login"} component={LoginView} />
     <Route path={"/forgot/password"} component={ForgotPassword} />
-    <Route path={"/reset/password"} component={ResetPassword} />
     <Route path={"/tester"} component={HorizontalNav} />
     <Route path={"/drag"} component={DragDrop} />
     <Route path={"/already"} component={ChooseAccount} />
     <Route path={"/password/resend"} component={SuccessPageView} />
+    <Route path={"/reset/password"} component={FirstResetPassowrd} />
     <Route path={"/"} component={Dashboard} />
   </Switch>
 );

@@ -3,7 +3,6 @@ import styles from './Style.module.css';
 import {ButtonBase, IconButton} from "@mui/material";
 import {AddCircleOutline, ControlPointRounded,Edit} from "@mui/icons-material";
 import csx from 'classnames';
-import QuestionsView from "../Questions/Questions.view";
 import SidePanelComponent from "../../../../components/SidePanel/SidePanel.component";
 import TopicForm from './TopicForm.view'
 import {bindActionCreators} from "redux";
