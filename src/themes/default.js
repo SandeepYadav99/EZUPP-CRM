@@ -2,7 +2,7 @@ import tinycolor from "tinycolor2";
 
 const primary = "#666cff";
 const secondary = "#072ead";
-const bgcolors = '#ffffff';
+const bgcolors = '#F7F7F9';
 const textColor = "#000000";
 const warning = "#FFC260";
 const success = "#3CD4A0";

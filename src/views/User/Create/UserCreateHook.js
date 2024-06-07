@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import { useState } from "react";
 import {
   HexCodeValid,
@@ -46,42 +46,54 @@ function useUserCreateHook() {
     userManage: false,
     invoiteToUser: false,
   };
-
+  const initialState = {
+    manager: [],
+    department: [],
+    ROLES: [],
+    images: null,
+    isSubmitting: false,
+  };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
-  const [images, setImages] = useState(null);
   const { id } = useParams();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const emailDebouncer = useDebounce(form.email, 500);
   const empIdDebouncer = useDebounce(form.employee_id, 500);
-  const [manager, setManager] = useState([]);
-  const [department, setDepartment] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [listData, setListData] = useState({
-    ROLES: [],
-  });
+  const userData = localStorage.getItem("user");
+  const userObject = JSON.parse(userData);
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "SET_MANAGER":
+        return { ...state, manager: action.payload };
+      case "SET_DEPARTMENT":
+        return { ...state, department: action.payload };
+      case "ROLES":
+        return { ...state, ROLES: action.payload };
+      case "IMAGES":
+        return { ...state, images: action.payload };
+      case "IS_SUBMITING":
+        return { ...state, isSubmitting: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    serviceGetList(["ROLES"]).then((res) => {
-      if (!res.error) {
-        setListData(res.data);
+    Promise.all([
+      serviceGetList(["ROLES"]),
+      serviceProfileManager({}),
+      serviceProviderProfileGetKeyword({}),
+    ]).then(([rolesRes, managerRes, departmentRes]) => {
+      if (!rolesRes.error) {
+        dispatch({ type: "ROLES", payload: rolesRes.data });
       }
-    });
-  }, []);
-  useEffect(() => {
-    serviceProfileManager({}).then((res) => {
-      if (!res?.error) {
-        const data = res?.data;
-        setManager(data);
+      if (!managerRes.error) {
+        dispatch({ type: "SET_MANAGER", payload: managerRes.data });
       }
-    });
-  }, []);
-
-  useEffect(() => {
-    serviceProviderProfileGetKeyword({}).then((res) => {
-      if (!res?.error) {
-        const data = res?.data;
-        setDepartment(data);
+      if (!departmentRes.error) {
+        dispatch({ type: "SET_DEPARTMENT", payload: departmentRes.data });
       }
     });
   }, []);
@@ -135,13 +147,10 @@ function useUserCreateHook() {
           const formData = {
             ...form,
             name: data?.name,
-
             userName: data?.user_name,
-
             contact: data?.contact,
             email: data?.email,
             role: data?.role?.id,
-            // type: string;
             employee_id: data?.employee_id,
             joining_date: data?.joining_date,
             department: data?.department,
@@ -149,65 +158,18 @@ function useUserCreateHook() {
             manager: data?.manager?.id,
             end_date: data?.exit_date,
             userManage: data?.is_manager,
-
             invoiteToUser: data?.is_primary_user,
-
-            // is_access_invite: data?.is_access_invite,
-            // is_active: data?.status === Constants.GENERAL_STATUS.ACTIVE,
           };
 
           setForm(formData);
-          setImages(data?.image);
+          dispatch({ type: "IMAGES", payload: data?.image });
+          // setImages(data?.image);
         } else {
           SnackbarUtils.error(res?.message);
         }
       });
     }
   }, [id]);
-console.log(images, "Image")
-  // const checkCodeValidation = useCallback(() => {
-  //   "serviceUpdateAdminUserSearch"({
-  //     contact: form?.contact,
-  //     id: id ? id : "",
-  //   }).then((res) => {
-  //     if (!res.error) {
-  //       const data = res?.data;
-
-  //       // if (data?.full_contact === form?.contact) {
-  //       //   setIsContactInList(true);
-  //       // }
-  //       if (data) {
-  //         const tForm = {
-  //           ...form,
-  //           contact: data?.full_contact,
-  //           email: data?.email,
-  //           reg_id: data?.reg_id,
-  //           name2: data?.name,
-  //           member_id: data?.member?.id,
-  //           title: data?.title,
-  //           company_name:data?.member
-  //           ?.name
-
-  //         };
-  //         setForm(tForm);
-  //       } else {
-  //         if (data?.contact !== form?.contact) {
-  //           // setIsContactInList(false);
-  //         }
-  //         setForm({
-  //           ...form,
-  //           id: "",
-  //         });
-  //       }
-  //     }
-  //   });
-  // }, [form, id, form?.contact]);
-
-  // useEffect(() => {
-  //   if (codeDebouncer) {
-  //     checkCodeValidation();
-  //   }
-  // }, [codeDebouncer]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -216,13 +178,8 @@ console.log(images, "Image")
       "email",
       "contact",
       "userName",
-      // "role",
-      "employee_id",
-      "joining_date",
-      "department",
-      "designation",
-      "manager",
-      "end_date",
+      // "role",  
+      ...(userObject?.user_id === id ? [] : ['employee_id', "end_date","joining_date","department","designation", "manager",])
     ];
     if (!id) {
       required.push("image");
@@ -280,7 +237,7 @@ console.log(images, "Image")
       } else if (fieldName === "contact") {
         t[fieldName] = text;
       } else if (fieldName === "userName") {
-        t[fieldName] = text;
+        t[fieldName] = text?.toLowerCase();
       } else if (fieldName === "email") {
         t[fieldName] = text;
       } else if (fieldName === "contact") {
@@ -298,31 +255,42 @@ console.log(images, "Image")
     },
     [removeError, form, setForm]
   );
-  console.log(form, "Form");
+
   const submitToServer = useCallback(
     (status) => {
-      if (!isSubmitting) {
-        setIsSubmitting(true);
+      if (!state?.isSubmitting) {
+        dispatch({ type: "IS_SUBMITING", payload: true });
+
         const fd = new FormData();
 
         const formDataFields = {
           name: form?.name,
           image: form?.image,
           contact: form?.contact,
-          role_id: form?.role,
+          // role_id: form?.role || { },
           email: form?.email,
-          employee_id: form?.employee_id,
-          joining_date: form?.joining_date,
-          exit_date: form?.end_date,
-          department: form?.department,
-          designation: form?.designation,
-          manager: form?.manager,
+          // employee_id: form?.employee_id,
+          // joining_date: form?.joining_date,
+          // exit_date: form?.end_date,
+          // department: form?.department,
+          // designation: form?.designation,
+          // manager: form?.manager,
           user_name: form?.userName,
           is_primary_user: true,
-          is_manager: form?.userManage,
-          email_send:form?.invoiteToUser,
+          // is_manager: form?.userManage,
+          // email_send: form?.invoiteToUser,
           country_code: 91,
         };
+        if (userObject?.user_id !== id) {
+          formDataFields.employee_id = form?.employee_id;
+          formDataFields.joining_date = form?.joining_date;
+          formDataFields.exit_date = form?.end_date;
+          formDataFields.department = form?.department;
+          formDataFields.designation = form?.designation;
+          formDataFields.manager = form?.manager;
+          formDataFields.is_primary_user= true;
+          formDataFields.is_manager= form?.userManage;
+        }
 
         for (const field in formDataFields) {
           if (formDataFields.hasOwnProperty(field)) {
@@ -344,11 +312,11 @@ console.log(images, "Image")
           } else {
             SnackbarUtils.error(res?.message);
           }
-          setIsSubmitting(false);
+          dispatch({ type: "IS_SUBMITING", payload: false });
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting]
+    [form, state]
   );
 
   const onBlurHandler = useCallback(
@@ -372,22 +340,25 @@ console.log(images, "Image")
     },
     [checkFormValidation, setErrorData, form, submitToServer]
   );
-
+  
   return {
     form,
     errorData,
-    listData,
+    listData: state?.ROLES,
     changeTextData,
     onBlurHandler,
     removeError,
     handleSubmit,
-    isSubmitting,
-    images,
+    isSubmitting: state?.isSubmitting,
+    images: state?.images,
     id,
     // isContactInList,
-    isOpen,
-    manager,
-    department,
+
+    // manager,
+    // department,
+    userId:userObject?.user_id,
+    manager: state.manager,
+    department: state.department,
   };
 }
 

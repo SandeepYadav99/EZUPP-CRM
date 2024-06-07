@@ -4,6 +4,7 @@ import EventEmitter from "../../libs/Events.utils";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import csx from "classnames";
 import SnackbarUtils from "../../libs/SnackbarUtils";
+import { Person } from "@mui/icons-material";
 
 class File extends Component {
   constructor(props) {
@@ -22,7 +23,6 @@ class File extends Component {
     let totalValid = 0;
     e.preventDefault();
     if (e.target.files[0]) {
-    
       const tempFiles = [];
       Object.keys(e.target.files).forEach((key) => {
         if (multiple && maxCount != 0 && maxCount <= tempTotal) {
@@ -41,7 +41,6 @@ class File extends Component {
             ? allowedArr.indexOf(sFileExtension) > -1
             : true)
         ) {
-       
           tempFiles.push(tempFile);
           totalValid++;
         } else {
@@ -51,7 +50,6 @@ class File extends Component {
               this?.props?.max_size / (1024 * 1024)
             } MB`
           );
-       
         }
         tempTotal++;
       });
@@ -73,11 +71,11 @@ class File extends Component {
 
   _getImageUrl(value) {
     const { default_image, user_image } = this.props;
-
+   
     if (value) {
       return URL?.createObjectURL(value);
     } else if (default_image) {
-      return default_image;
+      return default_image ;
     } else if (user_image) {
       return require("../../assets/img/profile.png");
     }
@@ -101,6 +99,7 @@ class File extends Component {
       link,
       circular,
       bannerLabel,
+      cirularBanner
     } = this.props;
     let tempPlaceHolder = this.props.placeholder;
     if (value != "" && value !== null) {
@@ -117,13 +116,16 @@ class File extends Component {
           <div className={styles.imageBtnContainer}>
             <div>
               <div
+              
                 className={csx(styles.imagePlus, this.props.imageClass)}
                 style={{
                   backgroundImage: "url(" + this._getImageUrl(value) + ")",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderColor: error ? "red" : "#c2c2c2",
+                 
                 }}
+               
               ></div>
             </div>
             <div className={styles.imgLowerContainer}>
@@ -246,7 +248,7 @@ class File extends Component {
           <div className={styles.imageBtnContainerNew}>
             <div>
               <div
-                className={styles.imagePlusNew}
+                className={ cirularBanner ? styles.imageProfileNew : styles.imagePlusNew}
                 style={{
                   backgroundImage: "url(" + this._getImageUrl(value) + ")",
                   backgroundSize: "cover",
@@ -255,12 +257,12 @@ class File extends Component {
                 }}
               >
                 <div className={styles.imgLowerContainer}>
-                  <div>
+                  <div style={{marginTop:"20px"}}>
                     <span className={styles.plus}>
-                      {!value && !default_image ? "+" : ""}
+                      {!value && !default_image ? cirularBanner ? <img alt=""  width={"25"} src={require("../../assets/img/ic_add_image.png")}/> : "+" : ""}
                     </span>
                     <div className={styles.textUpload} style={error ? {} : {}}>
-                      {!value && !default_image ? "Upload Banner Image" : ""}
+                      {!value && !default_image ? cirularBanner ? "" : "Upload Banner Image" : ""}
                     </div>
                   </div>
                   <input

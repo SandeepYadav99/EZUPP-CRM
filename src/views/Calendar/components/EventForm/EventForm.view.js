@@ -65,30 +65,26 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
             }}
             label={`All Day`}
           />
-           <div>
-            {/* <CustomDatePicker
+            <CustomDatePicker
               clearable
               label={"Start Date"}
-              maxDate={new Date()}
+              // maxDate={new Date()}
               onChange={(date) => {
                 changeTextData(date, "start_date");
               }}
               value={form?.start_date}
               isError={errorData?.start_date}
-            /> */}
-          </div>
-          <div>
+            />
             <CustomDatePicker
               clearable
               label={"End Date"}
-              maxDate={new Date()}
+              // maxDate={new Date()}
               onChange={(date) => {
                 changeTextData(date, "end_date");
               }}
               value={form?.end_date}
               isError={errorData?.end_date}
             />
-          </div>
           <CustomTextField
             isError={errorData?.event_url}
             errorText={errorData?.event_url}

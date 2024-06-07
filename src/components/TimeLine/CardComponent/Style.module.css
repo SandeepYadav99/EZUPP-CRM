@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading1 {
+  font-size: 0.9375rem;
+  color: #3b4056;
+  font-weight: 500;
+}
+
+.timeLine {
+  color: #a8aab4 !important;
+}
+.btnPdf {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  background-color: #f2f2f4 !important;
+  width: 120px;
+  padding: 5px;
+  color: #676b7b !important;
+  font-size: 15px;
+}
+

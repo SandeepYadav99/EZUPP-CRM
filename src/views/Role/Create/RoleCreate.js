@@ -1,27 +1,30 @@
 import React from "react";
 import {
-  Button,
+  
   ButtonBase,
   CircularProgress,
-  IconButton,
-  TextField,
+ 
   Typography,
+  useTheme,
 } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
-import Tooltip from "@mui/material/Tooltip";
-import InfoIcon from "@mui/icons-material/Info";
+
 import { makeStyles } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
-import { Autocomplete } from "@mui/lab";
+
 import useRoleCreateHook from "./RoleCreateHook";
 import RoleTableComponent from "../RoleTable.component";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import history from "../../../libs/history.utils";
-import { ActionButton, OutlineButton, PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 
-// import CustomSwitch from "../../../FormFields/CustomSwitch";
-// import CustomCheckbox from "../../../FormFields/CustomCheckbox";
+import {
+  ActionButton,
+ 
+  PrimaryButton,
+} from "../../../components/Buttons/PrimaryButton";
+import CustomSwitch from "../../../components/FormFields/CustomSwitch";
+
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -39,46 +42,35 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     handleSubmit,
     onBlurHandler,
     changeTextData,
-    listData,
-
     isSubmitting,
-    toggleAcceptDialog,
-    isAcceptPopUp,
+    data,
+    cancelRole,
+    permisionChangeHandler,
     id,
+
+    permission,
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
-
+  
   return (
     <>
-   
-   
-          <div className={styles.iconButton}>
-            <ButtonBase onClick={() => history.goBack()}>
-              <ArrowBackIos fontSize={"small"} />{" "}
-            </ButtonBase>
-            <Typography variant={"h4"}>
-              {id ? "Update" : "Create"} Role
-            </Typography>
-          </div>
-      
-        {/* {empId && (
-          <IconButton
-            variant={"contained"}
-            className={classes.iconBtnError}
-            onClick={toggleAcceptDialog}
-            type="button"
-          >
-            <DeleteIcon />
-          </IconButton>
-        )} */}
-     
+      <div className={styles.iconButton}>
+        <ButtonBase onClick={() => history.goBack()}>
+          <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
+        </ButtonBase>
+        <Typography variant={"h4"} fontWeight={600} >{id ? "Edit" : "Create"} Role</Typography>
+      </div>
 
       <div className={styles.container}>
-     
         <ShadowBox width={"100%"}>
-        
-            <Typography variant="h5" >Role Details</Typography>
-        
+          <Typography
+            fontSize={18}
+            // color={"#636578"}
+            fontWeight={600}
+            
+          >
+            Role Details
+          </Typography>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
@@ -96,15 +88,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.name}
-                errorText={errorData?.name}
+                isError={errorData?.displayName}
+                errorText={errorData?.displayName}
                 label="Display Name"
-                value={form?.name}
+                value={form?.displayName}
                 onTextChange={(text) => {
-                  changeTextData(text, "name");
+                  changeTextData(text, "displayName");
                 }}
                 onBlur={() => {
-                  onBlurHandler("name");
+                  onBlurHandler("displayName");
                 }}
               />
             </div>
@@ -112,36 +104,44 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.name}
-                errorText={errorData?.name}
+                isError={errorData?.description}
+                errorText={errorData?.description}
                 multiline
                 rows="3"
                 label="Role Description"
-                value={form?.name}
+                value={form?.description}
                 onTextChange={(text) => {
-                  changeTextData(text, "name");
+                  changeTextData(text, "description");
                 }}
                 onBlur={() => {
-                  onBlurHandler("name");
+                  onBlurHandler("description");
                 }}
               />
             </div>
           </div>
+          <div className={"formGroup"}>
+            <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
+              <CustomSwitch
+                value={form?.is_active}
+                handleChange={() => {
+                  changeTextData(!form?.is_active, "is_active");
+                }}
+                label={form?.is_active ? `Active` : "Inactive"}
+              />
+            </div>
         </ShadowBox>
         <>
-         
-           
-          <RoleTableComponent />
-         
+          <RoleTableComponent
+            classes={classes}
+            // data={data}
+            permissions={permission}
+            changeTextData={changeTextData}
+            permisionChangeHandler={permisionChangeHandler}
+          />
         </>
 
         <div className={styles.actionButton}>
-        <ActionButton
-          
-            onClick={handleSubmit}
-          >
-           CANCEL
-          </ActionButton>
+          <ActionButton onClick={cancelRole}>CANCEL</ActionButton>
           <PrimaryButton
             variant={"contained"}
             color={"primary"}
@@ -150,7 +150,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           >
             {isSubmitting ? (
               <CircularProgress color="success" size="20px" />
-            ) : empId ? (
+            ) : id ? (
               "UPDATE"
             ) : (
               "SAVE"

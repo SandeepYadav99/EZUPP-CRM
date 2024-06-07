@@ -32,11 +32,21 @@ export default {
   TASK_DETAIL: "/task/detail/",
   SERVICE_DETAIL: "/service/detail/",
 
-  ADMIN_USER:"/users",
+  ADMIN_USER:"/admin/users",
   ADMIN_USER_CREATE:"/users/create",
   ADMIN_USER_UPDATE:"/users/update/",
+  USER_UPDATE_MY_PROFILE:"/users/updatemyprofile/",
   CALENDAR:"/calendar",
+  
   ROLE:"/roles",
   ROLE_CREATE:"/role/create",
-  ROLE_CREATE_UPDATE:"/role/update/"
+  ROLE_CREATE_UPDATE:"/role/update/",
+  ROLE_DETAIL:"/role/details/",
+  BLOGS_CREATE:"/blogs/create",
+  BLOGS_UPDATE:"/blogs/update/",
+  PRODUCT_DETAILS:"/product/details/",
+  PRODUCT_CREATE:"/product/create",
+  NOTIFICATION_DETAILS:"/notifications",
+  CONTACT_LIST: "/contact",
+  CONTACT_CREATE: "/contact/create"
 };

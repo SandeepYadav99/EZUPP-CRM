@@ -202,8 +202,8 @@ const CustomerList = (props) => {
   ]);
 
   return (
-    <div>
-      <PageBox>
+    <>
+      <div className={"plainPaper"}>
         <div className={styles.headerContainer}>
           <span className={styles.title}>Customers List</span>
         </div>
@@ -225,8 +225,8 @@ const CustomerList = (props) => {
             </div>
           </div>
         </div>
-      </PageBox>
-    </div>
+      </div>
+    </>
   );
 };
 

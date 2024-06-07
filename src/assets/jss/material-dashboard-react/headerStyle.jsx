@@ -36,7 +36,7 @@ const headerStyle = theme => ({
         //   top: 0,
         overflow: 'hidden',
         maxHeight: 57,
-        backgroundColor: sidebarColor,
+        background:theme.palette.tableHeadColor,
         color: textColor,
     },
     container: {
@@ -62,7 +62,7 @@ const headerStyle = theme => ({
         }
     },
     innercontent: {
-        padding: '10px 15px'
+        // padding: '10px 15px'
     },
     logoImage: {
       marginLeft:'12px',

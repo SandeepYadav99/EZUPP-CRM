@@ -16,9 +16,18 @@
   border-radius: 10px;
   padding: 0.7rem;
   margin-bottom: 20px;
-  background-color: #fff;
-  box-shadow: 0px 20px 80px #00000011;
+  /* background-color: #f7f7f9;
+  box-shadow: 0px 20px 80px #00000011; */
 }
+.newNotes{
+  margin-top: 20px !important;
+}
+.arrowBack{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .newContainer {
   font-size: 0.7rem;
 }
@@ -80,7 +89,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  align-items: stretch
+  align-items: stretch;
   /* margin: 0px 20rem 0px 0px; */
 }
 .backgroundStatus1 {
@@ -88,9 +97,8 @@
   justify-content: space-between;
   width: 45%;
   flex-wrap: wrap;
-
 }
-.des{
+.des {
   font-size: 14px;
 }
 .gaps {
@@ -195,8 +203,6 @@
 }
 .transition {
   transition: opacity 0.6s ease-in-out, transform 0.2s ease-in-out;
- 
-
 }
 .completed {
   color: white !important;
@@ -212,21 +218,28 @@
   border: 1px solid #02cc87 !important;
   color: #02cc87 !important;
   border: 10px;
-  padding: 5px 8px;
+  padding: 3px 10px;
   border-radius: 3px;
   transform: scale(1) translateX(0);
   /* opacity: 0.7; */
+}
+.selectWidth {
+  background-color: #FFF !important;
+ 
+
+}
+.boxHeight{
+  height: 45px !important;
+}
+.editAction {
+  display: flex;
+  gap: 10px;
+  align-items: center;
  
 }
+.boxHeight{
 
-
-.editAction {
-  background-color: #ffffff;
-  color: #000000;
-  padding: 5px 10px;
-  border-radius: 3px;
 }
-
 .notFound {
   text-align: center;
   font-size: 18px;

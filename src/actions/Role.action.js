@@ -12,8 +12,8 @@ export const FETCH_INIT = 'FETCH_INIT_ROLE';
 export const FETCHED = 'FETCHED_ROLE';
 export const FETCHED_FAIL = 'FETCHED_FAIL_ROLE';
 export const FETCHED_FILTER = 'FETCHED_FILTER_ROLE';
-// export const NEXT_PREQUESTS = 'NEXT_PREQUESTS';
-// export const PREV_PREQUESTS = 'PREV_PREQUESTS';
+export const NEXT_PREQUESTS = 'NEXT_PREQUESTS';
+export const PREV_PREQUESTS = 'PREV_PREQUESTS';
 export const FETCH_NEXT = 'FETCH_NEXT_ROLE';
 export const FILTER = 'FILTER_ROLE';
 export const RESET_FILTER = 'RESET_FILTER_ROLE';
@@ -84,12 +84,12 @@ export function actionChangePageRole(page) {
     }
 }
 
-// export function nextPRequestsClick() {
-//     return {
-//         type: NEXT_PREQUESTS,
-//         payload: null,
-//     };
-// }
+export function nextPRequestsClick() {
+    return {
+        type: NEXT_PREQUESTS,
+        payload: null,
+    };
+}
 //
 // export function prevPRequestsClick() {
 //     return {

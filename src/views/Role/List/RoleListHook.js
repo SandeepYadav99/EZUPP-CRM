@@ -2,18 +2,17 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {
-  actionFetchHubMaster,
-  actionSetPageHubMasterRequests,
-} from "../../../actions/HubMaster.action";
+
 import RouteName from "../../../routes/Route.name";
 import history from "../../../libs/history.utils";
+import { actionFetchRole, actionSetPageRole } from "../../../actions/Role.action";
 
 const useRoleListHook = ({}) => {
   const [isSidePanel, setSidePanel] = useState(false);
   const [isCalling, setIsCalling] = useState(false);
   const [editData, setEditData] = useState(null);
   const [editId, setEditId] = useState("");
+  const [isOpenImageStack, setIsOpenImageStack]=useState(false)
   const dispatch = useDispatch();
   const isMountRef = useRef(false);
 
@@ -23,11 +22,11 @@ const useRoleListHook = ({}) => {
     query,
     query_data: queryData,
     all,
-  } = useSelector((state) => state.hubMaster);
+  } = useSelector((state) => state.role);
 
   useEffect(() => {
     dispatch(
-      actionFetchHubMaster(
+      actionFetchRole(
         1,
         {},
         {
@@ -40,13 +39,13 @@ const useRoleListHook = ({}) => {
   }, []);
 
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageHubMasterRequests(type));
+    dispatch(actionSetPageRole(type));
   }, []);
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchHubMaster(1, sortingData, {
+        actionFetchRole(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
           query_data: key == "FILTER_DATA" ? value : queryData,
         })
@@ -71,9 +70,9 @@ const useRoleListHook = ({}) => {
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageHubMasterRequests(1));
+      dispatch(actionSetPageRole(1));
       dispatch(
-        actionFetchHubMaster(
+        actionFetchRole(
           1,
           { row, order },
           {
@@ -95,11 +94,21 @@ const useRoleListHook = ({}) => {
     [setEditId, setSidePanel, setEditData]
   );
 
-  const handleEditHubMaster = useCallback(
+  
+  const handleEdit = useCallback(
     (data) => {
-      setSidePanel((e) => !e);
-      setEditId(data?.id);
-      setEditData(data);
+      // setSidePanel((e) => !e);
+      // setEditId(data?.id);
+      // setEditData(data);
+      history.push(`${RouteName.ROLE_CREATE_UPDATE}${data?.id}`)
+    },
+    [setEditData, setSidePanel, setEditId]
+  );
+
+  const handleDetail = useCallback(
+    (data) => {
+ 
+      history.push(`${RouteName.ROLE_DETAIL}${data?.id}`)
     },
     [setEditData, setSidePanel, setEditId]
   );
@@ -108,9 +117,16 @@ const useRoleListHook = ({}) => {
     history.push(RouteName.ROLE_CREATE);
   }, []);
   
+  const openProfilePopUp = useCallback(
+    (data) => {
+      setIsOpenImageStack((e) => !e);
+     
+    },
+    [setIsOpenImageStack]
+  );
   const configFilter = useMemo(() => {
     return [
-      { label: "Created On", name: "createdAt", type: "date" },
+      // { label: "Created On", name: "createdAt", type: "date" },
       {
         label: "Status",
         name: "status",
@@ -131,8 +147,11 @@ const useRoleListHook = ({}) => {
     isSidePanel,
     configFilter,
     editId,
-    handleEditHubMaster,
-    handleCreate
+    handleEdit,
+    handleCreate,
+    handleDetail,
+    openProfilePopUp,
+    isOpenImageStack
   };
 };
 

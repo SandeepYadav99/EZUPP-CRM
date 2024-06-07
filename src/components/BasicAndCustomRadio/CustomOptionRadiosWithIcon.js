@@ -1,51 +1,43 @@
 import {
   Card,
   CardContent,
-  CardHeader,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Radio,
   RadioGroup,
   Typography,
 } from "@mui/material";
 import styles from "./Styles.module.css";
-import { useState } from "react";
-import { EngineeringTwoTone, Person, RocketLaunch } from "@mui/icons-material";
 
-export function CustomOptionRadiosWithIcon({ avatars, title }) {
-  const [selectedOption, setSelectedOption] = useState("personal");
-
-  const handleRadioChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+export function CustomOptionRadiosWithIcon({
+  label,
+  headerTitle,
+  selectedOption,
+  value,
+  basicPara,
+  price,
+  handleRadioChange,
+  setSelectedOption,
+  headerImage,
+}) {
  
 
   return (
     <div>
-      <Typography gutterBottom variant="h5">
-        Custom Option Radios With Icons
-      </Typography>
       <div className={styles.cardGrid1}>
         <Card className={styles.card}>
           <div>
             <CardContent
               className={
-                selectedOption === "starter"
+                selectedOption === value
                   ? styles.custom_option
                   : styles.custom_opon1
               }
               onClick={() => setSelectedOption("starter")}
             >
-              <Typography>
-                {" "}
-                <RocketLaunch fontSize="large" />
-              </Typography>
-              <Typography variant="h5">Starter</Typography>
-              <Typography>
-                {" "}
-                Cake sugar plum fruitcake I love sweet roll jelly-o.
-              </Typography>
+              <Typography> {headerImage}</Typography>
+              <Typography variant="h5">{label}</Typography>
+              <Typography> {basicPara}</Typography>
               <FormControl>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -54,81 +46,9 @@ export function CustomOptionRadiosWithIcon({ avatars, title }) {
                   name="radio-buttons-group"
                 >
                   <FormControlLabel
-                    value="starter"
+                    value={value}
                     control={<Radio />}
-                    label=""
-                  />
-                </RadioGroup>
-              </FormControl>
-            </CardContent>
-          </div>
-        </Card>
-        <Card className={styles.card}>
-          <div>
-            <CardContent
-              className={
-                selectedOption === "personal"
-                  ? styles.custom_option
-                  : styles.custom_opon1
-              }
-              onClick={() => setSelectedOption("personal")}
-            >
-              <Typography>
-                {" "}
-                <Person fontSize="large" />
-              </Typography>
-              <Typography variant="h5">Personal</Typography>
-              <Typography>
-                {" "}
-                Cake sugar plum fruitcake I love sweet roll jelly-o.
-              </Typography>
-              <FormControl>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  value={selectedOption}
-                  onChange={handleRadioChange}
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="personal"
-                    control={<Radio />}
-                    label=""
-                  />
-                </RadioGroup>
-              </FormControl>
-            </CardContent>
-          </div>
-        </Card>
-        <Card className={styles.card}>
-          <div>
-            <CardContent
-              className={
-                selectedOption === "enterprise"
-                  ? styles.custom_option
-                  : styles.custom_opon1
-              }
-              onClick={() => setSelectedOption("enterprise")}
-            >
-              <Typography>
-                {" "}
-                <EngineeringTwoTone fontSize="large" />
-              </Typography>
-              <Typography variant="h5"> Enterprise </Typography>
-              <Typography>
-                {" "}
-                Cake sugar plum fruitcake I love sweet roll jelly-o.
-              </Typography>
-              <FormControl>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  value={selectedOption}
-                  onChange={handleRadioChange}
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="enterprise"
-                    control={<Radio />}
-                    label=""
+                    label={""}
                   />
                 </RadioGroup>
               </FormControl>

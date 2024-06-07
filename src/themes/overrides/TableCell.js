@@ -13,9 +13,8 @@ export default function TableCell(theme) {
           fontWeight: 600,
           paddingTop: 10,
           paddingBottom: 10,
-          background:"#F5F5F5",
+          background:theme.palette.tableHeadColor,
           borderRadus:"6px",
-          color:"#636578"
         }
       }
     }

@@ -20,3 +20,7 @@
 .searchInput:focus {
     outline: none;
 }
+
+.flatButton{
+    color:#636578 !important;
+} 

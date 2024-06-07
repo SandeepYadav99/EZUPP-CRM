@@ -1,80 +1,79 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect,  useState } from "react";
-import { serviceBadgeIndustry } from "../../../services/Badge.service";
+import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
+
 import SnackbarUtils from "../../../libs/SnackbarUtils";
-import {
-  serviceHubMasterCreate,
-  serviceHubMasterDetail,
-  serviceHubMasterUpdate,
-} from "../../../services/HubMaster.service";
-import constants from "../../../config/constants";
+
 import { useDispatch } from "react-redux";
 import {
   actionDeleteMasterDelete,
   actionFetchHubMaster,
 } from "../../../actions/HubMaster.action";
+import {
+  serviceCreateRole,
+  serviceDetailPermissions,
+  serviceDetailRole,
+  serviceUpdateRole,
+} from "../../../services/Role.service";
+import { useParams } from "react-router-dom";
+import history from "../../../libs/history.utils";
+import { isAlphaNum, isAlphaNumChars } from "../../../libs/RegexUtils";
 
 const initialForm = {
   name: "",
-  geofence: "",
-  industry_id: [],
-  featured: false,
-  status: false,
+  displayName: "",
+  description: "",
+  is_active: true,
 };
 
 const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
-  const [geofenceCoordinates, setGeofenceCoordinates] = useState([]);
-  const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
+  const [permission, setPermissions] = useState([]);
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   useEffect(() => {
-    serviceBadgeIndustry({ id: empId }).then((res) => {
-      if (!res.error) {
-        setListData(res.data);
-      }
-    });
-  }, []);
-
-
-  useEffect(() => {
-    if (empId) {
-      serviceHubMasterDetail({ id: empId }).then((res) => {
+    if (id) {
+      serviceDetailRole({ id: id }).then((res) => {
         if (!res.error) {
-          const data = res.data;
-          
+          const data = res?.data?.details;
           setForm({
             ...form,
             name: data?.name,
-            industry_id: data?.industryData,
-            featured: data?.featured === "YES",
-            status: data?.status === constants.GENERAL_STATUS.ACTIVE,
+            description: data?.description,
+            displayName: data?.display_name,
+            is_active: data?.is_active === "ACTIVE" ? true : false,
           });
-          setGeofenceCoordinates(data?.geofence);
         } else {
-          setGeofenceCoordinates([]);
         }
       });
     }
-  }, [empId, listData]);
+  }, [id]);
 
+  useEffect(() => {
+    serviceDetailPermissions({ id: id ? id : " " }).then((res) => {
+      if (!res?.error) {
+        setPermissions(res?.data);
+      }
+    });
+  }, [id]);
 
-  
+  const permisionChangeHandler = useCallback(
+    (index, data) => {
+      const t = [...permission];
+      t[index] = { ...t[index], ...data };
+      setPermissions(t);
+    },
+    [permission, setPermissions]
+  );
+
   useEffect(() => {
     if (!isSidePanel) {
       handleReset();
-    }  
-  }, [handleSideToggle,  isSidePanel]);
+    }
+  }, [handleSideToggle, isSidePanel]);
 
-  const handleCoordinate = useCallback(
-    (data) => {
-      setGeofenceCoordinates(data);
-    },
-    [geofenceCoordinates]
-  );
   const toggleAcceptDialog = useCallback(
     (obj) => {
       setIsAcceptPopUp((e) => !e);
@@ -83,26 +82,34 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   );
 
 
-  
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "industry_id"];
+    let required = ["name", "displayName"];
     required.forEach((val) => {
       if (
         !form?.[val] ||
         (Array.isArray(form?.[val]) && form?.[val].length === 0)
       ) {
         errors[val] = true;
-        SnackbarUtils.error("Please enter values")
+        // SnackbarUtils.error("Please enter values");
       } else if (["code"].indexOf(val) < 0) {
         delete errors[val];
       }
     });
+
+    if (form?.name?.length <= 2) {
+      errors.name = true;
+    }
+    if (form?.displayName?.length <= 2) {
+      errors.displayName = true;
+    }
+
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
       }
     });
+
     return errors;
   }, [form, errorData]);
 
@@ -112,55 +119,57 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     }
     setIsSubmitting(true);
 
-    const industryID =
-      Array.isArray(form.industry_id) && form.industry_id.length > 0
-        ? form.industry_id.map((item) => item.id || item._id)
-        : [];
-
     const updateData = {
       name: form?.name,
-      industry_id: industryID,
-      geofence: geofenceCoordinates, // ? geofenceCoordinates : []
-      featured: form?.featured ? "YES" : "NO",
-      status: form?.status ? "ACTIVE" : "INACTIVE",
+      permissions: permission,
+      display_name: form?.displayName,
+      description: form?.description,
+      is_active: form?.is_active === true ? true : false,
     };
 
-    if (empId) {
-      updateData.id = empId;
+    if (id) {
+      updateData.id = id;
     }
 
-    try {
-      const req = empId ? serviceHubMasterUpdate : serviceHubMasterCreate;
-      const res = await req(updateData);
+    const req = id ? serviceUpdateRole : serviceCreateRole;
+    const res = await req(updateData);
 
-      if (!res.error) {
-        handleSideToggle();
-        dispatch(actionFetchHubMaster(1));
-        //window.location.reload();
-      } else {
-        SnackbarUtils.error(res.message);
-      }
-    } catch (error) {
-     
-    } finally {
-      setIsSubmitting(false);
+    if (!res.error) {
+      history.goBack();
+    } else {
+      SnackbarUtils.error(res.message);
     }
+
+    setIsSubmitting(false);
   }, [
     form,
     isSubmitting,
     setIsSubmitting,
     empId,
     handleSideToggle,
-    geofenceCoordinates,
+    permission,
+    setPermissions,
     dispatch,
   ]);
 
+  const checkPermissions = (data) => {
+    return data.every(obj =>
+        Object.keys(obj).some(key => ["all_data", "create", "read", "update", "delete"].includes(key) && obj[key])
+    );
+};
+
   const handleSubmit = useCallback(async () => {
     const errors = checkFormValidation();
+   const hasPermission = checkPermissions(permission);
+   
     if (Object.keys(errors).length > 0) {
       setErrorData(errors);
     } else {
-      await submitToServer();
+      if (!hasPermission) {
+        SnackbarUtils.error("Permission should be required");
+      } else {
+        await submitToServer();
+      }
     }
   }, [
     checkFormValidation,
@@ -169,7 +178,8 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     submitToServer,
     empId,
     errorData,
-    geofenceCoordinates,
+    permission,
+    setPermissions,
   ]);
 
   const removeError = useCallback(
@@ -183,16 +193,18 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const changeTextData = useCallback(
     (text, fieldName) => {
-      console.log(text, "Text")
       let shouldRemoveError = true;
       const t = { ...form };
-      if (fieldName === "name") {
-        t[fieldName] = text;
+      if (fieldName === "name" || fieldName === "displayName") {
+        if (!text || (isAlphaNum(text) && text.toString().length <= 20)) {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "industry_id") {
-        console.log(text, "Text")
         t[fieldName] = text?.filter((item, index, self) => {
-          return  index === self.findIndex((i) => i.id === item.id && i._id === item._id)
-          
+          return (
+            index ===
+            self.findIndex((i) => i.id === item.id && i._id === item._id)
+          );
         });
       } else {
         t[fieldName] = text;
@@ -200,7 +212,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm, listData]
+    [removeError, form, setForm]
   );
 
   const onBlurHandler = useCallback(
@@ -212,18 +224,22 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     [changeTextData, errorData, setErrorData]
   );
 
+  const cancelRole = useCallback((type) => {
+    history.goBack();
+  }, []);
+
   const suspendItem = useCallback(async () => {
     dispatch(actionDeleteMasterDelete(empId));
     dispatch(actionFetchHubMaster(1));
     handleSideToggle();
     setIsAcceptPopUp((e) => !e);
-  }, [empId, handleCoordinate, isAcceptPopUp, dispatch]);
+  }, [empId, isAcceptPopUp, dispatch]);
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
-    setGeofenceCoordinates([]);
+
     setErrorData({});
-  }, [form, setForm, geofenceCoordinates, setErrorData]);
+  }, [form, setForm, setErrorData]);
 
   return {
     form,
@@ -232,16 +248,18 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     removeError,
     handleSubmit,
     isSubmitting,
-    listData,
+
     errorData,
     handleReset,
     empId,
-    geofenceCoordinates,
-    setGeofenceCoordinates,
-    handleCoordinate,
+
+    permisionChangeHandler,
+    permission,
     toggleAcceptDialog,
     isAcceptPopUp,
     suspendItem,
+    cancelRole,
+    id,
   };
 };
 

@@ -1,0 +1,102 @@
+.paper {
+    /* background-color: white; */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 8px #00000029;
+    width: 30% !important;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .headerAlign {
+    display: flex;
+    justify-content: space-between !important;
+  }
+  .alignDataValue {
+    display: flex !important;
+    width: 20%;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .wrapComponent {
+    display: flex;
+    width: 100%;
+    justify-content: center !important;
+    margin-top: 20px;
+    gap: 50px;
+  }
+  .cardComponent {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center;
+    width: 150px;
+  }
+  .bgColor1 {
+    width: 60px;
+    color: #25CEAE;
+    border-radius: 10px !important;
+    background-repeat: no-repeat;
+  }
+  .bgColor2 {
+    width: 60px;
+    border-radius: 10px !important;
+    background-repeat: no-repeat;
+  }
+  .bgColor3 {
+    width: 60px;
+    border-radius: 10px !important;
+    background-repeat: no-repeat;
+  }
+  .chartsDesktop {
+    display: flex;
+    gap: 10px;
+  }
+  #pageBox1 {
+    width: 40%;
+  }
+  .containerSpace{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  @media only screen and (max-width: 1296px) {
+    .cardComponent {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center !important;
+      width: 100px;
+
+    }
+    .bgColor1 {
+      width: 60px;
+      color: #25CEAE;
+      border-radius: 10px !important;
+      background-repeat: no-repeat;
+    }
+    .bgColor2 {
+      width: 60px;
+      border-radius: 10px !important;
+      background-repeat: no-repeat;
+    }
+    .bgColor3 {
+      width: 60px;
+      border-radius: 10px !important;
+      background-repeat: no-repeat;
+    }
+  }
+  
+  @media only screen and (max-width: 1024px) { 
+    .paper {
+      /* background-color: white; */
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0px 0px 8px #00000029;
+      width: 100% !important;
+    }
+  }
+  

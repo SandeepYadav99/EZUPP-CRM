@@ -1,0 +1,111 @@
+.container {
+    display: flex;
+    flex-direction: column !important;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .heading1 {
+    font-size: 0.9375rem;
+    color: #3b4056;
+    font-weight: 500;
+  }
+  
+  .timeLine{
+      color: #a8aab4 !important;
+  }
+  
+  .avatar_size {
+    cursor: pointer;
+  }
+  .avatarRow{
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+  }
+  .textFinal{
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  /*Hello Its is here*/
+
+
+  .hovered {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .hovered:hover {
+    cursor: pointer;
+  }
+  .flexGrid{
+    display: grid;
+  }
+  .flexBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 315px;
+    gap: 10px;
+  }
+  .flexBox1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 215px;
+    gap: 10px;
+  }
+  .avaterAlignment {
+    /* text-align: center; */
+    display: flex;
+    /* margin: 0px auto; */
+    /* justify-content: center; */
+  }
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px;
+  }
+  
+  
+  .avatar_group2 .avatar:hover{
+    transform : translateY(-10px);
+    z-index: 8;
+    transition: all .5s ease;
+  }
+  
+  .avatar {
+    cursor: pointer;
+  }
+  .avatar_size {
+    cursor: pointer;
+  }
+  
+  .avatar1 {
+    cursor: pointer;
+  }
+  
+  .avatar:hover {
+    z-index: 8;
+    transition: all .5s ease;
+  }
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+  }
+  .flexGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .flexBox1 {
+    display: flex;
+    gap: 5px;
+  }
+  

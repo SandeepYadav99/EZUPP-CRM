@@ -1,10 +1,10 @@
-import { Avatar, CardHeader } from '@mui/material';
+import { Avatar, CardHeader, Typography } from '@mui/material';
 import React, { memo } from "react";
 import RouteName from "../../../../routes/Route.name";
 import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
 
 const TaskAssignedContainer = ({ styles, details, classes }) => {
-console.log(details?.completedOnText)
+
   return (
     <div className={styles.mainFlex}>
       {/* <div className={styles.gaps} /> */}
@@ -14,7 +14,7 @@ console.log(details?.completedOnText)
           <div>
             <CardHeader
               title={
-                <span className={classes.subTitle}>Task assigned on:</span>
+                <Typography variant="subtitle1" >Task assigned on:</Typography>
               }
               subheader={details?.assignedOnDetailText}
             />
@@ -25,7 +25,7 @@ console.log(details?.completedOnText)
           <div >
             <CardHeader
               title={
-                <span className={classes.subTitle}>Task completed on:</span>
+                <Typography variant="subtitle1" >Task completed on:</Typography>
               }
               subheader={details?.completedOnText} // completedOnText
             />
@@ -37,7 +37,7 @@ console.log(details?.completedOnText)
           {/* Avator  */}
           <div>
             <CardHeader
-              title={<span className={classes.subTitle}>Associated User</span>}
+              title={<span >Associated User</span>}
               subheader={
                 <div style={{ display: "flex", alignItems: "center" }}>
                     {details?.associatedUser?.name ?
@@ -71,7 +71,7 @@ console.log(details?.completedOnText)
           {/* Avator  */}
 
           <CardHeader
-            title={<span className={classes.subTitle}>Associated Task</span>}
+            title={<span>Associated Task</span>}
             subheader={
               <div>
                 {details?.associatedTask?.title ? (

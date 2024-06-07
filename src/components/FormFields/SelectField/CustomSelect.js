@@ -79,7 +79,7 @@ const CustomSelect = ({isError, errorText, label, value, handleChange, icon, chi
     };
 
     return (
-        <FormControl fullWidth margin={'dense'} variant={'outlined'} error={isError}>
+        <FormControl  fullWidth margin={'dense'} variant={'outlined'} error={isError}>
             <InputLabel  htmlFor={`selectField${id}`} id="demo-mutiple-chip-label">{label}</InputLabel>
             <div style={{position: 'relative', display: 'inline-block'}}>
                 <Select

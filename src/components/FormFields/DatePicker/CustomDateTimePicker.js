@@ -10,6 +10,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import DateFnsUtils from "@date-io/date-fns";
 
 const CustomDateTimePicker = ({onChange, minDate, isError, maxDate, value, label, clearable, helperText}) => {
+    console.log('isError:', isError); 
     const handleOnChange = (e, d) => {
         // const tempDate  = new Date(e);
         // const formattedDate = tempDate.getDate() + "-" + (tempDate.getMonth() + 1) + "-" + tempDate.getFullYear();
@@ -33,6 +34,7 @@ const CustomDateTimePicker = ({onChange, minDate, isError, maxDate, value, label
                 variant="inline"
                 id="time-picker"
                 fullWidth
+                // style={{ textAlign: 'center' }} 
                 label={label}
                 value={value ? value : (null)}
                 onChange={handleOnChange}

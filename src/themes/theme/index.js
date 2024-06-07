@@ -5,19 +5,24 @@ import {
 
 const primary = "#2063CE";
 const secondary = "#25CEAE";
-const bgcolors = '#ffffff';
+const bgcolors = '#F7F7F9';
+const bgcolors1 = '#FFFFFF';
 const textColor = "#000000";
 const warning = "#FFC260";
 const success = "#3CD4A0";
 const info = "#9013FE";
 const border = '#E4E4E6'
 const error = '#FF0000';
-const disable = '#d8d8dd';// 
+const disable = '#d8d8dd';//
 const badgeColor= "#6d788d";
 const badgeColor1="#fdb528";
 const lightenRate = 7.5;
 const darkenRate = 15;
 const textMainColor = '#4A4A4A';
+const tableHeadColor= "#F5F5F5";
+const darkContent = "#F7F7F9"
+const ractangeborder="#C5C5C5";
+const ractange="#347BEC";
 
 const Theme = (colors) => {
   const { grey } = colors;
@@ -48,7 +53,9 @@ const Theme = (colors) => {
       light: alpha(primary, 0.2),
       dark: alpha(primary, 0.9),
       hover: alpha(secondary, 0.9),
-      disabled: grey[3]
+      disabled: grey[3],
+      ractange:ractange,
+      ractangeborder:ractangeborder
     },
     error: {
       main: error,
@@ -56,7 +63,7 @@ const Theme = (colors) => {
       dark: alpha(error, 0.9)
     },
     bgColor: {
-      main: bgcolors,
+      main: bgcolors1,
       light: alpha(bgcolors, 0.5),
       dark: alpha(bgcolors, 0.9)
     },
@@ -77,7 +84,11 @@ const Theme = (colors) => {
       medium: '#FF9100',
       low: '#78D90F',
       active:"#03AE85",
-      // inactive:""
+      business: '#888cff',
+      Discuss:"#636578",
+      service: "#636578",
+      warm: "#EBC50B",
+      draft: "#2063CE",
     },
     success: {
       main: success,
@@ -93,7 +104,8 @@ const Theme = (colors) => {
       primary: "#4A4A4A",
       secondary: "#6E6E6E",
       hint: "#B9B9B9",
-      error: '#ff0000'
+      error: '#ff0000',
+      bright: '#FFF'
     },
     primaryButton: {
       hover: secondary,
@@ -106,6 +118,8 @@ const Theme = (colors) => {
       color1:badgeColor1,
       color2:"#ff4d49"
     },
+    tableHeadColor:tableHeadColor,
+    contentDark:darkContent
   };
 };
 

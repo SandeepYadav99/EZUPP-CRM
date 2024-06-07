@@ -3,18 +3,32 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { Autocomplete, MenuItem, TextField } from "@mui/material";
+import { Autocomplete, MenuItem, TextField, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import { Clear, Search } from "@mui/icons-material";
-const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager, department}) => {
+import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+const WorkInfoView = ({
+  errorData,
+  form,
+  changeTextData,
+  onBlurHandler,
+  manager,
+  department,
+}) => {
   return (
     <>
-      <div className={"plainPaper"}>
+      <ShadowBox className={styles.mainBox}>
         <div className={"headerFlex"}>
-          <h4 className={"infoTitle"}>
-            <div className={"heading"}>Work Information</div>
-          </h4>
+          <Typography
+            fontSize={18}
+            // color={"#636578"}
+            fontWeight={600}
+            marginTop={1.5}
+            marginBottom={1.5}
+          >
+            Work Information
+          </Typography>
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.lowerWrap}>
@@ -33,109 +47,31 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
                   }}
                 />
               </div>
-              {/* <div className={"formGroup"}>
-                <CustomSelectField
-                  isError={errorData?.department}
-                  errorText={errorData?.department}
-                  label={"Department"}
-                  value={form?.department}
-                  handleChange={(value) => {
-                    console.log(value, "Value")
-                    changeTextData(value, "department");
-                  }}
-                >
-                  {department?.map((option, index) => (
-                    <MenuItem value={option}>{option}</MenuItem>
-                  ))}
-                </CustomSelectField>
-              </div> */}
-               
-          <div className={"formGroup"}>
-            <Autocomplete
-              id="tags-outlined"
-              onChange={(e, value) => {
-                changeTextData(value, "department");
-              }}
-              value={form.department || []}
-               options={department || []} // listData ||
-              getOptionLabel={(option) => option}
-              defaultValue={form?.department || []}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="outlined"
+         
+
+              <div className={"formGroup"}>
+                <CustomMultiComplete
+                  // multiple
+                  // showImage
+                  AutoCompleteList={department }
                   label={"Department"}
                   error={errorData?.department}
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <>
-                        {form?.department ? (
-                          <Clear
-                            onClick={() =>
-                              changeTextData(null, "department")
-                            }
-                            style={{ cursor: "pointer" }}
-                          />
-                        ) : null}
-                        <Search
-                          style={{ marginRight: -20, cursor: "pointer" }}
-                        />
-                      </>
-                    ),
+                 
+                  value={form?.department || []}
+                  onTextChange={(text) => {
+                    changeTextData(text, "department");
                   }}
+                  enableField={["name"]}
                 />
-              )}
-               disableClearable
-            />
-         
-        </div>
+                
+              </div>
             </div>
           </div>
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-          {/* <div className={"formGroup"}>
-            <Autocomplete
-              id="tags-outlined"
-              onChange={(e, value) => {
-                changeTextData(value, "designation");
-              }}
-              value={form.designation || []}
-                options={ []} // listData ||
-              getOptionLabel={(option) => option}
-              defaultValue={form?.designation || []}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="outlined"
-                  label={"Designation"}
-                  error={errorData?.designation}
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <>
-                        {form?.designation ? (
-                          <Clear
-                            onClick={() =>
-                              changeTextData(null, "designation")
-                            }
-                            style={{ cursor: "pointer" }}
-                          />
-                        ) : null}
-                        <Search
-                          style={{ marginRight: -20, cursor: "pointer" }}
-                        />
-                      </>
-                    ),
-                  }}
-                />
-              )}
-               disableClearable
-            />
-         
-        </div> */}
-             <CustomTextField
+       
+            <CustomTextField
               isError={errorData?.designation}
               errorText={errorData?.designation}
               label={"Designation"}
@@ -146,7 +82,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               // onBlur={() => {
               //   onBlurHandler("designation");
               // }}
-            /> 
+            />
           </div>
           <div className={"formGroup"}>
             <CustomSelectField
@@ -159,11 +95,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               }}
             >
               {manager?.map((item) => {
-                return (
-                  <MenuItem
-                    value={item?.id}
-                  >{`${item?.name} `}</MenuItem>
-                );
+                return <MenuItem value={item?.id}>{`${item?.name} `}</MenuItem>;
               })}
             </CustomSelectField>
           </div>
@@ -173,13 +105,9 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
             <CustomDatePicker
               clearable
               label={"Joining Date"}
-              // maxDate={new Date()}
-              //maxDate={new Date(new Date().getFullYear(), 11, 31)}
               onChange={(value) => {
                 changeTextData(value, "joining_date");
               }}
-              // format={"dd-MM-yyyy"}
-
               className={styles.dateContainer}
               value={form?.joining_date}
               isError={errorData?.joining_date}
@@ -191,12 +119,9 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
               clearable
               className={styles.dateContainer}
               label={"End Date"}
-              //  maxDate={new Date()}
-              // maxDate={new Date(new Date().getFullYear(), 11, 31)}
               onChange={(value) => {
                 changeTextData(value, "end_date");
               }}
-              
               value={form?.end_date}
               isError={errorData?.end_date}
               errorText={errorData?.end_date}
@@ -225,7 +150,7 @@ const WorkInfoView = ({ errorData, form, changeTextData, onBlurHandler , manager
             />
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

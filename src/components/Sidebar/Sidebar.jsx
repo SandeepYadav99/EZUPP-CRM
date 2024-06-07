@@ -153,8 +153,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Sidebar = ({...props}) => {
+    const {classes, color, logo, image, logoText, routes} = props;
     // verifies if routeName is the one active (in browser input)
+    const subRoutes = useMemo(() => {
+        return routes?.length > 0 ? routes.filter(item => item?.parentRoute && props.location.pathname?.includes(item?.path?.replace(/:id/g, ""))) : [];
+    }, [routes, props.location.pathname]);
+
     function activeRoute(routeName, otherData) {
+        if(subRoutes?.length >0){
+            return subRoutes[0]?.parentRoute === routeName;
+        }
         if (!otherData.should_regex) {
             return routeName == props.location.pathname;
         }
@@ -162,7 +170,7 @@ const Sidebar = ({...props}) => {
         // return props.location.pathname.indexOf(routeName) > -1 ? true : false;
     }
 
-    const {classes, color, logo, image, logoText, routes} = props;
+    // const {classes, color, logo, image, logoText, routes} = props;
     var brand = (
         <div className={classes.logo}>
             <div className={classes.logoImage}>

@@ -1,6 +1,7 @@
-import { ButtonBase } from '@mui/material';
+import { ButtonBase, Typography } from '@mui/material';
 import { Check } from '@mui/icons-material';
 import React, { useState } from "react";
+
 
 const TaskDetailHeader = ({
   details,
@@ -9,26 +10,29 @@ const TaskDetailHeader = ({
   styles,
   
 }) => {
+const [isCompleted, setIsCompleted]=useState(false)
 
   const handleButtonClick = () => {
-    if (details?.is_completed) {
-      completedHandler();
+    if (isCompleted) {
+      // completedHandler();
+      setIsCompleted(false)
     } else {
-      markAsCompleted();
+      // markAsCompleted();
+      setIsCompleted(true)
     }
     // setIsCompleted(!isCompleted);
   };
   return (
   
       <div className={styles.headerTitle}>
-        <div className={styles.subTitle}>{details?.title}</div>
+        <Typography fontSize={18} fontWeight={600} >{details?.title}</Typography>
         <div className={styles.complte}>
         <div  className={`${styles.transition} ${
-          details?.is_completed ? styles.completed : styles.markComplete
+          !isCompleted ? styles.completed : styles.markComplete
         }`}>
         <ButtonBase onClick={handleButtonClick}>
           <Check fontSize={"small"} />
-          <span>{details?.is_completed ? " Completed" : "Mark as Complete"}</span>
+          <span>{!isCompleted ? " Completed" : "Mark as Complete"}</span>
         </ButtonBase>
       </div>
         </div>

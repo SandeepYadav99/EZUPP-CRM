@@ -35,17 +35,9 @@ export async function postRequest(url, params) {
       store.dispatch(actionLogoutUser());
       return { error: true, authorization: false, response_code: 0 };
     }
-    if (err?.response?.status === 400) {
-      return {
-        error: true,
-        message: "Please Send Required Parameters",
-        authorization: true,
-        response_code: 0,
-      };
-    }
     return {
       error: true,
-      message: "Something Went Wrong",
+      message: Constants.API_ERROR_OBJ[err.response.status] ?  `${Constants.API_ERROR_OBJ[err.response.status]}` : "Something Went Wrong",
       authorization: true,
     };
   }
@@ -76,16 +68,9 @@ export async function getRequest(url, params) {
     if (err.response.status === 401) {
       return { error: true, authorization: false };
     }
-    if (err.response.status === 400) {
-      return {
-        error: true,
-        message: "Please Send Required Parameters",
-        authorization: true,
-      };
-    }
     return {
       error: true,
-      message: "Something Went Wrong",
+      message: Constants.API_ERROR_OBJ[err.response.status] ?  `${Constants.API_ERROR_OBJ[err.response.status]}` : "Something Went Wrong",
       authorization: true,
     };
   }
@@ -120,16 +105,9 @@ export async function formDataRequest(url, formData) {
     if (err.response.status === 401) {
       return { error: true, authorization: false };
     }
-    if (err.response.status === 400) {
-      return {
-        error: true,
-        message: "Please Send Required Parameters",
-        authorization: true,
-      };
-    }
     return {
       error: true,
-      message: "Something Went Wrong",
+      message: Constants.API_ERROR_OBJ[err.response.status] ?  `${Constants.API_ERROR_OBJ[err.response.status]}` : "Something Went Wrong",
       authorization: true,
     };
   }

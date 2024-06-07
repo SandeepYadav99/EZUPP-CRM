@@ -1,19 +1,15 @@
-/**
- * Update by sandeepelectrovese@gmail.com ->
- *  Class based Component to Function based Component 12/13/2023
- */
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@mui/material";
+import {  IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import {
-  Add,
+
   Info as EditIcon,
   Info,
-  Person,
+ 
   OpenInNew as OpenInNewIcon,
   Edit,
-  Topic,
+
 } from "@mui/icons-material";
 import addTask from "../../../assets/img/ic_add_task@2x.png";
 import styles from "../Style.module.css";
@@ -22,13 +18,13 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./UserListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
-import {
-  ActionButton,
-  ArrowPrimaryButton,
-  PrimaryButton,
-} from "../../../components/Buttons/PrimaryButton";
+
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
+import {
+
+  CustomListHeader,
+} from "../../../components/CustomListHeader/CustomListHeader";
 
 const UserList = (props) => {
   const {
@@ -40,8 +36,7 @@ const UserList = (props) => {
     handleSearchValueChange,
     handleProfile,
     configFilter,
-    isSidePanel,
-    handleSideToggle,
+   
     handleCreate,
   } = useUserListHook({});
 
@@ -78,14 +73,14 @@ const UserList = (props) => {
       {
         key: "name",
         label: "User Info",
-        // style: { width: "18%" },
+       
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "contact",
         label: "Contact",
-        // style: { width: "15%" },
+        
         sortable: false,
         render: (temp, all) => (
           <div>
@@ -98,14 +93,14 @@ const UserList = (props) => {
       {
         key: "designation",
         label: "Designation",
-        // style: { width: "15%" },
+        
         sortable: false,
         render: (temp, all) => <div>{all?.designation}</div>,
       },
       {
         key: "role",
         label: "User Role",
-        // style: { width: "15%" },
+       
         sortable: false,
         render: (temp, all) => <div>{all?.role?.name}</div>,
       },
@@ -113,7 +108,7 @@ const UserList = (props) => {
       {
         key: "status",
         label: "Status",
-        // style: { width: "15%" },
+       
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all.status)}</div>,
       },
@@ -129,13 +124,20 @@ const UserList = (props) => {
         render: (temp, all) => (
           <div className={styles.actionButton}>
             <IconButton
-              // disabled={is_calling}
+              color="inherit"
+            
               onClick={() => handleProfile(all)}
+            >
+              <Info fontSize={"small"} />
+            </IconButton>
+            <IconButton
+            
+            // onClick={() => handleProfile(all)}
             >
               <img src={addTask} alt="task" width={20} />
             </IconButton>
             <IconButton
-              // disabled={is_calling}
+              
               onClick={() => handleEdit(all)}
             >
               <Edit fontSize={"small"} />
@@ -173,16 +175,12 @@ const UserList = (props) => {
 
   return (
     <div>
-      <div className={"plainPaper"}>
-        <div className={styles.headerContainer}>
-          <span className={styles.title}>User List</span>
-          <ArrowPrimaryButton
-            onClick={handleCreate}
-            icon={<Add fontSize="normal" />}
-          >
-            CREATE
-          </ArrowPrimaryButton>
-        </div>
+      <ShadowBox width={"100%"}>
+        <CustomListHeader
+          title={"CREATE"}
+          handleCreate={handleCreate}
+          sideTitlle={"User List"}
+        />
 
         <div>
           <FilterComponent
@@ -201,7 +199,7 @@ const UserList = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </div>
   );
 };

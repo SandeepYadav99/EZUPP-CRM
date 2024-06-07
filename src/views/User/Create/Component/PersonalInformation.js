@@ -1,10 +1,14 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Typography } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
+import UploadImage from "../../../../components/UploadImage/UploadImage";
+import { InfoOutlined } from "@mui/icons-material";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
 
 const PersonalInformation = ({
   errorData,
@@ -13,30 +17,31 @@ const PersonalInformation = ({
   form,
   image,
   listData,
+  userId,
+  id,
 }) => {
-  console.log(form, "Form");
+  const theme=useTheme()
   return (
     <>
-      <div className={"plainPaper"}>
+      <ShadowBox width={"100%"}>
         <div className={"headerFlex"}>
-          <h4 className={"infoTitle"}>
-            <div className={"heading"}>Personal Information</div>
-          </h4>
+          <Typography fontSize={18} fontWeight={600} marginTop={1.5} marginBottom={1.5}>
+            Personal Information
+          </Typography>
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.count}>
             <File
-              // bannerLabel="Profile"
               max_size={2 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
               name="image"
               accept={"image/*"}
               label="Profile"
-              // show_image={true}
-              
-              link={""}
-              user_image
+              // link={""}
+              // bannerLabel
+              banner={true}
+              cirularBanner={true}
               error={errorData?.image}
               value={form?.image}
               default_image={image ? image : ""}
@@ -46,6 +51,13 @@ const PersonalInformation = ({
                 }
               }}
             />
+            <div className={styles.imageGuide}>
+              <Typography variant={"subtitle1"} color={theme.palette.text.primary} >
+                {" "}
+                Image Guide
+              </Typography>
+                <InfoOutlined fontSize="small" color="action"/>
+            </div>
           </div>
           <div className={styles.lowerWrap}>
             <div className={"formFlex"}>
@@ -120,6 +132,7 @@ const PersonalInformation = ({
                   isError={errorData?.role}
                   errorText={errorData?.role}
                   label={"Role"}
+                  disabled={userId === id ? true : false}
                   value={form?.role}
                   handleChange={(value) => {
                     changeTextData(value, "role");
@@ -135,7 +148,7 @@ const PersonalInformation = ({
             </div>
           </div>
         </div>
-      </div>
+      </ShadowBox>
     </>
   );
 };

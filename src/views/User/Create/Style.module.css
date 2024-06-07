@@ -7,17 +7,18 @@
 .outerFlex1{
   padding-bottom: 30px;
 }
-.claimListWrapper {
+.iconButton{
   display: flex;
-  flex-direction: column;
-  position: relative;
+  gap: 5px;
 }
-.plainPaper {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,.15);
-  margin-bottom: 20px;
-  padding: .4rem 1.2rem;
+
+.saveButton{
+  text-align: right !important;
+  margin-top: 10px !important;
+}
+.imageGuide{
+ display: flex;
+
 }
 
 .cont{
@@ -25,19 +26,42 @@
   gap: 10px;
   align-items: center;
 }
+
 .lowerWrap{
   flex: 1;
 }
-.saveButton{
-  text-align: right !important;
+
+.mainBox{
+  width: 100% !important;
+  margin-top: 20px;
 }
+
 .dateContainer{
   width: 100% !important;
 }
-.iconButton{
+
+
+/* .claimListWrapper {
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  position: relative;
 }
+.plainPaper {
+  background-color: #F7F7F9;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,.15);
+  margin-bottom: 20px;
+  padding: .4rem 1.2rem;
+}
+.imageGuideFlex{
+  display: flex !important;
+
+}
+
+
+
+
+
 .custonCSS{
   width: 50% ;
-}
+} */
