@@ -46,10 +46,7 @@ const CustomPhoneContactField = ({
     [onChange, onTextChange]
   );
 
-  const handleValidation = useCallback((value, country, e, formattedValue) => {
-    return formattedValue.length >= 10;
-  }, []);
-
+ 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <PhoneInput

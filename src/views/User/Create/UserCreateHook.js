@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import { useState } from "react";
 import {
   HexCodeValid,
+  isAlphaNum,
   isAlphaNumChars,
   isDate,
   isEmail,
@@ -178,8 +179,17 @@ function useUserCreateHook() {
       "email",
       "contact",
       "userName",
-      // "role",  
-      ...(userObject?.user_id === id ? [] : ['employee_id', "end_date","joining_date","department","designation", "manager",])
+      // "role",
+      ...(userObject?.user_id === id
+        ? []
+        : [
+            "employee_id",
+            "end_date",
+            "joining_date",
+            "department",
+            "designation",
+            "manager",
+          ]),
     ];
     if (!id) {
       required.push("image");
@@ -191,19 +201,24 @@ function useUserCreateHook() {
       ) {
         errors[val] = true;
       }
+      console.log(form?.contact);
       if (val === "contact" && form?.contact) {
         const phoneNumber = parsePhoneNumber(form?.contact);
 
         if (phoneNumber) {
-          if (phoneNumber.isValid() === false) {
-            errors.contact = "Invalid Number";
+          if (phoneNumber?.isValid() === false) {
+            errors.contact = true;
+            SnackbarUtils.error("Invalid contact");
           }
         } else {
-          errors.contact = "Invalid Number";
+          errors.contact = true;
+          SnackbarUtils.error("Invalid contact");
         }
       }
     });
-
+    if (form?.employee_id?.length <= 2) {
+      errors.employee_id = true;
+    }
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
@@ -233,13 +248,19 @@ function useUserCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
-        t[fieldName] = text;
-      } else if (fieldName === "contact") {
-        t[fieldName] = text;
-      } else if (fieldName === "userName") {
-        t[fieldName] = text?.toLowerCase();
+        if (!text || text.length <= 40) {
+          t[fieldName] = text;
+        }
+      }  else if (fieldName === "userName") {
+        if (!text || (isAlphaNum(text) && text?.length <=20)) {
+          t[fieldName] = text?.toLowerCase();
+        }
       } else if (fieldName === "email") {
         t[fieldName] = text;
+      } else if (fieldName === "employee_id") {
+        if (!text || text?.length <= 20) {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "contact") {
         t[fieldName] = text;
       } else if (fieldName === "role") {
@@ -288,8 +309,8 @@ function useUserCreateHook() {
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
           formDataFields.manager = form?.manager;
-          formDataFields.is_primary_user= true;
-          formDataFields.is_manager= form?.userManage;
+          formDataFields.is_primary_user = true;
+          formDataFields.is_manager = form?.userManage;
         }
 
         for (const field in formDataFields) {
@@ -340,7 +361,7 @@ function useUserCreateHook() {
     },
     [checkFormValidation, setErrorData, form, submitToServer]
   );
-  
+
   return {
     form,
     errorData,
@@ -356,7 +377,7 @@ function useUserCreateHook() {
 
     // manager,
     // department,
-    userId:userObject?.user_id,
+    userId: userObject?.user_id,
     manager: state.manager,
     department: state.department,
   };
