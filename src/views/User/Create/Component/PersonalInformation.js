@@ -141,7 +141,7 @@ const PersonalInformation = ({
                 </CustomSelectField>
               </div>
               <div className={"formGroup"}>
-            <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
+             <Typography variant="subtitle1" fontWeight={600} marginTop={theme.spacing(-1)}>Status</Typography>
               <CustomSwitch
                 value={form?.status}
                 handleChange={() => {
