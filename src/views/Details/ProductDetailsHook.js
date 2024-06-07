@@ -15,7 +15,16 @@ const useProductDetailHook = () => {
   const [editData, setEditData] = useState(null);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+  
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+  
   useEffect(() => {
     serviceGetProductDetails({ id: id ? id : "" }).then((res) => {
       if (!res?.error) {
@@ -78,6 +87,9 @@ const useProductDetailHook = () => {
     handleDetailPage,
     handleDelete,
     id,
+    openDialog,
+    closeDialog,
+    isDialogOpen,
   };
 };
 

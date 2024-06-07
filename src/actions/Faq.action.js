@@ -31,6 +31,7 @@ export const SET_SERVER_PAGE = 'SET_SERVER_PAGE_FAQ';
 export const CREATE_DATA = 'CREATE_FAQ';
 export const UPDATE_DATA = 'UPDATE_FAQ';
 export const DELETE_ITEM = 'DELETE_ITEM_FAQ';
+export const DRAG_ITEM = 'DRAG_UNIT';
 
 export function actionFetchFaq(index = 1, sorting = {}, filter = {}, shouldReset=false) {
     const request = serviceFetchFaq({ index, row: sorting.row, order: sorting.order, ...filter });
@@ -123,6 +124,12 @@ export function actionFilterFaq(value) {
             dispatch({type: FETCHED, payload: null});//dispatch function
         });
     };
+}
+export function actionDragFaq(dragId, dragOverId) {
+    return {
+        type: DRAG_ITEM,
+        payload: {dragId, dragOverId}
+    }
 }
 
 
