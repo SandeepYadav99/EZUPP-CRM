@@ -112,15 +112,26 @@ const ProductDetailview = () => {
                 Associated Tags
               </Typography>
               <div className={styles.row21}>
-                {profileDetails?.tags?.map((item, index) => (
+              {profileDetails?.tags?.length > 0 && profileDetails?.tags.every(item => item!== "")? (
+                profileDetails?.tags?.map((item, index) => (
                   <Typography
                     variant={"body1"}
                     className={styles.tags}
                     key={`tags_${index}`}
+                    color={"text.primary"}
                   >
-                    {item}
+                    {item} 
                   </Typography>
-                ))}
+                ))
+              ) : (
+                <Typography
+                  variant={"body1"}                
+                  color={"text.secondary"}
+                >
+                  N/A
+                </Typography>
+              )
+                }
               </div>
 
               <Typography variant={"subtitle1"} className={styles.title}>
@@ -165,7 +176,7 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.ballpark_cost || "N/A"}
+                        {profileDetails?.currency} {profileDetails?.ballpark_cost || "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -178,7 +189,7 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.ballpark_price || "N/A"}
+                        {profileDetails?.currency} {profileDetails?.ballpark_price || "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -204,7 +215,7 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_value || "N/A"}
+                        {profileDetails?.currency} {profileDetails?.discount_value || "N/A"}
                       </Typography>
                     </div>
                   </div>

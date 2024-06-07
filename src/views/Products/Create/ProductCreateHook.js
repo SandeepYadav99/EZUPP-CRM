@@ -71,10 +71,10 @@ function useProductCreateHook() {
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "code", "type", "currency", "status"];
-    if (!id) {
-      required.push("image");
-    }
+    let required = ["name", "code", "type", "currency", "status", "unit_id"];
+    // if (!id) {
+    //   required.push("image");
+    // }
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
@@ -164,6 +164,9 @@ function useProductCreateHook() {
             historyUtils.goBack();
           } else {
             SnackbarUtils.error(res?.message);
+            if (res.message.includes("Code already exists")) {
+              setErrorData((prev) => ({ ...prev, code: true }));
+            }
           }
           setIsSubmitting(false);
         });
