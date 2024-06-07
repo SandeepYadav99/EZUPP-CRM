@@ -44,6 +44,7 @@ export default {
   ROLE_DETAIL:"/role/details/",
   BLOGS_CREATE:"/blogs/create",
   BLOGS_UPDATE:"/blogs/update/",
+  PRODUCT:"/products",
   PRODUCT_DETAILS:"/product/details/",
   PRODUCT_CREATE:"/product/create",
   NOTIFICATION_DETAILS:"/notifications",
