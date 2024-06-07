@@ -55,7 +55,8 @@ const WorkInfoView = ({
               AutoCompleteList={department}
               label={"Department"}
               error={errorData?.department}
-              value={form?.department || []}
+              
+              value={form?.department }
               onTextChange={(text) => {
                 changeTextData(text, "department");
               }}
@@ -73,7 +74,7 @@ const WorkInfoView = ({
               AutoCompleteList={[]}
               label={"Designation"}
               error={errorData?.designation}
-              value={form?.designation || []}
+              value={form?.designation}
               onTextChange={(text) => {
                 changeTextData(text, "designation");
               }}
