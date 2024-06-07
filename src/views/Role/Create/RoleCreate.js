@@ -120,6 +120,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
           </div>
           <div className={"formGroup"}>
+            <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
               <CustomSwitch
                 value={form?.is_active}
                 handleChange={() => {

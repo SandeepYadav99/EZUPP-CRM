@@ -1,4 +1,3 @@
-
 import React, { useCallback, useMemo } from "react";
 
 import DataTables from "../../../../Datatables/Datatable.table";
@@ -8,10 +7,10 @@ import classNames from "classnames";
 import { useSelector } from "react-redux";
 import StatusPill from "../../../../components/Status/StatusPill.component";
 import useAssociatedUsersHook from "./AssociatedUsersHook";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { Edit } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
-
+import { useTheme } from "@mui/styles";
 
 const AssociatedUsers = ({ listData, id }) => {
   const {
@@ -22,7 +21,7 @@ const AssociatedUsers = ({ listData, id }) => {
     handleViewDetails,
     isCalling,
   } = useAssociatedUsersHook({ listData, id });
-
+  const theme = useTheme();
   const {
     present,
     all: allData,
@@ -78,7 +77,6 @@ const AssociatedUsers = ({ listData, id }) => {
         render: (temp, all) => <div>{all?.membership_type}</div>,
         //  candidate?.applied_date
       },
-   
 
       {
         key: "status",
@@ -90,11 +88,13 @@ const AssociatedUsers = ({ listData, id }) => {
         key: "action",
         label: "Action",
         sortable: false,
-        render: (temp, all) => <div>
-          <IconButton>
-            <Edit fontSize="small"/>
-          </IconButton>
-        </div>
+        render: (temp, all) => (
+          <div>
+            <IconButton>
+              <Edit fontSize="small" />
+            </IconButton>
+          </div>
+        ),
       },
     ];
   }, [renderStatus, renderFirstCell, handleViewDetails, handleEdit, isCalling]);
@@ -125,14 +125,20 @@ const AssociatedUsers = ({ listData, id }) => {
   ]);
 
   return (
+   
     <ShadowBox width={"100%"}>
-      <div style={{ width: "100%" }}>
+      <Typography fontSize={18} margin={theme.spacing(1)}>
+        Associated Users
+      </Typography>
+      <div >
         <DataTables
           {...tableData.datatable}
           {...tableData.datatableFunctions}
         />
       </div>
     </ShadowBox>
+     
+   
   );
 };
 

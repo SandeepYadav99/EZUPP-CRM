@@ -11,6 +11,17 @@
 
   align-items: center !important;
 }
+.rightSection{
+  flex: 1 1 75% !important;
+}
+.leftSection{
+  flex: 0.4 1 25%;
+}
+.bottomSection{
+  flex: 1 1 75% !important;
+  margin-top: 20px;
+  width: 75%;
+}
 .rightContaiiner{
    display: flex;
    gap: 10px;
@@ -22,9 +33,9 @@
     font-family: Arial;
 
 }
-.headingWrap{
-    margin-bottom: 20px !important;
-}
+/* .headingWrap{
+    margin-bottom: 10px !important;
+} */
 .upperFlex{
   display: flex;
   justify-content: space-between;
