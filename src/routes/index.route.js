@@ -20,13 +20,11 @@ const RouteComponent = () => (
   <Switch>
     <Route path={"/login"} component={LoginView} />
     <Route path={"/forgot/password"} component={ForgotPassword} />
-    <Route path={"/reset/password"} component={ResetPassword} />
     <Route path={"/tester"} component={HorizontalNav} />
     <Route path={"/drag"} component={DragDrop} />
     <Route path={"/already"} component={ChooseAccount} />
     <Route path={"/password/resend"} component={SuccessPageView} />
-    <Route path={"/password/reset"} component={FirstResetPassowrd} />
-
+    <Route path={"/reset/password"} component={FirstResetPassowrd} />
     <Route path={"/"} component={Dashboard} />
   </Switch>
 );
