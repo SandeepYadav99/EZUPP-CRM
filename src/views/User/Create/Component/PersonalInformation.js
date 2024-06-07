@@ -5,11 +5,11 @@ import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.c
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
-import UploadImage from "../../../../components/UploadImage/UploadImage";
-import { InfoOutlined } from "@mui/icons-material";
+
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 import ImageInfoToolTip from "../../../../components/ImageInfoToolTip/ImageInfoToolTip";
+import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 
 const PersonalInformation = ({
   errorData,
@@ -117,15 +117,7 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "contact");
                   }}
-                  isValid={(value) => {
-                    if (value.match(/12345/)) {
-                      return "";
-                    } else if (value.match(/1234/)) {
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  }}
+              
                 />
               </div>
             </div>
@@ -148,6 +140,16 @@ const PersonalInformation = ({
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
               </div>
+              <div className={"formGroup"}>
+            <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
+              <CustomSwitch
+                value={form?.status}
+                handleChange={() => {
+                  changeTextData(!form?.status, "status");
+                }}
+                label={form?.status ? `Active` : "Inactive"}
+              />
+            </div>
             </div>
           </div>
         </div>
