@@ -1,14 +1,15 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem, Typography } from "@mui/material";
+import { MenuItem, Tooltip, Typography } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
-import UploadImage from "../../../../components/UploadImage/UploadImage";
-import { InfoOutlined } from "@mui/icons-material";
+
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
+import ImageInfoToolTip from "../../../../components/ImageInfoToolTip/ImageInfoToolTip";
+import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 
 const PersonalInformation = ({
   errorData,
@@ -20,19 +21,24 @@ const PersonalInformation = ({
   userId,
   id,
 }) => {
-  const theme=useTheme()
+  const theme = useTheme();
   return (
     <>
       <ShadowBox width={"100%"}>
         <div className={"headerFlex"}>
-          <Typography fontSize={18} fontWeight={600} marginTop={1.5} marginBottom={1.5}>
+          <Typography
+            fontSize={18}
+            fontWeight={600}
+            marginTop={1.5}
+            marginBottom={1.5}
+          >
             Personal Information
           </Typography>
         </div>
         <div className={styles.outerFlex}>
           <div className={styles.count}>
             <File
-              max_size={2 * 1024 * 1024}
+              max_size={5 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
               name="image"
@@ -52,11 +58,8 @@ const PersonalInformation = ({
               }}
             />
             <div className={styles.imageGuide}>
-              <Typography variant={"subtitle1"} color={theme.palette.text.primary} >
-                {" "}
-                Image Guide
-              </Typography>
-                <InfoOutlined fontSize="small" color="action"/>
+              <ImageInfoToolTip title={"Image Guide"} resolution={"Resolution 500px * 500px Image size = 5MB"}/>
+            
             </div>
           </div>
           <div className={styles.lowerWrap}>
@@ -114,15 +117,7 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "contact");
                   }}
-                  isValid={(value) => {
-                    if (value.match(/12345/)) {
-                      return "";
-                    } else if (value.match(/1234/)) {
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  }}
+              
                 />
               </div>
             </div>
@@ -145,6 +140,16 @@ const PersonalInformation = ({
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
               </div>
+              <div className={"formGroup"}>
+             <Typography variant="subtitle1" fontWeight={600} marginTop={theme.spacing(-1)}>Status</Typography>
+              <CustomSwitch
+                value={form?.status}
+                handleChange={() => {
+                  changeTextData(!form?.status, "status");
+                }}
+                label={form?.status ? `Active` : "Inactive"}
+              />
+            </div>
             </div>
           </div>
         </div>

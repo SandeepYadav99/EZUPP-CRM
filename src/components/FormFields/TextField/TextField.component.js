@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { TextField, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
 const CustomTextField = ({
@@ -22,7 +22,7 @@ const CustomTextField = ({
     },
     [onChange, onTextChange]
   );
- 
+
   return (
     <>
       <TextField
@@ -59,7 +59,11 @@ const CustomTextField = ({
         {...rest}
       />
       {isError && (
-        <div style={{ textAlign: "right", color: "red" }}>{errorText}</div>
+        <Typography variant="subtitle2" sx={{
+          textAlign:"end", 
+          color:theme.palette.error.main, 
+          marginTop:theme.spacing(-0.9)
+        }}>{errorText}</Typography>
       )}
     </>
   );

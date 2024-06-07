@@ -95,14 +95,14 @@ const UserList = (props) => {
         label: "Designation",
         
         sortable: false,
-        render: (temp, all) => <div>{all?.designation}</div>,
+        render: (temp, all) => <div>{all?.designation || "N/A"}</div>,
       },
       {
         key: "role",
         label: "User Role",
        
         sortable: false,
-        render: (temp, all) => <div>{all?.role?.name}</div>,
+        render: (temp, all) => <div>{all?.role?.name || "N/A"}</div>,
       },
 
       {
