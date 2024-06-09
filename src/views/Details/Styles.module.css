@@ -136,8 +136,10 @@
     background-color: white;
   }
 .link{
-  color: #2063CE;
+  /* color: #2063CE; */
   text-decoration: underline;
+  word-break: break-all;
+  white-space: pre-wrap;
 }
   .profileContainer {
    display: flex;

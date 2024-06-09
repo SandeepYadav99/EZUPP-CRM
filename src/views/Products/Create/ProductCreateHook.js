@@ -19,6 +19,7 @@ import {
 import { validateUrl } from "../../../libs/RegexUtils";
 import { useDispatch, useSelector } from "react-redux";
 import history from "../../../libs/history.utils";
+
 function useProductCreateHook() {
   const initialForm = {
     name: "",
@@ -93,6 +94,9 @@ function useProductCreateHook() {
       SnackbarUtils.error("Please Enter the Valid Url");
       errors["product_link"] = true;
     }
+    if (form.discount_value > form.ballpark_price) {
+      errors["discount_value"] = "Discount price value should not be greater than Ballpark price value";
+    }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -121,6 +125,13 @@ function useProductCreateHook() {
       ) {
         if (text >= 0) {
           t[fieldName] = text;
+        }
+        if (fieldName === "discount_value" && text > t.ballpark_price) {
+          setErrorData((prevErrors) => ({
+            ...prevErrors,
+            discount_value: "Discount value should not be greater than Ballpark price value",
+          }));
+          shouldRemoveError = false;
         }
       } else if (fieldName === "discount_percent") {
         if (text >= 0 && text <= 100) {
