@@ -130,7 +130,7 @@ const AssociatedUsers = ({ listData, id }) => {
       <Typography fontSize={18} margin={theme.spacing(1)}>
         Associated Users
       </Typography>
-      <div >
+      <div style={{width:"100%"}}>
         <DataTables
           {...tableData.datatable}
           {...tableData.datatableFunctions}

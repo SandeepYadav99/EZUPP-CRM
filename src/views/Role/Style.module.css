@@ -45,7 +45,10 @@
   font-weight: 700;
   margin-left: 15px;
 }
+.mainContainer{
+  width: 100% !important;
 
+}
 .crud {
   /* display: flex;
   align-items: center;
@@ -81,6 +84,24 @@
   gap: 5px;
   align-items: center;
 
+}
+.infoFiled1{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+@media (max-width:768px) {
+  .infoFiled1 {
+  margin-left: 15% !important;
+  
+  }
+}
+.rowSeparator {
+  border-bottom: 1px solid #ccc;
+}
+
+.rowSeparator:last-child {
+  border-bottom: none;
 }
 .subTitle{
   font-size: 14px !important;

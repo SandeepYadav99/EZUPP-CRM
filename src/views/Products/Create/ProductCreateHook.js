@@ -60,7 +60,7 @@ function useProductCreateHook() {
   }, []);
 
   useEffect(() => {
-    serviceGetTagList({ query: "a" }).then((res) => {
+    serviceGetTagList().then((res) => {
       if (!res.error) {
         setTagList(res.data);
       }
@@ -124,6 +124,14 @@ function useProductCreateHook() {
         }
       } else if (fieldName === "discount_percent") {
         if (text >= 0 && text <= 100) {
+          t[fieldName] = text;
+        }
+      }else if (fieldName === "code"){
+        if(text?.length <= 40){
+          t[fieldName] = text;
+        }
+      }else if (fieldName === "name"){
+        if(text?.length <= 100){
           t[fieldName] = text;
         }
       } else if (fieldName === "tags") {

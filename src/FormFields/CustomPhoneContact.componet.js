@@ -3,6 +3,7 @@ import { useTheme } from "@emotion/react";
 import React, { useCallback } from "react";
 
 import PhoneInput from "react-phone-input-2";
+import { formatPhoneNumber } from "../hooks/CommonFunction";
 
 const CustomPhoneContactField = ({
   isError,
@@ -18,37 +19,16 @@ const CustomPhoneContactField = ({
   onMount,
   ...rest
 }) => {
-  // const handleChange = useCallback(
-  //   (e) => {
-  //     onChange && onChange(e);
-  //     onTextChange && onTextChange(e);
-  //   },
-  //   [onChange, onTextChange]
-  // );
-  const theme = useTheme();
 
+  const theme = useTheme();
   const handleChange = useCallback(
     (value, country, e, formattedValue) => {
-      const countryCodeRegex = /\+(\d+)/;
-      const match = formattedValue.match(countryCodeRegex);
-      const countryCode = match ? match[1] : null;
-      const restOfPhoneNumber = formattedValue
-        .replace(countryCodeRegex, "")
-        .replace(/-/g, "");
-
-      const formattedPhoneNumber = countryCode
-        ? `+${countryCode} ${restOfPhoneNumber}`
-        : formattedValue;
-
+      const formattedPhoneNumber = formatPhoneNumber(formattedValue);
       onTextChange && onTextChange(formattedPhoneNumber);
       onChange && onChange(formattedPhoneNumber, country, e, formattedValue);
     },
     [onChange, onTextChange]
   );
-
-  const handleValidation = useCallback((value, country, e, formattedValue) => {
-    return formattedValue.length >= 10;
-  }, []);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -58,25 +38,24 @@ const CustomPhoneContactField = ({
           name: "Phone No",
         }}
         country={"in"}
-        // country={country_code ? country_code.toLowerCase() : 'us'}
+      
         value={value}
         onChange={handleChange}
         inputStyle={{
           width: "100%",
           border: errorText ? "1px solid red" : "1px solid #ccc",
           color: theme.palette.text.primary,
-          background:theme.palette.tableHeadColor,
+          background: theme.palette.contact,
           marginTop: theme.spacing(2),
         }}
         dropdownStyle={{
           backgroundColor: theme.palette.background?.paper,
         }}
-       
         specialLabel={
           <span
             style={{
               color: theme.palette.text.primary,
-              background:theme.palette.tableHeadColor,
+              background: theme.palette.contact,
               position: "absolute",
               top: theme.spacing(-0.1),
               left: theme.spacing(2),

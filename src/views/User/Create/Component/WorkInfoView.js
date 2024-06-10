@@ -6,8 +6,9 @@ import CustomSelectField from "../../../../components/FormFields/SelectField/Sel
 import { Autocomplete, MenuItem, TextField, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
-import { Clear, Search } from "@mui/icons-material";
+import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+import SnackbarUtils from "../../../../libs/SnackbarUtils";
 const WorkInfoView = ({
   errorData,
   form,
@@ -24,54 +25,73 @@ const WorkInfoView = ({
             fontSize={18}
             // color={"#636578"}
             fontWeight={600}
-            marginTop={1.5}
-            marginBottom={1.5}
           >
             Work Information
           </Typography>
         </div>
-        <div className={styles.outerFlex}>
-          <div className={styles.lowerWrap}>
-            <div className={"formFlex"}>
-              <div className={"formGroup"}>
-                <CustomTextField
-                  isError={errorData?.employee_id}
-                  errorText={errorData?.employee_id}
-                  label={"Employee ID"}
-                  value={form?.employee_id}
-                  onTextChange={(text) => {
-                    changeTextData(text, "employee_id");
-                  }}
-                  onBlur={() => {
-                    onBlurHandler("employee_id");
-                  }}
-                />
-              </div>
-         
 
-              <div className={"formGroup"}>
-                <CustomMultiComplete
-                  // multiple
-                  // showImage
-                  AutoCompleteList={department }
-                  label={"Department"}
-                  error={errorData?.department}
-                 
-                  value={form?.department || []}
-                  onTextChange={(text) => {
-                    changeTextData(text, "department");
-                  }}
-                  enableField={["name"]}
-                />
-                
-              </div>
-            </div>
-          </div>
-        </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-       
             <CustomTextField
+              isError={errorData?.employee_id}
+              errorText={errorData?.employee_id}
+              label={"Employee ID"}
+              value={form?.employee_id}
+              onTextChange={(text) => {
+                changeTextData(text, "employee_id");
+              }}
+              onBlur={() => {
+                onBlurHandler("employee_id");
+              }}
+            />
+          </div>
+
+          <div className={"formGroup"}>
+            <CustomMultiComplete
+              // multiple
+              // showImage
+              className={styles.marginTop}
+              AutoCompleteList={department}
+              label={"Department"}
+              error={errorData?.department}
+              value={form?.department}
+              onTextChange={(text) => {
+                changeTextData(text, "department");
+              }}
+              enableField={["name"]}
+            />
+          </div>
+        </div>
+
+        <div className={"formFlex"}>
+          <div className={"formGroup"}>
+            {/* <CustomMultiComplete
+              //  multiple
+              // showImage
+               className={styles.marginTop1}
+              AutoCompleteList={department || []}
+              label={"Designation"}
+              error={errorData?.designation}
+              value={form?.designation}
+              onTextChange={(text) => {
+                changeTextData(text, "designation");
+              }}
+              enableField={["name"]}
+            /> */}
+            <MultiComplete
+              isError={errorData?.department}
+              // multiple
+              isArray
+              AutoCompleteList={department}
+              getOptionLabel={(option) => option}
+              label={"Designation"}
+              defaultValue={form?.designation}
+              value={form?.designation}
+              onTextChange={(text) => {
+                changeTextData(text, "designation");
+              }}
+            />
+            {/* <CustomTextField
               isError={errorData?.designation}
               errorText={errorData?.designation}
               label={"Designation"}
@@ -82,7 +102,7 @@ const WorkInfoView = ({
               // onBlur={() => {
               //   onBlurHandler("designation");
               // }}
-            />
+            /> */}
           </div>
           <div className={"formGroup"}>
             <CustomSelectField
@@ -95,7 +115,11 @@ const WorkInfoView = ({
               }}
             >
               {manager?.map((item) => {
-                return <MenuItem value={item?.id}>{`${item?.name} `}</MenuItem>;
+                return (
+                  <MenuItem
+                    value={item?.id}
+                  >{`${item?.name} (${item?.employee_id})`}</MenuItem>
+                );
               })}
             </CustomSelectField>
           </div>
@@ -120,7 +144,13 @@ const WorkInfoView = ({
               className={styles.dateContainer}
               label={"End Date"}
               onChange={(value) => {
-                changeTextData(value, "end_date");
+                if (form?.joining_date > value) {
+                  SnackbarUtils.error(
+                    "Joining date should not be greater than end date"
+                  );
+                } else {
+                  changeTextData(value, "end_date");
+                }
               }}
               value={form?.end_date}
               isError={errorData?.end_date}
