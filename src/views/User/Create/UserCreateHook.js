@@ -3,16 +3,15 @@ import React, {
   useEffect,
   useMemo,
   useReducer,
-  useRef,
+ 
 } from "react";
 import { useState } from "react";
 import {
-  HexCodeValid,
+
   isAlphaNum,
-  isAlphaNumChars,
-  isDate,
+
   isEmail,
-  validateUrl,
+
 } from "../../../libs/RegexUtils";
 import { useParams } from "react-router";
 
@@ -20,11 +19,9 @@ import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
 
-import parsePhoneNumberFromString, {
- 
-} from "libphonenumber-js";
+import parsePhoneNumberFromString from "libphonenumber-js";
 
-import useDebounce from "../../../hooks/DebounceHook";
+
 import {
   serviceCreateProviderUser,
   serviceGetProviderUserDetail,
@@ -66,7 +63,7 @@ function useUserCreateHook() {
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const { id } = useParams();
- 
+
   const userData = localStorage.getItem("user");
   const userObject = JSON.parse(userData);
 
@@ -317,20 +314,22 @@ function useUserCreateHook() {
           // email_send: form?.invoiteToUser,
           country_code: 91,
         };
-        if(form?.manager){
-          formDataFields.manager=form?.manager
+        if (form?.manager) {
+          formDataFields.manager = form?.manager;
+        }
+        if (form?.joining_date || form?.end_date) {
+          formDataFields.joining_date = form?.joining_date;
+          formDataFields.exit_date = form?.end_date;
         }
         if (userObject?.user_id !== id) {
           formDataFields.employee_id = form?.employee_id;
-          formDataFields.joining_date = form?.joining_date;
-          formDataFields.exit_date = form?.end_date;
+         
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
-          // formDataFields.manager = form?.manager;
+      
           formDataFields.is_primary_user = true;
           formDataFields.is_manager = form?.userManage;
         }
-
 
         for (const field in formDataFields) {
           if (formDataFields.hasOwnProperty(field)) {
@@ -392,10 +391,7 @@ function useUserCreateHook() {
     isSubmitting: state?.isSubmitting,
     images: state?.images,
     id,
-    // isContactInList,
-
-    // manager,
-    // department,
+   
     userId: userObject?.user_id,
     manager: state.manager,
     department: state.department,
