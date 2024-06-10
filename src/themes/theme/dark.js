@@ -23,6 +23,7 @@ const tableHeadColor= "#3A3E5B";
 const darkContent = "#282A42"
 const ractange="#347BEC";
 const ractangeborder="#C5C5C5";
+const contact="#3A3E5B"
 const DarkTheme = (colors) => {
     const { grey } = colors;
     const greyColors = {
@@ -120,7 +121,8 @@ const DarkTheme = (colors) => {
             color2:"#ff4d49"
         },
         tableHeadColor:tableHeadColor,
-        contentDark:darkContent
+        contentDark:darkContent, 
+        contact:contact
     };
 };
 

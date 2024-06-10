@@ -6,7 +6,7 @@ import CustomSelectField from "../../../../components/FormFields/SelectField/Sel
 import { Autocomplete, MenuItem, TextField, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
-
+import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import SnackbarUtils from "../../../../libs/SnackbarUtils";
 const WorkInfoView = ({
@@ -17,7 +17,6 @@ const WorkInfoView = ({
   manager,
   department,
 }) => {
-
   return (
     <>
       <ShadowBox className={styles.mainBox}>
@@ -55,8 +54,7 @@ const WorkInfoView = ({
               AutoCompleteList={department}
               label={"Department"}
               error={errorData?.department}
-              
-              value={form?.department }
+              value={form?.department}
               onTextChange={(text) => {
                 changeTextData(text, "department");
               }}
@@ -67,7 +65,7 @@ const WorkInfoView = ({
 
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomMultiComplete
+            {/* <CustomMultiComplete
               //  multiple
               // showImage
                className={styles.marginTop1}
@@ -79,6 +77,19 @@ const WorkInfoView = ({
                 changeTextData(text, "designation");
               }}
               enableField={["name"]}
+            /> */}
+            <MultiComplete
+              isError={errorData?.department}
+              // multiple
+              isArray
+              AutoCompleteList={department}
+              getOptionLabel={(option) => option}
+              label={"Designation"}
+              defaultValue={form?.designation}
+              value={form?.designation}
+              onTextChange={(text) => {
+                changeTextData(text, "designation");
+              }}
             />
             {/* <CustomTextField
               isError={errorData?.designation}
