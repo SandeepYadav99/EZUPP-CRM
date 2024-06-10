@@ -16,7 +16,7 @@ export async function serviceUpdateFaqQuestion(params) {
 }
 
 export async function serviceDeleteFaqQuestion(params) {
-    return await formDataRequest('faq/question/delete', params);
+    return await postRequest('faq/question/delete', params);
 }
 
 export async function serviceFaqQuestionExists(params) {

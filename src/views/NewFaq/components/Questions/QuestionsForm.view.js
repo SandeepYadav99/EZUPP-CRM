@@ -53,7 +53,8 @@ const QuestionsFormView = ({ classes, category }) => {
     suspendItem,
     handleDialogClose,
     descriptionRef
-  } = useQuestionFormHook();
+  } = useQuestionFormHook(category);
+
 
   const defaultTheme = createMuiTheme();
 
@@ -119,19 +120,6 @@ const QuestionsFormView = ({ classes, category }) => {
             />
           </div>
         </div>
-        <div className={"formFlex"}>
-          <div className={"formGroup"}>
-            <CustomTextField
-              isError={errorData?.priority}
-              errorText={errorData?.priority}
-              label={"Priority"}
-              value={form?.priority}
-              onTextChange={(text) => {
-                changeTextData(text, "priority");
-              }}
-            />
-          </div>
-        </div>
         <div>
           <div className={styles.lblTxt}>Answer</div>
           <div className={"formFlex"}>
@@ -148,9 +136,9 @@ const QuestionsFormView = ({ classes, category }) => {
         <br />
         <div className={styles.bottomFlex}>
           <CustomSwitch
-            value={form?.status}
+            value={form?.is_active}
             handleChange={() => {
-              changeTextData(!form?.status, "status");
+              changeTextData(!form?.is_active, "is_active");
             }}
             label={`Active ?`}
           />

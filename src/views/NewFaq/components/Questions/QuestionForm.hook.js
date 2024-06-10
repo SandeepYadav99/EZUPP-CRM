@@ -1,18 +1,22 @@
 import { KeyOffRounded } from "@mui/icons-material";
-import { useState, useEffect,useRef,useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import SnackbarUtils from "../../../../libs/SnackbarUtils";
 import historyUtils from "../../../../libs/history.utils";
+import {
+  serviceCreateFaqQuestion,
+  serviceDeleteFaqQuestion,
+} from "../../../../services/FaqQuestion.service";
 
 const initialState = {
   question: "",
   priority: "",
   is_active: false,
-  description:"",
+  description: "",
 };
 
-const useQuestionFormHook = () => {
-  const [form, setForm] = useState({...initialState});
+const useQuestionFormHook = (category) => {
+  const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -22,9 +26,9 @@ const useQuestionFormHook = () => {
   const [taglist, setTagList] = useState([]);
   const [editor_data, setEditor_Data] = useState(null);
   const [anchor, _setAnchor] = useState(null);
+  const [statusValue, setStatusValue] = useState();
 
   const params = useParams();
-
 
   const descriptionRef = useRef(null);
 
@@ -32,13 +36,9 @@ const useQuestionFormHook = () => {
     setChecked(!checked);
   };
 
-  useEffect(() => {
-   
-  }, [params]);
-
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["question", "priority"];
+    let required = ["question"];
 
     required.forEach((val) => {
       if (
@@ -79,25 +79,27 @@ const useQuestionFormHook = () => {
 
   descriptionRef.current = changeTextData;
 
-  const submitToServer = useCallback(
-    (status) => {
-      if (!isSubmitting) {
-        setIsSubmitting(true);
-        
-        let req ;
-       
-        req.then((res) => {
-          if (!res.error) {
-            historyUtils.push("/new/faq");
-          } else {
-            SnackbarUtils.error(res?.message);
-          }
-          setIsSubmitting(false);
-        });
+  const submitToServer = useCallback(() => {
+    setIsSubmitting(true);
+
+    const statusData = form?.is_active ? "ACTIVE" : "INACTIVE";
+
+    delete form.is_active;
+
+    const payload = {
+      title: category?.title,
+      faq_category_id: category?.id,
+      status: `${statusData}`,
+      ...form,
+    };
+    serviceCreateFaqQuestion({ ...payload })?.then((res) => {
+      if (!res?.error) {
+        SnackbarUtils.success("Create Successfully");
+      } else {
+        SnackbarUtils.error("Something went Wrong");
       }
-    },
-    [form, isSubmitting, setIsSubmitting]
-  );
+    });
+  }, [form, isSubmitting, setIsSubmitting]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -129,17 +131,18 @@ const useQuestionFormHook = () => {
   };
 
   const suspendItem = () => {
-    // serviceDeleteBlogs({ id: params?.id })?.then((res) => {
-    //   SnackbarUtils.success("Deleted SuccessFully");
-    //   setConfirmPopUp(false);
-    //   historyUtils.push("/new/faq");
-    // });
+    serviceDeleteFaqQuestion({ id: category?.id })?.then((res) => {
+      if (!res?.error) {
+        setConfirmPopUp(false);
+        SnackbarUtils.success("Successfully Deleted");
+      }
+    });
   };
 
   const handleEditor = (data) => {
     setForm({
       ...form,
-      blog_description: data,
+      description: data,
     });
   };
 

@@ -1,19 +1,19 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 1/31/2020.
- */
-import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form'
-import {connect} from 'react-redux';
-import styles from './Style.module.css'
+import React, { useState, useEffect, useRef } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import styles from './Style.module.css';
 import csx from 'classnames';
-import {MenuItem, Button, IconButton, } from '@mui/material';
-import {createTheme} from '@mui/material/styles';
-import {withStyles} from '@mui/styles';
+import { MenuItem, Button, IconButton } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { withStyles } from '@mui/styles';
 
 import {
     renderOutlinedTextField,
     renderOutlinedTextFieldWithLimit,
-    renderOutlinedSelectField, renderCheckbox, renderAutoComplete, renderFileField,
+    renderOutlinedSelectField,
+    renderCheckbox,
+    renderAutoComplete,
+    renderFileField,
 } from '../../../../libs/redux-material.utils';
 import {
     FormControlLabel,
@@ -26,8 +26,7 @@ import {
     Slide,
     Tooltip,
 } from '@mui/material';
-import {Delete as DeleteIcon, Info as InfoIcon} from "@mui/icons-material";
-
+import { Delete as DeleteIcon, Info as InfoIcon } from '@mui/icons-material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -37,15 +36,12 @@ let requiredFields = [];
 
 const validate = (values) => {
     const errors = {};
-    requiredFields.forEach(field => {
+    requiredFields.forEach((field) => {
         if (!values[field]) {
-            errors[field] = 'Required'
+            errors[field] = 'Required';
         }
     });
-    // if (values.title && !/^[A-Z ]*$/i.test(values.title)) {
-    //     errors.title = 'Only alphabets are allowed';
-    // }
-    return errors
+    return errors;
 };
 
 const descNormalize = (value, prevValue) => {
@@ -56,252 +52,206 @@ const descNormalize = (value, prevValue) => {
 };
 
 const negativeNormalize = (value, prevValue) => {
-    if (!value || value >= 0 && value.length < 5) {
-        return value
-    } return prevValue;
+    if (!value || (value >= 0 && value.length < 5)) {
+        return value;
+    }
+    return prevValue;
 };
 
-const defaultTheme = createTheme()
+const defaultTheme = createTheme();
 
 Object.assign(defaultTheme, {
     overrides: {
         MUIRichTextEditor: {
             root: {
-                // marginTop: 0,
-                width: "100%",
+                width: '100%',
             },
             editor: {
-                borderBottom: "1px solid gray"
-            }
-        }
-    }
-})
+                borderBottom: '1px solid gray',
+            },
+        },
+    },
+});
 
+const Faq = (props) => {
+    const [is_checked, setIsChecked] = useState(false);
+    const [is_active, setIsActive] = useState(false);
+    const [show_confirm, setShowConfirm] = useState(false);
+    const editorRef = useRef(null);
 
-class Faq extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            is_checked: false,
-            editor: null,
-            editor_data: null,
-            anchor: null,
-            is_active: false,
-            show_confirm: false,
-            keywords:[]
-        };
-        this.editorRef = null;
-        this._handleSubmit = this._handleSubmit.bind(this);
-        this._handleChange = this._handleChange.bind(this);
+    const { data, handleSubmit, classes, cities, faq_type } = props;
 
-        this._handleActive = this._handleActive.bind(this);
-        this._handleDelete = this._handleDelete.bind(this);
-        this._handleDialogClose = this._handleDialogClose.bind(this);
-        this._suspendItem = this._suspendItem.bind(this);
-    }
-
-    componentDidMount() {
-        const {data} = this.props;
+    useEffect(() => {
         if (data) {
-            this.setState({
-                is_active: data.status == 'ACTIVE'
-            })
+            setIsActive(data.status === 'ACTIVE');
             requiredFields = ['title', 'visible_to'];
             Object.keys(data).forEach((val) => {
                 if (['status'].indexOf(val) < 0) {
                     const temp = data[val];
-                    this.props.change(val, temp);
+                    props.change(val, temp);
                 }
             });
         } else {
-            requiredFields = ['title', 'visible_to','priority'];
+            requiredFields = ['title', 'visible_to', 'priority'];
         }
-    }
+    }, [data, props]);
 
-    _handleSubmit(tData) {
-        const status = this.state.is_active ? 'ACTIVE' : 'INACTIVE';
-        const {data} = this.props;
+    const _handleSubmit = (tData) => {
+        const status = is_active ? 'ACTIVE' : 'INACTIVE';
         if (data) {
-            this.props.handleDataSave({ ...tData, status: status, id: data.id }, 'UPDATE')
+            props.handleDataSave({ ...tData, status: status, id: data.id }, 'UPDATE');
         } else {
-            this.props.handleDataSave({...tData,status: status},  'CREATE')
+            props.handleDataSave({ ...tData, status: status }, 'CREATE');
         }
+    };
 
-    }
+    const _handleActive = () => {
+        setIsActive(!is_active);
+    };
 
+    const _renderStatus = () => {
+        return (
+            <FormControlLabel
+                control={
+                    <Switch
+                        color={'primary'}
+                        checked={is_active}
+                        onChange={_handleActive}
+                        value="is_active"
+                    />
+                }
+                label="Active ?"
+            />
+        );
+    };
 
-    _handleActive() {
-        this.setState({
-            is_active: !this.state.is_active,
-        });
-    }
+    const _handleChange = () => {
+        setIsChecked(!is_checked);
+    };
 
-    _renderStatus() {
-        // const {data} = this.props;
-        // if (data) {
-        return (<FormControlLabel
-            control={
-                <Switch color={'primary'} checked={this.state.is_active} onChange={this._handleActive.bind(this)}
-                        value="is_active"/>
-            }
-            label="Active ?"
-        />);
-        // } else {
-        //     return null;
-        // }
-    }
-
-
-    _handleChange() {
-        this.setState({
-            is_checked: !this.state.is_checked
-        })
-    }
-
-    _convertData(data) {
+    const _convertData = (data) => {
         const temp = {};
         data.forEach((val) => {
             temp[val.id] = val.name;
         });
         return temp;
-    }
-    _suspendItem() {
-        const {data} = this.props;
-        this.setState({
-            show_confirm: false,
-        });
-        this.props.handleDelete(data.id);
-    }
+    };
 
-    _handleDialogClose() {
-        this.setState({
-            show_confirm: false,
-        })
-    }
+    const _suspendItem = () => {
+        setShowConfirm(false);
+        props.handleDelete(data.id);
+    };
 
+    const _handleDialogClose = () => {
+        setShowConfirm(false);
+    };
 
-    _handleDelete() {
-        this.setState({
-            show_confirm: true
-        });
-    }
+    const _handleDelete = () => {
+        setShowConfirm(true);
+    };
 
-
-    _renderDialog() {
-        const {classes} = this.props;
-        if (this.state.show_confirm) {
-            return (<Dialog
-                keepMounted
-                TransitionComponent={Transition}
-                open={this.state.show_confirm}
-                onClose={this._handleDialogClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-                classes={{paper: classes.dialog}}
-            >
-                <DialogTitle id="alert-dialog-title">{"Are You Sure"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        Do you really want to delete the item?
-                        <br/>
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={this._handleDialogClose} color="primary">
-                        Disagree
-                    </Button>
-                    <Button onClick={this._suspendItem} color="primary">
-                        Agree
-                    </Button>
-                </DialogActions>
-            </Dialog>)
-        } return null;
-    }
-
-
-
-    render() {
-        const {handleSubmit, cities, data,faq_type} = this.props;
-        return (
-            <div>
-                <div className={styles.headerFlex}>
-                    <h4 className={styles.infoTitle}>
-                        <div className={styles.heading}>FAQ</div>
-                        <Tooltip title="Info" aria-label="info" placement="right">
-                            <InfoIcon fontSize={'small'}/>
-                        </Tooltip>
-
-                    </h4>
-                </div>
-                <form onSubmit={handleSubmit(this._handleSubmit)}>
-                    <div className={'formFlex'}>
-                        <div className={'formGroup'}>
-                            <Field
-                                fullWidth={true}
-                                name="title"
-                                component={renderOutlinedTextFieldWithLimit}
-                                maxLimit={100}
-                                multiline
-                                rows="1"
-                                margin={'dense'}
-                                normalize={descNormalize}
-                                label="Topic Header/Question"/>
-                        </div>
-                    </div>
-
-                    <div className={'formFlex'}>
-                        <div className={'formGroup'}>
-                            <Field fullWidth={true}
-                                   name="visible_to"
-                                   component={renderOutlinedSelectField}
-                                   margin={'dense'}
-                                   label="Applies To">
-                                <MenuItem value={'BOTH'}>General</MenuItem>
-                            </Field>
-                        </div>
-                    </div>
-
-                    <div className={'formFlex'}>
-                        <div className={'formGroup'}>
-                            <Field
-                                fullWidth={true}
-                                name="priority"
-                                type={'number'}
-                                component={renderOutlinedTextField}
-                                margin={'dense'}
-                                normalize={negativeNormalize}
-                                label="Priority"/>
-                        </div>
-                    </div>
-
-                    <br/>
-
-                    <div className={styles.bottomFlex}>
-                        {this._renderStatus()}
-                        <div>
-                            <IconButton variant={'contained'} className={this.props.classes.iconBtnError}
-                                        onClick={this._handleDelete}
-                                        type="button">
-                                <DeleteIcon />
-                            </IconButton>
-                            {/*<span className={styles.delete}>Delete Permanently</span>*/}
-                        </div>
-                    </div>
-
-                    <br/>
-                    <div className={styles.submitBtn}>
-                        <Button className={'sub'} variant={'contained'} color={'primary'} type={'submit'}>
-                            Save
+    const _renderDialog = () => {
+        if (show_confirm) {
+            return (
+                <Dialog
+                    keepMounted
+                    TransitionComponent={Transition}
+                    open={show_confirm}
+                    onClose={_handleDialogClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                    classes={{ paper: classes.dialog }}
+                >
+                    <DialogTitle id="alert-dialog-title">{'Are You Sure'}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Do you really want to delete the item?
+                            <br />
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={_handleDialogClose} color="primary">
+                            Disagree
                         </Button>
-                    </div>
-                </form>
-                {this._renderDialog()}
-            </div>
-        )
-    }
-}
+                        <Button onClick={_suspendItem} color="primary">
+                            Agree
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            );
+        }
+        return null;
+    };
 
-const useStyle = theme => ({
+    return (
+        <div>
+            <div className={styles.headerFlex}>
+                <h4 className={styles.infoTitle}>
+                    <div className={styles.heading}>FAQ</div>
+                    <Tooltip title="Info" aria-label="info" placement="right">
+                        <InfoIcon fontSize={'small'} />
+                    </Tooltip>
+                </h4>
+            </div>
+            <form onSubmit={handleSubmit(_handleSubmit)}>
+                <div className={'formFlex'}>
+                    <div className={'formGroup'}>
+                        <Field
+                            fullWidth={true}
+                            name="title"
+                            component={renderOutlinedTextFieldWithLimit}
+                            maxLimit={100}
+                            multiline
+                            rows="1"
+                            margin={'dense'}
+                            normalize={descNormalize}
+                            label="Topic Header/Question"
+                        />
+                    </div>
+                </div>
+
+                <div className={'formFlex'}>
+                    <div className={'formGroup'}>
+                        <Field
+                            fullWidth={true}
+                            name="visible_to"
+                            component={renderOutlinedSelectField}
+                            margin={'dense'}
+                            label="Applies To"
+                        >
+                            <MenuItem value={'GENERAL'}>General</MenuItem>
+                        </Field>
+                    </div>
+                </div>
+                <br />
+
+                <div className={styles.bottomFlex}>
+                    {_renderStatus()}
+                    <div>
+                        <IconButton
+                            variant={'contained'}
+                            className={props.classes.iconBtnError}
+                            onClick={_handleDelete}
+                            type="button"
+                        >
+                            <DeleteIcon />
+                        </IconButton>
+                    </div>
+                </div>
+
+                <br />
+                <div className={styles.submitBtn}>
+                    <Button className={'sub'} variant={'contained'} color={'primary'} type={'submit'}>
+                        Save
+                    </Button>
+                </div>
+            </form>
+            {_renderDialog()}
+        </div>
+    );
+};
+
+const useStyle = (theme) => ({
     btnSuccess: {
         backgroundColor: theme.palette.success.dark,
         color: 'white',
@@ -309,7 +259,7 @@ const useStyle = theme => ({
         marginLeft: 5,
         '&:hover': {
             backgroundColor: theme.palette.success.main,
-        }
+        },
     },
     btnError: {
         backgroundColor: theme.palette.error.dark,
@@ -318,19 +268,16 @@ const useStyle = theme => ({
         marginRight: 5,
         '&:hover': {
             backgroundColor: theme.palette.error.main,
-        }
+        },
     },
     iconBtnError: {
-        color: theme.palette.error.dark
-    }
+        color: theme.palette.error.dark,
+    },
 });
 
 const ReduxForm = reduxForm({
-    form: 'topic',  // a unique identifier for this form
+    form: 'topic', // a unique identifier for this form
     validate,
-    // enableReinitialize: true,
-    // asyncValidate
-
-})(withStyles(useStyle, {withTheme: true})(Faq));
+})(withStyles(useStyle, { withTheme: true })(Faq));
 
 export default connect(null, null)(ReduxForm);
