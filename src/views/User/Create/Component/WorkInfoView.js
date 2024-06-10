@@ -68,10 +68,10 @@ const WorkInfoView = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-              // multiple
+              //  multiple
               // showImage
-              // className={styles.marginTop}
-              AutoCompleteList={[]}
+               className={styles.marginTop1}
+              AutoCompleteList={department || []}
               label={"Designation"}
               error={errorData?.designation}
               value={form?.designation}
