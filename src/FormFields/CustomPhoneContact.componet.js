@@ -29,7 +29,7 @@ const CustomPhoneContactField = ({
     },
     [onChange, onTextChange]
   );
-console.log(theme)
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <PhoneInput
