@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Style.module.css";
 import { ButtonBase, Dialog, IconButton, Typography } from "@mui/material";
-import DashboardSnackbar from "../../components/Snackbar.component";
+
 import Slide from "@mui/material/Slide";
 import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
 import {
@@ -10,9 +10,9 @@ import {
 } from "../../components/Buttons/PrimaryButton";
 import useResetPasswordHook from "./ResetPasswordHook";
 import CustomTextField from "../../FormFields/TextField.component";
-import backArrow from "../../assets/CRMAssets/ic_back.png";
-import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
+
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
+
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -63,6 +63,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 label="New Password"
                 value={form?.password}
                 onTextChange={(text) => {
+                
                   changeTextData(text, "password");
                 }}
                 onBlur={() => {
