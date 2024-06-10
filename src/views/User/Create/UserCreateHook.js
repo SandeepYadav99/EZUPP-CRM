@@ -317,16 +317,20 @@ function useUserCreateHook() {
           // email_send: form?.invoiteToUser,
           country_code: 91,
         };
+        if(form?.manager){
+          formDataFields.manager=form?.manager
+        }
         if (userObject?.user_id !== id) {
           formDataFields.employee_id = form?.employee_id;
           formDataFields.joining_date = form?.joining_date;
           formDataFields.exit_date = form?.end_date;
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
-          formDataFields.manager = form?.manager;
+          // formDataFields.manager = form?.manager;
           formDataFields.is_primary_user = true;
           formDataFields.is_manager = form?.userManage;
         }
+
 
         for (const field in formDataFields) {
           if (formDataFields.hasOwnProperty(field)) {
