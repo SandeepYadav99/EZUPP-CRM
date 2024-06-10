@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/styles";
 import styles from "./Styles.module.css";
-import componentData from "../JSONDATA/Data";
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -364,7 +364,7 @@ export function UserCountAvatarsStatusIndicator({
   imgUrl,
 }) {
   return (
-    <>
+    
       <div className={styles.flexBox1}>
         <StyledBadge
           overlap="circular"
@@ -424,7 +424,7 @@ export function UserCountAvatarsStatusIndicator({
             </Avatar>
           </StyledBadge3> */}
       </div>
-    </>
+   
   );
 }
 
@@ -587,7 +587,7 @@ export function UserCountAvatarsLableAvatarStatusIndicator({ avatars, title }) {
 //           <AvatarGroup max={4} className={styles.avatar_group2}>
 //               {componentData?.components[5]?.props?.avatars6?.map((avator) => {
 //                 return (
-//                   <>
+//                   <div>
 //                     <Tooltip title={avator?.title} placement="top">
 //                       <Avatar className={styles.avatar}>
 //                         <img
@@ -597,7 +597,7 @@ export function UserCountAvatarsLableAvatarStatusIndicator({ avatars, title }) {
 //                         />
 //                       </Avatar>
 //                     </Tooltip>
-//                   </>
+//                   </div>
 //                 );
 //               })}
 //             </AvatarGroup>

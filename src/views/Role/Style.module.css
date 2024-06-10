@@ -96,6 +96,13 @@
   
   }
 }
+.rowSeparator {
+  border-bottom: 1px solid #ccc;
+}
+
+.rowSeparator:last-child {
+  border-bottom: none;
+}
 .subTitle{
   font-size: 14px !important;
   color: #888888 !important;

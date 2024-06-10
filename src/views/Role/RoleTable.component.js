@@ -9,6 +9,7 @@ import {
   TableRow,
   Checkbox,
   Typography,
+
 } from "@mui/material";
 import { useTheme, withStyles } from "@mui/styles";
 import styles from "./Style.module.css";
@@ -117,7 +118,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                   />
                   Delete
                 </WraperComponentCheckBox>
-                <hr />
+           
               </TableRow>
             );
           })}

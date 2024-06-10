@@ -20,11 +20,11 @@ const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
           }}
         >
           {imageArray?.map((industry, index) => (
-            <>
+            <div key={industry?.id}>
               <Avatar className={styles.avatar} onClick={openProfilePopUp}>
                 <img src={industry?.image} alt={""} crossOrigin="anonymous" />
               </Avatar>
-            </>
+            </div>
           ))}
         </AvatarGroup>
       </div>
