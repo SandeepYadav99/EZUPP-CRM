@@ -91,7 +91,6 @@ class Header extends React.Component {
 
   _handleChangeTheme() {
     const { themeType } = this.props;
-    console.log(">>>>>",this.state.dark)
     this.props.actionChangeTheme(themeType == "dark" ? "light" : "dark");
   }
 
@@ -133,7 +132,6 @@ class Header extends React.Component {
             >
                 {themeType === "light" ? <LightModeOutlinedIcon /> : <BedtimeOutlinedIcon/>}
               </IconButton>
-            {/* NightsStayOutlinedIcon */}
               <IconButton
                   aria-label="show 3 new notifications"
                   color="inherit"
