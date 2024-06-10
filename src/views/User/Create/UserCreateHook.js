@@ -327,7 +327,7 @@ function useUserCreateHook() {
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
       
-          formDataFields.is_primary_user = true;
+          formDataFields.is_primary_user = form?.invoiteToUser;
           formDataFields.is_manager = form?.userManage;
         }
 
