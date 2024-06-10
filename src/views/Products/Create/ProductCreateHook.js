@@ -60,7 +60,7 @@ function useProductCreateHook() {
   }, []);
 
   useEffect(() => {
-    serviceGetTagList({ query: "a" }).then((res) => {
+    serviceGetTagList().then((res) => {
       if (!res.error) {
         setTagList(res.data);
       }
