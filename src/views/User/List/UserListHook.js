@@ -12,7 +12,6 @@ import {
   actionFetchProviderUser,
   actionSetPageProviderUserRequests,
 } from "../../../actions/ProviderUser.action";
-import { format } from "date-fns";
 import history from "../../../libs/history.utils";
 
 const useUserListHook = ({}) => {

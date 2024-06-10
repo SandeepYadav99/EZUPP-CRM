@@ -29,6 +29,7 @@ const CustomDatePicker = ({
     onChange && onChange(e);
   };
 
+
   const mD = useMemo(() => {
     const d = new Date();
     d.setFullYear(d.getFullYear() + 10);
@@ -48,6 +49,8 @@ const CustomDatePicker = ({
           sx={{
             "& .MuiInputLabel-root": {
               color: theme.palette.text.primary,
+              marginTop: theme.spacing(-0.5),
+             
             },
           }}
           value={value ? dayjs(value) : null}
@@ -56,25 +59,30 @@ const CustomDatePicker = ({
           // format={
           //     "dd-MM-yyyy"
           // }
+        
           inputFormat="DD/MM/yyyy"
-          error={isError ? true : false}
+          error={true}
           minDate={minDate && dayjs(minDate)}
           maxDate={mD ? dayjs(mD) : dayjs()}
-           showTodayButton
+          showTodayButton
           InputProps={{
             disableUnderline: true,
           }}
           {...rest}
           renderInput={(params) => (
             <TextField
-              {...params}
+             
+             
+              error={true}
               sx={{
                 color: theme.palette.text.primary,
                 "& .MuiInputBase-input": {
                   padding: "2px 110px",
                   color: theme.palette.text.primary,
+                  
                 },
               }}
+              {...params}
             />
           )}
 
@@ -96,6 +104,7 @@ const CustomDatePicker = ({
         sx={{
           "& .MuiInputLabel-root": {
             color: theme.palette.text.primary,
+            marginTop: theme.spacing(-0.5),
           },
         }}
         value={value ? value : new Date()}
@@ -105,7 +114,18 @@ const CustomDatePicker = ({
         error={isError}
         minDate={minDate}
         maxDate={mD}
-
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            sx={{
+              color: theme.palette.text.primary,
+              "& .MuiInputBase-input": {
+                padding: "2px 110px",
+                color: theme.palette.text.primary,
+              },
+            }}
+          />
+        )}
         // KeyboardButtonProps={{
         //     'aria-label': 'change time',
         // }}

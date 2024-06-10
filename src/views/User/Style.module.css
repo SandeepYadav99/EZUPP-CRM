@@ -40,32 +40,3 @@
     display: flex;
     gap: 2px;
 }
-/* end */
-/* .headerFlex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.userForm{
-    margin: 0 30%;
-}
-
-.saveButton{
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
-/* .profileImage{
-   
-    
-}
-
-
-.formContainer{
-  max-width: 40%;
-  min-width: 30rem;
-  margin: auto;
-} */ 

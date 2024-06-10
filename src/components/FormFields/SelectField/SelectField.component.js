@@ -1,14 +1,11 @@
 import React, {useMemo, useRef, useEffect, useState} from 'react';
 import { InputLabel, Select, OutlinedInput, FormHelperText, FormControl} from "@mui/material";
-import LogUtils from "../../../libs/LogUtils";
 import { useTheme } from '@emotion/react';
 
 const CustomSelectField = ({ isError, errorText, label, handleChange, icon, children, outlinedProps, ...rest}) => {
     const [labelWidth, setLabelWidth] = useState(0);
     const inputLabelRef = useRef(null);
     const theme = useTheme();
-
-
     const id = useMemo(() => {
         return Date.now()+'SELECTED_LABEL'+label;
     }, [label]);
@@ -34,7 +31,7 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
                     color: theme.palette.text.primary,
                     "&.MuiInputLabel-outlined.MuiInputLabel-shrink": {
                         color: theme.palette.text.primary,
-                        background:theme.palette.background.paper,
+                        background:theme.palette.tableHeadColor,
                     },
                   }}
             >

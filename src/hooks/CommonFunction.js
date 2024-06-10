@@ -28,3 +28,19 @@ export  const formatString = (inputString) => {
       </React.Fragment>
     ))
   : null;
+
+
+  export const formatPhoneNumber = (formattedValue) => {
+    const countryCodeRegex = /\+(\d+)/;
+    const match = formattedValue.match(countryCodeRegex);
+    const countryCode = match ? match[1] : null;
+    const restOfPhoneNumber = formattedValue
+      .replace(countryCodeRegex, "")
+      .replace(/-/g, "");
+  
+    const formattedPhoneNumber = countryCode
+      ? `+${countryCode}${restOfPhoneNumber}`
+      : formattedValue;
+  
+    return formattedPhoneNumber;
+  };

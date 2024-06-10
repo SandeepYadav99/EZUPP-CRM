@@ -3,15 +3,17 @@ import styles from "./Styles.module.css";
 import StatusPill from "../../components/Status/StatusPill.component";
 import history from "../../libs/history.utils";
 import {
+  OutlineButton,
   ActionButton,
   PrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
 import { Dialog, ButtonBase, Typography } from "@mui/material";
 import { Add, ArrowBackIos, Lock } from "@mui/icons-material";
 import removeTask from "../../assets/Assets/ic_delete@2x.png";
+import editTask from "../../assets/Assets/ic_edit_blue@2x.png";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import useProductDetailHook from "./ProductDetailsHook";
-
+import DeleteDialog from "../Products/List/component/DeleteDialog/DeleteDialog";
 const ProductDetailview = () => {
   const { isLoading, handleSideToggle, handleDetailPage, profileDetails, handleDelete, openDialog,
     closeDialog,
@@ -43,7 +45,20 @@ const ProductDetailview = () => {
           </ButtonBase>
           <div></div>
           <div className={styles.profileHeading}></div>
-          <div>
+          <div className={styles.buttonRow}>
+          <OutlineButton onClick={() => {}}>
+              EDIT
+              <span className={styles.imageContainer}>
+                <img
+                  src={editTask}
+                  alt="task"
+                  width={20}
+                  height={20}
+                  className={styles.binImage}
+                />
+              </span>
+            </OutlineButton>
+            {profileDetails?.status !== "DELETED" && (
             <ActionButton onClick={openDialog}>
               DELETE
               <span className={styles.imageContainer}>
@@ -56,6 +71,7 @@ const ProductDetailview = () => {
                 />
               </span>
             </ActionButton>
+            )}
           </div>
         </div>
         <div className={styles.gridContainer}>
@@ -283,37 +299,12 @@ const ProductDetailview = () => {
           </div>
         </div>
       </div>
-      <Dialog
-        open={isDialogOpen}
-        onClose={closeDialog}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <div className={styles.dialogWrap}>
-            <Typography variant="subtitle1">
-              {"Are your sure you want to delete this item ?"}
-            </Typography>
-            
-            <div className={styles.buttonContainer}>
-              <div className={styles.cancelButton}>
-                <ActionButton sx={{ mt: 4 }} onClick={closeDialog}>
-                  CANCEL
-                </ActionButton>
-              </div>
-
-              <div className={styles.savebutton}>
-                <PrimaryButton
-                  color={"primary"}
-                  sx={{ mt: 4 , ml: 4}}
-               
-                  onClick={handleDelete}
-                >
-                  CONFIRM
-                </PrimaryButton>
-              </div>
-            </div>
-          </div>
-      </Dialog>
+      <DeleteDialog
+        isOpen={isDialogOpen}
+        handleCLose={closeDialog}
+        handleSubmit={handleDelete}
+      />
+    
     </div>
   );
 };

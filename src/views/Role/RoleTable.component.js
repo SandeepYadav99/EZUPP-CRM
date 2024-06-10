@@ -1,7 +1,7 @@
 /**
  * Created by charnjeetelectrovese@gmail.com on 4/27/2020.
  */
-import React, { Component, useCallback } from "react";
+import React, {  useCallback } from "react";
 import {
   Table,
   TableBody,
@@ -16,9 +16,10 @@ import { useTheme, withStyles } from "@mui/styles";
 import styles from "./Style.module.css";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import { Info, InfoOutlined } from "@mui/icons-material";
+import WraperComponentCheckBox from "./Component/WraperComponent";
 
 const RoleTableComponent = ({
-  classes,
+  
   permissions,
   permisionChangeHandler,
 }) => {
@@ -29,21 +30,29 @@ const RoleTableComponent = ({
     [permisionChangeHandler, permissions]
   );
   const theme = useTheme();
- 
+
   return (
-    <ShadowBox width={"100%"}>
+    <ShadowBox
+      className={styles.mainContainer}
+      sx={{
+        padding: theme.spacing(2),
+        [theme.breakpoints.down("sm")]: {
+          padding: theme.spacing(1),
+        },
+      }}
+    >
       <div className={styles.infoFiled}>
         <Typography fontSize={18} fontWeight={600}>
           Permissions Granted
         </Typography>
         <InfoOutlined fontSize="16px" />
       </div>
-      <Table className={classes.table} aria-label="simple table">
+      <Table  aria-label="simple table">
         <TableBody>
           {permissions?.map((permission, index) => {
             return (
               <TableRow key={index}>
-                <TableCell classes={{ root: classes.tableCell }}>
+                <TableCell >
                   <div className={styles.infoFiled}>
                     <Typography
                       variant="h6"
@@ -55,7 +64,7 @@ const RoleTableComponent = ({
                     <InfoOutlined fontSize="16px" color={"action"} />
                   </div>
                 </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
+                <TableCell >
                   <Card
                     sx={{
                       textAlign: "center",
@@ -83,7 +92,7 @@ const RoleTableComponent = ({
                   </Card>
                 </TableCell>
 
-                <TableCell classes={{ root: classes.tableCell }}>
+                <TableCell >
                   <Card
                     sx={{
                       textAlign: "center",
@@ -105,7 +114,7 @@ const RoleTableComponent = ({
                     Read
                   </Card>
                 </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
+                <TableCell >
                   <Card
                     sx={{
                       textAlign: "center",
@@ -131,7 +140,7 @@ const RoleTableComponent = ({
                     Write
                   </Card>
                 </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
+                <TableCell >
                   <Card
                     sx={{
                       textAlign: "center",
@@ -157,7 +166,7 @@ const RoleTableComponent = ({
                     Update
                   </Card>
                 </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
+                <TableCell >
                   <Card
                     sx={{
                       textAlign: "center",
@@ -193,18 +202,5 @@ const RoleTableComponent = ({
   );
 };
 
-const useStyle = (theme) => ({
-  tableCell: {
-    color: "black",
-    fontSize: "0.90rem",
-    textTransform: "capitalize",
-  },
-  cardHeader: {
-    padding: "10px",
-  },
-  singleCell: {
-    textAlign: "center",
-  },
-});
 
-export default withStyles(useStyle, { withTheme: true })(RoleTableComponent);
+export default RoleTableComponent;
