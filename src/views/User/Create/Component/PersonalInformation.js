@@ -62,11 +62,11 @@ const PersonalInformation = ({
               <ImageInfoToolTip
                 title={"Image Guide"}
                 resolution={
-                  <p className={styles.new_line}>
-                    <span> Resolution 500px * 500px</span>
-                    <br />
-                    <span>Image size = 5MB</span>
-                  </p>
+                  <div className={styles.new_line}>
+                    <div> Resolution 500px * 500px</div>
+                    
+                    <div>Image size = 5MB</div>
+                  </div>
                 }
               />
             </div>
