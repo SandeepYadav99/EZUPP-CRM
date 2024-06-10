@@ -51,10 +51,10 @@ const Profile = () => {
           <div className={styles.upperFlex}>
           <div className={styles.profileTitle}>
             {location !== "/profile" && 
-            <ButtonBase onClick={() => history.push("/")}>
+            <ButtonBase onClick={() => history.push("/admin/users")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
-            <Typography fontSize={24} fontWeight={600} color={theme.palette.text.primary}>Profile View</Typography>
+            <Typography fontSize={24} fontWeight={600} color={theme?.palette.text.primary}>Profile View</Typography>
             </div>
             <div className={styles.profileHeaderAction}>
               <ArrowOutlineButton
