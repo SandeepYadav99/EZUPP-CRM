@@ -207,8 +207,9 @@ const CustomMultiComplete = ({
             color={"primary"}
             size={"small"}
             value={value ? value : null}
+            
             freeSolo
-           
+            autoSelect
             {...rest}
           />
         </>
