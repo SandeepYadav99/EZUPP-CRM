@@ -26,3 +26,6 @@ export async function serviceFaqExists(params) {
 export async function serviceUploadBlogImage(params) {
     return await formDataRequest('faq/upload/image', params);
 }
+export async function serviceUpdateFaqPriority(params) {
+    return await postRequest('faq/category/update/priority', params);
+}
