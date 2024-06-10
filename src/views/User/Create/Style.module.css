@@ -20,7 +20,10 @@
  display: flex;
 
 }
+.new_line {
 
+ 
+}
 .cont{
   display: flex;
   gap: 10px;
