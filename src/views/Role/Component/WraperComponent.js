@@ -6,10 +6,12 @@ const WraperComponentCheckBox = ({children, permission,  index}) => {
     const theme= useTheme()
   return (
     <TableCell sx={{
+      borderBottom:index === 0 ? "" : "none", 
         [theme.breakpoints.down('sm')]: {
          display: 'block',
          width: '100%',
          marginBottom: theme.spacing(1),
+        
        },
      }}>
        <Card
