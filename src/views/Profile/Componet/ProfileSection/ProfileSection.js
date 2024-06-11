@@ -8,6 +8,7 @@ import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 import defaultProile from "../../../../assets/img/profile.png";
 import { Typography } from "@mui/material";
 import StatusPill from "../../../../components/Status/StatusPill.component";
+
 const ProfileSection = ({ profileDetails, handleEdit }) => {
   
 const statusUpdate=useCallback(()=>{
@@ -17,6 +18,7 @@ const statusUpdate=useCallback(()=>{
     return "active"
   }
 },[])
+
 
   return (
     <ShadowBox width={"100%"}>
@@ -43,7 +45,12 @@ const statusUpdate=useCallback(()=>{
             }} >
               {capitalizeFirstLetter(profileDetails?.name)}
             </Typography>
-            <Typography variant="h6" color={"#888888"} fontWeight={600}  >
+            <Typography variant="h6"  fontWeight={600}  sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              wordSpacing:"0", 
+            }}>
               {profileDetails?.user_name} ({profileDetails?.employee_id})
             </Typography>
             <div className={styles.status}>
@@ -117,7 +124,12 @@ const statusUpdate=useCallback(()=>{
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >Manager:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2} fo sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              wordSpacing:"0", 
+            }}>
            
               {formatString(profileDetails?.manager?.name) } ({profileDetails?.employee_id })
             </Typography>
@@ -165,7 +177,12 @@ const statusUpdate=useCallback(()=>{
         <div className={styles.activityFlex}>
           <Typography variant="h6"  fontWeight={600} >Updated By:</Typography>
 
-          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}  sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              wordSpacing:"0", 
+            }}>
             {profileDetails?.updated_by?.name || "N/A"} ({profileDetails?.employee_id})
           </Typography>
         </div>
