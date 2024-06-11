@@ -23,7 +23,8 @@ const tableHeadColor= "#3A3E5B";
 const darkContent = "#282A42"
 const ractange="#347BEC";
 const ractangeborder="#C5C5C5";
-const contact="#3A3E5B"
+const contact="#3A3E5B";
+const switchTheme = "#2063CE";
 const DarkTheme = (colors) => {
     const { grey } = colors;
     const greyColors = {
@@ -107,7 +108,8 @@ const DarkTheme = (colors) => {
             secondary: "#9698AF",
             hint: "#B9B9B9",
             error: '#ff0000',
-            bright: '#FFF'
+            bright: '#FFF',
+            
         },
         primaryButton: {
             hover: secondary,
@@ -122,7 +124,8 @@ const DarkTheme = (colors) => {
         },
         tableHeadColor:tableHeadColor,
         contentDark:darkContent, 
-        contact:contact
+        contact:contact,
+        switchTheme:switchTheme
     };
 };
 

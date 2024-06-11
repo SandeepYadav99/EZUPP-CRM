@@ -26,6 +26,7 @@ export default {
   CUSTOMERS_CUSTOMER: "/app/users/customers/customer/",
   CUSTOMERS_MANUFACTURES: "/app/users/customers/manufacturer/",
   PROFILE:"/profile",
+  LOGIN_PROFILE:"/myprofile",
   USER_PROFILE:"/admin/users/edit/",
   USER_PROFILE_CREATE: "/admin/users/create/",
   HUB_MASTERS: "/hub/master",

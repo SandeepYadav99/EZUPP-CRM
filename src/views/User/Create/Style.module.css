@@ -40,6 +40,9 @@
 .marginTop1 {
   margin-top: 4px !important;
 }
+.marginTop2 {
+  /* margin-top: -2px !important; */
+}
 .lowerWrap1 {
   display: flex;
   align-items: center !important;
