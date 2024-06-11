@@ -5,6 +5,7 @@ import React from "react";
 
 const ImageInfoToolTip = ({ title, resolution }) => {
   const theme = useTheme();
+  
   return (
     <>
       <Typography variant={"subtitle1"} color={theme.palette.text.primary}>
@@ -12,12 +13,15 @@ const ImageInfoToolTip = ({ title, resolution }) => {
       </Typography>
       <Tooltip
         title={resolution}
+        
         placement="right-start"
         sx={{
           cursor: "pointer",
+         
         }}
+      
       >
-        <InfoOutlined fontSize="small" color="action" />
+        <InfoOutlined  fontSize="small" color="action" />
       </Tooltip>
     </>
   );

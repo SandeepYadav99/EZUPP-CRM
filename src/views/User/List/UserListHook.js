@@ -124,17 +124,17 @@ const useUserListHook = ({}) => {
 
   const configFilter = useMemo(() => {
     return [
-      {
-        label: "Created On",
-        name: "createdAt",
-        type: "date",
-        options: { maxDate: new Date() },
-      },
+      // {
+      //   label: "Created On",
+      //   name: "createdAt",
+      //   type: "date",
+      //   options: { maxDate: new Date() },
+      // },
       {
         label: "Status",
         name: "status",
         type: "select",
-        fields: ["PENDING", "ACTIVE"],
+        fields: ["ACTIVE", "INACTIVE", "SUSPENDED", "DELETED"],
       },
     ];
   }, []);

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
@@ -58,7 +58,7 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   const theme = useTheme();
-
+ 
   return (
     <>
       {multiple ? (
@@ -207,6 +207,9 @@ const CustomMultiComplete = ({
             color={"primary"}
             size={"small"}
             value={value ? value : null}
+            
+            freeSolo
+            autoSelect
             {...rest}
           />
         </>

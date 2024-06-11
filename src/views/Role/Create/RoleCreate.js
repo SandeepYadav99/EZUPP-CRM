@@ -88,15 +88,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.displayName}
-                errorText={errorData?.displayName}
+                isError={errorData?.display_name}
+                errorText={errorData?.display_name}
                 label="Display Name"
-                value={form?.displayName}
+                value={form?.display_name}
                 onTextChange={(text) => {
-                  changeTextData(text, "displayName");
+                  changeTextData(text, "display_name");
                 }}
                 onBlur={() => {
-                  onBlurHandler("displayName");
+                  onBlurHandler("display_name");
                 }}
               />
             </div>

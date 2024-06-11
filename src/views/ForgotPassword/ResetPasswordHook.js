@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { useDispatch } from "react-redux";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import { serviceResetProfilePassword } from "../../services/index.services";
 import history from "../../libs/history.utils";
@@ -50,11 +49,17 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
         delete errors[val];
       }
     });
-    if (form?.password && form.password.length < 8) {
-      errors.password = "Password must be at least 8 characters";
+    if(!form?.password){
+      SnackbarUtils.error("New password field cannot be empty")
     }
-    if (form.confirm_password && form.password !== form.confirm_password) {
-      errors.confirm_password = "Password doesn't match";
+    if (form?.password && form.password.length < 8) {
+       errors.password = true;
+      SnackbarUtils.error("Password must be at least 8 characters")
+    }
+   
+    if ((form.confirm_password && form?.password )&& form.password !== form.confirm_password) {
+      errors.confirm_password = true;
+      SnackbarUtils.error("Password doesn't match")
     }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
@@ -113,6 +118,8 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "password") {
+       
+       
         t[fieldName] = text;
       } else {
         t[fieldName] = text;

@@ -71,6 +71,8 @@ import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
 
+
+ 
 const dashboardRoutes = [
   {
     path: "/",
@@ -94,6 +96,7 @@ const dashboardRoutes = [
     component: Profile,
     is_sidebar: true,
     is_protect: true,
+     parentRoute:`${RouteName.ADMIN_USER}`,
   },
   {
     path: `${RouteName.NOTIFICATION_DETAILS}`,
@@ -208,7 +211,7 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     parent: "admin",
-    should_regex: true,
+   
   },
   // {
   //   path: `${RouteName.USER_PROFILE}:id`,
