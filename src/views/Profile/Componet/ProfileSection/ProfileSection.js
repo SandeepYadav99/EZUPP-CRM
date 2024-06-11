@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import capitalizeFirstLetter, {
@@ -9,6 +9,15 @@ import defaultProile from "../../../../assets/img/profile.png";
 import { Typography } from "@mui/material";
 import StatusPill from "../../../../components/Status/StatusPill.component";
 const ProfileSection = ({ profileDetails, handleEdit }) => {
+  
+const statusUpdate=useCallback(()=>{
+  if(profileDetails?.status === "INACTIVE"){
+    return "high"
+  }else if(profileDetails?.status === "ACTIVE"){
+    return "active"
+  }
+},[])
+
   return (
     <ShadowBox width={"100%"}>
       <div >
@@ -38,7 +47,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               {profileDetails?.user_name} ({profileDetails?.employee_id})
             </Typography>
             <div className={styles.status}>
-            <StatusPill status={profileDetails?.status} color={profileDetails?.status} />
+            <StatusPill status={profileDetails?.status} color={statusUpdate()} />
              
             </div>
             <div className={styles.saveButton}>
