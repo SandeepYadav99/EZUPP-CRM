@@ -11,7 +11,15 @@ import {
   Delete as DeleteIcon,
 } from "@mui/icons-material";
 
-const TopicViewForm = () => {
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
+} from "@mui/material";
+
+const TopicViewForm = ({ dataExist }) => {
   const {
     form,
     errorData,
@@ -32,7 +40,42 @@ const TopicViewForm = () => {
     anchor,
     coverImage,
     checked,
-  } = useTopicView();
+  } = useTopicView(dataExist);
+
+
+  const renderDialog = () => {
+    if (confirmPopUp) {
+      return (
+        <Dialog
+          keepMounted
+          open={confirmPopUp}
+          onClose={handleDialogClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            <b>Are You Sure</b>
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Do you really want to delete the item?
+              <br />
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDialogClose} color="primary">
+              Disagree
+            </Button>
+            <Button onClick={()=>suspendItem()} color="primary">
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
+      );
+    }
+    return null;
+  };
+
 
   return (
     <div>
@@ -84,17 +127,19 @@ const TopicViewForm = () => {
             }}
             label={`${form?.status ? "ACTIVE" : "INACTIVE"} `}
           />
-          <div>
-            <IconButton
-              variant={"contained"}
-              onClick={handleDelete}
-              type="button"
-            >
-              <DeleteIcon />
-            </IconButton>
-          </div>
+          {dataExist && (
+            <div>
+              <IconButton
+                variant={"contained"}
+                onClick={handleDelete}
+                type="button"
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          )}
         </div>
-
+       {renderDialog()}
         <br />
         <div className={styles.submitBtn}>
           <Button

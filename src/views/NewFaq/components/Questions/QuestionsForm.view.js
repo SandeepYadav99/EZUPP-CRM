@@ -36,7 +36,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const QuestionsFormView = ({ classes, category }) => {
+const QuestionsFormView = ({ classes, category, data }) => {
   const {
     form,
     errorData,
@@ -53,7 +53,7 @@ const QuestionsFormView = ({ classes, category }) => {
     suspendItem,
     handleDialogClose,
     descriptionRef,
-  } = useQuestionFormHook(category);
+  } = useQuestionFormHook({ category, data });
 
   const defaultTheme = createMuiTheme();
 
@@ -143,10 +143,13 @@ const QuestionsFormView = ({ classes, category }) => {
             }}
             label={`${form?.is_active ? "ACTIVE" : "INACTIVE"}`}
           />
+
           <div>
-            <IconButton variant={"contained"} onClick={() => handleDelete()}>
-              <DeleteIcon />
-            </IconButton>
+            {data && (
+              <IconButton variant={"contained"} onClick={() => handleDelete()}>
+                <DeleteIcon />
+              </IconButton>
+            )}
           </div>
         </div>
         <br />

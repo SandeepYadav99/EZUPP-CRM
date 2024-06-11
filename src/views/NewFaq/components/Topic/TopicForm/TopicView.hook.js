@@ -1,5 +1,5 @@
-import { useState, useCallback, useMemo } from "react";
-import { serviceCreateFaq } from "../../../../../services/Faq.service";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { serviceCreateFaq, serviceDeleteFaq } from "../../../../../services/Faq.service";
 import SnackbarUtils from "../../../../../libs/SnackbarUtils";
 import { serviceDeleteFaqQuestion } from "../../../../../services/FaqQuestion.service";
 
@@ -9,7 +9,7 @@ const initialState = {
   status: true,
 };
 
-const useTopicView = () => {
+const useTopicView = (dataExist) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +50,16 @@ const useTopicView = () => {
     },
     [setErrorData, errorData]
   );
+
+  useEffect(() => {
+    if (dataExist) {
+      setForm({
+        visible_to: dataExist?.visible_to,
+        title: dataExist?.title,
+        status: dataExist?.status,
+      });
+    }
+  }, [dataExist]);
 
   const changeTextData = useCallback(
     (text, fieldName) => {
@@ -111,7 +121,18 @@ const useTopicView = () => {
     setConfirmPopUp(false);
   };
 
-  const suspendItem = () => {};
+  const suspendItem = () => {
+    serviceDeleteFaq({faq_category_id:dataExist?.id})?.then((res)=>{
+      if(!res?.error){
+       SnackbarUtils.success("Deleted Successfully")
+       window.location.reload();
+      }
+      else{
+        setConfirmPopUp(false);
+        SnackbarUtils.error("Something Went Wrong")
+      }
+    })
+  };
 
   return {
     form,

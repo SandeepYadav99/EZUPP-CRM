@@ -15,7 +15,7 @@ const initialState = {
   description: "",
 };
 
-const useQuestionFormHook = (category) => {
+const useQuestionFormHook = ({ category, data }) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,14 +30,24 @@ const useQuestionFormHook = (category) => {
 
   const params = useParams();
 
+  console.log(data, "data is here where are you ??");
+
   const descriptionRef = useRef(null);
 
   const onChangeCheckBox = () => {
     setChecked(!checked);
   };
 
-  console.log(category,"category is here where are you ??");
-
+  useEffect(() => {
+    if (data) {
+      setForm({
+        question: data?.question,
+        priority: "",
+        is_active: data?.status,
+        description: data?.description,
+      });
+    }
+  }, [data]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -135,10 +145,11 @@ const useQuestionFormHook = (category) => {
   };
 
   const suspendItem = () => {
-    serviceDeleteFaqQuestion({ id: category?.id })?.then((res) => {
+    serviceDeleteFaqQuestion({ id: data?.id })?.then((res) => {
       if (!res?.error) {
         setConfirmPopUp(false);
         SnackbarUtils.success("Successfully Deleted");
+        window.location.reload();
       }
     });
   };

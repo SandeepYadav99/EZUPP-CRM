@@ -181,7 +181,9 @@ const TopicView = (props) => {
         open={sidePanel}
         side={"right"}
       >
-        <TopicViewForm/>
+        <TopicViewForm
+          dataExist={editData}
+        />
       </SidePanelComponent>
     </div>
   );
