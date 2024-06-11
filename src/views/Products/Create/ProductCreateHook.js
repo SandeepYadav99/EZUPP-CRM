@@ -127,11 +127,23 @@ function useProductCreateHook() {
           t[fieldName] = text;
         }
         if (fieldName === "discount_value" && text > t.ballpark_price) {
+          // setErrorData((prevErrors) => ({
+          //   ...prevErrors,
+          //   discount_value: "Discount value should not be greater than Ballpark price value",
+          // }));
+        
+          SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
           setErrorData((prevErrors) => ({
             ...prevErrors,
-            discount_value: "Discount value should not be greater than Ballpark price value",
+            discount_value: true,
           }));
           shouldRemoveError = false;
+        }
+        else {
+          setErrorData((prevErrors) => ({
+            ...prevErrors,
+            discount_value: false,
+          }));
         }
       } else if (fieldName === "discount_percent") {
         if (text >= 0 && text <= 100) {

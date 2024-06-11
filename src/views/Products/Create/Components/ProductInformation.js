@@ -9,6 +9,7 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import { toast } from 'react-toastify';
+import SnackbarUtils from "../../../../libs/SnackbarUtils";
 const ProductInformation = ({
   errorData,
   changeTextData,
@@ -36,15 +37,15 @@ const ProductInformation = ({
             const validTypes = ["image/jpeg", "image/png", "image/jpg"];
       if (!validTypes.includes(file.type)) {
         setError("Invalid file format. Please upload jpeg or png format file");
-        toast.error("Invalid file format. Please upload jpeg or png format file");
+        SnackbarUtils.error("Invalid file format. Please upload jpeg or png format file");
         return;
       }
       
-      if (file.size > 5 * 1024 * 1024) {
-        setError("Maximum file upload size 5 MB");
-        toast.error("Maximum file upload size 5 MB");
-        return;
-      }
+      // if (file.size > 5 * 1024 * 1024) {
+      //   setError("Maximum file upload size 5 MB");
+      //   toast.error("Maximum file upload size 5 MB");
+      //   return;
+      // }
 
             changeTextData(file, "image");
           }

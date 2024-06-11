@@ -146,7 +146,7 @@ const ProductDetailview = () => {
           <div className={styles.profileFlex}>
             <div className={styles.leftSection}>
               <>
-                <ShadowBox width={"23rem"}>
+                <ShadowBox className={styles.productComm} >
                   <div className={styles.profileContainer}></div>
                   <div className={styles.title}>
                     <Typography variant={"title"} color={"text.primary"}>
@@ -240,7 +240,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.createdBy || "N/A"}
+                        {/* {profileDetails?.createdBy || "N/A"} */}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
@@ -262,7 +262,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.createdBy || "N/A"}
+                        {/* {profileDetails?.updatedBy || "N/A"} */}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
