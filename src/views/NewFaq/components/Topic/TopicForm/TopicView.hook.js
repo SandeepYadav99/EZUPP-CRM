@@ -1,21 +1,15 @@
-import { KeyOffRounded } from "@mui/icons-material";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import SnackbarUtils from "../../../../libs/SnackbarUtils";
-import historyUtils from "../../../../libs/history.utils";
-import {
-  serviceCreateFaqQuestion,
-  serviceDeleteFaqQuestion,
-} from "../../../../services/FaqQuestion.service";
+import { useState, useCallback, useMemo } from "react";
+import { serviceCreateFaq } from "../../../../../services/Faq.service";
+import SnackbarUtils from "../../../../../libs/SnackbarUtils";
+import { serviceDeleteFaqQuestion } from "../../../../../services/FaqQuestion.service";
 
 const initialState = {
-  question: "",
-  priority: "",
-  is_active: true,
-  description: "",
+  visible_to: "",
+  title: "",
+  status: true,
 };
 
-const useQuestionFormHook = (category) => {
+const useTopicView = () => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,22 +20,10 @@ const useQuestionFormHook = (category) => {
   const [taglist, setTagList] = useState([]);
   const [editor_data, setEditor_Data] = useState(null);
   const [anchor, _setAnchor] = useState(null);
-  const [statusValue, setStatusValue] = useState();
-
-  const params = useParams();
-
-  const descriptionRef = useRef(null);
-
-  const onChangeCheckBox = () => {
-    setChecked(!checked);
-  };
-
-  console.log(category,"category is here where are you ??");
-
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["question"];
+    let required = ["title", "visible_to"];
 
     required.forEach((val) => {
       if (
@@ -80,22 +62,17 @@ const useQuestionFormHook = (category) => {
     [removeError, form, setForm]
   );
 
-  descriptionRef.current = changeTextData;
-
   const submitToServer = useCallback(() => {
     setIsSubmitting(true);
 
-    const statusData = form?.is_active ? "ACTIVE" : "INACTIVE";
-
-    delete form.is_active;
+    const statusData = form?.status ? "ACTIVE" : "INACTIVE";
 
     const payload = {
-      title: category?.title,
-      faq_category_id: category?.id,
       status: `${statusData}`,
-      ...form,
+      visible_to: form?.visible_to,
+      title: form?.title,
     };
-    serviceCreateFaqQuestion({ ...payload })?.then((res) => {
+    serviceCreateFaq({ ...payload })?.then((res) => {
       if (!res?.error) {
         SnackbarUtils.success("Create Successfully");
         window.location.reload();
@@ -134,21 +111,7 @@ const useQuestionFormHook = (category) => {
     setConfirmPopUp(false);
   };
 
-  const suspendItem = () => {
-    serviceDeleteFaqQuestion({ id: category?.id })?.then((res) => {
-      if (!res?.error) {
-        setConfirmPopUp(false);
-        SnackbarUtils.success("Successfully Deleted");
-      }
-    });
-  };
-
-  const handleEditor = (data) => {
-    setForm({
-      ...form,
-      description: data,
-    });
-  };
+  const suspendItem = () => {};
 
   return {
     form,
@@ -158,8 +121,6 @@ const useQuestionFormHook = (category) => {
     removeError,
     handleSubmit,
     isSubmitting,
-    onChangeCheckBox,
-    handleEditor,
     industries,
     handleDelete,
     confirmPopUp,
@@ -170,8 +131,7 @@ const useQuestionFormHook = (category) => {
     anchor,
     coverImage,
     checked,
-    descriptionRef,
   };
 };
 
-export default useQuestionFormHook;
+export default useTopicView;

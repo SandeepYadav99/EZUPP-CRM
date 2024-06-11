@@ -4,7 +4,6 @@ import { ButtonBase, IconButton } from "@mui/material";
 import { AddCircleOutline, Edit } from "@mui/icons-material";
 import csx from "classnames";
 import SidePanelComponent from "../../../../components/SidePanel/SidePanel.component";
-import TopicForm from "./TopicForm.view";
 import { bindActionCreators } from "redux";
 import {
   actionChangeStatusFaq,
@@ -19,6 +18,7 @@ import {
 } from "../../../../actions/Faq.action";
 import { connect } from "react-redux";
 import { arrayMove } from "react-sortable-hoc";
+import TopicViewForm from "../Topic/TopicForm/TopicView.js";
 
 const TopicView = (props) => {
   const [active, setActive] = useState(0);
@@ -127,7 +127,6 @@ const TopicView = (props) => {
                 id={val.id}
                 draggable={true}
                 onDragStart={(e) => {
-                  console.log("onDragStart", e.target.id);
                   draggedItem.current = e.target.id;
                 }}
                 onDragOver={(e) => {
@@ -161,17 +160,7 @@ const TopicView = (props) => {
     }
   };
 
-  const renderCreateForm = () => {
-    if (sidePanel) {
-      return (
-        <TopicForm
-          handleDataSave={handleDataSave}
-          data={editData}
-          handleDelete={handleDelete}
-        />
-      );
-    }
-  };
+  
 
   return (
     <div>
@@ -192,7 +181,7 @@ const TopicView = (props) => {
         open={sidePanel}
         side={"right"}
       >
-        {renderCreateForm()}
+        <TopicViewForm/>
       </SidePanelComponent>
     </div>
   );

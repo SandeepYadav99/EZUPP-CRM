@@ -8,7 +8,7 @@ export async function serviceFetchFaq(params) {
     return await postRequest('faq/category', params);
 }
 export async function serviceCreateFaq(params) {
-    return await formDataRequest('faq/category/create', params);
+    return await postRequest('faq/category/create', params);
 }
 
 export async function serviceUpdateFaq(params) {

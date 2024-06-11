@@ -33,7 +33,7 @@ export const UPDATE_DATA = 'UPDATE_FAQ_QUESTION';
 export const DELETE_ITEM = 'DELETE_ITEM_FAQ_QUESTION';
 
 export function actionFetchFaqQuestion(id,index = 1, sorting = {}, filter = {}, shouldReset=false) {
-    const request = serviceFetchFaqQuestion({category_id:id, index, row: sorting.row, order: sorting.order, ...filter });
+    const request = serviceFetchFaqQuestion({faq_category_id:id, index, row: sorting.row, order: sorting.order, ...filter });
     return (dispatch) => {
         if (shouldReset) {
             dispatch({

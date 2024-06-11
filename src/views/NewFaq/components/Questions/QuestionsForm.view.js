@@ -52,9 +52,8 @@ const QuestionsFormView = ({ classes, category }) => {
     confirmPopUp,
     suspendItem,
     handleDialogClose,
-    descriptionRef
+    descriptionRef,
   } = useQuestionFormHook(category);
-
 
   const defaultTheme = createMuiTheme();
 
@@ -69,7 +68,9 @@ const QuestionsFormView = ({ classes, category }) => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title"><b>Are You Sure</b></DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            <b>Are You Sure</b>
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               Do you really want to delete the item?
@@ -140,13 +141,10 @@ const QuestionsFormView = ({ classes, category }) => {
             handleChange={() => {
               changeTextData(!form?.is_active, "is_active");
             }}
-            label={`Active ?`}
+            label={`${form?.is_active ? "ACTIVE" : "INACTIVE"}`}
           />
           <div>
-            <IconButton
-              variant={"contained"}
-              onClick={()=>handleDelete()}
-            >
+            <IconButton variant={"contained"} onClick={() => handleDelete()}>
               <DeleteIcon />
             </IconButton>
           </div>
@@ -190,8 +188,7 @@ const useStyle = (theme) => ({
   iconBtnError: {
     color: theme.palette.error.dark,
   },
-  dialog: {
-  },
+  dialog: {},
 });
 
 export default QuestionsFormView;
