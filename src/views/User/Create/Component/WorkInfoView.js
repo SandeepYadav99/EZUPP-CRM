@@ -46,8 +46,7 @@ const WorkInfoView = ({
           </div>
 
           <div className={"formGroup"}>
-          
-               <MultiComplete
+            <MultiComplete
               isError={errorData?.department}
               // multiple
               isArray
@@ -59,14 +58,13 @@ const WorkInfoView = ({
               onTextChange={(text) => {
                 changeTextData(text, "department");
               }}
-        
-            /> 
+              className={styles.marginTop1}
+            />
           </div>
         </div>
 
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-           
             <MultiComplete
               isError={errorData?.designation}
               // multiple
@@ -80,13 +78,13 @@ const WorkInfoView = ({
                 changeTextData(text, "designation");
               }}
             />
-         
           </div>
           <div className={"formGroup"}>
             <CustomSelectField
               isError={errorData?.manager}
               errorText={errorData?.manager}
               label={"Manager"}
+              className={styles.marginTop2}
               value={form?.manager}
               handleChange={(value) => {
                 changeTextData(value, "manager");
