@@ -215,7 +215,8 @@ function useUserCreateHook() {
       errors.email = true;
     }
 
-    if (new Date(form?.joining_date) > new Date(form?.end_date)) {
+    if (form?.joining_date && !form?.end_date) {
+      errors.end_date =SnackbarUtils.error("End Date is Required");
       errors.end_date = true;
     }
     // if (form?.url && !validateUrl(form?.url)) {
@@ -260,11 +261,17 @@ function useUserCreateHook() {
       } else if (fieldName === "contact") {
         t[fieldName] = text;
       } else if (fieldName === "end_date") {
-        t[fieldName] = text;
+        if (form?.joining_date > text) {
+          SnackbarUtils.error(
+            "Joining date should not be greater than end date"
+          );
+         return;
+        } else {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "role") {
         t[fieldName] = text;
       } else if (fieldName === "department") {
-     
         if (!text || (!isSpace(text) && text?.length <= 40)) {
           t[fieldName] = text?.toLowerCase();
         }

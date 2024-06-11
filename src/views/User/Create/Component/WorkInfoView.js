@@ -120,13 +120,9 @@ const WorkInfoView = ({
               className={styles.dateContainer}
               label={"End Date"}
               onChange={(value) => {
-                if (form?.joining_date > value) {
-                  SnackbarUtils.error(
-                    "Joining date should not be greater than end date"
-                  );
-                } else {
+               
                   changeTextData(value, "end_date");
-                }
+                
               }}
               value={form?.end_date}
               isError={errorData?.end_date}
