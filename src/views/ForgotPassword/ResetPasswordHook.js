@@ -51,10 +51,12 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
       }
     });
     if (form?.password && form.password.length < 8) {
-      errors.password = "Password must be at least 8 characters";
+       errors.password = true;
+      SnackbarUtils.error("Password must be at least 8 characters")
     }
     if (form.confirm_password && form.password !== form.confirm_password) {
-      errors.confirm_password = "Password doesn't match";
+      errors.confirm_password = true;
+      SnackbarUtils.error("Password doesn't match")
     }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {

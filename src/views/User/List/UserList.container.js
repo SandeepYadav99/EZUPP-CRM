@@ -83,7 +83,7 @@ const UserList = (props) => {
         
         sortable: false,
         render: (temp, all) => (
-          <div>
+          <div className={styles.emailLength}>
             {all?.email}
             <br />
             {all?.contact}
