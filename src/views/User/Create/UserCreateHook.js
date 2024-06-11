@@ -151,7 +151,7 @@ function useUserCreateHook() {
             end_date: data?.exit_date,
             userManage: data?.is_manager,
             invoiteToUser: data?.is_primary_user,
-            status: data?.status === "ACTIVE" ? true : false,
+            status: data?.status,
           };
 
           setForm(formData);
@@ -297,9 +297,9 @@ function useUserCreateHook() {
           email: form?.email,
           user_name: form?.userName,
           is_primary_user: true,
-          status: form?.status === true ? "ACTIVE" : "INACTIVE",
+          status: form?.status,
           // email_send: form?.invoiteToUser,
-
+          employee_id : form?.employee_id || userObject?.employee_id,
           country_code: 91,
         };
         if (form?.manager || form?.role) {
@@ -311,7 +311,7 @@ function useUserCreateHook() {
           formDataFields.exit_date = form?.end_date;
         }
         if (userObject?.user_id !== id) {
-          formDataFields.employee_id = form?.employee_id;
+          
 
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
