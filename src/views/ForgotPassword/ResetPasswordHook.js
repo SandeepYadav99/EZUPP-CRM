@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { useDispatch } from "react-redux";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import { serviceResetProfilePassword } from "../../services/index.services";
 import history from "../../libs/history.utils";
@@ -18,7 +17,6 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
 
- 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -50,11 +48,29 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
         delete errors[val];
       }
     });
-    if (form?.password && form.password.length < 8) {
-      errors.password = "Password must be at least 8 characters";
+    if (!form?.password) {
+      SnackbarUtils.error("New password field cannot be empty");
+    } else {
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      if (!passwordRegex.test(form.password)) {
+        errors.password = true;
+        SnackbarUtils.error(
+          "Password must contain at least one letter and one number"
+        );
+      }
+      if (form?.password && form.password.length < 8) {
+        errors.password = true;
+        SnackbarUtils.error("Password must be at least 8 characters");
+      }
     }
-    if (form.confirm_password && form.password !== form.confirm_password) {
-      errors.confirm_password = "Password doesn't match";
+
+    if (
+      form.confirm_password &&
+      form?.password &&
+      form.password !== form.confirm_password
+    ) {
+      errors.confirm_password = true;
+      SnackbarUtils.error("Password doesn't match");
     }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
@@ -133,10 +149,9 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     [changeTextData]
   );
 
-  const handleReturn =()=>{
-    history.push("/login")
-  }
-
+  const handleReturn = () => {
+    history.push("/login");
+  };
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });

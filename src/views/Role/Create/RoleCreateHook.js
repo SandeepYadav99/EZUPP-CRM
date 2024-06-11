@@ -11,15 +11,17 @@ import {
   serviceCreateRole,
   serviceDetailPermissions,
   serviceDetailRole,
+  serviceRoleCheck,
   serviceUpdateRole,
 } from "../../../services/Role.service";
 import { useParams } from "react-router-dom";
 import history from "../../../libs/history.utils";
 import { isAlphaNum, isAlphaNumChars } from "../../../libs/RegexUtils";
+import debounce from "lodash.debounce";
 
 const initialForm = {
   name: "",
-  displayName: "",
+  display_name: "",
   description: "",
   is_active: true,
 };
@@ -42,7 +44,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
             ...form,
             name: data?.name,
             description: data?.description,
-            displayName: data?.display_name,
+            display_name: data?.display_name,
             is_active: data?.is_active === "ACTIVE" ? true : false,
           });
         } else {
@@ -84,7 +86,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "displayName"];
+    let required = ["name", "display_name"];
     required.forEach((val) => {
       if (
         !form?.[val] ||
@@ -100,8 +102,8 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     if (form?.name?.length <= 2) {
       errors.name = true;
     }
-    if (form?.displayName?.length <= 2) {
-      errors.displayName = true;
+    if (form?.display_name?.length <= 2) {
+      errors.display_name = true;
     }
 
     Object.keys(errors).forEach((key) => {
@@ -122,7 +124,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     const updateData = {
       name: form?.name,
       permissions: permission,
-      display_name: form?.displayName,
+      display_name: form?.display_name,
       description: form?.description,
       is_active: form?.is_active === true ? true : false,
     };
@@ -191,11 +193,51 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     [setErrorData, errorData]
   );
 
+  const checkForSalaryInfo = useCallback(
+    (data, fieldName, errorArr) => {
+      if (data) {
+        let filteredForm = { id: id ? id : "" };
+        filteredForm[fieldName] = data;
+        let req = serviceRoleCheck({
+          ...filteredForm,
+        });
+        req.then((res) => {
+          if (!res.error) {
+            const errors = JSON.parse(JSON.stringify(errorArr));
+            if (res.data.is_exists) {
+              if (fieldName === "name") {
+                errors[fieldName] = `Name already exist`;
+                setErrorData(errors);
+              }
+              if (fieldName === "display_name") {
+                errors[fieldName] = `Display Name Exists`;
+                setErrorData(errors);
+              }
+
+              setErrorData(errors);
+            } else {
+              delete errors[fieldName];
+              setErrorData(errors);
+            }
+          }
+        });
+      }
+    },
+    [id]
+  );
+
+  const checkSalaryInfoDebouncer = useMemo(() => {
+    return debounce((e, fieldName, errorArr) => {
+      checkForSalaryInfo(e, fieldName, errorArr);
+    }, 1000);
+  }, [checkForSalaryInfo]);
+
+
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
       const t = { ...form };
-      if (fieldName === "name" || fieldName === "displayName") {
+      if (fieldName === "name" || fieldName === "display_name") {
         if (!text || (isAlphaNum(text) && text.toString().length <= 20)) {
           t[fieldName] = text;
         }
@@ -209,10 +251,13 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       } else {
         t[fieldName] = text;
       }
+      if (["name", "display_name"].includes(fieldName)) {
+        checkSalaryInfoDebouncer( text, fieldName, errorData);
+      }
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm]
+    [removeError, form, setForm, id]
   );
 
   const onBlurHandler = useCallback(

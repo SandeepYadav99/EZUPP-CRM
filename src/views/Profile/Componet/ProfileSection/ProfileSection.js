@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import capitalizeFirstLetter, {
@@ -8,13 +8,24 @@ import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 import defaultProile from "../../../../assets/img/profile.png";
 import { Typography } from "@mui/material";
 import StatusPill from "../../../../components/Status/StatusPill.component";
+
 const ProfileSection = ({ profileDetails, handleEdit }) => {
+  
+const statusUpdate=useCallback(()=>{
+  if(profileDetails?.status === "INACTIVE"){
+    return "high"
+  }else if(profileDetails?.status === "ACTIVE"){
+    return "active"
+  }
+},[])
+
+
   return (
     <ShadowBox width={"100%"}>
       <div >
         <div className={styles.profileContainer}>
           <div>
-            {/* {profileDetails?.image && ( */}
+         
             <img
               src={
                 profileDetails?.image ? profileDetails?.image : defaultProile
@@ -26,14 +37,24 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             {/* )} */}
           </div>
           <div>
-            <Typography fontSize={18}  fontWeight={600}  >
+            <Typography fontSize={18}  fontWeight={600} sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              wordSpacing:"0", 
+            }} >
               {capitalizeFirstLetter(profileDetails?.name)}
             </Typography>
-            <Typography variant="h6" color={"#888888"} fontWeight={600}  >
-              {profileDetails?.name} ({profileDetails?.employee_id})
+            <Typography variant="h6"  fontWeight={600}  sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              wordSpacing:"0", 
+            }}>
+              {profileDetails?.user_name} ({profileDetails?.employee_id})
             </Typography>
             <div className={styles.status}>
-            <StatusPill status={profileDetails?.status} color={profileDetails?.status.toLowerCase()} />
+            <StatusPill status={profileDetails?.status} color={statusUpdate()} />
              
             </div>
             <div className={styles.saveButton}>
@@ -61,7 +82,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div> */}
           <div className={styles.contactFlex}>
             <Typography variant="h6"   fontWeight={600} >Email:</Typography>
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2} >
+            <Typography variant="h6"  fontWeight={600} marginLeft={2} >
               {" "}
               {profileDetails?.email || "N/A"}
             </Typography>
@@ -103,8 +124,14 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >Manager:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
-              {formatString(profileDetails?.manager?.name || "N/A")}
+            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2} fo sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              wordSpacing:"0", 
+            }}>
+           
+              {formatString(profileDetails?.manager?.name) } ({profileDetails?.employee_id })
             </Typography>
           </div>
           <div className={styles.activityFlex}>
@@ -150,8 +177,13 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <div className={styles.activityFlex}>
           <Typography variant="h6"  fontWeight={600} >Updated By:</Typography>
 
-          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
-            {profileDetails?.updated_by?.name || "N/A"}
+          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}  sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              wordSpacing:"0", 
+            }}>
+            {profileDetails?.updated_by?.name || "N/A"} ({profileDetails?.employee_id})
           </Typography>
         </div>
         <div className={styles.activityFlex}>

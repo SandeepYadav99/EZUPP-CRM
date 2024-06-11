@@ -24,6 +24,7 @@ import {
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
+import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,15 +89,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.displayName}
-                errorText={errorData?.displayName}
+                isError={errorData?.display_name}
+                errorText={errorData?.display_name}
                 label="Display Name"
-                value={form?.displayName}
+                value={form?.display_name}
                 onTextChange={(text) => {
-                  changeTextData(text, "displayName");
+                  changeTextData(text, "display_name");
                 }}
                 onBlur={() => {
-                  onBlurHandler("displayName");
+                  onBlurHandler("display_name");
                 }}
               />
             </div>
@@ -121,7 +122,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           </div>
           <div className={"formGroup"}>
             <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
-              <CustomSwitch
+              <CustomIosSwitch
                 value={form?.is_active}
                 handleChange={() => {
                   changeTextData(!form?.is_active, "is_active");
