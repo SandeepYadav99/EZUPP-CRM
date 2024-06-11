@@ -92,9 +92,16 @@
 }
 @media (max-width:768px) {
   .infoFiled1 {
-  margin-left: 100% !important;
+  margin-left: 15% !important;
   
   }
+}
+.rowSeparator {
+  border-bottom: 1px solid #ccc;
+}
+
+.rowSeparator:last-child {
+  border-bottom: none;
 }
 .subTitle{
   font-size: 14px !important;
