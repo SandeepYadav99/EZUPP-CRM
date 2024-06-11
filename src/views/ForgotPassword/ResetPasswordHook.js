@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import SnackbarUtils from "../../libs/SnackbarUtils";
 import { serviceResetProfilePassword } from "../../services/index.services";
 import history from "../../libs/history.utils";
+import { validatePassword } from "../../libs/RegexUtils";
 
 const initialForm = {
   password: "",
@@ -51,8 +52,8 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     if (!form?.password) {
       SnackbarUtils.error("New password field cannot be empty");
     } else {
-      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-      if (!passwordRegex.test(form.password)) {
+    
+      if (!validatePassword(form.password)) {
         errors.password = true;
         SnackbarUtils.error(
           "Password must contain at least one letter and one number"

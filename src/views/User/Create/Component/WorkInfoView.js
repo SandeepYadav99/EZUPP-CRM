@@ -147,13 +147,13 @@ const WorkInfoView = ({
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomCheckbox
+            {/* <CustomCheckbox
               value={form?.invoiteToUser}
               handleChange={() => {
                 changeTextData(!form?.invoiteToUser, "invoiteToUser");
               }}
               label={`Send Invite to user on email`}
-            />
+            /> */}
           </div>
         </div>
       </ShadowBox>
