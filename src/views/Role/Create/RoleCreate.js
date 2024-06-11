@@ -24,7 +24,6 @@ import {
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
-import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -122,7 +121,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           </div>
           <div className={"formGroup"}>
             <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
-              <CustomIosSwitch
+              <CustomSwitch
                 value={form?.is_active}
                 handleChange={() => {
                   changeTextData(!form?.is_active, "is_active");
