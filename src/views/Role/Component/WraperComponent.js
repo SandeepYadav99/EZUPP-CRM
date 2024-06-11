@@ -11,7 +11,7 @@ const WraperComponentCheckBox = ({children, permission,  index}) => {
          display: 'block',
          width: '100%',
          marginBottom: theme.spacing(1),
-        
+         borderBottom:"none", 
        },
      }}>
        <Card
