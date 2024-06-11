@@ -59,8 +59,16 @@ const PersonalInformation = ({
               }}
             />
             <div className={styles.imageGuide}>
-              <ImageInfoToolTip title={"Image Guide"} resolution={"Resolution 500px * 500px Image size = 5MB"}/>
-            
+              <ImageInfoToolTip
+                title={"Image Guide"}
+                resolution={
+                  <div className={styles.new_line}>
+                    <div> Resolution 500px * 500px</div>
+                    
+                    <div>Image size = 5MB</div>
+                  </div>
+                }
+              />
             </div>
           </div>
           <div className={styles.lowerWrap}>
@@ -118,7 +126,6 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "contact");
                   }}
-              
                 />
               </div>
             </div>
@@ -142,15 +149,21 @@ const PersonalInformation = ({
                 </CustomSelectField>
               </div>
               <div className={"formGroup"}>
-             <Typography variant="subtitle1" fontWeight={600} marginTop={theme.spacing(-1)}>Status</Typography>
-              <CustomSwitch
-                value={form?.status}
-                handleChange={() => {
-                  changeTextData(!form?.status, "status");
-                }}
-                label={form?.status ? `Active` : "Inactive"}
-              />
-            </div>
+                <Typography
+                  variant="subtitle1"
+                  fontWeight={600}
+                  marginTop={theme.spacing(-1)}
+                >
+                  Status
+                </Typography>
+                <CustomSwitch
+                  value={form?.status}
+                  handleChange={() => {
+                    changeTextData(!form?.status, "status");
+                  }}
+                  label={form?.status ? `Active` : "Inactive"}
+                />
+              </div>
             </div>
           </div>
         </div>
