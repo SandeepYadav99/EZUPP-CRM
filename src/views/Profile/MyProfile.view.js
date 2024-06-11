@@ -50,7 +50,7 @@ const Profile = () => {
         <div>
           <div className={styles.upperFlex}>
           <div className={styles.profileTitle}>
-            {location !== "/profile" && 
+            {location !== "/myprofile" && 
             <ButtonBase onClick={() => history.push("/admin/users")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
