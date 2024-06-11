@@ -48,7 +48,7 @@ const ImageStackPopUp = ({ open, handleClose, industryData }) => {
                         crossOrigin="anonymous"
                       />
                     </Avatar>
-                    <Typography>{res.id}</Typography>
+                    <Typography>{res.name}</Typography>
                   </div>
                   <hr className={styles.hrlines}/>
                   </>

@@ -1,15 +1,12 @@
 import React, { useCallback, useMemo } from "react";
-import {  IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import {
-
   Info as EditIcon,
   Info,
- 
   OpenInNew as OpenInNewIcon,
   Edit,
-
 } from "@mui/icons-material";
 import addTask from "../../../assets/img/ic_add_task@2x.png";
 import styles from "../Style.module.css";
@@ -21,10 +18,7 @@ import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
-import {
-
-  CustomListHeader,
-} from "../../../components/CustomListHeader/CustomListHeader";
+import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
 
 const UserList = (props) => {
   const {
@@ -36,7 +30,7 @@ const UserList = (props) => {
     handleSearchValueChange,
     handleProfile,
     configFilter,
-   
+
     handleCreate,
   } = useUserListHook({});
 
@@ -50,7 +44,12 @@ const UserList = (props) => {
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
-        <img alt="" src={user.image} crossOrigin="anonymous" loading={"lazy"}></img>
+        <img
+          alt=""
+          src={user.image}
+          crossOrigin="anonymous"
+          loading={"lazy"}
+        ></img>
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
@@ -62,9 +61,15 @@ const UserList = (props) => {
 
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
-      return <StatusPill status={"ACTIVE"} color={"active"} />;
+      return "active";
     } else if (status === "INACTIVE") {
-      return <StatusPill status={"INACTIVE"} color={"high"} />;
+      return "high";
+    }
+    //  else if (status === "DELETED") {
+    //   return "deleted";
+    // } 
+    else {
+      return "high";
     }
   }, []);
 
@@ -73,14 +78,14 @@ const UserList = (props) => {
       {
         key: "name",
         label: "User Info",
-       
+
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "contact",
         label: "Contact",
-        
+
         sortable: false,
         render: (temp, all) => (
           <div className={styles.emailLength}>
@@ -93,14 +98,14 @@ const UserList = (props) => {
       {
         key: "designation",
         label: "Designation",
-        
+
         sortable: false,
         render: (temp, all) => <div>{all?.designation || "N/A"}</div>,
       },
       {
         key: "role",
         label: "User Role",
-       
+
         sortable: false,
         render: (temp, all) => <div>{all?.role?.name || "N/A"}</div>,
       },
@@ -108,9 +113,18 @@ const UserList = (props) => {
       {
         key: "status",
         label: "Status",
-       
+
         sortable: false,
-        render: (temp, all) => <div>{renderStatus(all.status)}</div>,
+        render: (temp, all) => (
+          <div>
+            {
+              <StatusPill
+                status={all?.status}
+                color={renderStatus(all?.status)}
+              />
+            }
+          </div>
+        ),
       },
       {
         key: "last_login",
@@ -123,23 +137,16 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            <IconButton
-              color="inherit"
-            
-              onClick={() => handleProfile(all)}
-            >
+            <IconButton color="inherit" onClick={() => handleProfile(all)}>
               <Info fontSize={"small"} />
             </IconButton>
             <IconButton
-            
+
             // onClick={() => handleProfile(all)}
             >
               <img src={addTask} alt="task" width={20} />
             </IconButton>
-            <IconButton
-              
-              onClick={() => handleEdit(all)}
-            >
+            <IconButton onClick={() => handleEdit(all)}>
               <Edit fontSize={"small"} />
             </IconButton>
           </div>

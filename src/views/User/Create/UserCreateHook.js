@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useReducer } from "react";
 import { useState } from "react";
-import { isAlphaNum, isEmail } from "../../../libs/RegexUtils";
+import { isAlphaNum, isEmail, isSpace } from "../../../libs/RegexUtils";
 import { useParams } from "react-router";
 
 import SnackbarUtils from "../../../libs/SnackbarUtils";
@@ -151,7 +151,7 @@ function useUserCreateHook() {
             end_date: data?.exit_date,
             userManage: data?.is_manager,
             invoiteToUser: data?.is_primary_user,
-            status: data?.status === "ACTIVE" ? true : false,
+            status: data?.status,
           };
 
           setForm(formData);
@@ -179,7 +179,7 @@ function useUserCreateHook() {
             // "end_date",
             // "joining_date",
             // "department",
-            // "designation",
+            //  "designation",
             // "manager",
           ]),
     ];
@@ -264,11 +264,12 @@ function useUserCreateHook() {
       } else if (fieldName === "role") {
         t[fieldName] = text;
       } else if (fieldName === "department") {
-        if (!text || text?.length <= 40) {
+     
+        if (!text || (!isSpace(text) && text?.length <= 40)) {
           t[fieldName] = text?.toLowerCase();
         }
       } else if (fieldName === "designation") {
-        if (!text || text?.length <= 40) {
+        if (!text || (!isSpace(text) && text?.length <= 40)) {
           t[fieldName] = text?.toLowerCase();
         }
       } else {
@@ -297,26 +298,23 @@ function useUserCreateHook() {
           email: form?.email,
           user_name: form?.userName,
           is_primary_user: true,
-          status: form?.status === true ? "ACTIVE" : "INACTIVE",
+          status: form?.status,
           // email_send: form?.invoiteToUser,
-
+          employee_id: form?.employee_id || userObject?.employee_id,
           country_code: 91,
         };
         if (form?.manager || form?.role) {
           formDataFields.manager = form?.manager;
           formDataFields.role_id = form?.role;
         }
-        if (form?.joining_date || form?.end_date) {
-          formDataFields.joining_date = form?.joining_date;
-          formDataFields.exit_date = form?.end_date;
-        }
-        if (userObject?.user_id !== id) {
-          formDataFields.employee_id = form?.employee_id;
 
+        if (userObject?.user_id !== id) {
+          formDataFields.joining_date = form?.joining_date || "";
+          formDataFields.exit_date = form?.end_date || "";
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
 
-          formDataFields.is_primary_user = form?.invoiteToUser;
+          // formDataFields.is_primary_user = form?.invoiteToUser;
           formDataFields.is_manager = form?.userManage;
         }
 

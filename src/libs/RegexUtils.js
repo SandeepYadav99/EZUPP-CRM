@@ -45,6 +45,11 @@ const isAadhar = (value) => {
     return /^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$/.test(value);
 }
 
+const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+    return passwordRegex.test(password);
+  };
+  
 const isAccountNum=(value)=>{
     return /^\d{9,18}$/.test(value)
 }
@@ -82,5 +87,6 @@ export {
     isNumDec,
     HexCodeValid,
     isInvalidDateFormat,
-    isValidSocialMedia
+    isValidSocialMedia,
+    validatePassword
 };
