@@ -121,7 +121,7 @@ const RoleTableComponent = ({
         </Typography>
         <InfoOutlined fontSize="16px" />
       </div>
-      <Table aria-label="simple table">
+      <Table sx={{width:"100%", margin:"auto"}}>
         <TableBody>
           <TableCell
             sx={{
@@ -211,8 +211,8 @@ const RoleTableComponent = ({
                   <div className={styles.infoFiled1}>
                     <Typography
                       variant="h6"
-                      fontWeight={600}
-                      color={theme.palette.text.primary}
+                      
+                      color={theme.palette.text.subText}
                     >
                       {permission?.name}{" "}
                     </Typography>
