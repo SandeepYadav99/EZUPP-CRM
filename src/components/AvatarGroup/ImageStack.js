@@ -12,13 +12,20 @@ const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
           max={4}
           sx={{
             marginLeft: theme.spacing(-3),
-
-            cursor: "pointer",
+            // cursor: "pointer",
             "& .MuiAvatar-root": {
               width: "40px",
             },
           }}
-          onClick={openProfilePopUp}
+          slotProps={{
+            additionalAvatar: {
+              onClick: openProfilePopUp,
+              sx: {
+                cursor: "pointer",
+              },
+            },
+          }}
+          // onClick={openProfilePopUp}
         >
           {imageArray?.map((industry, index) => (
             <div key={industry?.id}>

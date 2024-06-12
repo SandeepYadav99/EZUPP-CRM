@@ -64,10 +64,11 @@ const WorkInfoView = ({
         </div>
 
         <div className={"formFlex"}>
-          <div className={"formGroup"}>
+          <div className={"formGroup"} >
             <MultiComplete
               isError={errorData?.designation}
               // multiple
+              
               isArray
               AutoCompleteList={department}
               getOptionLabel={(option) => option}

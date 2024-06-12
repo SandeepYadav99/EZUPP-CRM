@@ -32,6 +32,7 @@ const CustomSelectField = ({ isError, errorText, label, handleChange, icon, chil
                     "&.MuiInputLabel-outlined.MuiInputLabel-shrink": {
                         color: theme.palette.text.primary,
                         background:theme.palette.tableHeadColor,
+                        overflow:"hidden"
                     },
                   }}
             >
