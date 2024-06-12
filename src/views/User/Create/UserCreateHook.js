@@ -222,6 +222,8 @@ function useUserCreateHook() {
         "Joining date should not be greater than end date"
       );
       errors.end_date = true;
+    }else{
+      delete errors.end_date
     }
     // if (form?.url && !validateUrl(form?.url)) {
     //   errors.url = true;
@@ -269,7 +271,7 @@ function useUserCreateHook() {
           SnackbarUtils.error(
             "Joining date should not be greater than end date"
           );
-          return;
+     
         } else {
           t[fieldName] = text;
         }
@@ -292,7 +294,7 @@ function useUserCreateHook() {
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm]
+    [removeError, form, setForm,]
   );
 
   const submitToServer = useCallback(
@@ -353,7 +355,7 @@ function useUserCreateHook() {
         });
       }
     },
-    [form, state]
+    [form , state, checkFormValidation, setErrorData]
   );
 
   const onBlurHandler = useCallback(
@@ -375,7 +377,7 @@ function useUserCreateHook() {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, submitToServer, state]
   );
 
   return {
