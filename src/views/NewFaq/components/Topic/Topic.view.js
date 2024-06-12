@@ -26,7 +26,7 @@ const TopicView = (props) => {
   const [editData, setEditData] = useState(null);
   const [topics, setTopics] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-  console.log("props", props);
+
   const prevDataRef = useRef();
   useEffect(() => {
     prevDataRef.current = props.data;
@@ -40,7 +40,7 @@ const TopicView = (props) => {
     if (props.data.length > 0) {
       props.handleCategoryChange(props.data[0]);
     }
-  }, []);
+  }, [sidePanel]);
 
   useEffect(() => {
     if (prevData && prevData.length !== props.data.length) {
@@ -183,6 +183,7 @@ const TopicView = (props) => {
       >
         <TopicViewForm
           dataExist={editData}
+          handletoggleSidePannel={handleSideToggle}
         />
       </SidePanelComponent>
     </div>

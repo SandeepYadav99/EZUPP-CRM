@@ -16,7 +16,7 @@ const initialState = {
   description: "",
 };
 
-const useQuestionFormHook = ({ category, data }) => {
+const useQuestionFormHook = ({ category, data,handleToggleSidePannel }) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -127,9 +127,10 @@ const useQuestionFormHook = ({ category, data }) => {
     req?.then((res) => {
       if (!res?.error) {
         SnackbarUtils.success("Create Successfully");
-        window.location.reload();
+        handleToggleSidePannel();
       } else {
         SnackbarUtils.error("Something went Wrong");
+        handleToggleSidePannel();
       }
     });
   }, [form, isSubmitting, setIsSubmitting]);
@@ -168,7 +169,7 @@ const useQuestionFormHook = ({ category, data }) => {
       if (!res?.error) {
         setConfirmPopUp(false);
         SnackbarUtils.success("Successfully Deleted");
-        window.location.reload();
+        handleToggleSidePannel();
       }
     });
   };

@@ -1,5 +1,9 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { serviceCreateFaq, serviceDeleteFaq, serviceUpdateFaq } from "../../../../../services/Faq.service";
+import {
+  serviceCreateFaq,
+  serviceDeleteFaq,
+  serviceUpdateFaq,
+} from "../../../../../services/Faq.service";
 import SnackbarUtils from "../../../../../libs/SnackbarUtils";
 import { serviceDeleteFaqQuestion } from "../../../../../services/FaqQuestion.service";
 
@@ -9,7 +13,7 @@ const initialState = {
   status: true,
 };
 
-const useTopicView = (dataExist) => {
+const useTopicView = (dataExist, handletoggleSidePannel) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,7 +78,6 @@ const useTopicView = (dataExist) => {
 
   const submitToServer = useCallback(() => {
     setIsSubmitting(true);
-
     const statusData = form?.status ? "ACTIVE" : "INACTIVE";
 
     const payload = {
@@ -83,34 +86,34 @@ const useTopicView = (dataExist) => {
       title: form?.title,
     };
 
-    delete dataExist.status;
-    delete dataExist.visible_to;
-    delete dataExist.title;
+    if (dataExist) {
+      delete dataExist.status;
+      delete dataExist.visible_to;
+      delete dataExist.title;
+    }
 
-
-    const payload2 ={
+    const payload2 = {
       status: `${statusData}`,
       visible_to: form?.visible_to,
       title: form?.title,
-      ...dataExist,      
-    }
+      ...dataExist,
+    };
 
-    let req ;
+    let req;
 
-    if(dataExist) {
-      req = serviceUpdateFaq({...payload2});
+    if (dataExist) {
+      req = serviceUpdateFaq({ ...payload2 });
+    } else {
+      req = serviceCreateFaq({ ...payload });
     }
-    else{
-     req = serviceCreateFaq({...payload});
-    }
-
 
     req?.then((res) => {
       if (!res?.error) {
         SnackbarUtils.success("Create Successfully");
-        window.location.reload();
+        handletoggleSidePannel();
       } else {
         SnackbarUtils.error("Something went Wrong");
+        handletoggleSidePannel();
       }
     });
   }, [form, isSubmitting, setIsSubmitting]);
@@ -145,16 +148,15 @@ const useTopicView = (dataExist) => {
   };
 
   const suspendItem = () => {
-    serviceDeleteFaq({faq_category_id:dataExist?.id})?.then((res)=>{
-      if(!res?.error){
-       SnackbarUtils.success("Deleted Successfully")
-       window.location.reload();
-      }
-      else{
+    serviceDeleteFaq({ id: dataExist?.id })?.then((res) => {
+      if (!res?.error) {
+        SnackbarUtils.success("Deleted Successfully");
+        handletoggleSidePannel();
+      } else {
         setConfirmPopUp(false);
-        SnackbarUtils.error("Something Went Wrong")
+        handletoggleSidePannel();
       }
-    })
+    });
   };
 
   return {

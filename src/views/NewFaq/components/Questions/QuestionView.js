@@ -63,6 +63,7 @@ class QuestionView extends Component {
       side_panel: !this.state.side_panel,
       edit_data: null,
     });
+    this.props.actionFetchData(this.props.category.id);
   }
 
   _handleDataSave(data, type) {
@@ -115,6 +116,7 @@ class QuestionView extends Component {
           handleDataSave={this._handleDataSave}
           data={this.state.edit_data}
           handleDelete={this._handleDelete}
+          handleToggleSidePannel={this._handleSideToggle}
         />
       );
     }

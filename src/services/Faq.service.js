@@ -12,7 +12,7 @@ export async function serviceCreateFaq(params) {
 }
 
 export async function serviceUpdateFaq(params) {
-    return await formDataRequest('faq/category/update', params);
+    return await postRequest('faq/category/update', params);
 }
 
 export async function serviceDeleteFaq(params) {
