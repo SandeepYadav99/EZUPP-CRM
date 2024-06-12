@@ -152,9 +152,12 @@ const useTopicView = (dataExist, handletoggleSidePannel) => {
       if (!res?.error) {
         SnackbarUtils.success("Deleted Successfully");
         handletoggleSidePannel();
+        setConfirmPopUp(false);
+
       } else {
         setConfirmPopUp(false);
         handletoggleSidePannel();
+        setConfirmPopUp(false);
       }
     });
   };
