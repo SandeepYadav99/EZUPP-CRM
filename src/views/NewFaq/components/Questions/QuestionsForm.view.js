@@ -131,11 +131,11 @@ const QuestionsFormView = ({ classes, category, data,handleToggleSidePannel }) =
         <br />
         <div className={styles.bottomFlex}>
           <CustomSwitch
-            value={form?.is_active}
+            value={form?.status}
             handleChange={() => {
-              changeTextData(!form?.is_active, "is_active");
+              changeTextData(!form?.status, "status");
             }}
-            label={`${form?.is_active ? "ACTIVE" : "INACTIVE"}`}
+            label={`${form?.status ? "ACTIVE" : "INACTIVE"}`}
           />
 
           <div>

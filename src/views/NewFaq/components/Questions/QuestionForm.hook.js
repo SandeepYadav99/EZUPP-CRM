@@ -11,12 +11,11 @@ import {
 
 const initialState = {
   question: "",
-  priority: "",
-  is_active: true,
+  status: true,
   description: "",
 };
 
-const useQuestionFormHook = ({ category, data,handleToggleSidePannel }) => {
+const useQuestionFormHook = ({ category, data, handleToggleSidePannel }) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,8 +30,6 @@ const useQuestionFormHook = ({ category, data,handleToggleSidePannel }) => {
 
   const params = useParams();
 
-  console.log(data, "data is here where are you ??");
-
   const descriptionRef = useRef(null);
 
   const onChangeCheckBox = () => {
@@ -43,8 +40,7 @@ const useQuestionFormHook = ({ category, data,handleToggleSidePannel }) => {
     if (data) {
       setForm({
         question: data?.question,
-        priority: "",
-        is_active: data?.status,
+        status: data?.status,
         description: data?.description,
       });
     }
@@ -96,32 +92,23 @@ const useQuestionFormHook = ({ category, data,handleToggleSidePannel }) => {
   const submitToServer = useCallback(() => {
     setIsSubmitting(true);
 
-    const statusData = form?.is_active ? "ACTIVE" : "INACTIVE";
-
-    delete form.is_active;
+    const statusData = form?.status  ? "ACTIVE" : "INACTIVE";
 
     const payload = {
       title: category?.title,
       faq_category_id: category?.id,
       status: `${statusData}`,
-      ...form,
+      question:form?.question,
+      description: form?.description,
     };
 
-    const payload2 ={
-      title: category?.title,
-      faq_category_id: category?.id,
-      status: `${statusData}`,
-      id:data?.id,
-      ...form,
-    }
 
-    let req ;
+    let req;
 
-    if(data){
-      req = serviceUpdateFaqQuestion({...payload2});
-    }
-    else{
-      req = serviceCreateFaqQuestion({...payload});
+    if (data) {
+      req = serviceUpdateFaqQuestion({ ...payload, id: data?.id });
+    } else {
+      req = serviceCreateFaqQuestion({ ...payload });
     }
 
     req?.then((res) => {
