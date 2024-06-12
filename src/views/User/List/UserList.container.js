@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import {
@@ -19,6 +19,7 @@ import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
+import { useTheme } from "@mui/styles";
 
 const UserList = (props) => {
   const {
@@ -40,7 +41,7 @@ const UserList = (props) => {
     currentPage,
     is_fetching: isFetching,
   } = useSelector((state) => state.provider_user);
-
+  const theme = useTheme();
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
@@ -52,7 +53,18 @@ const UserList = (props) => {
         ></img>
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
-          <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
+          <Typography
+            sx={{
+              whiteSpace: "nowrap",
+              wordSpacing: "0",
+              [theme.breakpoints.down("sm")]: {
+                whiteSpace: "pre-wrap",
+                textOverflow: "ellipsis",
+              },
+            }}
+          >
+            {`${capitalizeFirstLetter(user?.name)}`}{" "}
+          </Typography>
           <div> {user?.employee_id}</div>
         </div>
       </div>
@@ -67,7 +79,7 @@ const UserList = (props) => {
     }
     //  else if (status === "DELETED") {
     //   return "deleted";
-    // } 
+    // }
     else {
       return "high";
     }

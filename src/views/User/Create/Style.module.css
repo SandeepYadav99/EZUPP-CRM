@@ -4,6 +4,9 @@
   justify-content: space-between;
   /* padding-bottom: 30px; */
 }
+.userContainer{
+  overflow: hidden !important;
+}
 .outerFlex1 {
   padding-bottom: 30px;
 }
