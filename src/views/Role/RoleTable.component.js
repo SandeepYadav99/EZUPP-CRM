@@ -9,6 +9,7 @@ import {
   TableRow,
   Checkbox,
   Typography,
+  TableHead,
 
 } from "@mui/material";
 import { useTheme, withStyles } from "@mui/styles";
@@ -44,16 +45,85 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
       </div>
       <Table aria-label="simple table">
         <TableBody>
+        
+          <TableCell
+                  sx={{
+                    
+                    [theme.breakpoints.down("sm")]: {
+                      display: "block",
+                      width: "100%",
+                      marginBottom: theme.spacing(1),
+                     
+                    },
+                  }}
+                >
+                  <div className={styles.infoFiled1}>
+                    <Typography
+                      variant="h6"
+                      fontWeight={600}
+                      color={theme.palette.text.primary}
+                    >
+                      Module
+                    </Typography>
+                   
+                  </div>
+                </TableCell>
+                <WraperComponentCheckBox module={true}>
+                  <Checkbox
+                    sx={{
+                      
+                    }}
+                 
+                  />{" "}
+                  All Data
+                </WraperComponentCheckBox>
+                <WraperComponentCheckBox module={true}>
+                  <Checkbox
+                    sx={{
+                      
+                    }}
+                 
+                  />{" "}
+                 Read
+                </WraperComponentCheckBox>
+                <WraperComponentCheckBox module={true}>
+                  <Checkbox
+                    sx={{
+                      
+                    }}
+                 
+                  />{" "}
+                  Write
+                </WraperComponentCheckBox>
+                <WraperComponentCheckBox module={true}>
+                  <Checkbox
+                    sx={{
+                      
+                    }}
+                 
+                  />{" "}
+                  Update
+                </WraperComponentCheckBox>
+                <WraperComponentCheckBox module={true}>
+                  <Checkbox
+                    sx={{
+                      
+                    }}
+                 
+                  />{" "}
+                  Delete
+                </WraperComponentCheckBox>
+         
           {permissions?.map((permission, index) => {
             return (
               <TableRow key={index} sx={{ borderBottom: 'none' }}>
                 <TableCell
                   sx={{
-                    borderBottom:index === 0 ? "" : "none", 
+                    borderBottom: "none", 
                     [theme.breakpoints.down("sm")]: {
                       display: "block",
                       width: "100%",
-                      marginBottom: theme.spacing(1),
+                      
                      
                     },
                   }}

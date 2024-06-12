@@ -18,7 +18,7 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
     "& .MuiSwitch-switchBase": {
       padding: 0,
       margin: 2,
-      transitionDuration: "300ms",
+      transitionDuration:'300ms',
       "&.Mui-checked": {
         transform: "translateX(16px)",
         color: theme.palette.contact,
@@ -52,6 +52,7 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
       borderRadius: 26 / 2,
       backgroundColor: "#00000029",
       opacity: 1,
+      
     },
   }));
   return (
