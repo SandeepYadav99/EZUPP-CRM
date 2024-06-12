@@ -64,7 +64,7 @@ const PersonalInformation = ({
                 resolution={
                   <div className={styles.new_line}>
                     <div> Resolution 500px * 500px</div>
-                    
+
                     <div>Image size = 5MB</div>
                   </div>
                 }
@@ -149,20 +149,40 @@ const PersonalInformation = ({
                 </CustomSelectField>
               </div>
               <div className={"formGroup"}>
-                <Typography
-                  variant="subtitle1"
-                  fontWeight={600}
-                  marginTop={theme.spacing(-1)}
-                >
-                  Status
-                </Typography>
-                <CustomSwitch
-                  value={form?.status}
-                  handleChange={() => {
-                    changeTextData(!form?.status, "status");
-                  }}
-                  label={form?.status ? `Active` : "Inactive"}
-                />
+           
+                {id ? (
+                  <CustomSelectField
+                    isError={errorData?.status}
+                    errorText={errorData?.status}
+                    label={"Status"}
+                    // disabled={userId === id ? true : false}
+                    value={form?.status}
+                    handleChange={(value) => {
+                      changeTextData(value, "status");
+                    }}
+                    className={styles.custonCSS}
+                  >
+                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                    <MenuItem value={"DELETED"}>Deleted</MenuItem>
+                    <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
+                  </CustomSelectField>
+                ) : (
+                  <CustomSelectField
+                    isError={errorData?.status}
+                    errorText={errorData?.status}
+                    label={"Status"}
+                    // disabled={userId === id ? true : false}
+                    value={form?.status}
+                    handleChange={(value) => {
+                      changeTextData(value, "status");
+                    }}
+                    className={styles.custonCSS}
+                  >
+                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                  </CustomSelectField>
+                )}
               </div>
             </div>
           </div>

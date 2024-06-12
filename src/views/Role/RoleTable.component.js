@@ -46,13 +46,15 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
         <TableBody>
           {permissions?.map((permission, index) => {
             return (
-              <TableRow key={index}>
+              <TableRow key={index} sx={{ borderBottom: 'none' }}>
                 <TableCell
                   sx={{
+                    borderBottom:index === 0 ? "" : "none", 
                     [theme.breakpoints.down("sm")]: {
                       display: "block",
                       width: "100%",
                       marginBottom: theme.spacing(1),
+                     
                     },
                   }}
                 >
@@ -67,9 +69,11 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                     <InfoOutlined fontSize="16px" color={"action"} />
                   </div>
                 </TableCell>
-                <WraperComponentCheckBox permission={permission?.all_data}>
+                <WraperComponentCheckBox permission={permission?.all_data} index={index}>
                   <Checkbox
-                    sx={{}}
+                    sx={{
+                      
+                    }}
                     checked={permission?.all_data}
                     onChange={(event) =>
                       handleCheckboxChange(
@@ -82,7 +86,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                   All Data
                 </WraperComponentCheckBox>
 
-                <WraperComponentCheckBox permission={permission?.read}>
+                <WraperComponentCheckBox permission={permission?.read} index={index}>
                   <Checkbox
                     checked={permission?.read}
                     onChange={(event) =>
@@ -91,7 +95,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                   />
                   Read
                 </WraperComponentCheckBox>
-                <WraperComponentCheckBox permission={permission?.create}>
+                <WraperComponentCheckBox permission={permission?.create} index={index}>
                   <Checkbox
                     checked={permission?.create}
                     onChange={(event) =>
@@ -100,7 +104,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                   />
                   Write
                 </WraperComponentCheckBox>
-                <WraperComponentCheckBox permission={permission?.update}>
+                <WraperComponentCheckBox permission={permission?.update} index={index}>
                   <Checkbox
                     checked={permission?.update}
                     onChange={(event) =>
@@ -109,7 +113,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                   />
                   Update
                 </WraperComponentCheckBox>
-                <WraperComponentCheckBox permission={permission?.delete}>
+                <WraperComponentCheckBox permission={permission?.delete} index={index}>
                   <Checkbox
                     checked={permission?.delete}
                     onChange={(event) =>

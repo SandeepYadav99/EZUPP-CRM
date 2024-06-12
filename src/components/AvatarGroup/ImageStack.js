@@ -17,11 +17,12 @@ const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
           max={3}
           sx={{
             marginLeft: theme.spacing(-3),
+            cursor:"pointer"
           }}
         >
           {imageArray?.map((industry, index) => (
             <div key={industry?.id}>
-              <Avatar className={styles.avatar} onClick={openProfilePopUp}>
+              <Avatar className={styles.avatarImageStack} onClick={openProfilePopUp}>
                 <img src={industry?.image} alt={""} crossOrigin="anonymous" />
               </Avatar>
             </div>
