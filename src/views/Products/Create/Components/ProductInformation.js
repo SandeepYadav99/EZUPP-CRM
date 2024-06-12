@@ -8,7 +8,7 @@ import img from "../../../../assets/img/1.png";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import SnackbarUtils from "../../../../libs/SnackbarUtils";
 const ProductInformation = ({
   errorData,
