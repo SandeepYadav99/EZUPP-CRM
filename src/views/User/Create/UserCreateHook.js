@@ -162,7 +162,7 @@ function useUserCreateHook() {
         }
       });
     }
-  }, [id]);
+  }, [ id]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -215,8 +215,10 @@ function useUserCreateHook() {
       errors.email = true;
     }
 
-    if (form?.joining_date > form?.end_date) {
-      //  errors.end_date =SnackbarUtils.error("End Date is Required");
+    if (new Date(form?.joining_date) > new Date(form?.end_date)) {
+       errors.end_date =  SnackbarUtils.error(
+        "Joining date should not be greater than end date"
+      );
       errors.end_date = true;
     }
     // if (form?.url && !validateUrl(form?.url)) {
