@@ -24,22 +24,11 @@ const TopicViewForm = ({ dataExist }) => {
     form,
     errorData,
     changeTextData,
-    onBlurHandler,
-    removeError,
     handleSubmit,
-    isSubmitting,
-    onChangeCheckBox,
-    handleEditor,
-    industries,
     handleDelete,
     confirmPopUp,
     suspendItem,
     handleDialogClose,
-    taglist,
-    editor_data,
-    anchor,
-    coverImage,
-    checked,
   } = useTopicView(dataExist);
 
 
