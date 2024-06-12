@@ -215,8 +215,8 @@ function useUserCreateHook() {
       errors.email = true;
     }
 
-    if (form?.joining_date && !form?.end_date) {
-      errors.end_date =SnackbarUtils.error("End Date is Required");
+    if (form?.joining_date > form?.end_date) {
+      //  errors.end_date =SnackbarUtils.error("End Date is Required");
       errors.end_date = true;
     }
     // if (form?.url && !validateUrl(form?.url)) {
@@ -265,7 +265,7 @@ function useUserCreateHook() {
           SnackbarUtils.error(
             "Joining date should not be greater than end date"
           );
-         return;
+          return;
         } else {
           t[fieldName] = text;
         }
