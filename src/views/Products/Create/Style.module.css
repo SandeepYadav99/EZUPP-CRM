@@ -77,6 +77,7 @@
 }
 .space{
   margin-bottom: 25px;
+ 
 }
 .buttonContainer {
   display: flex;
@@ -85,3 +86,15 @@
 /* .desc{
   height: 50% !important;
 } */
+@media (max-width: 767px) {
+  .space {
+   flex-wrap: wrap;
+
+  }
+  
+}
+@media (max-width: 1024px) {
+  .space {
+    flex-wrap: wrap;
+  }
+}

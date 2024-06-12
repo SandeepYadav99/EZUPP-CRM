@@ -54,6 +54,7 @@ const Settings = ({
                   title="Show Public"
                   description="Make the product visible to public"
                   checked={form?.is_show_public}
+                  className={styles.boxWidth}
                   handleChange={() => {
                     changeTextData(!form?.is_show_public, "is_show_public");
                   }}
@@ -84,6 +85,7 @@ const Settings = ({
                   title="Value Add"
                   description="Value add help text to be shown here"
                   checked={form?.is_value_add}
+                  className={styles.boxWidth}
                   handleChange={() => {
                     changeTextData(!form?.is_value_add, "is_value_add");
                   }}

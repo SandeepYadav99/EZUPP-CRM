@@ -98,12 +98,12 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
             </div>
           </div>
         </div>
-        <div style={{ float: "right" }}>
+        <div style={{ float: "right" }} className={styles.buttonWrapper}>
           <PrimaryButton onClick={handleSubmit}>{isEdit ? "UPDATE" : "SUBMIT"}</PrimaryButton>
         </div>
       </div>
       <Dialog
-        open={isDialogOpen}
+        open={isDialogOpen} 
         onClose={closeDialog}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

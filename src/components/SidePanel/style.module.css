@@ -71,3 +71,30 @@ padding: 10px;
 .resizer::before {
     left: 0;
 }
+/* @media (max-width: 1500px) {
+    .noScrollbar{
+        width: calc(60vw) !important;
+    }
+    .LPTransition{
+        right: calc(-60vw) !important;
+    }
+    .noScrollbar > .noScrollbar{
+        max-height: calc(83vh - 20px) !important;
+    }
+    .sideUpper{
+        width: 100%;
+    }
+} */
+
+@media (max-width: 767px) {
+    .noScrollbar{
+        width: calc(87vw) !important;
+    }
+    .LPTransition{
+        right: calc(-100vw) !important;
+    }
+    .noScrollbar > .noScrollbar{
+        max-height: calc(83vh - 20px) !important;
+    }
+   
+}
