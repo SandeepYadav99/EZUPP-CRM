@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 import styles from "./Style.module.css";
 import { ButtonBase, IconButton } from "@mui/material";
 import { AddCircleOutline, Edit } from "@mui/icons-material";
@@ -19,6 +25,8 @@ import {
 import { connect } from "react-redux";
 import { arrayMove } from "react-sortable-hoc";
 import TopicViewForm from "../Topic/TopicForm/TopicView.js";
+import { serviceUpdateFaqPriority } from "../../../../services/Faq.service";
+import debounce from "lodash.debounce";
 
 const TopicView = (props) => {
   const [active, setActive] = useState(0);
@@ -105,9 +113,46 @@ const TopicView = (props) => {
     },
     [topics]
   );
-  const handleDrag = useCallback((dragId, dragOverId) => {
-    props.actionDragFaq(dragId, dragOverId);
+
+  const updatePrioirty = useCallback((all) => {
+    const req = serviceUpdateFaqPriority({ data: [...all] });
+    req.then((res) => {
+      if (!res?.error) {
+        console.log(">>>>res", res);
+      }
+    });
   }, []);
+
+  const priorityDebounce = useMemo(() => {
+    return debounce((e) => {
+      updatePrioirty(e);
+    }, 1000);
+  }, []);
+
+  const handleDrag = useCallback(
+    (dragId, dragOverId) => {
+      const all = props?.data ? props?.data : [];
+      const dragIndex = all?.findIndex((item) => item?.id === dragId);
+      const draggedOverIndex = all?.findIndex(
+        (item) => item?.id === dragOverId
+      );
+      if (dragIndex >= 0 && draggedOverIndex >= 0) {
+        const temp = all[dragIndex];
+        all.splice(dragIndex, 1);
+        all.splice(draggedOverIndex, 0, temp);
+        const priority = all?.map((item, index) => {
+          return {
+            ...item,
+            priority: index,
+          };
+        });
+        priorityDebounce(priority);
+      }
+
+      props.actionDragFaq(dragId, dragOverId);
+    },
+    [props]
+  );
 
   const renderList = () => {
     const { data, selectedCategory } = props;
