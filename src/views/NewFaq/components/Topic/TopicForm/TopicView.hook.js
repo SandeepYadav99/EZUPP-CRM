@@ -5,7 +5,6 @@ import {
   serviceUpdateFaq,
 } from "../../../../../services/Faq.service";
 import SnackbarUtils from "../../../../../libs/SnackbarUtils";
-import { serviceDeleteFaqQuestion } from "../../../../../services/FaqQuestion.service";
 
 const initialState = {
   visible_to: "",
@@ -13,17 +12,11 @@ const initialState = {
   status: true,
 };
 
-const useTopicView = (dataExist, handletoggleSidePannel) => {
+const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [checked, setChecked] = useState(false);
-  const [industries, setIndustries] = useState([]);
-  const [coverImage, setCoverImage] = useState("");
   const [confirmPopUp, setConfirmPopUp] = useState(false);
-  const [taglist, setTagList] = useState([]);
-  const [editor_data, setEditor_Data] = useState(null);
-  const [anchor, _setAnchor] = useState(null);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -61,6 +54,7 @@ const useTopicView = (dataExist, handletoggleSidePannel) => {
         visible_to: dataExist?.visible_to,
         title: dataExist?.title,
         status: dataExist?.status,
+        priority:dataExist?.priority
       });
     }
   }, [dataExist]);
@@ -84,6 +78,7 @@ const useTopicView = (dataExist, handletoggleSidePannel) => {
       status: `${statusData}`,
       visible_to: form?.visible_to,
       title: form?.title,
+      priority:listlength
     };
 
     if (dataExist) {
@@ -111,12 +106,9 @@ const useTopicView = (dataExist, handletoggleSidePannel) => {
       if (!res?.error) {
         SnackbarUtils.success("Create Successfully");
         handletoggleSidePannel();
-      } else {
-        SnackbarUtils.error("Something went Wrong");
-        handletoggleSidePannel();
       }
     });
-  }, [form, isSubmitting, setIsSubmitting]);
+  }, [form, isSubmitting, setIsSubmitting,listlength]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -136,7 +128,7 @@ const useTopicView = (dataExist, handletoggleSidePannel) => {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, submitToServer,listlength]
   );
 
   const handleDelete = () => {
@@ -157,7 +149,6 @@ const useTopicView = (dataExist, handletoggleSidePannel) => {
       } else {
         setConfirmPopUp(false);
         handletoggleSidePannel();
-        setConfirmPopUp(false);
       }
     });
   };
@@ -166,20 +157,11 @@ const useTopicView = (dataExist, handletoggleSidePannel) => {
     form,
     errorData,
     changeTextData,
-    onBlurHandler,
-    removeError,
     handleSubmit,
-    isSubmitting,
-    industries,
     handleDelete,
     confirmPopUp,
     suspendItem,
     handleDialogClose,
-    taglist,
-    editor_data,
-    anchor,
-    coverImage,
-    checked,
   };
 };
 

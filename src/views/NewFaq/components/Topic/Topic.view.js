@@ -33,7 +33,6 @@ const TopicView = (props) => {
   const [sidePanel, setSidePanel] = useState(false);
   const [editData, setEditData] = useState(null);
   const [topics, setTopics] = useState([]);
-  const [isFetching, setIsFetching] = useState(true);
 
   const prevDataRef = useRef();
   useEffect(() => {
@@ -56,39 +55,10 @@ const TopicView = (props) => {
     }
   }, [props.data]);
 
-  const handleAddTopic = useCallback(
-    (type) => {
-      props.handleSideToggle(type);
-    },
-    [props.handleSideToggle]
-  );
-
   const handleSideToggle = useCallback(() => {
     setSidePanel(!sidePanel);
     setEditData(null);
   }, [sidePanel]);
-
-  const handleDataSave = useCallback(
-    (data, type) => {
-      if (type === "CREATE") {
-        props.actionCreateFaq(data);
-      } else {
-        props.actionUpdateFaq(data);
-      }
-      setSidePanel(false);
-      setEditData(null);
-    },
-    [sidePanel]
-  );
-
-  const handleDelete = useCallback(
-    (id) => {
-      props.actionDelete(id);
-      setSidePanel(false);
-      setEditData(null);
-    },
-    [sidePanel]
-  );
 
   const handleChangeType = useCallback(
     (index, val) => {
@@ -105,13 +75,6 @@ const TopicView = (props) => {
       props.handleCategoryChange(data);
     },
     [sidePanel]
-  );
-
-  const onSortEnd = useCallback(
-    ({ oldIndex, newIndex }) => {
-      setTopics(arrayMove(topics, oldIndex, newIndex));
-    },
-    [topics]
   );
 
   const updatePrioirty = useCallback((all) => {
@@ -205,8 +168,6 @@ const TopicView = (props) => {
     }
   };
 
-  
-
   return (
     <div>
       <div className={styles.plainBg}>
@@ -229,6 +190,7 @@ const TopicView = (props) => {
         <TopicViewForm
           dataExist={editData}
           handletoggleSidePannel={handleSideToggle}
+          listlength={props?.data?.length}
         />
       </SidePanelComponent>
     </div>
