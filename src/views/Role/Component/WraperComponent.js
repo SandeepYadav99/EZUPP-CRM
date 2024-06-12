@@ -23,7 +23,7 @@ const WraperComponentCheckBox = ({children, permission,  index, module}) => {
            paddingRight:theme.spacing(2),
            [theme.breakpoints.down('sm')]: {
              width: '100%',
-             margin:"auto"
+             textAlign:"center"
            },
            border: permission
            ? `1px solid ${theme.palette.primary.ractange}`
