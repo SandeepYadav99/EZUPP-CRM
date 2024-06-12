@@ -125,9 +125,9 @@ function LoginView() {
                           Remember Me
                         </Typography>
                       }
-                      value={form?.logged_in}
+                      value={form?.is_remember}
                       handleChange={(text) => {
-                        changeTextData(text, "logged_in");
+                        changeTextData(text, "is_remember");
                       }}
                     />
                   </div>

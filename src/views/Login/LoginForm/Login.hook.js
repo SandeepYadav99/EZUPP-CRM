@@ -10,7 +10,7 @@ import { isEmail } from "../../../libs/RegexUtils";
 const initialForm = {
   email: "",
   password: "",
-  logged_in: "",
+  is_remember: false,
 };
 const useLoginHook = () => {
   const [form, setForm] = useState({ ...initialForm });
@@ -72,7 +72,6 @@ const useLoginHook = () => {
     (status) => {
       setIsSubmitting(true);
  
-      delete form.logged_in
 
       serviceLoginUser(form).then((res) => {
         if (!res.error) {
