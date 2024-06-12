@@ -1,9 +1,10 @@
 .outerFlex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   /* padding-bottom: 30px; */
  flex-wrap: wrap;
+
 }
 .userContainer{
   overflow: hidden !important;
