@@ -6,6 +6,7 @@ import historyUtils from "../../../../libs/history.utils";
 import {
   serviceCreateFaqQuestion,
   serviceDeleteFaqQuestion,
+  serviceUpdateFaqQuestion,
 } from "../../../../services/FaqQuestion.service";
 
 const initialState = {
@@ -105,7 +106,25 @@ const useQuestionFormHook = ({ category, data }) => {
       status: `${statusData}`,
       ...form,
     };
-    serviceCreateFaqQuestion({ ...payload })?.then((res) => {
+
+    const payload2 ={
+      title: category?.title,
+      faq_category_id: category?.id,
+      status: `${statusData}`,
+      id:data?.id,
+      ...form,
+    }
+
+    let req ;
+
+    if(data){
+      req = serviceUpdateFaqQuestion({...payload2});
+    }
+    else{
+      req = serviceCreateFaqQuestion({...payload});
+    }
+
+    req?.then((res) => {
       if (!res?.error) {
         SnackbarUtils.success("Create Successfully");
         window.location.reload();

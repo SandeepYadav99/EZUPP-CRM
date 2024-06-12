@@ -72,7 +72,6 @@ const useLoginHook = () => {
     (status) => {
       setIsSubmitting(true);
 
-      delete form.logged_in;
 
       serviceLoginUser(form).then((res) => {
         if (!res.error) {

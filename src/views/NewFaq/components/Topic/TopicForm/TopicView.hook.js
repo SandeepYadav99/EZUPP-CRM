@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { serviceCreateFaq, serviceDeleteFaq } from "../../../../../services/Faq.service";
+import { serviceCreateFaq, serviceDeleteFaq, serviceUpdateFaq } from "../../../../../services/Faq.service";
 import SnackbarUtils from "../../../../../libs/SnackbarUtils";
 import { serviceDeleteFaqQuestion } from "../../../../../services/FaqQuestion.service";
 
@@ -82,7 +82,30 @@ const useTopicView = (dataExist) => {
       visible_to: form?.visible_to,
       title: form?.title,
     };
-    serviceCreateFaq({ ...payload })?.then((res) => {
+
+    delete dataExist.status;
+    delete dataExist.visible_to;
+    delete dataExist.title;
+
+
+    const payload2 ={
+      status: `${statusData}`,
+      visible_to: form?.visible_to,
+      title: form?.title,
+      ...dataExist,      
+    }
+
+    let req ;
+
+    if(dataExist) {
+      req = serviceUpdateFaq({...payload2});
+    }
+    else{
+     req = serviceCreateFaq({...payload});
+    }
+
+
+    req?.then((res) => {
       if (!res?.error) {
         SnackbarUtils.success("Create Successfully");
         window.location.reload();
