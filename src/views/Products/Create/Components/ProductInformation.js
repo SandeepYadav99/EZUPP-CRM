@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import {Tooltip, MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
@@ -8,30 +8,8 @@ import img from "../../../../assets/img/1.png";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
-
-const AutoCompleteData = [
-  {
-    id: 1,
-    title: "Ardeen Batisse",
-    label: "Ardeen Batisse",
-    image: img,
-    email: "user1@example.com",
-  },
-  {
-    id: 2,
-    title: "Justinian Hattersley",
-    label: "Justinian Hattersley",
-    image: img,
-    email: "user2@example.com",
-  },
-  {
-    id: 1,
-    title: "Graeme Yellowley",
-    label: "Graeme Yellowley",
-    image: img,
-    email: "user3@example.com",
-  },
-];
+import { toast } from 'react-toastify';
+import SnackbarUtils from "../../../../libs/SnackbarUtils";
 const ProductInformation = ({
   errorData,
   changeTextData,
@@ -41,10 +19,11 @@ const ProductInformation = ({
   listData,
   tagList,
 }) => {
+  const [error, setError] = useState("");
   const renderImage = useMemo(() => {
     return (
       <File
-        max_size={2 * 1024 * 1024}
+        max_size={5 * 1024 * 1024}
         type={["jpg", "png", "jpeg"]}
         fullWidth={true}
         name="image"
@@ -79,7 +58,11 @@ const ProductInformation = ({
             <Typography variant="subtitle3" className={styles.imgText}>
               Image Guide
             </Typography>
-            <Tooltip title="Info" aria-label="info" placement="right">
+            <Tooltip title={ <>
+        <span>Resolution: 500px * 500px</span>
+        <br />
+        <span>Image size: 5 mb</span>
+      </>} aria-label="info" placement="right">
               <InfoIcon fontSize={"small"} />
             </Tooltip>
             </div>

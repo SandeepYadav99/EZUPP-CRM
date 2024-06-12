@@ -136,8 +136,10 @@
     background-color: white;
   }
 .link{
-  color: #2063CE;
+  /* color: #2063CE; */
   text-decoration: underline;
+  word-break: break-all;
+  white-space: pre-wrap;
 }
   .profileContainer {
    display: flex;
@@ -371,4 +373,31 @@
 .buttonRow{
   display: flex;
   gap: 20px;
+}
+.productComm{
+  width: 23rem;
+}
+@media (max-width: 767px) {
+.upperFlex{
+  flex-wrap: wrap;
+} 
+.buttonRow{
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.gridContainer{
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.product{
+  width: 100%;
+}
+.productComm{
+  width: 19rem;
+}
+.row1 {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 }
