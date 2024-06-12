@@ -48,7 +48,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     cancelRole,
     permisionChangeHandler,
     id,
-
+    setPermissions,
     permission,
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
@@ -77,6 +77,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               <CustomTextField
                 isError={errorData?.name}
                 errorText={errorData?.name}
+                
                 label="Role Name"
                 value={form?.name}
                 onTextChange={(text) => {
@@ -138,6 +139,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             permissions={permission}
             changeTextData={changeTextData}
             permisionChangeHandler={permisionChangeHandler}
+            setPermissions={setPermissions}
           />
         </>
 

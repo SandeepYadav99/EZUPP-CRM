@@ -5,22 +5,25 @@ import styled from "styled-components";
 
 const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
   const theme = useTheme();
+  console.log(theme)
   const IOSSwitch = styled((props) => (
     <Switch
       focusVisibleClassName=".Mui-focusVisible"
       disableRipple
+   
       {...props}
     />
   ))(({}) => ({
-    width: 42,
-    height: 26,
+    width: 52,
+    height: 22,
     padding: 0,
     "& .MuiSwitch-switchBase": {
       padding: 0,
-      margin: 2,
-      transitionDuration:'300ms',
+    margin:1,
+      transitionDuration:'160ms',
+      
       "&.Mui-checked": {
-        transform: "translateX(16px)",
+        transform: "translateX(28px)",
         color: theme.palette.contact,
 
         "& + .MuiSwitch-track": {
@@ -35,13 +38,23 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
       "&.Mui-focusVisible .MuiSwitch-thumb": {
         color: "#33cf4d",
         border: "6px solid #fff",
+      
+      },
+      '& .MuiSwitch-thumb': {
+        boxSizing: 'border-box',
+        width: 18,
+        height: 18,
+        marginTop:1,
       },
       "&.Mui-disabled .MuiSwitch-thumb": {
         color: theme.palette.text.primary,
+        
+       
       },
       "&.Mui-disabled + .MuiSwitch-track": {
         opacity: 0.3,
       },
+   
     },
     "& .MuiSwitch-thumb": {
       boxSizing: "border-box",
@@ -49,14 +62,17 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
       height: 22,
     },
     "& .MuiSwitch-track": {
-      borderRadius: 26 / 2,
+      borderRadius: 24 / 2,
       backgroundColor: "#00000029",
       opacity: 1,
-      
+      transition: theme.transitions.create(['background-color'], {
+        duration: 500,
+      }),
     },
   }));
   return (
     <FormControlLabel
+   
       control={
         <IOSSwitch
           sx={{ m: 1 }}

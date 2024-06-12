@@ -19,6 +19,7 @@ import { Info, InfoOutlined } from "@mui/icons-material";
 import WraperComponentCheckBox from "./Component/WraperComponent";
 
 const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
+
   const handleCheckboxChange = useCallback(
     (event, permissionType, index) => {
       permisionChangeHandler(index, { [permissionType]: event });
@@ -63,16 +64,16 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                       fontWeight={600}
                       color={theme.palette.text.primary}
                     >
-                      Module
+                      Modules
                     </Typography>
                    
                   </div>
                 </TableCell>
                 <WraperComponentCheckBox module={true}>
                   <Checkbox
-                    sx={{
-                      
-                    }}
+                   sx={{
+                    marginLeft:theme.spacing(-1)
+                  }}
                  
                   />{" "}
                   All Data
@@ -80,7 +81,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 <WraperComponentCheckBox module={true}>
                   <Checkbox
                     sx={{
-                      
+                      marginLeft:theme.spacing(-1)
                     }}
                  
                   />{" "}
@@ -89,7 +90,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 <WraperComponentCheckBox module={true}>
                   <Checkbox
                     sx={{
-                      
+                      marginLeft:theme.spacing(-1)
                     }}
                  
                   />{" "}
@@ -98,7 +99,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 <WraperComponentCheckBox module={true}>
                   <Checkbox
                     sx={{
-                      
+                      marginLeft:theme.spacing(-1)
                     }}
                  
                   />{" "}
@@ -107,7 +108,7 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 <WraperComponentCheckBox module={true}>
                   <Checkbox
                     sx={{
-                      
+                      marginLeft:theme.spacing(-1)
                     }}
                  
                   />{" "}
@@ -142,8 +143,9 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 <WraperComponentCheckBox permission={permission?.all_data} index={index}>
                   <Checkbox
                     sx={{
-                      
+                      marginLeft:theme.spacing(-1)
                     }}
+                    size="medium"
                     checked={permission?.all_data}
                     onChange={(event) =>
                       handleCheckboxChange(
@@ -158,6 +160,9 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
 
                 <WraperComponentCheckBox permission={permission?.read} index={index}>
                   <Checkbox
+                   sx={{
+                    marginLeft:theme.spacing(-1)
+                  }}
                     checked={permission?.read}
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.read, `read`, index)
@@ -167,6 +172,9 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 </WraperComponentCheckBox>
                 <WraperComponentCheckBox permission={permission?.create} index={index}>
                   <Checkbox
+                   sx={{
+                    marginLeft:theme.spacing(-1)
+                  }}
                     checked={permission?.create}
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.create, `create`, index)
@@ -176,6 +184,9 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 </WraperComponentCheckBox>
                 <WraperComponentCheckBox permission={permission?.update} index={index}>
                   <Checkbox
+                   sx={{
+                    marginLeft:theme.spacing(-1)
+                  }}
                     checked={permission?.update}
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.update, `update`, index)
@@ -185,6 +196,9 @@ const RoleTableComponent = ({ permissions, permisionChangeHandler }) => {
                 </WraperComponentCheckBox>
                 <WraperComponentCheckBox permission={permission?.delete} index={index}>
                   <Checkbox
+                   sx={{
+                    marginLeft:theme.spacing(-1)
+                  }}
                     checked={permission?.delete}
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.delete, `delete`, index)

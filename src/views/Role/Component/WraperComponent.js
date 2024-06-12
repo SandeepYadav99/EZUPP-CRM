@@ -16,10 +16,13 @@ const WraperComponentCheckBox = ({children, permission,  index, module}) => {
      }}>
        <Card
          sx={{
-           textAlign: "center",
-           width: "70%",
+           
+           display:"inline-block",
+         
+           paddingLeft:theme.spacing(1.3),
+           paddingRight:theme.spacing(2),
            [theme.breakpoints.down('sm')]: {
-             width: '70%',
+             width: '100%',
              margin:"auto"
            },
            border: permission
@@ -28,6 +31,7 @@ const WraperComponentCheckBox = ({children, permission,  index, module}) => {
            "& .MuiPaper-root-MuiCard-root": {
              backgroundColor: theme.palette.text.primary,
            },
+          
          }}
        >
         {children}
