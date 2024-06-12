@@ -93,3 +93,8 @@
   }
   
 }
+@media (max-width: 1024px) {
+  .space {
+    flex-wrap: wrap;
+  }
+}

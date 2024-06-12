@@ -173,7 +173,7 @@ function useUnitCreateHook({isOpen, handleToggle, editData, id }) {
         } else {
           SnackbarUtils.error(res.message);
           if (res.message.includes("Name already exists")) {
-            setErrorData((prev) => ({ ...prev, name: "name already exists" }));
+            setErrorData((prev) => ({ ...prev, name: true }));
           }
           setIsSubmitting(false);
         }
