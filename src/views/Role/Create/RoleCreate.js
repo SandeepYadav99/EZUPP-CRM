@@ -5,7 +5,7 @@ import {
   CircularProgress,
  
   Typography,
-  useTheme,
+ 
 } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
@@ -23,7 +23,6 @@ import {
  
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
-import CustomSwitch from "../../../components/FormFields/CustomSwitch";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 
 
@@ -44,12 +43,23 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     onBlurHandler,
     changeTextData,
     isSubmitting,
-    data,
+   
     cancelRole,
     permisionChangeHandler,
     id,
     setPermissions,
     permission,
+   
+    setAllData,
+    setRead,
+    setWrite,
+    setUpdate,
+    setDeltePermison,
+    allData,
+    read,
+    write,
+    update, 
+    deletePremison
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
   
@@ -140,6 +150,18 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             changeTextData={changeTextData}
             permisionChangeHandler={permisionChangeHandler}
             setPermissions={setPermissions}
+            allData={allData}
+            setAllData={setAllData}
+           
+            
+            setRead={setRead}
+            setWrite={setWrite}
+            setUpdate={setUpdate}
+            setDeltePermison={setDeltePermison}
+            read={read}
+            write={write}
+            update={update}
+            deletePremison={deletePremison}
           />
         </>
 

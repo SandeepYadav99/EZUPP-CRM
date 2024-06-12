@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
   const theme = useTheme();
-  console.log(theme)
+
   const IOSSwitch = styled((props) => (
     <Switch
       focusVisibleClassName=".Mui-focusVisible"
