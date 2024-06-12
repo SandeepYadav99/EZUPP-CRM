@@ -214,8 +214,10 @@ function useUserCreateHook() {
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
+    const joinDate = new Date(form?.joining_date).getDate();
+    const endDate = new Date(form?.end_date).getDate() ;
 
-    if (new Date(form?.joining_date) > new Date(form?.end_date)) {
+    if (joinDate > endDate ||  new Date(form?.joining_date).getMonth() > new Date(form?.end_date).getMonth()){
        errors.end_date =  SnackbarUtils.error(
         "Joining date should not be greater than end date"
       );
