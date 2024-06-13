@@ -5,7 +5,7 @@ import {
   CircularProgress,
  
   Typography,
-  useTheme,
+ 
 } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
@@ -23,8 +23,8 @@ import {
  
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
+import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
-
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -43,12 +43,23 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     onBlurHandler,
     changeTextData,
     isSubmitting,
-    data,
+   
     cancelRole,
     permisionChangeHandler,
     id,
-
+    setPermissions,
     permission,
+   
+    setAllData,
+    setRead,
+    setWrite,
+    setUpdate,
+    setDeltePermison,
+    allData,
+    read,
+    write,
+    update, 
+    deletePremison
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
   
@@ -76,6 +87,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               <CustomTextField
                 isError={errorData?.name}
                 errorText={errorData?.name}
+                
                 label="Role Name"
                 value={form?.name}
                 onTextChange={(text) => {
@@ -121,7 +133,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           </div>
           <div className={"formGroup"}>
             <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
-              <CustomSwitch
+              <CustomIosSwitch
                 value={form?.is_active}
                 handleChange={() => {
                   changeTextData(!form?.is_active, "is_active");
@@ -137,6 +149,19 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             permissions={permission}
             changeTextData={changeTextData}
             permisionChangeHandler={permisionChangeHandler}
+            setPermissions={setPermissions}
+            allData={allData}
+            setAllData={setAllData}
+           
+            
+            setRead={setRead}
+            setWrite={setWrite}
+            setUpdate={setUpdate}
+            setDeltePermison={setDeltePermison}
+            read={read}
+            write={write}
+            update={update}
+            deletePremison={deletePremison}
           />
         </>
 

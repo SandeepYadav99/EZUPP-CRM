@@ -162,7 +162,7 @@ function useUserCreateHook() {
         }
       });
     }
-  }, [id]);
+  }, [ id]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -214,9 +214,16 @@ function useUserCreateHook() {
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
+    const joinDate = new Date(form?.joining_date).getDate();
+    const endDate = new Date(form?.end_date).getDate() ;
 
-    if (new Date(form?.joining_date) > new Date(form?.end_date)) {
+    if (joinDate > endDate ||  new Date(form?.joining_date).getMonth() > new Date(form?.end_date).getMonth()){
+       errors.end_date =  SnackbarUtils.error(
+        "Joining date should not be greater than end date"
+      );
       errors.end_date = true;
+    }else{
+      delete errors.end_date
     }
     // if (form?.url && !validateUrl(form?.url)) {
     //   errors.url = true;
@@ -260,11 +267,17 @@ function useUserCreateHook() {
       } else if (fieldName === "contact") {
         t[fieldName] = text;
       } else if (fieldName === "end_date") {
-        t[fieldName] = text;
+        if (form?.joining_date > text) {
+          SnackbarUtils.error(
+            "Joining date should not be greater than end date"
+          );
+     
+        } else {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "role") {
         t[fieldName] = text;
       } else if (fieldName === "department") {
-     
         if (!text || (!isSpace(text) && text?.length <= 40)) {
           t[fieldName] = text?.toLowerCase();
         }
@@ -281,7 +294,7 @@ function useUserCreateHook() {
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm]
+    [removeError, form, setForm,]
   );
 
   const submitToServer = useCallback(
@@ -342,7 +355,7 @@ function useUserCreateHook() {
         });
       }
     },
-    [form, state]
+    [form , state, checkFormValidation, setErrorData]
   );
 
   const onBlurHandler = useCallback(
@@ -364,7 +377,7 @@ function useUserCreateHook() {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, submitToServer, state]
   );
 
   return {

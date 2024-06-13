@@ -8,9 +8,10 @@ import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 import defaultProile from "../../../../assets/img/profile.png";
 import { Typography } from "@mui/material";
 import StatusPill from "../../../../components/Status/StatusPill.component";
+import { useTheme } from "@mui/styles";
 
 const ProfileSection = ({ profileDetails, handleEdit }) => {
-  
+  const theme= useTheme()
 const statusUpdate=useCallback(()=>{
   if(profileDetails?.status === "INACTIVE"){
     return "high"
@@ -37,11 +38,14 @@ const statusUpdate=useCallback(()=>{
             {/* )} */}
           </div>
           <div>
-            <Typography fontSize={18}  fontWeight={600} sx={{
+            <Typography  fontSize={18} fontWeight={600} className={styles.profileTitle} sx={{
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               wordSpacing:"0", 
+              [theme.breakpoints.down('sm')]: {
+                whiteSpace: 'pre-wrap',
+              },
             }} >
               {capitalizeFirstLetter(profileDetails?.name)}
             </Typography>
@@ -50,6 +54,9 @@ const statusUpdate=useCallback(()=>{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               wordSpacing:"0", 
+              [theme.breakpoints.down('sm')]: {
+                whiteSpace: 'pre-wrap',
+              },
             }}>
               {profileDetails?.user_name} ({profileDetails?.employee_id})
             </Typography>
@@ -129,6 +136,9 @@ const statusUpdate=useCallback(()=>{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               wordSpacing:"0", 
+              [theme.breakpoints.down('sm')]: {
+                whiteSpace: 'pre-wrap',
+              },
             }}>
            
               {formatString(profileDetails?.manager?.name) } ({profileDetails?.employee_id })
@@ -182,6 +192,9 @@ const statusUpdate=useCallback(()=>{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               wordSpacing:"0", 
+              [theme.breakpoints.down('sm')]: {
+                whiteSpace: 'pre-wrap',
+              },
             }}>
             {profileDetails?.updated_by?.name || "N/A"} ({profileDetails?.employee_id})
           </Typography>

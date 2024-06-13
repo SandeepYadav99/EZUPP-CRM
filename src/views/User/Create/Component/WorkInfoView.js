@@ -64,10 +64,11 @@ const WorkInfoView = ({
         </div>
 
         <div className={"formFlex"}>
-          <div className={"formGroup"}>
+          <div className={"formGroup"} >
             <MultiComplete
               isError={errorData?.designation}
               // multiple
+              
               isArray
               AutoCompleteList={department}
               getOptionLabel={(option) => option}
@@ -120,13 +121,9 @@ const WorkInfoView = ({
               className={styles.dateContainer}
               label={"End Date"}
               onChange={(value) => {
-                if (form?.joining_date > value) {
-                  SnackbarUtils.error(
-                    "Joining date should not be greater than end date"
-                  );
-                } else {
+               
                   changeTextData(value, "end_date");
-                }
+                
               }}
               value={form?.end_date}
               isError={errorData?.end_date}

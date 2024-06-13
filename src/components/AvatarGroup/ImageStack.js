@@ -1,36 +1,49 @@
 import React from "react";
-import {
-  Avatar,
-  AvatarGroup,
-  CardContent,
-} from "@mui/material";
+import { Avatar, AvatarGroup, CardContent } from "@mui/material";
 import styles from "./Styles.module.css";
 import { useTheme } from "@mui/styles";
-
 
 const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
   const theme = useTheme();
   return (
-    <CardContent >
-      <div className={styles.avaterAlignment}>
+   
         <AvatarGroup
-          max={3}
+          max={4}
+          spacing="small"
+          variant="circular"
           sx={{
             marginLeft: theme.spacing(-3),
-            cursor:"pointer"
+           
+            
           }}
+
+          slotProps={{
+            additionalAvatar: {
+              onClick: openProfilePopUp,
+              sx:{
+                cursor: "pointer",
+              
+              }
+            }
+            
+           }}
+          // onClick={openProfilePopUp}
         >
           {imageArray?.map((industry, index) => (
-            <div key={industry?.id}>
-              <Avatar className={styles.avatarImageStack} onClick={openProfilePopUp}>
+        
+              <Avatar  className={styles.avatarImageStack} key={industry?.id} sx={{
+                '& .MuiTableCell-root':{
+                  marginLeft:"-10px"
+
+                }
+                
+              }}>
                 <img src={industry?.image} alt={""} crossOrigin="anonymous" />
               </Avatar>
-            </div>
+           
           ))}
         </AvatarGroup>
-      </div>
-    
-    </CardContent>
+  
   );
 };
 

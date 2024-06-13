@@ -2,25 +2,28 @@ import { Card, TableCell } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import React from 'react'
 
-const WraperComponentCheckBox = ({children, permission,  index}) => {
+const WraperComponentCheckBox = ({children, permission,  index, module}) => {
     const theme= useTheme()
   return (
     <TableCell sx={{
-      borderBottom:index === 0 ? "" : "none", 
+      borderBottom:module ? "": "none", 
         [theme.breakpoints.down('sm')]: {
          display: 'block',
-         width: '100%',
+         width: '60%',
          marginBottom: theme.spacing(1),
          borderBottom:"none", 
        },
      }}>
        <Card
          sx={{
-           textAlign: "center",
-           width: "70%",
+           
+           display:"inline-block",
+         
+           paddingLeft:theme.spacing(1.3),
+           paddingRight:theme.spacing(2),
            [theme.breakpoints.down('sm')]: {
-             width: '70%',
-             margin:"auto"
+             width: '100%',
+             textAlign:"center"
            },
            border: permission
            ? `1px solid ${theme.palette.primary.ractange}`
@@ -28,6 +31,7 @@ const WraperComponentCheckBox = ({children, permission,  index}) => {
            "& .MuiPaper-root-MuiCard-root": {
              backgroundColor: theme.palette.text.primary,
            },
+          
          }}
        >
         {children}
