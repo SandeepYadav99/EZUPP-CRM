@@ -38,7 +38,7 @@ function useUserCreateHook() {
     end_date: "",
     userManage: false,
     invoiteToUser: false,
-    status: true,
+    status: "",
   };
   const initialState = {
     manager: [],
@@ -184,6 +184,7 @@ function useUserCreateHook() {
       "email",
       "contact",
       "userName",
+      "status",
       // "role",
       ...(userObject?.user_id === id
         ? []
@@ -326,7 +327,7 @@ function useUserCreateHook() {
           contact: form?.contact,
           email: form?.email,
           user_name: form?.userName,
-          is_primary_user: true,
+           is_primary_user: true,
           status: form?.status,
           // email_send: form?.invoiteToUser,
           employee_id: form?.employee_id || userObject?.employee_id,
@@ -345,7 +346,7 @@ function useUserCreateHook() {
           formDataFields.designation = form?.designation;
           formDataFields.role_id = form?.role || "";
           formDataFields.manager = form?.manager || "";
-           formDataFields.is_primary_user = form?.invoiteToUser;
+           formDataFields.send_email = form?.invoiteToUser;
           formDataFields.is_manager = form?.userManage;
         }
 
