@@ -95,7 +95,7 @@ function useProductCreateHook() {
       errors["product_link"] = true;
     }
     if (form.discount_value > form.ballpark_price) {
-      errors["discount_value"] = "Discount price value should not be greater than Ballpark price value";
+      errors["discount_value"] = true;
     }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
@@ -127,11 +127,6 @@ function useProductCreateHook() {
           t[fieldName] = text;
         }
         if (fieldName === "discount_value" && text > t.ballpark_price) {
-          // setErrorData((prevErrors) => ({
-          //   ...prevErrors,
-          //   discount_value: "Discount value should not be greater than Ballpark price value",
-          // }));
-        
           SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
           setErrorData((prevErrors) => ({
             ...prevErrors,
@@ -154,6 +149,7 @@ function useProductCreateHook() {
       }
       setForm(t);
       shouldRemoveError && removeError(fieldName);
+      
     },
     [removeError, form, setForm]
   );

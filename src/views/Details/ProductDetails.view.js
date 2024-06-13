@@ -240,7 +240,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {/* {profileDetails?.createdBy || "N/A"} */}
+                        {profileDetails?.createdBy?.user_name ?? "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
