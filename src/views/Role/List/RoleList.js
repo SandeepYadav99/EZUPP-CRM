@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Avatar, Button, IconButton } from "@mui/material";
+import { Avatar,  IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import styles from "./Style.module.css";
@@ -21,6 +21,7 @@ import ImageStack from "../../../components/AvatarGroup/ImageStack";
 import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import ImageStackPopUp from "./ImageStackPopUp/ImageStackPopUp";
+import { useTheme } from "@mui/styles";
 
 const RoleList = (props) => {
   const {
@@ -29,17 +30,16 @@ const RoleList = (props) => {
     handlePageChange,
     handleFilterDataChange,
     handleSearchValueChange,
-    handleViewDetails,
     isCalling,
     configFilter,
     handleCreate,
-    isSidePanel,
     handleDetail,
     handleEdit,
     openProfilePopUp,
     isOpenImageStack,
   } = useRoleListHook({});
   const [renderImageStackData, setRenderImageStackData] = useState([]);
+  const theme = useTheme();
   const {
     present,
     all: allData,
@@ -76,7 +76,11 @@ const RoleList = (props) => {
           industryData={industryData}
           open={isOpenImageStack}
           openProfilePopUp={openProfilePopUp}
-        /> : <Avatar src={require("../../../assets/img/profile.png")}></Avatar>}
+        /> : <Avatar src={require("../../../assets/img/profile.png")}   sx={{
+          marginLeft: theme.spacing(-1),
+         
+          
+        }}></Avatar>}
       </div>
     ),
     [isOpenImageStack, openProfilePopUp]
