@@ -33,10 +33,10 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
   const [permission, setPermissions] = useState([]);
   const [allData, setAllData]=useState(false);
-  const [read, setRead]=useState(false)
-  const [write, setWrite]=useState(false)
-  const [update, setUpdate]=useState(false)
-  const [deletePremison, setDeltePermison]=useState(false)
+  // const [read, setRead]=useState(false)
+  // const [write, setWrite]=useState(false)
+  // const [update, setUpdate]=useState(false)
+  // const [deletePremison, setDeltePermison]=useState(false)
  
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -314,14 +314,14 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     id,
     setPermissions,
     setAllData,
-    setRead,
-    setWrite,
-    setUpdate,
-    setDeltePermison,
-    read,
-    write,
-    update, 
-    deletePremison
+    // setRead,
+    // setWrite,
+    // setUpdate,
+    // setDeltePermison,
+    // read,
+    // write,
+    // update, 
+    // deletePremison
   };
 };
 

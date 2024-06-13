@@ -51,15 +51,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     permission,
    
     setAllData,
-    setRead,
-    setWrite,
-    setUpdate,
-    setDeltePermison,
+    // setRead,
+    // setWrite,
+    // setUpdate,
+    // setDeltePermison,
     allData,
-    read,
-    write,
-    update, 
-    deletePremison
+    // read,
+    // write,
+    // update, 
+    // deletePremison
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
   
@@ -154,14 +154,14 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             setAllData={setAllData}
            
             
-            setRead={setRead}
-            setWrite={setWrite}
-            setUpdate={setUpdate}
-            setDeltePermison={setDeltePermison}
-            read={read}
-            write={write}
-            update={update}
-            deletePremison={deletePremison}
+            // setRead={setRead}
+            // setWrite={setWrite}
+            // setUpdate={setUpdate}
+            // setDeltePermison={setDeltePermison}
+            // read={read}
+            // write={write}
+            // update={update}
+            // deletePremison={deletePremison}
           />
         </>
 

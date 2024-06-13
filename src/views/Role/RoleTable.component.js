@@ -21,14 +21,14 @@ const RoleTableComponent = ({
   allData,
   setAllData,
   setPermissions,
-  setRead,
-  setWrite,
-  setUpdate,
-  setDeltePermison,
-  read,
-  write,
-  update,
-  deletePremison,
+  // setRead,
+  // setWrite,
+  // setUpdate,
+  // setDeltePermison,
+  // read,
+  // write,
+  // update,
+  // deletePremison,
 }) => {
   const handleCheckboxChange = useCallback(
     (event, permissionType, index) => {
@@ -54,7 +54,7 @@ const RoleTableComponent = ({
   const handleRead= useCallback(
     (event) => {
       const checked = event.target.checked;
-      setRead(checked);
+      setAllData(checked);
       const updatedPermissions = permissions.map((permission) => ({
         ...permission,
         read: checked,
@@ -67,7 +67,7 @@ const RoleTableComponent = ({
   const handleWrite= useCallback(
     (event) => {
       const checked = event.target.checked;
-      setWrite(checked);
+      setAllData(checked);
       const updatedPermissions = permissions.map((permission) => ({
         ...permission,
         create: checked,
@@ -80,7 +80,7 @@ const RoleTableComponent = ({
   const handleUpdate= useCallback(
     (event) => {
       const checked = event.target.checked;
-      setUpdate(checked);
+      setAllData(checked);
       const updatedPermissions = permissions.map((permission) => ({
         ...permission,
         update: checked,
@@ -93,7 +93,7 @@ const RoleTableComponent = ({
   const handleDeletePermision= useCallback(
     (event) => {
       const checked = event.target.checked;
-      setDeltePermison(checked);
+      setAllData(checked);
       const updatedPermissions = permissions.map((permission) => ({
         ...permission,
         delete: checked,
@@ -148,7 +148,7 @@ const RoleTableComponent = ({
                 marginLeft: theme.spacing(-1),
               }}
               checked={
-                allData ||
+                
                 permissions.every((permission) => permission.all_data)
               }
               onChange={handleAllDataChange}
@@ -160,7 +160,7 @@ const RoleTableComponent = ({
               sx={{
                 marginLeft: theme.spacing(-1),
               }}
-              checked={read ||  permissions.every((permission) => permission.read)}
+              checked={ permissions.every((permission) => permission.read)}
               onChange={handleRead}
             />{" "}
             Read
@@ -171,7 +171,7 @@ const RoleTableComponent = ({
                 marginLeft: theme.spacing(-1),
               }}
               onChange={handleWrite}
-              checked={write ||  permissions.every((permission) => permission.create)}
+              checked={permissions.every((permission) => permission.create)}
             />{" "}
             Write
           </WraperComponentCheckBox>
@@ -181,7 +181,7 @@ const RoleTableComponent = ({
                 marginLeft: theme.spacing(-1),
               }}
               onChange={handleUpdate}
-              checked={update ||  permissions.every((permission) => permission.update)}
+              checked={ permissions.every((permission) => permission.update)}
             />{" "}
             Update
           </WraperComponentCheckBox>
@@ -191,7 +191,7 @@ const RoleTableComponent = ({
                 marginLeft: theme.spacing(-1),
               }}
               onChange={handleDeletePermision}
-              checked={deletePremison ||  permissions.every((permission) => permission.delete)}
+              checked={ permissions.every((permission) => permission.delete)}
             />{" "}
             Delete
           </WraperComponentCheckBox>
@@ -254,9 +254,9 @@ const RoleTableComponent = ({
                       marginLeft: theme.spacing(-1),
                     }}
                     checked={
-                      read &&
+                      allData &&
                       permissions.every((permission) => permission.read)
-                        ? read
+                        ? allData
                         : permission?.read
                     }
                   
@@ -275,9 +275,9 @@ const RoleTableComponent = ({
                       marginLeft: theme.spacing(-1),
                     }}
                     checked={
-                      write &&
+                      allData &&
                       permissions.every((permission) => permission.create)
-                        ? write
+                        ? allData
                         : permission?.create
                     }
                     
@@ -296,9 +296,9 @@ const RoleTableComponent = ({
                       marginLeft: theme.spacing(-1),
                     }}
                     checked={
-                      update &&
+                      allData &&
                       permissions.every((permission) => permission.update)
-                        ? write
+                        ? allData
                         : permission?.update
                     }
                   
@@ -317,9 +317,9 @@ const RoleTableComponent = ({
                       marginLeft: theme.spacing(-1),
                     }}
                     checked={
-                      deletePremison &&
+                      allData &&
                       permissions.every((permission) => permission.delete)
-                        ? deletePremison
+                        ? allData
                         : permission?.delete
                     }
                    

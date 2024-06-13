@@ -9,7 +9,8 @@ const WraperComponentCheckBox = ({children, permission,  index, module}) => {
       borderBottom:module ? "": "none", 
         [theme.breakpoints.down('sm')]: {
          display: 'block',
-         width: '60%',
+         width: '100%',
+         
          marginBottom: theme.spacing(1),
          borderBottom:"none", 
        },
