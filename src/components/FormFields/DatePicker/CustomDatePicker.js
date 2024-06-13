@@ -47,10 +47,13 @@ const CustomDatePicker = ({
           fullWidth
           label={label}
           sx={{
+              "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: 'red',
+              },
             "& .MuiInputLabel-root": {
               color: theme.palette.text.primary,
               marginTop: theme.spacing(-0.5),
-             
+
             },
           }}
           value={value ? dayjs(value) : null}
@@ -59,32 +62,30 @@ const CustomDatePicker = ({
           // format={
           //     "dd-MM-yyyy"
           // }
-        
+
           inputFormat="DD/MM/yyyy"
-          error={true}
           minDate={minDate && dayjs(minDate)}
           maxDate={mD ? dayjs(mD) : dayjs()}
           showTodayButton
-          InputProps={{
-            disableUnderline: true,
-          }}
-          {...rest}
-          renderInput={(params) => (
-            <TextField
-             
-             
-              error={true}
-              sx={{
-                color: theme.palette.text.primary,
-                "& .MuiInputBase-input": {
-                  padding: "2px 110px",
-                  color: theme.palette.text.primary,
-                  
-                },
-              }}
-              {...params}
-            />
-          )}
+          // InputProps={{
+          //   disableUnderline: true,
+          // }}
+          // {...rest}
+          // renderInput={(params) => (
+          //   <TextField
+          //     error={true}
+          //     sx={{
+          //
+          //       color: theme.palette.text.primary,
+          //       "& .MuiInputBase-input": {
+          //         padding: "2px 110px",
+          //         color: theme.palette.text.primary,
+          //
+          //       },
+          //     }}
+          //     {...params}
+          //   />
+         // )}
 
           // KeyboardButtonProps={{
           //     'aria-label': 'change time',

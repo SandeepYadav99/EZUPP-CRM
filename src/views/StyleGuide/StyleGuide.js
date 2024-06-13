@@ -215,17 +215,17 @@ const StyleGuide = ({}) => {
         <div className={styles.sideMargin}>
           <Typography variant={"h5"}>Select Field</Typography>
           <div className={styles.boxCont}>
-            <CustomSelectField label={"Name"}>
+            <CustomSelectField name={"name"} label={"Name"}>
               <MenuItem value="Electrovese">Electrovese</MenuItem>
             </CustomSelectField>
             <br />
             <br />
-            <CustomSelectField label={"Name"} value="Electrovese">
+            <CustomSelectField name={"name"} label={"Name"} value="Electrovese">
               <MenuItem value="Electrovese">Electrovese</MenuItem>
             </CustomSelectField>
             <br />
             <br />
-            <CustomSelectField label={"Name"} isError={true}>
+            <CustomSelectField name={"name"} label={"Name"} isError={true}>
               <MenuItem value="Electrovese">Electrovese</MenuItem>
             </CustomSelectField>
           </div>
