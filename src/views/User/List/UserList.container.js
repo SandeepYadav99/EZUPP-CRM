@@ -1,19 +1,12 @@
-/**
- * Update by sandeepelectrovese@gmail.com ->
- *  Class based Component to Function based Component 12/13/2023
- */
 import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import {
-  Add,
   Info as EditIcon,
   Info,
-  Person,
   OpenInNew as OpenInNewIcon,
   Edit,
-  Topic,
 } from "@mui/icons-material";
 import addTask from "../../../assets/img/ic_add_task@2x.png";
 import styles from "../Style.module.css";
@@ -22,14 +15,11 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./UserListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
-import {
-  ActionButton,
-  ArrowPrimaryButton,
-  PrimaryButton,
-} from "../../../components/Buttons/PrimaryButton";
+
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
-import { ButtonWithTitle, CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
+import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
+import { useTheme } from "@mui/styles";
 
 const UserList = (props) => {
   const {
@@ -41,8 +31,7 @@ const UserList = (props) => {
     handleSearchValueChange,
     handleProfile,
     configFilter,
-    isSidePanel,
-    handleSideToggle,
+
     handleCreate,
   } = useUserListHook({});
 
@@ -52,14 +41,30 @@ const UserList = (props) => {
     currentPage,
     is_fetching: isFetching,
   } = useSelector((state) => state.provider_user);
-
+  const theme = useTheme();
   const renderFirstCell = useCallback((user) => {
     return (
       <div className={styles.firstCellFlex}>
-        <img src={user.image} alt="" crossOrigin="anonymous" />
+        <img
+          alt=""
+          src={user.image}
+          crossOrigin="anonymous"
+          loading={"lazy"}
+        ></img>
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
-          <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
+          <Typography
+            sx={{
+              whiteSpace: "nowrap",
+              wordSpacing: "0",
+              [theme.breakpoints.down("sm")]: {
+                whiteSpace: "pre-wrap",
+                textOverflow: "ellipsis",
+              },
+            }}
+          >
+            {`${capitalizeFirstLetter(user?.name)}`}{" "}
+          </Typography>
           <div> {user?.employee_id}</div>
         </div>
       </div>
@@ -68,9 +73,15 @@ const UserList = (props) => {
 
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
-      return <StatusPill status={"ACTIVE"} color={"active"} />;
+      return "active";
     } else if (status === "INACTIVE") {
-      return <StatusPill status={"INACTIVE"} color={"high"} />;
+      return "high";
+    }
+    //  else if (status === "DELETED") {
+    //   return "deleted";
+    // }
+    else {
+      return "high";
     }
   }, []);
 
@@ -79,17 +90,17 @@ const UserList = (props) => {
       {
         key: "name",
         label: "User Info",
-        // style: { width: "18%" },
+
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "contact",
         label: "Contact",
-        // style: { width: "15%" },
+
         sortable: false,
         render: (temp, all) => (
-          <div>
+          <div className={styles.emailLength}>
             {all?.email}
             <br />
             {all?.contact}
@@ -99,24 +110,33 @@ const UserList = (props) => {
       {
         key: "designation",
         label: "Designation",
-        // style: { width: "15%" },
+
         sortable: false,
-        render: (temp, all) => <div>{all?.designation}</div>,
+        render: (temp, all) => <div>{all?.designation || "N/A"}</div>,
       },
       {
         key: "role",
         label: "User Role",
-        // style: { width: "15%" },
+
         sortable: false,
-        render: (temp, all) => <div>{all?.role?.name}</div>,
+        render: (temp, all) => <div>{all?.role?.name || "N/A"}</div>,
       },
 
       {
         key: "status",
         label: "Status",
-        // style: { width: "15%" },
+
         sortable: false,
-        render: (temp, all) => <div>{renderStatus(all.status)}</div>,
+        render: (temp, all) => (
+          <div>
+            {
+              <StatusPill
+                status={all?.status}
+                color={renderStatus(all?.status)}
+              />
+            }
+          </div>
+        ),
       },
       {
         key: "last_login",
@@ -129,16 +149,16 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
+            <IconButton color="inherit" onClick={() => handleProfile(all)}>
+              <Info fontSize={"small"} />
+            </IconButton>
             <IconButton
-              // disabled={is_calling}
-              onClick={() => handleProfile(all)}
+
+            // onClick={() => handleProfile(all)}
             >
               <img src={addTask} alt="task" width={20} />
             </IconButton>
-            <IconButton
-              // disabled={is_calling}
-              onClick={() => handleEdit(all)}
-            >
+            <IconButton onClick={() => handleEdit(all)}>
               <Edit fontSize={"small"} />
             </IconButton>
           </div>
@@ -174,11 +194,10 @@ const UserList = (props) => {
 
   return (
     <div>
-      <ShadowBox  width={"100%"}>
+      <ShadowBox width={"100%"}>
         <CustomListHeader
           title={"CREATE"}
           handleCreate={handleCreate}
-          
           sideTitlle={"User List"}
         />
 

@@ -31,9 +31,11 @@ export const SET_SERVER_PAGE = 'SET_SERVER_PAGE_FAQ_QUESTION';
 export const CREATE_DATA = 'CREATE_FAQ_QUESTION';
 export const UPDATE_DATA = 'UPDATE_FAQ_QUESTION';
 export const DELETE_ITEM = 'DELETE_ITEM_FAQ_QUESTION';
+export const DRAG_ITEM = 'DRAG_ITEM';
+
 
 export function actionFetchFaqQuestion(id,index = 1, sorting = {}, filter = {}, shouldReset=false) {
-    const request = serviceFetchFaqQuestion({category_id:id, index, row: sorting.row, order: sorting.order, ...filter });
+    const request = serviceFetchFaqQuestion({faq_category_id:id, index, row: sorting.row, order: sorting.order, ...filter });
     return (dispatch) => {
         if (shouldReset) {
             dispatch({
@@ -142,6 +144,12 @@ export function actionResetFilterFaqQuestion() {
         type: RESET_FILTER,
         payload: null,
     };
+}
+export function actionDragFaqQuestion(dragId, dragOverId) {
+    return {
+        type: DRAG_ITEM,
+        payload: {dragId, dragOverId}
+    }
 }
 
 export function actionSetPageFaqQuestion(page) {

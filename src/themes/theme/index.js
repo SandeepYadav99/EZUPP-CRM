@@ -23,7 +23,8 @@ const tableHeadColor= "#F5F5F5";
 const darkContent = "#F7F7F9"
 const ractangeborder="#C5C5C5";
 const ractange="#347BEC";
-
+const contact="#FFFFFF";
+const switchTheme = "#2063CE";
 const Theme = (colors) => {
   const { grey } = colors;
   const greyColors = {
@@ -119,7 +120,9 @@ const Theme = (colors) => {
       color2:"#ff4d49"
     },
     tableHeadColor:tableHeadColor,
-    contentDark:darkContent
+    contentDark:darkContent,
+    contact:contact,
+    switchTheme:switchTheme
   };
 };
 

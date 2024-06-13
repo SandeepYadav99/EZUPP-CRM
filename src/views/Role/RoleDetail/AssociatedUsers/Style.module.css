@@ -19,6 +19,19 @@
     background-color: white;
     box-shadow: 0 0 8px rgb(0 0 0 / 15%);
   }
+ 
+  .bottomSection{
+    flex: 1 1 100% !important;
+  }
+  .leftSection{
+    flex: 0.4 1 25%;
+  }
+  .detailContainer {
+    display: flex !important;
+    width: 100% !important;
+    gap: 10px !important;
+    margin-top: 20px !important;
+  }
   .hyperlinkText{
     color: #2896E9;
     text-decoration-line: underline;

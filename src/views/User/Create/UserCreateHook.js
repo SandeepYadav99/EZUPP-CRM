@@ -1,22 +1,14 @@
-import React, { useCallback, useEffect, useReducer, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useReducer } from "react";
 import { useState } from "react";
-import {
-  HexCodeValid,
-  isAlphaNumChars,
-  isDate,
-  isEmail,
-  validateUrl,
-} from "../../../libs/RegexUtils";
+import { isAlphaNum, isEmail, isSpace } from "../../../libs/RegexUtils";
 import { useParams } from "react-router";
 
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
 
-import Constants from "../../../config/constants";
-import { parsePhoneNumber } from "libphonenumber-js";
+import parsePhoneNumberFromString from "libphonenumber-js";
 
-import useDebounce from "../../../hooks/DebounceHook";
 import {
   serviceCreateProviderUser,
   serviceGetProviderUserDetail,
@@ -26,6 +18,7 @@ import {
   serviceUpdateProviderUser,
 } from "../../../services/ProviderUser.service";
 import { serviceGetList } from "../../../services/index.services";
+import debounce from "lodash.debounce";
 
 function useUserCreateHook() {
   const initialForm = {
@@ -45,6 +38,7 @@ function useUserCreateHook() {
     end_date: "",
     userManage: false,
     invoiteToUser: false,
+    status: true,
   };
   const initialState = {
     manager: [],
@@ -56,8 +50,7 @@ function useUserCreateHook() {
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const { id } = useParams();
-  const emailDebouncer = useDebounce(form.email, 500);
-  const empIdDebouncer = useDebounce(form.employee_id, 500);
+
   const userData = localStorage.getItem("user");
   const userObject = JSON.parse(userData);
 
@@ -98,45 +91,44 @@ function useUserCreateHook() {
     });
   }, []);
 
-  const validateField = useCallback(
-    (field, values, errorKey, existsMessage) => {
-      serviceProviderIsExist({ [field]: values, id: id || null }).then(
-        (res) => {
+  const checkForSalaryInfo = useCallback(
+    (data, fieldName, errorArr) => {
+      if (data) {
+        let filteredForm = { id: id ? id : "" };
+        filteredForm[fieldName] = data;
+        let req = serviceProviderIsExist({
+          ...filteredForm,
+        });
+        req.then((res) => {
           if (!res.error) {
-            const errors = { ...errorData };
+            const errors = JSON.parse(JSON.stringify(errorArr));
             if (res.data.is_exists) {
-              errors[errorKey] = existsMessage;
+              if (fieldName === "employee_id") {
+                errors[fieldName] = `Employee code already exist`;
+                setErrorData(errors);
+              }
+              if (fieldName === "email") {
+                errors[fieldName] = `Admin User Email Exists`;
+                setErrorData(errors);
+              }
+
+              setErrorData(errors);
             } else {
-              delete errors[errorKey];
+              delete errors[fieldName];
+              setErrorData(errors);
             }
-            setErrorData(errors);
           }
-        }
-      );
+        });
+      }
     },
-    [errorData, setErrorData, id]
+    [id]
   );
 
-  const checkCodeValidation = useCallback(() => {
-    validateField("email", form.email, "email", "Admin User Email Exists");
-  }, [form.email, id]);
-
-  const checkEmpIdValidation = useCallback(() => {
-    validateField(
-      "employee_id",
-      form.employee_id,
-      "employee_id",
-      "Admin User Employee Id Exists"
-    );
-  }, [form.employee_id, id]);
-
-  useEffect(() => {
-    if (emailDebouncer) checkCodeValidation();
-  }, [emailDebouncer]);
-
-  useEffect(() => {
-    if (empIdDebouncer) checkEmpIdValidation();
-  }, [empIdDebouncer]);
+  const checkSalaryInfoDebouncer = useMemo(() => {
+    return debounce((e, fieldName, errorArr) => {
+      checkForSalaryInfo(e, fieldName, errorArr);
+    }, 1000);
+  }, [checkForSalaryInfo]);
 
   useEffect(() => {
     if (id) {
@@ -159,6 +151,7 @@ function useUserCreateHook() {
             end_date: data?.exit_date,
             userManage: data?.is_manager,
             invoiteToUser: data?.is_primary_user,
+            status: data?.status,
           };
 
           setForm(formData);
@@ -169,7 +162,7 @@ function useUserCreateHook() {
         }
       });
     }
-  }, [id]);
+  }, [ id]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -178,12 +171,21 @@ function useUserCreateHook() {
       "email",
       "contact",
       "userName",
-      // "role",  
-      ...(userObject?.user_id === id ? [] : ['employee_id', "end_date","joining_date","department","designation", "manager",])
+      // "role",
+      ...(userObject?.user_id === id
+        ? []
+        : [
+            "employee_id",
+            // "end_date",
+            // "joining_date",
+            // "department",
+            //  "designation",
+            // "manager",
+          ]),
     ];
-    if (!id) {
-      required.push("image");
-    }
+    // if (!id) {
+    //   required.push("image");
+    // }
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
@@ -191,21 +193,37 @@ function useUserCreateHook() {
       ) {
         errors[val] = true;
       }
+
       if (val === "contact" && form?.contact) {
-        const phoneNumber = parsePhoneNumber(form?.contact);
+        const phoneNumber = parsePhoneNumberFromString(form.contact);
 
         if (phoneNumber) {
-          if (phoneNumber.isValid() === false) {
-            errors.contact = "Invalid Number";
+          if (phoneNumber?.isValid() === false) {
+            errors.contact = true;
+            SnackbarUtils.error("Invalid contact");
           }
         } else {
-          errors.contact = "Invalid Number";
+          errors.contact = true;
+          SnackbarUtils.error("Invalid contact");
         }
       }
     });
-
+    if (form?.employee_id?.length <= 2) {
+      errors.employee_id = true;
+    }
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
+    }
+    const joinDate = new Date(form?.joining_date).getDate();
+    const endDate = new Date(form?.end_date).getDate() ;
+
+    if (joinDate > endDate ||  new Date(form?.joining_date).getMonth() > new Date(form?.end_date).getMonth()){
+       errors.end_date =  SnackbarUtils.error(
+        "Joining date should not be greater than end date"
+      );
+      errors.end_date = true;
+    }else{
+      delete errors.end_date
     }
     // if (form?.url && !validateUrl(form?.url)) {
     //   errors.url = true;
@@ -233,27 +251,50 @@ function useUserCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
-        t[fieldName] = text;
-      } else if (fieldName === "contact") {
-        t[fieldName] = text;
+        if (!text || text.length <= 40) {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "userName") {
-        t[fieldName] = text?.toLowerCase();
+        if (!text || (isAlphaNum(text) && text?.length <= 20)) {
+          t[fieldName] = text?.toLowerCase();
+        }
       } else if (fieldName === "email") {
         t[fieldName] = text;
+      } else if (fieldName === "employee_id") {
+        if (!text || text?.length <= 20) {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "contact") {
         t[fieldName] = text;
+      } else if (fieldName === "end_date") {
+        if (form?.joining_date > text) {
+          SnackbarUtils.error(
+            "Joining date should not be greater than end date"
+          );
+     
+        } else {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "role") {
         t[fieldName] = text;
       } else if (fieldName === "department") {
-        t[fieldName] = text;
+        if (!text || (!isSpace(text) && text?.length <= 40)) {
+          t[fieldName] = text?.toLowerCase();
+        }
+      } else if (fieldName === "designation") {
+        if (!text || (!isSpace(text) && text?.length <= 40)) {
+          t[fieldName] = text?.toLowerCase();
+        }
       } else {
         t[fieldName] = text;
       }
-
+      if (["email", "employee_id"].includes(fieldName)) {
+        checkSalaryInfoDebouncer(text, fieldName, errorData);
+      }
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm]
+    [removeError, form, setForm,]
   );
 
   const submitToServer = useCallback(
@@ -267,29 +308,27 @@ function useUserCreateHook() {
           name: form?.name,
           image: form?.image,
           contact: form?.contact,
-          // role_id: form?.role || { },
           email: form?.email,
-          // employee_id: form?.employee_id,
-          // joining_date: form?.joining_date,
-          // exit_date: form?.end_date,
-          // department: form?.department,
-          // designation: form?.designation,
-          // manager: form?.manager,
           user_name: form?.userName,
           is_primary_user: true,
-          // is_manager: form?.userManage,
+          status: form?.status,
           // email_send: form?.invoiteToUser,
+          employee_id: form?.employee_id || userObject?.employee_id,
           country_code: 91,
         };
+        if (form?.manager || form?.role) {
+          formDataFields.manager = form?.manager;
+          formDataFields.role_id = form?.role;
+        }
+
         if (userObject?.user_id !== id) {
-          formDataFields.employee_id = form?.employee_id;
-          formDataFields.joining_date = form?.joining_date;
-          formDataFields.exit_date = form?.end_date;
+          formDataFields.joining_date = form?.joining_date || "";
+          formDataFields.exit_date = form?.end_date || "";
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
-          formDataFields.manager = form?.manager;
-          formDataFields.is_primary_user= true;
-          formDataFields.is_manager= form?.userManage;
+
+          // formDataFields.is_primary_user = form?.invoiteToUser;
+          formDataFields.is_manager = form?.userManage;
         }
 
         for (const field in formDataFields) {
@@ -316,7 +355,7 @@ function useUserCreateHook() {
         });
       }
     },
-    [form, state]
+    [form , state, checkFormValidation, setErrorData]
   );
 
   const onBlurHandler = useCallback(
@@ -338,9 +377,9 @@ function useUserCreateHook() {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, submitToServer, state]
   );
-  
+
   return {
     form,
     errorData,
@@ -352,11 +391,8 @@ function useUserCreateHook() {
     isSubmitting: state?.isSubmitting,
     images: state?.images,
     id,
-    // isContactInList,
 
-    // manager,
-    // department,
-    userId:userObject?.user_id,
+    userId: userObject?.user_id,
     manager: state.manager,
     department: state.department,
   };

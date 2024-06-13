@@ -7,9 +7,9 @@ import LogUtils from "../../../libs/LogUtils";
 import {
   serviceCreateProduct,
   serviceUpdateProduct,
-  serviceDeleteProduct
+  serviceDeleteProduct,
 } from "../../../services/Product.service";
-import { actionDeleteProduct} from "../../../actions/Product.action";
+import { actionDeleteProduct } from "../../../actions/Product.action";
 import {
   serviceGetList,
   serviceGetTagList,
@@ -48,20 +48,20 @@ function useProductCreateHook() {
   const [listData, setListData] = useState({
     UNITS: [],
   });
-  const [tagList,setTagList] = useState([])
+  const [tagList, setTagList] = useState([]);
   const dispatch = useDispatch();
   const [editData, setEditData] = useState(null);
-  
+
   useEffect(() => {
     serviceGetUnitsList(["UNITS"]).then((res) => {
-      if (!res.error) { 
+      if (!res.error) {
         setListData(res.data);
       }
     });
   }, []);
 
   useEffect(() => {
-    serviceGetTagList({query:"a"}).then((res) => {
+    serviceGetTagList().then((res) => {
       if (!res.error) {
         setTagList(res.data);
       }
@@ -119,9 +119,9 @@ function useProductCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (
-        fieldName === "ballpark_cost" ||
-        fieldName === "ballpark_price" ||
-        fieldName === "discount_value"
+        ["ballpark_cost", "ballpark_price", "discount_value"]?.includes(
+          fieldName
+        )
       ) {
         if (text >= 0) {
           t[fieldName] = text;
@@ -144,6 +144,36 @@ function useProductCreateHook() {
         if (text >= 0 && text <= 100) {
           t[fieldName] = text;
         }
+      }else if (fieldName === "code"){
+        if(text?.length <= 40){
+          t[fieldName] = text;
+        }
+      }else if (fieldName === "name"){
+        if(text?.length <= 100){
+          t[fieldName] = text;
+        }
+      } else if (fieldName === "tags") {
+        console.log(">>>>",text)
+        const tempKeywords = text?.filter((val, index) => {
+          if (val?.trim() === "") {
+            return false;
+          } else if (val?.length <= 2 || val?.length >20) {
+            SnackbarUtils.error("Values cannot be less than 2 and more than 20 character");
+            return false;
+          } else {
+            const key = val?.trim().toLowerCase();
+            const isThere = text?.findIndex(
+              (keyTwo, indexTwo) =>
+                keyTwo?.toLowerCase() === key && index !== indexTwo
+            );
+            console.log("isThere",isThere)
+            return isThere < 0;
+          }
+        });
+        console.log("tempKeywords", tempKeywords);
+        // if (tempKeywords?.length > 0) {
+          t[fieldName] = tempKeywords;
+        // }
       } else {
         t[fieldName] = text;
       }
@@ -216,7 +246,7 @@ function useProductCreateHook() {
     [checkFormValidation, setErrorData, form, submitToServer]
   );
 
-  
+
   const handleCancel = useCallback(() => {
     history.push("/products");
   }, []);
@@ -227,28 +257,24 @@ function useProductCreateHook() {
   //   },
   //   [setEditData]
   // );
-  const handleDelete = useCallback(
-    async (id) => {
-      if (id) {
+  const handleDelete = useCallback(async (id) => {
+    if (id) {
+      const formattedId = String(id);
 
-        const formattedId = String(id);
-  
-        try {
-          const response = await serviceDeleteProduct({ id: formattedId });
-  
-          if (!response.error) {
-            console.log(`Product with id: ${formattedId} deleted successfully.`);
-            window.location.reload();
-          } else {
-            SnackbarUtils.error(response.message);
-          }
-        } catch (error) {
-          console.error('Error deleting unit:', error);
+      try {
+        const response = await serviceDeleteProduct({ id: formattedId });
+
+        if (!response.error) {
+          console.log(`Product with id: ${formattedId} deleted successfully.`);
+          window.location.reload();
+        } else {
+          SnackbarUtils.error(response.message);
         }
+      } catch (error) {
+        console.error("Error deleting unit:", error);
       }
-    },
-    
-  );
+    }
+  });
   return {
     form,
     errorData,

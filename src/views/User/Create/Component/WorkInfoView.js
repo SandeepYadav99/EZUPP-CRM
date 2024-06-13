@@ -3,11 +3,11 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { Autocomplete, MenuItem, TextField, Typography } from "@mui/material";
+import { MenuItem, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
-import { Clear, Search } from "@mui/icons-material";
-import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+import SnackbarUtils from "../../../../libs/SnackbarUtils";
 const WorkInfoView = ({
   errorData,
   form,
@@ -24,64 +24,60 @@ const WorkInfoView = ({
             fontSize={18}
             // color={"#636578"}
             fontWeight={600}
-            marginTop={1.5}
-            marginBottom={1.5}
           >
             Work Information
           </Typography>
         </div>
-        <div className={styles.outerFlex}>
-          <div className={styles.lowerWrap}>
-            <div className={"formFlex"}>
-              <div className={"formGroup"}>
-                <CustomTextField
-                  isError={errorData?.employee_id}
-                  errorText={errorData?.employee_id}
-                  label={"Employee ID"}
-                  value={form?.employee_id}
-                  onTextChange={(text) => {
-                    changeTextData(text, "employee_id");
-                  }}
-                  onBlur={() => {
-                    onBlurHandler("employee_id");
-                  }}
-                />
-              </div>
-         
 
-              <div className={"formGroup"}>
-                <CustomMultiComplete
-                  // multiple
-                  // showImage
-                  AutoCompleteList={department }
-                  label={"Department"}
-                  error={errorData?.department}
-                 
-                  value={form?.department || []}
-                  onTextChange={(text) => {
-                    changeTextData(text, "department");
-                  }}
-                  enableField={["name"]}
-                />
-                
-              </div>
-            </div>
-          </div>
-        </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-       
             <CustomTextField
+              isError={errorData?.employee_id}
+              errorText={errorData?.employee_id}
+              label={"Employee ID"}
+              value={form?.employee_id}
+              onTextChange={(text) => {
+                changeTextData(text, "employee_id");
+              }}
+              onBlur={() => {
+                onBlurHandler("employee_id");
+              }}
+            />
+          </div>
+
+          <div className={"formGroup"}>
+            <MultiComplete
+              isError={errorData?.department}
+              // multiple
+              isArray
+              AutoCompleteList={department}
+              getOptionLabel={(option) => option}
+              label={"Department"}
+              defaultValue={form?.department}
+              value={form?.department}
+              onTextChange={(text) => {
+                changeTextData(text, "department");
+              }}
+              className={styles.marginTop1}
+            />
+          </div>
+        </div>
+
+        <div className={"formFlex"}>
+          <div className={"formGroup"} >
+            <MultiComplete
               isError={errorData?.designation}
-              errorText={errorData?.designation}
+              // multiple
+              
+              isArray
+              AutoCompleteList={department}
+              getOptionLabel={(option) => option}
               label={"Designation"}
+              defaultValue={form?.designation}
               value={form?.designation}
               onTextChange={(text) => {
                 changeTextData(text, "designation");
               }}
-              // onBlur={() => {
-              //   onBlurHandler("designation");
-              // }}
             />
           </div>
           <div className={"formGroup"}>
@@ -89,13 +85,18 @@ const WorkInfoView = ({
               isError={errorData?.manager}
               errorText={errorData?.manager}
               label={"Manager"}
+              className={styles.marginTop2}
               value={form?.manager}
               handleChange={(value) => {
                 changeTextData(value, "manager");
               }}
             >
               {manager?.map((item) => {
-                return <MenuItem value={item?.id}>{`${item?.name} `}</MenuItem>;
+                return (
+                  <MenuItem
+                    value={item?.id}
+                  >{`${item?.name} (${item?.employee_id})`}</MenuItem>
+                );
               })}
             </CustomSelectField>
           </div>
@@ -120,7 +121,9 @@ const WorkInfoView = ({
               className={styles.dateContainer}
               label={"End Date"}
               onChange={(value) => {
-                changeTextData(value, "end_date");
+               
+                  changeTextData(value, "end_date");
+                
               }}
               value={form?.end_date}
               isError={errorData?.end_date}
@@ -141,13 +144,13 @@ const WorkInfoView = ({
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomCheckbox
+            {/* <CustomCheckbox
               value={form?.invoiteToUser}
               handleChange={() => {
                 changeTextData(!form?.invoiteToUser, "invoiteToUser");
               }}
               label={`Send Invite to user on email`}
-            />
+            /> */}
           </div>
         </div>
       </ShadowBox>

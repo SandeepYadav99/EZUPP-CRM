@@ -1,45 +1,69 @@
 .outerFlex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   /* padding-bottom: 30px; */
+ flex-wrap: wrap;
+
 }
-.outerFlex1{
+.userContainer{
+  overflow: hidden !important;
+}
+.count{
+ margin: auto !important;
+}
+.outerFlex1 {
   padding-bottom: 30px;
 }
-.iconButton{
+.iconButton {
   display: flex;
   gap: 5px;
 }
 
-.saveButton{
+.saveButton {
   text-align: right !important;
   margin-top: 10px !important;
 }
-.imageGuide{
- display: flex;
-
+.imageGuide {
+  display: flex;
 }
-
-.cont{
+.new_line {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2px;
+}
+.cont {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-.lowerWrap{
+.lowerWrap {
   flex: 1;
 }
-
-.mainBox{
+.marginTop {
+  margin-top: 4px !important;
+}
+.marginTop1 {
+  margin-top: 4px !important;
+}
+.marginTop2 {
+  /* margin-top: -2px !important; */
+}
+.lowerWrap1 {
+  display: flex;
+  align-items: center !important;
+  flex: 1 1 100%;
+}
+.mainBox {
   width: 100% !important;
   margin-top: 20px;
 }
 
-.dateContainer{
+.dateContainer {
   width: 100% !important;
 }
-
 
 /* .claimListWrapper {
   display: flex;

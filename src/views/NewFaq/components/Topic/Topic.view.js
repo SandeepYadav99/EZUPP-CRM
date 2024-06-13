@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 import styles from "./Style.module.css";
 import { ButtonBase, IconButton } from "@mui/material";
 import { AddCircleOutline, Edit } from "@mui/icons-material";
 import csx from "classnames";
 import SidePanelComponent from "../../../../components/SidePanel/SidePanel.component";
-import TopicForm from "./TopicForm.view";
 import { bindActionCreators } from "redux";
 import {
   actionChangeStatusFaq,
@@ -19,14 +24,16 @@ import {
 } from "../../../../actions/Faq.action";
 import { connect } from "react-redux";
 import { arrayMove } from "react-sortable-hoc";
+import TopicViewForm from "../Topic/TopicForm/TopicView.js";
+import { serviceUpdateFaqPriority } from "../../../../services/Faq.service";
+import debounce from "lodash.debounce";
 
 const TopicView = (props) => {
   const [active, setActive] = useState(0);
   const [sidePanel, setSidePanel] = useState(false);
   const [editData, setEditData] = useState(null);
   const [topics, setTopics] = useState([]);
-  const [isFetching, setIsFetching] = useState(true);
-  console.log("props", props);
+
   const prevDataRef = useRef();
   useEffect(() => {
     prevDataRef.current = props.data;
@@ -40,7 +47,7 @@ const TopicView = (props) => {
     if (props.data.length > 0) {
       props.handleCategoryChange(props.data[0]);
     }
-  }, []);
+  }, [sidePanel]);
 
   useEffect(() => {
     if (prevData && prevData.length !== props.data.length) {
@@ -48,39 +55,10 @@ const TopicView = (props) => {
     }
   }, [props.data]);
 
-  const handleAddTopic = useCallback(
-    (type) => {
-      props.handleSideToggle(type);
-    },
-    [props.handleSideToggle]
-  );
-
   const handleSideToggle = useCallback(() => {
     setSidePanel(!sidePanel);
     setEditData(null);
   }, [sidePanel]);
-
-  const handleDataSave = useCallback(
-    (data, type) => {
-      if (type === "CREATE") {
-        props.actionCreateFaq(data);
-      } else {
-        props.actionUpdateFaq(data);
-      }
-      setSidePanel(false);
-      setEditData(null);
-    },
-    [sidePanel]
-  );
-
-  const handleDelete = useCallback(
-    (id) => {
-      props.actionDelete(id);
-      setSidePanel(false);
-      setEditData(null);
-    },
-    [sidePanel]
-  );
 
   const handleChangeType = useCallback(
     (index, val) => {
@@ -99,15 +77,45 @@ const TopicView = (props) => {
     [sidePanel]
   );
 
-  const onSortEnd = useCallback(
-    ({ oldIndex, newIndex }) => {
-      setTopics(arrayMove(topics, oldIndex, newIndex));
-    },
-    [topics]
-  );
-  const handleDrag = useCallback((dragId, dragOverId) => {
-    props.actionDragFaq(dragId, dragOverId);
+  const updatePrioirty = useCallback((all) => {
+    const req = serviceUpdateFaqPriority({ data: [...all] });
+    req.then((res) => {
+      if (!res?.error) {
+        console.log(">>>>res", res);
+      }
+    });
   }, []);
+
+  const priorityDebounce = useMemo(() => {
+    return debounce((e) => {
+      updatePrioirty(e);
+    }, 1000);
+  }, []);
+
+  const handleDrag = useCallback(
+    (dragId, dragOverId) => {
+      const all = props?.data ? props?.data : [];
+      const dragIndex = all?.findIndex((item) => item?.id === dragId);
+      const draggedOverIndex = all?.findIndex(
+        (item) => item?.id === dragOverId
+      );
+      if (dragIndex >= 0 && draggedOverIndex >= 0) {
+        const temp = all[dragIndex];
+        all.splice(dragIndex, 1);
+        all.splice(draggedOverIndex, 0, temp);
+        const priority = all?.map((item, index) => {
+          return {
+            ...item,
+            priority: index,
+          };
+        });
+        priorityDebounce(priority);
+      }
+
+      props.actionDragFaq(dragId, dragOverId);
+    },
+    [props]
+  );
 
   const renderList = () => {
     const { data, selectedCategory } = props;
@@ -127,7 +135,6 @@ const TopicView = (props) => {
                 id={val.id}
                 draggable={true}
                 onDragStart={(e) => {
-                  console.log("onDragStart", e.target.id);
                   draggedItem.current = e.target.id;
                 }}
                 onDragOver={(e) => {
@@ -161,18 +168,6 @@ const TopicView = (props) => {
     }
   };
 
-  const renderCreateForm = () => {
-    if (sidePanel) {
-      return (
-        <TopicForm
-          handleDataSave={handleDataSave}
-          data={editData}
-          handleDelete={handleDelete}
-        />
-      );
-    }
-  };
-
   return (
     <div>
       <div className={styles.plainBg}>
@@ -192,7 +187,11 @@ const TopicView = (props) => {
         open={sidePanel}
         side={"right"}
       >
-        {renderCreateForm()}
+        <TopicViewForm
+          dataExist={editData}
+          handletoggleSidePannel={handleSideToggle}
+          listlength={props?.data?.length}
+        />
       </SidePanelComponent>
     </div>
   );

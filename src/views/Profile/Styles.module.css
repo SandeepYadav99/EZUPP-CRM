@@ -87,7 +87,7 @@
   /* margin-left: 20px; */
   /* margin-right: 10px; */
 }
-@media (max-width: 1070px) {
+@media (max-width: 1252px) {
   .profileFlex {
     display: flex;
     justify-content: center;

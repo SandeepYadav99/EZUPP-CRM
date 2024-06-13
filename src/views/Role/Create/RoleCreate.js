@@ -5,7 +5,7 @@ import {
   CircularProgress,
  
   Typography,
-  useTheme,
+ 
 } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
@@ -23,8 +23,8 @@ import {
  
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
+import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 import CustomSwitch from "../../../components/FormFields/CustomSwitch";
-
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -43,12 +43,14 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     onBlurHandler,
     changeTextData,
     isSubmitting,
-    data,
     cancelRole,
     permisionChangeHandler,
     id,
-
+    setPermissions,
     permission,
+    setAllData,
+    allData,
+    
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
   
@@ -76,6 +78,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               <CustomTextField
                 isError={errorData?.name}
                 errorText={errorData?.name}
+                
                 label="Role Name"
                 value={form?.name}
                 onTextChange={(text) => {
@@ -88,15 +91,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
             <div className={"formGroup"}>
               <CustomTextField
-                isError={errorData?.displayName}
-                errorText={errorData?.displayName}
+                isError={errorData?.display_name}
+                errorText={errorData?.display_name}
                 label="Display Name"
-                value={form?.displayName}
+                value={form?.display_name}
                 onTextChange={(text) => {
-                  changeTextData(text, "displayName");
+                  changeTextData(text, "display_name");
                 }}
                 onBlur={() => {
-                  onBlurHandler("displayName");
+                  onBlurHandler("display_name");
                 }}
               />
             </div>
@@ -120,7 +123,8 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
           </div>
           <div className={"formGroup"}>
-              <CustomSwitch
+            <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
+              <CustomIosSwitch
                 value={form?.is_active}
                 handleChange={() => {
                   changeTextData(!form?.is_active, "is_active");
@@ -136,6 +140,11 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             permissions={permission}
             changeTextData={changeTextData}
             permisionChangeHandler={permisionChangeHandler}
+            setPermissions={setPermissions}
+            allData={allData}
+            setAllData={setAllData}
+           
+            
           />
         </>
 

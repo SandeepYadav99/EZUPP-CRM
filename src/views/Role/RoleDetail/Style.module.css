@@ -1,8 +1,17 @@
 .detailContainer {
-  display: flex !important;
+  /* display: flex !important;
   width: 100% !important;
   gap: 10px !important;
   margin-top: 20px !important;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  display: flex;
+  /*align-items: center;*/
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px !important;
+  gap: 20px !important;
+  max-width: 100%;
 }
 
 .boxleft {
@@ -11,6 +20,39 @@
 
   align-items: center !important;
 }
+.rightSection{
+  flex: 1 1 65% !important;
+}
+.leftSection{
+  flex: 0.4 1 25%;
+}
+ @media (max-width: 1070px) {
+  .detailContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .leftSection {
+    flex: 1 1 65% !important;
+  }
+} 
+.bottomSection{
+  flex: 1 1 65% !important;
+  margin-top: 20px;
+  width: 72%;
+}
+@media (max-width: 1070px) {
+  .detailContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .leftSection {
+    flex: 1 1 65% !important;
+  }
+  .bottomSection{
+    width: 100%;
+    flex: 1 1 100%;
+  }
+} 
 .rightContaiiner{
    display: flex;
    gap: 10px;
@@ -22,9 +64,9 @@
     font-family: Arial;
 
 }
-.headingWrap{
-    margin-bottom: 20px !important;
-}
+/* .headingWrap{
+    margin-bottom: 10px !important;
+} */
 .upperFlex{
   display: flex;
   justify-content: space-between;

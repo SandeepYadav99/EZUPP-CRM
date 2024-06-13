@@ -1,14 +1,16 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem, Typography } from "@mui/material";
+import { MenuItem, Tooltip, Typography } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
-import UploadImage from "../../../../components/UploadImage/UploadImage";
-import { InfoOutlined } from "@mui/icons-material";
+
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
+
+import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
+import ImageInfoToolTip from "../../../../components/ImageInfo/ImageInfo";
 
 const PersonalInformation = ({
   errorData,
@@ -20,19 +22,27 @@ const PersonalInformation = ({
   userId,
   id,
 }) => {
-  const theme=useTheme()
+  const theme = useTheme();
   return (
     <>
       <ShadowBox width={"100%"}>
-        <div className={"headerFlex"}>
-          <Typography fontSize={18} fontWeight={600} marginTop={1.5} marginBottom={1.5}>
-            Personal Information
-          </Typography>
-        </div>
+        <Typography
+          fontSize={18}
+          fontWeight={600}
+          sx={{
+            [theme.breakpoints.down("sm")]: {
+              margin: "auto",
+            },
+          }}
+        >
+          Personal Information
+        </Typography>
+
         <div className={styles.outerFlex}>
           <div className={styles.count}>
             <File
-              max_size={2 * 1024 * 1024}
+              style={{ margin: "auto" }}
+              max_size={5 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
               name="image"
@@ -52,11 +62,16 @@ const PersonalInformation = ({
               }}
             />
             <div className={styles.imageGuide}>
-              <Typography variant={"subtitle1"} color={theme.palette.text.primary} >
-                {" "}
-                Image Guide
-              </Typography>
-                <InfoOutlined fontSize="small" color="action"/>
+              <ImageInfoToolTip
+                title={"Image Guide"}
+                resolution={
+                  <div className={styles.new_line}>
+                    <div> Resolution 500px * 500px</div>
+
+                    <div>Image size = 5MB</div>
+                  </div>
+                }
+              />
             </div>
           </div>
           <div className={styles.lowerWrap}>
@@ -114,15 +129,6 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "contact");
                   }}
-                  isValid={(value) => {
-                    if (value.match(/12345/)) {
-                      return "";
-                    } else if (value.match(/1234/)) {
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  }}
                 />
               </div>
             </div>
@@ -144,6 +150,41 @@ const PersonalInformation = ({
                   ))}
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
+              </div>
+              <div className={"formGroup"}>
+                {id ? (
+                  <CustomSelectField
+                    isError={errorData?.status}
+                    errorText={errorData?.status}
+                    label={"Status"}
+                    // disabled={userId === id ? true : false}
+                    value={form?.status}
+                    handleChange={(value) => {
+                      changeTextData(value, "status");
+                    }}
+                    className={styles.custonCSS}
+                  >
+                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                    <MenuItem value={"DELETED"}>Deleted</MenuItem>
+                    <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
+                  </CustomSelectField>
+                ) : (
+                  <CustomSelectField
+                    isError={errorData?.status}
+                    errorText={errorData?.status}
+                    label={"Status"}
+                    // disabled={userId === id ? true : false}
+                    value={form?.status}
+                    handleChange={(value) => {
+                      changeTextData(value, "status");
+                    }}
+                    className={styles.custonCSS}
+                  >
+                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                  </CustomSelectField>
+                )}
               </div>
             </div>
           </div>

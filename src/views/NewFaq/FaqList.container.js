@@ -1,28 +1,11 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
- */
-import React, {Component} from 'react';
-import {Button, Paper} from '@mui/material';
 
+import React, {Component} from 'react';
+import {Button} from '@mui/material';
 import classNames from 'classnames';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
 import styles from './Faq.module.css';
-// import DataTables from '../../Datatables/DataTableSrc/DataTables';
-import DataTables from '../../Datatables/Datatable.table';
 import Constants from '../../config/constants';
-import FilterComponent from '../../components/Filter/Filter.component';
-import {
-    actionFetchBlogs,
-    actionChangePageBlogs,
-    actionChangeStatusBlogs,
-    actionFilterBlogs,
-    actionResetFilterBlogs,
-    actionSetPageBlogs,
-    actionCreateBlogs,
-    actionUpdateBlogs, actionDeleteBlogs
-} from '../../actions/Blogs.action';
 import TopicView from "./components/Topic/Topic.view";
 import QuestionView from "./components/Questions/QuestionView";
 
@@ -288,12 +271,6 @@ class UpdatedFaqList extends Component {
                         />
                     </div>
                 </div>
-
-                {/*<SidePanelComponent*/}
-                {/*    handleToggle={this._handleSideToggle}*/}
-                {/*    title={'Add/Manage FAQ Topic'} open={this.state.side_panel} side={'right'}>*/}
-                {/*    {this._renderCreateForm()}*/}
-                {/*</SidePanelComponent>*/}
 
             </div>
         )

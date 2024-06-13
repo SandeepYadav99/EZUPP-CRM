@@ -12,7 +12,6 @@ import {
   actionFetchProviderUser,
   actionSetPageProviderUserRequests,
 } from "../../../actions/ProviderUser.action";
-import { format } from "date-fns";
 import history from "../../../libs/history.utils";
 
 const useUserListHook = ({}) => {
@@ -125,17 +124,17 @@ const useUserListHook = ({}) => {
 
   const configFilter = useMemo(() => {
     return [
-      {
-        label: "Created On",
-        name: "createdAt",
-        type: "date",
-        options: { maxDate: new Date() },
-      },
+      // {
+      //   label: "Created On",
+      //   name: "createdAt",
+      //   type: "date",
+      //   options: { maxDate: new Date() },
+      // },
       {
         label: "Status",
         name: "status",
         type: "select",
-        fields: ["PENDING", "ACTIVE"],
+        fields: ["ACTIVE", "INACTIVE", "SUSPENDED", "DELETED"],
       },
     ];
   }, []);
