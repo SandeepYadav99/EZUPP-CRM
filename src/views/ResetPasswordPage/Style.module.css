@@ -1,0 +1,306 @@
+/**
+ * Created by charnjeetelectrovese@gmail.com on 12/13/2018.
+ */
+ .overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/CRMAssets/waves_background.png");
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    /* Set a lower z-index for the pseudo-element */
+  }
+  
+  .container {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2 !important;
+    margin-top: -100vh;
+  }
+  
+  .formContainer{
+    /* background-color: #fff; */
+    flex: 1.5;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  
+  
+  }
+  .mainLoginViewReset{
+    display: flex;
+     width: 100vw;
+    /* height: 100vh; */
+  
+    /*background-image: url('../../assets/img/background.jpg');*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    border-radius: 60px !important;
+  }
+  .mainLoginView {
+    display: flex;
+    width: 100vw;
+    height: 100vh !important;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to left, #2063ce, #25ceae) !important;
+    padding-top: 40px;
+    padding-bottom: 40px !important;
+    background-size: cover;
+    background-position: center;
+    position: relative !important;
+    z-index: -2;
+    /*background-image: url('../../assets/img/background.jpg');*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+  }
+  
+  .headingTextBig {
+    margin: 0px;
+    /*font-weight: 600;*/
+    color: #636578;
+    font-family: Arial;
+    font-size: 24px !important;
+  }
+  
+  .loginFlex1 {
+    background-image: url("../../assets/img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    flex: 1;
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 40px;
+    color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .loginFlexRe {
+    background-color: #fff;
+    flex: 1.5;
+    display: flex;
+  
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .loginFlex2 {
+    background-color: #f7f7f9;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    width: 550px !important;
+    border-radius: 12px !important;
+  }
+  
+  /*.loginFlex1:after {*/
+  /*position:absolute;*/
+  /*top:0;*/
+  /*!*left:-99px;*!*/
+  /*content:'';*/
+  /*height:0vh;*/
+  /*width:0;*/
+  /*border-right: 100px solid white;*/
+  /*border-bottom:0vh solid transparent;*/
+  /*border-top:100vh solid transparent;*/
+  /*overflow:hidden;*/
+  /*right: -1px;*/
+  /*}*/
+  
+  .loginSignupText {
+    text-align: left;
+    color: #072ead;
+  }
+  
+  .loginSignupTextRESET {
+    text-align: left;
+    color: #636578;
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+  .bottomSignUp {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .subText {
+    margin: 20px 0px;
+    font-weight: 400;
+    /*font-size: 18px;*/
+    text-align: justify;
+  }
+  
+  .bottomContainer {
+    position: absolute;
+    bottom: 40px;
+  }
+  
+  .headingText {
+    margin: 0px;
+    /*font-weight: 600;*/
+    color: black;
+    font-family: Arial;
+  }
+  
+  .back {
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0px;
+    color: #2063ce;
+    opacity: 1;
+    gap: 2px;
+    justify-content: center !important;
+  }
+  
+  .bottomSignup {
+    font-size: 0.8rem;
+  }
+  
+  .forgotBtn {
+    color: #5f63f2 !important;
+    text-decoration: underline !important;
+    font-size: 13px;
+  }
+  
+  .heading {
+    margin-bottom: 30px;
+    color: white;
+    font-size: 38px;
+    font-weight: 500;
+    font-family: "CircularStd-Medium";
+  }
+  
+  .innerFlex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icons {
+    height: 70px;
+    width: 70px;
+  }
+  
+  .textRight {
+    margin-left: 15px;
+  }
+  
+  .titleText {
+    font-size: 22px;
+    font-family: "CircularStd-Book";
+  }
+  
+  .subHeading {
+    font-size: 14px;
+    /*font-family: CircularStd-Book;*/
+  }
+  
+  .resetButton {
+    background-color: #5f63f2 !important;
+    color: white !important;
+    min-width: 185px !important;
+    padding: 15px 70px !important;
+  }
+  
+  .signContainer {
+    /* padding: 10% 15%; */
+  }
+  
+  .signContainer2 {
+    padding-left: 15% !important;
+    padding-right: 15% !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+  .visibleIcon{
+    margin-left: -40px !important;
+    margin-top: 10px !important;
+  }
+  .login {
+    padding: 10px 20px 10px 20px !important;
+    border-radius: 7px !important;
+    color: white !important;
+    background: #2063ce !important;
+    margin-top: 15px !important;
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.5s ease-out;
+    width: 207px;
+    height: 52px;
+  }
+  
+  .login:hover {
+    padding: 10px 20px 10px 20px !important;
+    border-radius: 7px !important;
+    color: white !important;
+    background: #25ceae !important;
+    margin-top: 15px !important;
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.5s ease-out;
+    width: 207px;
+    height: 52px;
+  }
+  
+  .title {
+    color: #072ead;
+  }
+  
+  .logoImageData {
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: center !important;
+  }
+  
+  .headingText {
+    margin: 0px;
+    font-weight: 600;
+    font-size: 24px !important;
+    color: #636578;
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    .loginFlex2 {
+      background-color: #f7f7f9;
+      /* border-radius: 18px; */
+      display: flex;
+      padding-bottom: 15px !important;
+      width: 100vw !important;
+      flex-direction: column;
+      height: 100% !important;
+      border-radius: 0px !important;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 1024px) {
+    .mobileRender {
+      gap: 10px !important;
+      flex-direction: column !important;
+      gap: 10px;
+    }
+  }
+  

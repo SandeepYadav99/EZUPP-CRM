@@ -12,6 +12,7 @@ import DragDrop from "../views/DragDrop/DragDrop.jsx";
 import ChooseAccount from "../views/ChooseAccount/ChooseAccount.js";
 import SuccessPageView from "../views/PasswordSucessful/SucessPage.view.js";
 import FirstResetPassowrd from "../views/ForgotPassword/FirstResetPassword/FirstResetPassword.component.js";
+import ResetPasswordView from "../views/ResetPasswordPage/ResetPassword.component.js";
 
 const App = () => {
   return <div> hi</div>;
@@ -25,6 +26,8 @@ const RouteComponent = () => (
     <Route path={"/already"} component={ChooseAccount} />
     <Route path={"/password/resend"} component={SuccessPageView} />
     <Route path={"/reset/password"} component={FirstResetPassowrd} />
+    <Route path={"/password/reset"} component={ResetPasswordView} />
+
     <Route path={"/"} component={Dashboard} />
   </Switch>
 );
