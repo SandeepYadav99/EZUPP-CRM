@@ -24,6 +24,7 @@ const UserCreate = ({}) => {
     department,
     listData,
     isSubmitting,
+    designation
   } = useUserCreateHook();
 
   return (
@@ -57,6 +58,7 @@ const UserCreate = ({}) => {
           onBlurHandler={onBlurHandler}
           manager={manager}
           department={department}
+          designation={designation}
           id={id}
         />
       )}

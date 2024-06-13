@@ -1,7 +1,8 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer } from "react";
 import styles from "./Style.module.css";
 import { useParams } from "react-router-dom";
 import {
+  serviceDeleteRole,
   serviceDetailPermissions,
   serviceDetailRole,
 } from "../../../services/Role.service";
@@ -14,6 +15,8 @@ import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
+import { useDispatch } from "react-redux";
+import PermissionsGranted from "../Component/PermissionsGranted";
 
 const initialState = {
   roleDetail: {},
@@ -32,7 +35,21 @@ const RoleDetail = () => {
         return state;
     }
   };
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatchDetail] = useReducer(reducer, initialState);
+  const dispatch = useDispatch();
+  const roleDelete = useCallback(async () => {
+    const res = await serviceDeleteRole({ id: id });
+    if (!res?.error) {
+      const roleDetail = await serviceDetailRole({ id: id });
+      if (!roleDetail.error) {
+        console.log(roleDetail);
+        dispatchDetail({
+          type: "ROLE_DETAIL",
+          payload: roleDetail.data.details,
+        });
+      }
+    }
+  }, [id, dispatchDetail]);
 
   useEffect(() => {
     Promise.all([
@@ -41,15 +58,16 @@ const RoleDetail = () => {
     ]).then(([roleDetail, permissions]) => {
       const data = roleDetail?.data?.details;
       if (!roleDetail.error) {
-        dispatch({ type: "ROLE_DETAIL", payload: data });
+        dispatchDetail({ type: "ROLE_DETAIL", payload: data });
       }
       if (!permissions.error) {
-        dispatch({ type: "PERMISSIONS", payload: permissions.data });
+        dispatchDetail({ type: "PERMISSIONS", payload: permissions.data });
       }
     });
   }, [id]);
 
   const { description, status, name, display_name } = state?.roleDetail;
+
   return (
     <div>
       <div className={styles.upperFlex}>
@@ -65,7 +83,7 @@ const RoleDetail = () => {
           <ArrowActionButton
             icon={<Delete fontSize={"small"} />}
             className={styles.addTask}
-            onClick={() => {}}
+            onClick={() => roleDelete()}
           >
             <div className={styles.innerText}>Delete</div>
           </ArrowActionButton>
@@ -96,52 +114,7 @@ const RoleDetail = () => {
             <Typography fontSize={18} fontWeight={600}>
               Permissions Granted
             </Typography>
-            <div className={styles.rightContaiiner}>
-              <div>
-                <Typography
-                  variant="subtitle1"
-                  margin={theme.spacing(1.5)}
-                  fontWeight={600}
-                >
-                  Roles:
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  margin={theme.spacing(1.5)}
-                  fontWeight={600}
-                >
-                  Users:
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  margin={theme.spacing(1.5)}
-                  fontWeight={600}
-                >
-                  Products:
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  margin={theme.spacing(1.5)}
-                  fontWeight={600}
-                >
-                  Contact:
-                </Typography>
-              </div>
-              <div>
-                <Typography variant="body1" margin={theme.spacing(1.5)}>
-                  All Data
-                </Typography>
-                <Typography variant="body1" margin={theme.spacing(1.5)}>
-                  Update, Delete
-                </Typography>
-                <Typography variant="body1" margin={theme.spacing(1.5)}>
-                  Read, Write
-                </Typography>
-                <Typography variant="body1" margin={theme.spacing(1.5)}>
-                  All Data
-                </Typography>
-              </div>
-            </div>
+            <PermissionsGranted state={state} styles={styles} />
           </div>
         </ShadowBox>
       </div>

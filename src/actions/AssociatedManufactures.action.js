@@ -1,12 +1,7 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 12/5/2019.
- */
 
-// import { serviceFetchProviderRequests } from '../services/ProviderRequest.service';
-// import { fetchPRequests } from '../services/User.service';
 import store from '../store';
 import Constants from '../config/constants';
-import EventEmitter from "../libs/Events.utils";
+
 import { serviceAssociatedList } from '../services/AssociatedManufactures.sercice';
 
 export const FETCH_INIT = 'FETCH_INIT_ASSOCIATED_MANUFACTURES';
@@ -29,14 +24,15 @@ export const UPDATE_DATA = 'UPDATE_ASSOCIATED_MANUFACTURES';
 export const DELETE_ITEM = 'DELETE_ASSOCIATED_MANUFACTURES';
 
 export function actionFetchAssociatedManufactures(index = 1, sorting = {}, filter = {}, id) {
-    const request = serviceAssociatedList({ index, row: sorting.row, order: sorting.order, ...filter , id:id});
+    const request = serviceAssociatedList({ index, row: sorting.row, order: sorting.order, ...filter , role_id:id});
     return (dispatch) => {
         dispatch({type: FETCH_INIT, payload: null});
         request.then((data) => {
+           
             dispatch({type: SET_FILTER, payload: filter});
             dispatch({type: SET_SORTING, payload: sorting});
             if (!data.error) {
-                dispatch({type: FETCHED, payload: { data: data.data.manufactureUser, page: index }});
+                dispatch({type: FETCHED, payload: { data: data.data, page: index }});
                 dispatch({ type: SET_SERVER_PAGE, payload: index });
                 if (index == 1) {
                     dispatch({type: CHANGE_PAGE, payload: index - 1});
