@@ -121,7 +121,7 @@ function useUserCreateHook() {
                 setErrorData(errors);
               }
               if (fieldName === "email") {
-                errors[fieldName] = `Admin User Email Exists`;
+                errors[fieldName] = `Email already exist`;
                 setErrorData(errors);
               }
 
@@ -378,9 +378,9 @@ function useUserCreateHook() {
 
   const onBlurHandler = useCallback(
     (type) => {
-      if (form?.[type]) {
-        changeTextData(form?.[type].trim(), type);
-      }
+      // if (form?.[type]) {
+      //   changeTextData(form?.[type].trim(), type);
+      // }
     },
     [changeTextData]
   );

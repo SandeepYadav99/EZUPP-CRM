@@ -16,7 +16,8 @@ import {
     SET_SERVER_PAGE,
     CREATE_DATA,
     UDPATE_DATA, UPDATE_DATA,
-    DELETE_ITEM
+    DELETE_ITEM, 
+    PERMISSION,
 } from '../actions/Role.action';
 import Constants from '../config/constants';
 
@@ -36,7 +37,8 @@ const initialState = {
     query: null, // search text data
     query_data: null, // popover filter data change
     sorting_data: {row: null, order: null},
-    is_fetching: false
+    is_fetching: false,
+    permissions:[]
 };
 
 export default function (state = JSON.parse(JSON.stringify(initialState)), action) {
@@ -165,6 +167,9 @@ export default function (state = JSON.parse(JSON.stringify(initialState)), actio
         }
         case SET_SERVER_PAGE: {
             return {...state, serverPage: action.payload};
+        }
+        case PERMISSION: {
+            return {...state, permissions: action.payload};
         }
         default: {
             return state;
