@@ -28,7 +28,7 @@ export async function serviceGetTagList(params) {
     return await postRequest('keywords', params);
 }
 export async function serviceResetPassword(params) {
-    return await postRequest('reset/password', params);
+    return await postRequest('auth/reset/password', params);
 }
 
 export async function serviceResetProfilePassword(params) {

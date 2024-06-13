@@ -8,11 +8,11 @@ export async function serviceFetchFaq(params) {
     return await postRequest('faq/category', params);
 }
 export async function serviceCreateFaq(params) {
-    return await formDataRequest('faq/category/create', params);
+    return await postRequest('faq/category/create', params);
 }
 
 export async function serviceUpdateFaq(params) {
-    return await formDataRequest('faq/category/update', params);
+    return await postRequest('faq/category/update', params);
 }
 
 export async function serviceDeleteFaq(params) {
@@ -25,4 +25,7 @@ export async function serviceFaqExists(params) {
 
 export async function serviceUploadBlogImage(params) {
     return await formDataRequest('faq/upload/image', params);
+}
+export async function serviceUpdateFaqPriority(params) {
+    return await postRequest('faq/category/update/priority', params);
 }

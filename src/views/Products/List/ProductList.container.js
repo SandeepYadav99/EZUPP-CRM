@@ -29,7 +29,7 @@ import {
   PrimaryButton,
 } from "./../../../components/Buttons/PrimaryButton";
 import DeleteDialog from "./component/DeleteDialog/DeleteDialog";
-import {useTheme} from "@mui/styles";
+import { useTheme } from "@mui/styles";
 const ProductList = (props) => {
   const {
     handleSortOrderChange,
@@ -68,10 +68,6 @@ const ProductList = (props) => {
   }, []);
 
   const handleDelete = (all) => {
-    // let params ={
-    //   "id":all?.id
-    // }
-    // serviceDeleteProduct(params)
     let params = {
       id: productToDelete?.id,
     };
@@ -116,10 +112,17 @@ const ProductList = (props) => {
         key: "productLink",
         label: "Link",
         sortable: false,
-        render: (temp, all) =><div className={styles.breakWord}> <a href={all?.product_link} style={{color: theme.palette.primary.main}}>
-           {all?.product_link}
-          
-          </a></div>,
+        render: (temp, all) => (
+          <div className={styles.breakWord}>
+            {" "}
+            <a
+              href={all?.product_link}
+              style={{ color: theme.palette.primary.main }}
+            >
+              {all?.product_link}
+            </a>
+          </div>
+        ),
       },
       {
         key: "status",
@@ -146,20 +149,24 @@ const ProductList = (props) => {
           <div className={styles.actionButton}>
             <IconButton
               // disabled={is_calling}
-              onClick={() => handleEdit(all)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleEdit(all);
+              }}
             >
               {/* <Edit fontSize={"small"} /> */}
               <img src={taskDetail} alt="task" width={20} />
             </IconButton>
             {all?.status !== "DELETED" && (
-            <IconButton
-              onClick={() => {
-                setProductToDelete(all);
-                openDialog();
-              }}
-            >
-              <img src={removeTask} alt="task" width={20} />
-            </IconButton>
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setProductToDelete(all);
+                  openDialog();
+                }}
+              >
+                <img src={removeTask} alt="task" width={20} />
+              </IconButton>
             )}
           </div>
         ),
@@ -172,6 +179,7 @@ const ProductList = (props) => {
       onSortOrderChange: handleSortOrderChange,
       onPageChange: handlePageChange,
       onRowSizeChange: handleRowSize,
+      clickableRow: handleEdit,
     };
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,

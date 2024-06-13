@@ -16,7 +16,7 @@ export async function serviceUpdateFaqQuestion(params) {
 }
 
 export async function serviceDeleteFaqQuestion(params) {
-    return await formDataRequest('faq/question/delete', params);
+    return await postRequest('faq/question/delete', params);
 }
 
 export async function serviceFaqQuestionExists(params) {
@@ -25,4 +25,7 @@ export async function serviceFaqQuestionExists(params) {
 
 export async function serviceUploadFaqQuestionImage(params) {
     return await formDataRequest('faq/upload/image', params);
+}
+export async function serviceUpdateFaqQuestionPriority(params) {
+    return await postRequest('faq/question/update/priority', params);
 }

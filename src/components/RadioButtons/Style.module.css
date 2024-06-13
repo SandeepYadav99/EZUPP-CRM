@@ -46,3 +46,10 @@ height: 74px;
   align-items: flex-start;
   margin-left: -12px;
 }
+@media (max-width: 600px) {
+  .textcard {
+    width: 200px; 
+    height: 80px; 
+  
+  }
+}

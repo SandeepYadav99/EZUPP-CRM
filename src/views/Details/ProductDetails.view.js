@@ -14,6 +14,7 @@ import editTask from "../../assets/Assets/ic_edit_blue@2x.png";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import useProductDetailHook from "./ProductDetailsHook";
 import DeleteDialog from "../Products/List/component/DeleteDialog/DeleteDialog";
+
 const ProductDetailview = () => {
   const { isLoading, handleSideToggle, handleDetailPage, profileDetails, handleDelete, openDialog,
     closeDialog,
@@ -112,15 +113,26 @@ const ProductDetailview = () => {
                 Associated Tags
               </Typography>
               <div className={styles.row21}>
-                {profileDetails?.tags?.map((item, index) => (
+              {profileDetails?.tags?.length > 0 && profileDetails?.tags.every(item => item!== "")? (
+                profileDetails?.tags?.map((item, index) => (
                   <Typography
                     variant={"body1"}
                     className={styles.tags}
                     key={`tags_${index}`}
+                    color={"text.primary"}
                   >
-                    {item}
+                    {item} 
                   </Typography>
-                ))}
+                ))
+              ) : (
+                <Typography
+                  variant={"body1"}                
+                  color={"text.secondary"}
+                >
+                  N/A
+                </Typography>
+              )
+                }
               </div>
 
               <Typography variant={"subtitle1"} className={styles.title}>
@@ -134,7 +146,7 @@ const ProductDetailview = () => {
           <div className={styles.profileFlex}>
             <div className={styles.leftSection}>
               <>
-                <ShadowBox width={"23rem"}>
+                <ShadowBox className={styles.productComm} >
                   <div className={styles.profileContainer}></div>
                   <div className={styles.title}>
                     <Typography variant={"title"} color={"text.primary"}>
@@ -152,7 +164,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.email}
                       >
-                        {profileDetails?.unit_id || "N/A"}
+                        {profileDetails?.unit?.name ?? "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -165,7 +177,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.ballpark_cost || "N/A"}
+                        {/* {profileDetails?.currency} {profileDetails?.ballpark_cost ?? "N/A"} */}
+                        {profileDetails?.ballpark_cost != null ? `${profileDetails.currency} ${profileDetails.ballpark_cost}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -178,7 +191,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.ballpark_price || "N/A"}
+                        {/* {profileDetails?.currency} {profileDetails?.ballpark_price ?? "N/A"} */}
+                        {profileDetails?.ballpark_price != null ? `${profileDetails.currency} ${profileDetails.ballpark_price}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -191,7 +205,7 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_percent || "N/A"}
+                        {profileDetails?.discount_percent ?? "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -204,7 +218,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_value || "N/A"}
+                        {/* {profileDetails?.currency} {profileDetails?.discount_value ?? "N/A"} */}
+                        {profileDetails?.discount_value != null ? `${profileDetails.currency} ${profileDetails.discount_value}` : "N/A"}
                       </Typography>
                     </div>
                   </div>
@@ -225,7 +240,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.createdBy || "N/A"}
+                        {profileDetails?.createdBy?.user_name ?? "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
@@ -247,7 +262,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.createdBy || "N/A"}
+                        {/* {profileDetails?.updatedBy || "N/A"} */}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
