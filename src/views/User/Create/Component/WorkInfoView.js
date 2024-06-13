@@ -15,6 +15,7 @@ const WorkInfoView = ({
   onBlurHandler,
   manager,
   department,
+  id
 }) => {
   return (
     <>
@@ -144,13 +145,14 @@ const WorkInfoView = ({
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            {/* <CustomCheckbox
+            {!id && 
+            <CustomCheckbox
               value={form?.invoiteToUser}
               handleChange={() => {
                 changeTextData(!form?.invoiteToUser, "invoiteToUser");
               }}
               label={`Send Invite to user on email`}
-            /> */}
+            />}
           </div>
         </div>
       </ShadowBox>
