@@ -28,6 +28,7 @@ import debounce from "lodash.debounce";
 import { serviceUpdateFaqPriority } from "../../../../services/Faq.service";
 import { serviceUpdateFaqQuestionPriority } from "../../../../services/FaqQuestion.service";
 
+
 const QuestionView = (props) => {
   const [sidePanel, setSidePanel] = useState(false);
   const [editData, setEditData] = useState(null);

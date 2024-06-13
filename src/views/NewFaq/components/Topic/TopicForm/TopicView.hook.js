@@ -12,7 +12,7 @@ const initialState = {
   status: true,
 };
 
-const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
+const useTopicView = (dataExist, handletoggleSidePannel, listlength = 0) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,8 +23,10 @@ const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
     let required = ["title", "visible_to"];
 
     required.forEach((val) => {
+      const fieldValue = form?.[val]?.trim();
+
       if (
-        (!form?.[val] && parseInt(form?.[val]) != 0) ||
+        (!fieldValue && parseInt(fieldValue) !== 0) ||
         (Array.isArray(form?.[val]) && form?.[val]?.length === 0)
       ) {
         errors[val] = true;
@@ -53,8 +55,12 @@ const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
       setForm({
         visible_to: dataExist?.visible_to,
         title: dataExist?.title,
-        status: dataExist?.status,
-        priority:dataExist?.priority
+        status: dataExist?.status === "ACTIVE" ? true : false,
+        priority: dataExist?.priority,
+      });
+    } else {
+      setForm({
+        ...initialState,
       });
     }
   }, [dataExist]);
@@ -78,7 +84,7 @@ const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
       status: `${statusData}`,
       visible_to: form?.visible_to,
       title: form?.title,
-      priority:listlength
+      priority: listlength,
     };
 
     if (dataExist) {
@@ -104,11 +110,15 @@ const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
 
     req?.then((res) => {
       if (!res?.error) {
-        SnackbarUtils.success("Create Successfully");
+        if (dataExist) {
+          SnackbarUtils.success("Updated Successfully");
+        } else {
+          SnackbarUtils.success("Created Successfully");
+        }
         handletoggleSidePannel();
       }
     });
-  }, [form, isSubmitting, setIsSubmitting,listlength]);
+  }, [form, isSubmitting, setIsSubmitting, listlength]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -128,7 +138,7 @@ const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer,listlength]
+    [checkFormValidation, setErrorData, form, submitToServer, listlength]
   );
 
   const handleDelete = () => {
@@ -145,7 +155,6 @@ const useTopicView = (dataExist, handletoggleSidePannel,listlength=0) => {
         SnackbarUtils.success("Deleted Successfully");
         handletoggleSidePannel();
         setConfirmPopUp(false);
-
       } else {
         setConfirmPopUp(false);
         handletoggleSidePannel();

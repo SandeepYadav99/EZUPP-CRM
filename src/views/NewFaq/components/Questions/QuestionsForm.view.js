@@ -31,12 +31,21 @@ import useQuestionFormHook from "./QuestionForm.hook";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 import NewEditor from "../../../../components/NewEditor/NewEditor.component";
+import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
+import CustomIosSwitch from "../../../../components/FormFields/CustomIosSwitch";
+import removeTask from "../../../../assets/Assets/ic_delete@2x.png";
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const QuestionsFormView = ({  category, data,handleToggleSidePannel,listLength=0 }) => {
+const QuestionsFormView = ({
+  category,
+  data,
+  handleToggleSidePannel,
+  listLength = 0,
+}) => {
   const {
     form,
     errorData,
@@ -47,7 +56,12 @@ const QuestionsFormView = ({  category, data,handleToggleSidePannel,listLength=0
     suspendItem,
     handleDialogClose,
     descriptionRef,
-  } = useQuestionFormHook({ category, data,handleToggleSidePannel,listLength});
+  } = useQuestionFormHook({
+    category,
+    data,
+    handleToggleSidePannel,
+    listLength,
+  });
 
   const renderDialog = () => {
     if (confirmPopUp) {
@@ -122,38 +136,34 @@ const QuestionsFormView = ({  category, data,handleToggleSidePannel,listLength=0
                 handleChangeEditor={(html) => {
                   descriptionRef.current(html, "description");
                 }}
+                height={"100px"}
               />
             </div>
           </div>
         </div>
         <br />
         <div className={styles.bottomFlex}>
-          <CustomSwitch
+          <CustomIosSwitch
             value={form?.status}
             handleChange={() => {
               changeTextData(!form?.status, "status");
             }}
-            label={`${form?.status ? "ACTIVE" : "INACTIVE"}`}
+            label={form?.status ? "Active" : "Inactive"}
           />
 
           <div>
             {data && (
-              <IconButton variant={"contained"} onClick={() => handleDelete()}>
-                <DeleteIcon />
+              <IconButton onClick={() => handleDelete()}>
+                <img src={removeTask} alt="task" width={20} />
               </IconButton>
             )}
           </div>
         </div>
         <br />
         <div className={styles.submitBtn}>
-          <Button
-            className={"sub"}
-            variant={"contained"}
-            color={"primary"}
-            onClick={handleSubmit}
-          >
-            Save
-          </Button>
+          <PrimaryButton onClick={handleSubmit}>
+            {data ? "Update" : "Save"}
+          </PrimaryButton>
         </div>
       </div>
       {renderDialog()}

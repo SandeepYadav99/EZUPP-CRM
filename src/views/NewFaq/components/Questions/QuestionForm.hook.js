@@ -15,7 +15,12 @@ const initialState = {
   description: "",
 };
 
-const useQuestionFormHook = ({ category, data, handleToggleSidePannel,listLength=0 }) => {
+const useQuestionFormHook = ({
+  category,
+  data,
+  handleToggleSidePannel,
+  listLength = 0,
+}) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,24 +41,31 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel,listLength
     setChecked(!checked);
   };
 
+
   useEffect(() => {
     if (data) {
       setForm({
         question: data?.question,
-        status: data?.status,
+        status: data?.status === "ACTIVE" ? true : false,
         description: data?.description,
-        priority:data?.priority
+        priority: data?.priority,
+      });
+    } else {
+      setForm({
+        ...initialState,
       });
     }
   }, [data]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["question"];
+    let required = ["question", "description"];
 
     required.forEach((val) => {
+      const fieldValue = form?.[val]?.trim();
+
       if (
-        (!form?.[val] && parseInt(form?.[val]) != 0) ||
+        (!fieldValue && parseInt(fieldValue) !== 0) ||
         (Array.isArray(form?.[val]) && form?.[val]?.length === 0)
       ) {
         errors[val] = true;
@@ -93,19 +105,18 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel,listLength
   const submitToServer = useCallback(() => {
     setIsSubmitting(true);
 
-    const statusData = form?.status  ? "ACTIVE" : "INACTIVE";
+    const statusData = form?.status ? "ACTIVE" : "INACTIVE";
 
     const payload = {
       title: category?.title,
       faq_category_id: category?.id,
       status: `${statusData}`,
-      question:form?.question,
+      question: form?.question,
       description: form?.description,
     };
 
-
     let req;
-      payload.priority = data?.id ? form?.priority : listLength;
+    payload.priority = data?.id ? form?.priority : listLength;
     if (data) {
       req = serviceUpdateFaqQuestion({ ...payload, id: data?.id });
     } else {
@@ -114,14 +125,19 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel,listLength
 
     req?.then((res) => {
       if (!res?.error) {
-        SnackbarUtils.success("Create Successfully");
+        if(data){
+          SnackbarUtils.success("Update Successfully");
+        }
+        else {
+          SnackbarUtils.success("Create Successfully");
+        }
         handleToggleSidePannel();
       } else {
         SnackbarUtils.error("Something went Wrong");
         handleToggleSidePannel();
       }
     });
-  }, [form, isSubmitting, setIsSubmitting,listLength]);
+  }, [form, isSubmitting, setIsSubmitting, listLength]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -141,7 +157,7 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel,listLength
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer,listLength]
+    [checkFormValidation, setErrorData, form, submitToServer, listLength]
   );
 
   const handleDelete = () => {
