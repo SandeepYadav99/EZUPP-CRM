@@ -11,20 +11,19 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
     height: 19,
     padding: 0,
     display: 'flex',
-    '&:active': {
-      '& .MuiSwitch-thumb': {
-        // width: 15,
-      },
-      '& .MuiSwitch-switchBase.Mui-checked': {
-        transform: 'translateX(25px)',
-        transition: ' 0.3s ease-out',
-      },
-    },
+    // '&:active': {
+    
+    //   '& .MuiSwitch-switchBase.Mui-checked': {
+    //     transform: 'translateX(25px)',
+    //     // transition: 'transform 1.5s ease-out',
+       
+    //   },
+    // },
     '& .MuiSwitch-switchBase': {
       padding: 2,
       '&.Mui-checked': {
         transform: 'translateX(23px)',
-        transition: 'transform 0.3s ease-out',
+        transition: 'transform 1.5s ease-out', 
         color: '#fff',
         '& + .MuiSwitch-track': {
           opacity: 1,
@@ -37,7 +36,7 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
       width: 12,
       height: 12,
       borderRadius: 6,
-      transition: 'width 0.1s ease-in, transform 0.3s ease-out', 
+      transition: 'transform 1.5s ease-out',
       marginTop:2,
     },
     '& .MuiSwitch-track': {
@@ -46,7 +45,7 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
       backgroundColor:
         theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
       boxSizing: 'border-box',
-      transition: 'background-color 0.3s ease-out',
+      transition: 'background-color 1.5s ease-out',
     },
   }));
   
