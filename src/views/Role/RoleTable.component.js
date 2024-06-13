@@ -21,14 +21,7 @@ const RoleTableComponent = ({
   allData,
   setAllData,
   setPermissions,
-  // setRead,
-  // setWrite,
-  // setUpdate,
-  // setDeltePermison,
-  // read,
-  // write,
-  // update,
-  // deletePremison,
+
 }) => {
   const handleCheckboxChange = useCallback(
     (event, permissionType, index) => {
