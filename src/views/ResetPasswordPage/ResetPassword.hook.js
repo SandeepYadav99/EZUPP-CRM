@@ -2,17 +2,28 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import SnackbarUtils from "../../libs/SnackbarUtils";
-import { serviceResetProfilePassword } from "../../services/index.services";
+import { serviceResetPassword, serviceResetProfilePassword } from "../../services/index.services";
 import history from "../../libs/history.utils";
 import { validatePassword } from "../../libs/RegexUtils";
+import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const initialForm = {
   password: "",
   confirm_password: "",
 };
 
-const useResetPasswordHook = ({ open, email, handleClose }) => {
+const useResetPasswordHook = ({ open,  handleClose }) => {
   const [isLoading] = useState(false);
+  const location = useLocation();
+
+
+  const getQueryParams = (search) => {
+    return new URLSearchParams(search);
+  };
+
+  const queryParams = getQueryParams(location.search);
+  const tokenData = queryParams.get("token");
+
 
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -88,11 +99,10 @@ const useResetPasswordHook = ({ open, email, handleClose }) => {
     setIsSubmitting(true);
     try {
       const formData = {
-        confirm_password: form?.confirm_password,
         password: form?.password,
-        email: email,
+        token:tokenData
       };
-      const serviceFunction = serviceResetProfilePassword;
+      const serviceFunction = serviceResetPassword;
       const res = await serviceFunction(formData);
       if (!res.error) {
         handleClose();
