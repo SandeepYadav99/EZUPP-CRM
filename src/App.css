@@ -125,10 +125,10 @@
   /*border-bottom: 1px solid black;*/
 }
 
-.login .MuiInputLabel-root {
-    color: black;
-    background: #f7f7f9;
-}
+/*.login .MuiInputLabel-root {*/
+/*    color: black;*/
+/*    background: #f7f7f9;*/
+/*}*/
 
 input[type="radio"] {
   position: absolute;

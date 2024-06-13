@@ -92,7 +92,8 @@ const DarkTheme = (colors) => {
             business: '#888cff',
             Discuss:"#636578",
             service: "#636578",
-            warm: "#EBC50B"
+            warm: "#EBC50B",
+            draft: "#2063CE",
         },
         success: {
             main: success,
@@ -111,7 +112,7 @@ const DarkTheme = (colors) => {
             error: '#ff0000',
             bright: '#FFF',
             subText:subText
-            
+
         },
         primaryButton: {
             hover: secondary,
@@ -125,7 +126,7 @@ const DarkTheme = (colors) => {
             color2:"#ff4d49"
         },
         tableHeadColor:tableHeadColor,
-        contentDark:darkContent, 
+        contentDark:darkContent,
         contact:contact,
         switchTheme:switchTheme
     };

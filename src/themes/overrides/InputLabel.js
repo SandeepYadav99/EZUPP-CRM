@@ -8,7 +8,7 @@ export default function InputLabel(theme) {
       styleOverrides: {
         root: {
           color: theme.palette.grey[500],
-            background: "transparent",
+            // background: "transparent",
           },
         outlined: {
           lineHeight: '1rem',
