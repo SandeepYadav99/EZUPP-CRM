@@ -16,15 +16,15 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
         // width: 15,
       },
       '& .MuiSwitch-switchBase.Mui-checked': {
-        transform: 'translateX(27px)',
-        transition: 'transform 0.3s ease-out',
+        transform: 'translateX(25px)',
+        transition: ' 0.3s ease-out',
       },
     },
     '& .MuiSwitch-switchBase': {
       padding: 2,
       '&.Mui-checked': {
         transform: 'translateX(23px)',
-        transition: 'transform 0.3s ease-in',
+        transition: 'transform 0.3s ease-out',
         color: '#fff',
         '& + .MuiSwitch-track': {
           opacity: 1,

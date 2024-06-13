@@ -17,6 +17,7 @@ import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import PermissionsGranted from "../Component/PermissionsGranted";
+import { actionFetchRole } from "../../../actions/Role.action";
 
 const initialState = {
   roleDetail: {},
@@ -37,17 +38,12 @@ const RoleDetail = () => {
   };
   const [state, dispatchDetail] = useReducer(reducer, initialState);
   const dispatch = useDispatch();
+  
   const roleDelete = useCallback(async () => {
     const res = await serviceDeleteRole({ id: id });
     if (!res?.error) {
-      const roleDetail = await serviceDetailRole({ id: id });
-      if (!roleDetail.error) {
-        console.log(roleDetail);
-        dispatchDetail({
-          type: "ROLE_DETAIL",
-          payload: roleDetail.data.details,
-        });
-      }
+      history.push(RouteName.ROLE);
+      dispatch(actionFetchRole(1, {}, {}));
     }
   }, [id, dispatchDetail]);
 
