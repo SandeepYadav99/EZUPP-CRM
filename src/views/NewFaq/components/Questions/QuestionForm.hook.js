@@ -15,7 +15,7 @@ const initialState = {
   description: "",
 };
 
-const useQuestionFormHook = ({ category, data, handleToggleSidePannel }) => {
+const useQuestionFormHook = ({ category, data, handleToggleSidePannel,listLength=0 }) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,6 +42,7 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel }) => {
         question: data?.question,
         status: data?.status,
         description: data?.description,
+        priority:data?.priority
       });
     }
   }, [data]);
@@ -104,7 +105,7 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel }) => {
 
 
     let req;
-
+      payload.priority = data?.id ? form?.priority : listLength;
     if (data) {
       req = serviceUpdateFaqQuestion({ ...payload, id: data?.id });
     } else {
@@ -120,7 +121,7 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel }) => {
         handleToggleSidePannel();
       }
     });
-  }, [form, isSubmitting, setIsSubmitting]);
+  }, [form, isSubmitting, setIsSubmitting,listLength]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -140,7 +141,7 @@ const useQuestionFormHook = ({ category, data, handleToggleSidePannel }) => {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, submitToServer,listLength]
   );
 
   const handleDelete = () => {

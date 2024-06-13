@@ -1,8 +1,16 @@
 .outerFlex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   /* padding-bottom: 30px; */
+ flex-wrap: wrap;
+
+}
+.userContainer{
+  overflow: hidden !important;
+}
+.count{
+ margin: auto !important;
 }
 .outerFlex1 {
   padding-bottom: 30px;

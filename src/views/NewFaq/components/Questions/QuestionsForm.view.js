@@ -36,7 +36,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const QuestionsFormView = ({ classes, category, data,handleToggleSidePannel }) => {
+const QuestionsFormView = ({  category, data,handleToggleSidePannel,listLength=0 }) => {
   const {
     form,
     errorData,
@@ -47,9 +47,7 @@ const QuestionsFormView = ({ classes, category, data,handleToggleSidePannel }) =
     suspendItem,
     handleDialogClose,
     descriptionRef,
-  } = useQuestionFormHook({ category, data,handleToggleSidePannel});
-
-  const defaultTheme = createMuiTheme();
+  } = useQuestionFormHook({ category, data,handleToggleSidePannel,listLength});
 
   const renderDialog = () => {
     if (confirmPopUp) {

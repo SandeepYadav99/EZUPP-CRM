@@ -26,19 +26,22 @@ const PersonalInformation = ({
   return (
     <>
       <ShadowBox width={"100%"}>
-        <div className={"headerFlex"}>
-          <Typography
-            fontSize={18}
-            fontWeight={600}
-            marginTop={1.5}
-            marginBottom={1.5}
-          >
-            Personal Information
-          </Typography>
-        </div>
+        <Typography
+          fontSize={18}
+          fontWeight={600}
+          sx={{
+            [theme.breakpoints.down("sm")]: {
+              margin: "auto",
+            },
+          }}
+        >
+          Personal Information
+        </Typography>
+
         <div className={styles.outerFlex}>
           <div className={styles.count}>
             <File
+              style={{ margin: "auto" }}
               max_size={5 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
@@ -149,7 +152,6 @@ const PersonalInformation = ({
                 </CustomSelectField>
               </div>
               <div className={"formGroup"}>
-           
                 {id ? (
                   <CustomSelectField
                     isError={errorData?.status}

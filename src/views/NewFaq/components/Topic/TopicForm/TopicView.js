@@ -19,7 +19,7 @@ import {
   DialogActions
 } from "@mui/material";
 
-const TopicViewForm = ({ dataExist,handletoggleSidePannel }) => {
+const TopicViewForm = ({ dataExist,handletoggleSidePannel,listlength=0 }) => {
   const {
     form,
     errorData,
@@ -29,7 +29,7 @@ const TopicViewForm = ({ dataExist,handletoggleSidePannel }) => {
     confirmPopUp,
     suspendItem,
     handleDialogClose,
-  } = useTopicView(dataExist,handletoggleSidePannel);
+  } = useTopicView(dataExist,handletoggleSidePannel,listlength);
 
 
   const renderDialog = () => {

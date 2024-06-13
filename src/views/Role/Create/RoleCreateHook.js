@@ -32,6 +32,9 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   const [form, setForm] = useState({ ...initialForm });
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
   const [permission, setPermissions] = useState([]);
+  const [allData, setAllData]=useState(false);
+
+ 
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -63,6 +66,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const permisionChangeHandler = useCallback(
     (index, data) => {
+     
       const t = [...permission];
       t[index] = { ...t[index], ...data };
       setPermissions(t);
@@ -94,7 +98,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       ) {
         errors[val] = true;
         // SnackbarUtils.error("Please enter values");
-      } else if (["code"].indexOf(val) < 0) {
+      } else if (["code", "name", "display_name"].indexOf(val) < 0) {
         delete errors[val];
       }
     });
@@ -180,7 +184,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     submitToServer,
     empId,
     errorData,
-    permission,
+  
     setPermissions,
   ]);
 
@@ -206,12 +210,12 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
             const errors = JSON.parse(JSON.stringify(errorArr));
             if (res.data.is_exists) {
               if (fieldName === "name") {
-                errors[fieldName] = `Name already exist`;
-                setErrorData(errors);
+                errors[fieldName] = `Role name already exist`;
+               
               }
               if (fieldName === "display_name") {
-                errors[fieldName] = `Display Name Exists`;
-                setErrorData(errors);
+                errors[fieldName] = `Display name already exist`;
+               
               }
 
               setErrorData(errors);
@@ -223,18 +227,19 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
         });
       }
     },
-    [id]
+    [id, setErrorData]
   );
 
   const checkSalaryInfoDebouncer = useMemo(() => {
     return debounce((e, fieldName, errorArr) => {
       checkForSalaryInfo(e, fieldName, errorArr);
-    }, 1000);
-  }, [checkForSalaryInfo]);
+    }, 500);
+  }, []);
 
 
   const changeTextData = useCallback(
     (text, fieldName) => {
+      console.log(text, fieldName)
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name" || fieldName === "display_name") {
@@ -262,9 +267,9 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
 
   const onBlurHandler = useCallback(
     (type) => {
-      if (form?.[type]) {
-        changeTextData(form?.[type].trim(), type);
-      }
+      // if (form?.[type]) {
+      //   changeTextData(form?.[type].trim(), type);
+      // }
     },
     [changeTextData, errorData, setErrorData]
   );
@@ -274,8 +279,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
   }, []);
 
   const suspendItem = useCallback(async () => {
-    dispatch(actionDeleteMasterDelete(empId));
-    dispatch(actionFetchHubMaster(1));
+  
     handleSideToggle();
     setIsAcceptPopUp((e) => !e);
   }, [empId, isAcceptPopUp, dispatch]);
@@ -293,7 +297,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     removeError,
     handleSubmit,
     isSubmitting,
-
+    allData,
     errorData,
     handleReset,
     empId,
@@ -305,6 +309,9 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
     suspendItem,
     cancelRole,
     id,
+    setPermissions,
+    setAllData,
+  
   };
 };
 

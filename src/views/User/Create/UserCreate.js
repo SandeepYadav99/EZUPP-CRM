@@ -27,7 +27,7 @@ const UserCreate = ({}) => {
   } = useUserCreateHook();
 
   return (
-    <>
+    <div className={styles.userContainer}>
       <div className={styles.outerFlex1}>
         <div className={styles.iconButton}>
           <ButtonBase onClick={() => history.goBack()}>
@@ -57,6 +57,7 @@ const UserCreate = ({}) => {
           onBlurHandler={onBlurHandler}
           manager={manager}
           department={department}
+          id={id}
         />
       )}
       <div className={styles.saveButton}>
@@ -68,7 +69,7 @@ const UserCreate = ({}) => {
           )}
         </PrimaryButton>
       </div>
-    </>
+    </div>
   );
 };
 

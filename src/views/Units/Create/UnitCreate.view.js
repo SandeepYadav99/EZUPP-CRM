@@ -7,7 +7,7 @@ import CustomSelectField from "./../../../components/FormFields/SelectField/Sele
 import {  Dialog, Tooltip, Typography, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import CustomSwitch from "./../../../components/FormFields/CustomSwitch";
+import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 import CustomCheckbox from "./../../../components/FormFields/CustomCheckbox";
 import { Delete as DeleteIcon, Info as InfoIcon } from "@mui/icons-material";
 import {
@@ -87,7 +87,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
               />
             </div>
             <div className={"formGroup"}>
-              <CustomSwitch
+              <CustomIosSwitch
                 value={form?.status}
                 handleChange={() => {
                   changeTextData(!form?.status, "status");
