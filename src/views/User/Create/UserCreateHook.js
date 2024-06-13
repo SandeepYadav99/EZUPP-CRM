@@ -46,6 +46,7 @@ function useUserCreateHook() {
     ROLES: [],
     images: null,
     isSubmitting: false,
+    designation:[]
   };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
@@ -60,6 +61,8 @@ function useUserCreateHook() {
         return { ...state, manager: action.payload };
       case "SET_DEPARTMENT":
         return { ...state, department: action.payload };
+        case "SET_DESIGNATION":
+        return { ...state, designation: action.payload };
       case "ROLES":
         return { ...state, ROLES: action.payload };
       case "IMAGES":
@@ -77,8 +80,15 @@ function useUserCreateHook() {
     Promise.all([
       serviceGetList(["ROLES"]),
       serviceProfileManager({}),
-      serviceProviderProfileGetKeyword({}),
-    ]).then(([rolesRes, managerRes, departmentRes]) => {
+      serviceProviderProfileGetKeyword({
+        query: "",
+        type: "DEPARTMENT",
+      }),
+      serviceProviderProfileGetKeyword({
+        query: "",
+        type: "DESIGNATION",
+      }),
+    ]).then(([rolesRes, managerRes, departmentRes, designationRes]) => {
       if (!rolesRes.error) {
         dispatch({ type: "ROLES", payload: rolesRes.data });
       }
@@ -87,6 +97,9 @@ function useUserCreateHook() {
       }
       if (!departmentRes.error) {
         dispatch({ type: "SET_DEPARTMENT", payload: departmentRes.data });
+      }
+      if (!designationRes.error) {
+        dispatch({ type: "SET_DESIGNATION", payload: designationRes.data });
       }
     });
   }, []);
@@ -162,7 +175,7 @@ function useUserCreateHook() {
         }
       });
     }
-  }, [ id]);
+  }, [id]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -215,15 +228,19 @@ function useUserCreateHook() {
       errors.email = true;
     }
     const joinDate = new Date(form?.joining_date).getDate();
-    const endDate = new Date(form?.end_date).getDate() ;
+    const endDate = new Date(form?.end_date).getDate();
 
-    if (joinDate > endDate ||  new Date(form?.joining_date).getMonth() > new Date(form?.end_date).getMonth()){
-       errors.end_date =  SnackbarUtils.error(
+    if (
+      joinDate > endDate ||
+      new Date(form?.joining_date).getMonth() >
+        new Date(form?.end_date).getMonth()
+    ) {
+      errors.end_date = SnackbarUtils.error(
         "Joining date should not be greater than end date"
       );
       errors.end_date = true;
-    }else{
-      delete errors.end_date
+    } else {
+      delete errors.end_date;
     }
     // if (form?.url && !validateUrl(form?.url)) {
     //   errors.url = true;
@@ -271,7 +288,6 @@ function useUserCreateHook() {
           SnackbarUtils.error(
             "Joining date should not be greater than end date"
           );
-     
         } else {
           t[fieldName] = text;
         }
@@ -294,7 +310,7 @@ function useUserCreateHook() {
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm,]
+    [removeError, form, setForm]
   );
 
   const submitToServer = useCallback(
@@ -316,18 +332,20 @@ function useUserCreateHook() {
           employee_id: form?.employee_id || userObject?.employee_id,
           country_code: 91,
         };
-        if (form?.manager || form?.role) {
-          formDataFields.manager = form?.manager;
-          formDataFields.role_id = form?.role;
-        }
-
+        // if (form?.manager ) {
+        //   formDataFields.manager = form?.manager;
+        // }
+        // if (form?.role) {
+        //   formDataFields.role_id = form?.role;
+        // }
         if (userObject?.user_id !== id) {
           formDataFields.joining_date = form?.joining_date || "";
           formDataFields.exit_date = form?.end_date || "";
           formDataFields.department = form?.department;
           formDataFields.designation = form?.designation;
-
-          // formDataFields.is_primary_user = form?.invoiteToUser;
+          formDataFields.role_id = form?.role || "";
+          formDataFields.manager = form?.manager || "";
+           formDataFields.is_primary_user = form?.invoiteToUser;
           formDataFields.is_manager = form?.userManage;
         }
 
@@ -355,7 +373,7 @@ function useUserCreateHook() {
         });
       }
     },
-    [form , state, checkFormValidation, setErrorData]
+    [form, state, checkFormValidation, setErrorData]
   );
 
   const onBlurHandler = useCallback(
@@ -395,6 +413,7 @@ function useUserCreateHook() {
     userId: userObject?.user_id,
     manager: state.manager,
     department: state.department,
+    designation:state.designation
   };
 }
 
