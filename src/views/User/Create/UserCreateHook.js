@@ -346,7 +346,7 @@ function useUserCreateHook() {
           formDataFields.designation = form?.designation;
           formDataFields.role_id = form?.role || "";
           formDataFields.manager = form?.manager || "";
-           formDataFields.send_email = form?.invoiteToUser;
+           formDataFields.send_email =id ? false : form?.invoiteToUser;
           formDataFields.is_manager = form?.userManage;
         }
 
