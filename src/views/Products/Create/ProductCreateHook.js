@@ -8,17 +8,15 @@ import {
   serviceCreateProduct,
   serviceUpdateProduct,
   serviceDeleteProduct,
+  serviceProductCheck,
 } from "../../../services/Product.service";
-import { actionDeleteProduct } from "../../../actions/Product.action";
 import {
-  serviceGetList,
   serviceGetTagList,
   serviceGetUnitsList,
 } from "../../../services/index.services";
-//import {serviceGetUnitList} from "../../../services/Unit.service";
 import { validateUrl } from "../../../libs/RegexUtils";
-import { useDispatch, useSelector } from "react-redux";
 import history from "../../../libs/history.utils";
+import useDebounce from "../../../hooks/DebounceHook";
 
 function useProductCreateHook() {
   const initialForm = {
@@ -48,40 +46,59 @@ function useProductCreateHook() {
   const [listData, setListData] = useState({
     UNITS: [],
   });
+
   const [tagList, setTagList] = useState([]);
-  const dispatch = useDispatch();
-  const [editData, setEditData] = useState(null);
+  const codeDebouncer = useDebounce(form?.code, 500);
 
   useEffect(() => {
-    serviceGetUnitsList(["UNITS"]).then((res) => {
+    (() => {
+      Promise.allSettled([
+        serviceGetUnitsList(["UNITS"]),
+        serviceGetTagList({
+          query: "",
+          type: "PRODUCT",
+        }),
+      ]).then((promises) => {
+        const unitList = promises[0]?.value?.data;
+        const tagList = promises[1]?.value?.data;
+        setListData(unitList);
+        setTagList([...tagList]);
+      });
+    })();
+  }, []);
+
+  const checkCodeValidation = useCallback(() => {
+    serviceProductCheck({ code: form?.code }).then((res) => {
       if (!res.error) {
-        setListData(res.data);
+        const errors = JSON.parse(JSON.stringify(errorData));
+        if (res.data.is_exists) {
+          errors["code"] = "Department Code Exists";
+          setErrorData(errors);
+        } else {
+          delete errors.code;
+          setErrorData(errors);
+        }
       }
     });
-  }, []);
+  }, [errorData, setErrorData, form?.code, id]);
 
   useEffect(() => {
-    serviceGetTagList().then((res) => {
-      if (!res.error) {
-        setTagList(res.data);
-      }
-    });
-  }, []);
-
-  console.log(tagList, "Image");
+    if (codeDebouncer) {
+      checkCodeValidation();
+    }
+  }, [codeDebouncer]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = ["name", "code", "type", "currency", "status", "unit_id"];
-    // if (!id) {
-    //   required.push("image");
-    // }
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
         (Array.isArray(form?.[val]) && form?.[val]?.length === 0)
       ) {
         errors[val] = true;
+      } else if (["code"].indexOf(val) < 0) {
+        delete errors[val];
       }
     });
     if (form?.name?.length < 2) {
@@ -95,6 +112,9 @@ function useProductCreateHook() {
       errors["product_link"] = true;
     }
     if (form.discount_value > form.ballpark_price) {
+      SnackbarUtils.error(
+        "Discount value should not be greater than Ballpark price value"
+      );
       errors["discount_value"] = true;
     }
     Object.keys(errors).forEach((key) => {
@@ -103,13 +123,15 @@ function useProductCreateHook() {
       }
     });
     return errors;
-  }, [form, errorData]);
+  }, [form, errorData, setErrorData]);
 
   const removeError = useCallback(
     (title) => {
       const temp = JSON.parse(JSON.stringify(errorData));
-      temp[title] = false;
-      setErrorData(temp);
+      if(title !== "code"){
+        temp[title] = false;
+        setErrorData(temp);
+    }
     },
     [setErrorData, errorData]
   );
@@ -126,39 +148,26 @@ function useProductCreateHook() {
         if (text >= 0) {
           t[fieldName] = text;
         }
-        if (fieldName === "discount_value" && text > t.ballpark_price) {
-          SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
-          setErrorData((prevErrors) => ({
-            ...prevErrors,
-            discount_value: true,
-          }));
-          shouldRemoveError = false;
-        }
-        else {
-          setErrorData((prevErrors) => ({
-            ...prevErrors,
-            discount_value: false,
-          }));
-        }
       } else if (fieldName === "discount_percent") {
         if (text >= 0 && text <= 100) {
           t[fieldName] = text;
         }
-      }else if (fieldName === "code"){
-        if(text?.length <= 40){
+      } else if (fieldName === "code") {
+        if (text?.length <= 40) {
           t[fieldName] = text;
         }
-      }else if (fieldName === "name"){
-        if(text?.length <= 100){
+      } else if (fieldName === "name") {
+        if (text?.length <= 100) {
           t[fieldName] = text;
         }
       } else if (fieldName === "tags") {
-        console.log(">>>>",text)
         const tempKeywords = text?.filter((val, index) => {
           if (val?.trim() === "") {
             return false;
-          } else if (val?.length <= 2 || val?.length >20) {
-            SnackbarUtils.error("Values cannot be less than 2 and more than 20 character");
+          } else if (val?.length <= 2 || val?.length > 20) {
+            SnackbarUtils.error(
+              "Values cannot be less than 2 and more than 20 character"
+            );
             return false;
           } else {
             const key = val?.trim().toLowerCase();
@@ -166,20 +175,16 @@ function useProductCreateHook() {
               (keyTwo, indexTwo) =>
                 keyTwo?.toLowerCase() === key && index !== indexTwo
             );
-            console.log("isThere",isThere)
             return isThere < 0;
           }
         });
         console.log("tempKeywords", tempKeywords);
-        // if (tempKeywords?.length > 0) {
-          t[fieldName] = tempKeywords;
-        // }
+        t[fieldName] = tempKeywords;
       } else {
         t[fieldName] = text;
       }
       setForm(t);
       shouldRemoveError && removeError(fieldName);
-      
     },
     [removeError, form, setForm]
   );
@@ -230,7 +235,7 @@ function useProductCreateHook() {
         changeTextData(form?.[type].trim(), type);
       }
     },
-    [changeTextData]
+    [changeTextData, checkCodeValidation]
   );
 
   const handleSubmit = useCallback(
@@ -246,32 +251,20 @@ function useProductCreateHook() {
     [checkFormValidation, setErrorData, form, submitToServer]
   );
 
-
   const handleCancel = useCallback(() => {
     history.push("/products");
   }, []);
-  // const handleDelete = useCallback(
-  //   (id) => {
-  //     dispatch(actionDeleteProduct(id));
-  //     setEditData(null);
-  //   },
-  //   [setEditData]
-  // );
-  const handleDelete = useCallback(async (id) => {
+
+  const handleDelete = useCallback((id) => {
     if (id) {
       const formattedId = String(id);
+      const response = serviceDeleteProduct({ id: formattedId });
 
-      try {
-        const response = await serviceDeleteProduct({ id: formattedId });
-
-        if (!response.error) {
-          console.log(`Product with id: ${formattedId} deleted successfully.`);
-          window.location.reload();
-        } else {
-          SnackbarUtils.error(response.message);
-        }
-      } catch (error) {
-        console.error("Error deleting unit:", error);
+      if (!response.error) {
+        console.log(`Product with id: ${formattedId} deleted successfully.`);
+        window.location.reload();
+      } else {
+        SnackbarUtils.error(response.message);
       }
     }
   });
@@ -289,7 +282,6 @@ function useProductCreateHook() {
     id,
     tagList,
     handleCancel,
-  
   };
 }
 
