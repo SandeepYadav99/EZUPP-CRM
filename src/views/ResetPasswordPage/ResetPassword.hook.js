@@ -171,9 +171,6 @@ const useResetPasswordHook = ({ open,  handleClose }) => {
     setShowPassword(false);
   }, [form, setForm]);
 
-
-  
-
   return {
     form,
     changeTextData,
