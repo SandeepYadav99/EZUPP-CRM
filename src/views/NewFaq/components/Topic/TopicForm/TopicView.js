@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Style.module.css";
 import useTopicView from "./TopicView.hook.js";
 import CustomTextField from "../../../../../components/FormFields/TextField/TextField.component";
-import { Button, IconButton, MenuItem, Tooltip } from "@mui/material";
+import { Button, IconButton, MenuItem, Tooltip, Typography } from "@mui/material";
 import CustomSelectField from "../../../../../components/FormFields/SelectField/SelectField.component.js";
 import {
   Backup as BackupIcon,
@@ -12,7 +12,6 @@ import {
 
 import removeTask from "../../../../../assets/Assets/ic_delete@2x.png";
 
-
 import {
   Dialog,
   DialogTitle,
@@ -20,7 +19,7 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
-import { PrimaryButton } from "../../../../../components/Buttons/PrimaryButton.js";
+import { ActionButton, PrimaryButton } from "../../../../../components/Buttons/PrimaryButton.js";
 import CustomIosSwitch from "../../../../../components/FormFields/CustomIosSwitch.js";
 
 const TopicViewForm = ({
@@ -49,23 +48,29 @@ const TopicViewForm = ({
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">
-            <b>Are You Sure</b>
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Do you really want to delete the item?
-              <br />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDialogClose} color="primary">
-              Disagree
-            </Button>
-            <Button onClick={() => suspendItem()} color="primary">
-              Agree
-            </Button>
-          </DialogActions>
+          <div className={styles.dialogWrap}>
+            <Typography variant="subtitle1">
+              Are your sure you want to Delete ?
+            </Typography>
+
+            <div className={styles.buttonContainer}>
+              <div className={styles.cancelButton}>
+                <ActionButton sx={{ mt: 4 }} onClick={handleDialogClose}>
+                  CANCEL
+                </ActionButton>
+              </div>
+
+              <div className={styles.saveButton}>
+                <PrimaryButton
+                  color={"primary"}
+                  sx={{ mt: 4, ml: 4 }}
+                  onClick={() => suspendItem()}
+                >
+                  CONFIRM
+                </PrimaryButton>
+              </div>
+            </div>
+          </div>
         </Dialog>
       );
     }
@@ -125,10 +130,7 @@ const TopicViewForm = ({
           />
           {dataExist && (
             <div>
-             
-              <IconButton
-                onClick={handleDelete}
-              >
+              <IconButton onClick={handleDelete}>
                 <img src={removeTask} alt="task" width={20} />
               </IconButton>
             </div>

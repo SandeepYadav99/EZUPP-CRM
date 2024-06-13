@@ -18,6 +18,7 @@ import {
   Slide,
   Tooltip,
   createMuiTheme,
+  Typography,
 } from "@mui/material";
 import { convertFromRaw } from "draft-js";
 import {
@@ -31,7 +32,7 @@ import useQuestionFormHook from "./QuestionForm.hook";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 import NewEditor from "../../../../components/NewEditor/NewEditor.component";
-import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
+import { ActionButton, PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../../components/FormFields/CustomIosSwitch";
 import removeTask from "../../../../assets/Assets/ic_delete@2x.png";
 
@@ -67,31 +68,36 @@ const QuestionsFormView = ({
     if (confirmPopUp) {
       return (
         <Dialog
-          keepMounted
-          TransitionComponent={Transition}
-          open={confirmPopUp}
-          onClose={handleDialogClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            <b>Are You Sure</b>
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Do you really want to delete the item?
-              <br />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDialogClose} color="primary">
-              Disagree
-            </Button>
-            <Button onClick={suspendItem} color="primary">
-              Agree
-            </Button>
-          </DialogActions>
-        </Dialog>
+        keepMounted
+        open={confirmPopUp}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <div className={styles.dialogWrap}>
+          <Typography variant="subtitle1">
+            {"Are your sure you want to Delete ?"}
+          </Typography>
+
+          <div className={styles.buttonContainer}>
+            <div className={styles.cancelButton}>
+              <ActionButton sx={{ mt: 4 }} onClick={handleDialogClose}>
+                CANCEL
+              </ActionButton>
+            </div>
+
+            <div className={styles.saveButton}>
+              <PrimaryButton
+                color={"primary"}
+                sx={{ mt: 4, ml: 4 }}
+                onClick={() => suspendItem()}
+              >
+                CONFIRM
+              </PrimaryButton>
+            </div>
+          </div>
+        </div>
+      </Dialog>
       );
     }
     return null;
