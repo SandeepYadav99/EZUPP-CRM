@@ -1,8 +1,7 @@
 
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { actionFetchAssociatedManufactures } from "../../../../actions/AssociatedManufactures.action";
 
 
 
@@ -23,16 +22,16 @@ const useAssociatedUsersHook = ({id}) => {
   } = useSelector((state) => state.associatedManufactures);
 
   useEffect(() => {
-    // dispatch(
-    //   actionFetchAssociatedManufactures(
-    //     1,
-    //     {},
-    //     {
-    //       query: isMountRef.current ? query : null,
-    //       query_data: isMountRef.current ? queryData : null,
-    //     }, id
-    //   )
-    // );
+    dispatch(
+      actionFetchAssociatedManufactures(
+        1,
+        {},
+        {
+          query: isMountRef.current ? query : null,
+          query_data: isMountRef.current ? queryData : null,
+        }, id
+      )
+    );
     isMountRef.current = true;
   }, []);
 

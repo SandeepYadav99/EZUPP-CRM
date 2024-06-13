@@ -1,7 +1,8 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer } from "react";
 import styles from "./Style.module.css";
 import { useParams } from "react-router-dom";
 import {
+  serviceDeleteRole,
   serviceDetailPermissions,
   serviceDetailRole,
 } from "../../../services/Role.service";
@@ -34,6 +35,17 @@ const RoleDetail = () => {
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const roleDelete = useCallback(async () => {
+    const res = await serviceDeleteRole({ id: id });
+    if (!res?.error) {
+      const roleDetail = await serviceDetailRole({ id: id });
+      if (!roleDetail.error) {
+        console.log(roleDetail)
+        dispatch({ type: "ROLE_DETAIL", payload: roleDetail.data.details });
+      }
+    }
+  }, [id, dispatch]);
+
   useEffect(() => {
     Promise.all([
       serviceDetailRole({ id: id }),
@@ -47,9 +59,11 @@ const RoleDetail = () => {
         dispatch({ type: "PERMISSIONS", payload: permissions.data });
       }
     });
+   
   }, [id]);
 
   const { description, status, name, display_name } = state?.roleDetail;
+
   return (
     <div>
       <div className={styles.upperFlex}>
@@ -65,7 +79,7 @@ const RoleDetail = () => {
           <ArrowActionButton
             icon={<Delete fontSize={"small"} />}
             className={styles.addTask}
-            onClick={() => {}}
+            onClick={() => roleDelete()}
           >
             <div className={styles.innerText}>Delete</div>
           </ArrowActionButton>

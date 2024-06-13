@@ -5,12 +5,13 @@ import Constants from "../../../../config/constants";
 import styles from "./Style.module.css";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import StatusPill from "../../../../components/Status/StatusPill.component";
+
 import useAssociatedUsersHook from "./AssociatedUsersHook";
 import { IconButton, Typography } from "@mui/material";
 import { Edit } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
+import StatusPill from "../../../../components/Status/StatusPill.component";
 
 const AssociatedUsers = ({ listData, id }) => {
   const {
@@ -29,10 +30,7 @@ const AssociatedUsers = ({ listData, id }) => {
     is_fetching: isFetching,
   } = useSelector((state) => state.associatedManufactures);
 
-  const renderStatus = useCallback((status) => {
-    return <StatusPill status={status} />;
-  }, []);
-
+ 
   const renderFirstCell = useCallback((product) => {
     if (product) {
       return (
@@ -57,10 +55,14 @@ const AssociatedUsers = ({ listData, id }) => {
         sortable: false,
         render: (temp, all) => (
           <div className={styles.image}>
-            <img src={all?.image} className={styles.imageContainer} />
+            <img
+              src={all?.image}
+              className={styles.imageContainer}
+              crossOrigin="anonymous"
+              alt="..."
+            />
 
-            <div style={{ marginLeft: "3px" }}> {all?.first_name} </div>
-            <div style={{ marginLeft: "5px" }}>{all?.last_name}</div>
+            <Typography variant="body1"> {all?.name} </Typography>
           </div>
         ),
       },
@@ -68,13 +70,17 @@ const AssociatedUsers = ({ listData, id }) => {
         key: "contact",
         label: "Contact",
         sortable: false,
-        render: (temp, all) => <div>{all?.business?.company_name}</div>,
+        render: (temp, all) => <div>{all?.contact}</div>,
       },
       {
         key: "department_designation",
         label: "Department/ Designation",
         sortable: false,
-        render: (temp, all) => <div>{all?.membership_type}</div>,
+        render: (temp, all) => (
+          <div>
+            {all?.depatment || "N/A"} / {all?.designation || "N/A"}
+          </div>
+        ),
         //  candidate?.applied_date
       },
 
@@ -82,7 +88,12 @@ const AssociatedUsers = ({ listData, id }) => {
         key: "status",
         label: "Status",
         sortable: false,
-        render: (temp, all) => <StatusPill status={all?.status} />,
+        render: (temp, all) => (
+          <StatusPill
+            status={all?.status}
+            color={all?.status === "ACTIVE" ? "active" : "high"}
+          />
+        ),
       },
       {
         key: "action",
@@ -97,7 +108,7 @@ const AssociatedUsers = ({ listData, id }) => {
         ),
       },
     ];
-  }, [renderStatus, renderFirstCell, handleViewDetails, handleEdit, isCalling]);
+  }, [renderFirstCell, handleViewDetails, handleEdit, isCalling]);
 
   const tableData = useMemo(() => {
     const datatableFunctions = {
@@ -125,20 +136,17 @@ const AssociatedUsers = ({ listData, id }) => {
   ]);
 
   return (
-   
     <ShadowBox width={"100%"}>
       <Typography fontSize={18} margin={theme.spacing(1)}>
         Associated Users
       </Typography>
-      <div style={{width:"100%"}}>
+      <div style={{ width: "100%" }}>
         <DataTables
           {...tableData.datatable}
           {...tableData.datatableFunctions}
         />
       </div>
     </ShadowBox>
-     
-   
   );
 };
 

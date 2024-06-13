@@ -25,6 +25,7 @@ const ractangeborder="#C5C5C5";
 const ractange="#347BEC";
 const contact="#FFFFFF";
 const switchTheme = "#2063CE";
+const swithcTrack="#E9E9EA";
 const Theme = (colors) => {
   const { grey } = colors;
   const greyColors = {
@@ -122,7 +123,8 @@ const Theme = (colors) => {
     tableHeadColor:tableHeadColor,
     contentDark:darkContent,
     contact:contact,
-    switchTheme:switchTheme
+    switchTheme:switchTheme,
+    swithcTrack:swithcTrack
   };
 };
 
