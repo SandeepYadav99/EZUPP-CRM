@@ -48,7 +48,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
             name: data?.name,
             description: data?.description,
             display_name: data?.display_name,
-            is_active: data?.is_active === "ACTIVE" ? true : false,
+            is_active: data?.status === "ACTIVE" ? true : false,
           });
         } else {
         }

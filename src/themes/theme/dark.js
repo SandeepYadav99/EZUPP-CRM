@@ -25,7 +25,8 @@ const ractange="#347BEC";
 const ractangeborder="#C5C5C5";
 const contact="#3A3E5B";
 const switchTheme = "#2063CE";
-const subText="#888888"
+const subText="#888888";
+const swithcTrack="#39393D";
 const DarkTheme = (colors) => {
     const { grey } = colors;
     const greyColors = {
@@ -92,7 +93,8 @@ const DarkTheme = (colors) => {
             business: '#888cff',
             Discuss:"#636578",
             service: "#636578",
-            warm: "#EBC50B"
+            warm: "#EBC50B",
+            draft: "#2063CE",
         },
         success: {
             main: success,
@@ -111,7 +113,7 @@ const DarkTheme = (colors) => {
             error: '#ff0000',
             bright: '#FFF',
             subText:subText
-            
+
         },
         primaryButton: {
             hover: secondary,
@@ -125,9 +127,10 @@ const DarkTheme = (colors) => {
             color2:"#ff4d49"
         },
         tableHeadColor:tableHeadColor,
-        contentDark:darkContent, 
+        contentDark:darkContent,
         contact:contact,
-        switchTheme:switchTheme
+        switchTheme:switchTheme,
+        swithcTrack:swithcTrack
     };
 };
 

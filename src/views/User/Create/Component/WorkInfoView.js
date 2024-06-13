@@ -15,7 +15,8 @@ const WorkInfoView = ({
   onBlurHandler,
   manager,
   department,
-  id
+  id,
+  designation
 }) => {
   return (
     <>
@@ -71,7 +72,7 @@ const WorkInfoView = ({
               // multiple
               
               isArray
-              AutoCompleteList={department}
+              AutoCompleteList={designation}
               getOptionLabel={(option) => option}
               label={"Designation"}
               defaultValue={form?.designation}

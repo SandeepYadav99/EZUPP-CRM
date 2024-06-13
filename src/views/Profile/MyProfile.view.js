@@ -41,7 +41,7 @@ const Profile = () => {
     setOpen(!open);
   };
   const theme = useTheme();
-   
+
   return (
     <div className={styles.bgProfile}>
       {isLoading ? (
@@ -50,7 +50,7 @@ const Profile = () => {
         <div>
           <div className={styles.upperFlex}>
           <div className={styles.profileTitle}>
-            {location !== "/myprofile" && 
+            {location !== "/myprofile" &&
             <ButtonBase onClick={() => history.push("/admin/users")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
@@ -64,7 +64,7 @@ const Profile = () => {
                 borderRadius={8}
                 icon={<Lock fontSize="normal" />}
               >
-                 <Typography variant={"subtitle1"} color={""}>RESET PASSWORD</Typography>
+                 <Typography variant={"btnTitle"} color={""}>RESET PASSWORD</Typography>
               </ArrowOutlineButton>
               <ArrowPrimaryButton
                 icon={<Add fontSize={"small"} />}
@@ -73,7 +73,7 @@ const Profile = () => {
                 borderRadius={8}
                 onClick={handleSideToggle}
               >
-                <Typography variant={"subtitle1"}>ADD TASK</Typography>
+                <Typography variant={"btnTitle"}>ADD TASK</Typography>
               </ArrowPrimaryButton>
             </div>
           </div>
@@ -116,7 +116,7 @@ const Profile = () => {
               profileDetails={profileDetails}
               handleCreatedTask={handleCreatedTask}
             />
-          </SidePanelComponent> 
+          </SidePanelComponent>
         </div>
       )}
     </div>

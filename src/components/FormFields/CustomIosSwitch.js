@@ -6,78 +6,58 @@ import styled from "styled-components";
 const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
   const theme = useTheme();
 
-  const IOSSwitch = styled((props) => (
-    <Switch
-      focusVisibleClassName=".Mui-focusVisible"
-      disableRipple
-   
-      {...props}
-    />
-  ))(({}) => ({
-    width: 52,
-    height: 22,
+  const AntSwitch = styled(Switch)(() => ({
+    width: 40,
+    height: 19,
     padding: 0,
-    "& .MuiSwitch-switchBase": {
-      padding: 0,
-    margin:1,
-      transitionDuration:'160ms',
-      
-      "&.Mui-checked": {
-        transform: "translateX(28px)",
-        color: theme.palette.contact,
-
-        "& + .MuiSwitch-track": {
-          backgroundColor: theme.palette.switchTheme,
-          opacity: 1,
-          border: 0,
-        },
-        "&.Mui-disabled + .MuiSwitch-track": {
-          opacity: 0.5,
-        },
-      },
-      "&.Mui-focusVisible .MuiSwitch-thumb": {
-        color: "#33cf4d",
-        border: "6px solid #fff",
-      
-      },
+    display: 'flex',
+    '&:active': {
       '& .MuiSwitch-thumb': {
-        boxSizing: 'border-box',
-        width: 18,
-        height: 18,
-        marginTop:1,
+        // width: 15,
       },
-      "&.Mui-disabled .MuiSwitch-thumb": {
-        color: theme.palette.text.primary,
-        
-       
+      '& .MuiSwitch-switchBase.Mui-checked': {
+        transform: 'translateX(25px)',
+        transition: ' 0.3s ease-out',
       },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: 0.3,
-      },
-   
     },
-    "& .MuiSwitch-thumb": {
-      boxSizing: "border-box",
-      width: 22,
-      height: 22,
+    '& .MuiSwitch-switchBase': {
+      padding: 2,
+      '&.Mui-checked': {
+        transform: 'translateX(23px)',
+        transition: 'transform 0.3s ease-out',
+        color: '#fff',
+        '& + .MuiSwitch-track': {
+          opacity: 1,
+          backgroundColor: theme.palette.switchTheme,
+        },
+      },
     },
-    "& .MuiSwitch-track": {
-      borderRadius: 24 / 2,
-      backgroundColor: "#00000029",
+    '& .MuiSwitch-thumb': {
+      boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+      width: 12,
+      height: 12,
+      borderRadius: 6,
+      transition: 'width 0.1s ease-in, transform 0.3s ease-out', 
+      marginTop:2,
+    },
+    '& .MuiSwitch-track': {
+      borderRadius: 34 / 2,
       opacity: 1,
-      transition: theme.transitions.create(['background-color'], {
-        duration: 500,
-      }),
+      backgroundColor:
+        theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+      boxSizing: 'border-box',
+      transition: 'background-color 0.3s ease-out',
     },
   }));
+  
   return (
     <FormControlLabel
-   
       control={
-        <IOSSwitch
+        <AntSwitch
           sx={{ m: 1 }}
           checked={value ? true : false}
           onChange={(e) => handleChange(e.target.checked)}
+          
         />
       }
       label={label}

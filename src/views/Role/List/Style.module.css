@@ -42,11 +42,10 @@
   font-weight: 700;
   margin-left: 15px;
 }
-.imageContainer{
+.imageContainer {
   /* margin-right: 10% !important; */
   display: flex !important;
   gap: -5px !important;
- 
 }
 .infoTitle {
   margin-bottom: 15px;
@@ -66,7 +65,10 @@
 .heading {
   margin-right: 5px;
 }
-.description{
-  max-width: 20rem !important;
- word-wrap: break-word;
+.description {
+  width: 250px !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
 }
