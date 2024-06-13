@@ -7,8 +7,8 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
   const theme = useTheme();
 
   const AntSwitch = styled(Switch)(() => ({
-    width: 44,
-    height: 20,
+    width: 40,
+    height: 19,
     padding: 0,
     display: 'flex',
     '&:active': {
@@ -23,8 +23,8 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
     '& .MuiSwitch-switchBase': {
       padding: 2,
       '&.Mui-checked': {
-        transform: 'translateX(26px)',
-        transition: 'transform 0.3s ease-out',
+        transform: 'translateX(23px)',
+        transition: 'transform 0.3s ease-in',
         color: '#fff',
         '& + .MuiSwitch-track': {
           opacity: 1,
@@ -34,8 +34,8 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
     },
     '& .MuiSwitch-thumb': {
       boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
-      width: 14,
-      height: 14,
+      width: 12,
+      height: 12,
       borderRadius: 6,
       transition: 'width 0.1s ease-in, transform 0.3s ease-out', 
       marginTop:2,
