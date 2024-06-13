@@ -57,6 +57,7 @@ const UserCreate = ({}) => {
           onBlurHandler={onBlurHandler}
           manager={manager}
           department={department}
+          id={id}
         />
       )}
       <div className={styles.saveButton}>
