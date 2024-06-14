@@ -44,6 +44,7 @@ function useProductCreateHook() {
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [profileDetails, setProfileDetails] = useState({});
   const [listData, setListData] = useState({
     UNITS: [],
   });
@@ -172,6 +173,11 @@ function useProductCreateHook() {
       ) {
         if (text >= 0) {
           t[fieldName] = text;
+          setForm(t);
+          setProfileDetails((prevDetails) => ({
+           ...prevDetails,
+            [fieldName]: text,
+          }));
         }
       } else if (fieldName === "discount_percent") {
         if (text >= 0 && text <= 100) {

@@ -182,7 +182,7 @@ const ProductDetailview = () => {
                       >
                         {" "}
                         {/* {profileDetails?.currency} {profileDetails?.ballpark_cost ?? "N/A"} */}
-                        {profileDetails?.ballpark_cost != null && profileDetails.discount_value !== 0 ? `${profileDetails.currency} ${profileDetails.ballpark_cost}` : "N/A"}
+                        {profileDetails?.ballpark_cost != null  ? `${profileDetails.currency} ${profileDetails.ballpark_cost}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -196,8 +196,7 @@ const ProductDetailview = () => {
                       >
                         {" "}
                         {/* {profileDetails?.currency} {profileDetails?.ballpark_price ?? "N/A"} */}
-                        {profileDetails?.ballpark_price != null && profileDetails.discount_value !== 0 ? `${profileDetails.currency} ${profileDetails.ballpark_price}` : "N/A"}
-                        
+                        {profileDetails?.ballpark_price != null ? `${profileDetails.currency} ${profileDetails.ballpark_price}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -210,7 +209,7 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_value != null && profileDetails.discount_value !== 0 ?profileDetails?.discount_percent : "N/A"}
+                        {profileDetails?.discount_value != null  ? profileDetails?.discount_percent : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -224,7 +223,7 @@ const ProductDetailview = () => {
                       >
                         {" "}
                         {/* {profileDetails?.currency} {profileDetails?.discount_value ?? "N/A"} */}
-                        {profileDetails?.discount_value != null && profileDetails.discount_value !== 0 ? `${profileDetails.currency} ${profileDetails.discount_value}` : "N/A"}
+                        {profileDetails?.discount_value != null  ? `${profileDetails.currency} ${profileDetails.discount_value}` : "N/A"}
                       </Typography>
                     </div>
                   </div>
