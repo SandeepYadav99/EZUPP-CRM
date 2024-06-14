@@ -25,7 +25,7 @@ const ractangeborder="#C5C5C5";
 const ractange="#347BEC";
 const contact="#FFFFFF";
 const switchTheme = "#2063CE";
-const swithcTrack="#E9E9EA";
+const swithcTrack="rgba(0,0,0,.25)";
 const Theme = (colors) => {
   const { grey } = colors;
   const greyColors = {

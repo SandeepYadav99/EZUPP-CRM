@@ -27,7 +27,7 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
       width: 18,
       height: 18,
       borderRadius: '25px',
-      backgroundColor: "#fff",
+      backgroundColor: theme.palette.contact,
      
     },
     '& .MuiSwitch-track': {
@@ -35,7 +35,7 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
       borderRadius: '25px',
        transition: ' 0.3ms ease-out',
       // border: `1px solid ${theme.palette.text.primary}`,
-      backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+      backgroundColor: theme.palette.swithcTrack,
       boxSizing: 'border-box',
       
     }
