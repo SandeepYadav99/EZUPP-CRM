@@ -29,10 +29,10 @@ function useProductCreateHook() {
     image: null,
     unit_id: "",
     currency: "",
-    ballpark_cost: "",
-    ballpark_price: "",
-    discount_percent: "",
-    discount_value: "",
+    ballpark_cost: 0,
+    ballpark_price: 0,
+    discount_percent: 0,
+    discount_value: 0,
     type: "",
     status: "",
     is_show_public: false,
@@ -76,7 +76,7 @@ function useProductCreateHook() {
           const obj ={}
           Object.keys({...initialForm})?.forEach((key)=>{
             if(key !== "image"){
-              obj[key] = details[key]
+              obj[key] = details[key] != null ? details[key] : initialForm[key];
             }
           })
           setForm({
@@ -224,7 +224,15 @@ function useProductCreateHook() {
             if (key === "is_show_public" || key === "is_value_add") {
               fd.append(key, form[key] ? true : false);
             } else {
-              fd.append(key, form[key]);
+              if (
+                ["ballpark_cost", "ballpark_price", "discount_percent", "discount_value"].includes(key) &&
+                form[key] == null
+              ) {
+                fd.append(key, 0);
+              } else {
+                fd.append(key, form[key]);
+              }
+              //fd.append(key, form[key]);
             }
           }
         });
