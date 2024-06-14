@@ -16,7 +16,7 @@ const PermissionsGranted = ({ state, styles }) => {
                 margin={theme.spacing(1.5)}
                 fontWeight={600}
               >
-                {permission?.name}
+                {permission?.name}:
               </Typography>
             </div>
             <div className={styles.permissionRow}>
