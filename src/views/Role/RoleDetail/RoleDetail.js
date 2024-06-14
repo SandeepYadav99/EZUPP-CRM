@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import styles from "./Style.module.css";
 import { useParams } from "react-router-dom";
 import {
@@ -18,6 +18,7 @@ import { useTheme } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import PermissionsGranted from "../Component/PermissionsGranted";
 import { actionFetchRole } from "../../../actions/Role.action";
+import DeletePopUp from "../Component/DeletePopUp";
 
 const initialState = {
   roleDetail: {},
@@ -25,7 +26,8 @@ const initialState = {
 };
 const RoleDetail = () => {
   const { id } = useParams();
-  const theme = useTheme();
+
+  const [open, setOpen] = useState(false);
   const reducer = (state, action) => {
     switch (action.type) {
       case "ROLE_DETAIL":
@@ -38,14 +40,10 @@ const RoleDetail = () => {
   };
   const [state, dispatchDetail] = useReducer(reducer, initialState);
   const dispatch = useDispatch();
-  
+
   const roleDelete = useCallback(async () => {
-    const res = await serviceDeleteRole({ id: id });
-    if (!res?.error) {
-      history.push(RouteName.ROLE);
-      dispatch(actionFetchRole(1, {}, {}));
-    }
-  }, [id, dispatchDetail]);
+    setOpen((e) => !e);
+  }, [open]);
 
   useEffect(() => {
     Promise.all([
@@ -63,6 +61,18 @@ const RoleDetail = () => {
   }, [id]);
 
   const { description, status, name, display_name } = state?.roleDetail;
+
+  const handleClose = useCallback(() => {
+    setOpen((e) => !e);
+  }, [open]);
+
+  const handleDelete = useCallback(async () => {
+    const res = await serviceDeleteRole({ id: id });
+    if (!res?.error) {
+      history.push(RouteName.ROLE);
+      dispatch(actionFetchRole(1, {}, {}));
+    }
+  }, [id, dispatchDetail]);
 
   return (
     <div>
@@ -119,6 +129,12 @@ const RoleDetail = () => {
           <AssociatedUsers id={id ? id : "userObject?.user?.id"} />
         </section>
       </div>
+      <DeletePopUp
+        open={open}
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+        id={id}
+      />
       {/* Table Bottom */}
     </div>
   );
