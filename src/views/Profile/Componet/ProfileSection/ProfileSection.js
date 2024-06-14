@@ -54,6 +54,7 @@ const statusUpdate=useCallback(()=>{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               wordSpacing:"0", 
+            
               [theme.breakpoints.down('sm')]: {
                 whiteSpace: 'pre-wrap',
               },
@@ -89,21 +90,21 @@ const statusUpdate=useCallback(()=>{
           </div> */}
           <div className={styles.contactFlex}>
             <Typography variant="h6"   fontWeight={600} >Email:</Typography>
-            <Typography variant="h6"  fontWeight={600} marginLeft={2} >
+            <Typography variant="h6"   color={theme?.palette.text.subText} fontWeight={600} marginLeft={2} >
               {" "}
               {profileDetails?.email || "N/A"}
             </Typography>
           </div>
           <div className={styles.contactFlex}>
             <Typography variant="h6"  fontWeight={600} >Contact:</Typography>
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}  >
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}  >
               {" "}
               {profileDetails?.contact || "N/A"}
             </Typography>
           </div>
           <div className={styles.contactFlex}>
             <Typography variant="h6"  fontWeight={600} >Role:</Typography>
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2} >
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2} >
               {" "}
               {profileDetails?.role?.name || "N/A"}
             </Typography>
@@ -117,21 +118,21 @@ const statusUpdate=useCallback(()=>{
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >Department:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
               {formatString(profileDetails?.department || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >Designation:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
               {formatString(profileDetails?.designation || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >Manager:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2} fo sx={{
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2} fo sx={{
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -147,21 +148,21 @@ const statusUpdate=useCallback(()=>{
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >Joining Date:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
               {profileDetails?.joiningDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >Exit Date:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
               {profileDetails?.exitDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography variant="h6"  fontWeight={600} >User is a Manager:</Typography>
 
-            <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+            <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
               {profileDetails?.is_manager ? "Yes" : "No"}
             </Typography>
           </div>
@@ -173,21 +174,21 @@ const statusUpdate=useCallback(()=>{
         <div className={styles.activityFlex}>
           <Typography variant="h6"  fontWeight={600} >Created On:</Typography>
 
-          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+          <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
             {profileDetails?.createdAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
           <Typography variant="h6"  fontWeight={600} >Updated On:</Typography>
 
-          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+          <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
             {profileDetails?.updatedAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
           <Typography variant="h6"  fontWeight={600} >Updated By:</Typography>
 
-          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}  sx={{
+          <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}  sx={{
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -202,7 +203,7 @@ const statusUpdate=useCallback(()=>{
         <div className={styles.activityFlex}>
           <Typography variant="h6"  fontWeight={600} >Last Login:</Typography>
 
-          <Typography variant="h6" color={"#888888"} fontWeight={600} marginLeft={2}>
+          <Typography variant="h6" color={theme?.palette.text.subText} fontWeight={600} marginLeft={2}>
             {profileDetails?.lastLoginText}
           </Typography>
         </div>

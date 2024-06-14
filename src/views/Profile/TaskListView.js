@@ -1,8 +1,9 @@
 import React from "react";
 import { Checkbox, Typography } from "@mui/material";
 import styles from "./Styles.module.css";
-import { AccessTime, Watch } from "@mui/icons-material";
+import { AccessTime, AccessTimeFilled, Watch } from "@mui/icons-material";
 import StatusPill from "../../components/Status/StatusPill.component";
+import { useTheme } from "@mui/styles";
 
 const TaskListItem = ({
   task,
@@ -11,7 +12,7 @@ const TaskListItem = ({
   completedHandler,
 }) => {
 
-
+const theme= useTheme()
   const handleCheckboxClick = async (e) => {
     if (e.target.checked) {
       await markAsCompleted(task);
@@ -53,8 +54,8 @@ const TaskListItem = ({
         </Typography>
         <div className={styles.taskFlex}>
           <div className={styles.timeFlex}>
-            <AccessTime className={styles.contactIcons} fontSize="small" />
-            <Typography variant="caption" color={"#636578"} padding={1} fontWeight={600}>
+            <AccessTimeFilled className={styles.contactIcons} color={theme?.palette?.status.service} fontSize="small" />
+            <Typography variant="caption" color={theme?.palette?.status.service} padding={1} fontWeight={600}>
               {task?.dueDateListText}
             </Typography>
           </div>
