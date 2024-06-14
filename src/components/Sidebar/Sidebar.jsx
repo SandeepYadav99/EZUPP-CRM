@@ -173,7 +173,7 @@ const Sidebar = ({...props}) => {
     // const {classes, color, logo, image, logoText, routes} = props;
     var brand = (
         <div className={classes.logo}>
-            <div className={classes.logoImage}>
+            <div className={classes.logoImageSideBar}>
                 <img src={logoImageData} alt="logo" className={classes.img}/>
             </div>
             {logoText}
