@@ -79,7 +79,7 @@ function LoginView() {
                   />
                 </div>
                 <div>
-                  <div style={{ display: "flex" }}>
+                  <div style={{ display: "flex",marginTop:"8px"}}>
                     <CustomTextField
                       type={showPassword ? "text" : "password"}
                       isError={errorData?.password}

@@ -85,31 +85,32 @@ const FirstResetPassowrd = ({ handleClose, open, email }) => {
               {!showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
 
-            <CustomTextField
-              isError={errorData?.confirm_password}
-              errorText={errorData?.confirm_password}
-              fullWidth={true}
-              size="small"
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirm_password"
-              margin={"dense"}
-              label="Re-enter New Password"
-              value={form?.confirm_password}
-              onTextChange={(text) => {
-                changeTextData(text, "confirm_password");
-              }}
-              onBlur={() => {
-                onBlurHandler("confirm_password");
-              }}
-            />
-            <IconButton
-              // style={{ marginLeft: "-30px" }}
-              className={styles.visibleIcon}
-              onClick={toggleConfirmPasswordVisibility}
-            >
-              {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-            <br />
+            <div style={{ marginTop: "8px" }}>
+              <CustomTextField
+                isError={errorData?.confirm_password}
+                errorText={errorData?.confirm_password}
+                fullWidth={true}
+                size="small"
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirm_password"
+                margin={"dense"}
+                label="Re-enter New Password"
+                value={form?.confirm_password}
+                onTextChange={(text) => {
+                  changeTextData(text, "confirm_password");
+                }}
+                onBlur={() => {
+                  onBlurHandler("confirm_password");
+                }}
+              />
+              <IconButton
+                // style={{ marginLeft: "-30px" }}
+                className={styles.visibleIcon}
+                onClick={toggleConfirmPasswordVisibility}
+              >
+                {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </div>
             <div
               style={{
                 display: "flex",

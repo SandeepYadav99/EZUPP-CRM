@@ -83,7 +83,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
             >
               {!showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
-
+          <div style={{marginTop:"8px"}}>
             <CustomTextField
               isError={errorData?.confirm_password}
               errorText={errorData?.confirm_password}
@@ -107,6 +107,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
             >
               {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
+            </div> 
             <div
               style={{
                 display: "flex",
