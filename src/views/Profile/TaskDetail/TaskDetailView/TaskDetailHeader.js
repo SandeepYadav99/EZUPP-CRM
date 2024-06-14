@@ -26,7 +26,7 @@ const theme = useTheme()
   return (
   
       <div className={styles.headerTitle}>
-        <Typography variant='h4' fontSize={18} fontWeight={600} color={theme.palette.text.subText1}>{details?.title}</Typography>
+        <Typography variant='h3'  fontWeight={600} color={theme.palette.text.primary}>{details?.title}</Typography>
         <div className={styles.complte}>
         <div  className={`${styles.transition} ${
           !isCompleted ? styles.completed : styles.markComplete

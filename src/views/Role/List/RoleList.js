@@ -141,24 +141,24 @@ const RoleList = (props) => {
         render: (temp, all) => (
           <>
             <IconButton
-              color={theme.palette.text.subText1}
+           
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
                 handleDetail(all);
               }}
             >
-              <Info fontSize={"small"} />
+              <Info fontSize={"small"} color={theme.palette.text.primary} />
             </IconButton>
             <IconButton
-              color={theme.palette.text.subText1}
+             
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
                 handleEdit(all);
               }}
             >
-              <Edit fontSize={"small"} />
+              <Edit fontSize={"small"}  color={theme.palette.text.primary}/>
             </IconButton>
           </>
         ),

@@ -138,7 +138,7 @@ const AssociatedUsers = ({ listData, id }) => {
 
   return (
     <ShadowBox width={"100%"}>
-      <Typography variant="h4" sx={{mb:2}} fontSize={18} fontWeight={600} color={theme.palette.text.subText1} margin={theme.spacing(1)}>
+      <Typography variant="h4" sx={{mb:2}}  fontWeight={600} color={theme.palette.text.primary} margin={theme.spacing(1)}>
         Associated Users
       </Typography>
       <div style={{ width: "100%" }}>

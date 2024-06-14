@@ -54,7 +54,7 @@ const Profile = () => {
             <ButtonBase onClick={() => history.push("/admin/users")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
-            <Typography fontSize={22} variant="h3" fontWeight={600} color={theme?.palette.text.subText1}>Profile View</Typography>
+            <Typography  variant="h3" fontWeight={600} color={theme.palette.text.primary}>Profile View</Typography>
             </div>
             <div className={styles.profileHeaderAction}>
               <ArrowOutlineButton

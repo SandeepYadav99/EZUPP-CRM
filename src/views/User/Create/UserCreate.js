@@ -35,7 +35,7 @@ const theme = useTheme()
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"medium"} />{" "}
           </ButtonBase>
-          <Typography variant="h4" fontSize={22} fontWeight={600} color={theme.palette.text.subText1} >
+          <Typography variant="h4" fontWeight={600} color={theme.palette.text.primary} >
             {id ? "Update" : "Add"} User
           </Typography>
         </div>

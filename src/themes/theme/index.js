@@ -25,7 +25,7 @@ const darkContent = "#F7F7F9"
 const ractangeborder="#C5C5C5";
 const ractange="#347BEC";
 const contact="#FFFFFF";
-const subText="#888888";
+
 const switchTheme = "#2063CE";
 const swithcTrack="#E9E9EA";
 const Theme = (colors) => {
@@ -110,8 +110,7 @@ const Theme = (colors) => {
       hint: "#B9B9B9",
       error: '#ff0000',
       bright: '#FFF',
-      subText:subText,
-      subText1: "#636578",
+     
     },
     primaryButton: {
       hover: secondary,

@@ -149,23 +149,23 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            <IconButton
-              color={theme.palette.status.service}
-              onClick={() => handleProfile(all)}
-            >
-              <Info fontSize={"small"} />
+            <IconButton onClick={() => handleProfile(all)}>
+              <Info fontSize={"small"} color={theme.palette.text.primary} />
             </IconButton>
             <IconButton
-              color={theme.palette.status.service}
-              // onClick={() => handleProfile(all)}
+            // color={theme.palette.status.service}
+            // onClick={() => handleProfile(all)}
             >
-              <img src={addTask} alt="task" width={20} />
+              <img
+                src={addTask}
+                alt="task"
+                width={20}
+                style={{color:`${theme.palette.text.primary}`}}
+                
+              />
             </IconButton>
-            <IconButton
-              onClick={() => handleEdit(all)}
-              color={theme.palette.status.service}
-            >
-              <Edit fontSize={"small"} />
+            <IconButton onClick={() => handleEdit(all)}>
+              <Edit fontSize={"small"} color={theme.palette.text.primary} />
             </IconButton>
           </div>
         ),

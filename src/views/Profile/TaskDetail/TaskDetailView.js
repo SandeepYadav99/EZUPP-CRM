@@ -186,7 +186,7 @@ const TaskDetailView = ({}) => {
           <ButtonBase onClick={() => historyUtils.goBack()}>
             <ArrowBackIosIcon fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant="h3" fontSize={22} color={theme.palette.text.subText1}>Task Detail</Typography>
+          <Typography variant="h3"  color={theme.palette.text.primary}>Task Detail</Typography>
         </div>
 
         <div className={styles.editAction}>

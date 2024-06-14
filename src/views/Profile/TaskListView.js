@@ -39,9 +39,9 @@ const theme= useTheme()
           onClick={handleCheckboxClick}
         />
         <Typography
-          variant="h5"
-          fontSize={14}
-          color={theme?.palette.text.subText1}
+          variant="h6"
+        
+          color={theme.palette.text.primary}
           fontWeight={600}
           onClick={() => handleDetailPage(task)}
         >
@@ -50,13 +50,13 @@ const theme= useTheme()
       </div>
       <div onClick={() => handleDetailPage(task)} className={styles.detailView}>
         {/* <div className={styles.dummy}></div> */}
-        <Typography variant="body1" color={theme?.palette.text.subText} marginLeft={"12px"} fontSize={14} marginTop={-1}>
+        <Typography variant="body1" color={theme?.palette.text.secondary} marginLeft={"12px"} fontSize={14} marginTop={-1}>
           {formattedDescription}
         </Typography>
         <div className={styles.taskFlex}>
           <div className={styles.timeFlex}>
-            <AccessTimeFilled className={styles.contactIcons} color={theme?.palette?.status.service} fontSize="small" />
-            <Typography variant="caption" color={theme?.palette?.status.service} padding={1} fontWeight={600}>
+            <AccessTimeFilled className={styles.contactIcons} color={theme.palette.text.primary} fontSize="small" />
+            <Typography variant="caption" color={theme.palette.text.primary} padding={1} fontWeight={600}>
               {task?.dueDateListText}
             </Typography>
           </div>

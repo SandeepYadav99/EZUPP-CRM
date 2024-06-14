@@ -99,10 +99,10 @@ const theme= useTheme()
         <ShadowBox className={styles.rightSection}>
           <div className={styles.boxleft}>
             <div>
-              <Typography variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1}>
+              <Typography variant="h4"  fontWeight={600} color={theme.palette.text.primary}>
                 {name}
               </Typography>
-              <Typography variant="body1" fontSize={14}  color={theme.palette.text.subText}>{display_name}</Typography>
+              <Typography variant="body1"  color={theme.palette.text.secondary}>{display_name}</Typography>
             </div>
             <div>
               <StatusPill
@@ -112,12 +112,12 @@ const theme= useTheme()
             </div>
           </div>
           <hr className={styles.hrLine} />
-          <Typography variant="h5" fontSize={14} fontWeight={600} color={theme.palette.text.subText1} sx={{mt:2}}>Description</Typography>
-          <Typography fontSize={14}  color={theme.palette.text.subText}>{description || "N/A"}</Typography>
+          <Typography variant="h5" fontWeight={600} color={theme.palette.text.primary} sx={{mt:2}}>Description</Typography>
+          <Typography variant="h6"  color={theme.palette.text.secondary}>{description || "N/A"}</Typography>
         </ShadowBox>
         <ShadowBox className={styles.leftSection}>
           <div>
-            <Typography variant="h4" sx={{mb:2}} fontSize={18} fontWeight={600} color={theme.palette.text.subText1}>
+            <Typography variant="h4" sx={{mb:2}}  fontWeight={600} color={theme.palette.text.primary}>
               Permissions Granted
             </Typography>
             <PermissionsGranted state={state} styles={styles} />

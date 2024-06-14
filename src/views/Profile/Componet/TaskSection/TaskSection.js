@@ -133,7 +133,7 @@ const TaskSection = ({
     <ShadowBox width={"100%"}>
       <div>
         <div className={styles.upperFlex}>
-          <Typography fontSize={18} variant="h4" fontWeight={600} color={theme?.palette.text.subText1}>Tasks Lists</Typography>
+          <Typography variant="h4" fontWeight={600} color={theme.palette.text.primary}>Tasks Lists</Typography>
           <div className={"myprofile"}>
             <CustomSelectField
             // name={"ALL"}

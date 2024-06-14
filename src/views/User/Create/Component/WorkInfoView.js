@@ -25,7 +25,7 @@ const WorkInfoView = ({
       <ShadowBox className={styles.mainBox}>
         <div className={"headerFlex"}>
           <Typography
-           variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1} 
+           variant="h4"  fontWeight={600} color={theme.palette.text.primary} 
           >
             Work Information
           </Typography>

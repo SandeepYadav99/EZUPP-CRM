@@ -15,8 +15,8 @@ const PermissionsGranted = ({ state, styles }) => {
                 variant="h5"
                 margin={theme.spacing(1.5)}
                 fontWeight={600}
-                fontSize={14}
-                color={theme.palette.text.subText1}
+                
+                color={theme.palette.text.primary}
                 
               >
                 {permission?.name}:
@@ -24,19 +24,19 @@ const PermissionsGranted = ({ state, styles }) => {
             </div>
             <div className={styles.permissionRow}>
               {permission?.all_data && (
-                <Typography variant="body1"  color={theme.palette.text.subText}>All Data,</Typography>
+                <Typography variant="body1"  color={theme.palette.text.secondary}>All Data,</Typography>
               )}
               {permission?.create && (
-                <Typography variant="body1" color={theme.palette.text.subText}>Create,</Typography>
+                <Typography variant="body1" color={theme.palette.text.secondary}>Create,</Typography>
               )}
               {permission?.read && (
-                <Typography variant="body1" color={theme.palette.text.subText}>Read,</Typography>
+                <Typography variant="body1" color={theme.palette.text.secondary}>Read,</Typography>
               )}
               {permission?.update && (
-                <Typography variant="body1" color={theme.palette.text.subText}>Update,</Typography>
+                <Typography variant="body1" color={theme.palette.text.secondary}>Update,</Typography>
               )}
               {permission?.delete && (
-                <Typography variant="body1" color={theme.palette.text.subText}>Delete</Typography>
+                <Typography variant="body1" color={theme.palette.text.secondary}>Delete</Typography>
               )}
             </div>
           </div>

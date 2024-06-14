@@ -60,13 +60,13 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
         <ButtonBase onClick={() => history.goBack()}>
           <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
         </ButtonBase>
-        <Typography variant="h4" fontSize={22} fontWeight={600} color={theme.palette.text.subText1} >{id ? "Edit" : "Create"} Role</Typography>
+        <Typography variant="h4"  fontWeight={600} color={theme.palette.text.primary} >{id ? "Edit" : "Create"} Role</Typography>
       </div>
 
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
           <Typography
-            variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1}
+            variant="h4" fontWeight={600} color={theme.palette.text.primary}
             
           >
             Role Details

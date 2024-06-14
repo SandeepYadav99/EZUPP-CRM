@@ -109,7 +109,7 @@ const RoleTableComponent = ({
       }}
     >
       <div className={styles.infoFiled}>
-        <Typography  variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1}>
+        <Typography  variant="h3" fontWeight={600} color={theme.palette.text.primary}>
           Permissions Granted
         </Typography>
         <InfoOutlined fontSize="16px" />
@@ -129,7 +129,7 @@ const RoleTableComponent = ({
               <Typography
                 variant="h6"
                 fontWeight={600}
-                color={theme.palette.text.subText1}
+                color={theme.palette.text.primary}
               >
                 Modules
               </Typography>
@@ -205,7 +205,7 @@ const RoleTableComponent = ({
                     <Typography
                       variant="h6"
                       
-                      color={theme.palette.text.subText}
+                      color={theme.palette.text.secondary}
                     >
                       {permission?.name}{" "}
                     </Typography>
