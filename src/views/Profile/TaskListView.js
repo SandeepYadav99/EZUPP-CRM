@@ -39,8 +39,9 @@ const theme= useTheme()
           onClick={handleCheckboxClick}
         />
         <Typography
-          variant="h6"
-          color={"#636578"}
+          variant="h5"
+          fontSize={14}
+          color={theme?.palette.text.subText1}
           fontWeight={600}
           onClick={() => handleDetailPage(task)}
         >
@@ -49,7 +50,7 @@ const theme= useTheme()
       </div>
       <div onClick={() => handleDetailPage(task)} className={styles.detailView}>
         {/* <div className={styles.dummy}></div> */}
-        <Typography variant="h6" color={"#888888"} marginLeft={"12px"} marginTop={-1}>
+        <Typography variant="body1" color={theme?.palette.text.subText} marginLeft={"12px"} fontSize={14} marginTop={-1}>
           {formattedDescription}
         </Typography>
         <div className={styles.taskFlex}>
