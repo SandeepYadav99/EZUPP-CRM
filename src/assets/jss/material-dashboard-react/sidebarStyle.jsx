@@ -111,6 +111,13 @@ const sidebarStyle = theme => ({
     marginRight: "15px",
     textAlign: 'center'
   },
+  logoImageSideBar: {
+    display: "inline-block",
+    maxHeight: "30px",
+    marginLeft: "10px",
+    marginRight: "15px",
+    textAlign: 'center'
+  },
   img: {
     width: "160px",
     top: "8px",
