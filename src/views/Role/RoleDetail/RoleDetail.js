@@ -26,7 +26,7 @@ const initialState = {
 };
 const RoleDetail = () => {
   const { id } = useParams();
-
+const theme= useTheme()
   const [open, setOpen] = useState(false);
   const reducer = (state, action) => {
     switch (action.type) {
@@ -99,10 +99,10 @@ const RoleDetail = () => {
         <ShadowBox className={styles.rightSection}>
           <div className={styles.boxleft}>
             <div>
-              <Typography fontSize={18} fontWeight={600}>
+              <Typography variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1}>
                 {name}
               </Typography>
-              <Typography variant="body1">{display_name}</Typography>
+              <Typography variant="body1" fontSize={14}  color={theme.palette.text.subText}>{display_name}</Typography>
             </div>
             <div>
               <StatusPill
@@ -112,12 +112,12 @@ const RoleDetail = () => {
             </div>
           </div>
           <hr className={styles.hrLine} />
-          <Typography variant="subtitle1">Description</Typography>
-          <Typography variant="body1">{description || "N/A"}</Typography>
+          <Typography variant="h5" fontSize={14} fontWeight={600} color={theme.palette.text.subText1} sx={{mt:2}}>Description</Typography>
+          <Typography fontSize={14}  color={theme.palette.text.subText}>{description || "N/A"}</Typography>
         </ShadowBox>
         <ShadowBox className={styles.leftSection}>
           <div>
-            <Typography fontSize={18} fontWeight={600}>
+            <Typography variant="h4" sx={{mb:2}} fontSize={18} fontWeight={600} color={theme.palette.text.subText1}>
               Permissions Granted
             </Typography>
             <PermissionsGranted state={state} styles={styles} />

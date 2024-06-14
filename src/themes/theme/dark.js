@@ -112,7 +112,8 @@ const DarkTheme = (colors) => {
             hint: "#B9B9B9",
             error: '#ff0000',
             bright: '#FFF',
-            subText:subText
+            subText:subText,
+            subText1: "#636578",
 
         },
         primaryButton: {
