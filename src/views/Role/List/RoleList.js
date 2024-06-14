@@ -195,7 +195,7 @@ const RoleList = (props) => {
     <>
       <ShadowBox width={"100%"}>
         <CustomListHeader
-          title={"Create"}
+          title={"CREATE"}
           handleCreate={handleCreate}
           sideTitlle={"Roles List"}
         />
