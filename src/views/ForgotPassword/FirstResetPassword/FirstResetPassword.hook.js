@@ -3,8 +3,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
-import { serviceResetProfilePassword } from "../../../services/index.services";
+import { serviceResetPassword,serviceResetProfilePassword } from "../../../services/index.services";
 import history from "../../../libs/history.utils";
+import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
+
+
 
 const initialForm = {
   password: "",
@@ -17,6 +20,18 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
+
+  const location = useLocation();
+
+
+  const getQueryParams = (search) => {
+    return new URLSearchParams(search);
+  };
+
+  const queryParams = getQueryParams(location.search);
+  const tokenData = queryParams.get("token");
+  const emailDataName = queryParams.get("email");
+  const UserName = queryParams.get("name");
 
  
   const [showPassword, setShowPassword] = useState(false);
@@ -71,15 +86,14 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
     setIsSubmitting(true);
     try {
       const formData = {
-        confirm_password: form?.confirm_password,
         password: form?.password,
-        email: email,
+        token:tokenData,
       };
-      const serviceFunction = serviceResetProfilePassword;
-      const res = await serviceFunction(formData);
+      const res = await serviceResetPassword(formData);
       if (!res.error) {
         handleClose();
         SnackbarUtils.success("Password Changed Successfully");
+        history.push("/login")
       } else {
         SnackbarUtils.error(res.message);
       }
@@ -159,6 +173,8 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
     togglePasswordVisibility,
     toggleConfirmPasswordVisibility,
     handleReturn,
+    UserName,
+    emailDataName,
   };
 };
 

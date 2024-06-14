@@ -9,6 +9,7 @@ import useFirstResetPassowrd from "./FirstResetPassword.hook";
 import CustomTextField from "../../../FormFields/TextField.component";
 import backArrow from "../../../assets/CRMAssets/ic_back.png";
 import logoImage from "../../../assets/CRMAssets/ezupp_login_logo.png";
+import useLoginHook from "../../Login/LoginForm/Login.hook";
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -26,6 +27,8 @@ const FirstResetPassowrd = ({ handleClose, open, email }) => {
     togglePasswordVisibility,
     toggleConfirmPasswordVisibility,
     handleReturn,
+    UserName,
+    emailDataName,
   } = useFirstResetPassowrd({ handleClose, open, email });
 
   const renderForm = () => {
@@ -47,15 +50,13 @@ const FirstResetPassowrd = ({ handleClose, open, email }) => {
           </div>
           <br />
           <div className={styles.alignInRowData}>
-            <span className={styles.heading2Data}>Kriti Srivastava </span>
+            <span className={styles.heading2Data}>{UserName} </span>
 
-            <Typography variant={"login1"}>
-              kritisrivastava@gmail.com{" "}
-            </Typography>
+            <Typography variant={"login1"}>{emailDataName}</Typography>
           </div>
           <div className={styles.underlineData}></div>
           <div>
-            <br/>
+            <br />
             <span className={styles.headingText2}>
               Set up password for your account{" "}
             </span>

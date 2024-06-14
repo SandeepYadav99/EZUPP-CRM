@@ -107,6 +107,10 @@ const useResetPasswordHook = ({ open,  handleClose }) => {
       if (!res.error) {
         handleClose();
         SnackbarUtils.success("Password Changed Successfully");
+        history.push("/login");
+        setForm({
+          ...initialForm
+        })
       } else {
         SnackbarUtils.error(res.message);
       }
