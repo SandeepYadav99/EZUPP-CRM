@@ -5,7 +5,7 @@ import SnackbarUtils from "../../libs/SnackbarUtils";
 import { serviceResetPassword, serviceResetProfilePassword } from "../../services/index.services";
 import history from "../../libs/history.utils";
 import { validatePassword } from "../../libs/RegexUtils";
-import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const initialForm = {
   password: "",
@@ -105,9 +105,8 @@ const useResetPasswordHook = ({ open,  handleClose }) => {
       const serviceFunction = serviceResetPassword;
       const res = await serviceFunction(formData);
       if (!res.error) {
-        handleClose();
-        SnackbarUtils.success("Password Changed Successfully");
         history.push("/login");
+        SnackbarUtils.success("Password Changed Successfully");
         setForm({
           ...initialForm
         })
