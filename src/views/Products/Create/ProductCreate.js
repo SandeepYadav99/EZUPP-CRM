@@ -47,7 +47,7 @@ const ProductCreate = ({}) => {
       <ProductInformation
         errorData={errorData}
         form={form}
-        image={image}
+        images={images}
         changeTextData={changeTextData}
         // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}

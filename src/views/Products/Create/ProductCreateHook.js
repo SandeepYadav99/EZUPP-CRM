@@ -26,7 +26,7 @@ function useProductCreateHook() {
     product_link: "",
     tags: [],
     description: "",
-    image: "",
+    image: null,
     unit_id: "",
     currency: "",
     ballpark_cost: "",
@@ -68,56 +68,21 @@ function useProductCreateHook() {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   if (id) {
-  //     serviceGetProductDetails({ id }).then((res) => {
-  //       if (!res.error) {
-  //         setForm(res.data.details);
-  //       }
-  //     });
-  //   }
-  // }, [id]);
-  // useEffect(() => {
-  //   if (id) {
-  //     serviceGetProductDetails({ id }).then((res) => {
-  //       if (!res.error) {
-  //         const details = res.data.details;
-  //         const newForm = { ...details };
-  //       if (details.image) {
-  //           newForm.image = details.image;
-  //         }
-
-  //         setForm(newForm);
-  //       }
-  //     });
-  //   }
-  // }, [id]);
   useEffect(() => {
     if (id) {
       serviceGetProductDetails({ id }).then((res) => {
         if (!res.error) {
           const details = res.data.details;
+          const obj ={}
+          Object.keys({...initialForm})?.forEach((key)=>{
+            if(key !== "image"){
+              obj[key] = details[key]
+            }
+          })
           setForm({
             ...form,
-            name: details?.name,
-            description: details?.description,
-            code: details?.code,
-           product_link: details?.product_link,
-          // image: details?.image,
-          unit_id: details?.unit_id,
-          currency: details?.currency,
-          ballpark_cost: details?.ballpark_cost,
-          ballpark_price: details?.ballpark_price,
-          discount_percent: details?.discount_percent,
-          discount_value: details?.discount_value,
-          type: details?.type, 
-          status: details?.status,
-          code: details?.code,
-          is_show_public: details?.is_show_public || false,
-          is_value_add: details?.is_value_add || false,
-         
-        
-          });
+            ...obj
+          })
           setImages(details?.image);
         
         } 
@@ -128,7 +93,7 @@ function useProductCreateHook() {
   }, [id]);
 
   const checkCodeValidation = useCallback(() => {
-    serviceProductCheck({ code: form?.code }).then((res) => {
+    serviceProductCheck({ code: form?.code , id:id ? id : null }).then((res) => {
       if (!res.error) {
         const errors = JSON.parse(JSON.stringify(errorData));
         if (res.data.is_exists) {
