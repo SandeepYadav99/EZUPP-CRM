@@ -27,8 +27,7 @@ const PersonalInformation = ({
     <>
       <ShadowBox width={"100%"}>
         <Typography
-          fontSize={18}
-          fontWeight={600}
+          variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1} 
           sx={{
             [theme.breakpoints.down("sm")]: {
               margin: "auto",
