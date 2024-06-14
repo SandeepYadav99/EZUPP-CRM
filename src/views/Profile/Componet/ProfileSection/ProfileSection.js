@@ -90,21 +90,21 @@ const statusUpdate=useCallback(()=>{
             </span>
           </div> */}
           <div className={styles.contactFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}  >Email:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}  >Email:</Typography>
             <Typography variant="h6"   color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2} >
               {" "}
               {profileDetails?.email || "N/A"}
             </Typography>
           </div>
           <div className={styles.contactFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}   >Contact:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}   >Contact:</Typography>
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}  >
               {" "}
               {profileDetails?.contact || "N/A"}
             </Typography>
           </div>
           <div className={styles.contactFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}  >Role:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}  >Role:</Typography>
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2} >
               {" "}
               {profileDetails?.role?.name || "N/A"}
@@ -117,21 +117,21 @@ const statusUpdate=useCallback(()=>{
         <div className={styles.gaps} />
         <div>
           <div className={styles.activityFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}  >Department:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}  >Department:</Typography>
 
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
               {formatString(profileDetails?.department || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}   >Designation:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}   >Designation:</Typography>
 
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
               {formatString(profileDetails?.designation || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}   >Manager:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}   >Manager:</Typography>
 
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2} fo sx={{
               whiteSpace: 'nowrap',
@@ -147,21 +147,21 @@ const statusUpdate=useCallback(()=>{
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}  >Joining Date:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}  >Joining Date:</Typography>
 
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
               {profileDetails?.joiningDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}   >Exit Date:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}   >Exit Date:</Typography>
 
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
               {profileDetails?.exitDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
-            <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}   >User is a Manager:</Typography>
+            <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}   >User is a Manager:</Typography>
 
             <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
               {profileDetails?.is_manager ? "Yes" : "No"}
@@ -173,21 +173,21 @@ const statusUpdate=useCallback(()=>{
         <Typography   marginTop={3} fontWeight={600} variant="h4" color={theme.palette.text.primary}   >Activity Information</Typography>
         <div className={styles.gaps} />
         <div className={styles.activityFlex}>
-          <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}  >Created On:</Typography>
+          <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}  >Created On:</Typography>
 
           <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
             {profileDetails?.createdAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
-          <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}   >Updated On:</Typography>
+          <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}   >Updated On:</Typography>
 
           <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
             {profileDetails?.updatedAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
-          <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}  >Updated By:</Typography>
+          <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}  >Updated By:</Typography>
 
           <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}  sx={{
               whiteSpace: 'nowrap',
@@ -202,7 +202,7 @@ const statusUpdate=useCallback(()=>{
           </Typography>
         </div>
         <div className={styles.activityFlex}>
-          <Typography variant="h5"  color={theme?.palette.text.secondary}   fontWeight={600}   >Last Login:</Typography>
+          <Typography variant="h5"  color={theme?.palette.text.primary}   fontWeight={600}   >Last Login:</Typography>
 
           <Typography variant="h6" color={theme?.palette.text.secondary} fontWeight={600} marginLeft={2}>
             {profileDetails?.lastLoginText}
