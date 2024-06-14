@@ -7,6 +7,7 @@ import { MenuItem, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+import { useTheme } from "@mui/styles";
 
 const WorkInfoView = ({
   errorData,
@@ -18,15 +19,13 @@ const WorkInfoView = ({
   id,
   designation
 }) => {
- 
+ const theme = useTheme()
   return (
     <>
       <ShadowBox className={styles.mainBox}>
         <div className={"headerFlex"}>
           <Typography
-            fontSize={18}
-            // color={"#636578"}
-            fontWeight={600}
+           variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1} 
           >
             Work Information
           </Typography>

@@ -8,10 +8,11 @@ import { useSelector } from "react-redux";
 
 import useAssociatedUsersHook from "./AssociatedUsersHook";
 import { IconButton, Typography } from "@mui/material";
-import { Edit } from "@mui/icons-material";
+import { Edit, Info } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 import StatusPill from "../../../../components/Status/StatusPill.component";
+import history from "../../../../libs/history.utils";
 
 const AssociatedUsers = ({ listData, id }) => {
   const {
@@ -101,8 +102,8 @@ const AssociatedUsers = ({ listData, id }) => {
         sortable: false,
         render: (temp, all) => (
           <div>
-            <IconButton>
-              <Edit fontSize="small" />
+            <IconButton onClick={()=>history.push(`/profile/?id=${all?.id}`)}>
+              <Info fontSize="small" />
             </IconButton>
           </div>
         ),
@@ -137,7 +138,7 @@ const AssociatedUsers = ({ listData, id }) => {
 
   return (
     <ShadowBox width={"100%"}>
-      <Typography fontSize={18} margin={theme.spacing(1)}>
+      <Typography variant="h4" sx={{mb:2}} fontSize={18} fontWeight={600} color={theme.palette.text.subText1} margin={theme.spacing(1)}>
         Associated Users
       </Typography>
       <div style={{ width: "100%" }}>

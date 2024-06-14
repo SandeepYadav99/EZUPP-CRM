@@ -54,7 +54,7 @@ const Profile = () => {
             <ButtonBase onClick={() => history.push("/admin/users")}>
               <ArrowBackIos fontSize={"medium"} />{" "}
             </ButtonBase>}
-            <Typography fontSize={24} fontWeight={600} color={theme?.palette.text.primary}>Profile View</Typography>
+            <Typography fontSize={22} variant="h3" fontWeight={600} color={theme?.palette.text.subText1}>Profile View</Typography>
             </div>
             <div className={styles.profileHeaderAction}>
               <ArrowOutlineButton
@@ -64,7 +64,7 @@ const Profile = () => {
                 borderRadius={8}
                 icon={<Lock fontSize="normal" />}
               >
-                 <Typography variant={"btnTitle"} color={""}>RESET PASSWORD</Typography>
+                 <Typography variant={"body1"} fontWeight={600} color={""}>RESET PASSWORD</Typography>
               </ArrowOutlineButton>
               <ArrowPrimaryButton
                 icon={<Add fontSize={"small"} />}
@@ -73,7 +73,7 @@ const Profile = () => {
                 borderRadius={8}
                 onClick={handleSideToggle}
               >
-                <Typography variant={"btnTitle"}>ADD TASK</Typography>
+                <Typography variant={"btnTitle"} fontWeight={600}>ADD TASK</Typography>
               </ArrowPrimaryButton>
             </div>
           </div>

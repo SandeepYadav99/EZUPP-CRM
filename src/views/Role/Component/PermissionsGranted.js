@@ -7,33 +7,36 @@ const PermissionsGranted = ({ state, styles }) => {
   return (
     <div>
       {state?.permissions?.map((permission) => {
-        console.log(permission);
+     
         return (
           <div className={styles.rightContaiiner}>
             <div>
               <Typography
-                variant="subtitle1"
+                variant="h5"
                 margin={theme.spacing(1.5)}
                 fontWeight={600}
+                fontSize={14}
+                color={theme.palette.text.subText1}
+                
               >
-                {permission?.name}
+                {permission?.name}:
               </Typography>
             </div>
             <div className={styles.permissionRow}>
               {permission?.all_data && (
-                <Typography variant="body1">All Data,</Typography>
+                <Typography variant="body1"  color={theme.palette.text.subText}>All Data,</Typography>
               )}
               {permission?.create && (
-                <Typography variant="body1">Create,</Typography>
+                <Typography variant="body1" color={theme.palette.text.subText}>Create,</Typography>
               )}
               {permission?.read && (
-                <Typography variant="body1">Read,</Typography>
+                <Typography variant="body1" color={theme.palette.text.subText}>Read,</Typography>
               )}
               {permission?.update && (
-                <Typography variant="body1">Update,</Typography>
+                <Typography variant="body1" color={theme.palette.text.subText}>Update,</Typography>
               )}
               {permission?.delete && (
-                <Typography variant="body1">Delete</Typography>
+                <Typography variant="body1" color={theme.palette.text.subText}>Delete</Typography>
               )}
             </div>
           </div>

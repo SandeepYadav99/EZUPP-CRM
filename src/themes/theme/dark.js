@@ -20,6 +20,7 @@ const lightenRate = 7.5;
 const darkenRate = 15;
 const textMainColor = '#4A4A4A';
 const tableHeadColor= "#3A3E5B";
+const NavHeadColor= "#3A3E5B";
 const darkContent = "#282A42"
 const ractange="#347BEC";
 const ractangeborder="#C5C5C5";
@@ -112,7 +113,8 @@ const DarkTheme = (colors) => {
             hint: "#B9B9B9",
             error: '#ff0000',
             bright: '#FFF',
-            subText:subText
+            subText:subText,
+            subText1: "#636578",
 
         },
         primaryButton: {
@@ -127,6 +129,7 @@ const DarkTheme = (colors) => {
             color2:"#ff4d49"
         },
         tableHeadColor:tableHeadColor,
+        NavHeadColor:NavHeadColor,
         contentDark:darkContent,
         contact:contact,
         switchTheme:switchTheme,

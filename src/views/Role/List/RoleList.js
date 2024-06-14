@@ -141,7 +141,7 @@ const RoleList = (props) => {
         render: (temp, all) => (
           <>
             <IconButton
-              color="inherit"
+              color={theme.palette.text.subText1}
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
@@ -151,7 +151,7 @@ const RoleList = (props) => {
               <Info fontSize={"small"} />
             </IconButton>
             <IconButton
-              color="inherit"
+              color={theme.palette.text.subText1}
               disabled={isCalling}
               onClick={() => {
                 // handleSideToggle(all?.id);
