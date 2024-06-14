@@ -318,6 +318,16 @@ const dashboardRoutes = [
     parentRoute:`${RouteName.PRODUCT}`
   },
   {
+    path: `${RouteName.PRODUCT_UPDATE}:id`,
+    sidebarName: "Products",
+    navbarName: "Products",
+    icon: LocalOffer,
+    component: ProductCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parentRoute:`${RouteName.PRODUCT}`
+  },
+  {
     path: `${RouteName.PRODUCT_CREATE}`,
     sidebarName: "Products",
     navbarName: "Products",
