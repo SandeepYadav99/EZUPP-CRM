@@ -149,16 +149,22 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            <IconButton color="inherit" onClick={() => handleProfile(all)}>
+            <IconButton
+              color={theme.palette.status.service}
+              onClick={() => handleProfile(all)}
+            >
               <Info fontSize={"small"} />
             </IconButton>
             <IconButton
-
-            // onClick={() => handleProfile(all)}
+              color={theme.palette.status.service}
+              // onClick={() => handleProfile(all)}
             >
               <img src={addTask} alt="task" width={20} />
             </IconButton>
-            <IconButton onClick={() => handleEdit(all)}>
+            <IconButton
+              onClick={() => handleEdit(all)}
+              color={theme.palette.status.service}
+            >
               <Edit fontSize={"small"} />
             </IconButton>
           </div>

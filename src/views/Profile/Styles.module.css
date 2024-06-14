@@ -206,7 +206,9 @@
 
 .contactIcons {
   /* font-size: 0.9rem !important; */
-  color: #000000;
+  height: 14px;
+  width: 14px;
+
 }
 
 .taskHeading {

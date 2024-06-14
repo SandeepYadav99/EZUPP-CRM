@@ -10,7 +10,7 @@ import {
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
 
-import { makeStyles } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 
 import useRoleCreateHook from "./RoleCreateHook";
@@ -53,22 +53,20 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
-  
+  const theme= useTheme()
   return (
     <>
       <div className={styles.iconButton}>
         <ButtonBase onClick={() => history.goBack()}>
           <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
         </ButtonBase>
-        <Typography variant={"h4"} fontWeight={600} >{id ? "Edit" : "Create"} Role</Typography>
+        <Typography variant="h4" fontSize={22} fontWeight={600} color={theme.palette.text.subText1} >{id ? "Edit" : "Create"} Role</Typography>
       </div>
 
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
           <Typography
-            fontSize={18}
-            // color={"#636578"}
-            fontWeight={600}
+            variant="h4" fontSize={18} fontWeight={600} color={theme.palette.text.subText1}
             
           >
             Role Details

@@ -1,0 +1,20 @@
+.mainLoginViewDelete{
+    display: flex;
+     width: 100vw;
+    border-radius: 60px !important;
+  }
+  .formContainer{
+    /* background-color: #fff; */
+    flex: 1.5;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between; 
+}
