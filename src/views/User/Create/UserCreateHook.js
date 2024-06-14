@@ -240,8 +240,6 @@ function useUserCreateHook() {
         "Joining date should not be greater than end date"
       );
       errors.end_date = true;
-    } else {
-      delete errors.end_date;
     }
     // if (form?.url && !validateUrl(form?.url)) {
     //   errors.url = true;

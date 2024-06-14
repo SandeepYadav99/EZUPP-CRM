@@ -7,7 +7,7 @@ import { MenuItem, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
-import SnackbarUtils from "../../../../libs/SnackbarUtils";
+
 const WorkInfoView = ({
   errorData,
   form,
@@ -18,6 +18,7 @@ const WorkInfoView = ({
   id,
   designation
 }) => {
+ 
   return (
     <>
       <ShadowBox className={styles.mainBox}>
@@ -111,7 +112,7 @@ const WorkInfoView = ({
               onChange={(value) => {
                 changeTextData(value, "joining_date");
               }}
-              className={styles.dateContainer}
+              // className={styles.dateContainer}
               value={form?.joining_date}
               isError={errorData?.joining_date}
               errorText={errorData?.joining_date}
@@ -120,7 +121,7 @@ const WorkInfoView = ({
           <div className={"formGroup"}>
             <CustomDatePicker
               clearable
-              className={styles.dateContainer}
+              // className={styles.dateContainer}
               label={"End Date"}
               onChange={(value) => {
                
