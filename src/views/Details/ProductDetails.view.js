@@ -18,7 +18,8 @@ import DeleteDialog from "../Products/List/component/DeleteDialog/DeleteDialog";
 const ProductDetailview = () => {
   const { isLoading, handleSideToggle, handleDetailPage, profileDetails, handleDelete, openDialog,
     closeDialog,
-    isDialogOpen,} =
+    isDialogOpen,
+    handleEdit} =
     useProductDetailHook({});
     const img="http://91.205.173.97:8118/public/product_images/1713506777190_red-ball-hitting-wicket-stumps-with-bat-black-abstract-splash-background-cricket-fever-concept_1302-5492.jpg"
  
@@ -47,7 +48,10 @@ const ProductDetailview = () => {
           <div></div>
           <div className={styles.profileHeading}></div>
           <div className={styles.buttonRow}>
-          <OutlineButton onClick={() => {}}>
+          <OutlineButton onClick={() => {
+                
+                handleEdit();
+              }}>
               EDIT
               <span className={styles.imageContainer}>
                 <img
@@ -262,7 +266,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {/* {profileDetails?.updatedBy || "N/A"} */}
+                        {profileDetails?.updatedBy?.user_name ?? "N/A"}                     
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>

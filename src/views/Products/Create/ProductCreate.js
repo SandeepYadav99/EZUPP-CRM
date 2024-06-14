@@ -83,7 +83,7 @@ const ProductCreate = ({}) => {
             sx={{ mt: 4 }}
             onClick={handleSubmit}
           >
-            CREATE
+            {id ? "UPDATE" : "CREATE"}
           </PrimaryButton>
         </div>
       </div>
