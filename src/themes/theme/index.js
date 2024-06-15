@@ -128,7 +128,8 @@ const Theme = (colors) => {
     contentDark:darkContent,
     contact:contact,
     switchTheme:switchTheme,
-    swithcTrack:swithcTrack
+    swithcTrack:swithcTrack,
+    border:border
   };
 };
 

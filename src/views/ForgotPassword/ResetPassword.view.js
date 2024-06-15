@@ -103,14 +103,17 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </div>
+            <div className={"formGroup"}>
+
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 width: "100%",
-                marginBottom: "15px",
-                marginTop: "30px",
+                marginBottom: "20px",
+                marginTop: "20px",
+               
               }}
               className={styles.mobileRender}
             >
@@ -121,6 +124,8 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               <ArrowPrimaryButton onClick={handleSubmit}>
                 <Typography variant=" body1">SET NEW PASSWORD</Typography>
               </ArrowPrimaryButton>
+            </div>
+
             </div>
           </div>
         </div>

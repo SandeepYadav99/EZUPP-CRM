@@ -24,7 +24,7 @@ const PersonalInformation = ({
 }) => {
   const theme = useTheme();
   return (
-    <>
+ 
       <ShadowBox width={"100%"}>
         <Typography
           variant="h4" fontWeight={600} color={theme.palette.text.primary} 
@@ -189,7 +189,7 @@ const PersonalInformation = ({
           </div>
         </div>
       </ShadowBox>
-    </>
+  
   );
 };
 

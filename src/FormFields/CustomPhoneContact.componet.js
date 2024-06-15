@@ -4,6 +4,7 @@ import React, { useCallback } from "react";
 
 import PhoneInput from "react-phone-input-2";
 import { formatPhoneNumber } from "../hooks/CommonFunction";
+import { Typography } from "@mui/material";
 
 const CustomPhoneContactField = ({
   isError,
@@ -52,18 +53,21 @@ const CustomPhoneContactField = ({
           backgroundColor: theme.palette.background?.paper,
         }}
         specialLabel={
-          <span
-            style={{
-              color: theme.palette.text.primary,
-              background: theme.palette.contact,
-              position: "absolute",
-              top: theme.spacing(-0.1),
-              left: theme.spacing(2),
-              display: "block",
-            }}
+          <Typography 
+          sx={{
+            color: theme.palette.text.primary,
+            background: theme.palette.contact,
+            position: "absolute",
+            top: theme.spacing(0.5),
+            left: theme.spacing(2),
+            display: "block",
+            letterSpacing:0
+          }}
+         
+           variant="h6"
           >
             Contact
-          </span>
+          </Typography>
         }
         isValid={isValid}
         {...rest}

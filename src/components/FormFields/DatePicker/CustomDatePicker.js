@@ -50,10 +50,14 @@ const CustomDatePicker = ({
               "& .MuiOutlinedInput-notchedOutline": {
               borderColor:isError ? theme.palette.error.main : "",
               },
+              
             "& .MuiInputLabel-root": {
               color: theme.palette.text.primary,
               marginTop: theme.spacing(-0.5),
             },
+            "& .MuiInputLabel-shrink": {
+              marginTop:theme.spacing(0.05),
+              },
              width:1
           }}
           value={value ? dayjs(value) : null}
