@@ -81,7 +81,7 @@ const Profile = () => {
           </div>
           <div>
             <div className={styles.profileFlex}>
-              <>
+            
               <div className={styles.leftSection}>
                 <ProfileSection
                   profileDetails={profileDetails}
@@ -89,7 +89,7 @@ const Profile = () => {
                 />
               </div>
 
-              </>
+             
               <div className={styles.rightSection}>
                 <TaskSection
                   filterValue={filterValue}

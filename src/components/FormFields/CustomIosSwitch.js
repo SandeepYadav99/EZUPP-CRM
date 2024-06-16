@@ -14,13 +14,17 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
    
     '& .MuiSwitch-switchBase': {
       padding: 2,
+       transition: 'all 300ms !important',
       '&.Mui-checked': {
         transform: 'translateX(26px)',
-        transition: ' 0.3ms ease-out',
+       
         '& + .MuiSwitch-track': {
           opacity: 1,
           backgroundColor: theme.palette.switchTheme,
-        }
+        },
+        '&.Mui-disabled + .MuiSwitch-track': {
+          opacity: 0.5,
+        },
       }
     },
     '& .MuiSwitch-thumb': {
@@ -33,11 +37,13 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
     '& .MuiSwitch-track': {
       opacity: 1,
       borderRadius: '25px',
-       transition: ' 0.3ms ease-out',
+      //  transition: ' 0.3ms ease-out',
       // border: `1px solid ${theme.palette.text.primary}`,
       backgroundColor: theme.palette.swithcTrack,
       boxSizing: 'border-box',
-      
+      transition: theme.transitions.create(['background-color'], {
+        duration: 500,
+      }),
     }
   });
   return (
