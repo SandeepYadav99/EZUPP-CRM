@@ -145,7 +145,7 @@ const PersonalInformation = ({
                   className={styles.custonCSS}
                 >
                   {listData?.ROLES?.map((role) => (
-                    <MenuItem value={role?.id}>{role?.name}</MenuItem>
+                    <MenuItem value={role?.id} key={role?.id}>{role?.name}</MenuItem>
                   ))}
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>

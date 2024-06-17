@@ -96,6 +96,7 @@ const WorkInfoView = ({
               {manager?.map((item) => {
                 return (
                   <MenuItem
+                  key={item?.id}
                     value={item?.id}
                   >{`${item?.name} (${item?.employee_id})`}</MenuItem>
                 );
