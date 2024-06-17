@@ -571,7 +571,7 @@ const EnhancedTable = (props) => {
                             count={props.count}
                             rowsPerPage={rowsPerPage}
                             page={page}
-                            onChangePage={handleChangePage}
+                            onPageChange={handleChangePage}
                             onChangeRowsPerPage={handleChangeRowsPerPage}
                         />
                     )}
@@ -589,7 +589,7 @@ const EnhancedTable = (props) => {
                     count={props.count}
                     rowsPerPage={rowsPerPage}
                     page={page}
-                    onChangePage={handleChangePage}
+                    onPageChange={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 /></div>
         </div>
