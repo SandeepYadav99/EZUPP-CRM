@@ -340,8 +340,8 @@ function useUserCreateHook() {
         if (userObject?.user_id !== id) {
           formDataFields.joining_date = form?.joining_date || "";
           formDataFields.exit_date = form?.end_date || "";
-          formDataFields.department = form?.department;
-          formDataFields.designation = form?.designation;
+          formDataFields.department = form?.department ? form?.department : "";
+          formDataFields.designation = form?.designation ? form?.designation : "";
           formDataFields.role_id = form?.role || "";
           formDataFields.manager = form?.manager || "";
            formDataFields.send_email =id ? false : form?.invoiteToUser;
