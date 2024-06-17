@@ -22,14 +22,17 @@ const AssociatedUsers = ({ listData, id }) => {
     handleEdit,
     handleViewDetails,
     isCalling,
+    data,
+    currentData,
+    currentPage
   } = useAssociatedUsersHook({ listData, id });
   const theme = useTheme();
-  const {
-    present,
-    all: allData,
-    currentPage,
-    is_fetching: isFetching,
-  } = useSelector((state) => state.associatedManufactures);
+  // const {
+  //   present,
+  //   all: allData,
+  //   currentPage,
+  //   is_fetching: isFetching,
+  // } = useSelector((state) => state.associatedManufactures);
 
  
   const renderFirstCell = useCallback((product) => {
@@ -63,7 +66,7 @@ const AssociatedUsers = ({ listData, id }) => {
               alt="..."
             />
 
-            <Typography variant="body1" className={styles.title_is} > {all?.name} </Typography>
+            <Typography variant="body1"> {all?.name} </Typography>
           </div>
         ),
       },
@@ -120,20 +123,23 @@ const AssociatedUsers = ({ listData, id }) => {
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
       columns: tableStructure,
-      data: present || [],
-      count: allData?.length || 1,
-      page: currentPage,
+      data: currentData,
+      count: data.length,
+      page: currentPage - 1,
+      rowsPerPage: 10,
+      allRowSelected: false,
+      showSelection: false,
     };
 
     return { datatableFunctions, datatable };
   }, [
-    allData,
     tableStructure,
     handleSortOrderChange,
     handlePageChange,
     handleRowSize,
-    present,
+    data,
     currentPage,
+    currentData
   ]);
 
   return (
