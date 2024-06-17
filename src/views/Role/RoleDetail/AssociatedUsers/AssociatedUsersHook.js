@@ -1,86 +1,83 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { actionFetchAssociatedManufactures } from "../../../../actions/AssociatedManufactures.action";
+import { actionFetchAssociatedManufactures, actionGetJobOpeningCandidates } from "../../../../actions/AssociatedManufactures.action";
 
 
-
+const totalShow =10;
 const useAssociatedUsersHook = ({id}) => {
   const [isSidePanel, setSidePanel] = useState(false);
   const [isCalling, setIsCalling] = useState(false);
   const [editData, setEditData] = useState(null);
   const [editId, setEditId] = useState("");
   const dispatch = useDispatch();
-  const isMountRef = useRef(false);
+  const [currentPage,setCurrentPage] = useState(1);
+    const [data, setData] = useState([]);
+    const [currentData,setCurrentData] = useState([]);
 
-  const {
-    sorting_data: sortingData,
-    is_fetching: isFetching,
-    query,
-    query_data: queryData,
-    all,
-  } = useSelector((state) => state.associatedManufactures);
+
+  const {isCandidatesFetching, associatedUser:candidates } = useSelector(state => state.associatedManufactures);
+
 
   useEffect(() => {
-    dispatch(
-      actionFetchAssociatedManufactures(
-        1,
-        {},
-        {
-          query: isMountRef.current ? query : null,
-          query_data: isMountRef.current ? queryData : null,
-        }, id
-      )
-    );
-    isMountRef.current = true;
+    dispatch(actionGetJobOpeningCandidates(1, {}, {},id))
   }, []);
+
+    useEffect(() => {
+        setData(candidates);
+    }, [candidates]);
+
+    useEffect(() => {
+        _processData();
+    }, [data, currentPage]);
+
+
+    const _processData = useCallback(() =>  {
+      const from = (((currentPage) * totalShow) - totalShow);
+      let to = (((currentPage) * totalShow));
+      // all.filter((val, index) => {
+      //     if (index >= (((currentPage) * totalShow) - totalShow) && index < (((currentPage) * totalShow))) {
+      //         return val;
+      //     }
+      // });
+      
+      if (from <= data.length) {
+          to = to <= data.length ? to : data.length;
+          setCurrentData(data.slice(from, to));
+      }
+  }, [setCurrentData, currentPage, data, totalShow]);
 
   const handlePageChange = useCallback((type) => {
-    // dispatch(actionSetPageHubMasterRequests(type));
-  }, []);
+    console.log(data)
+      if (Math.ceil(data.length / totalShow) >= (type + 1)) {
+          setCurrentPage(type + 1);
+          _processData()
+      }
+  }, [_processData, setCurrentPage, data]);
 
-  const queryFilter = useCallback(
-    (key, value) => {
-      dispatch(
-        // actionFetchHubMaster(1, sortingData, {
-        //   query: key == "SEARCH_TEXT" ? value : query,
-        //   query_data: key == "FILTER_DATA" ? value : queryData,
-        // })
-      );
-    },
-    [sortingData, query, queryData]
-  );
 
-  const handleFilterDataChange = useCallback(
-    (value) => {
-      queryFilter("FILTER_DATA", value);
-    },
-    [queryFilter]
-  );
+  // const handlePageChange = useCallback((type) => {
+  //   // dispatch(actionSetPageHubMasterRequests(type));
+  // }, []);
 
-  const handleSearchValueChange = useCallback(
-    (value) => {
-      queryFilter("SEARCH_TEXT", value);
-    },
-    [queryFilter]
-  );
 
-  const handleSortOrderChange = useCallback(
-    (row, order) => {
-      // dispatch(actionSetPageHubMasterRequests(1));
-      // dispatch(
-      //   actionFetchHubMaster(
-      //     1,
-      //     { row, order },
-      //     {
-      //       query: query,
-      //       query_data: queryData,
-      //     }
-      //   )
-      // );
-    },
-    [query, queryData]
-  );
+  // const handleFilterDataChange = useCallback(
+  //   (value) => {
+  //     queryFilter("FILTER_DATA", value);
+  //   },
+  //   [queryFilter]
+  // );
+
+  // const handleSearchValueChange = useCallback(
+  //   (value) => {
+  //     queryFilter("SEARCH_TEXT", value);
+  //   },
+  //   [queryFilter]
+  // );
+
+  const handleSortOrderChange= (row, order)=>{
+        console.log(`handleSortOrderChange key:${row} order: ${order}`);
+    }
 
   const handleSideToggle = useCallback(
     (data) => {
@@ -114,8 +111,8 @@ const useAssociatedUsersHook = ({id}) => {
 
   return {
     handlePageChange,
-    handleFilterDataChange,
-    handleSearchValueChange,
+    // handleFilterDataChange,
+    // handleSearchValueChange,
     handleSortOrderChange,
     handleSideToggle,
     isCalling,
@@ -124,6 +121,9 @@ const useAssociatedUsersHook = ({id}) => {
     configFilter,
     editId,
     handleEditHubMaster,
+    data:candidates,
+    currentData,
+    currentPage
   };
 };
 
