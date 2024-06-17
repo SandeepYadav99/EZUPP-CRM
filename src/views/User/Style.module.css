@@ -25,6 +25,7 @@
 .firstCellFlex {
     display: flex;
     align-items: center;
+    gap: 8px !important;
 }
 .firstCellFlex img {
     width: 40px;

@@ -79,7 +79,7 @@ function LoginView() {
                   />
                 </div>
                 <div>
-                  <div style={{ display: "flex" }}>
+                  <div style={{ display: "flex",marginTop:"8px"}}>
                     <CustomTextField
                       type={showPassword ? "text" : "password"}
                       isError={errorData?.password}
@@ -155,7 +155,7 @@ function LoginView() {
             <br />
             <div className={styles.textLineMaker}>
               <div className={styles.lineMaker}></div>
-              <span style={{ paddingRight: "10px", paddingLeft: "10px" }}>
+              <span style={{ paddingRight: "10px", paddingLeft: "10px",color:"#636578" }} >
                 OR
               </span>
               <div className={styles.lineMaker}></div>

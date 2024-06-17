@@ -1,6 +1,7 @@
 import { ButtonBase, Typography } from '@mui/material';
 import { Check } from '@mui/icons-material';
 import React, { useState } from "react";
+import { useTheme } from '@mui/styles';
 
 
 const TaskDetailHeader = ({
@@ -11,7 +12,7 @@ const TaskDetailHeader = ({
   
 }) => {
 const [isCompleted, setIsCompleted]=useState(false)
-
+const theme = useTheme()
   const handleButtonClick = () => {
     if (isCompleted) {
       // completedHandler();
@@ -25,7 +26,7 @@ const [isCompleted, setIsCompleted]=useState(false)
   return (
   
       <div className={styles.headerTitle}>
-        <Typography fontSize={18} fontWeight={600} >{details?.title}</Typography>
+        <Typography variant='h3'  fontWeight={600} color={theme.palette.text.primary}>{details?.title}</Typography>
         <div className={styles.complte}>
         <div  className={`${styles.transition} ${
           !isCompleted ? styles.completed : styles.markComplete

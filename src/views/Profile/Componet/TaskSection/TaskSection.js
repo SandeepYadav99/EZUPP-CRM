@@ -1,9 +1,10 @@
-import { FormControl, MenuItem, Select } from "@mui/material";
+import { FormControl, MenuItem, Select, Typography } from "@mui/material";
 import React from "react";
 import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import TaskListItem from "../../TaskListView";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
+import { useTheme } from "@mui/styles";
 const taskLists = [
   {
     _id: "65ba32d7fb1f30fe28028455",
@@ -127,11 +128,12 @@ const TaskSection = ({
   markAsCompleted,
   completedHandler,
 }) => {
+  const theme = useTheme()
   return (
     <ShadowBox width={"100%"}>
       <div>
         <div className={styles.upperFlex}>
-          <h3 className={styles.taskHeading}>Tasks Lists</h3>
+          <Typography variant="h4" fontWeight={600} color={theme.palette.text.primary}>Tasks Lists</Typography>
           <div className={"myprofile"}>
             <CustomSelectField
             // name={"ALL"}

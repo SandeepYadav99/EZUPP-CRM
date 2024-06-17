@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import historyUtils from "../../../libs/history.utils";
 import styles from "./Style.module.css";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import { Edit } from "@mui/icons-material";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import { serviceTaskMnagmentUpdateStatus } from "../../../services/TaskManage.service";
@@ -107,6 +107,7 @@ const TaskDetailView = ({}) => {
   const classes = useStyles();
   const [isSidePanel, setSidePanel] = useState(false);
   const { id } = useParams();
+  const theme = useTheme()
   const [details, setDetails] = useState([]);
   // const { present: details } = useSelector((state) => state.common);
   const [filterValue, setFilterValue] = useState("ALL");
@@ -185,7 +186,7 @@ const TaskDetailView = ({}) => {
           <ButtonBase onClick={() => historyUtils.goBack()}>
             <ArrowBackIosIcon fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant="h5">Task Detail</Typography>
+          <Typography variant="h3"  color={theme.palette.text.primary}>Task Detail</Typography>
         </div>
 
         <div className={styles.editAction}>

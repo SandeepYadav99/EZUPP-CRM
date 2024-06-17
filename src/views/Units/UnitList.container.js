@@ -202,6 +202,7 @@ const UnitsList = (props) => {
             filters={configFilter}
             handleSearchValueChange={handleSearchValueChange}
             handleFilterDataChange={handleFilterDataChange}
+           
           />
           <div>
             <br />

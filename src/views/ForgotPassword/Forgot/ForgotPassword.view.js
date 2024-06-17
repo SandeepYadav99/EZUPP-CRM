@@ -107,7 +107,7 @@ const ForgotPasswordView = () => {
                     className={styles.back}
                     id={styles.forgotBtn}
                   >
-                    <img src={backArrow} alt="backtext" />
+                    <img src={backArrow} alt="backtext"  style={{height:"12px"}}/>
                     <Typography variant={"caption"}>Back To Login</Typography>
                   </ButtonBase>
                 </span>

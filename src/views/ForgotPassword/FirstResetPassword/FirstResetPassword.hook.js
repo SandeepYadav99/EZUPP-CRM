@@ -3,11 +3,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
-import { serviceResetPassword,serviceResetProfilePassword } from "../../../services/index.services";
+import {
+  serviceResetPassword,
+  serviceResetProfilePassword,
+} from "../../../services/index.services";
 import history from "../../../libs/history.utils";
-import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
-
-
+import {
+  useLocation,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
+import { validatePassword } from "../../../libs/RegexUtils";
 
 const initialForm = {
   password: "",
@@ -23,7 +28,6 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
 
   const location = useLocation();
 
-
   const getQueryParams = (search) => {
     return new URLSearchParams(search);
   };
@@ -33,7 +37,6 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
   const emailDataName = queryParams.get("email");
   const UserName = queryParams.get("name");
 
- 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -65,11 +68,28 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
         delete errors[val];
       }
     });
-    if (form?.password && form.password.length < 8) {
-      errors.password = "Password must be at least 8 characters";
+    if (!form?.password) {
+      SnackbarUtils.error("New password field cannot be empty");
+    } else {
+      if (!validatePassword(form.password)) {
+        errors.password = true;
+        SnackbarUtils.error(
+          "Password must contain at least one letter and one number"
+        );
+      }
+      if (form?.password && form.password.length < 8) {
+        errors.password = true;
+        SnackbarUtils.error("Password must be at least 8 characters");
+      }
     }
-    if (form.confirm_password && form.password !== form.confirm_password) {
-      errors.confirm_password = "Password doesn't match";
+
+    if (
+      form.confirm_password &&
+      form?.password &&
+      form.password !== form.confirm_password
+    ) {
+      errors.confirm_password = true;
+      SnackbarUtils.error("Password doesn't match");
     }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
@@ -87,13 +107,12 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
     try {
       const formData = {
         password: form?.password,
-        token:tokenData,
+        token: tokenData,
       };
       const res = await serviceResetPassword(formData);
       if (!res.error) {
-        handleClose();
+        history.push("/login");
         SnackbarUtils.success("Password Changed Successfully");
-        history.push("/login")
       } else {
         SnackbarUtils.error(res.message);
       }
@@ -147,10 +166,9 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
     [changeTextData]
   );
 
-  const handleReturn =()=>{
-    history.push("/login")
-  }
-
+  const handleReturn = () => {
+    history.push("/login");
+  };
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });

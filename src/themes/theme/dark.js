@@ -26,7 +26,7 @@ const ractange="#347BEC";
 const ractangeborder="#C5C5C5";
 const contact="#3A3E5B";
 const switchTheme = "#2063CE";
-const subText="#888888";
+
 const swithcTrack="#39393D";
 const DarkTheme = (colors) => {
     const { grey } = colors;
@@ -113,7 +113,7 @@ const DarkTheme = (colors) => {
             hint: "#B9B9B9",
             error: '#ff0000',
             bright: '#FFF',
-            subText:subText
+           
 
         },
         primaryButton: {
@@ -132,7 +132,8 @@ const DarkTheme = (colors) => {
         contentDark:darkContent,
         contact:contact,
         switchTheme:switchTheme,
-        swithcTrack:swithcTrack
+        swithcTrack:swithcTrack,
+        border:border
     };
 };
 

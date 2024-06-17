@@ -91,7 +91,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.LOGIN_PROFILE}`,
     sidebarName: "My Profile",
-    navbarName: "My Profile",
+    // navbarName: "My Profile",
     icon: AccountBox,
     component: Profile,
     is_sidebar: true,
@@ -137,7 +137,7 @@ const dashboardRoutes = [
   {
     path: "null",
     sidebarName: "Admin Users",
-    navbarName: "Admin Users",
+    // navbarName: "Admin Users",
     icon: AdminPanelSettings,
     is_sidebar: true,
     slug: "admin",
@@ -190,7 +190,7 @@ const dashboardRoutes = [
   {
     path: RouteName.ADMIN_USER,
     sidebarName: "Admin Users",
-    navbarName: "Admin Users",
+    // navbarName: "Admin Users",
     icon: People,
     component: UserList,
     is_sidebar: true,
@@ -246,7 +246,7 @@ const dashboardRoutes = [
   {
     path: RouteName.ROLE,
     sidebarName: "User Role",
-    navbarName: "User Role",
+    // navbarName: "User Role",
     icon: ManageAccounts,
     component: RoleList,
     is_sidebar: true,
@@ -300,7 +300,7 @@ const dashboardRoutes = [
   {
     path: RouteName.PRODUCT,
     sidebarName: "Products",
-    navbarName: "Products",
+    // navbarName: "Products",
     icon: AccountBox,
     component: ProductList,
     is_sidebar: true,
@@ -318,6 +318,16 @@ const dashboardRoutes = [
     parentRoute:`${RouteName.PRODUCT}`
   },
   {
+    path: `${RouteName.PRODUCT_UPDATE}:id`,
+    sidebarName: "Products",
+    navbarName: "Products",
+    icon: LocalOffer,
+    component: ProductCreate,
+    is_sidebar: false,
+    is_protect: true,
+    parentRoute:`${RouteName.PRODUCT}`
+  },
+  {
     path: `${RouteName.PRODUCT_CREATE}`,
     sidebarName: "Products",
     navbarName: "Products",
@@ -330,7 +340,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.APP_USERS}`,
     sidebarName: "App Users",
-    navbarName: "App Users",
+    // navbarName: "App Users",
     icon: SupervisedUserCircle,
     component: CustomerList,
     is_sidebar: true,
@@ -340,7 +350,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.CONTACT_LIST}`,
     sidebarName: "Contact",
-    navbarName: "Contact",
+    // navbarName: "Contact",
     icon: Contacts,
     component: ContactList,
     is_sidebar: true,
@@ -360,7 +370,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.CALENDAR}`,
     sidebarName: "Calendar",
-    navbarName: "Calendar",
+    // navbarName: "Calendar",
     icon: CalendarMonth,
     component: CalendarList,
     is_sidebar: true,
@@ -390,7 +400,7 @@ const dashboardRoutes = [
   {
     path: "/blogs",
     sidebarName: "Blogs",
-    navbarName: "Blogs",
+    // navbarName: "Blogs",
     icon: Book,
     component: BlogsComponentList,
     is_sidebar: true,
@@ -399,7 +409,7 @@ const dashboardRoutes = [
   {
     path: "/faq",
     sidebarName: "FAQ",
-    navbarName: "FAQ",
+    // navbarName: "FAQ",
     icon: LiveHelp,
     component: FaqList,
     is_sidebar: true,
@@ -419,7 +429,7 @@ const dashboardRoutes = [
   {
     path: "/support",
     sidebarName: "Customer Support",
-    navbarName: "Customer Support",
+    // navbarName: "Customer Support",
     icon: SupportAgent,
     component: SupportList,
     is_sidebar: true,
@@ -449,7 +459,7 @@ const dashboardRoutes = [
   {
     path: "/unit",
     sidebarName: "Unit",
-    navbarName: "Unit",
+    // navbarName: "Unit",
     icon: ContentPaste,
     component: UnitsList,
     is_sidebar: true,
@@ -471,7 +481,7 @@ const dashboardRoutes = [
   {
     path: "/app/settings",
     sidebarName: "App Settings",
-    navbarName: "App Settings",
+    // navbarName: "App Settings",
     icon: Settings,
     component: AppSettings,
     is_sidebar: true,
@@ -480,7 +490,7 @@ const dashboardRoutes = [
   {
     path: "/quotes",
     sidebarName: "Quotes",
-    navbarName: "Quotes",
+    // navbarName: "Quotes",
     icon: ReceiptLong,
     component: QuoteList,
     is_sidebar: true,
@@ -513,7 +523,7 @@ const dashboardRoutes = [
   {
     path: RouteName.SERVICE_DETAIL,
     sidebarName: "Service list",
-    navbarName: "service List",
+    // navbarName: "service List",
     icon: SupervisedUserCircle,
     component: ServiceDetailView,
     is_sidebar: false,

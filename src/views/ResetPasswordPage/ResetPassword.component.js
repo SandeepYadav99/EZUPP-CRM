@@ -52,7 +52,7 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
                 color: "#888888",
                 fontSize: "14px",
                 marginTop: "5px",
-                marginBottom:"20px",
+                marginBottom: "20px",
               }}
             >
               Your new password must be different from previously used passwords
@@ -83,30 +83,31 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
             >
               {!showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
-
-            <CustomTextField
-              isError={errorData?.confirm_password}
-              errorText={errorData?.confirm_password}
-              fullWidth={true}
-              size="small"
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirm_password"
-              margin={"dense"}
-              label="Confirm Password"
-              value={form?.confirm_password}
-              onTextChange={(text) => {
-                changeTextData(text, "confirm_password");
-              }}
-              onBlur={() => {
-                onBlurHandler("confirm_password");
-              }}
-            />
-            <IconButton
-              className={styles.visibleIcon}
-              onClick={toggleConfirmPasswordVisibility}
-            >
-              {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
+            <div style={{ marginTop: "8px" }}>
+              <CustomTextField
+                isError={errorData?.confirm_password}
+                errorText={errorData?.confirm_password}
+                fullWidth={true}
+                size="small"
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirm_password"
+                margin={"dense"}
+                label="Confirm Password"
+                value={form?.confirm_password}
+                onTextChange={(text) => {
+                  changeTextData(text, "confirm_password");
+                }}
+                onBlur={() => {
+                  onBlurHandler("confirm_password");
+                }}
+              />
+              <IconButton
+                className={styles.visibleIcon}
+                onClick={toggleConfirmPasswordVisibility}
+              >
+                {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </div>
             <div
               style={{
                 display: "flex",
@@ -121,16 +122,18 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               <ArrowPrimaryButton onClick={handleSubmit}>
                 <Typography variant=" body1">SET NEW PASSWORD</Typography>
               </ArrowPrimaryButton>
-              <span className={styles.bottomSignup}>
                 <ButtonBase
                   onClick={handleReturn}
                   className={styles.back}
                   id={styles.forgotBtn}
                 >
-                  <img src={backArrow} alt="backtext" />
+                  <img
+                    src={backArrow}
+                    alt="backtext"
+                    style={{ height: "12px" }}
+                  />
                   <Typography variant={"caption"}>Back To Login</Typography>
                 </ButtonBase>
-              </span>
             </div>
           </div>
         </div>

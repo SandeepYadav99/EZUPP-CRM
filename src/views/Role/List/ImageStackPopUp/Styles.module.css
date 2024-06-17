@@ -20,7 +20,9 @@
 .imageHeader {
   display: flex !important;
   justify-content: space-between !important;
-  padding: 20px !important;
+  /* padding: 20px !important; */
+  margin-bottom: 36px !important;
+  margin-top: 36px !important;
 }
 .imageRow{
   display: flex !important;
@@ -30,4 +32,8 @@
 }
 .hrlines{
   border: 1px solid #E4E4E6;
+}
+
+.title_is::first-letter{
+  text-transform: capitalize !important;
 }

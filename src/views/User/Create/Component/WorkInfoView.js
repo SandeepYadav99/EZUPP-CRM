@@ -7,6 +7,7 @@ import { MenuItem, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+import { useTheme } from "@mui/styles";
 
 const WorkInfoView = ({
   errorData,
@@ -18,15 +19,13 @@ const WorkInfoView = ({
   id,
   designation
 }) => {
- 
+ const theme = useTheme()
   return (
     <>
       <ShadowBox className={styles.mainBox}>
         <div className={"headerFlex"}>
           <Typography
-            fontSize={18}
-            // color={"#636578"}
-            fontWeight={600}
+           variant="h4"  fontWeight={600} color={theme.palette.text.primary} 
           >
             Work Information
           </Typography>
@@ -97,6 +96,7 @@ const WorkInfoView = ({
               {manager?.map((item) => {
                 return (
                   <MenuItem
+                  key={item?.id}
                     value={item?.id}
                   >{`${item?.name} (${item?.employee_id})`}</MenuItem>
                 );
@@ -134,8 +134,10 @@ const WorkInfoView = ({
             />
           </div>
         </div>
-        <div className={"formFlex"}>
-          <div className={"formGroup"}>
+        <div className={"formGroup"}>
+        <div className={styles.footerBox}>
+       
+       
             <CustomCheckbox
               value={form?.userManage}
               handleChange={() => {
@@ -143,20 +145,21 @@ const WorkInfoView = ({
               }}
               label={`User is a manager?`}
             />
-          </div>
-        </div>
-        <div className={"formFlex"}>
-          <div className={"formGroup"}>
+        
+          
             {!id && 
             <CustomCheckbox
+            className={styles.checkBoxmargin}
+           
               value={form?.invoiteToUser}
               handleChange={() => {
                 changeTextData(!form?.invoiteToUser, "invoiteToUser");
               }}
               label={`Send Invite to user on email`}
             />}
+              </div>
           </div>
-        </div>
+     
       </ShadowBox>
     </>
   );
