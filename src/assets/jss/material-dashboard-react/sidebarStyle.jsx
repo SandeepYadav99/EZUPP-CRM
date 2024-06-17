@@ -118,6 +118,20 @@ const sidebarStyle = theme => ({
     marginRight: "15px",
     textAlign: 'center'
   },
+  logocollSidebar :{
+    display: "inline-block",
+    maxHeight: "30px",
+    textAlign: 'center'
+  },
+  collimg: {
+    width: "40px",
+    height:"40px",
+    top: "4px",
+    left: "8px",
+    position: "absolute",
+    verticalAlign: "middle",
+    border: "0"
+  },
   img: {
     width: "160px",
     top: "8px",

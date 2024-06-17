@@ -64,6 +64,9 @@ const Dashboard = ({title, ...props}) => {
         }
     }, [setDrawerOpen]);
 
+    const handleOpenSideBar = useCallback(() => {
+        setDrawerOpen(true);
+    }, [setDrawerOpen]);
 
 
     const handleHeaderClick = useCallback(() => {
@@ -106,6 +109,7 @@ const Dashboard = ({title, ...props}) => {
                 logo={logo}
                 handleDrawerToggle={handleDrawerToggle}
                 toggleSideBar={handleHeaderClick}
+                handleOpenSideBar={handleOpenSideBar}
                 open={drawerOpen}
                 color="blue"
                 {...props}
