@@ -244,7 +244,7 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       const t = { ...form };
       if (fieldName === "name" || fieldName === "display_name") {
         if (!text || (isAlphaNum(text) && text.toString().length <= 20)) {
-          t[fieldName] = text;
+          t[fieldName] = text.trimStart();
         }
       } else if (fieldName === "industry_id") {
         t[fieldName] = text?.filter((item, index, self) => {

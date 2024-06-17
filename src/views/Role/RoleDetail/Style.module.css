@@ -1,12 +1,7 @@
 .detailContainer {
-  /* display: flex !important;
-  width: 100% !important;
-  gap: 10px !important;
-  margin-top: 20px !important;
-  flex-wrap: wrap;
-  justify-content: space-between; */
+
   display: flex;
-  /*align-items: center;*/
+
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 20px !important;
