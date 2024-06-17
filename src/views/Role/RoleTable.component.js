@@ -102,6 +102,7 @@ const RoleTableComponent = ({
     <ShadowBox
       className={styles.mainContainer}
       sx={{
+       overflow:"scroll",
         padding: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
           padding: theme.spacing(1),
@@ -211,7 +212,8 @@ const RoleTableComponent = ({
                     <Typography
                       variant="h6"
                       sx={{
-                        marginLeft:theme.spacing(0.5)
+                        marginLeft:theme.spacing(0.5),
+                       
                       }}
                       color={theme.palette.text.secondary}
                     >
