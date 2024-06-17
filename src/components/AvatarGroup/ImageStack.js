@@ -5,6 +5,7 @@ import { useTheme } from "@mui/styles";
 
 const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
   const theme = useTheme();
+  console.log(imageArray)
   return (
     <AvatarGroup
       max={4}
@@ -29,7 +30,7 @@ const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
     >
       {imageArray?.map((industry, index) => (
         <Avatar className={styles.avatarImageStack} key={industry?.id}>
-          <img src={industry?.image} alt={""} crossOrigin="anonymous" />
+          <img src={industry?.image}   alt={""} crossOrigin="anonymous" />
         </Avatar>
       ))}
     </AvatarGroup>

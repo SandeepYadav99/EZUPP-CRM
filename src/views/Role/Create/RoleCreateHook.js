@@ -103,10 +103,10 @@ const useRoleCreateHook = ({ handleSideToggle, isSidePanel, empId }) => {
       }
     });
 
-    if (form?.name?.length <= 2) {
+    if (form?.name?.length < 2) {
       errors.name = true;
     }
-    if (form?.display_name?.length <= 2) {
+    if (form?.display_name?.length < 2) {
       errors.display_name = true;
     }
 

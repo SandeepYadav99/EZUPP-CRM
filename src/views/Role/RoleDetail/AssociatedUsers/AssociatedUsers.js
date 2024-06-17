@@ -63,7 +63,7 @@ const AssociatedUsers = ({ listData, id }) => {
               alt="..."
             />
 
-            <Typography variant="body1"> {all?.name} </Typography>
+            <Typography variant="body1" className={styles.title_is} > {all?.name} </Typography>
           </div>
         ),
       },

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  
-  ButtonBase,
-  CircularProgress,
- 
-  Typography,
- 
-} from "@mui/material";
+import { ButtonBase, CircularProgress, Typography } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
 
@@ -20,7 +13,6 @@ import history from "../../../libs/history.utils";
 
 import {
   ActionButton,
- 
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
@@ -50,24 +42,40 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
     permission,
     setAllData,
     allData,
-    
   } = useRoleCreateHook({ handleSideToggle, isSidePanel, empId });
   const classes = useStyles();
-  const theme= useTheme()
+  const theme = useTheme();
   return (
     <>
       <div className={styles.iconButton}>
         <ButtonBase onClick={() => history.goBack()}>
-          <ArrowBackIos color={"#636578"} fontSize={"small"} />{" "}
+          <ArrowBackIos
+            sx={{
+              color: theme.palette.text.primary,
+            }}
+            fontSize={"small"}
+          />{" "}
         </ButtonBase>
-        <Typography variant="h4"  fontWeight={600} color={theme.palette.text.primary} >{id ? "Edit" : "Create"} Role</Typography>
+        <Typography
+          variant="h4"
+          fontWeight={600}
+          color={theme.palette.text.primary}
+        >
+          {id ? "Edit" : "Create"} Role
+        </Typography>
       </div>
 
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
           <Typography
-            variant="h4" fontWeight={600} color={theme.palette.text.primary}
-            
+            variant="h4"
+            fontWeight={600}
+            color={theme.palette.text.primary}
+            sx={{
+              marginLeft: theme.spacing(1.3),
+              marginTop:theme.spacing(4),
+              marginBottom:theme.spacing(3)
+            }}
           >
             Role Details
           </Typography>
@@ -76,7 +84,6 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               <CustomTextField
                 isError={errorData?.name}
                 errorText={errorData?.name}
-                
                 label="Role Name"
                 value={form?.name}
                 onTextChange={(text) => {
@@ -121,17 +128,22 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
           </div>
           <div className={"formGroup"}>
-            <Typography variant="subtitle1" fontWeight={600}>Status</Typography>
-              <CustomIosSwitch
-                value={form?.is_active}
-                handleChange={() => {
-                  changeTextData(!form?.is_active, "is_active");
-                }}
-                label={form?.is_active ? `Active` : "Inactive"}
-              />
-            </div>
+            <Typography variant="subtitle1" fontWeight={600} sx={{
+              marginLeft:theme.spacing(0.3)
+            }}>
+              Status
+            </Typography>
+            <CustomIosSwitch
+            className={styles.statusActive}
+              value={form?.is_active}
+              handleChange={() => {
+                changeTextData(!form?.is_active, "is_active");
+              }}
+              label={form?.is_active ? `Active` : "Inactive"}
+            />
+          </div>
         </ShadowBox>
-        <>
+        <div >
           <RoleTableComponent
             classes={classes}
             // data={data}
@@ -141,10 +153,8 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             setPermissions={setPermissions}
             allData={allData}
             setAllData={setAllData}
-           
-            
           />
-        </>
+        </div>
 
         <div className={styles.actionButton}>
           <ActionButton onClick={cancelRole}>CANCEL</ActionButton>

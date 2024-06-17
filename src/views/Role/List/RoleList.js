@@ -72,14 +72,7 @@ const RoleList = (props) => {
             open={isOpenImageStack}
             openProfilePopUp={openProfilePopUp}
           />
-        ) : (
-          <Avatar
-            src={require("../../../assets/img/profile.png")}
-            sx={{
-              marginLeft: theme.spacing(-1),
-            }}
-          ></Avatar>
-        )}
+        ) : "N/A"}
       </div>
     ),
     [isOpenImageStack, openProfilePopUp]

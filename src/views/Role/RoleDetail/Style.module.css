@@ -96,3 +96,6 @@
  gap: 5px;
  align-items: center ;
 }
+.title_is::first-letter{
+  text-transform:  capitalize !important;
+}
