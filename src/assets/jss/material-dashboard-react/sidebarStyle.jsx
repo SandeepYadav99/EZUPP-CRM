@@ -187,7 +187,7 @@ const sidebarStyle = theme => ({
     // marginRight: "15px",
     textAlign: "center",
     verticalAlign: "middle",
-    color: theme.palette.grey[500]
+    color: theme.palette.text.primary,
   },
   itemText: {
     ...defaultFont,
@@ -195,7 +195,7 @@ const sidebarStyle = theme => ({
     marginLeft: theme.spacing(2),
     lineHeight: "30px",
     fontSize: "14px",
-    color: theme.palette.grey[500],
+    color: theme.palette.text.primary,
   },
   whiteFont: {
     color: "#FFFFFF"
