@@ -96,6 +96,7 @@ const WorkInfoView = ({
               {manager?.map((item) => {
                 return (
                   <MenuItem
+                  key={item?.id}
                     value={item?.id}
                   >{`${item?.name} (${item?.employee_id})`}</MenuItem>
                 );
@@ -133,8 +134,10 @@ const WorkInfoView = ({
             />
           </div>
         </div>
-        <div className={"formFlex"}>
-          <div className={"formGroup"}>
+        <div className={"formGroup"}>
+        <div className={styles.footerBox}>
+       
+       
             <CustomCheckbox
               value={form?.userManage}
               handleChange={() => {
@@ -142,20 +145,21 @@ const WorkInfoView = ({
               }}
               label={`User is a manager?`}
             />
-          </div>
-        </div>
-        <div className={"formFlex"}>
-          <div className={"formGroup"}>
+        
+          
             {!id && 
             <CustomCheckbox
+            className={styles.checkBoxmargin}
+           
               value={form?.invoiteToUser}
               handleChange={() => {
                 changeTextData(!form?.invoiteToUser, "invoiteToUser");
               }}
               label={`Send Invite to user on email`}
             />}
+              </div>
           </div>
-        </div>
+     
       </ShadowBox>
     </>
   );

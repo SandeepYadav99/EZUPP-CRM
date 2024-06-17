@@ -149,23 +149,36 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            <IconButton onClick={() => handleProfile(all)}>
-              <Info fontSize={"small"} color={theme.palette.text.primary} />
+            <IconButton
+              onClick={() => handleProfile(all)}
+              disableRipple="false"
+            >
+              <Info
+                fontSize={"small"}
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
             </IconButton>
             <IconButton
-            // color={theme.palette.status.service}
-            // onClick={() => handleProfile(all)}
+              disableRipple="false"
+              // color={theme.palette.status.service}
+              // onClick={() => handleProfile(all)}
             >
               <img
                 src={addTask}
                 alt="task"
                 width={20}
-                style={{color:`${theme.palette.text.primary}`}}
-                
+                style={{ color: `${theme.palette.text.primary}` }}
               />
             </IconButton>
-            <IconButton onClick={() => handleEdit(all)}>
-              <Edit fontSize={"small"} color={theme.palette.text.primary} />
+            <IconButton onClick={() => handleEdit(all)} disableRipple="false">
+              <Edit
+                fontSize={"small"}
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
             </IconButton>
           </div>
         ),

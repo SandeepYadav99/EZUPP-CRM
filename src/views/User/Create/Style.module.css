@@ -7,7 +7,7 @@
 
 }
 .userContainer{
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
 }
 .count{
  margin: auto !important;
@@ -19,13 +19,24 @@
   display: flex;
   gap: 5px;
 }
+.checkBoxmargin{
+  margin-top: -1px !important;
+ 
+}
+.footerBox{
+  display: flex !important;
+  flex-direction: column !important;
 
+  
+}
 .saveButton {
   text-align: right !important;
-  margin-top: 10px !important;
+  margin-top: 20px !important;
 }
 .imageGuide {
   display: flex;
+  margin-top: 8px !important;
+  margin-left: 8px !important;
 }
 .new_line {
   display: flex;

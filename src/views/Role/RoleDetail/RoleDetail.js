@@ -99,10 +99,10 @@ const theme= useTheme()
         <ShadowBox className={styles.rightSection}>
           <div className={styles.boxleft}>
             <div>
-              <Typography variant="h4"  fontWeight={600} color={theme.palette.text.primary}>
+              <Typography variant="h4"  fontWeight={600} color={theme.palette.text.primary} className={styles.title_is}>
                 {name}
               </Typography>
-              <Typography variant="body1"  color={theme.palette.text.secondary}>{display_name}</Typography>
+              <Typography variant="body1"  color={theme.palette.text.secondary} className={styles.title_is}>{display_name}</Typography>
             </div>
             <div>
               <StatusPill

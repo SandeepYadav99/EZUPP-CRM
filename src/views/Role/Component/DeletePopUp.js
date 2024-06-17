@@ -30,7 +30,7 @@ const DeletePopUp = ({ open, handleClose, closeDialog, handleDelete, id }) => {
         >
             <div className={styles.formContainer}>
               <Typography variant="subtitle1" sx={{ textAlign: "center" }}>
-                {"Are your sure you want to delete the unit ?"}
+                {" Are your sure you want to delete the role ?"}
               </Typography>
               <div className={styles.buttonContainer}>
                 <ActionButton sx={{ mt: 4 }} onClick={handleClose}>

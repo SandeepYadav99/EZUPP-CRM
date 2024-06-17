@@ -1,17 +1,12 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Avatar,  IconButton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import styles from "./Style.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import {
- 
-  Edit,
-  Info,
-
-} from "@mui/icons-material";
+import { Edit, Info } from "@mui/icons-material";
 
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import useRoleListHook from "./RoleListHook";
@@ -71,16 +66,13 @@ const RoleList = (props) => {
   const renderAssociatedIndustriesName = useCallback(
     (industryData) => (
       <div className={styles.imageContainer}>
-        {industryData?.length > 0  ? 
-        <ImageStack
-          industryData={industryData}
-          open={isOpenImageStack}
-          openProfilePopUp={openProfilePopUp}
-        /> : <Avatar src={require("../../../assets/img/profile.png")}   sx={{
-          marginLeft: theme.spacing(-1),
-         
-          
-        }}></Avatar>}
+        {industryData?.length > 0 ? (
+          <ImageStack
+            industryData={industryData}
+            open={isOpenImageStack}
+            openProfilePopUp={openProfilePopUp}
+          />
+        ) : "N/A"}
       </div>
     ),
     [isOpenImageStack, openProfilePopUp]
@@ -141,24 +133,32 @@ const RoleList = (props) => {
         render: (temp, all) => (
           <>
             <IconButton
-           
-              disabled={isCalling}
+              disableRipple="false"
               onClick={() => {
                 // handleSideToggle(all?.id);
                 handleDetail(all);
               }}
             >
-              <Info fontSize={"small"} color={theme.palette.text.primary} />
+              <Info
+                fontSize={"small"}
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
             </IconButton>
             <IconButton
-             
-              disabled={isCalling}
+              disableRipple="false"
               onClick={() => {
                 // handleSideToggle(all?.id);
                 handleEdit(all);
               }}
             >
-              <Edit fontSize={"small"}  color={theme.palette.text.primary}/>
+              <Edit
+                fontSize={"small"}
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
             </IconButton>
           </>
         ),

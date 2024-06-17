@@ -24,7 +24,7 @@ const PersonalInformation = ({
 }) => {
   const theme = useTheme();
   return (
-    <>
+ 
       <ShadowBox width={"100%"}>
         <Typography
           variant="h4" fontWeight={600} color={theme.palette.text.primary} 
@@ -145,7 +145,7 @@ const PersonalInformation = ({
                   className={styles.custonCSS}
                 >
                   {listData?.ROLES?.map((role) => (
-                    <MenuItem value={role?.id}>{role?.name}</MenuItem>
+                    <MenuItem value={role?.id} key={role?.id}>{role?.name}</MenuItem>
                   ))}
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
@@ -189,7 +189,7 @@ const PersonalInformation = ({
           </div>
         </div>
       </ShadowBox>
-    </>
+  
   );
 };
 

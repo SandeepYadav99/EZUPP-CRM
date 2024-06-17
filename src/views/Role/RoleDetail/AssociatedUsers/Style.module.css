@@ -219,3 +219,6 @@
     width: 30px;
     border-radius: 30px;
   }
+  .title_is::first-letter{
+    text-transform: capitalize !important;
+  }

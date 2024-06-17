@@ -10,35 +10,42 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
     width: 49,
     height: 22,
     padding: 0,
-    display: 'flex',
-   
-    '& .MuiSwitch-switchBase': {
+    display: "flex",
+    marginLeft: theme.spacing(1.4),
+  
+    "& .MuiSwitch-switchBase": {
       padding: 2,
-      '&.Mui-checked': {
-        transform: 'translateX(26px)',
-        transition: ' 0.3ms ease-out',
-        '& + .MuiSwitch-track': {
+    
+      transition: "all 300ms !important",
+      "&.Mui-checked": {
+        transform: "translateX(26px)",
+
+        "& + .MuiSwitch-track": {
           opacity: 1,
           backgroundColor: theme.palette.switchTheme,
-        }
-      }
+        },
+        "&.Mui-disabled + .MuiSwitch-track": {
+          opacity: 0.5,
+        },
+      },
     },
-    '& .MuiSwitch-thumb': {
+    "& .MuiSwitch-thumb": {
       width: 18,
       height: 18,
-      borderRadius: '25px',
+      borderRadius: "25px",
       backgroundColor: theme.palette.contact,
-     
     },
-    '& .MuiSwitch-track': {
+    "& .MuiSwitch-track": {
       opacity: 1,
-      borderRadius: '25px',
-       transition: ' 0.3ms ease-out',
+      borderRadius: "25px",
+      //  transition: ' 0.3ms ease-out',
       // border: `1px solid ${theme.palette.text.primary}`,
       backgroundColor: theme.palette.swithcTrack,
-      boxSizing: 'border-box',
-      
-    }
+      boxSizing: "border-box",
+      transition: theme.transitions.create(["background-color"], {
+        duration: 500,
+      }),
+    },
   });
   return (
     <FormControlLabel
@@ -47,7 +54,6 @@ const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
           sx={{ m: 1 }}
           checked={value ? true : false}
           onChange={(e) => handleChange(e.target.checked)}
-          
         />
       }
       label={label}
