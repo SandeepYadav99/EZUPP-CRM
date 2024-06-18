@@ -195,7 +195,7 @@ function useProductCreateHook() {
         const tempKeywords = text?.filter((val, index) => {
           if (val?.trim() === "") {
             return false;
-          } else if (val?.length <= 2 || val?.length > 20) {
+          } else if (val?.length < 2 || val?.length > 20) {
             SnackbarUtils.error(
               "Values cannot be less than 2 and more than 20 character"
             );
