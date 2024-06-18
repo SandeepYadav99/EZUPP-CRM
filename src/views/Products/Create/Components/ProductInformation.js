@@ -129,6 +129,7 @@ const ProductInformation = ({
                   onBlur={() => {
                     onBlurHandler("product_link");
                   }}
+                  className={styles.productLink}
                 />
               </div>
             </div>

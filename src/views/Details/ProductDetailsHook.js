@@ -75,7 +75,7 @@ const useProductDetailHook = () => {
       if (!response.error) {
         console.log(`Deleted successfully.`);
         historyUtils.goBack();
-        // window.location.reload();
+       // window.location.reload();
       } else {
         SnackbarUtils.error(response.message);
       }
