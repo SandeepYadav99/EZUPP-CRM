@@ -20,7 +20,7 @@ const Dashboard = ({title, ...props}) => {
     const classes = useStyles();
     const [mobileOpen, setMobileOpen] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(true);
-    const [snackbar, setSnackbar] = useState(false);
+    const [isSideBar,setIsSideBar] = useState(true);
     const [message, setMessage] = useState('');
     const {user_profile, role} = useSelector(state => state.auth);
     const mainPanelRef = useRef(null);
@@ -68,10 +68,16 @@ const Dashboard = ({title, ...props}) => {
         setDrawerOpen(true);
     }, [setDrawerOpen]);
 
+    const handleCloseSideBar = useCallback(() => {
+        if(!isSideBar){
+            setDrawerOpen(false);
+        }
+    }, [setDrawerOpen,isSideBar]);
 
     const handleHeaderClick = useCallback(() => {
         setDrawerOpen(e => !e);
-    }, [setDrawerOpen]);
+        setIsSideBar(e =>!e)
+    }, [setDrawerOpen,setIsSideBar]);
 
     const switchRoutes =  useMemo(() => {
         const tempRoutes = [];
@@ -110,6 +116,7 @@ const Dashboard = ({title, ...props}) => {
                 handleDrawerToggle={handleDrawerToggle}
                 toggleSideBar={handleHeaderClick}
                 handleOpenSideBar={handleOpenSideBar}
+                handleCloseSideBar={handleCloseSideBar}
                 open={drawerOpen}
                 color="blue"
                 {...props}

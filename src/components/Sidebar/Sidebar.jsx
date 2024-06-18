@@ -237,7 +237,7 @@ const Sidebar = ({...props}) => {
                     }}
                 >
                     {brand}
-                    <div className={classes.sidebarWrapper} onMouseEnter={()=>props?.handleOpenSideBar()}>
+                    <div className={classes.sidebarWrapper} onMouseEnter={()=>props?.handleOpenSideBar()} onMouseLeave={()=>props?.handleCloseSideBar()}>
                         <CustomLink routes={routes}  isOpened={props.open} classes={classes} color={color} activeRoute={activeRoute}/>
                     </div>
                 </Drawer>
