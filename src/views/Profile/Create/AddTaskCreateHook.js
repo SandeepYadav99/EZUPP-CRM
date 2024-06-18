@@ -48,15 +48,13 @@ const useAddTaskCreate = ({
   const [form, setForm] = useState({ ...initialForm });
   const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-  // const [filteredUsers, setFilteredUsers] = useState(null);
-  // const [filteredTask, setFilteredTask] = useState(null);
-  // const [filteredAssignedTo, setFilteredAssignedTo] = useState(null);
-  const [fetchedAssignedUser, setFetchedAssinedUser] = useState(null);
-  // const [categoryLists, setCategoryLists] = useState(null);
+ 
+  const [fetchedAssignedUser, setFetchedAssinedUser] = useState([]);
+
   const [taskTypes, setTaskTypes] = useState(["DISCUS"]);
   const [helperText, setHelperText] = useState("");
   const dispatch = useDispatch();
-
+console.log(fetchedAssignedUser)
   const reducer = (state, action) => {
     switch (action.type) {
       case "CATEGORY":
@@ -104,7 +102,7 @@ const useAddTaskCreate = ({
       if (!userRes.error) {
         dispatchTask({ type: "FILTERED_USER", payload: userRes.data });
       } else {
-        dispatchTask({ type: "FILTERED_USER", payload: [] });
+        // dispatchTask({ type: "FILTERED_USER", payload: [] });
       }
     });
   }, [isSidePanel]);
@@ -268,8 +266,10 @@ const useAddTaskCreate = ({
         console.log("tempKeywords", tempKeywords);
         t[fieldName] = tempKeywords;
       } else if (fieldName === "associated_task") {
+       
         t[fieldName] = text;
       } else if (fieldName === "associated_user") {
+       
         t[fieldName] = text;
       } else if (fieldName === "assigned_to") {
         t[fieldName] = text;

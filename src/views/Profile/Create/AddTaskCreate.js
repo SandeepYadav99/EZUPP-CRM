@@ -41,7 +41,7 @@ const AddTaskCreate = ({
     handleCreatedTask,
     profileDetails,
   });
-  console.log(filteredUsers);
+ 
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -62,15 +62,16 @@ const AddTaskCreate = ({
               <CustomMultiComplete
                 // multiple
                 showImage
+                isError={true}
                 AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
                 label="Assigned To"
                 error={errorData?.assigned_to}
-                getOptionLabel={(option) => option.email}
-                value={form.assigned_to || fetchedAssignedUser || []}
+                getOptionLabel={(option) => `${option?.name} (${option?.email})`}
+                value={form.assigned_to || fetchedAssignedUser || []}// || fetchedAssignedUser || []
                 onTextChange={(text) => {
                   changeTextData(text, "assigned_to");
                 }}
-                enableField={["image", "email"]}
+                enableField={[ "email", 'name', 'image']}
               />
             </div>
           </div>
@@ -184,7 +185,7 @@ const AddTaskCreate = ({
             <div className={"formGroup"}>
               <MultiComplete
                 // multiple
-                showImage
+                // showImage
                 getOptionLabel={(option) =>
                   `${option?.name || ""} ${
                     option?.email ? `(${option?.email})` : ""
@@ -197,26 +198,27 @@ const AddTaskCreate = ({
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
                 }}
-                enableField={["name", "email"]}
-                isError={true}
+                 enableField={["name", "email"]}
+                // isError={true}
               />
             </div>
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <MultiComplete
-                // multiple
-                // showImage
-                getOptionLabel={(option) => option?.title}
-                AutoCompleteList={filteredTask || []}
-                   label="Associated Task (Optional)"
-                error={errorData?.associated_task}
-                value={form.associated_task}
-                onTextChange={(text) => {
-                  changeTextData(text, "associated_task");
-                }}
-                // enableField={["title"]}
-              />
+         
+             <CustomMultiComplete
+              // multiple
+              // showImage
+              AutoCompleteList={filteredTask}
+               label="Associated Task (Optional)"
+              value={form.associated_task}
+              onTextChange={(text) => {
+                changeTextData(text, "associated_task");
+              }}
+              enableField={["title"]}
+              getOptionLabel={(option) => option.title}
+            />
+            
             </div>
           </div>
         </div>
