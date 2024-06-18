@@ -104,7 +104,7 @@ function useUserCreateHook() {
     });
   }, []);
 
-  const checkForSalaryInfo = useCallback(
+  const checkForUserInfo = useCallback(
     (data, fieldName, errorArr) => {
       if (data) {
         let filteredForm = { id: id ? id : "" };
@@ -118,13 +118,13 @@ function useUserCreateHook() {
             if (res.data.is_exists) {
               if (fieldName === "employee_id") {
                 errors[fieldName] = `Employee code already exist`;
-                setErrorData(errors);
               }
               if (fieldName === "email") {
                 errors[fieldName] = `Email already exist`;
-                setErrorData(errors);
               }
-
+              if (fieldName === "userName") {
+                errors[fieldName] = `Username already exists`;
+              }
               setErrorData(errors);
             } else {
               delete errors[fieldName];
@@ -137,11 +137,11 @@ function useUserCreateHook() {
     [id]
   );
 
-  const checkSalaryInfoDebouncer = useMemo(() => {
+  const checkUserInfoDebouncer = useMemo(() => {
     return debounce((e, fieldName, errorArr) => {
-      checkForSalaryInfo(e, fieldName, errorArr);
+      checkForUserInfo(e, fieldName, errorArr);
     }, 1000);
-  }, [checkForSalaryInfo]);
+  }, [checkForUserInfo]);
 
   useEffect(() => {
     if (id) {
@@ -291,8 +291,6 @@ function useUserCreateHook() {
         }
       } else if (fieldName === "contact") {
         t[fieldName] = text;
-      } else if (fieldName === "contact") {
-        t[fieldName] = text;
       } else if (fieldName === "end_date") {
         t[fieldName] = text;
       } else if (fieldName === "role") {
@@ -308,8 +306,8 @@ function useUserCreateHook() {
       } else {
         t[fieldName] = text;
       }
-      if (["email", "employee_id"].includes(fieldName)) {
-        checkSalaryInfoDebouncer(text, fieldName, errorData);
+      if (["email", "employee_id", "userName"].includes(fieldName)) {
+        checkUserInfoDebouncer(text, fieldName, errorData);
       }
       setForm(t);
       shouldRemoveError && removeError(fieldName);
