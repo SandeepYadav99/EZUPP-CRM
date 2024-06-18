@@ -34,6 +34,19 @@ const ProductDetailview = () => {
     }
 
   };
+  const getCurrencySymbol = (currency) => {
+    switch (currency) {
+      case 'INR':
+        return '₹'; // Indian Rupee symbol
+      case 'USD':
+        return '$'; // US Dollar symbol
+      case 'EURO':
+        return '€'; // Euro symbol
+      default:
+        return '';
+    }
+  };
+  const currencySymbol = getCurrencySymbol(profileDetails?.currency);
   
   return (
     <div>
@@ -182,7 +195,7 @@ const ProductDetailview = () => {
                       >
                         {" "}
                         {/* {profileDetails?.currency} {profileDetails?.ballpark_cost ?? "N/A"} */}
-                        {profileDetails?.ballpark_cost != null  ? `${profileDetails.currency} ${profileDetails.ballpark_cost}` : "N/A"}
+                        {profileDetails?.ballpark_cost != null  ? `${currencySymbol} ${profileDetails.ballpark_cost}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -196,7 +209,7 @@ const ProductDetailview = () => {
                       >
                         {" "}
                         {/* {profileDetails?.currency} {profileDetails?.ballpark_price ?? "N/A"} */}
-                        {profileDetails?.ballpark_price != null ? `${profileDetails.currency} ${profileDetails.ballpark_price}` : "N/A"}
+                        {profileDetails?.ballpark_price != null ? `${currencySymbol} ${profileDetails.ballpark_price}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -209,7 +222,7 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_value != null  ? profileDetails?.discount_percent : "N/A"}
+                        {profileDetails?.discount_value != null  ? `${profileDetails?.discount_percent} %` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -223,7 +236,7 @@ const ProductDetailview = () => {
                       >
                         {" "}
                         {/* {profileDetails?.currency} {profileDetails?.discount_value ?? "N/A"} */}
-                        {profileDetails?.discount_value != null  ? `${profileDetails.currency} ${profileDetails.discount_value}` : "N/A"}
+                        {profileDetails?.discount_value != null  ? `${currencySymbol} ${profileDetails.discount_value}` : "N/A"}
                       </Typography>
                     </div>
                   </div>
@@ -244,7 +257,8 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.createdBy?.user_name ?? "N/A"}
+                        { profileDetails?.createdBy?.name && profileDetails?.createdBy?.employee_id ?
+                         `${profileDetails?.createdBy?.name}  (${profileDetails.createdBy?.employee_id})` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
@@ -266,7 +280,9 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.updatedBy?.user_name ?? "N/A"}                     
+                        { profileDetails?.updatedBy?.name && profileDetails?.updatedBy?.employee_id ?
+                         `${profileDetails?.updatedBy?.name}  (${profileDetails.updatedBy?.employee_id})` : "N/A"}
+                        {/* {profileDetails?.updatedBy?.name ?? "N/A"}                      */}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>

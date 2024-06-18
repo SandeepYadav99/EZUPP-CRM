@@ -74,6 +74,7 @@ const ProductList = (props) => {
     serviceDeleteProduct(params).then(() => {
       closeDialog();
       setProductToDelete(null);
+      window.location.reload();
     });
   };
   const renderStatus = useCallback((status) => {
@@ -115,12 +116,21 @@ const ProductList = (props) => {
         render: (temp, all) => (
           <div className={styles.breakWord}>
             {" "}
+            {all?.product_link ? (
             <a
               href={all?.product_link}
               style={{ color: theme.palette.primary.main }}
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                window.open(all?.product_link, "_blank", "noopener,noreferrer");
+              }}
             >
               {all?.product_link}
             </a>
+             ) : (
+              "N/A"
+            )}
           </div>
         ),
       },
@@ -136,9 +146,15 @@ const ProductList = (props) => {
         sortable: false,
         render: (temp, all) => (
           <div>
+            {all?.updatedAtText ? (
+            <>
             {all?.updatedAtText?.split(" ")[0]}
             <br />
             {all?.updatedAtText?.split(" ")[1]}
+            </>
+            ) : (
+              "N/A"
+            )}
           </div>
         ),
       },

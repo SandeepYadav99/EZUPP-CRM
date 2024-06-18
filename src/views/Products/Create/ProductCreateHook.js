@@ -84,7 +84,8 @@ function useProductCreateHook() {
             ...form,
             ...obj
           })
-          setImages(details?.image);
+          //setImages(details?.image);
+          
         
         } 
       });
@@ -98,7 +99,7 @@ function useProductCreateHook() {
       if (!res.error) {
         const errors = JSON.parse(JSON.stringify(errorData));
         if (res.data.is_exists) {
-          errors["code"] = "Department Code Exists";
+          errors["code"] = "Product code already exists";
           setErrorData(errors);
         } else {
           delete errors.code;
@@ -257,7 +258,7 @@ function useProductCreateHook() {
             historyUtils.goBack();
           } else {
             SnackbarUtils.error(res?.message);
-            if (res.message.includes("Code already exists")) {
+            if (res.message.includes("Product code already exists")) {
               setErrorData((prev) => ({ ...prev, code: true }));
             }
           }
