@@ -17,6 +17,7 @@ import {
  
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
+import MultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
@@ -75,7 +76,7 @@ const AddTaskCreate = ({
                 onTextChange={(text) => {
                   changeTextData(text, "assigned_to");
                 }}
-                enableField={["name", "email"]}
+                enableField={["image", "email"]}
               />
             </div>
           </div>
@@ -134,7 +135,7 @@ const AddTaskCreate = ({
           <div className="formFlex">
             <div className={"formGroup"}>
              
-              <CustomMultiComplete
+              {/* <CustomMultiComplete
                 multiple
                 // showImage
                 AutoCompleteList={filteredUsers || []}
@@ -146,7 +147,20 @@ const AddTaskCreate = ({
                   changeTextData(value, "category");
                 }}
                  enableField={["name"]}
-              />
+              /> */}
+               <MultiComplete
+                    isError={errorData?.category}
+                    multiple
+                    isArray
+                    AutoCompleteList={filteredUsers ? filteredUsers : []}
+                    getOptionLabel={(option) => option}
+                     label="Task Category"
+                    defaultValue={form?.category}
+                    value={form?.category}
+                    onTextChange={(value) => {
+                      changeTextData(value, "category");
+                    }}
+                  />
               <label className={styles.paragraph}>
                 Please press enter to add a category if not found in the search
                 results.

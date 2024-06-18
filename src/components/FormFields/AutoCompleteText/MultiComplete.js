@@ -58,7 +58,7 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   const theme = useTheme();
- 
+
   return (
     <>
       {multiple ? (
@@ -207,6 +207,7 @@ const CustomMultiComplete = ({
             color={"primary"}
             size={"small"}
             value={value ? value : null}
+        
             
             freeSolo
             autoSelect

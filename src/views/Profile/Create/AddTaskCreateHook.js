@@ -90,6 +90,7 @@ const useAddTaskCreate = ({
   useEffect(() => {
     if (!isSidePanel) return;
     serviceSearchUser({
+      id:empId ? empId : "",
       query: form?.associated_user
         ? form?.associated_user?.first_name
         : form?.associated_user,
