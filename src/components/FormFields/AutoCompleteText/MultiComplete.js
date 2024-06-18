@@ -209,7 +209,7 @@ const CustomMultiComplete = ({
             value={value ? value : null}
             
             freeSolo
-            autoSelect
+             
             {...rest}
           />
         </>

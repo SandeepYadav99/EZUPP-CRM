@@ -53,6 +53,7 @@ const WorkInfoView = ({
             <MultiComplete
               isError={errorData?.department}
               // multiple
+              autoSelect
               isArray
               AutoCompleteList={department}
               getOptionLabel={(option) => option}
@@ -72,7 +73,7 @@ const WorkInfoView = ({
             <MultiComplete
               isError={errorData?.designation}
               // multiple
-
+              autoSelect
               isArray
               AutoCompleteList={designation}
               getOptionLabel={(option) => option}

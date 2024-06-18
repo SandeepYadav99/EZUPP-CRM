@@ -64,7 +64,7 @@ const AddTaskCreate = ({
               <CustomMultiComplete
                 AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
                 label="Assigned To"
-                error={errorData?.assigned_to}
+                isError={errorData?.assigned_to}
                 getOptionLabel={(option) =>
                   `${option?.name} (${option?.email})`
                 }
@@ -206,7 +206,7 @@ const AddTaskCreate = ({
                 }
                 AutoCompleteList={filteredUsers || []}
                 label="Associated User (Optional)"
-                error={errorData?.associated_user}
+                isError={errorData?.associated_user}
                 value={form.associated_user}
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
@@ -219,7 +219,7 @@ const AddTaskCreate = ({
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomMultiComplete
-               
+                isError={errorData?.associated_task}
                 AutoCompleteList={filteredTask}
                 label="Associated Task (Optional)"
                 value={form.associated_task}
