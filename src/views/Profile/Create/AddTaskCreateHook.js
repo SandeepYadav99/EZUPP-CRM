@@ -45,13 +45,11 @@ const useAddTaskCreate = ({
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
-  const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-
   const [fetchedAssignedUser, setFetchedAssinedUser] = useState([]);
-
   const [taskTypes, setTaskTypes] = useState(["DISCUS"]);
   const [helperText, setHelperText] = useState("");
+
   const dispatch = useDispatch();
   const reducer = (state, action) => {
     switch (action.type) {
@@ -144,7 +142,7 @@ const useAddTaskCreate = ({
         (Array.isArray(form?.[val]) && form?.[val]?.length === 0)
       ) {
         errors[val] = true;
-        SnackbarUtils.error("Please enter values");
+    
       } else if (["code"].indexOf(val) < 0) {
         delete errors[val];
       }
@@ -281,7 +279,7 @@ const useAddTaskCreate = ({
       setForm(t);
       shouldRemoveError && removeError(fieldName);
     },
-    [removeError, form, setForm, listData]
+    [removeError, form, setForm]
   );
 
   const onBlurHandler = useCallback(
@@ -313,7 +311,7 @@ const useAddTaskCreate = ({
     removeError,
     handleSubmit,
     isSubmitting,
-    listData,
+ 
     errorData,
     handleReset,
     empId,

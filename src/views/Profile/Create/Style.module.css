@@ -88,3 +88,7 @@
    display: flex;
    justify-content: end;
 }
+.actionButton{
+    float: right !important;
+    margin-top: 24px !important;
+}

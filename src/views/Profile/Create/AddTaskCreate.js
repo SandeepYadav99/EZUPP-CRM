@@ -16,6 +16,7 @@ import MultiComplete from "../../../components/FormFields/AutoCompleteText/Multi
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
+import { useTheme } from "@mui/styles";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -42,7 +43,7 @@ const AddTaskCreate = ({
     handleCreatedTask,
     profileDetails,
   });
-
+  const theme = useTheme();
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -60,7 +61,6 @@ const AddTaskCreate = ({
         <div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              
               <CustomMultiComplete
                 AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
                 label="Assigned To"
@@ -79,13 +79,17 @@ const AddTaskCreate = ({
                     label="Assigned To"
                   />
                 )}
-               renderOption={(props, option) => (
+                renderOption={(props, option) => (
                   <li {...props}>
-                      <Avatar src={option?.image} style={{ marginRight: 8 }} />
-                      <div>{`${option?.name} (${option?.email})`}</div>
+                    <Avatar
+                      src={option?.image}
+                      sx={{
+                        marginRight: theme.spacing(1),
+                      }}
+                    />
+                    <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
                 )}
-  
                 disableClearable
               />
             </div>
@@ -211,8 +215,6 @@ const AddTaskCreate = ({
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
                 }}
-               
-               
               />
             </div>
           </div>
@@ -226,15 +228,13 @@ const AddTaskCreate = ({
                 onTextChange={(text) => {
                   changeTextData(text, "associated_task");
                 }}
-              
                 getOptionLabel={(option) => option?.title}
-                
               />
             </div>
           </div>
         </div>
       </ShadowBox>
-      <div style={{ float: "right", marginTop: "15px" }}>
+      <div className={styles.actionButton}>
         <PrimaryButton
           onClick={() => {
             handleSubmit();
