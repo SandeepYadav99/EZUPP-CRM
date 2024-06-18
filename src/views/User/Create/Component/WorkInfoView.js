@@ -1,4 +1,4 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
@@ -17,15 +17,17 @@ const WorkInfoView = ({
   manager,
   department,
   id,
-  designation
+  designation,
 }) => {
- const theme = useTheme()
+  const theme = useTheme();
   return (
     <>
       <ShadowBox className={styles.mainBox}>
         <div className={"headerFlex"}>
           <Typography
-           variant="h4"  fontWeight={600} color={theme.palette.text.primary} 
+            variant="h4"
+            fontWeight={600}
+            color={theme.palette.text.primary}
           >
             Work Information
           </Typography>
@@ -66,11 +68,11 @@ const WorkInfoView = ({
         </div>
 
         <div className={"formFlex"}>
-          <div className={"formGroup"} >
+          <div className={"formGroup"}>
             <MultiComplete
               isError={errorData?.designation}
               // multiple
-              
+
               isArray
               AutoCompleteList={designation}
               getOptionLabel={(option) => option}
@@ -96,7 +98,7 @@ const WorkInfoView = ({
               {manager?.map((item) => {
                 return (
                   <MenuItem
-                  key={item?.id}
+                    key={item?.id}
                     value={item?.id}
                   >{`${item?.name} (${item?.employee_id})`}</MenuItem>
                 );
@@ -124,9 +126,7 @@ const WorkInfoView = ({
               // className={styles.dateContainer}
               label={"End Date"}
               onChange={(value) => {
-               
-                  changeTextData(value, "end_date");
-                
+                changeTextData(value, "end_date");
               }}
               value={form?.end_date}
               isError={errorData?.end_date}
@@ -135,31 +135,36 @@ const WorkInfoView = ({
           </div>
         </div>
         <div className={"formGroup"}>
-        <div className={styles.footerBox}>
-       
-       
+          <CustomCheckbox
+            value={form?.userManage}
+            handleChange={() => {
+              changeTextData(!form?.userManage, "userManage");
+            }}
+            label={
+              <Typography variant="body1" sx={{ cursor: "default" }}>
+                User is a manager?
+              </Typography>
+            }
+            checked={form?.userManage}
+          />
+        </div>
+        <div className={"formGroup"}>
+          {!id && (
             <CustomCheckbox
-              value={form?.userManage}
-              handleChange={() => {
-                changeTextData(!form?.userManage, "userManage");
-              }}
-              label={`User is a manager?`}
-            />
-        
-          
-            {!id && 
-            <CustomCheckbox
-            className={styles.checkBoxmargin}
-           
+              className={styles.checkBoxmargin}
+              checked={form?.invoiteToUser}
               value={form?.invoiteToUser}
               handleChange={() => {
                 changeTextData(!form?.invoiteToUser, "invoiteToUser");
               }}
-              label={`Send Invite to user on email`}
-            />}
-              </div>
-          </div>
-     
+              label={
+                <Typography variant="body1" sx={{ cursor: "default" }}>
+                  Send Invite to user on email
+                </Typography>
+              }
+            />
+          )}
+        </div>
       </ShadowBox>
     </>
   );
