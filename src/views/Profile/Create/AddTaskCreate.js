@@ -1,4 +1,5 @@
 import {
+  Avatar,
   CircularProgress,
   MenuItem,
   TextField,
@@ -41,7 +42,7 @@ const AddTaskCreate = ({
     handleCreatedTask,
     profileDetails,
   });
- 
+
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -59,19 +60,33 @@ const AddTaskCreate = ({
         <div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
+              
               <CustomMultiComplete
-                // multiple
-                showImage
-                isError={true}
                 AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
                 label="Assigned To"
                 error={errorData?.assigned_to}
-                getOptionLabel={(option) => `${option?.name} (${option?.email})`}
-                value={form.assigned_to || fetchedAssignedUser || []}// || fetchedAssignedUser || []
+                getOptionLabel={(option) =>
+                  `${option?.name} (${option?.email})`
+                }
+                value={form.assigned_to || fetchedAssignedUser || []} // || fetchedAssignedUser || []
                 onTextChange={(text) => {
                   changeTextData(text, "assigned_to");
                 }}
-                enableField={[ "email", 'name', 'image']}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label="Assigned To"
+                  />
+                )}
+               renderOption={(props, option) => (
+                  <li {...props}>
+                      <Avatar src={option?.image} style={{ marginRight: 8 }} />
+                      <div>{`${option?.name} (${option?.email})`}</div>
+                  </li>
+                )}
+  
+                disableClearable
               />
             </div>
           </div>
@@ -183,9 +198,7 @@ const AddTaskCreate = ({
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <MultiComplete
-                // multiple
-                // showImage
+              <CustomMultiComplete
                 getOptionLabel={(option) =>
                   `${option?.name || ""} ${
                     option?.email ? `(${option?.email})` : ""
@@ -198,27 +211,25 @@ const AddTaskCreate = ({
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
                 }}
-                 enableField={["name", "email"]}
-                // isError={true}
+               
+               
               />
             </div>
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-         
-             <CustomMultiComplete
-              // multiple
-              // showImage
-              AutoCompleteList={filteredTask}
-               label="Associated Task (Optional)"
-              value={form.associated_task}
-              onTextChange={(text) => {
-                changeTextData(text, "associated_task");
-              }}
-              enableField={["title"]}
-              getOptionLabel={(option) => option.title}
-            />
-            
+              <CustomMultiComplete
+               
+                AutoCompleteList={filteredTask}
+                label="Associated Task (Optional)"
+                value={form.associated_task}
+                onTextChange={(text) => {
+                  changeTextData(text, "associated_task");
+                }}
+              
+                getOptionLabel={(option) => option?.title}
+                
+              />
             </div>
           </div>
         </div>

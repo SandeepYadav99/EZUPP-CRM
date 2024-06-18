@@ -203,27 +203,6 @@ const CustomMultiComplete = ({
             onChange={(event, newValue) => {
               handleChange(newValue);
             }}
-            
-            renderOption={(props, option) => (
-              <StyledOption {...props}>
-                {showImage && <Avatar src={option?.image} alt={"Image"} />}
-                <div>
-                  {isArray ? (
-                    <div key={`enable_${option}`} className="option_auto_class">
-                      {option}
-                    </div>
-                  ) : (
-                    enableField?.length > 0 &&
-                    enableField?.map((field, index) => (
-                      <div key={`enable_${index}`} className="option_auto_class">
-                        {option[field]}
-                      </div>
-                    ))
-                  )}
-                </div>
-              </StyledOption>
-            )}
-           
             variant="outlined"
             color={"primary"}
             size={"small"}

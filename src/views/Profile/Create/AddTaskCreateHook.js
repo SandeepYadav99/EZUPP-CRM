@@ -14,7 +14,6 @@ import {
   serviceTaskManagementCreate,
 } from "../../../services/ProviderUser.service";
 
-
 const initialForm = {
   title: "",
   description: "",
@@ -48,13 +47,12 @@ const useAddTaskCreate = ({
   const [form, setForm] = useState({ ...initialForm });
   const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
- 
+
   const [fetchedAssignedUser, setFetchedAssinedUser] = useState([]);
 
   const [taskTypes, setTaskTypes] = useState(["DISCUS"]);
   const [helperText, setHelperText] = useState("");
   const dispatch = useDispatch();
-console.log(fetchedAssignedUser)
   const reducer = (state, action) => {
     switch (action.type) {
       case "CATEGORY":
@@ -107,12 +105,9 @@ console.log(fetchedAssignedUser)
     });
   }, [isSidePanel]);
 
-
   useEffect(() => {
     setFetchedAssinedUser(profileDetails);
   }, [fetchedAssignedUser]);
-
-
 
   const handleSearchUsers = useCallback((searchText) => {}, []);
 
@@ -263,13 +258,11 @@ console.log(fetchedAssignedUser)
             return isThere < 0;
           }
         });
-        console.log("tempKeywords", tempKeywords);
+     
         t[fieldName] = tempKeywords;
       } else if (fieldName === "associated_task") {
-       
         t[fieldName] = text;
       } else if (fieldName === "associated_user") {
-       
         t[fieldName] = text;
       } else if (fieldName === "assigned_to") {
         t[fieldName] = text;

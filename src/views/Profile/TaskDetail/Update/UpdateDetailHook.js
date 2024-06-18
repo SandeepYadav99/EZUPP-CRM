@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import SnackbarUtils from "../../../../libs/SnackbarUtils";
+import { useDispatch } from "react-redux";
 
 import {
+  serviceProviderProfileGetKeyword,
   serviceSearchAssignto,
   serviceSearchTask,
   serviceSearchUser,
-  serviceTaskManagementUpdate,
+  serviceTaskManagementCreate,
 } from "../../../../services/ProviderUser.service";
-import { serviceSearchCategory } from "../../../../services/TaskManage.service";
+
 
 const initialForm = {
   title: "",
@@ -22,29 +24,51 @@ const initialForm = {
   // comment:"",
   // status: true,
   assigned_to: "",
+  // taskType:""
 };
 
-const useAddTaskUpdate = ({
+const initialTask = {
+  categoryLists: [],
+  filteredAssignedTo: [],
+  filteredTask: [],
+  filteredUsers: [],
+};
+const useAddTaskCreate = ({
   handleSideToggle,
   isSidePanel,
   empId,
   handleCreatedTask,
-  details,
+  profileDetails,
+  details
 }) => {
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ ...initialForm });
   const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-  const [filteredUsers, setFilteredUsers] = useState(null);
-  const [filteredTask, setFilteredTask] = useState(null);
-  const [filteredAssignedTo, setFilteredAssignedTo] = useState(null);
-  const [fetchedAssignedTo, setFetchedAssignedTo] = useState(null);
-  const [fetchedTask, setFetchedTask] = useState(null);
-  const [fetchedUser, setFetchedUser] = useState(null);
-const[helperText, setHelperText]=useState("")
-  const [categoryLists, setCategoryLists] = useState(null);
+ 
+  const [fetchedAssignedUser, setFetchedAssinedUser] = useState([]);
 
+  const [taskTypes, setTaskTypes] = useState(["DISCUS"]);
+  const [helperText, setHelperText] = useState("");
+  const dispatch = useDispatch();
+console.log(fetchedAssignedUser)
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "CATEGORY":
+        return { ...state, categoryLists: action.payload };
+      case "ASSINEDTO":
+        return { ...state, filteredAssignedTo: action.payload };
+      case "FILTERED_TASK":
+        return { ...state, filteredTask: action.payload };
+      case "FILTERED_USER":
+        return { ...state, filteredUsers: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  const [task, dispatchTask] = useReducer(reducer, initialTask);
   useEffect(() => {
     // setIsLoading(true);
     setForm({
@@ -57,58 +81,54 @@ const[helperText, setHelperText]=useState("")
       type: details?.type,
       
     });
-    setFetchedAssignedTo(details?.assignedTo);
-    setFetchedUser(details?.associatedUser);
-    setFetchedTask(details?.associatedTask);
+    // setFetchedAssignedTo(details?.assignedTo);
+    // setFetchedUser(details?.associatedUser);
+    // setFetchedTask(details?.associatedTask);
   }, [details]);
-
   useEffect(() => {
     if (!isSidePanel) return;
-    serviceSearchCategory().then((res) => {
-      if (!res?.error) {
-        setCategoryLists(res?.data);
+    Promise.all([
+      serviceProviderProfileGetKeyword({ type: "TASK" }),
+      serviceSearchAssignto({
+        query: form?.assigned_to ? form?.assigned_to?.name : form?.assigned_to,
+      }),
+      serviceSearchTask({
+        query: form?.associated_task
+          ? form?.associated_task?.title
+          : form?.associated_task,
+      }),
+      serviceSearchUser({
+        id: empId ? empId : "",
+        query: form?.associated_user
+          ? form?.associated_user?.name
+          : form?.associated_user,
+      }),
+    ]).then(([catRes, assignRes, filterTaskRes, userRes]) => {
+      if (!catRes.error) {
+        dispatchTask({ type: "CATEGORY", payload: catRes.data });
       }
-    });
-  }, [form?.assigned_to, isSidePanel]);
-
-  useEffect(() => {
-    if (!isSidePanel) return;
-    serviceSearchAssignto({
-      query: form?.assigned_to ? form?.assigned_to?.name : form?.assigned_to,
-    }).then((res) => {
-      if (!res?.error) {
-        setFilteredAssignedTo(res.data);
+      if (!assignRes.error) {
+        dispatchTask({ type: "ASSINEDTO", payload: assignRes.data });
       }
-    });
-  }, [isSidePanel]);
-
-  useEffect(() => {
-    if (!isSidePanel) return;
-    serviceSearchTask({
-      query: form?.associated_task
-        ? form?.associated_task?.title
-        : form?.associated_task,
-    }).then((res) => {
-      if (!res.error) {
-        setFilteredTask(res.data);
+      if (!filterTaskRes.error) {
+        dispatchTask({ type: "FILTERED_TASK", payload: filterTaskRes.data });
       }
-    });
-  }, [isSidePanel]);
-
-  useEffect(() => {
-    if (!isSidePanel) return;
-    serviceSearchUser({
-      query: form?.associated_user
-        ? form?.associated_user?.first_name
-        : form?.associated_user,
-    }).then((res) => {
-      if (!res.error) {
-        setFilteredUsers(res.data);
+      if (!userRes.error) {
+        dispatchTask({ type: "FILTERED_USER", payload: userRes.data });
       } else {
-        setFilteredUsers(null);
+        // dispatchTask({ type: "FILTERED_USER", payload: [] });
       }
     });
   }, [isSidePanel]);
+
+
+  useEffect(() => {
+    setFetchedAssinedUser(profileDetails);
+  }, [fetchedAssignedUser]);
+
+
+
+  const handleSearchUsers = useCallback((searchText) => {}, []);
 
   useEffect(() => {
     if (!isSidePanel) {
@@ -132,14 +152,15 @@ const[helperText, setHelperText]=useState("")
       "priority",
       "due_date",
       "category",
-    ];
-    if (!fetchedAssignedTo) {
+      // "taskType"
+    ]; // "name", "description", "due_date", "task_type", "comment"
+    if (!fetchedAssignedUser) {
       required.push("assigned_to");
     }
     required.forEach((val) => {
       if (
         !form?.[val] ||
-        (Array.isArray(form?.[val]) && form?.[val].length === 0)
+        (Array.isArray(form?.[val]) && form?.[val]?.length === 0)
       ) {
         errors[val] = true;
         SnackbarUtils.error("Please enter values");
@@ -147,20 +168,20 @@ const[helperText, setHelperText]=useState("")
         delete errors[val];
       }
     });
-    if (!form.due_date || isNaN(new Date(form?.due_date))) {
-      setHelperText("Invalid date/time format.");
-      errors.due_date = true;
-    } else {
-      // delete form?.due_date;
-      setHelperText("");
-    }
+    // if (!form.due_date || isNaN(new Date(form?.due_date))) {
+    //   setHelperText("Invalid date/time format.");
+    //   errors.due_date = true;
+    // } else {
+    //   // delete form?.due_date;
+    //   setHelperText("");
+    // }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
       }
     });
     return errors;
-  }, [form, errorData]);
+  }, [form, errorData, helperText]);
 
   const submitToServer = useCallback(async () => {
     if (isSubmitting) {
@@ -180,19 +201,19 @@ const[helperText, setHelperText]=useState("")
       category: industryID,
       type: form?.type,
       priority: form?.priority,
-      associated_user: form?.associated_user?._id  || fetchedUser?.id,
-      associated_task: form?.associated_task?._id || fetchedTask?._id,
+      associated_user: form?.associated_user?._id,
+      associated_task: form?.associated_task?._id,
       comment: "Task",
       // is_completed: form?.status ? true : false,
-      assigned_to: form?.assigned_to?._id || fetchedAssignedTo.id,
+      assigned_to: form?.assigned_to?._id || fetchedAssignedUser?.id,
     };
-  
+
     if (empId) {
       updateData.id = empId;
     }
 
     try {
-      const req = serviceTaskManagementUpdate; // empId ? serviceHubMasterUpdate :
+      const req = serviceTaskManagementCreate; // empId ? serviceHubMasterUpdate :
       const res = await req(updateData);
 
       if (!res.error) {
@@ -205,11 +226,11 @@ const[helperText, setHelperText]=useState("")
     } finally {
       setIsSubmitting(false);
     }
-  }, [form, isSubmitting, setIsSubmitting, empId, handleSideToggle]);
+  }, [form, isSubmitting, setIsSubmitting, empId, handleSideToggle, dispatch]);
 
   const handleSubmit = useCallback(async () => {
     const errors = checkFormValidation();
-    if (Object.keys(errors).length > 0) {
+    if (Object.keys(errors)?.length > 0) {
       setErrorData(errors);
     } else {
       await submitToServer();
@@ -239,24 +260,41 @@ const[helperText, setHelperText]=useState("")
       if (fieldName === "name") {
         t[fieldName] = text;
       } else if (fieldName === "category") {
-        const newValues = text?.filter((item) => item.trim() !== "");
-        const uniqueValues = text
-          ? newValues?.filter(
-              (item, index, self) =>
-                self.findIndex(
-                  (t) => t.toLowerCase() === item.toLowerCase()
-                ) === index
-            )
-          : [];
-          if (uniqueValues.length <= 2) {
-            t[fieldName] = uniqueValues;
+        const tempKeywords = text?.filter((val, index) => {
+          if (val?.trim() === "") {
+            return false;
+          } else if (val?.length <= 2 || val?.length > 20) {
+            SnackbarUtils.error(
+              "Values cannot be less than 2 and more than 20 character"
+            );
+            return false;
+          } else {
+            const key = val?.trim().toLowerCase();
+            const isThere = text?.findIndex(
+              (keyTwo, indexTwo) =>
+                keyTwo?.toLowerCase() === key && index !== indexTwo
+            );
+            return isThere < 0;
           }
-       
+        });
+        console.log("tempKeywords", tempKeywords);
+        t[fieldName] = tempKeywords;
       } else if (fieldName === "associated_task") {
+       
+        t[fieldName] = text;
+      } else if (fieldName === "associated_user") {
+       
         t[fieldName] = text;
       } else if (fieldName === "assigned_to") {
         t[fieldName] = text;
-      }else if (fieldName === "due_date") {
+      } else if (fieldName === "due_date") {
+        // // if(text && isNaN(text)){
+        //    shouldRemoveError=true;
+        //   setHelperText("Invalid date/time format.");
+        // }else{
+
+        //   // setHelperText("");
+        // }
         t[fieldName] = text;
       } else {
         t[fieldName] = text;
@@ -277,9 +315,10 @@ const[helperText, setHelperText]=useState("")
   );
 
   const suspendItem = useCallback(async () => {
+
     handleSideToggle();
     setIsAcceptPopUp((e) => !e);
-  }, [empId, isAcceptPopUp]);
+  }, [empId, isAcceptPopUp, dispatch]);
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
@@ -298,20 +337,18 @@ const[helperText, setHelperText]=useState("")
     errorData,
     handleReset,
     empId,
+    categoryLists: task?.categoryLists,
+    handleSearchUsers,
     toggleAcceptDialog,
     isAcceptPopUp,
     suspendItem,
-    filteredUsers,
-    filteredTask,
-    filteredAssignedTo,
-    fetchedAssignedTo,
-    fetchedTask,
-    fetchedUser,
-    categoryLists,
-    setFetchedUser,
-    setFetchedTask,
-    helperText
+    filteredUsers: task?.filteredUsers,
+    filteredTask: task?.filteredTask,
+    filteredAssignedTo: task?.filteredAssignedTo,
+    fetchedAssignedUser,
+    taskTypes,
+    helperText,
   };
 };
 
-export default useAddTaskUpdate;
+export default useAddTaskCreate;
