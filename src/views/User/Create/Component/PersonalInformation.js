@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { MenuItem, Tooltip, Typography } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
@@ -84,9 +84,9 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "name");
                   }}
-                  onBlur={() => {
-                    onBlurHandler("name");
-                  }}
+                  // onBlur={() => {
+                  //   onBlurHandler("name");
+                  // }}
                 />
               </div>
 
@@ -99,9 +99,9 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "userName");
                   }}
-                  onBlur={() => {
-                    onBlurHandler("userName");
-                  }}
+                  // onBlur={() => {
+                  //   onBlurHandler("userName");
+                  // }}
                 />
               </div>
             </div>
@@ -189,8 +189,7 @@ const PersonalInformation = ({
           </div>
         </div>
       </ShadowBox>
-  
   );
 };
 
-export default PersonalInformation;
+export default memo(PersonalInformation);

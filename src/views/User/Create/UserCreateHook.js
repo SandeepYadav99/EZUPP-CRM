@@ -222,6 +222,13 @@ function useUserCreateHook() {
         }
       }
     });
+  
+    if(form?.name && form?.name?.length < 2){
+      errors.name = true;
+    }
+    if(form?.userName && form?.userName?.length < 2){
+      errors.userName = true;
+    }
     if (form?.employee_id?.length <= 2) {
       errors.employee_id = true;
     }
@@ -283,13 +290,7 @@ function useUserCreateHook() {
       } else if (fieldName === "contact") {
         t[fieldName] = text;
       } else if (fieldName === "end_date") {
-        if (form?.joining_date > text) {
-          SnackbarUtils.error(
-            "Joining date should not be greater than end date"
-          );
-        } else {
           t[fieldName] = text;
-        }
       } else if (fieldName === "role") {
         t[fieldName] = text;
       } else if (fieldName === "department") {

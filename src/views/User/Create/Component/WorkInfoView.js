@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
@@ -41,9 +41,9 @@ const WorkInfoView = ({
               onTextChange={(text) => {
                 changeTextData(text, "employee_id");
               }}
-              onBlur={() => {
-                onBlurHandler("employee_id");
-              }}
+              // onBlur={() => {
+              //   onBlurHandler("employee_id");
+              // }}
             />
           </div>
 
@@ -165,4 +165,4 @@ const WorkInfoView = ({
   );
 };
 
-export default WorkInfoView;
+export default memo(WorkInfoView);
