@@ -14,7 +14,7 @@ const PillContainer = ({ details, styles }) => {
           <div>
             <StatusPill
               status={details?.priority}
-              color={details?.priority.toLowerCase()}
+              color={details?.priority}
             />
           </div>
         </div>

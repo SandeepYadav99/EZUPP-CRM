@@ -1,8 +1,7 @@
 import {
-
   CircularProgress,
   MenuItem,
-
+  TextField,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
@@ -10,13 +9,8 @@ import CustomTextField from "../../../FormFields/TextField.component";
 import styles from "./Style.module.css";
 import useAddTaskCreate from "./AddTaskCreateHook";
 
-
-
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
-import {
- 
-  PrimaryButton,
-} from "../../../components/Buttons/PrimaryButton";
+import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import MultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
@@ -47,7 +41,7 @@ const AddTaskCreate = ({
     handleCreatedTask,
     profileDetails,
   });
-
+  console.log(filteredUsers);
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -134,33 +128,19 @@ const AddTaskCreate = ({
 
           <div className="formFlex">
             <div className={"formGroup"}>
-             
-              {/* <CustomMultiComplete
+              <MultiComplete
+                isError={errorData?.category}
                 multiple
-                // showImage
-                AutoCompleteList={filteredUsers || []}
+                isArray
+                AutoCompleteList={categoryLists || []}
+                getOptionLabel={(option) => option}
                 label="Task Category"
-                error={errorData?.category}
-                isArray={true}
+                defaultValue={form?.category}
                 value={form?.category}
                 onTextChange={(value) => {
                   changeTextData(value, "category");
                 }}
-                 enableField={["name"]}
-              /> */}
-               <MultiComplete
-                    isError={errorData?.category}
-                    multiple
-                    isArray
-                    AutoCompleteList={filteredUsers ? filteredUsers : []}
-                    getOptionLabel={(option) => option}
-                     label="Task Category"
-                    defaultValue={form?.category}
-                    value={form?.category}
-                    onTextChange={(value) => {
-                      changeTextData(value, "category");
-                    }}
-                  />
+              />
               <label className={styles.paragraph}>
                 Please press enter to add a category if not found in the search
                 results.
@@ -202,35 +182,40 @@ const AddTaskCreate = ({
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomMultiComplete
+              <MultiComplete
                 // multiple
                 showImage
+                getOptionLabel={(option) =>
+                  `${option?.name || ""} ${
+                    option?.email ? `(${option?.email})` : ""
+                  }`
+                }
                 AutoCompleteList={filteredUsers || []}
                 label="Associated User (Optional)"
                 error={errorData?.associated_user}
-                getOptionLabel={(option) => option.name}
-                value={form.associated_user || []}
+                value={form.associated_user}
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
                 }}
-                enableField={["name"]}
+                enableField={["name", "email"]}
+                isError={true}
               />
             </div>
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomMultiComplete
+              <MultiComplete
                 // multiple
-                showImage
+                // showImage
+                getOptionLabel={(option) => option?.title}
                 AutoCompleteList={filteredTask || []}
-                label="Associated Task (Optional)"
+                   label="Associated Task (Optional)"
                 error={errorData?.associated_task}
-                getOptionLabel={(option) => option.name}
-                value={form.associated_task || []}
+                value={form.associated_task}
                 onTextChange={(text) => {
                   changeTextData(text, "associated_task");
                 }}
-                enableField={["name"]}
+                // enableField={["title"]}
               />
             </div>
           </div>

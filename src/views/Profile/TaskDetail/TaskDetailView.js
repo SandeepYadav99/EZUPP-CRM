@@ -56,48 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const jsontoJs = {
-  _id: "65ba32d7fb1f30fe28028455",
-  category: ["CHECK", "Category"],
-  is_overdue: true,
-  is_completed: true,
-  status: "ACTIVE",
-  title: "Assign the task for FG",
-  description: "STEPS TO REGENERATE\n1. Check\n2. Priority",
-  due_date: "2024-01-23T16:30:00.000Z",
-  type: "DISCUSS",
-  priority: "HIGH",
-  comment: "Task",
-  createdAt: "2024-01-31T11:45:27.730Z",
-  updatedAt: "2024-05-29T22:00:00.382Z",
-  completed_on: "2024-05-29T18:12:58.754Z",
-  assignedTo: {
-    name: "Rajat singh",
-    email: "31pankajkumar@gmail.com",
-    image: "http://91.205.173.97:2444/public/user_images/default_user.jpg",
-    employee_id: "EMP/212",
-    id: "65b9fa8496aeebef1df24b88",
-  },
-  assignedBy: {
-    name: "Pankaj kumar",
-    image: "http://91.205.173.97:2444/public/business/1706092503596_Astral.jpg",
-    employee_id: "EMP/111",
-    id: "65ae5fc2bf709170e2585056",
-    email: "ipankajkumarlpu@gmail.com",
-  },
-  id: "65ba32d7fb1f30fe28028455",
-  associatedUser: {
-    image: null,
-  },
-  createdAtText: "31-01-2024",
-  updatedAtText: "30-05-2024",
-  dueDateText: "23/01/2024 | 10:00 PM",
-  dueDateListText: "23 January 2024  10:00 PM",
-  completedOnText: "29/05/2024 | 11:42 PM",
-  assignedOnText: "31 January 2024  05:15 PM",
-  assignedOnDetailText: "31/01/2024  | 05:15 PM",
-  associateUserName: "N/A",
-};
+
 
 const TaskDetailView = ({}) => {
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
@@ -219,22 +178,22 @@ const TaskDetailView = ({}) => {
         <div>
           <div className={styles.newContainer}>
             <TaskDetailHeader
-              details={jsontoJs} // details
+              details={details} // details
               markAsCompleted={markAsCompleted}
               styles={styles}
               completedHandler={completedHandler}
             />
-            <PillContainer details={jsontoJs} styles={styles} />
+            <PillContainer details={details} styles={styles} />
             {/* details */}
             <AssignedContainer
               styles={styles}
-              details={jsontoJs}
+              details={details}
               classes={classes}
             />
             <TaskAssignedContainer
               classes={classes}
               styles={styles}
-              details={jsontoJs}
+              details={details}
             />
           </div>
         </div>
@@ -243,7 +202,7 @@ const TaskDetailView = ({}) => {
       <div className={styles.newNotes}>
         <ShadowBox width={"100%"}>
           <AddNoteContainer
-            details={jsontoJs}
+            details={details}
             styles={styles}
             classes={classes}
             toggleAcceptDialog={toggleAcceptDialog}
@@ -262,7 +221,7 @@ const TaskDetailView = ({}) => {
           handleSideToggle={handleSideToggle}
           isSidePanel={isSidePanel}
           empId={id}
-          details={jsontoJs}
+          details={details}
         />
       </SidePanelComponent>
     </div>
