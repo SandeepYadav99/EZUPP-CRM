@@ -46,7 +46,7 @@ function useUserCreateHook() {
     ROLES: [],
     images: null,
     isSubmitting: false,
-    designation:[]
+    designation: [],
   };
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
@@ -61,7 +61,7 @@ function useUserCreateHook() {
         return { ...state, manager: action.payload };
       case "SET_DEPARTMENT":
         return { ...state, department: action.payload };
-        case "SET_DESIGNATION":
+      case "SET_DESIGNATION":
         return { ...state, designation: action.payload };
       case "ROLES":
         return { ...state, ROLES: action.payload };
@@ -222,11 +222,11 @@ function useUserCreateHook() {
         }
       }
     });
-  
-    if(form?.name && form?.name?.length < 2){
+
+    if (form?.name && form?.name?.length < 2) {
       errors.name = true;
     }
-    if(form?.userName && form?.userName?.length < 2){
+    if (form?.userName && form?.userName?.length < 2) {
       errors.userName = true;
     }
     if (form?.employee_id?.length <= 2) {
@@ -282,15 +282,19 @@ function useUserCreateHook() {
           t[fieldName] = text?.toLowerCase();
         }
       } else if (fieldName === "email") {
-        t[fieldName] = text;
+        if (text?.length <= 70) {
+          t[fieldName] = text;
+        }
       } else if (fieldName === "employee_id") {
         if (!text || text?.length <= 20) {
           t[fieldName] = text;
         }
       } else if (fieldName === "contact") {
         t[fieldName] = text;
+      } else if (fieldName === "contact") {
+        t[fieldName] = text;
       } else if (fieldName === "end_date") {
-          t[fieldName] = text;
+        t[fieldName] = text;
       } else if (fieldName === "role") {
         t[fieldName] = text;
       } else if (fieldName === "department") {
@@ -326,7 +330,7 @@ function useUserCreateHook() {
           contact: form?.contact,
           email: form?.email,
           user_name: form?.userName,
-           is_primary_user: true,
+          is_primary_user: true,
           status: form?.status,
           // email_send: form?.invoiteToUser,
           employee_id: form?.employee_id || userObject?.employee_id,
@@ -342,10 +346,12 @@ function useUserCreateHook() {
           formDataFields.joining_date = form?.joining_date || "";
           formDataFields.exit_date = form?.end_date || "";
           formDataFields.department = form?.department ? form?.department : "";
-          formDataFields.designation = form?.designation ? form?.designation : "";
+          formDataFields.designation = form?.designation
+            ? form?.designation
+            : "";
           formDataFields.role_id = form?.role || "";
           formDataFields.manager = form?.manager || "";
-           formDataFields.send_email =id ? false : form?.invoiteToUser;
+          formDataFields.send_email = id ? false : form?.invoiteToUser;
           formDataFields.is_manager = form?.userManage;
         }
 
@@ -413,7 +419,7 @@ function useUserCreateHook() {
     userId: userObject?.user_id,
     manager: state.manager,
     department: state.department,
-    designation:state.designation
+    designation: state.designation,
   };
 }
 
