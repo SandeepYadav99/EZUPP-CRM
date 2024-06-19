@@ -23,8 +23,16 @@ const WorkInfoView = ({
   return (
     <>
       <ShadowBox className={styles.mainBox}>
+        <div className={styles.subMain}>
         <div className={"headerFlex"}>
           <Typography
+           sx={{
+            marginTop:theme.spacing(3),
+            marginBottom:theme.spacing(3),
+            [theme.breakpoints.down("sm")]: {
+              margin: "auto",
+            },
+          }}
             variant="h4"
             fontWeight={600}
             color={theme.palette.text.primary}
@@ -165,6 +173,8 @@ const WorkInfoView = ({
               }
             />
           )}
+        </div>
+
         </div>
       </ShadowBox>
     </>

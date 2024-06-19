@@ -9,7 +9,6 @@ import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 
-import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 import ImageInfoToolTip from "../../../../components/ImageInfo/ImageInfo";
 
 const PersonalInformation = ({
@@ -25,10 +24,12 @@ const PersonalInformation = ({
   const theme = useTheme();
   return (
  
-      <ShadowBox width={"100%"}>
+      <ShadowBox width={"100%"} >
         <Typography
           variant="h4" fontWeight={600} color={theme.palette.text.primary} 
           sx={{
+            marginTop:theme.spacing(3),
+            marginBottom:theme.spacing(3),
             [theme.breakpoints.down("sm")]: {
               margin: "auto",
             },
