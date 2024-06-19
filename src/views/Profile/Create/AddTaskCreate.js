@@ -102,6 +102,7 @@ const AddTaskCreate = ({
                       src={option?.image}
                       sx={{
                         marginRight: theme.spacing(1),
+                         width:"25px", height:"25px", borderRadius:"25px"
                       }}
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
@@ -254,6 +255,7 @@ const AddTaskCreate = ({
                       src={option?.image}
                       sx={{
                         marginRight: theme.spacing(1),
+                         width:"25px", height:"25px", borderRadius:"25px"
                       }}
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
