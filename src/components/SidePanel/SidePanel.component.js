@@ -1,6 +1,4 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 12/3/2019.
- */
+
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import ReactDOM from 'react-dom';
@@ -83,6 +81,11 @@ class ResizablePanels extends React.Component {
     }
 }
 
+const ModalOverlay = ({ isOpen, onClose }) => {
+    return isOpen ? (
+        <div className={styles.modalOverlay} onClick={onClose}></div>
+    ) : null;
+};
 
 class SidePanelComponent extends Component {
     constructor(props) {
@@ -128,6 +131,9 @@ class SidePanelComponent extends Component {
             tempStyle["right"] = this.props.open ? "0px" : "calc(-45vw)";
           }
         return (
+            <>
+      
+            <ModalOverlay isOpen={this.props.open} onClose={this._handleOpen} />
             <div className={classnames(!this.props.open ? styles.LPTransition: '', styles.noScrollbar)} style={tempStyle}>
               <ResizablePanels handleWidth={this._handleWidth} />
                 <div className={styles.noScrollbar} style={{
@@ -159,6 +165,7 @@ class SidePanelComponent extends Component {
                 </div>
 
             </div>
+            </>
         )
     }
 }
