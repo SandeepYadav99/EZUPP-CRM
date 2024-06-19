@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./Styles.module.css";
 import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
@@ -14,7 +14,7 @@ import ProfileSection from "./Componet/ProfileSection/ProfileSection";
 import TaskSection from "./Componet/TaskSection/TaskSection";
 import AddTaskCreate from "./Create/AddTaskCreate";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
-import ShadowBox from "../../components/ShadowBox/ShadowBox";
+
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -38,7 +38,9 @@ const Profile = () => {
     setOpen(!open);
   };
   const theme = useTheme();
-
+  const upperSidePanelText = useCallback(() => {
+    return <Typography variant="h3" fontWeight={600} sx={{marginTop:theme.spacing(4), marginBottom:theme.spacing(4)}}>Add New Task </Typography>;
+  }, []);
   return (
     <div className={styles.bgProfile}>
       {isLoading ? (
@@ -81,7 +83,6 @@ const Profile = () => {
           </div>
           <div>
             <div className={styles.profileFlex}>
-            
               <div className={styles.leftSection}>
                 <ProfileSection
                   profileDetails={profileDetails}
@@ -89,7 +90,6 @@ const Profile = () => {
                 />
               </div>
 
-             
               <div className={styles.rightSection}>
                 <TaskSection
                   filterValue={filterValue}
@@ -110,7 +110,7 @@ const Profile = () => {
           />
           <SidePanelComponent
             handleToggle={handleSideToggle}
-            title={"Add New Task"} // profileId ? "Update Hubs" :
+            title={upperSidePanelText()} // profileId ? "Update Hubs" :
             open={isSidePanel}
             side={"right"}
           >

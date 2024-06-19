@@ -1,10 +1,4 @@
-import {
-  ButtonBase,
-  
-  MenuItem,
- 
-  Typography,
-} from "@mui/material";
+import { ButtonBase, MenuItem, Typography } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import historyUtils from "../../../libs/history.utils";
@@ -24,11 +18,7 @@ import AddTaskUpdate from "./Update/UpdateDetail";
 import { serviceTaskManagementDetail } from "../../../services/ProviderUser.service";
 import { useParams } from "react-router-dom";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
-import {
-  ArrowOutlineButton,
-  OutlineButton,
-  PrimaryButton,
-} from "../../../components/Buttons/PrimaryButton";
+import { ArrowOutlineButton } from "../../../components/Buttons/PrimaryButton";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,17 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 const TaskDetailView = ({}) => {
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
-  // const id = queryParams.get("id");
+
   const classes = useStyles();
   const [isSidePanel, setSidePanel] = useState(false);
   const { id } = useParams();
-  const theme = useTheme()
+  const theme = useTheme();
   const [details, setDetails] = useState([]);
   // const { present: details } = useSelector((state) => state.common);
   const [filterValue, setFilterValue] = useState("ALL");
@@ -138,6 +124,9 @@ const TaskDetailView = ({}) => {
   // if (!details && !isSidePanel) {
   //   return <WaitingComponent />;
   // }
+  const upperSidePanelText = useCallback(() => {
+    return <Typography variant="h3" fontWeight={600} sx={{marginTop:theme.spacing(4), marginBottom:theme.spacing(4)}}>Update Task</Typography>;
+  }, [id]);
   return (
     <div>
       <div className={styles.outerFlex}>
@@ -145,14 +134,15 @@ const TaskDetailView = ({}) => {
           <ButtonBase onClick={() => historyUtils.goBack()}>
             <ArrowBackIosIcon fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant="h3"  color={theme.palette.text.primary}>Task Detail</Typography>
+          <Typography variant="h3" color={theme.palette.text.primary}>
+            Task Detail
+          </Typography>
         </div>
 
         <div className={styles.editAction}>
           <CustomSelectField
             value={filterValue}
             handleChange={filterCompltedTask}
-            
           >
             <MenuItem value={"PENDING"}>Pending</MenuItem>
             <MenuItem value={"COMPLETED"}>Completed</MenuItem>
@@ -166,8 +156,6 @@ const TaskDetailView = ({}) => {
             paddingLR={3}
             paddingTB={0}
             borderRadius={8}
-           
-           
           >
             <Typography variant="subtitle1">EDIT</Typography>
             {/* */}
@@ -213,7 +201,7 @@ const TaskDetailView = ({}) => {
 
       <SidePanelComponent
         handleToggle={handleSideToggle}
-        title={" Update Task"}
+        title={ upperSidePanelText()}
         open={isSidePanel}
         side={"right"}
       >

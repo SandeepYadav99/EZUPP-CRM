@@ -48,7 +48,7 @@ const AddTaskCreate = ({
       <ShadowBox width={"100%"}>
         <div className={styles.headerFlex}>
           <h4 className={styles.infoTitle}>
-            <Typography fontSize={18} fontWeight={600}>
+            <Typography fontSize={18} fontWeight={600} sx={{ marginBottom:theme.spacing(2)}}>
               Task Details
             </Typography>
             {/* <Tooltip title="Info" aria-label="info" placement="right">
