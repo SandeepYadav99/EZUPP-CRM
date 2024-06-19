@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
 
 const TaskDetailView = ({}) => {
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-
   const classes = useStyles();
   const [isSidePanel, setSidePanel] = useState(false);
   const { id } = useParams();
@@ -70,7 +69,7 @@ const TaskDetailView = ({}) => {
     [filterValue]
   );
   const fetchTaskDetails = useCallback(() => {
-    // setTimeout(() => {
+ 
     serviceTaskManagementDetail({ id: id }).then((res) => {
       if (!res?.error) {
         setDetails(res?.data);
@@ -78,7 +77,7 @@ const TaskDetailView = ({}) => {
         SnackbarUtils.error(res?.message);
       }
     });
-    // }, 2000);
+
   }, [id]);
 
   const markAsCompleted = useCallback(async () => {
@@ -87,10 +86,10 @@ const TaskDetailView = ({}) => {
         is_completed: true,
         id: id ? id : "",
       });
-      // setTimeout(() => {
+    
       fetchTaskDetails();
       SnackbarUtils.success("Task is marked as completed");
-      // }, 3000);
+  
     } catch (error) {
       console.error("Error marking task as completed:", error);
     }
@@ -121,9 +120,7 @@ const TaskDetailView = ({}) => {
     },
     [setSidePanel] // , profileId, id,  userObject?.user?.id
   );
-  // if (!details && !isSidePanel) {
-  //   return <WaitingComponent />;
-  // }
+ 
   const upperSidePanelText = useCallback(() => {
     return <Typography variant="h3" fontWeight={600} sx={{marginTop:theme.spacing(4), marginBottom:theme.spacing(4)}}>Update Task</Typography>;
   }, [id]);
