@@ -69,7 +69,6 @@ const TaskDetailView = ({}) => {
     [filterValue]
   );
   const fetchTaskDetails = useCallback(() => {
- 
     serviceTaskManagementDetail({ id: id }).then((res) => {
       if (!res?.error) {
         setDetails(res?.data);
@@ -77,7 +76,6 @@ const TaskDetailView = ({}) => {
         SnackbarUtils.error(res?.message);
       }
     });
-
   }, [id]);
 
   const markAsCompleted = useCallback(async () => {
@@ -86,10 +84,9 @@ const TaskDetailView = ({}) => {
         is_completed: true,
         id: id ? id : "",
       });
-    
+
       fetchTaskDetails();
       SnackbarUtils.success("Task is marked as completed");
-  
     } catch (error) {
       console.error("Error marking task as completed:", error);
     }
@@ -120,9 +117,17 @@ const TaskDetailView = ({}) => {
     },
     [setSidePanel] // , profileId, id,  userObject?.user?.id
   );
- 
+
   const upperSidePanelText = useCallback(() => {
-    return <Typography variant="h3" fontWeight={600} sx={{marginTop:theme.spacing(4), marginBottom:theme.spacing(4)}}>Update Task</Typography>;
+    return (
+      <Typography
+        variant="h3"
+        fontWeight={600}
+        sx={{ marginTop: theme.spacing(4), marginBottom: theme.spacing(4) }}
+      >
+        Update Task
+      </Typography>
+    );
   }, [id]);
   return (
     <div>
@@ -148,14 +153,10 @@ const TaskDetailView = ({}) => {
 
           <ArrowOutlineButton
             onClick={handleSideToggle}
-            icon={<Edit fontSize={"20px"} />}
-            className={styles.boxHeight}
-            paddingLR={3}
-            paddingTB={0}
-            borderRadius={8}
+            icon={<Edit fontSize="small" />}
           >
             <Typography variant="subtitle1">EDIT</Typography>
-            {/* */}
+   
           </ArrowOutlineButton>
         </div>
       </div>
@@ -198,7 +199,7 @@ const TaskDetailView = ({}) => {
 
       <SidePanelComponent
         handleToggle={handleSideToggle}
-        title={ upperSidePanelText()}
+        title={upperSidePanelText()}
         open={isSidePanel}
         side={"right"}
       >
