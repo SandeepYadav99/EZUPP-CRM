@@ -9,7 +9,6 @@ import {
   serviceSearchUser,
   serviceTaskManagementUpdate,
 } from "../../../../services/ProviderUser.service";
-import { serviceSearchCategory } from "../../../../services/TaskManage.service";
 
 const initialForm = {
   title: "",
@@ -24,7 +23,6 @@ const initialForm = {
   // status: true,
   assigned_to: "",
 };
-
 
 const initialTask = {
   categoryLists: [],
@@ -45,18 +43,10 @@ const useAddTaskUpdate = ({
   const [form, setForm] = useState({ ...initialForm });
   const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-  // const [filteredUsers, setFilteredUsers] = useState(null);
-  // const [filteredTask, setFilteredTask] = useState(null);
-  // const [filteredAssignedTo, setFilteredAssignedTo] = useState(null);
   const [fetchedAssignedTo, setFetchedAssignedTo] = useState(null);
   const [fetchedTask, setFetchedTask] = useState(null);
   const [fetchedUser, setFetchedUser] = useState(null);
-const[helperText, setHelperText]=useState("")
-  // const [categoryLists, setCategoryLists] = useState(null);
-
-
-  
-
+  const [helperText, setHelperText] = useState("");
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -85,7 +75,6 @@ const[helperText, setHelperText]=useState("")
       due_date: details?.due_date,
       priority: details?.priority,
       type: details?.type,
-      
     });
     setFetchedAssignedTo(details?.assignedTo);
     setFetchedUser(details?.associatedUser);
@@ -127,55 +116,6 @@ const[helperText, setHelperText]=useState("")
       }
     });
   }, [isSidePanel]);
-
-
-  // useEffect(() => {
-  //   if (!isSidePanel) return;
-  //   serviceProviderProfileGetKeyword({ type: "TASK" }).then((res) => {
-  //     if (!res?.error) {
-  //       setCategoryLists(res?.data);
-  //     }
-  //   });
-  // }, [form?.assigned_to, isSidePanel]);
-
-  // useEffect(() => {
-  //   if (!isSidePanel) return;
-  //   serviceSearchAssignto({
-  //     query: form?.assigned_to ? form?.assigned_to?.name : form?.assigned_to,
-  //   }).then((res) => {
-  //     if (!res?.error) {
-  //       setFilteredAssignedTo(res.data);
-  //     }
-  //   });
-  // }, [isSidePanel]);
-
-  // useEffect(() => {
-  //   if (!isSidePanel) return;
-  //   serviceSearchTask({
-  //     query: form?.associated_task
-  //       ? form?.associated_task?.title
-  //       : form?.associated_task,
-  //   }).then((res) => {
-  //     if (!res.error) {
-  //       setFilteredTask(res.data);
-  //     }
-  //   });
-  // }, [isSidePanel]);
-
-  // useEffect(() => {
-  //   if (!isSidePanel) return;
-  //   serviceSearchUser({
-  //     query: form?.associated_user
-  //       ? form?.associated_user?.first_name
-  //       : form?.associated_user,
-  //   }).then((res) => {
-  //     if (!res.error) {
-  //       setFilteredUsers(res.data);
-  //     } else {
-  //       setFilteredUsers(null);
-  //     }
-  //   });
-  // }, [isSidePanel]);
 
   useEffect(() => {
     if (!isSidePanel) {
@@ -247,13 +187,13 @@ const[helperText, setHelperText]=useState("")
       category: industryID,
       type: form?.type,
       priority: form?.priority,
-      associated_user: form?.associated_user?._id  || fetchedUser?.id,
+      associated_user: form?.associated_user?._id || fetchedUser?.id,
       associated_task: form?.associated_task?._id || fetchedTask?._id,
       comment: "Task",
       // is_completed: form?.status ? true : false,
       assigned_to: form?.assigned_to?._id || fetchedAssignedTo.id,
     };
-  
+
     if (empId) {
       updateData.id = empId;
     }
@@ -315,15 +255,14 @@ const[helperText, setHelperText]=useState("")
                 ) === index
             )
           : [];
-          if (uniqueValues.length <= 2) {
-            t[fieldName] = uniqueValues;
-          }
-       
+        if (uniqueValues.length <= 2) {
+          t[fieldName] = uniqueValues;
+        }
       } else if (fieldName === "associated_task") {
         t[fieldName] = text;
       } else if (fieldName === "assigned_to") {
         t[fieldName] = text;
-      }else if (fieldName === "due_date") {
+      } else if (fieldName === "due_date") {
         t[fieldName] = text;
       } else {
         t[fieldName] = text;
@@ -377,7 +316,7 @@ const[helperText, setHelperText]=useState("")
     categoryLists: task?.categoryLists,
     setFetchedUser,
     setFetchedTask,
-    helperText
+    helperText,
   };
 };
 

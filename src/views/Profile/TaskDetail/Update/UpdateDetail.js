@@ -1,25 +1,21 @@
 import {
   Avatar,
-  Chip,
   CircularProgress,
   MenuItem,
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import CustomTextField from "../../../../FormFields/TextField.component";
 import styles from "./Style.module.css";
-
-
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import {  useTheme } from "@mui/styles";
+import { useTheme } from "@mui/styles";
 import useAddTaskUpdate from "./UpdateDetailHook";
-
 
 const AddTaskUpdate = ({
   handleSideToggle,
@@ -35,8 +31,7 @@ const AddTaskUpdate = ({
     onBlurHandler,
     changeTextData,
     isSubmitting,
-    listData,
-    handleSearchUsers,
+
     filteredUsers,
     filteredTask,
     filteredAssignedTo,
@@ -44,10 +39,8 @@ const AddTaskUpdate = ({
     fetchedTask,
     fetchedUser,
     categoryLists,
-    setFetchedUser,
-    setFetchedTask,
-    helperText,
-    fetchedAssignedUser
+
+    fetchedAssignedUser,
   } = useAddTaskUpdate({
     handleSideToggle,
     isSidePanel,
@@ -65,9 +58,6 @@ const AddTaskUpdate = ({
             <Typography fontSize={18} fontWeight={600}>
               Task Details
             </Typography>
-            {/* <Tooltip title="Info" aria-label="info" placement="right">
-              <InfoIcon fontSize={"small"} />
-            </Tooltip> */}
           </h4>
         </div>
 
@@ -81,7 +71,7 @@ const AddTaskUpdate = ({
                 getOptionLabel={(option) =>
                   `${option?.name} (${option?.email})`
                 }
-                value={form.assigned_to || fetchedAssignedTo || []} // || fetchedAssignedUser || []
+                value={form.assigned_to || fetchedAssignedTo || []}
                 onTextChange={(text) => {
                   changeTextData(text, "assigned_to");
                 }}
@@ -89,18 +79,20 @@ const AddTaskUpdate = ({
                   <TextField
                     {...params}
                     variant="outlined"
-                  label="Assigned To"
-                 
+                    label="Assigned To"
                     InputProps={{
                       ...params.InputProps,
-
                       startAdornment: (
                         <Avatar
                           src={
                             form?.assigned_to?.image ||
                             fetchedAssignedUser?.image
                           }
-                          sx={{width:"25px", height:"25px", borderRadius:"25px"}}
+                          sx={{
+                            width: "25px",
+                            height: "25px",
+                            borderRadius: "25px",
+                          }}
                         />
                       ),
                     }}
@@ -112,7 +104,9 @@ const AddTaskUpdate = ({
                       src={option?.image}
                       sx={{
                         marginRight: theme.spacing(1),
-                        width:"25px", height:"25px", borderRadius:"25px"
+                        width: "25px",
+                        height: "25px",
+                        borderRadius: "25px",
                       }}
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
@@ -245,15 +239,16 @@ const AddTaskUpdate = ({
                     {...params}
                     variant="outlined"
                     label="Associated User (Optional)"
-                  
                     InputProps={{
                       ...params.InputProps,
-
                       startAdornment: (
                         <Avatar
-                       sx={{width:"25px", height:"25px", borderRadius:"25px"}}
+                          sx={{
+                            width: "25px",
+                            height: "25px",
+                            borderRadius: "25px",
+                          }}
                           src={form?.associated_user?.image || ""}
-                         
                         />
                       ),
                     }}
@@ -265,7 +260,9 @@ const AddTaskUpdate = ({
                       src={option?.image}
                       sx={{
                         marginRight: theme.spacing(1),
-                         width:"25px", height:"25px", borderRadius:"25px"
+                        width: "25px",
+                        height: "25px",
+                        borderRadius: "25px",
                       }}
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
@@ -311,5 +308,3 @@ const AddTaskUpdate = ({
 };
 
 export default AddTaskUpdate;
-
-
