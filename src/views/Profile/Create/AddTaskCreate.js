@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Chip,
   CircularProgress,
   MenuItem,
   TextField,
@@ -16,7 +17,8 @@ import MultiComplete from "../../../components/FormFields/AutoCompleteText/Multi
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
-import { useTheme } from "@mui/styles";
+import {  useTheme } from "@mui/styles";
+
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -44,6 +46,7 @@ const AddTaskCreate = ({
     profileDetails,
   });
   const theme = useTheme();
+
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -63,7 +66,7 @@ const AddTaskCreate = ({
             <div className={"formGroup"}>
               <CustomMultiComplete
                 AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
-                label="Assigned To"
+                // label="Assigned To"
                 isError={errorData?.assigned_to}
                 getOptionLabel={(option) =>
                   `${option?.name} (${option?.email})`
@@ -76,7 +79,21 @@ const AddTaskCreate = ({
                   <TextField
                     {...params}
                     variant="outlined"
-                    label="Assigned To"
+                  label="Assigned To"
+                 
+                    InputProps={{
+                      ...params.InputProps,
+
+                      startAdornment: (
+                        <Avatar
+                          src={
+                            form?.assigned_to?.image ||
+                            fetchedAssignedUser?.image
+                          }
+                          sx={{width:"25px", height:"25px", borderRadius:"25px"}}
+                        />
+                      ),
+                    }}
                   />
                 )}
                 renderOption={(props, option) => (
@@ -212,6 +229,36 @@ const AddTaskCreate = ({
                 label="Associated User (Optional)"
                 isError={errorData?.associated_user}
                 value={form.associated_user}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label="Associated User (Optional)"
+                  
+                    InputProps={{
+                      ...params.InputProps,
+
+                      startAdornment: (
+                        <Avatar
+                       sx={{width:"25px", height:"25px", borderRadius:"25px"}}
+                          src={form?.associated_user?.image || ""}
+                         
+                        />
+                      ),
+                    }}
+                  />
+                )}
+                renderOption={(props, option) => (
+                  <li {...props}>
+                    <Avatar
+                      src={option?.image}
+                      sx={{
+                        marginRight: theme.spacing(1),
+                      }}
+                    />
+                    <div>{`${option?.name} (${option?.email})`}</div>
+                  </li>
+                )}
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
                 }}
