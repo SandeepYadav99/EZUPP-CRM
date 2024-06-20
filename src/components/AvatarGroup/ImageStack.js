@@ -1,39 +1,39 @@
 import React from "react";
-import {
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Card,
-  CardContent,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Avatar, AvatarGroup } from "@mui/material";
 import styles from "./Styles.module.css";
-const ImageStack = ({ industryData: imageArray }) => {
-  return (
-    <>
-      {imageArray?.map((industry, index) => (
-        <>
-          <CardContent>
-            <div className={styles.avaterAlignment}>
-              <AvatarGroup max={3} className={styles.avatar_group}>
-                <Avatar className={styles.avatar}>
-                  <img src={industry?.image} alt={""} crossOrigin="anonymous"/>
-                </Avatar>
+import { useTheme } from "@mui/styles";
 
-                <Tooltip title="+3 More" placement="bottom">
-                  {imageArray.length > 2 && (
-                    <Avatar className={styles.avatar}>
-                      {imageArray.length}
-                    </Avatar>
-                  )}
-                </Tooltip>
-              </AvatarGroup>
-            </div>
-          </CardContent>
-        </>
+const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
+  const theme = useTheme();
+  console.log(imageArray)
+  return (
+    <AvatarGroup
+      max={4}
+      spacing="11"
+      variant="circular"
+      sx={{
+        marginLeft: theme.spacing(-3),
+        '& .MuiAvatarGroup-avatar': {
+         border:`1px solid  ${theme.palette.border}`,
+       }
+      }}
+      slotProps={{
+        additionalAvatar: {
+          onClick: openProfilePopUp,
+          sx: {
+            cursor: "pointer",
+            fontSize: "12px",
+            fontWeight: 700,
+          },
+        },
+      }}
+    >
+      {imageArray?.map((industry, index) => (
+        <Avatar className={styles.avatarImageStack} key={industry?.id}>
+          <img src={industry?.image}   alt={""} crossOrigin="anonymous" />
+        </Avatar>
       ))}
-    </>
+    </AvatarGroup>
   );
 };
 

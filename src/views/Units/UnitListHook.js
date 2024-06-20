@@ -53,6 +53,7 @@ const useUserListHook = ({}) => {
 
   const queryFilter = useCallback(
     (key, value) => {
+      
       dispatch(
         actionFetchUnit(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
@@ -65,7 +66,12 @@ const useUserListHook = ({}) => {
 
   const handleFilterDataChange = useCallback(
     (value) => {
-      queryFilter("FILTER_DATA", value);
+      const filteredValue = value?.map((item) => 
+        item?.name === "is_general" 
+          ? { ...item, value: item?.value === "YES" } 
+          : item
+      );
+      queryFilter("FILTER_DATA", filteredValue);
     },
     [queryFilter]
   );
@@ -123,18 +129,24 @@ const useUserListHook = ({}) => {
 
   const configFilter = useMemo(() => {
     return [
-      {
-        label: "Created On",
-        name: "createdAt",
-        type: "date",
-        options: { maxDate: new Date() },
-      },
+      // {
+      //   label: "Created On",
+      //   name: "createdAt",
+      //   type: "date",
+      //   options: { maxDate: new Date() },
+      // },
       {
         label: "Status",
         name: "status",
         type: "select",
-        fields: ["PENDING", "ACTIVE"],
+        fields: ["ACTIVE", "INACTIVE"],
       },
+      {
+        label: "General",
+        name: "is_general",
+        type: "select",
+        fields: ["YES", "NO"],
+      }
     ];
   }, []);
 
@@ -154,7 +166,7 @@ const useUserListHook = ({}) => {
             priority: index,
           };
         });
-      console.log(">",priority)
+
       }
       dispatch(actionDragUnit(dragId, dragOverId));
     },

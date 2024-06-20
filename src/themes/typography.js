@@ -45,7 +45,7 @@ const Typography = (fontFamily) => ({
   },
   body3: {
     fontWeight: 600,
-    fontSize: "0.75rem",  // 12px bold
+    fontSize: "0.75rem", // 12px bold
     lineHeight: 1.66,
   },
   subtitle: {
@@ -80,6 +80,10 @@ const Typography = (fontFamily) => ({
     fontWeight: 500,
     lineHeight: 1.66,
   },
+  btnTitle: {
+    fontSize: "0.75rem",
+    fontWeight: 600,
+  },
 
   overline: {
     lineHeight: 1.66,
@@ -93,6 +97,16 @@ const Typography = (fontFamily) => ({
     lineHeight: 1.75,
     fontWeight: 600,
   },
+  login1: {
+    fontSize: "14px",
+    color: "#888888",
+  },
+  remember:{
+    color: "#888888",
+    fontWeight: 400,
+    fontSize: "0.75rem",
+    lineHeight: 1.66,
+  }
 });
 
 export default Typography;

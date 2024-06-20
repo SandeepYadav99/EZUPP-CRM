@@ -1,14 +1,18 @@
 import React, { useCallback, useState } from "react";
 import { Typography, Avatar } from "@mui/material";
+import {useTheme} from "@mui/styles";
 import { NotiList } from "../../helper/Helper";
 import styles from "./Style.module.css";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 import NotificationDetailsHook from "./NotificationDetailsHook";
+import ShadowBox from "../ShadowBox/ShadowBox";
+
 function NotificationCard() {
   const listData = [...NotiList];
   const {
     handleDetail,
   } = NotificationDetailsHook({});
+  const theme = useTheme();
   const Card = useCallback(
     ({ data }) => {
       return (
@@ -16,6 +20,7 @@ function NotificationCard() {
           component="div"
           // key={`Notification_card${index}`}
           className={styles.parentWrapper}
+          
         >
           <div className={styles.left}>
             <Avatar
@@ -29,6 +34,7 @@ function NotificationCard() {
                 component="div"
                 variant="body2"
                 className={styles.desWrap2}
+               
               >
                 {data?.title}
               </Typography>{" "}
@@ -36,6 +42,7 @@ function NotificationCard() {
                 component="div"
                 variant="body2"
                 className={styles.desWrap2}
+                
               >
                 {data?.body}
               </Typography>
@@ -52,12 +59,16 @@ function NotificationCard() {
     [listData]
   );
   return (
+  
     <div>
-      <div className={styles.upperCard}>
+      
+      <div className={styles.upperCard}  >
+     
         <Typography
           //   color={"text.secondary"}
           variant="subtitle1"
           component="div"
+        
         >
           Notification
         </Typography>
@@ -69,11 +80,12 @@ function NotificationCard() {
         <Card data={item} key={`list_${index}`} />
       ))}
       <div className={styles.btnWrapp}>
-        <PrimaryButton style={{ width: "100%" }}>
-          <Typography variant="body1" onClick={handleDetail}>VIEW ALL NOTIFICATIONS</Typography>
+        <PrimaryButton style={{ width: "100%" }} >
+          <Typography variant="body1" onClick={handleDetail} >VIEW ALL NOTIFICATIONS</Typography>
         </PrimaryButton>
       </div>
     </div>
+ 
   );
 }
 

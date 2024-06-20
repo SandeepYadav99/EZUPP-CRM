@@ -662,3 +662,21 @@ export const NotiList = [
       dateTime: "1h ago"
     }
 ]
+export const leadStatus = [
+  {
+    label: "New",
+    value: "New",
+  },
+  {
+    label: "Contact in Future",
+    value: "Contact in Future",
+  },
+  {
+    label: "Contacted",
+    value: "Contacted",
+  },
+  {
+    label: "Junk Lead",
+    value: "Junk Lead",
+  },
+];

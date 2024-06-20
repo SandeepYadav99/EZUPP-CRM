@@ -21,9 +21,9 @@ export default function BasicButtonGroup({ buttonText,  selectedIndex, onButtonC
           onClick={() => handleButtonClick(index)}
           className={`${styles.button} `}
           style={{
-            color: selectedButton === index ? 'white' : `#888888`,
+            color: selectedButton === index ? theme.palette.text.bright : theme.palette.text.secondary,
              borderColor: '#E4E4E6',
-             backgroundColor: selectedButton === index ? `${theme.palette.primary.main}`: '#F5F5F5'
+             backgroundColor: selectedButton === index ? `${theme.palette.primary.main}`: `${theme.palette.background.paper}`
           }}
           variant={selectedButton === index ? "contained" : "outlined"}
         >

@@ -47,7 +47,7 @@ const ProductCreate = ({}) => {
       <ProductInformation
         errorData={errorData}
         form={form}
-        image={image}
+        images={images}
         changeTextData={changeTextData}
         // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
@@ -62,6 +62,7 @@ const ProductCreate = ({}) => {
         onBlurHandler={onBlurHandler}
         manager={manager}
         department={department}
+        listData={listData}
       />
       <Settings
         errorData={errorData}
@@ -82,7 +83,7 @@ const ProductCreate = ({}) => {
             sx={{ mt: 4 }}
             onClick={handleSubmit}
           >
-            CREATE
+            {id ? "UPDATE" : "CREATE"}
           </PrimaryButton>
         </div>
       </div>

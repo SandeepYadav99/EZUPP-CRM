@@ -114,6 +114,8 @@ function QuickContactView({ isOpen, handleToggle }) {
             >
               <MenuItem value="Mr">Mr</MenuItem>
               <MenuItem value="Mrs">Mrs</MenuItem>
+              <MenuItem value="Mrs">Miss. </MenuItem>
+              <MenuItem value="Mrs">Dr. </MenuItem>
             </CustomSelectField>
           </div>
 
@@ -133,52 +135,55 @@ function QuickContactView({ isOpen, handleToggle }) {
           </div>
         </div>
       </ShadowBox>
-      <ShadowBox
-        sx={{ padding: "1rem" }}
-        className={showBusiness ? styles.cardWrapper : styles.inactive}
-      >
-        <Typography variant={"h5"} color={"text.secondary"}>
-          Business Information
-        </Typography>
-
-        <MultiComplete
-          isError={errorData?.company}
-          AutoCompleteList={companylistData ? companylistData : []}
-          label="Company"
-          value={form?.company}
-          onTextChange={(text) => {
-            changeTextData(text, "company");
-          }}
-          enableField={["title"]}
-        />
-        <CustomTextField
-          isError={errorData?.job_title}
-          errorText={errorData?.job_title}
-          value={form?.job_title}
-          onTextChange={(text) => {
-            changeTextData(text, "job_title");
-          }}
-          onBlur={() => {
-            onBlurHandler("job_title");
-          }}
-          label={"Job Title"}
-        />
-        <CustomSelectField
-          isError={errorData?.buying_role}
-          errorText={errorData?.buying_role}
-          label={"Decision Making Role"}
-          value={form?.buying_role}
-          handleChange={(value) => {
-            changeTextData(value, "buying_role");
-          }}
+      {form?.contact_type === "BUSINESS" && (
+        <ShadowBox
+          sx={{ padding: "1rem" }}
+          className={showBusiness ? styles.cardWrapper : styles.inactive}
         >
-          <MenuItem value="BUSINESS">BUSINESS</MenuItem>
-          <MenuItem value="PERSONAL">PERSONAL</MenuItem>
-          <MenuItem value="FAMILY">FAMILY</MenuItem>
-          <MenuItem value="HOLIDAY">HOLIDAY</MenuItem>
-          <MenuItem value="ETC">ETC</MenuItem>
-        </CustomSelectField>
-      </ShadowBox>
+          <Typography variant={"h5"} color={"text.secondary"}>
+            Business Information
+          </Typography>
+
+          <MultiComplete
+            isError={errorData?.company}
+            AutoCompleteList={companylistData ? companylistData : []}
+            label="Company"
+            value={form?.company}
+            onTextChange={(text) => {
+              changeTextData(text, "company");
+            }}
+            enableField={["title"]}
+          />
+          <CustomTextField
+            isError={errorData?.job_title}
+            errorText={errorData?.job_title}
+            value={form?.job_title}
+            onTextChange={(text) => {
+              changeTextData(text, "job_title");
+            }}
+            onBlur={() => {
+              onBlurHandler("job_title");
+            }}
+            label={"Job Title"}
+          />
+          <CustomSelectField
+            isError={errorData?.buying_role}
+            errorText={errorData?.buying_role}
+            label={"Decision Making Role"}
+            value={form?.buying_role}
+            handleChange={(value) => {
+              changeTextData(value, "buying_role");
+            }}
+          >
+            <MenuItem value="BUSINESS">BUSINESS</MenuItem>
+            <MenuItem value="PERSONAL">PERSONAL</MenuItem>
+            <MenuItem value="FAMILY">FAMILY</MenuItem>
+            <MenuItem value="HOLIDAY">HOLIDAY</MenuItem>
+            <MenuItem value="ETC">ETC</MenuItem>
+          </CustomSelectField>
+        </ShadowBox>
+      )}
+
       <ShadowBox sx={{ padding: "1rem" }} className={styles.cardWrapper}>
         <Typography variant={"h5"} color={"text.secondary"}>
           Service Information

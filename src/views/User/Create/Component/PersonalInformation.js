@@ -1,10 +1,15 @@
-import React from "react";
+import React,{memo} from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Tooltip, Typography } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import File from "../../../../components/FileComponent/FileComponent.component";
 import styles from "../Style.module.css";
+
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
+
+import ImageInfoToolTip from "../../../../components/ImageInfo/ImageInfo";
 
 const PersonalInformation = ({
   errorData,
@@ -13,30 +18,40 @@ const PersonalInformation = ({
   form,
   image,
   listData,
+  userId,
+  id,
 }) => {
-  console.log(image, "Form");
+  const theme = useTheme();
   return (
-    <>
-      <div className={"plainPaper"}>
-        <div className={"headerFlex"}>
-          <h4 className={"infoTitle"}>
-            <div className={"heading"}>Personal Information</div>
-          </h4>
-        </div>
+ 
+      <ShadowBox width={"100%"} >
+        <Typography
+          variant="h4" fontWeight={600} color={theme.palette.text.primary} 
+          sx={{
+            marginTop:theme.spacing(3),
+            marginBottom:theme.spacing(3),
+            [theme.breakpoints.down("sm")]: {
+              margin: "auto",
+            },
+          }}
+        >
+          Personal Information
+        </Typography>
+
         <div className={styles.outerFlex}>
           <div className={styles.count}>
             <File
-              // bannerLabel="Profile"
-              max_size={2 * 1024 * 1024}
+              style={{ margin: "auto" }}
+              max_size={5 * 1024 * 1024}
               type={["jpg", "png", "jpeg"]}
               fullWidth={true}
               name="image"
               accept={"image/*"}
               label="Profile"
-              // show_image={true}
-              
-              link={""}
-              user_image
+              // link={""}
+              // bannerLabel
+              banner={true}
+              cirularBanner={true}
               error={errorData?.image}
               value={form?.image}
               default_image={image ? image : ""}
@@ -46,6 +61,18 @@ const PersonalInformation = ({
                 }
               }}
             />
+            <div className={styles.imageGuide}>
+              <ImageInfoToolTip
+                title={"Image Guide"}
+                resolution={
+                  <div className={styles.new_line}>
+                    <div> Resolution 500px * 500px</div>
+
+                    <div>Image size = 5MB</div>
+                  </div>
+                }
+              />
+            </div>
           </div>
           <div className={styles.lowerWrap}>
             <div className={"formFlex"}>
@@ -58,9 +85,9 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "name");
                   }}
-                  onBlur={() => {
-                    onBlurHandler("name");
-                  }}
+                  // onBlur={() => {
+                  //   onBlurHandler("name");
+                  // }}
                 />
               </div>
 
@@ -73,9 +100,9 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "userName");
                   }}
-                  onBlur={() => {
-                    onBlurHandler("userName");
-                  }}
+                  // onBlur={() => {
+                  //   onBlurHandler("userName");
+                  // }}
                 />
               </div>
             </div>
@@ -102,15 +129,6 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "contact");
                   }}
-                  isValid={(value) => {
-                    if (value.match(/12345/)) {
-                      return "";
-                    } else if (value.match(/1234/)) {
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  }}
                 />
               </div>
             </div>
@@ -120,6 +138,7 @@ const PersonalInformation = ({
                   isError={errorData?.role}
                   errorText={errorData?.role}
                   label={"Role"}
+                  disabled={userId === id ? true : false}
                   value={form?.role}
                   handleChange={(value) => {
                     changeTextData(value, "role");
@@ -127,17 +146,51 @@ const PersonalInformation = ({
                   className={styles.custonCSS}
                 >
                   {listData?.ROLES?.map((role) => (
-                    <MenuItem value={role?.id}>{role?.name}</MenuItem>
+                    <MenuItem value={role?.id} key={role?.id}>{role?.name}</MenuItem>
                   ))}
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
               </div>
+              <div className={"formGroup"}>
+                {id ? (
+                  <CustomSelectField
+                    isError={errorData?.status}
+                    errorText={errorData?.status}
+                    label={"Status"}
+                    // disabled={userId === id ? true : false}
+                    value={form?.status}
+                    handleChange={(value) => {
+                      changeTextData(value, "status");
+                    }}
+                    className={styles.custonCSS}
+                  >
+                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                    <MenuItem value={"DELETED"}>Deleted</MenuItem>
+                    <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
+                  </CustomSelectField>
+                ) : (
+                  <CustomSelectField
+                    isError={errorData?.status}
+                    errorText={errorData?.status}
+                    label={"Status"}
+                    // disabled={userId === id ? true : false}
+                    value={form?.status}
+                    handleChange={(value) => {
+                      changeTextData(value, "status");
+                    }}
+                    className={styles.custonCSS}
+                  >
+                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                  </CustomSelectField>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </ShadowBox>
   );
 };
 
-export default PersonalInformation;
+export default memo(PersonalInformation);

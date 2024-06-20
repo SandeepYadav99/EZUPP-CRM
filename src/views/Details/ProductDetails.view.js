@@ -1,29 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useSelector } from "react";
 import styles from "./Styles.module.css";
 import StatusPill from "../../components/Status/StatusPill.component";
 import history from "../../libs/history.utils";
 import {
+  OutlineButton,
   ActionButton,
   PrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
-import { ButtonBase, Typography } from "@mui/material";
+import { Dialog, ButtonBase, Typography } from "@mui/material";
 import { Add, ArrowBackIos, Lock } from "@mui/icons-material";
 import removeTask from "../../assets/Assets/ic_delete@2x.png";
+import editTask from "../../assets/Assets/ic_edit_blue@2x.png";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import useProductDetailHook from "./ProductDetailsHook";
+import DeleteDialog from "../Products/List/component/DeleteDialog/DeleteDialog";
 
 const ProductDetailview = () => {
-  const { isLoading, handleSideToggle, handleDetailPage, profileDetails, handleDelete } =
+  const { isLoading, handleSideToggle, handleDetailPage, profileDetails, handleDelete, openDialog,
+    closeDialog,
+    isDialogOpen,
+    handleEdit} =
     useProductDetailHook({});
     const img="http://91.205.173.97:8118/public/product_images/1713506777190_red-ball-hitting-wicket-stumps-with-bat-black-abstract-splash-background-cricket-fever-concept_1302-5492.jpg"
+ 
   console.log("profileDetails", profileDetails);
   const getStatusPillColor = () => {
     if (profileDetails?.status === "ACTIVE") {
       return "active"; 
-    } else {
+    } else if (profileDetails?.status === "DELETED") {
       return "high"; 
+    } else if (profileDetails?.status === "DRAFT") {
+      return "draft"; 
+    }
+
+  };
+  const getCurrencySymbol = (currency) => {
+    switch (currency) {
+      case 'INR':
+        return '₹'; // Indian Rupee symbol
+      case 'USD':
+        return '$'; // US Dollar symbol
+      case 'EURO':
+        return '€'; // Euro symbol
+      default:
+        return '';
     }
   };
+  const currencySymbol = getCurrencySymbol(profileDetails?.currency);
+  
   return (
     <div>
       <div>
@@ -36,8 +60,24 @@ const ProductDetailview = () => {
           </ButtonBase>
           <div></div>
           <div className={styles.profileHeading}></div>
-          <div>
-            <ActionButton onClick={handleDelete }>
+          <div className={styles.buttonRow}>
+          <OutlineButton onClick={() => {
+                
+                handleEdit();
+              }}>
+              EDIT
+              <span className={styles.imageContainer}>
+                <img
+                  src={editTask}
+                  alt="task"
+                  width={20}
+                  height={20}
+                  className={styles.binImage}
+                />
+              </span>
+            </OutlineButton>
+            {profileDetails?.status !== "DELETED" && (
+            <ActionButton onClick={openDialog}>
               DELETE
               <span className={styles.imageContainer}>
                 <img
@@ -49,6 +89,7 @@ const ProductDetailview = () => {
                 />
               </span>
             </ActionButton>
+            )}
           </div>
         </div>
         <div className={styles.gridContainer}>
@@ -89,15 +130,26 @@ const ProductDetailview = () => {
                 Associated Tags
               </Typography>
               <div className={styles.row21}>
-                {profileDetails?.tags?.map((item, index) => (
+              {profileDetails?.tags?.length > 0 && profileDetails?.tags.every(item => item!== "")? (
+                profileDetails?.tags?.map((item, index) => (
                   <Typography
                     variant={"body1"}
                     className={styles.tags}
                     key={`tags_${index}`}
+                    color={"text.primary"}
                   >
-                    {item}
+                    {item} 
                   </Typography>
-                ))}
+                ))
+              ) : (
+                <Typography
+                  variant={"body1"}                
+                  color={"text.secondary"}
+                >
+                  N/A
+                </Typography>
+              )
+                }
               </div>
 
               <Typography variant={"subtitle1"} className={styles.title}>
@@ -111,7 +163,7 @@ const ProductDetailview = () => {
           <div className={styles.profileFlex}>
             <div className={styles.leftSection}>
               <>
-                <ShadowBox width={"23rem"}>
+                <ShadowBox className={styles.productComm} >
                   <div className={styles.profileContainer}></div>
                   <div className={styles.title}>
                     <Typography variant={"title"} color={"text.primary"}>
@@ -129,7 +181,7 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.email}
                       >
-                        {profileDetails?.unit_id || "N/A"}
+                        {profileDetails?.unit?.name ?? "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -142,7 +194,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.ballpark_cost || "N/A"}
+                        {/* {profileDetails?.currency} {profileDetails?.ballpark_cost ?? "N/A"} */}
+                        {profileDetails?.ballpark_cost != null  ? `${currencySymbol} ${profileDetails.ballpark_cost}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -155,7 +208,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.ballpark_price || "N/A"}
+                        {/* {profileDetails?.currency} {profileDetails?.ballpark_price ?? "N/A"} */}
+                        {profileDetails?.ballpark_price != null ? `${currencySymbol} ${profileDetails.ballpark_price}` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -168,7 +222,7 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_percent || "N/A"}
+                        {profileDetails?.discount_value != null  ? `${profileDetails?.discount_percent} %` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>
@@ -181,7 +235,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_value || "N/A"}
+                        {/* {profileDetails?.currency} {profileDetails?.discount_value ?? "N/A"} */}
+                        {profileDetails?.discount_value != null  ? `${currencySymbol} ${profileDetails.discount_value}` : "N/A"}
                       </Typography>
                     </div>
                   </div>
@@ -202,7 +257,8 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.createdBy || "N/A"}
+                        { profileDetails?.createdBy?.name && profileDetails?.createdBy?.employee_id ?
+                         `${profileDetails?.createdBy?.name}  (${profileDetails.createdBy?.employee_id})` : "N/A"}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
@@ -224,7 +280,9 @@ const ProductDetailview = () => {
                         color={"text.secondary"}
                         className={styles.activity}
                       >
-                        {profileDetails?.createdBy || "N/A"}
+                        { profileDetails?.updatedBy?.name && profileDetails?.updatedBy?.employee_id ?
+                         `${profileDetails?.updatedBy?.name}  (${profileDetails.updatedBy?.employee_id})` : "N/A"}
+                        {/* {profileDetails?.updatedBy?.name ?? "N/A"}                      */}
                       </Typography>
                     </div>
                     <div className={styles.activityFlex}>
@@ -270,10 +328,18 @@ const ProductDetailview = () => {
                   </div>
                 </ShadowBox>
               </>
+              
             </div>
+            
           </div>
         </div>
       </div>
+      <DeleteDialog
+        isOpen={isDialogOpen}
+        handleCLose={closeDialog}
+        handleSubmit={handleDelete}
+      />
+    
     </div>
   );
 };

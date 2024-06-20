@@ -15,7 +15,7 @@ const Settings = ({
   listData,
 }) => {
   console.log(form, "Form");
-  const {checkboxValue, handleCheckboxChange} = useStyleGuide({});
+  const { checkboxValue, handleCheckboxChange } = useStyleGuide({});
   return (
     <>
       <ShadowBox className={styles.product}>
@@ -49,16 +49,23 @@ const Settings = ({
               <div className={"formGroup"}></div>
             </div>
             <div className={`formFlex ${styles.space}`}>
-
-              <div className={styles.box}>
-                <div className={"formGroup "}>
-
+              <div className={`formGroup `}>
+                <CheckboxWithText
+                  title="Show Public"
+                  description="Make the product visible to public"
+                  checked={form?.is_show_public}
+                  className={styles.boxWidth}
+                  handleChange={() => {
+                    changeTextData(!form?.is_show_public, "is_show_public");
+                  }}
+                  value={form?.is_show_public}
+                ></CheckboxWithText>
+                {/* <div className={styles.box}>
                   <CustomCheckbox
                     value={form?.is_show_public}
                     handleChange={() => {
                       changeTextData(!form?.is_show_public, "is_show_public");
                     }}
-
                     label={
                       <Typography variant="subtitle1">Show Public</Typography>
                     }
@@ -70,11 +77,21 @@ const Settings = ({
                   >
                     Make the product visible to public
                   </Typography>
-                </div>
+                </div> */}
               </div>
 
-              <div className={styles.box1}>
-                <div className={"formGroup "}>
+              <div className={`formGroup ${styles.left}`}>
+                <CheckboxWithText
+                  title="Value Add"
+                  description="Value add help text to be shown here"
+                  checked={form?.is_value_add}
+                  className={styles.boxWidth}
+                  handleChange={() => {
+                    changeTextData(!form?.is_value_add, "is_value_add");
+                  }}
+                  value={form?.is_value_add}
+                ></CheckboxWithText>
+                {/* <div className={styles.box1}>
                   <CustomCheckbox
                     value={form?.is_value_add}
                     handleChange={() => {
@@ -91,7 +108,7 @@ const Settings = ({
                   >
                     Value add help text to be shown here
                   </Typography>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

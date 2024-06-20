@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import SnackbarUtils from "../../../../libs/SnackbarUtils";
 
 import {
+  serviceProviderProfileGetKeyword,
   serviceSearchAssignto,
   serviceSearchTask,
   serviceSearchUser,
   serviceTaskManagementUpdate,
 } from "../../../../services/ProviderUser.service";
-import { serviceSearchCategory } from "../../../../services/TaskManage.service";
 
 const initialForm = {
   title: "",
@@ -24,6 +24,13 @@ const initialForm = {
   assigned_to: "",
 };
 
+const initialTask = {
+  categoryLists: [],
+  filteredAssignedTo: [],
+  filteredTask: [],
+  filteredUsers: [],
+};
+
 const useAddTaskUpdate = ({
   handleSideToggle,
   isSidePanel,
@@ -36,14 +43,27 @@ const useAddTaskUpdate = ({
   const [form, setForm] = useState({ ...initialForm });
   const [listData, setListData] = useState(null);
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-  const [filteredUsers, setFilteredUsers] = useState(null);
-  const [filteredTask, setFilteredTask] = useState(null);
-  const [filteredAssignedTo, setFilteredAssignedTo] = useState(null);
   const [fetchedAssignedTo, setFetchedAssignedTo] = useState(null);
   const [fetchedTask, setFetchedTask] = useState(null);
   const [fetchedUser, setFetchedUser] = useState(null);
-const[helperText, setHelperText]=useState("")
-  const [categoryLists, setCategoryLists] = useState(null);
+  const [helperText, setHelperText] = useState("");
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "CATEGORY":
+        return { ...state, categoryLists: action.payload };
+      case "ASSINEDTO":
+        return { ...state, filteredAssignedTo: action.payload };
+      case "FILTERED_TASK":
+        return { ...state, filteredTask: action.payload };
+      case "FILTERED_USER":
+        return { ...state, filteredUsers: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  const [task, dispatchTask] = useReducer(reducer, initialTask);
 
   useEffect(() => {
     // setIsLoading(true);
@@ -55,7 +75,6 @@ const[helperText, setHelperText]=useState("")
       due_date: details?.due_date,
       priority: details?.priority,
       type: details?.type,
-      
     });
     setFetchedAssignedTo(details?.assignedTo);
     setFetchedUser(details?.associatedUser);
@@ -64,48 +83,36 @@ const[helperText, setHelperText]=useState("")
 
   useEffect(() => {
     if (!isSidePanel) return;
-    serviceSearchCategory().then((res) => {
-      if (!res?.error) {
-        setCategoryLists(res?.data);
+    Promise.all([
+      serviceProviderProfileGetKeyword({ type: "TASK" }),
+      serviceSearchAssignto({
+        query: form?.assigned_to ? form?.assigned_to?.name : form?.assigned_to,
+      }),
+      serviceSearchTask({
+        query: form?.associated_task
+          ? form?.associated_task?.title
+          : form?.associated_task,
+      }),
+      serviceSearchUser({
+        id: empId ? empId : "",
+        query: form?.associated_user
+          ? form?.associated_user?.name
+          : form?.associated_user,
+      }),
+    ]).then(([catRes, assignRes, filterTaskRes, userRes]) => {
+      if (!catRes.error) {
+        dispatchTask({ type: "CATEGORY", payload: catRes.data });
       }
-    });
-  }, [form?.assigned_to, isSidePanel]);
-
-  useEffect(() => {
-    if (!isSidePanel) return;
-    serviceSearchAssignto({
-      query: form?.assigned_to ? form?.assigned_to?.name : form?.assigned_to,
-    }).then((res) => {
-      if (!res?.error) {
-        setFilteredAssignedTo(res.data);
+      if (!assignRes.error) {
+        dispatchTask({ type: "ASSINEDTO", payload: assignRes.data });
       }
-    });
-  }, [isSidePanel]);
-
-  useEffect(() => {
-    if (!isSidePanel) return;
-    serviceSearchTask({
-      query: form?.associated_task
-        ? form?.associated_task?.title
-        : form?.associated_task,
-    }).then((res) => {
-      if (!res.error) {
-        setFilteredTask(res.data);
+      if (!filterTaskRes.error) {
+        dispatchTask({ type: "FILTERED_TASK", payload: filterTaskRes.data });
       }
-    });
-  }, [isSidePanel]);
-
-  useEffect(() => {
-    if (!isSidePanel) return;
-    serviceSearchUser({
-      query: form?.associated_user
-        ? form?.associated_user?.first_name
-        : form?.associated_user,
-    }).then((res) => {
-      if (!res.error) {
-        setFilteredUsers(res.data);
+      if (!userRes.error) {
+        dispatchTask({ type: "FILTERED_USER", payload: userRes.data });
       } else {
-        setFilteredUsers(null);
+        // dispatchTask({ type: "FILTERED_USER", payload: [] });
       }
     });
   }, [isSidePanel]);
@@ -180,13 +187,13 @@ const[helperText, setHelperText]=useState("")
       category: industryID,
       type: form?.type,
       priority: form?.priority,
-      associated_user: form?.associated_user?._id  || fetchedUser?.id,
+      associated_user: form?.associated_user?._id || fetchedUser?.id,
       associated_task: form?.associated_task?._id || fetchedTask?._id,
       comment: "Task",
       // is_completed: form?.status ? true : false,
       assigned_to: form?.assigned_to?._id || fetchedAssignedTo.id,
     };
-  
+
     if (empId) {
       updateData.id = empId;
     }
@@ -248,15 +255,14 @@ const[helperText, setHelperText]=useState("")
                 ) === index
             )
           : [];
-          if (uniqueValues.length <= 2) {
-            t[fieldName] = uniqueValues;
-          }
-       
+        if (uniqueValues.length <= 2) {
+          t[fieldName] = uniqueValues;
+        }
       } else if (fieldName === "associated_task") {
         t[fieldName] = text;
       } else if (fieldName === "assigned_to") {
         t[fieldName] = text;
-      }else if (fieldName === "due_date") {
+      } else if (fieldName === "due_date") {
         t[fieldName] = text;
       } else {
         t[fieldName] = text;
@@ -301,16 +307,16 @@ const[helperText, setHelperText]=useState("")
     toggleAcceptDialog,
     isAcceptPopUp,
     suspendItem,
-    filteredUsers,
-    filteredTask,
-    filteredAssignedTo,
+    filteredUsers: task?.filteredUsers,
+    filteredTask: task?.filteredTask,
+    filteredAssignedTo: task?.filteredAssignedTo,
     fetchedAssignedTo,
     fetchedTask,
     fetchedUser,
-    categoryLists,
+    categoryLists: task?.categoryLists,
     setFetchedUser,
     setFetchedTask,
-    helperText
+    helperText,
   };
 };
 

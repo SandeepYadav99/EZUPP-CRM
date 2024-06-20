@@ -27,7 +27,7 @@ const sidebarStyle = theme => ({
       backgroundColor: sidebarColor,
     // overflow: 'auto',
     // ...boxShadow,
-    borderRight: '1px solid rgba(0, 0, 0, 0.12)',
+    borderRight: '1px solid #00000029',
     // width: drawerWidth,
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
@@ -56,7 +56,7 @@ const sidebarStyle = theme => ({
   },
   logo: {
     position: "relative",
-    padding: "30px 25px",
+    padding: "15px 25px",
     zIndex: "4",
     "&:after": {
       content: '""',
@@ -110,6 +110,27 @@ const sidebarStyle = theme => ({
     marginLeft: "10px",
     marginRight: "15px",
     textAlign: 'center'
+  },
+  logoImageSideBar: {
+    display: "inline-block",
+    maxHeight: "30px",
+    marginLeft: "10px",
+    marginRight: "15px",
+    textAlign: 'center'
+  },
+  logocollSidebar :{
+    display: "inline-block",
+    maxHeight: "30px",
+    textAlign: 'center'
+  },
+  collimg: {
+    width: "40px",
+    height:"40px",
+    top: "4px",
+    left: "8px",
+    position: "absolute",
+    verticalAlign: "middle",
+    border: "0"
   },
   img: {
     width: "160px",
@@ -180,7 +201,7 @@ const sidebarStyle = theme => ({
     // marginRight: "15px",
     textAlign: "center",
     verticalAlign: "middle",
-    color: theme.palette.grey[500]
+    color: theme.palette.text.primary,
   },
   itemText: {
     ...defaultFont,
@@ -188,7 +209,7 @@ const sidebarStyle = theme => ({
     marginLeft: theme.spacing(2),
     lineHeight: "30px",
     fontSize: "14px",
-    color: theme.palette.grey[500],
+    color: theme.palette.text.primary,
   },
   whiteFont: {
     color: "#FFFFFF"
@@ -245,7 +266,7 @@ const sidebarStyle = theme => ({
     position: "relative",
     height: "calc(100vh - 75px)",
     overflow: "auto",
-    width: "260px",
+    // width: "239px",
     zIndex: "4",
     overflowScrolling: 'touch'
   }

@@ -1,7 +1,5 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 4/27/2020.
- */
-import React, { Component, useCallback } from "react";
+
+import React, { useCallback } from "react";
 import {
   Table,
   TableBody,
@@ -9,16 +7,21 @@ import {
   TableRow,
   Checkbox,
   Typography,
+  
 } from "@mui/material";
-import { withStyles } from "@mui/styles";
+import { useTheme } from "@mui/styles";
 import styles from "./Style.module.css";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
-import { Info, InfoOutlined } from "@mui/icons-material";
+import {  InfoOutlined } from "@mui/icons-material";
+import WraperComponentCheckBox from "./Component/WraperComponent";
 
 const RoleTableComponent = ({
-  classes,
   permissions,
   permisionChangeHandler,
+  allData,
+  setAllData,
+  setPermissions,
+
 }) => {
   const handleCheckboxChange = useCallback(
     (event, permissionType, index) => {
@@ -27,129 +30,315 @@ const RoleTableComponent = ({
     [permisionChangeHandler, permissions]
   );
 
+  const handleAllDataChange = useCallback(
+    (event) => {
+      const checked = event.target.checked;
+      setAllData(checked);
+      const updatedPermissions = permissions.map((permission) => ({
+        ...permission,
+        all_data: checked,
+      }));
+
+      setPermissions(updatedPermissions);
+    },
+    [permissions, setAllData, permisionChangeHandler]
+  );
+
+  const handleRead= useCallback(
+    (event) => {
+      const checked = event.target.checked;
+      setAllData(checked);
+      const updatedPermissions = permissions.map((permission) => ({
+        ...permission,
+        read: checked,
+      }));
+
+      setPermissions(updatedPermissions);
+    },
+    [permissions, setAllData, permisionChangeHandler]
+  );
+  const handleWrite= useCallback(
+    (event) => {
+      const checked = event.target.checked;
+      setAllData(checked);
+      const updatedPermissions = permissions.map((permission) => ({
+        ...permission,
+        create: checked,
+      }));
+
+      setPermissions(updatedPermissions);
+    },
+    [permissions, setAllData, permisionChangeHandler]
+  );
+  const handleUpdate= useCallback(
+    (event) => {
+      const checked = event.target.checked;
+      setAllData(checked);
+      const updatedPermissions = permissions.map((permission) => ({
+        ...permission,
+        update: checked,
+      }));
+
+      setPermissions(updatedPermissions);
+    },
+    [permissions, setAllData, permisionChangeHandler]
+  );
+  const handleDeletePermision= useCallback(
+    (event) => {
+      const checked = event.target.checked;
+      setAllData(checked);
+      const updatedPermissions = permissions.map((permission) => ({
+        ...permission,
+        delete: checked,
+      }));
+
+      setPermissions(updatedPermissions);
+    },
+    [permissions, setAllData, permisionChangeHandler]
+  );
+  const theme = useTheme();
+
   return (
-    <ShadowBox width={"100%"}>
+    <ShadowBox
+      className={styles.mainContainer}
+      sx={{
+       overflow:"auto",
+        padding: theme.spacing(2),
+        [theme.breakpoints.down("sm")]: {
+          padding: theme.spacing(1),
+        },
+      }}
+    >
       <div className={styles.infoFiled}>
-        <Typography  className={styles.headerTitle}>Permissions Granted </Typography>
-        <InfoOutlined fontSize="16px" color="#888888"/>
+        <Typography  variant="h3" fontWeight={600} color={theme.palette.text.primary} sx={{
+          marginTop:theme.spacing(4.5),
+          marginLeft:theme.spacing(2),
+          marginBottom:theme.spacing(4)
+        }}>
+          Permissions Granted
+        </Typography>
+        <InfoOutlined fontSize="16px" />
       </div>
-      <Table className={classes.table} aria-label="simple table">
+      <Table sx={{width:"100%", margin:"auto", marginBottom:theme.spacing(4)}}>
         <TableBody>
+          <TableCell
+            sx={{
+              [theme.breakpoints.down("sm")]: {
+                display: "block",
+                width: "100%",
+                marginBottom: theme.spacing(1),
+              },
+            }}
+          >
+            <div className={styles.infoFiled1}>
+              <Typography
+                variant="h6"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+             
+              >
+                Modules
+              </Typography>
+            </div>
+          </TableCell>
+          <WraperComponentCheckBox module={true}>
+            <Checkbox
+              sx={{
+                marginLeft: theme.spacing(-1),
+              }}
+              checked={
+                
+                permissions.every((permission) => permission.all_data)
+              }
+              onChange={handleAllDataChange}
+            />{" "}
+            All Data
+          </WraperComponentCheckBox>
+          <WraperComponentCheckBox module={true}>
+            <Checkbox
+              sx={{
+                marginLeft: theme.spacing(-1),
+              }}
+              checked={ permissions.every((permission) => permission.read)}
+              onChange={handleRead}
+            />{" "}
+            Read
+          </WraperComponentCheckBox>
+          <WraperComponentCheckBox module={true}>
+            <Checkbox
+              sx={{
+                marginLeft: theme.spacing(-1),
+              }}
+              onChange={handleWrite}
+              checked={permissions.every((permission) => permission.create)}
+            />{" "}
+            Write
+          </WraperComponentCheckBox>
+          <WraperComponentCheckBox module={true}>
+            <Checkbox
+              sx={{
+                marginLeft: theme.spacing(-1),
+              }}
+              onChange={handleUpdate}
+              checked={ permissions.every((permission) => permission.update)}
+            />{" "}
+            Update
+          </WraperComponentCheckBox>
+          <WraperComponentCheckBox module={true}>
+            <Checkbox
+              sx={{
+                marginLeft: theme.spacing(-1),
+              }}
+              onChange={handleDeletePermision}
+              checked={ permissions.every((permission) => permission.delete)}
+            />{" "}
+            Delete
+          </WraperComponentCheckBox>
+
           {permissions?.map((permission, index) => {
             return (
-              <TableRow key={index}>
-                <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={styles.infoFiled}>
-                    <Typography className={styles.subTitle}>{permission?.name} </Typography>
-                    <InfoOutlined fontSize="16px" color="#888888"/>
+              <TableRow key={index} sx={{ borderBottom: "none" }}>
+                <TableCell
+                  sx={{
+                    borderBottom: "none",
+                    
+                    [theme.breakpoints.down("sm")]: {
+                      display: "block",
+                      width: "100%",
+                    },
+                  }}
+                >
+                  <div className={styles.infoFiled1}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        marginLeft:theme.spacing(0.5),
+                       
+                      }}
+                      color={theme.palette.text.secondary}
+                    >
+                      {permission?.name}{" "}
+                    </Typography>
+                    <InfoOutlined fontSize="16px" color={"action"} />
                   </div>
                 </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.all_data ? styles.crudHover : styles.crud}>
-                    <Checkbox
-                      color={"primary"}
-                      checked={permission?.all_data}
-                      onChange={(event) =>
-                        handleCheckboxChange(
-                          !permission?.all_data,
-                          `all_data`,
-                          index
-                        )
-                      }
-                    />{" "}
-                    All Data
-                  </div>
-                </TableCell>
-                
-                <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.read ? styles.crudHover : styles.crud}>
-                    <Checkbox
-                      color={"primary"}
-                      checked={permission?.read}
-                      onChange={(event) =>
-                        handleCheckboxChange(!permission?.read, `read`, index)
-                      }
-                    />
-                    Read
-                  </div>
-                </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.create ? styles.crudHover : styles.crud}>
-                    <Checkbox
-                      color={"primary"}
-                      checked={permission?.create}
-                      onChange={(event) =>
-                        handleCheckboxChange(
-                          !permission?.create,
-                          `create`,
-                          index
-                        )
-                      }
-                    />
-                    Write
-                  </div>
-                </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.update ? styles.crudHover : styles.crud}>
-                    <Checkbox
-                      color={"primary"}
-                      checked={permission?.update}
-                      onChange={(event) =>
-                        handleCheckboxChange(
-                          !permission?.update,
-                          `update`,
-                          index
-                        )
-                      }
-                    />
-                    Update
-                  </div>
-                </TableCell>
-                <TableCell classes={{ root: classes.tableCell }}>
-                  <div className={permission?.delete ? styles.crudHover : styles.crud}>
-                    <Checkbox
-                      color={"primary"}
-                      checked={permission?.delete}
-                      onChange={(event) =>
-                        handleCheckboxChange(
-                          !permission?.delete,
-                          `delete`,
-                          index
-                        )
-                      }
-                    />
-                    Delete
-                  </div>
-                </TableCell>
-                <hr />
+                <WraperComponentCheckBox
+                  permission={permission?.all_data}
+                  index={index}
+                >
+                  <Checkbox
+                    sx={{
+                      marginLeft: theme.spacing(-1),
+                    }}
+                    size="medium"
+                    checked={
+                      allData &&
+                      permissions.every((permission) => permission.all_data)
+                        ? allData
+                        : permission?.all_data
+                    }
+                    onChange={(event) =>
+                      handleCheckboxChange(
+                        !permission?.all_data,
+                        `all_data`,
+                        index
+                      )
+                    }
+                  />{" "}
+                  All Data
+                </WraperComponentCheckBox>
+
+                <WraperComponentCheckBox
+                  permission={permission?.read}
+                  index={index}
+                >
+                  <Checkbox
+                    sx={{
+                      marginLeft: theme.spacing(-1),
+                    }}
+                    checked={
+                      allData &&
+                      permissions.every((permission) => permission.read)
+                        ? allData
+                        : permission?.read
+                    }
+                  
+                    onChange={(event) =>
+                      handleCheckboxChange(!permission?.read, `read`, index)
+                    }
+                  />
+                  Read
+                </WraperComponentCheckBox>
+                <WraperComponentCheckBox
+                  permission={permission?.create}
+                  index={index}
+                >
+                  <Checkbox
+                    sx={{
+                      marginLeft: theme.spacing(-1),
+                    }}
+                    checked={
+                      allData &&
+                      permissions.every((permission) => permission.create)
+                        ? allData
+                        : permission?.create
+                    }
+                    
+                    onChange={(event) =>
+                      handleCheckboxChange(!permission?.create, `create`, index)
+                    }
+                  />
+                  Write
+                </WraperComponentCheckBox>
+                <WraperComponentCheckBox
+                  permission={permission?.update}
+                  index={index}
+                >
+                  <Checkbox
+                    sx={{
+                      marginLeft: theme.spacing(-1),
+                    }}
+                    checked={
+                      allData &&
+                      permissions.every((permission) => permission.update)
+                        ? allData
+                        : permission?.update
+                    }
+                  
+                    onChange={(event) =>
+                      handleCheckboxChange(!permission?.update, `update`, index)
+                    }
+                  />
+                  Update
+                </WraperComponentCheckBox>
+                <WraperComponentCheckBox
+                  permission={permission?.delete}
+                  index={index}
+                >
+                  <Checkbox
+                    sx={{
+                      marginLeft: theme.spacing(-1),
+                    }}
+                    checked={
+                      allData &&
+                      permissions.every((permission) => permission.delete)
+                        ? allData
+                        : permission?.delete
+                    }
+                   
+                    onChange={(event) =>
+                      handleCheckboxChange(!permission?.delete, `delete`, index)
+                    }
+                  />
+                  Delete
+                </WraperComponentCheckBox>
               </TableRow>
             );
           })}
-          {/* <TableRow>
-                        <TableCell>Customer</TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                        <TableCell classes={{ root: classes.singleCell }}><Checkbox color={'primary'} /></TableCell>
-                    </TableRow> */}
         </TableBody>
       </Table>
     </ShadowBox>
   );
 };
 
-const useStyle = (theme) => ({
-  tableCell: {
-    color: "black",
-    fontSize: "0.90rem",
-    textTransform: "capitalize",
-  },
-  cardHeader: {
-    padding: "10px",
-  },
-  singleCell: {
-    textAlign: "center",
-  },
-});
-
-export default withStyles(useStyle, { withTheme: true })(RoleTableComponent);
+export default RoleTableComponent;

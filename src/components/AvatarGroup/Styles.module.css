@@ -29,14 +29,30 @@
   /* margin: 0px auto; */
   /* justify-content: center; */
 }
+.avatarImageStack{
+
+}
+.avatarImageStack img {
+  width: 50px !important;
+
+  object-fit: fill !important;
+}
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 0px;
 }
-
-
+.avatarImage{
+  margin-left: -80px !important;
+}
+.boldTitle{
+  font-weight: 600;
+}
+.avatar_group{
+  margin-left: -45px !important;
+  
+}
 .avatar_group2 .avatar:hover{
   transform : translateY(-10px);
   z-index: 8;
@@ -44,7 +60,7 @@
 }
 
 .avatar {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 .avatar_size {
   cursor: pointer;

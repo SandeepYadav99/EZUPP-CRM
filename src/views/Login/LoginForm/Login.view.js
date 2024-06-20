@@ -9,7 +9,13 @@ import classNames from "classnames";
 import logoImage from "../../../assets/CRMAssets/ezupp_login_logo.png";
 import googleImageContainer from "../../../assets/CRMAssets/google_neutral.png";
 import csx from "classnames";
-import { MenuItem, Button, IconButton, ButtonBase, Typography } from "@mui/material";
+import {
+  MenuItem,
+  Button,
+  IconButton,
+  ButtonBase,
+  Typography,
+} from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import arrowIcon from "../../../assets/CRMAssets/ic_arrow_white.png";
 import useLoginHook from "./Login.hook";
@@ -41,11 +47,10 @@ function LoginView() {
           </div>
           <div className={styles.signContainer}>
             <span className={styles.headingText}>Welcome to Ezupp! </span>
-            {/* <Typography variant="h3">Welcome to Ezupp! </Typography> */}
             <br />
-            <span style={{ fontSize: "14px", color: "#888888" }}>
-              Enter the details below to login to your account{" "}
-            </span>
+            <Typography variant={"login1"} >
+              Enter the details below to login to your account
+            </Typography>
             <br />
             <br />
             <div>
@@ -54,7 +59,16 @@ function LoginView() {
                   <CustomTextField
                     isError={errorData?.email}
                     errorText={errorData?.email}
-                    label={<span style={{ color: "#636578" }}>Email ID</span>}
+                    label={
+                      <span
+                        style={{
+                          color: "#636578",
+                          opacity: 1,
+                        }}
+                      >
+                        Email ID
+                      </span>
+                    }
                     value={form?.email}
                     onTextChange={(text) => {
                       changeTextData(text, "email");
@@ -64,14 +78,22 @@ function LoginView() {
                     }}
                   />
                 </div>
-                <br />
                 <div>
-                  <div style={{ display: "flex" }}>
+                  <div style={{ display: "flex",marginTop:"8px"}}>
                     <CustomTextField
                       type={showPassword ? "text" : "password"}
                       isError={errorData?.password}
                       errorText={errorData?.password}
-                      label={<span style={{ color: "#636578" }}>Password</span>}
+                      label={
+                        <span
+                          style={{
+                            color: "#636578",
+                            opacity: 1,
+                          }}
+                        >
+                          Password
+                        </span>
+                      }
                       value={form?.password}
                       onTextChange={(text) => {
                         changeTextData(text, "password");
@@ -84,6 +106,7 @@ function LoginView() {
                       style={{
                         marginLeft: "-37px",
                         padding: "0px",
+                        marginTop: "8px",
                       }}
                       onClick={togglePasswordVisibility}
                     >
@@ -96,13 +119,15 @@ function LoginView() {
                   <div className={classNames(styles.negativeSpacing, "log")}>
                     <CustomCheckBox
                       label={
-                        <span style={{ color: "#888888", fontSize: "14px" }}>
+                        <Typography
+                          variant={"remember"}
+                        >
                           Remember Me
-                        </span>
+                        </Typography>
                       }
-                      value={form?.logged_in}
+                      value={form?.is_remember}
                       handleChange={(text) => {
-                        changeTextData(text, "logged_in");
+                        changeTextData(text, "is_remember");
                       }}
                     />
                   </div>
@@ -112,14 +137,16 @@ function LoginView() {
                         onClick={handleForgotPassword}
                         className={styles.forgotBtn}
                       >
-                        Forgot Password?
+                        <Typography variant={"caption"}>
+                          Forgot Password?
+                        </Typography>
                       </ButtonBase>
                     </span>
                   </div>
                 </div>
 
                 <div style={{ marginTop: "7px" }}>
-                  <ArrowPrimaryButton onClick={handleSubmit}>
+                  <ArrowPrimaryButton variant={"h6"} onClick={handleSubmit}>
                     LOGIN
                   </ArrowPrimaryButton>
                 </div>
@@ -128,13 +155,17 @@ function LoginView() {
             <br />
             <div className={styles.textLineMaker}>
               <div className={styles.lineMaker}></div>
-              <span style={{ paddingRight: "10px", paddingLeft: "10px" }}>
+              <span style={{ paddingRight: "10px", paddingLeft: "10px",color:"#636578" }} >
                 OR
               </span>
               <div className={styles.lineMaker}></div>
             </div>
             <div className={styles.containerBtn}>
-              <img src={googleImageContainer} alt="google-image" />
+              <img
+                src={googleImageContainer}
+                alt="google-image"
+                style={{ backgroundColor: "#F2F2F2", borderRadius: "4px" }}
+              />
             </div>
           </div>
         </div>

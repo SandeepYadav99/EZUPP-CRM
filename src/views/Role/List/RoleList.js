@@ -1,27 +1,22 @@
-import React, { useCallback, useMemo } from "react";
-import { Button, IconButton } from "@mui/material";
+import React, { useCallback, useMemo, useState } from "react";
+import { Avatar, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import styles from "./Style.module.css";
-import PageBox from "../../../components/PageBox/PageBox.component";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-import { Add, Create, Edit } from "@mui/icons-material";
-import {
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Card,
-  CardContent,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Edit, Info } from "@mui/icons-material";
+
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import useRoleListHook from "./RoleListHook";
-import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
+
 import StatusPill from "../../../components/Status/StatusPill.component";
 import ImageStack from "../../../components/AvatarGroup/ImageStack";
+import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import ImageStackPopUp from "./ImageStackPopUp/ImageStackPopUp";
+import { useTheme } from "@mui/styles";
 
 const RoleList = (props) => {
   const {
@@ -30,15 +25,16 @@ const RoleList = (props) => {
     handlePageChange,
     handleFilterDataChange,
     handleSearchValueChange,
-    handleViewDetails,
     isCalling,
     configFilter,
     handleCreate,
-    isSidePanel,
-    editId,
+    handleDetail,
     handleEdit,
+    openProfilePopUp,
+    isOpenImageStack,
   } = useRoleListHook({});
-
+  const [renderImageStackData, setRenderImageStackData] = useState([]);
+  const theme = useTheme();
   const {
     present,
     all: allData,
@@ -47,7 +43,6 @@ const RoleList = (props) => {
   } = useSelector((state) => state.role);
 
   const renderFirstCell = useCallback((user) => {
-    console.log(user, "User ");
     const tempEmailRender = user?.email ? (
       <span style={{ textTransform: "lowercase" }}>{user?.email}</span>
     ) : null;
@@ -55,7 +50,7 @@ const RoleList = (props) => {
     return (
       <div className={styles.firstCellFlex}>
         <div>
-          <img src={user?.logo} alt="" crossOrigin="anonymous"/>
+          <img src={user?.logo} alt="" crossOrigin="anonymous" />
         </div>
         <div className={classNames(styles.firstCellInfo, "openSans")}>
           <span>
@@ -71,10 +66,16 @@ const RoleList = (props) => {
   const renderAssociatedIndustriesName = useCallback(
     (industryData) => (
       <div className={styles.imageContainer}>
-        <ImageStack industryData={industryData} />
+        {industryData?.length > 0 ? (
+          <ImageStack
+            industryData={industryData}
+            open={isOpenImageStack}
+            openProfilePopUp={openProfilePopUp}
+          />
+        ) : "N/A"}
       </div>
     ),
-    []
+    [isOpenImageStack, openProfilePopUp]
   );
 
   const renderStatus = useCallback((status) => {
@@ -93,18 +94,30 @@ const RoleList = (props) => {
         render: (value, all) => <>{capitalizeFirstLetter(all?.name)} </>,
       },
       {
+        key: "display_name",
+        label: "Display Name",
+        sortable: false,
+        render: (value, all) => (
+          <>{capitalizeFirstLetter(all?.display_name)} </>
+        ),
+      },
+      {
         key: "description",
         label: "Description",
         sortable: false,
-       
-        render: (temp, all) => <div className={styles.description}>{all?.description} </div>,
+
+        render: (temp, all) => (
+          <div className={styles.description}>{all?.description || "N/A"} </div>
+        ),
       },
       {
         key: "users",
         label: "Users",
         sortable: false,
         render: (temp, all) => (
-          <>{renderAssociatedIndustriesName(all?.users)} </>
+          <div onClick={() => setRenderImageStackData(all?.users)}>
+            {renderAssociatedIndustriesName(all?.users)}{" "}
+          </div>
         ),
       },
       {
@@ -113,26 +126,43 @@ const RoleList = (props) => {
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all?.status)} </div>,
       },
-      
-      // {
-      //   key: "user_id",
-      //   label: "Action",
-      //   render: (temp, all) => (
-      //     <>
-      //      <IconButton
-      //         className={"tableActionBtn"}
-      //         color="secondary"
-      //         disabled={isCalling}
-      //         onClick={() => {
-      //           // handleSideToggle(all?.id);
-      //           handleEdit(all);
-      //         }}
-      //       >
-      //         <Edit fontSize={"small"} />
-      //       </IconButton> 
-      //     </>
-      //   ),
-      // },
+
+      {
+        key: "user_id",
+        label: "Action",
+        render: (temp, all) => (
+          <>
+            <IconButton
+              disableRipple="false"
+              onClick={() => {
+                // handleSideToggle(all?.id);
+                handleDetail(all);
+              }}
+            >
+              <Info
+                fontSize={"small"}
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
+            </IconButton>
+            <IconButton
+              disableRipple="false"
+              onClick={() => {
+                // handleSideToggle(all?.id);
+                handleEdit(all);
+              }}
+            >
+              <Edit
+                fontSize={"small"}
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
+            </IconButton>
+          </>
+        ),
+      },
     ];
   }, [renderAssociatedIndustriesName, isCalling, handleEdit]);
 
@@ -162,18 +192,13 @@ const RoleList = (props) => {
   ]);
 
   return (
-    <div>
-      <PageBox>
-        <div className={styles.headerContainer}>
-          <span className={styles.title}>Roles List</span>
-          <ArrowPrimaryButton
-            onClick={handleCreate}
-            icon={<Add fontSize="normal" />}
-          >
-            Create
-          </ArrowPrimaryButton>
-        </div>
-
+    <>
+      <ShadowBox width={"100%"}>
+        <CustomListHeader
+          title={"CREATE"}
+          handleCreate={handleCreate}
+          sideTitlle={"Roles List"}
+        />
         <div>
           <FilterComponent
             is_progress={isFetching}
@@ -193,8 +218,15 @@ const RoleList = (props) => {
             </div>
           </div>
         </div>
-      </PageBox>
-    </div>
+      </ShadowBox>
+      {renderImageStackData.length > 2 && (
+        <ImageStackPopUp
+          open={isOpenImageStack}
+          handleClose={openProfilePopUp}
+          industryData={renderImageStackData}
+        />
+      )}
+    </>
   );
 };
 

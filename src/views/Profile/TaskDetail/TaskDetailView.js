@@ -1,10 +1,10 @@
-import { ButtonBase } from '@mui/material';
+import { ButtonBase, MenuItem, Typography } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import historyUtils from "../../../libs/history.utils";
 import styles from "./Style.module.css";
-import { makeStyles } from "@mui/styles";
-import { Edit } from '@mui/icons-material';
+import { makeStyles, useTheme } from "@mui/styles";
+import { Edit } from "@mui/icons-material";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import { serviceTaskMnagmentUpdateStatus } from "../../../services/TaskManage.service";
 import TaskDetailHeader from "./TaskDetailView/TaskDetailHeader";
@@ -15,9 +15,11 @@ import AddNoteContainer from "./NotesDilog/AddNoteContainer";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
 import AddTaskUpdate from "./Update/UpdateDetail";
 
-import WaitingComponent from "../../../components/Waiting.component";
 import { serviceTaskManagementDetail } from "../../../services/ProviderUser.service";
 import { useParams } from "react-router-dom";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import { ArrowOutlineButton } from "../../../components/Buttons/PrimaryButton";
+import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 
 const useStyles = makeStyles((theme) => ({
   boldTitle: {
@@ -46,15 +48,13 @@ const useStyles = makeStyles((theme) => ({
 
 const TaskDetailView = ({}) => {
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
-  // const id = queryParams.get("id");
   const classes = useStyles();
   const [isSidePanel, setSidePanel] = useState(false);
   const { id } = useParams();
+  const theme = useTheme();
   const [details, setDetails] = useState([]);
   // const { present: details } = useSelector((state) => state.common);
-
+  const [filterValue, setFilterValue] = useState("ALL");
   const toggleAcceptDialog = useCallback(
     (obj) => {
       setIsAcceptPopUp((e) => !e);
@@ -62,8 +62,13 @@ const TaskDetailView = ({}) => {
     [isAcceptPopUp]
   );
 
+  const filterCompltedTask = useCallback(
+    (event) => {
+      setFilterValue(event);
+    },
+    [filterValue]
+  );
   const fetchTaskDetails = useCallback(() => {
-    // setTimeout(() => {
     serviceTaskManagementDetail({ id: id }).then((res) => {
       if (!res?.error) {
         setDetails(res?.data);
@@ -71,7 +76,6 @@ const TaskDetailView = ({}) => {
         SnackbarUtils.error(res?.message);
       }
     });
-    // }, 2000);
   }, [id]);
 
   const markAsCompleted = useCallback(async () => {
@@ -80,10 +84,9 @@ const TaskDetailView = ({}) => {
         is_completed: true,
         id: id ? id : "",
       });
-      // setTimeout(() => {
+
       fetchTaskDetails();
       SnackbarUtils.success("Task is marked as completed");
-      // }, 3000);
     } catch (error) {
       console.error("Error marking task as completed:", error);
     }
@@ -114,62 +117,89 @@ const TaskDetailView = ({}) => {
     },
     [setSidePanel] // , profileId, id,  userObject?.user?.id
   );
-  // if (!details && !isSidePanel) {
-  //   return <WaitingComponent />;
-  // }
+
+  const upperSidePanelText = useCallback(() => {
+    return (
+      <Typography
+        variant="h3"
+        fontWeight={600}
+        sx={{ marginTop: theme.spacing(4), marginBottom: theme.spacing(4) }}
+      >
+        Update Task
+      </Typography>
+    );
+  }, [id]);
   return (
     <div>
       <div className={styles.outerFlex}>
-        <div>
+        <div className={styles.arrowBack}>
           <ButtonBase onClick={() => historyUtils.goBack()}>
             <ArrowBackIosIcon fontSize={"small"} />{" "}
-            <span>
-              <b>Task Detail</b>
-            </span>
           </ButtonBase>
+          <Typography variant="h3" color={theme.palette.text.primary}>
+            Task Detail
+          </Typography>
         </div>
 
         <div className={styles.editAction}>
-          <ButtonBase onClick={handleSideToggle}>
-            <Edit fontSize={"small"} />
-            <span>Edit</span>
-          </ButtonBase>
+          <CustomSelectField
+            value={filterValue}
+            handleChange={filterCompltedTask}
+          >
+            <MenuItem value={"PENDING"}>Pending</MenuItem>
+            <MenuItem value={"COMPLETED"}>Completed</MenuItem>
+            <MenuItem value={"ALL"}>All</MenuItem>
+          </CustomSelectField>
+
+          <ArrowOutlineButton
+            onClick={handleSideToggle}
+            icon={<Edit fontSize="small" />}
+          >
+            <Typography variant="subtitle1">EDIT</Typography>
+   
+          </ArrowOutlineButton>
         </div>
       </div>
-
-      <div className={styles.plainPaper}>
-        <div className={styles.newContainer}>
-          <TaskDetailHeader
-            details={details}
-            markAsCompleted={markAsCompleted}
-            styles={styles}
-            completedHandler={completedHandler}
-          />
-          <PillContainer details={details} styles={styles} />
-          <AssignedContainer
-            styles={styles}
-            details={details}
-            classes={classes}
-          />
-          <TaskAssignedContainer
-            classes={classes}
-            styles={styles}
-            details={details}
-          />
+      <ShadowBox width={"100%"}>
+        <div>
+          <div className={styles.newContainer}>
+            <TaskDetailHeader
+              details={details} // details
+              markAsCompleted={markAsCompleted}
+              styles={styles}
+              completedHandler={completedHandler}
+            />
+            <PillContainer details={details} styles={styles} />
+            {/* details */}
+            <AssignedContainer
+              styles={styles}
+              details={details}
+              classes={classes}
+            />
+            <TaskAssignedContainer
+              classes={classes}
+              styles={styles}
+              details={details}
+            />
+          </div>
         </div>
-      </div>
+      </ShadowBox>
 
-      <AddNoteContainer
-        details={details}
-        styles={styles}
-        classes={classes}
-        toggleAcceptDialog={toggleAcceptDialog}
-        isAcceptPopUp={isAcceptPopUp}
-      />
+      <div className={styles.newNotes}>
+        <ShadowBox width={"100%"}>
+          <AddNoteContainer
+            details={details}
+            styles={styles}
+            classes={classes}
+            toggleAcceptDialog={toggleAcceptDialog}
+            isAcceptPopUp={isAcceptPopUp}
+          />
+        </ShadowBox>
+      </div>
 
       <SidePanelComponent
         handleToggle={handleSideToggle}
-        title={" Update Task"}
+        title={upperSidePanelText()}
         open={isSidePanel}
         side={"right"}
       >

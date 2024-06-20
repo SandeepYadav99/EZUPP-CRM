@@ -12,7 +12,7 @@ export async function serviceUpdateRole(params) {
 }
 
 export async function serviceDeleteRole(params) {
-    return await formDataRequest('roles/delete', params);
+    return await postRequest('roles/delete', params);
 }
 
 export async function serviceDetailRole(params) {

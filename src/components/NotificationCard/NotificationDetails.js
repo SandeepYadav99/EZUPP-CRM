@@ -33,7 +33,7 @@ const NotificationDetails = () => {
                   <Typography variant={"body3"}>{item.dateTime}</Typography>
                 </div>
               </div>
-              <Typography variant={"subtitle1"} color={"text.secondary"} sx={{mb: 1}}>
+              <Typography variant={"subtitle1"} color={"text.secondary"} >
                 {item.body}
               </Typography>
              

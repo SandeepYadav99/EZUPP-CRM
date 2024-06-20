@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Style.module.css";
-import { ButtonBase, Typography } from "@mui/material";
+import { ButtonBase, CircularProgress, Typography } from "@mui/material";
 
 import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import WorkInfoView from "./Component/WorkInfoView";
@@ -9,6 +9,7 @@ import PersonalInformation from "./Component/PersonalInformation";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
 import useUserCreateHook from "./UserCreateHook";
+import { useTheme } from "@mui/styles";
 
 const UserCreate = ({}) => {
   const {
@@ -16,23 +17,27 @@ const UserCreate = ({}) => {
     changeTextData,
     form,
     onBlurHandler,
-    handleSubmit, 
-    image,
+    handleSubmit,
+    userId,
     id,
     images,
     manager,
     department,
     listData,
+    isSubmitting,
+    designation
   } = useUserCreateHook();
-
+const theme = useTheme()
   return (
-    <>
+    <div className={styles.userContainer}>
       <div className={styles.outerFlex1}>
         <div className={styles.iconButton}>
           <ButtonBase onClick={() => history.goBack()}>
-            <ArrowBackIos fontSize={"small"} />{" "}
+            <ArrowBackIos fontSize={"medium"} />{" "}
           </ButtonBase>
-          <Typography variant={"h4"}>{id ? "Update" : "Add"} User</Typography>
+          <Typography variant="h4" fontWeight={600} color={theme.palette.text.primary} >
+            {id ? "Update" : "Add"} User
+          </Typography>
         </div>
       </div>
       <PersonalInformation
@@ -40,32 +45,34 @@ const UserCreate = ({}) => {
         form={form}
         image={images}
         changeTextData={changeTextData}
-        // handleSubmit={handleSubmit}
         onBlurHandler={onBlurHandler}
         listData={listData}
+        userId={userId}
+        id={id}
       />
       {/* Work flow  */}
-      <WorkInfoView
-        errorData={errorData}
-        form={form}
-        // image={image}
-        changeTextData={changeTextData}
-        // handleSubmit={handleSubmit}
-        onBlurHandler={onBlurHandler}
-        manager={manager}
-        department={department}
-      />
-
+      {userId !== id && (
+        <WorkInfoView
+          errorData={errorData}
+          form={form}
+          changeTextData={changeTextData}
+          onBlurHandler={onBlurHandler}
+          manager={manager}
+          department={department}
+          designation={designation}
+          id={id}
+        />
+      )}
       <div className={styles.saveButton}>
         <PrimaryButton color={"primary"} onClick={handleSubmit}>
-          {/* {isSubmitting ? ( */}
-          {/* <CircularProgress color="success" size="20px" />
-              ) : (  */}
-          Save
-          {/* )} */}
+          {isSubmitting ? (
+            <CircularProgress color="success" size="20px" />
+          ) : (
+            "Save"
+          )}
         </PrimaryButton>
       </div>
-    </>
+    </div>
   );
 };
 

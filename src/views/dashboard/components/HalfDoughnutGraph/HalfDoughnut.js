@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import styles from "./Styles.module.css";
 import dotImage from "../../../../assets/CRMAssets/ic_kebab_menu.png";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 
 const HalfDoughnut = () => {
   return (
-    <div className={styles.paper}>
+    <ShadowBox className={styles.paper}>
       <div className={styles.headerAlign}>
         <div className={styles.containerSpace}>
           <Typography variant={"subtitle1"}> Monthly Sales Target</Typography>
@@ -42,7 +43,7 @@ const HalfDoughnut = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ShadowBox>
   );
 };
 

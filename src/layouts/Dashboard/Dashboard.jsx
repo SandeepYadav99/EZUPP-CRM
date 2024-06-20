@@ -13,14 +13,14 @@ import DashboardSnackbar from '../../components/Snackbar.component';
 import {makeStyles} from "@mui/styles";
 import EventEmitter from "../../libs/Events.utils";
 import RolesUtils from "../../libs/Roles.utils";
-// import Navbar from '../../components/NavBarHorizon/NavBarHorizon';
+
 const useStyles = makeStyles(appStyle);
 
 const Dashboard = ({title, ...props}) => {
     const classes = useStyles();
     const [mobileOpen, setMobileOpen] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(true);
-    const [snackbar, setSnackbar] = useState(false);
+    const [isSideBar,setIsSideBar] = useState(true);
     const [message, setMessage] = useState('');
     const {user_profile, role} = useSelector(state => state.auth);
     const mainPanelRef = useRef(null);
@@ -64,11 +64,20 @@ const Dashboard = ({title, ...props}) => {
         }
     }, [setDrawerOpen]);
 
+    const handleOpenSideBar = useCallback(() => {
+        setDrawerOpen(true);
+    }, [setDrawerOpen]);
 
+    const handleCloseSideBar = useCallback(() => {
+        if(!isSideBar){
+            setDrawerOpen(false);
+        }
+    }, [setDrawerOpen,isSideBar]);
 
     const handleHeaderClick = useCallback(() => {
         setDrawerOpen(e => !e);
-    }, [setDrawerOpen]);
+        setIsSideBar(e =>!e)
+    }, [setDrawerOpen,setIsSideBar]);
 
     const switchRoutes =  useMemo(() => {
         const tempRoutes = [];
@@ -106,6 +115,8 @@ const Dashboard = ({title, ...props}) => {
                 logo={logo}
                 handleDrawerToggle={handleDrawerToggle}
                 toggleSideBar={handleHeaderClick}
+                handleOpenSideBar={handleOpenSideBar}
+                handleCloseSideBar={handleCloseSideBar}
                 open={drawerOpen}
                 color="blue"
                 {...props}

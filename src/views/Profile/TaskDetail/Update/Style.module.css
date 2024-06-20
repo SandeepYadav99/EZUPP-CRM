@@ -14,6 +14,9 @@
     color: grey;
     margin-bottom: 5px;
 }
+.dateContainer{
+    width: 100%;
+}
 .headerContainer {
     display: flex;
     justify-content: space-between;
@@ -80,4 +83,8 @@
     font-size: 0.6rem;
     font-weight: 400;
     margin-left: 14px;
+}
+.actionButton{
+    float: right !important;
+    margin-top: 24px !important;
 }

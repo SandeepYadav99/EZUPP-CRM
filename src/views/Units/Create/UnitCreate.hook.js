@@ -11,8 +11,9 @@ import {
   serviceGetUnitDetails,
 } from "../../../services/Unit.service";
 
+import {actionDeleteUnit} from "../../../actions/Unit.action";
 import { useDispatch, useSelector } from "react-redux";
-function useUnitCreateHook({ handleToggle, editData, id }) {
+function useUnitCreateHook({isOpen, handleToggle, editData, id }) {
   const initialForm = {
     name: "",
     is_general: false,
@@ -20,16 +21,36 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
   };
 
   const [form, setForm] = useState({ ...initialForm });
-  //const [editData, setEditData] = useState(null);
+ // const [ed, setEditData] = useState(null);
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
   //const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [resData, setResData] = useState([]);
   const dispatch = useDispatch();
   const [listData, setListData] = useState({
     ROLES: [],
     UNITS: [],
   });
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+  
+  useEffect(() => {
+    if (isOpen) {
+      setForm({ ...initialForm });
+      setResData([]);
+      setIsSubmitting(false);
+      setErrorData({});
+    }
+  }, [isOpen]);
+
   // console.log("id before useEffect: ", id);
   useEffect(() => {
     if (id) {
@@ -47,7 +68,7 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
       setForm({
         name: '',
         is_general: false,
-        status: false,
+        status: true,
       });
     }
   }, [id]);
@@ -151,8 +172,12 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
           window.location.reload();
         } else {
           SnackbarUtils.error(res.message);
+          if (res.message.includes("Name already exists")) {
+            setErrorData((prev) => ({ ...prev, name: true }));
+          }
+          setIsSubmitting(false);
         }
-        setIsSubmitting(false);
+       // setIsSubmitting(false);
       });
     }
   }, [form, isSubmitting, setIsSubmitting, setErrorData, id, editData, editData?.id]);
@@ -180,16 +205,51 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
   );
 
   // const handleDelete = useCallback(
+  
   //   (id) => {
-  //     dispatch( actionDeleteProduct(id));
-  //     setEditData(null);
-  //   },
-  //   [setEditData]
+  //   if (id) {
+  //     console.log('Deleting unit with id:', id);
+  //     dispatch( actionDeleteUnit(id));
+  //     handleToggle();
+  //   } 
+  // },
+  //   [dispatch, handleToggle]
   // );
+  const handleDelete = useCallback(
+    async (id) => {
+      if (id) {
+        console.log('Deleting unit with id:', id);
+        const formattedId = String(id);
+        console.log('Formatted id:', formattedId);
+  
+        try {
+          const response = await serviceDeleteUnit({ id: formattedId });
+  
+          if (!response.error) {
+            console.log(`Unit with id: ${formattedId} deleted successfully.`);
+            setListData((prevListData) => ({
+              ...prevListData,
+              UNITS: prevListData.UNITS.filter((unit) => unit.id !== formattedId),
+            }));
+            //handleToggle();
+            window.location.reload();
+          } else {
+            SnackbarUtils.error(response.message);
+          }
+        } catch (error) {
+          console.error('Error deleting unit:', error);
+        }
+      }
+    },
+    [handleToggle]
+  );
+  
+  
   return {
     form,
     errorData,
     listData,
+    resData,
     changeTextData,
     onBlurHandler,
     removeError,
@@ -197,7 +257,11 @@ function useUnitCreateHook({ handleToggle, editData, id }) {
     isSubmitting,
     images,
     id,
-    //handleDelete,
+    handleDelete,
+    editData,
+    openDialog,
+    closeDialog,
+    isDialogOpen
   };
 }
 

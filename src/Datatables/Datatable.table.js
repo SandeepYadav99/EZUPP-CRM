@@ -495,7 +495,9 @@ const EnhancedTable = (props) => {
                             draggedItem.current = null;
                         }}
                         hover
-                        onClick={(event) => {
+                        onClick={() => {
+                            props?.clickableRow && 
+                            props?.clickableRow(row)
                         }}
                         role="checkbox"
                         aria-checked={isItemSelected}
@@ -569,7 +571,7 @@ const EnhancedTable = (props) => {
                             count={props.count}
                             rowsPerPage={rowsPerPage}
                             page={page}
-                            onChangePage={handleChangePage}
+                            onPageChange={handleChangePage}
                             onChangeRowsPerPage={handleChangeRowsPerPage}
                         />
                     )}
@@ -587,7 +589,7 @@ const EnhancedTable = (props) => {
                     count={props.count}
                     rowsPerPage={rowsPerPage}
                     page={page}
-                    onChangePage={handleChangePage}
+                    onPageChange={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 /></div>
         </div>

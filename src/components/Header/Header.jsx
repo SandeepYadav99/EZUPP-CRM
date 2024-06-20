@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { withStyles } from '@mui/styles';
 import cx from "classnames";
-
+import { styled } from '@mui/material/styles';
 import headerStyle from "../../assets/jss/material-dashboard-react/headerStyle.jsx";
 import { actionLogoutUser } from "../../actions/Auth.action";
 import { actionChangeTheme } from "../../actions/AppSettings.action";
@@ -91,13 +91,12 @@ class Header extends React.Component {
 
   _handleChangeTheme() {
     const { themeType } = this.props;
-    console.log(">>>>>",this.state.dark)
     this.props.actionChangeTheme(themeType == "dark" ? "light" : "dark");
   }
 
 
   render() {
-    const { classes, color, themeType ,userData} = this.props;
+    const { classes, color, themeType ,userData,theme} = this.props;
     const { anchorEl, note } = this.state;
     const appBarClasses = cx({
       [" " + classes[color]]: color,
@@ -108,6 +107,12 @@ class Header extends React.Component {
     const mainSecondaryColor = this.state.dark ? "" : "";
     {console.log(">>>>>",this.state.dark,themeType)}
 
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+      '& .MuiBadge-badge': {
+        backgroundColor: '#2063CE',
+      },
+    }));
+    
     return (
       <ThemeProvider theme={defaultTheme}>
         <AppBar position={"static"} className={classes.appBar + appBarClasses}>
@@ -118,7 +123,7 @@ class Header extends React.Component {
                 color="inherit"
                 aria-label="Menu"
             >
-              <MenuIcon />
+              <MenuIcon style={{color:theme.palette.text.primary}}/>
             </IconButton>
             <Button href="#" className={classes.title}>
               {this.makeBrand()}
@@ -129,19 +134,20 @@ class Header extends React.Component {
             </div>
             <div>
             <IconButton 
-           onClick={this._handleChangeTheme}
+            style={{color:theme.palette.text.primary}}
+            onClick={this._handleChangeTheme}
             >
                 {themeType === "light" ? <LightModeOutlinedIcon /> : <BedtimeOutlinedIcon/>}
               </IconButton>
-            {/* NightsStayOutlinedIcon */}
               <IconButton
                   aria-label="show 3 new notifications"
                   color="inherit"
                   onClick={this._handleNotification}
+                  style={{color:theme.palette.text.primary}}
               >
-                <Badge badgeContent={3} color="secondary">
-                  <NotificationsNoneOutlinedIcon />
-                </Badge>
+                <StyledBadge badgeContent={3} color="primary">
+                  <NotificationsNoneOutlinedIcon/>
+                </StyledBadge>
               </IconButton>
               <Popover
                   // id={id}
@@ -157,7 +163,9 @@ class Header extends React.Component {
                     horizontal: "right",
                   }}
               >
-                <div className={classes.innercontent}>
+                <div className={classes.innercontent} 
+                style={{background:theme.palette.background.paper, color:theme.palette.text.primary}}
+                >
                 <NotificationCard/>
                 </div>
               </Popover>
@@ -173,7 +181,7 @@ class Header extends React.Component {
                   aria-owns={anchorEl ? "simple-menu" : undefined}
                   aria-haspopup="true"
                   onClick={this._handleClick}
-                  style={{ color: "black" }}
+                  style={{color:theme.palette.text.primary}}
               >
                 <OptionIcon />
               </Button>

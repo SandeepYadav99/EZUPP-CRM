@@ -1,7 +1,9 @@
 import React from "react";
-import {Checkbox} from "@mui/material";
+import { Checkbox, Typography } from "@mui/material";
 import styles from "./Styles.module.css";
-import { AccessTime, Watch } from '@mui/icons-material';
+import { AccessTime, AccessTimeFilled, Watch } from "@mui/icons-material";
+import StatusPill from "../../components/Status/StatusPill.component";
+import { useTheme } from "@mui/styles";
 
 const TaskListItem = ({
   task,
@@ -9,19 +11,8 @@ const TaskListItem = ({
   markAsCompleted,
   completedHandler,
 }) => {
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case "HIGH":
-        return "#FF0000";
-      case "MEDIUM":
-        return "#FA8B55";
-      case "LOW":
-        return "#15F205";
-      default:
-        return "#FFFFFF";
-    }
-  };
 
+const theme= useTheme()
   const handleCheckboxClick = async (e) => {
     if (e.target.checked) {
       await markAsCompleted(task);
@@ -29,45 +20,60 @@ const TaskListItem = ({
       await completedHandler(task);
     }
   };
+
   const formattedDescription = task?.description
-  ? task.description.split('\n').map((line, index) => (
-      <React.Fragment key={index}>
-        {line}
-        <br />
-      </React.Fragment>
-    ))
-  : null;
+    ? task.description.split("\n").map((line, index) => (
+        <React.Fragment key={index}>
+          {line}
+          <br />
+        </React.Fragment>
+      ))
+    : null;
   return (
     <div>
       <div className={styles.check}>
         <Checkbox
-          color="primary"
+           color="primary"
+          className={styles.checkbox}
           checked={task?.is_completed ? true : false}
           onClick={handleCheckboxClick}
-
         />
-        <div onClick={() => handleDetailPage(task)} >
-
-        {task?.title}
-        </div>
+        <Typography
+          variant="h6"
+        
+          color={theme.palette.text.primary}
+          fontWeight={600}
+          onClick={() => handleDetailPage(task)}
+        >
+          {task?.title}
+        </Typography>
       </div>
       <div onClick={() => handleDetailPage(task)} className={styles.detailView}>
-        <div className={styles.dummy}>{formattedDescription}</div>
-
+        {/* <div className={styles.dummy}></div> */}
+        <Typography variant="body1" color={theme?.palette.text.secondary}  >
+          {formattedDescription}
+        </Typography>
         <div className={styles.taskFlex}>
           <div className={styles.timeFlex}>
-            <AccessTime className={styles.contactIcons} fontSize="small" />
-            <span className={styles.info}>{task?.dueDateListText}</span>
+            <AccessTimeFilled className={styles.contactIcons} color={theme.palette.text.primary} fontSize="small" />
+            <Typography variant="caption" color={theme.palette.text.primary} padding={1} fontWeight={600}>
+              {task?.dueDateListText}
+            </Typography>
           </div>
-          <div
-            className={styles.priority}
-            style={{ backgroundColor: getPriorityColor(task?.priority) }}
-          >
-            {task?.priority}
+
+          <div className={styles.section}>
+            <StatusPill
+              status={task?.priority}
+              color={task?.priority.toLowerCase()}
+            />
           </div>
-          <div className={styles.section}>{task?.type}</div>
+
+          <div className={styles.section}>
+            {" "}
+            <StatusPill status={task?.type} color={"service"} />
+          </div>
         </div>
-        <hr className={styles.lines}/>
+        <hr className={styles.lines} />
       </div>
     </div>
   );

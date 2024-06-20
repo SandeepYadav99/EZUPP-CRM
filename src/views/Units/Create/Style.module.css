@@ -102,12 +102,40 @@
     display: flex;
     align-items: center;
 }
-
+.dialogWrap{
+  padding: 1.5rem;
+  max-width: 500px;
+}
+.cancelButton{
+  text-align: left !important;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-between; 
+}
+.saveButton{
+  text-align: right !important;
+}
 .heading{
     margin-right: 5px;
 } 
+.wrapper{
+  display: flex;
+}
 .headerFlex {
     display: flex;
     justify-content: space-between;
     align-items: center;
 } 
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  /* margin-top: 15px; */
+}
+@media (max-width: 767px) {
+  
+
+  .buttonWrapper {
+    margin-top: 20px;
+  }
+}

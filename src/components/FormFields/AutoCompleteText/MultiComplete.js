@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
@@ -7,7 +7,7 @@ import { styled } from "@mui/material/styles";
 import { InputAdornment, InputBase } from "@mui/material";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/styles";
 
 const StyledChip = styled(Chip)(({ theme }) => ({
   paddingLeft: theme.spacing(0),
@@ -20,23 +20,14 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.black,
   borderRadius: "20px",
   fontWeight: "530",
-
   fontSize: "0.8rem",
   height: "1.5rem",
-
-  // "&:hover": {
-  //   backgroundColor: theme.palette.error.light,
-  //   border: 0,
-  // },
   "&:disabled": {
     backgroundColor: "transparent",
   },
   "& .MuiChip-deleteIcon": {
     backgroundColor: "transparent",
   },
-  // "&:hover .MuiChip-deleteIcon": {
-  //   color: "#FF0000",
-  // },
 }));
 
 const StyledOption = styled("div")(({ theme }) => ({
@@ -67,7 +58,7 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   const theme = useTheme();
-
+ 
   return (
     <>
       {multiple ? (
@@ -78,11 +69,25 @@ const CustomMultiComplete = ({
           onChange={(event, newValue) => {
             handleChange(newValue);
           }}
+          freeSolo
           renderInput={(params) => (
             <TextField
               error={isError}
               helperText={errorText}
               label={label}
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: theme.palette.text.primary,
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  color: theme.palette.text.primary,
+                  "& .MuiInputLabel-root": {
+                    color: theme.palette.text.primary,
+                  },
+                },
+              }}
               {...params}
               variant="outlined"
               color={"primary"}
@@ -91,9 +96,14 @@ const CustomMultiComplete = ({
               {...rest}
               InputProps={{
                 ...params.InputProps,
+
                 sx: {
                   paddingRight: `${theme?.spacing(0)} !important`,
                   position: "relative",
+                  color: theme.palette.text.primary,
+                  "& .MuiInputBase-input": {
+                    color: theme.palette.text.primary,
+                  },
                 },
 
                 endAdornment: (
@@ -133,6 +143,14 @@ const CustomMultiComplete = ({
             value?.map((option, index) => (
               <StyledChip
                 {...getTagProps({ index })}
+                sx={{
+                  color: theme.palette.text.primary,
+                  backgroundColor: theme.palette.contentDark,
+                  "& .MuiChip-deleteIcon": {
+                    color: theme.palette.text.primary,
+                  },
+                  
+                }}
                 avatar={
                   showImage ? <Avatar src={option?.image} alt={"Image"} /> : ""
                 }
@@ -151,6 +169,11 @@ const CustomMultiComplete = ({
                 error={isError}
                 helperText={errorText}
                 label={label}
+                InputLabelProps={{
+                  sx: {
+                    color: theme.palette.text.primary,
+                  },
+                }}
                 {...params}
                 variant="outlined"
                 color={"primary"}
@@ -161,6 +184,10 @@ const CustomMultiComplete = ({
                   ...params.InputProps,
                   sx: {
                     paddingRight: `${theme?.spacing(0)} !important`,
+                    color: theme.palette.text.primary,
+                    "& .MuiInputBase-input": {
+                      color: theme.palette.text.primary,
+                    },
                   },
 
                   endAdornment: (
@@ -180,6 +207,9 @@ const CustomMultiComplete = ({
             color={"primary"}
             size={"small"}
             value={value ? value : null}
+            
+            freeSolo
+             
             {...rest}
           />
         </>

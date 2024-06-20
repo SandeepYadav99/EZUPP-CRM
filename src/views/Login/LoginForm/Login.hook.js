@@ -10,7 +10,7 @@ import { isEmail } from "../../../libs/RegexUtils";
 const initialForm = {
   email: "",
   password: "",
-  logged_in: "",
+  is_remember: false,
 };
 const useLoginHook = () => {
   const [form, setForm] = useState({ ...initialForm });
@@ -71,14 +71,13 @@ const useLoginHook = () => {
   const submitToServer = useCallback(
     (status) => {
       setIsSubmitting(true);
-
-      delete form.logged_in;
+ 
 
       serviceLoginUser(form).then((res) => {
         if (!res.error) {
           dispatch(actionLoginUser(res?.data));
         } else {
-          SnackbarUtils.error(res?.message);
+          SnackbarUtils.error("Invalid Username/Password");
         }
         setIsSubmitting(false);
       });

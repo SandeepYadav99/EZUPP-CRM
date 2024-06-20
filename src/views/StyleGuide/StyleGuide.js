@@ -42,8 +42,8 @@ import { useTheme } from "@mui/styles";
 import CustomMultiComplete from "../../components/FormFields/AutoCompleteText/MultiComplete";
 import img from "../../assets/img/1.png";
 import home from "../../assets/Assets/ic_dashboard_grey.png";
-import business from "../../assets/Assets/ic_business.png";
-import individual from "../../assets/Assets/ic_individual.png";
+import business from "../../assets/Assets/ic_business (1).png";
+import individual from "../../assets/Assets/ic_individual (1).png";
 import ColorPicker from "../../components/ColorPicker/ColorPicker";
 import CheckboxWithText from "../../components/RadioButtons/CheckboxWithText";
 import useStyleGuide from "./StyleGuide.hook";
@@ -75,6 +75,7 @@ const AutoCompleteData = [
 ];
 const StyleGuide = ({}) => {
   const theme = useTheme();
+
   const { checkboxValue, handleCheckboxChange } = useStyleGuide({});
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [selectedUsersSingle, setSelectedUsersSingle] = useState("");
@@ -93,9 +94,15 @@ const StyleGuide = ({}) => {
 
   const handleChange = (value) => {
     setSelectedValue(value);
+    // if (selectedValue === value) {
+    //   setSelectedValue("");
+    // } else {
+    //   setSelectedValue(value);
+    // }
   };
+
   return (
-    <PageBoxComponent>
+    <ShadowBox style={{width:"100%"}}>
       <div className={"formFlex"}>
         <div className={styles.sideMargin}>
           <div>
@@ -208,17 +215,17 @@ const StyleGuide = ({}) => {
         <div className={styles.sideMargin}>
           <Typography variant={"h5"}>Select Field</Typography>
           <div className={styles.boxCont}>
-            <CustomSelectField label={"Name"}>
+            <CustomSelectField name={"name"} label={"Name"}>
               <MenuItem value="Electrovese">Electrovese</MenuItem>
             </CustomSelectField>
             <br />
             <br />
-            <CustomSelectField label={"Name"} value="Electrovese">
+            <CustomSelectField name={"name"} label={"Name"} value="Electrovese">
               <MenuItem value="Electrovese">Electrovese</MenuItem>
             </CustomSelectField>
             <br />
             <br />
-            <CustomSelectField label={"Name"} isError={true}>
+            <CustomSelectField name={"name"} label={"Name"} isError={true}>
               <MenuItem value="Electrovese">Electrovese</MenuItem>
             </CustomSelectField>
           </div>
@@ -340,6 +347,7 @@ const StyleGuide = ({}) => {
             &nbsp;
             <StatusPill status={"Service"} color={"service"} /> &nbsp;
             <StatusPill status={"Warm"} color={"warm"} /> &nbsp;
+            <StatusPill status={"Draft"} color={"draft"} /> &nbsp;
           </div>
         </div>
       </div>
@@ -388,11 +396,13 @@ const StyleGuide = ({}) => {
               { name: "subtitle1", font: "14" },
               { name: "subtitle2", font: "12" },
               { name: "overline", font: "12" },
+              { name: "login1", font: "14" },
+              { name: "remember", font: "12" },
             ].map((key) => {
               return (
-                <Typography variant={key?.name}>
-                  Here is the text - {key?.name} - {key?.font} px
-                </Typography>
+                  <Typography variant={key?.name}>
+                    Here is the text - {key?.name} - {key?.font}px  {" "}
+                  </Typography>
               );
             })}
 
@@ -411,32 +421,52 @@ const StyleGuide = ({}) => {
               "subtitle2",
               "overline",
               "subtitle3",
+              "login1",
+              "remember",
             ].map((key) => {
               return (
-                <Typography color={"text.secondary"} variant={key}>
-                  Here is the text - {key}
-                </Typography>
+                  <Typography color={"text.secondary"} variant={key}>
+                    Here is the text - {key} {" "}
+                  </Typography>
               );
             })}
           </div>
         </div>
       </div>
 
-      <div className={styles.boxContFlex}>
-        <UserCountAvatarsSize />
-        <UserCountAvatarsInitials />
-        <UserCountAvatarsLabelInitials />
-        <UserCountAvatarsShapes />
-        <UserCountAvatarsStatusIndicator />
-        <UserCountAvatarsLableAvatarStatusIndicator />
-      </div>
       <br />
-      <div>
+
+      <br />
+      <div className={styles.avatorFlex}>
         <div>
-          <UserCountAvatarsLableAvatarGroup avatars={avatars} />
+          <Typography variant="h5" marginBottom={3}>Size</Typography>
+          <UserCountAvatarsLabelInitials
+            width={34}
+            height={34}
+            bgcolor={"skyblue"}
+            title="PI"
+          />
+        </div>
+        <div>
+        <Typography variant="h5" marginBottom={3}>Status Indicator </Typography>
+          <UserCountAvatarsStatusIndicator
+            width={44}
+            height={44}
+            bgcolor={"skyblue"}
+            imgUrl={require("../../assets/img/8.png")}
+          />
+        </div>
+        <div>
+        <Typography variant="h5" marginBottom={3}>Pull Up </Typography>
+          <UserCountAvatarsLableAvatarGroup
+            width={54}
+            height={54}
+            bgcolor={"skypink"}
+            title="Ezupp"
+            imgUrl={require("../../assets/img/8.png")}
+          />
         </div>
       </div>
-      <br />
       {/* <div>
         <UserCountRadioLables />
       </div>
@@ -531,7 +561,7 @@ const StyleGuide = ({}) => {
           "All",
         ]}
         selectedIndex={0}
-    onButtonClick={(index) => console.log(`Button ${index} clicked`)}
+        onButtonClick={(index) => console.log(`Button ${index} clicked`)}
       />
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">
@@ -543,7 +573,7 @@ const StyleGuide = ({}) => {
       <div>
         <ColorPicker />
       </div>
-    </PageBoxComponent>
+    </ShadowBox >
   );
 };
 

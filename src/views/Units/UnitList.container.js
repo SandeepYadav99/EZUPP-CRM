@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
+
 import {
   Add,
   Info as EditIcon,
@@ -9,7 +10,7 @@ import {
   Person,
   OpenInNew as OpenInNewIcon,
   Edit,
-  Topic,
+  Topic, 
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import removeTask from "./../../assets/Assets/ic_delete@2x.png";
@@ -41,8 +42,9 @@ const UnitsList = (props) => {
     configFilter,
     handleCreate,
     editData,
-    handleDrag
+    handleDrag,
   } = useUserListHook({});
+  const { handleDelete } = useUnitCreateHook({});
   const editDataId = editData ? editData.id : null;
 
   const {
@@ -64,12 +66,12 @@ const UnitsList = (props) => {
       </div>
     );
   }, []);
-  const handleDelete =(all)=>{
-    let params ={
-      "id":all?.id
-    }
-    serviceDeleteProduct(params)
-  }
+  // const handleDelete = (all) => {
+  //   let params = {
+  //     id: all?.id,
+  //   };
+  //   serviceDeleteProduct(params);
+  // };
   const renderStatus = useCallback((status) => {
     if (status === "ACTIVE") {
       return <StatusPill status={"ACTIVE"} color={"active"} />;
@@ -90,7 +92,7 @@ const UnitsList = (props) => {
         key: "is_general",
         label: "Is General",
         sortable: false,
-        render: (temp, all) => <div>{all?.is_general ?"Yes" : "No" }</div>,
+        render: (temp, all) => <div>{all?.is_general ? "Yes" : "No"}</div>,
       },
 
       {
@@ -108,7 +110,9 @@ const UnitsList = (props) => {
             <IconButton
               // disabled={is_calling}
 
-              onClick={() => handleEditSidePannel(all)}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleEditSidePannel(all)}}
             >
               <Edit fontSize={"small"} />
             </IconButton>
@@ -119,14 +123,22 @@ const UnitsList = (props) => {
         ),
       },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete, handleEditSidePannel]
+    [
+      renderFirstCell,
+      renderStatus,
+      handleEdit,
+      handleProfile,
+      handleDelete,
+      handleEditSidePannel,
+    ]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
       onSortOrderChange: handleSortOrderChange,
       onPageChange: handlePageChange,
       onRowSizeChange: handleRowSize,
-      handleDrag: handleDrag
+      handleDrag: handleDrag,
+      clickableRow:handleEditSidePannel
     };
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
@@ -134,7 +146,7 @@ const UnitsList = (props) => {
       data: present,
       count: allData.length,
       page: currentPage,
-      draggable: true
+      draggable: true,
     };
 
     return { datatableFunctions, datatable };
@@ -149,7 +161,7 @@ const UnitsList = (props) => {
     currentPage,
     handleDrag,
   ]);
-
+  const panelTitle = editData ? "Update Unit" : "New Unit";
   return (
     <div>
       <ShadowBox className={styles.unit}>
@@ -169,13 +181,20 @@ const UnitsList = (props) => {
             CREATE
           </ArrowPrimaryButton>
           <SidePanelComponent
-        handleToggle={handleSideToggle}
-        title={"New Unit"}
-        open={isSidePanel}
-        side={"right"}
-      >
-        <EventForm isOpen={isSidePanel} handleToggleSidePannel={handleSideToggle} editData={editData} id={editData?.id ? editData?.id : ""}/>
-      </SidePanelComponent>
+            handleToggle={handleSideToggle}
+            title={panelTitle}
+            open={isSidePanel}
+            side={"right"}
+          >
+            <EventForm
+              isOpen={isSidePanel}
+              handleToggleSidePannel={handleSideToggle}
+              editData={editData}
+              isEdit={!!editData}
+              handleDelete={handleDelete}
+              id={editData?.id ? editData?.id : ""}
+            />
+          </SidePanelComponent>
         </div>
         <div>
           <FilterComponent
@@ -183,6 +202,7 @@ const UnitsList = (props) => {
             filters={configFilter}
             handleSearchValueChange={handleSearchValueChange}
             handleFilterDataChange={handleFilterDataChange}
+           
           />
           <div>
             <br />

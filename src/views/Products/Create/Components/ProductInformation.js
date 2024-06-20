@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import {Tooltip, MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
@@ -7,42 +7,23 @@ import styles from "../Style.module.css";
 import img from "../../../../assets/img/1.png";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import {  InfoOutlined as InfoIcon } from "@mui/icons-material";
-const AutoCompleteData = [
-  {
-    id: 1,
-    title: "Ardeen Batisse",
-    label: "Ardeen Batisse",
-    image: img,
-    email: "user1@example.com",
-  },
-  {
-    id: 2,
-    title: "Justinian Hattersley",
-    label: "Justinian Hattersley",
-    image: img,
-    email: "user2@example.com",
-  },
-  {
-    id: 1,
-    title: "Graeme Yellowley",
-    label: "Graeme Yellowley",
-    image: img,
-    email: "user3@example.com",
-  },
-];
+import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
+// import { toast } from 'react-toastify';
+import SnackbarUtils from "../../../../libs/SnackbarUtils";
 const ProductInformation = ({
   errorData,
   changeTextData,
   onBlurHandler,
   form,
-  image,
+  images,
   listData,
   tagList,
 }) => {
+
   const renderImage = useMemo(() => {
     return (
       <File
-        max_size={2 * 1024 * 1024}
+        max_size={5 * 1024 * 1024}
         type={["jpg", "png", "jpeg"]}
         fullWidth={true}
         name="image"
@@ -50,7 +31,7 @@ const ProductInformation = ({
         show_image={true}
         error={errorData?.image}
         value={form?.image}
-        default_image={image ? image : ""}
+        default_image={images ? images : ""}
         onChange={(file) => {
           if (file) {
             changeTextData(file, "image");
@@ -58,7 +39,7 @@ const ProductInformation = ({
         }}
       />
     );
-  }, [form?.image,changeTextData]);
+  }, [form?.image,changeTextData,images]);
   console.log(form, "Form");
   return (
     <>
@@ -77,7 +58,11 @@ const ProductInformation = ({
             <Typography variant="subtitle3" className={styles.imgText}>
               Image Guide
             </Typography>
-            <Tooltip title="Info" aria-label="info" placement="right">
+            <Tooltip title={ <>
+        <span>Resolution: 500px * 500px</span>
+        <br />
+        <span>Image size: 5 mb</span>
+      </>} aria-label="info" placement="right">
               <InfoIcon fontSize={"small"} />
             </Tooltip>
             </div>
@@ -144,12 +129,13 @@ const ProductInformation = ({
                   onBlur={() => {
                     onBlurHandler("product_link");
                   }}
+                  className={styles.productLink}
                 />
               </div>
             </div>
             <div className={"formFlex"}>
               <div className={"formGroup"}>
-                <Autocomplete
+                {/* <Autocomplete
                   isError={errorData?.tags}
                   errorText={errorData?.tags}
                   multiple
@@ -167,26 +153,20 @@ const ProductInformation = ({
                       label="Associate Tags"
                     />
                   )}
-                />
-                {/* <Autocomplete
-                  isError={errorData?.tags}
-                  errorText={errorData?.tags}
-                  multiple
-                  id="tags-outlined"
-                  options={AutoCompleteData ? AutoCompleteData : []}
-                  value={form?.tags}
-                  getOptionLabel={(option) => option.title}
-                  onChange={(e, value) => {
-                    changeTextData(value, "tags");
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant="outlined"
-                      label="Associate Tags"
-                    />
-                  )}
                 /> */}
+                  <MultiComplete
+                    isError={errorData?.tags}
+                    multiple
+                    isArray
+                    AutoCompleteList={tagList ? tagList : []}
+                    getOptionLabel={(option) => option}
+                    label="Associate Tags"
+                    defaultValue={form?.tags}
+                    value={form?.tags}
+                    onTextChange={(text) => {
+                      changeTextData(text, "tags");
+                    }}
+                  />
               </div>
             </div>
             <div className={`formFlex ${styles.space}`}>
