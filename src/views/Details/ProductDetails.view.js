@@ -47,7 +47,12 @@ const ProductDetailview = () => {
     }
   };
   const currencySymbol = getCurrencySymbol(profileDetails?.currency);
-  
+  const wrapText = (text, length) => {
+    if (!text) return "";
+    const str = String(text);
+    const regex = new RegExp(`(.{1,${length}})`, "g");
+    return str.match(regex).join("\n");
+  };
   return (
     <div>
       <div>
@@ -107,7 +112,8 @@ const ProductDetailview = () => {
                   <div className={styles.row1}>
                     <Typography variant={"title"} className={styles.productHeading} color={"text.primary"}>
                       {" "}
-                      {profileDetails?.name}
+                      {/* {profileDetails?.name} */}
+                      {wrapText(profileDetails?.name, 40)}
                     </Typography>
                     <div className={styles.right}>
                       <StatusPill status={profileDetails?.status} color={getStatusPillColor()}/>
@@ -122,6 +128,7 @@ const ProductDetailview = () => {
                   <Typography variant={"body1"} className={styles.link}>
                     <a href={profileDetails?.product_link} target={"_blank"}>
                       {profileDetails?.product_link}
+                      {/* {wrapText(profileDetails?.product_link, 40)} */}
                     </a>
                   </Typography>
                 </div>
