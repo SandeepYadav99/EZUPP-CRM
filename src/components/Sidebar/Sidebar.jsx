@@ -187,7 +187,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const Sidebar = ({ ...props }) => {
   const { classes, color, logo, image, logoText, routes } = props;
   // verifies if routeName is the one active (in browser input)
-  console.log(routes);
+  
   const subRoutes = useMemo(() => {
     return routes?.length > 0
       ? routes.filter(
