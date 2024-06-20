@@ -16,7 +16,7 @@ import {
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
-import CustomSwitch from "../../../components/FormFields/CustomSwitch";
+
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {

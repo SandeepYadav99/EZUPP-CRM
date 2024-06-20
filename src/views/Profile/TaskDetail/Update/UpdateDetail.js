@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import CustomTextField from "../../../../FormFields/TextField.component";
+
 import styles from "./Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
@@ -16,6 +16,8 @@ import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteT
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { useTheme } from "@mui/styles";
 import useAddTaskUpdate from "./UpdateDetailHook";
+import CustomDateTimePicker from "../../../../components/FormFields/DatePicker/CustomDateTimePicker";
+import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 
 const AddTaskUpdate = ({
   handleSideToggle,
@@ -154,7 +156,7 @@ const AddTaskUpdate = ({
 
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomDatePicker
+              <CustomDateTimePicker
                 clearable
                 label={"Due Date"}
                 onChange={(date) => {

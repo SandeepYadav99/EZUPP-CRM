@@ -68,6 +68,7 @@ const TaskDetailView = ({}) => {
     },
     [filterValue]
   );
+ 
   const fetchTaskDetails = useCallback(() => {
     serviceTaskManagementDetail({ id: id }).then((res) => {
       if (!res?.error) {

@@ -149,7 +149,7 @@ const useAddTaskUpdate = ({
         (Array.isArray(form?.[val]) && form?.[val].length === 0)
       ) {
         errors[val] = true;
-        SnackbarUtils.error("Please enter values");
+        // SnackbarUtils.error("Please enter values");
       } else if (["code"].indexOf(val) < 0) {
         delete errors[val];
       }
