@@ -37,11 +37,11 @@ const ProductDetailview = () => {
   const getCurrencySymbol = (currency) => {
     switch (currency) {
       case 'INR':
-        return '₹'; // Indian Rupee symbol
+        return '₹'; 
       case 'USD':
-        return '$'; // US Dollar symbol
+        return '$'; 
       case 'EURO':
-        return '€'; // Euro symbol
+        return '€'; 
       default:
         return '';
     }
@@ -103,8 +103,9 @@ const ProductDetailview = () => {
                   crossOrigin="anonymous"
                 />
                 <div className={styles.textContainer}>
+                  
                   <div className={styles.row1}>
-                    <Typography variant={"title"} color={"text.primary"}>
+                    <Typography variant={"title"} className={styles.productHeading} color={"text.primary"}>
                       {" "}
                       {profileDetails?.name}
                     </Typography>
@@ -222,7 +223,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_value != null  ? `${profileDetails?.discount_percent} %` : "N/A"}
+                        {profileDetails?.discount_percent !== null  ? `${profileDetails?.discount_percent} %` : "N/A"}
+                     
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>

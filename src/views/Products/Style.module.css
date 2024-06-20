@@ -24,6 +24,7 @@
 .firstCellFlex {
     display: flex;
     align-items: center;
+    white-space: pre-wrap;
 }
 .firstCellFlex img {
     width: 40px;
@@ -83,7 +84,7 @@
 .savebutton{
     text-align: right !important;
   }
-.breakWord{
+/* .breakWord{
     word-break: break-all;
   white-space: pre-wrap;
-}
+} */
