@@ -13,7 +13,6 @@ const CustomTextField = ({
   ...rest
 }) => {
   const theme = useTheme();
- 
 
   const handleChange = useCallback(
     (e) => {
@@ -27,11 +26,22 @@ const CustomTextField = ({
     <>
       <TextField
         error={isError}
-        //    helperText={errorText}
+        helperText={
+          <Typography
+            variant="subtitle2"
+            sx={{
+              textAlign: "end",
+              color: theme.palette.error.main,
+              // marginTop:theme.spacing(-0.9)
+            }}
+          >
+            {errorText}
+          </Typography>
+        }
         label={label}
         InputLabelProps={{
           sx: {
-            color:  theme.palette.text.primary,
+            color: theme.palette.text.primary,
           },
         }}
         InputProps={{
@@ -44,9 +54,9 @@ const CustomTextField = ({
           ),
           ...(inputProps ? inputProps : {}),
           sx: {
-            color:theme.palette.text.primary,
+            color: theme.palette.text.primary,
             "& .MuiInputBase-input": {
-              color:theme.palette.text.primary,
+              color: theme.palette.text.primary,
             },
           },
         }}
@@ -58,13 +68,6 @@ const CustomTextField = ({
         fullWidth
         {...rest}
       />
-      {isError && (
-        <Typography variant="subtitle2" sx={{
-          textAlign:"end", 
-          color:theme.palette.error.main, 
-          marginTop:theme.spacing(-0.9)
-        }}>{errorText}</Typography>
-      )}
     </>
   );
 };
