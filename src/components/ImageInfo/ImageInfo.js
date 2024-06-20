@@ -8,7 +8,7 @@ const ImageInfoToolTip = ({ title, resolution }) => {
   
   return (
     <>
-      <Typography variant={"subtitle1"} color={theme.palette.text.primary}>
+      <Typography variant={"caption"}  color={theme.palette.text.primary}>
         {title}
       </Typography>
       <Tooltip
@@ -21,7 +21,7 @@ const ImageInfoToolTip = ({ title, resolution }) => {
         }}
       
       >
-        <InfoOutlined  fontSize="small" color="action" />
+        <InfoOutlined  fontSize="12px" color="action" />
       </Tooltip>
     </>
   );

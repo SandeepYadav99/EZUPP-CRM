@@ -80,6 +80,10 @@ const Typography = (fontFamily) => ({
     fontWeight: 500,
     lineHeight: 1.66,
   },
+  btnTitle: {
+    fontSize: "0.75rem",
+    fontWeight: 600,
+  },
 
   overline: {
     lineHeight: 1.66,

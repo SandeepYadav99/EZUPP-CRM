@@ -9,6 +9,7 @@ import PersonalInformation from "./Component/PersonalInformation";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
 import useUserCreateHook from "./UserCreateHook";
+import { useTheme } from "@mui/styles";
 
 const UserCreate = ({}) => {
   const {
@@ -26,7 +27,7 @@ const UserCreate = ({}) => {
     isSubmitting,
     designation
   } = useUserCreateHook();
-
+const theme = useTheme()
   return (
     <div className={styles.userContainer}>
       <div className={styles.outerFlex1}>
@@ -34,7 +35,7 @@ const UserCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"medium"} />{" "}
           </ButtonBase>
-          <Typography fontSize={22} fontWeight={600} >
+          <Typography variant="h4" fontWeight={600} color={theme.palette.text.primary} >
             {id ? "Update" : "Add"} User
           </Typography>
         </div>

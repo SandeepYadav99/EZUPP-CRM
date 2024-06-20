@@ -29,7 +29,7 @@
 }
 .editorContainer {
     min-height: 200px;
-    max-height: 500px;
+    max-height: 600px;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -100,3 +100,18 @@
     text-transform: uppercase;
     word-break: break-word;
 }
+
+.dialogWrap{
+    padding: 1.5rem;
+    max-width: 500px;
+  }
+  .cancelButton{
+    text-align: left !important;
+  }
+  .buttonContainer {
+      display: flex;
+      justify-content: space-between; 
+  }
+  .saveButton{
+    text-align: right !important;
+  }

@@ -20,12 +20,13 @@ const lightenRate = 7.5;
 const darkenRate = 15;
 const textMainColor = '#4A4A4A';
 const tableHeadColor= "#3A3E5B";
+const NavHeadColor= "#3A3E5B";
 const darkContent = "#282A42"
 const ractange="#347BEC";
 const ractangeborder="#C5C5C5";
 const contact="#3A3E5B";
 const switchTheme = "#2063CE";
-const subText="#888888";
+
 const swithcTrack="#39393D";
 const DarkTheme = (colors) => {
     const { grey } = colors;
@@ -93,7 +94,8 @@ const DarkTheme = (colors) => {
             business: '#888cff',
             Discuss:"#636578",
             service: "#636578",
-            warm: "#EBC50B"
+            warm: "#EBC50B",
+            draft: "#2063CE",
         },
         success: {
             main: success,
@@ -111,8 +113,8 @@ const DarkTheme = (colors) => {
             hint: "#B9B9B9",
             error: '#ff0000',
             bright: '#FFF',
-            subText:subText
-            
+           
+
         },
         primaryButton: {
             hover: secondary,
@@ -126,10 +128,12 @@ const DarkTheme = (colors) => {
             color2:"#ff4d49"
         },
         tableHeadColor:tableHeadColor,
-        contentDark:darkContent, 
+        NavHeadColor:NavHeadColor,
+        contentDark:darkContent,
         contact:contact,
         switchTheme:switchTheme,
-        swithcTrack:swithcTrack
+        swithcTrack:swithcTrack,
+        border:border
     };
 };
 

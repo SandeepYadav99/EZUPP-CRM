@@ -17,6 +17,7 @@ import {
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import logoImageData from "../../assets/CRMAssets/ezupp_login_logo.png";
+import sideBarLogo from "../../assets/img/sidebarImage.png";
 
 import sidebarStyle from "../../assets/jss/material-dashboard-react/sidebarStyle.jsx";
 import {styled} from "@mui/material/styles";
@@ -42,7 +43,7 @@ class CustomListItem extends React.Component {
     }
 
     _renderNavLink(prop, nested) {
-        const {classes, color, key, activeRoute} = this.props;
+        const {classes, color, key, activeRoute,isOpened} = this.props;
         const listItemClasses = cx({
             [" " + classes[color]]: activeRoute(prop.path, prop),
             [" " + classes['nested']]: nested
@@ -61,11 +62,11 @@ class CustomListItem extends React.Component {
                     <ListItemIcon className={classes.itemIcon + whiteFontClasses}>
                         <prop.icon className={classes.sidebarIcon}/>
                     </ListItemIcon>
-                    <ListItemText
+                    { isOpened &&  <ListItemText
                         primary={prop.sidebarName}
                         className={classes.itemText + whiteFontClasses}
                         disableTypography={true}
-                    />
+                    />}
                 </ListItemButton>
             </NavLink>
         );
@@ -84,7 +85,7 @@ class CustomListItem extends React.Component {
     }
 
     render() {
-        const {prop, classes, color, key, activeRoute} = this.props;
+        const {prop, classes, color, key, activeRoute, isOpened} = this.props;
         if (!prop.is_sidebar) return null;
         if (prop.redirect) return null;
         if (!prop.parent && !prop.is_parent) {
@@ -106,12 +107,16 @@ class CustomListItem extends React.Component {
                         <ListItemIcon className={classes.itemIcon + whiteFontClasses}>
                             <prop.icon className={classes.sidebarIcon}/>
                         </ListItemIcon>
-                        <ListItemText
+                        {
+                            isOpened && <>
+                            <ListItemText
                             primary={prop.sidebarName}
                             className={classes.itemText + whiteFontClasses}
                             disableTypography={true}
                         />
                         {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                        </>
+                        }
                     </ListItemButton>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -130,7 +135,7 @@ const CustomLink = ({routes, classes, color, activeRoute, isOpened}) => {
         const links = [];
         routes.forEach((prop, key) => {
             links.push(<CustomListItem routes={routes} key={key} prop={prop} classes={classes} activeRoute={activeRoute}
-                                       color={color}/>);
+                                       color={color} isOpened={isOpened} />);
         });
         return links;
     }, [routes, classes, activeRoute, isOpened]);
@@ -169,18 +174,21 @@ const Sidebar = ({...props}) => {
         return routeName == props.location.pathname || props.location.pathname.indexOf(routeName) > -1 ? true : false ;
         // return props.location.pathname.indexOf(routeName) > -1 ? true : false;
     }
-
     // const {classes, color, logo, image, logoText, routes} = props;
     var brand = (
         <div className={classes.logo}>
-            <div className={classes.logoImage}>
-                <img src={logoImageData} alt="logo" className={classes.img}/>
-            </div>
-            {logoText}
+          <div className={props?.open ? classes.logoImageSideBar : classes.logocollSidebar}>
+            {props?.open ? (
+              <img src={logoImageData} alt="logo" className={classes.img} />
+            ) : (
+                <img src={sideBarLogo} alt="logo" className={classes.collimg} />
+            )}
+          </div>
         </div>
-    );
+      );
     return (
         <div>
+            {/* for Mobile */}
             <Hidden mdUp>
                 <Drawer
                     variant="permanent"
@@ -210,6 +218,7 @@ const Sidebar = ({...props}) => {
 
                 </Drawer>
             </Hidden>
+            {/* for Desktop */}
             <Hidden smDown>
                 <Drawer
                     // anchor="left"
@@ -228,7 +237,7 @@ const Sidebar = ({...props}) => {
                     }}
                 >
                     {brand}
-                    <div className={classes.sidebarWrapper}>
+                    <div className={classes.sidebarWrapper} onMouseEnter={()=>props?.handleOpenSideBar()} onMouseLeave={()=>props?.handleCloseSideBar()}>
                         <CustomLink routes={routes}  isOpened={props.open} classes={classes} color={color} activeRoute={activeRoute}/>
                     </div>
                 </Drawer>

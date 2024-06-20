@@ -6,75 +6,51 @@ import styled from "styled-components";
 const CustomIosSwitch = ({ handleChange, label, value, ...rest }) => {
   const theme = useTheme();
 
-  const IOSSwitch = styled((props) => (
-    <Switch
-      focusVisibleClassName=".Mui-focusVisible"
-      disableRipple
-   
-      {...props}
-    />
-  ))(({}) => ({
-    width: 52,
+  const BaseSwitch = styled(Switch)({
+    width: 49,
     height: 22,
     padding: 0,
+    display: "flex",
+    marginLeft: theme.spacing(1.4),
+  
     "& .MuiSwitch-switchBase": {
-      padding: 0,
-    margin:1,
-      transitionDuration:'160ms',
-      
+      padding: 2,
+    
+      transition: "all 300ms !important",
       "&.Mui-checked": {
-        transform: "translateX(28px)",
-        color: theme.palette.contact,
+        transform: "translateX(26px)",
 
         "& + .MuiSwitch-track": {
-          backgroundColor: theme.palette.switchTheme,
           opacity: 1,
-          border: 0,
+          backgroundColor: theme.palette.switchTheme,
         },
         "&.Mui-disabled + .MuiSwitch-track": {
           opacity: 0.5,
         },
       },
-      "&.Mui-focusVisible .MuiSwitch-thumb": {
-        color: "#33cf4d",
-        border: "6px solid #fff",
-      
-      },
-      '& .MuiSwitch-thumb': {
-        boxSizing: 'border-box',
-        width: 18,
-        height: 18,
-        marginTop:1,
-      },
-      "&.Mui-disabled .MuiSwitch-thumb": {
-        color: theme.palette.text.primary,
-        
-       
-      },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: 0.3,
-      },
-   
     },
     "& .MuiSwitch-thumb": {
-      boxSizing: "border-box",
-      width: 22,
-      height: 22,
+      width: 18,
+      height: 18,
+      borderRadius: "25px",
+      backgroundColor: theme.palette.contact,
     },
     "& .MuiSwitch-track": {
-      borderRadius: 24 / 2,
-      backgroundColor: "#00000029",
       opacity: 1,
-      transition: theme.transitions.create(['background-color'], {
+      borderRadius: "25px",
+      //  transition: ' 0.3ms ease-out',
+      // border: `1px solid ${theme.palette.text.primary}`,
+      backgroundColor: theme.palette.swithcTrack,
+      boxSizing: "border-box",
+      transition: theme.transitions.create(["background-color"], {
         duration: 500,
       }),
     },
-  }));
+  });
   return (
     <FormControlLabel
-   
       control={
-        <IOSSwitch
+        <BaseSwitch
           sx={{ m: 1 }}
           checked={value ? true : false}
           onChange={(e) => handleChange(e.target.checked)}

@@ -84,3 +84,7 @@
     font-weight: 400;
     margin-left: 14px;
 }
+.actionButton{
+    float: right !important;
+    margin-top: 24px !important;
+}

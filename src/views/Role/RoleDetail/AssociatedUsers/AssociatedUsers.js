@@ -8,10 +8,11 @@ import { useSelector } from "react-redux";
 
 import useAssociatedUsersHook from "./AssociatedUsersHook";
 import { IconButton, Typography } from "@mui/material";
-import { Edit } from "@mui/icons-material";
+import { Edit, Info } from "@mui/icons-material";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 import StatusPill from "../../../../components/Status/StatusPill.component";
+import history from "../../../../libs/history.utils";
 
 const AssociatedUsers = ({ listData, id }) => {
   const {
@@ -21,14 +22,17 @@ const AssociatedUsers = ({ listData, id }) => {
     handleEdit,
     handleViewDetails,
     isCalling,
+    data,
+    currentData,
+    currentPage
   } = useAssociatedUsersHook({ listData, id });
   const theme = useTheme();
-  const {
-    present,
-    all: allData,
-    currentPage,
-    is_fetching: isFetching,
-  } = useSelector((state) => state.associatedManufactures);
+  // const {
+  //   present,
+  //   all: allData,
+  //   currentPage,
+  //   is_fetching: isFetching,
+  // } = useSelector((state) => state.associatedManufactures);
 
  
   const renderFirstCell = useCallback((product) => {
@@ -101,8 +105,8 @@ const AssociatedUsers = ({ listData, id }) => {
         sortable: false,
         render: (temp, all) => (
           <div>
-            <IconButton>
-              <Edit fontSize="small" />
+            <IconButton onClick={()=>history.push(`/profile/?id=${all?.id}`)}>
+              <Info fontSize="small" />
             </IconButton>
           </div>
         ),
@@ -119,25 +123,28 @@ const AssociatedUsers = ({ listData, id }) => {
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,
       columns: tableStructure,
-      data: present || [],
-      count: allData?.length || 1,
-      page: currentPage,
+      data: currentData,
+      count: data.length,
+      page: currentPage - 1,
+      rowsPerPage: 10,
+      allRowSelected: false,
+      showSelection: false,
     };
 
     return { datatableFunctions, datatable };
   }, [
-    allData,
     tableStructure,
     handleSortOrderChange,
     handlePageChange,
     handleRowSize,
-    present,
+    data,
     currentPage,
+    currentData
   ]);
 
   return (
     <ShadowBox width={"100%"}>
-      <Typography fontSize={18} margin={theme.spacing(1)}>
+      <Typography variant="h4" sx={{mb:2}}  fontWeight={600} color={theme.palette.text.primary} margin={theme.spacing(1)}>
         Associated Users
       </Typography>
       <div style={{ width: "100%" }}>

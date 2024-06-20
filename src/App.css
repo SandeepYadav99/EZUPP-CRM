@@ -23,7 +23,7 @@
 
 .formFlex {
   display: flex;
-  /* margin-bottom: 10px; */
+  margin-bottom: 20px;
 }
 .formFlex1 {
   display: flex;
@@ -125,10 +125,10 @@
   /*border-bottom: 1px solid black;*/
 }
 
-.login .MuiInputLabel-root {
-    color: black;
-    background: #f7f7f9;
-}
+/*.login .MuiInputLabel-root {*/
+/*    color: black;*/
+/*    background: #f7f7f9;*/
+/*}*/
 
 input[type="radio"] {
   position: absolute;
@@ -322,6 +322,20 @@ input[type="radio"] + label:hover {
 
 .innerHtml {
   word-wrap: break-word;
+  max-height: 950px;
+  overflow-y: scroll;
+}
+.innerHtml::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+.innerHtml img{
+  max-width: 400px;
+  max-height: 300px;
+}
+.innerHtml .se-video-container{
+  margin-top: 10px;
+  max-width: 400px;
+  max-height: 210px;
 }
 /* .MuiInputLabel-outlined.MuiInputLabel-shrink {
   background: white;

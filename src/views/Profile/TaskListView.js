@@ -1,8 +1,9 @@
 import React from "react";
 import { Checkbox, Typography } from "@mui/material";
 import styles from "./Styles.module.css";
-import { AccessTime, Watch } from "@mui/icons-material";
+import { AccessTime, AccessTimeFilled, Watch } from "@mui/icons-material";
 import StatusPill from "../../components/Status/StatusPill.component";
+import { useTheme } from "@mui/styles";
 
 const TaskListItem = ({
   task,
@@ -11,7 +12,7 @@ const TaskListItem = ({
   completedHandler,
 }) => {
 
-
+const theme= useTheme()
   const handleCheckboxClick = async (e) => {
     if (e.target.checked) {
       await markAsCompleted(task);
@@ -39,7 +40,8 @@ const TaskListItem = ({
         />
         <Typography
           variant="h6"
-          color={"#636578"}
+        
+          color={theme.palette.text.primary}
           fontWeight={600}
           onClick={() => handleDetailPage(task)}
         >
@@ -48,13 +50,13 @@ const TaskListItem = ({
       </div>
       <div onClick={() => handleDetailPage(task)} className={styles.detailView}>
         {/* <div className={styles.dummy}></div> */}
-        <Typography variant="h6" color={"#888888"} marginLeft={"12px"} marginTop={-1}>
+        <Typography variant="body1" color={theme?.palette.text.secondary}  >
           {formattedDescription}
         </Typography>
         <div className={styles.taskFlex}>
           <div className={styles.timeFlex}>
-            <AccessTime className={styles.contactIcons} fontSize="small" />
-            <Typography variant="caption" color={"#636578"} padding={1} fontWeight={600}>
+            <AccessTimeFilled className={styles.contactIcons} color={theme.palette.text.primary} fontSize="small" />
+            <Typography variant="caption" color={theme.palette.text.primary} padding={1} fontWeight={600}>
               {task?.dueDateListText}
             </Typography>
           </div>

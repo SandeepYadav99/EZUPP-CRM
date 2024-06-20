@@ -1,6 +1,4 @@
-import { KeyOffRounded } from "@mui/icons-material";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useParams } from "react-router-dom";
 import SnackbarUtils from "../../../../libs/SnackbarUtils";
 import historyUtils from "../../../../libs/history.utils";
 import {
@@ -17,6 +15,7 @@ const initialState = {
 
 const useQuestionFormHook = ({
   category,
+  isOpen,
   data,
   handleToggleSidePannel,
   listLength = 0,
@@ -31,9 +30,7 @@ const useQuestionFormHook = ({
   const [taglist, setTagList] = useState([]);
   const [editor_data, setEditor_Data] = useState(null);
   const [anchor, _setAnchor] = useState(null);
-  const [statusValue, setStatusValue] = useState();
 
-  const params = useParams();
 
   const descriptionRef = useRef(null);
 
@@ -41,6 +38,14 @@ const useQuestionFormHook = ({
     setChecked(!checked);
   };
 
+  useEffect(()=>{
+    if(!isOpen){
+      setForm({
+        ...initialState
+      })
+      setErrorData({})
+    }
+  },[isOpen])
 
   useEffect(() => {
     if (data) {
@@ -72,6 +77,10 @@ const useQuestionFormHook = ({
       }
     });
 
+    const strippedContent = form?.description?.replace(/<[^>]*>/g, '')?.trim();
+    if(!strippedContent){
+      errors['description'] = true;
+    }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -133,8 +142,8 @@ const useQuestionFormHook = ({
         }
         handleToggleSidePannel();
       } else {
-        SnackbarUtils.error("Something went Wrong");
-        handleToggleSidePannel();
+        SnackbarUtils.error(res?.message);
+        // handleToggleSidePannel();
       }
     });
   }, [form, isSubmitting, setIsSubmitting, listLength]);

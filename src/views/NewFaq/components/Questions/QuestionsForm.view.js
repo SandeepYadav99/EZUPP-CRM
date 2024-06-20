@@ -1,47 +1,31 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Field, reduxForm } from "redux-form";
-import { connect } from "react-redux";
-import styles from "./Style.module.css";
+import React, { useMemo } from "react";
 import csx from "classnames";
-import { withStyles } from "@mui/styles";
 import {
-  MenuItem,
-  Button,
   IconButton,
-  FormControlLabel,
-  Switch,
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
   Slide,
   Tooltip,
-  createMuiTheme,
+  Typography,
 } from "@mui/material";
-import { convertFromRaw } from "draft-js";
 import {
   Backup as BackupIcon,
   Info as InfoIcon,
   Delete as DeleteIcon,
 } from "@mui/icons-material";
-import { ThemeProvider } from "@mui/material/styles";
-import MUIRichTextEditor from "mui-rte";
 import useQuestionFormHook from "./QuestionForm.hook";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
-import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 import NewEditor from "../../../../components/NewEditor/NewEditor.component";
-import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
+import {
+  ActionButton,
+  PrimaryButton,
+} from "../../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../../components/FormFields/CustomIosSwitch";
 import removeTask from "../../../../assets/Assets/ic_delete@2x.png";
-
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import styles from "./Style.module.css";
 
 const QuestionsFormView = ({
   category,
+  isOpen,
   data,
   handleToggleSidePannel,
   listLength = 0,
@@ -59,38 +43,49 @@ const QuestionsFormView = ({
   } = useQuestionFormHook({
     category,
     data,
+    isOpen,
     handleToggleSidePannel,
     listLength,
   });
+  const editorStyle = useMemo(() => {
+    return {
+      border: errorData?.description ? "1px solid red" : "none",
+    };
+  }, [errorData?.description, form?.description]);
 
   const renderDialog = () => {
     if (confirmPopUp) {
       return (
         <Dialog
           keepMounted
-          TransitionComponent={Transition}
           open={confirmPopUp}
           onClose={handleDialogClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">
-            <b>Are You Sure</b>
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Do you really want to delete the item?
-              <br />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDialogClose} color="primary">
-              Disagree
-            </Button>
-            <Button onClick={suspendItem} color="primary">
-              Agree
-            </Button>
-          </DialogActions>
+          <div className={styles.dialogWrap}>
+            <Typography variant="subtitle1">
+              {"Are your sure you want to Delete ?"}
+            </Typography>
+
+            <div className={styles.buttonContainer}>
+              <div className={styles.cancelButton}>
+                <ActionButton sx={{ mt: 4 }} onClick={handleDialogClose}>
+                  CANCEL
+                </ActionButton>
+              </div>
+
+              <div className={styles.saveButton}>
+                <PrimaryButton
+                  color={"primary"}
+                  sx={{ mt: 4, ml: 4 }}
+                  onClick={() => suspendItem()}
+                >
+                  CONFIRM
+                </PrimaryButton>
+              </div>
+            </div>
+          </div>
         </Dialog>
       );
     }
@@ -130,13 +125,16 @@ const QuestionsFormView = ({
         <div>
           <div className={styles.lblTxt}>Answer</div>
           <div className={"formFlex"}>
-            <div className={csx("formGroup", styles.editorContainer)}>
+            <div
+              className={csx("formGroup", styles.editorContainer)}
+              style={editorStyle}
+            >
               <NewEditor
                 editorData={form?.description}
                 handleChangeEditor={(html) => {
                   descriptionRef.current(html, "description");
                 }}
-                height={"100px"}
+                height={"300px"}
               />
             </div>
           </div>
@@ -170,30 +168,5 @@ const QuestionsFormView = ({
     </div>
   );
 };
-
-const useStyle = (theme) => ({
-  btnSuccess: {
-    backgroundColor: theme.palette.success.dark,
-    color: "white",
-    marginRight: 5,
-    marginLeft: 5,
-    "&:hover": {
-      backgroundColor: theme.palette.success.main,
-    },
-  },
-  btnError: {
-    backgroundColor: theme.palette.error.dark,
-    color: "white",
-    marginLeft: 5,
-    marginRight: 5,
-    "&:hover": {
-      backgroundColor: theme.palette.error.main,
-    },
-  },
-  iconBtnError: {
-    color: theme.palette.error.dark,
-  },
-  dialog: {},
-});
 
 export default QuestionsFormView;

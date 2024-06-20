@@ -1,5 +1,6 @@
 .mainContainer {
-  padding: 10px;
+  padding:0px 24px;
+ 
 }
 .headerContainer {
   display: flex;
@@ -82,7 +83,8 @@
 .infoFiled {
   display: flex;
   gap: 5px;
-  align-items: center;
+
+  align-items: center !important;
 
 }
 .infoFiled1{

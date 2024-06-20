@@ -102,6 +102,7 @@ const RoleTableComponent = ({
     <ShadowBox
       className={styles.mainContainer}
       sx={{
+       overflow:"auto",
         padding: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
           padding: theme.spacing(1),
@@ -109,12 +110,16 @@ const RoleTableComponent = ({
       }}
     >
       <div className={styles.infoFiled}>
-        <Typography fontSize={18} fontWeight={600}>
+        <Typography  variant="h3" fontWeight={600} color={theme.palette.text.primary} sx={{
+          marginTop:theme.spacing(4.5),
+          marginLeft:theme.spacing(2),
+          marginBottom:theme.spacing(4)
+        }}>
           Permissions Granted
         </Typography>
         <InfoOutlined fontSize="16px" />
       </div>
-      <Table sx={{width:"100%", margin:"auto"}}>
+      <Table sx={{width:"100%", margin:"auto", marginBottom:theme.spacing(4)}}>
         <TableBody>
           <TableCell
             sx={{
@@ -130,6 +135,7 @@ const RoleTableComponent = ({
                 variant="h6"
                 fontWeight={600}
                 color={theme.palette.text.primary}
+             
               >
                 Modules
               </Typography>
@@ -195,6 +201,7 @@ const RoleTableComponent = ({
                 <TableCell
                   sx={{
                     borderBottom: "none",
+                    
                     [theme.breakpoints.down("sm")]: {
                       display: "block",
                       width: "100%",
@@ -204,8 +211,11 @@ const RoleTableComponent = ({
                   <div className={styles.infoFiled1}>
                     <Typography
                       variant="h6"
-                      
-                      color={theme.palette.text.subText}
+                      sx={{
+                        marginLeft:theme.spacing(0.5),
+                       
+                      }}
+                      color={theme.palette.text.secondary}
                     >
                       {permission?.name}{" "}
                     </Typography>

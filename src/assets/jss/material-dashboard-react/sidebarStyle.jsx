@@ -111,6 +111,27 @@ const sidebarStyle = theme => ({
     marginRight: "15px",
     textAlign: 'center'
   },
+  logoImageSideBar: {
+    display: "inline-block",
+    maxHeight: "30px",
+    marginLeft: "10px",
+    marginRight: "15px",
+    textAlign: 'center'
+  },
+  logocollSidebar :{
+    display: "inline-block",
+    maxHeight: "30px",
+    textAlign: 'center'
+  },
+  collimg: {
+    width: "40px",
+    height:"40px",
+    top: "4px",
+    left: "8px",
+    position: "absolute",
+    verticalAlign: "middle",
+    border: "0"
+  },
   img: {
     width: "160px",
     top: "8px",
@@ -180,7 +201,7 @@ const sidebarStyle = theme => ({
     // marginRight: "15px",
     textAlign: "center",
     verticalAlign: "middle",
-    color: theme.palette.grey[500]
+    color: theme.palette.text.primary,
   },
   itemText: {
     ...defaultFont,
@@ -188,7 +209,7 @@ const sidebarStyle = theme => ({
     marginLeft: theme.spacing(2),
     lineHeight: "30px",
     fontSize: "14px",
-    color: theme.palette.grey[500],
+    color: theme.palette.text.primary,
   },
   whiteFont: {
     color: "#FFFFFF"

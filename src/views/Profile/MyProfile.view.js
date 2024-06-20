@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./Styles.module.css";
 import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
@@ -8,16 +8,13 @@ import {
   ArrowOutlineButton,
   ArrowPrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
-import {
-  ButtonBase,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { ButtonBase, Typography, useTheme } from "@mui/material";
 import { Add, ArrowBackIos, Lock } from "@mui/icons-material";
 import ProfileSection from "./Componet/ProfileSection/ProfileSection";
 import TaskSection from "./Componet/TaskSection/TaskSection";
 import AddTaskCreate from "./Create/AddTaskCreate";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
+
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -34,14 +31,16 @@ const Profile = () => {
     filterCompltedTask,
     isSidePanel,
     handleCreatedTask,
-    location
+    location,
   } = useMyProfileHook();
 
   const handleClose = () => {
     setOpen(!open);
   };
   const theme = useTheme();
-   
+  const upperSidePanelText = useCallback(() => {
+    return <Typography variant="h3" fontWeight={600} sx={{marginTop:theme.spacing(4), marginBottom:theme.spacing(4)}}>Add New Task </Typography>;
+  }, []);
   return (
     <div className={styles.bgProfile}>
       {isLoading ? (
@@ -49,31 +48,36 @@ const Profile = () => {
       ) : (
         <div>
           <div className={styles.upperFlex}>
-          <div className={styles.profileTitle}>
-            {location !== "/myprofile" && 
-            <ButtonBase onClick={() => history.push("/admin/users")}>
-              <ArrowBackIos fontSize={"medium"} />{" "}
-            </ButtonBase>}
-            <Typography fontSize={24} fontWeight={600} color={theme?.palette.text.primary}>Profile View</Typography>
+            <div className={styles.profileTitle}>
+              {location !== "/myprofile" && (
+                <ButtonBase onClick={() => history.push("/admin/users")}>
+                  <ArrowBackIos fontSize={"medium"} />{" "}
+                </ButtonBase>
+              )}
+              <Typography
+                variant="h3"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                Profile View
+              </Typography>
             </div>
             <div className={styles.profileHeaderAction}>
               <ArrowOutlineButton
                 onClick={handleClose}
-                paddingLR={2}
-                paddingTB={1}
-                borderRadius={8}
                 icon={<Lock fontSize="normal" />}
               >
-                 <Typography variant={"subtitle1"} color={""}>RESET PASSWORD</Typography>
+                <Typography variant={"body1"} fontWeight={600} color={""}>
+                  RESET PASSWORD
+                </Typography>
               </ArrowOutlineButton>
               <ArrowPrimaryButton
                 icon={<Add fontSize={"small"} />}
-                paddingLR={2}
-                paddingTB={1}
-                borderRadius={8}
                 onClick={handleSideToggle}
               >
-                <Typography variant={"subtitle1"}>ADD TASK</Typography>
+                <Typography variant={"body1"} fontWeight={600}>
+                  ADD TASK
+                </Typography>
               </ArrowPrimaryButton>
             </div>
           </div>
@@ -83,8 +87,9 @@ const Profile = () => {
                 <ProfileSection
                   profileDetails={profileDetails}
                   handleEdit={handleEdit}
-                 />
+                />
               </div>
+
               <div className={styles.rightSection}>
                 <TaskSection
                   filterValue={filterValue}
@@ -103,9 +108,9 @@ const Profile = () => {
             handleClose={handleClose}
             email={profileDetails?.email}
           />
-            <SidePanelComponent
+          <SidePanelComponent
             handleToggle={handleSideToggle}
-            title={"Add New Task"} // profileId ? "Update Hubs" :
+            title={upperSidePanelText()} // profileId ? "Update Hubs" :
             open={isSidePanel}
             side={"right"}
           >
@@ -116,7 +121,7 @@ const Profile = () => {
               profileDetails={profileDetails}
               handleCreatedTask={handleCreatedTask}
             />
-          </SidePanelComponent> 
+          </SidePanelComponent>
         </div>
       )}
     </div>

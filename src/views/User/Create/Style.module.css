@@ -2,30 +2,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding-bottom: 30px; */
- flex-wrap: wrap;
-
+  padding-bottom: 32px;
+  flex-wrap: wrap;
 }
-.userContainer{
-  overflow: hidden !important;
+.userContainer {
+  /* overflow: hidden !important; */
 }
-.count{
- margin: auto !important;
+.count {
+  margin: auto !important;
 }
 .outerFlex1 {
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
+  margin: 36px 0px 36px 0px !important;
 }
 .iconButton {
   display: flex;
   gap: 5px;
 }
-
+.checkBoxmargin {
+  margin-top: -1px !important;
+}
+.footerBox {
+  display: flex !important;
+  flex-direction: column !important;
+}
 .saveButton {
   text-align: right !important;
-  margin-top: 10px !important;
+  margin-top: 24px !important;
 }
 .imageGuide {
   display: flex;
+  margin-top: 8px !important;
+  margin-left: 5px !important;
+  align-items: center !important;
+  gap: 1px !important;
 }
 .new_line {
   display: flex;
@@ -60,7 +70,9 @@
   width: 100% !important;
   margin-top: 20px;
 }
-
+.subMain{
+  margin-bottom: 32px !important;
+}
 .dateContainer {
   width: 100% !important;
 }

@@ -1,44 +1,46 @@
-import { ButtonBase, Typography } from '@mui/material';
-import { Check } from '@mui/icons-material';
+import { ButtonBase, Typography } from "@mui/material";
+import { Check } from "@mui/icons-material";
 import React, { useState } from "react";
-
+import { useTheme } from "@mui/styles";
 
 const TaskDetailHeader = ({
   details,
   completedHandler,
   markAsCompleted,
   styles,
-  
 }) => {
-const [isCompleted, setIsCompleted]=useState(false)
-
+  const theme = useTheme();
   const handleButtonClick = () => {
-    if (isCompleted) {
-      // completedHandler();
-      setIsCompleted(false)
+    if (details?.is_completed) {
+      completedHandler();
     } else {
-      // markAsCompleted();
-      setIsCompleted(true)
+      markAsCompleted();
     }
-    // setIsCompleted(!isCompleted);
   };
   return (
-  
-      <div className={styles.headerTitle}>
-        <Typography fontSize={18} fontWeight={600} >{details?.title}</Typography>
-        <div className={styles.complte}>
-        <div  className={`${styles.transition} ${
-          !isCompleted ? styles.completed : styles.markComplete
-        }`}>
-        <ButtonBase onClick={handleButtonClick}>
-          <Check fontSize={"small"} />
-          <span>{!isCompleted ? " Completed" : "Mark as Complete"}</span>
-        </ButtonBase>
-      </div>
+    <div className={styles.headerTitle}>
+      <Typography
+        variant="h3"
+        fontWeight={600}
+        color={theme.palette.text.primary}
+      >
+        {details?.title}
+      </Typography>
+      <div className={styles.complte}>
+        <div
+          className={`${styles.transition} ${
+            details?.is_completed ? styles.completed : styles.markComplete
+          }`}
+        >
+          <ButtonBase onClick={handleButtonClick}>
+            <Check fontSize={"small"} />
+            <span>
+              {details?.is_completed ? " Completed" : "Mark as Complete"}
+            </span>
+          </ButtonBase>
         </div>
       </div>
-   
- 
+    </div>
   );
 };
 

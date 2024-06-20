@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import styles from "./Style.module.css";
 import { useParams } from "react-router-dom";
 import {
@@ -17,14 +17,19 @@ import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import PermissionsGranted from "../Component/PermissionsGranted";
+import { actionFetchRole } from "../../../actions/Role.action";
+import DeletePopUp from "../Component/DeletePopUp";
 
 const initialState = {
   roleDetail: {},
   permissions: [],
 };
+
 const RoleDetail = () => {
   const { id } = useParams();
   const theme = useTheme();
+  const [open, setOpen] = useState(false);
+
   const reducer = (state, action) => {
     switch (action.type) {
       case "ROLE_DETAIL":
@@ -35,21 +40,13 @@ const RoleDetail = () => {
         return state;
     }
   };
+  
   const [state, dispatchDetail] = useReducer(reducer, initialState);
   const dispatch = useDispatch();
+
   const roleDelete = useCallback(async () => {
-    const res = await serviceDeleteRole({ id: id });
-    if (!res?.error) {
-      const roleDetail = await serviceDetailRole({ id: id });
-      if (!roleDetail.error) {
-        console.log(roleDetail);
-        dispatchDetail({
-          type: "ROLE_DETAIL",
-          payload: roleDetail.data.details,
-        });
-      }
-    }
-  }, [id, dispatchDetail]);
+    setOpen((e) => !e);
+  }, [open]);
 
   useEffect(() => {
     Promise.all([
@@ -67,6 +64,18 @@ const RoleDetail = () => {
   }, [id]);
 
   const { description, status, name, display_name } = state?.roleDetail;
+
+  const handleClose = useCallback(() => {
+    setOpen((e) => !e);
+  }, [open]);
+
+  const handleDelete = useCallback(async () => {
+    const res = await serviceDeleteRole({ id: id });
+    if (!res?.error) {
+      history.push(RouteName.ROLE);
+      dispatch(actionFetchRole(1, {}, {}));
+    }
+  }, [id, dispatchDetail]);
 
   return (
     <div>
@@ -93,10 +102,21 @@ const RoleDetail = () => {
         <ShadowBox className={styles.rightSection}>
           <div className={styles.boxleft}>
             <div>
-              <Typography fontSize={18} fontWeight={600}>
+              <Typography
+                variant="h4"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+                className={styles.title_is}
+              >
                 {name}
               </Typography>
-              <Typography variant="body1">{display_name}</Typography>
+              <Typography
+                variant="body1"
+                color={theme.palette.text.secondary}
+                className={styles.title_is}
+              >
+                {display_name}
+              </Typography>
             </div>
             <div>
               <StatusPill
@@ -106,12 +126,26 @@ const RoleDetail = () => {
             </div>
           </div>
           <hr className={styles.hrLine} />
-          <Typography variant="subtitle1">Description</Typography>
-          <Typography variant="body1">{description || "N/A"}</Typography>
+          <Typography
+            variant="h5"
+            fontWeight={600}
+            color={theme.palette.text.primary}
+            sx={{ mt: 2 }}
+          >
+            Description
+          </Typography>
+          <Typography variant="h6" color={theme.palette.text.secondary}>
+            {description || "N/A"}
+          </Typography>
         </ShadowBox>
         <ShadowBox className={styles.leftSection}>
           <div>
-            <Typography fontSize={18} fontWeight={600}>
+            <Typography
+              variant="h4"
+              sx={{ mb: 2 }}
+              fontWeight={600}
+              color={theme.palette.text.primary}
+            >
               Permissions Granted
             </Typography>
             <PermissionsGranted state={state} styles={styles} />
@@ -123,6 +157,12 @@ const RoleDetail = () => {
           <AssociatedUsers id={id ? id : "userObject?.user?.id"} />
         </section>
       </div>
+      <DeletePopUp
+        open={open}
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+        id={id}
+      />
       {/* Table Bottom */}
     </div>
   );
