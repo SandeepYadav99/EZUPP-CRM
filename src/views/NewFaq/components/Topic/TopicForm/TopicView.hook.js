@@ -12,7 +12,7 @@ const initialState = {
   status: true,
 };
 
-const useTopicView = (dataExist, handletoggleSidePannel, listlength = 0) => {
+const useTopicView = (dataExist,isOpen, handletoggleSidePannel, listlength = 0) => {
   const [form, setForm] = useState({ ...initialState });
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +50,15 @@ const useTopicView = (dataExist, handletoggleSidePannel, listlength = 0) => {
     [setErrorData, errorData]
   );
 
+  useEffect(()=>{
+    if(!isOpen){
+      setForm({
+        ...initialState
+      })
+      setErrorData({})
+    }
+  },[isOpen])
+  
   useEffect(() => {
     if (dataExist) {
       setForm({
@@ -57,10 +66,6 @@ const useTopicView = (dataExist, handletoggleSidePannel, listlength = 0) => {
         title: dataExist?.title,
         status: dataExist?.status === "ACTIVE" ? true : false,
         priority: dataExist?.priority,
-      });
-    } else {
-      setForm({
-        ...initialState,
       });
     }
   }, [dataExist]);
@@ -116,6 +121,8 @@ const useTopicView = (dataExist, handletoggleSidePannel, listlength = 0) => {
           SnackbarUtils.success("Created Successfully");
         }
         handletoggleSidePannel();
+      }else{
+        SnackbarUtils.error(res?.message)
       }
     });
   }, [form, isSubmitting, setIsSubmitting, listlength]);
