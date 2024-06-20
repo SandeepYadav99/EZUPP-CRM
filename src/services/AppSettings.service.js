@@ -15,3 +15,6 @@ export async function serviceUpdateGeoFence(params) {
 export async function serviceUpdatePolicies(params) {
     return await postRequest('app/settings/update/policies', params);
 }
+export async function serviceLoginUsingGoogleAuth (params) {
+    return await postRequest('/auth/social/login', params);
+}

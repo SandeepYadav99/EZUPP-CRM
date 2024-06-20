@@ -22,6 +22,7 @@ import useLoginHook from "./Login.hook";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import CustomCheckBox from "../../../components/FormFields/CustomCheckbox";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import { GoogleLogin } from "@react-oauth/google";
 
 function LoginView() {
   const {
@@ -34,6 +35,8 @@ function LoginView() {
     handleForgotPassword,
     togglePasswordVisibility,
     showPassword,
+    responseMessage,
+    errorMessage
   } = useLoginHook();
 
   return (
@@ -160,12 +163,8 @@ function LoginView() {
               </span>
               <div className={styles.lineMaker}></div>
             </div>
-            <div className={styles.containerBtn}>
-              <img
-                src={googleImageContainer}
-                alt="google-image"
-                style={{ backgroundColor: "#F2F2F2", borderRadius: "4px" }}
-              />
+            <div className={styles.authWrap}>
+            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
             </div>
           </div>
         </div>

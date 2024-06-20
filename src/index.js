@@ -17,6 +17,8 @@ import {
   actionChangeTheme,
   actionGetAppSettings,
 } from "./actions/AppSettings.action";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import constants from './config/constants';
 
 setAxiosTimezone();
 if (localStorage.theme) {
@@ -42,11 +44,13 @@ if (localStorage.jwt_token) {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
+  <GoogleOAuthProvider clientId={constants.GOOGLE_AUTH_KEY}>
+  {/* // <React.StrictMode> */}
   <Provider store={store}>
     <App />
   </Provider>
-  // </React.StrictMode>
+  {/* // </React.StrictMode> */}
+  </GoogleOAuthProvider>
 );
 
 // If you want your app to work offline and load faster, you can change
