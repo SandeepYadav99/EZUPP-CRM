@@ -82,11 +82,14 @@ function useProductCreateHook() {
           })
           setForm({
             ...form,
-            ...obj
+            ...obj,
+            // image: details.image || initialForm.image
           })
-          //setImages(details?.image);
-          
-        
+          // if (details.image) {
+          //   setImages(details.image);
+          // }
+          setImages(details?.image);
+        console.log("image", details?.image)
         } 
       });
     }
