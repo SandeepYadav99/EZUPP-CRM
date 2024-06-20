@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { MenuItem, Tooltip, Typography } from "@mui/material";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
@@ -9,7 +9,6 @@ import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 
-import CustomSwitch from "../../../../components/FormFields/CustomSwitch";
 import ImageInfoToolTip from "../../../../components/ImageInfo/ImageInfo";
 
 const PersonalInformation = ({
@@ -25,10 +24,12 @@ const PersonalInformation = ({
   const theme = useTheme();
   return (
  
-      <ShadowBox width={"100%"}>
+      <ShadowBox width={"100%"} >
         <Typography
           variant="h4" fontWeight={600} color={theme.palette.text.primary} 
           sx={{
+            marginTop:theme.spacing(3),
+            marginBottom:theme.spacing(3),
             [theme.breakpoints.down("sm")]: {
               margin: "auto",
             },
@@ -84,9 +85,9 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "name");
                   }}
-                  onBlur={() => {
-                    onBlurHandler("name");
-                  }}
+                  // onBlur={() => {
+                  //   onBlurHandler("name");
+                  // }}
                 />
               </div>
 
@@ -99,9 +100,9 @@ const PersonalInformation = ({
                   onTextChange={(text) => {
                     changeTextData(text, "userName");
                   }}
-                  onBlur={() => {
-                    onBlurHandler("userName");
-                  }}
+                  // onBlur={() => {
+                  //   onBlurHandler("userName");
+                  // }}
                 />
               </div>
             </div>
@@ -189,8 +190,7 @@ const PersonalInformation = ({
           </div>
         </div>
       </ShadowBox>
-  
   );
 };
 
-export default PersonalInformation;
+export default memo(PersonalInformation);

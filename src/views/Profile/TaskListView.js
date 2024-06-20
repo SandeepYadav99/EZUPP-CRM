@@ -50,7 +50,7 @@ const theme= useTheme()
       </div>
       <div onClick={() => handleDetailPage(task)} className={styles.detailView}>
         {/* <div className={styles.dummy}></div> */}
-        <Typography variant="body1" color={theme?.palette.text.secondary} marginLeft={"12px"} fontSize={14} marginTop={-1}>
+        <Typography variant="body1" color={theme?.palette.text.secondary}  >
           {formattedDescription}
         </Typography>
         <div className={styles.taskFlex}>

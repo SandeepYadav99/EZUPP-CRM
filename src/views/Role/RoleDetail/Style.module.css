@@ -48,8 +48,9 @@
   }
 }
 .rightContaiiner {
-  display: flex;
-  gap: 10px;
+  display: flex !important;
+  gap: 10px !important;
+  align-items: baseline !important;
 }
 .title {
   font-size: 18px;

@@ -11,6 +11,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 36px !important;
+  margin-bottom: 36px !important;
 }
 
 .profileTitle {
@@ -84,10 +86,9 @@
 }
 .rightSection {
   flex: 1 1;
-  /* margin-left: 20px; */
-  /* margin-right: 10px; */
+ 
 }
-@media (max-width: 1252px) {
+@media (max-width: 1300px) {
   .profileFlex {
     display: flex;
     justify-content: center;
@@ -95,6 +96,7 @@
   .leftSection {
     flex: 1 1 !important;
   }
+ 
 }
 .profileHeading {
   padding-top: 20px;

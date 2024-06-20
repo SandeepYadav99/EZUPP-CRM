@@ -102,7 +102,7 @@ const RoleTableComponent = ({
     <ShadowBox
       className={styles.mainContainer}
       sx={{
-       overflow:"scroll",
+       overflow:"auto",
         padding: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
           padding: theme.spacing(1),

@@ -44,7 +44,7 @@ const useMyProfileHook = () => {
   const updateTaskManagement = () => {
     // setTimeout(() => {
     serviceTaskMnagmentByUser({
-      id: id ? id : userObject?.user?.id,
+      id: id ? id : userObject?.user_id,
     })
       .then((res) => {
         if (!res?.error) {
@@ -68,7 +68,7 @@ const useMyProfileHook = () => {
           if (filterValue !== "ALL") {
             serviceTaskFilterByUser({
               is_completed: false,
-              user_id: id ? id : userObject?.user?.id,
+              user_id: id ? id : userObject?.user_id,
             })
               .then((res) => {
                 if (!res?.error) {
@@ -104,7 +104,7 @@ const useMyProfileHook = () => {
           if (filterValue !== "ALL") {
             serviceTaskFilterByUser({
               is_completed: true,
-              user_id: id ? id : userObject?.user?.id,
+              user_id: id ? id : userObject?.user_id,
             })
               .then((res) => {
                 if (!res?.error) {
@@ -159,7 +159,7 @@ const useMyProfileHook = () => {
       } else {
         serviceTaskFilterByUser({
           is_completed: queryValue,
-          user_id: id ? id : userObject?.user?.id,
+          user_id: id ? id : userObject?.user_id,
         })
           .then((res) => {
             if (!res?.error) {
