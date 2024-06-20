@@ -9,6 +9,7 @@ import {
   serviceUpdateProduct,
   serviceDeleteProduct,
   serviceProductCheck,
+  serviceGetProductDetails
 } from "../../../services/Product.service";
 import {
   serviceGetTagList,
@@ -25,7 +26,7 @@ function useProductCreateHook() {
     product_link: "",
     tags: [],
     description: "",
-    image: "",
+    image: null,
     unit_id: "",
     currency: "",
     ballpark_cost: "",
@@ -43,6 +44,7 @@ function useProductCreateHook() {
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [profileDetails, setProfileDetails] = useState({});
   const [listData, setListData] = useState({
     UNITS: [],
   });
@@ -67,12 +69,37 @@ function useProductCreateHook() {
     })();
   }, []);
 
+  useEffect(() => {
+    if (id) {
+      serviceGetProductDetails({ id }).then((res) => {
+        if (!res.error) {
+          const details = res.data.details;
+          const obj ={}
+          Object.keys({...initialForm})?.forEach((key)=>{
+            if(key !== "image"){
+              obj[key] = details[key] != null ? details[key] : initialForm[key];
+            }
+          })
+          setForm({
+            ...form,
+            ...obj
+          })
+          //setImages(details?.image);
+          
+        
+        } 
+      });
+    }
+  
+    
+  }, [id]);
+
   const checkCodeValidation = useCallback(() => {
-    serviceProductCheck({ code: form?.code }).then((res) => {
+    serviceProductCheck({ code: form?.code , id:id ? id : null }).then((res) => {
       if (!res.error) {
         const errors = JSON.parse(JSON.stringify(errorData));
         if (res.data.is_exists) {
-          errors["code"] = "Department Code Exists";
+          errors["code"] = "Product code already exists";
           setErrorData(errors);
         } else {
           delete errors.code;
@@ -147,6 +174,11 @@ function useProductCreateHook() {
       ) {
         if (text >= 0) {
           t[fieldName] = text;
+          setForm(t);
+          setProfileDetails((prevDetails) => ({
+           ...prevDetails,
+            [fieldName]: text,
+          }));
         }
       } else if (fieldName === "discount_percent") {
         if (text >= 0 && text <= 100) {
@@ -164,7 +196,7 @@ function useProductCreateHook() {
         const tempKeywords = text?.filter((val, index) => {
           if (val?.trim() === "") {
             return false;
-          } else if (val?.length <= 2 || val?.length > 20) {
+          } else if (val?.length < 2 || val?.length > 20) {
             SnackbarUtils.error(
               "Values cannot be less than 2 and more than 20 character"
             );
@@ -199,7 +231,15 @@ function useProductCreateHook() {
             if (key === "is_show_public" || key === "is_value_add") {
               fd.append(key, form[key] ? true : false);
             } else {
-              fd.append(key, form[key]);
+              if (
+                ["ballpark_cost", "ballpark_price", "discount_percent", "discount_value"].includes(key) &&
+                form[key] == null
+              ) {
+                fd.append(key, 0);
+              } else {
+                fd.append(key, form[key]);
+              }
+              //fd.append(key, form[key]);
             }
           }
         });
@@ -218,7 +258,7 @@ function useProductCreateHook() {
             historyUtils.goBack();
           } else {
             SnackbarUtils.error(res?.message);
-            if (res.message.includes("Code already exists")) {
+            if (res.message.includes("Product code already exists")) {
               setErrorData((prev) => ({ ...prev, code: true }));
             }
           }

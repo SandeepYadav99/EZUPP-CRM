@@ -15,11 +15,11 @@ const ProductInformation = ({
   changeTextData,
   onBlurHandler,
   form,
-  image,
+  images,
   listData,
   tagList,
 }) => {
-  const [error, setError] = useState("");
+
   const renderImage = useMemo(() => {
     return (
       <File
@@ -31,7 +31,7 @@ const ProductInformation = ({
         show_image={true}
         error={errorData?.image}
         value={form?.image}
-        default_image={image ? image : ""}
+        default_image={images ? images : ""}
         onChange={(file) => {
           if (file) {
             changeTextData(file, "image");
@@ -39,7 +39,7 @@ const ProductInformation = ({
         }}
       />
     );
-  }, [form?.image,changeTextData]);
+  }, [form?.image,changeTextData,images]);
   console.log(form, "Form");
   return (
     <>
@@ -129,6 +129,7 @@ const ProductInformation = ({
                   onBlur={() => {
                     onBlurHandler("product_link");
                   }}
+                  className={styles.productLink}
                 />
               </div>
             </div>

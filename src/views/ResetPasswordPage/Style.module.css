@@ -180,10 +180,11 @@
     font-size: 0.8rem;
   }
   
-  .forgotBtn {
+  #forgotBtn {
     color: #5f63f2 !important;
-    text-decoration: underline !important;
-    font-size: 13px;
+    font-size: 11px;
+    display: flex;
+    align-items: center !important;
   }
   
   .heading {

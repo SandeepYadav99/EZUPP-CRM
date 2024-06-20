@@ -323,6 +323,15 @@ input[type="radio"] + label:hover {
 .innerHtml {
   word-wrap: break-word;
 }
+.innerHtml img{
+  max-width: 400px;
+  max-height: 400px;
+}
+.innerHtml .se-video-container{
+  margin-top: 10px;
+  max-width: 400px;
+  max-height: 210px;
+}
 /* .MuiInputLabel-outlined.MuiInputLabel-shrink {
   background: white;
 } */
