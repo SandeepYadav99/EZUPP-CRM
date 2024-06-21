@@ -147,17 +147,18 @@ const RoleTableComponent = ({
                 </Typography>
               </div>
             </TableCell>
-            <WraperComponentCheckBox module={true}>
+            <WraperComponentCheckBox module={true} permissionHeader={permissions.every((permission) => permission.all_data)}>
               <Checkbox
                 sx={{
                   marginLeft: theme.spacing(-1),
                 }}
+                
                 checked={permissions.every((permission) => permission.all_data)}
                 onChange={handleAllDataChange}
               />{" "}
               All Data
             </WraperComponentCheckBox>
-            <WraperComponentCheckBox module={true}>
+            <WraperComponentCheckBox module={true} permissionHeader={permissions.every((permission) => permission.read)}>
               <Checkbox
                 sx={{
                   marginLeft: theme.spacing(-1),
@@ -167,7 +168,7 @@ const RoleTableComponent = ({
               />{" "}
               Read
             </WraperComponentCheckBox>
-            <WraperComponentCheckBox module={true}>
+            <WraperComponentCheckBox module={true} permissionHeader={permissions.every((permission) => permission.create)}>
               <Checkbox
                 sx={{
                   marginLeft: theme.spacing(-1),
@@ -177,7 +178,7 @@ const RoleTableComponent = ({
               />{" "}
               Write
             </WraperComponentCheckBox>
-            <WraperComponentCheckBox module={true}>
+            <WraperComponentCheckBox module={true} permissionHeader={permissions.every((permission) => permission.update)}>
               <Checkbox
                 sx={{
                   marginLeft: theme.spacing(-1),
@@ -187,7 +188,7 @@ const RoleTableComponent = ({
               />{" "}
               Update
             </WraperComponentCheckBox>
-            <WraperComponentCheckBox module={true}>
+            <WraperComponentCheckBox module={true} permissionHeader={permissions.every((permission) => permission.delete)}>
               <Checkbox
                 sx={{
                   marginLeft: theme.spacing(-1),

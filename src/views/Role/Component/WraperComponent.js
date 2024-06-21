@@ -2,7 +2,7 @@ import { Card, TableCell } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import React from 'react'
 
-const WraperComponentCheckBox = ({children, permission,  index, module}) => {
+const WraperComponentCheckBox = ({children, permission,  index, module, permissionHeader}) => {
     const theme= useTheme()
   return (
     <TableCell sx={{
@@ -28,7 +28,7 @@ const WraperComponentCheckBox = ({children, permission,  index, module}) => {
              textAlign:"center"
            },
          
-           border: permission
+           border: permission || permissionHeader
            ? `1px solid ${theme.palette.primary.ractange}`
            : `1px solid ${theme.palette.primary.ractangeborder}`,
            "& .MuiPaper-root-MuiCard-root": {

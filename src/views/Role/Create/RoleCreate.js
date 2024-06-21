@@ -1,11 +1,11 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import { ButtonBase, CircularProgress, Typography } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
 import { makeStyles, useTheme } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import useRoleCreateHook from "./RoleCreateHook";
-// import RoleTableComponent from "../RoleTable.component";
+import RoleTableComponent from "../RoleTable.component";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import history from "../../../libs/history.utils";
 import {
@@ -14,7 +14,7 @@ import {
 } from "../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 
-const RoleTableComponent = lazy(() => import("../RoleTable.component"));
+
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -145,7 +145,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           </div>
         </ShadowBox>
         <div >
-          <Suspense fallback={<></>}>
+          
             <RoleTableComponent
               classes={classes}
               // data={data}
@@ -156,7 +156,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               allData={allData}
               setAllData={setAllData}
             />
-          </Suspense>
+        
         </div>
 
         <div className={styles.actionButton}>
