@@ -26,7 +26,7 @@ const ractange="#347BEC";
 const ractangeborder="#C5C5C5";
 const contact="#3A3E5B";
 const switchTheme = "#2063CE";
-
+const isActiveTab="";
 const swithcTrack="#39393D";
 const DarkTheme = (colors) => {
     const { grey } = colors;
@@ -133,7 +133,8 @@ const DarkTheme = (colors) => {
         contact:contact,
         switchTheme:switchTheme,
         swithcTrack:swithcTrack,
-        border:border
+        border:border,
+        isActiveTab:isActiveTab
     };
 };
 

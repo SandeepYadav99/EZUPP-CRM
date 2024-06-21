@@ -115,7 +115,7 @@ class CustomListItem extends React.Component {
             selected={isSelected}
             sx={{
               "&.Mui-selected": {
-                backgroundColor: theme.palette.isActiveTab ? "#EEEEF0" : "",
+                backgroundColor: theme.palette.isActiveTab,
               },
             }}
             className={classes.itemLink + listItemClasses}
