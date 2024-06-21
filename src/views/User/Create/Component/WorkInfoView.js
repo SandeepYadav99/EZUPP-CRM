@@ -142,7 +142,8 @@ const WorkInfoView = ({
               />
             </div>
           </div>
-          <div className={"formGroup"}>
+
+          <div className={styles.actionButton}>
             <CustomCheckbox
               value={form?.userManage}
               handleChange={() => {
@@ -155,11 +156,10 @@ const WorkInfoView = ({
               }
               checked={form?.userManage}
             />
-          </div>
-          <div className={"formGroup"}>
+
             {!id && (
               <CustomCheckbox
-                className={styles.checkBoxmargin}
+                sx={{ height: "18px" }}
                 checked={form?.invoiteToUser}
                 value={form?.invoiteToUser}
                 handleChange={() => {

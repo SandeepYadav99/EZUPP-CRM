@@ -1,94 +1,88 @@
 .mainContainer {
-    padding: 10px;
+  padding: 15px;
 }
 .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .headerContainer .title {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 .bottomLine {
-    opacity: 0.4;
-    color: grey;
-    margin-bottom: 5px;
+  opacity: 0.4;
+  color: grey;
+  margin-bottom: 5px;
 }
 
 .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .firstCellFlex {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .firstCellFlex img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .firstCellInfo {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .headerFlex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
 }
 
 .includeContainer {
-    font-weight: 700;
-    margin-left: 15px;
+  font-weight: 700;
+  margin-left: 15px;
 }
 
-.infoTitle{
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    margin-left: 15px;
-    /* border-bottom: 1px solid; */
-    width: 100%;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
+.infoTitle {
+  margin-left: 10px;
+  /* border-bottom: 1px solid; */
+  width: 100%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 }
 
-.heading{
-    margin-right: 5px;
-    font-size: 18px !important;
-    color: #636578 !important;
-    font-weight: 600 !important;
+.heading {
+  margin-right: 5px;
+  font-size: 18px !important;
+  color: #636578 !important;
+  font-weight: 600 !important;
 }
 
-.serchImage{
-    display: flex;
-    justify-content: flex-start;
-    font-size: 13px;
-    text-align: justify;
-    align-items: flex-start;
-   
+.serchImage {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 13px;
+  text-align: justify;
+  align-items: flex-start;
 }
-.serchImage img{
-    width: 30px;
-    height: 30px;
-    border-radius: 20px;
+.serchImage img {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
 }
-.serchImage span{
-    margin-left: 5px;
-
+.serchImage span {
+  margin-left: 5px;
 }
-.dateContainer{
-    width: 100% !important;
-  }
-.paragraph{
-    font-size: 0.6rem;
-    font-weight: 400;
-   display: flex;
-   justify-content: end;
+.dateContainer {
+  width: 100% !important;
 }
-.actionButton{
-    float: right !important;
-    margin-top: 24px !important;
+.paragraph {
+  font-size: 0.6rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: end;
+}
+.actionButton {
+  float: right !important;
+  margin-top: 15px !important;
 }

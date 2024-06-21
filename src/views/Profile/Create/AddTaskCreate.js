@@ -58,7 +58,7 @@ const AddTaskCreate = ({
           </h4>
         </div>
 
-        <div>
+       
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomMultiComplete
@@ -286,7 +286,7 @@ const AddTaskCreate = ({
               />
             </div>
           </div>
-        </div>
+    
       </ShadowBox>
       <div className={styles.actionButton}>
         <PrimaryButton

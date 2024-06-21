@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 32px;
+ 
   flex-wrap: wrap;
 }
-.subContainer{
+.subContainer {
   margin: 10px !important;
 }
 .count {
@@ -13,14 +13,20 @@
 }
 .outerFlex1 {
   /* padding-bottom: 30px; */
-  margin-bottom: 24px!important;
+  margin-bottom: 24px !important;
+}
+.actionButton {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-left: 8px !important;
+  width: 30% !important;
 }
 .iconButton {
   display: flex;
   gap: 5px;
 }
 .checkBoxmargin {
-  margin-top: -1px !important;
+  /* margin-bottom: 2px !important; */
 }
 .footerBox {
   display: flex !important;
@@ -28,7 +34,7 @@
 }
 .saveButton {
   text-align: right !important;
-  margin-top: 24px !important;
+  margin-top: 10px !important;
 }
 .imageGuide {
   display: flex;
@@ -68,9 +74,10 @@
 }
 .mainBox {
   width: 100% !important;
-  margin-top: 20px;
+  margin-top: 25px;
+  margin-bottom: 10px !important;
 }
-.subMain{
+.subMain {
   margin-bottom: 32px !important;
 }
 .dateContainer {

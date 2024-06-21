@@ -14,8 +14,6 @@ import {
 } from "../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 
-
-
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
     color: theme.palette.error.dark,
@@ -123,13 +121,13 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               />
             </div>
           </div>
-          <div >
+          <div>
             <Typography
               variant="subtitle1"
               fontWeight={600}
               sx={{
                 ml: theme.spacing(1.5),
-                mt:theme.spacing(1)
+                mt: theme.spacing(1),
               }}
             >
               Status
@@ -144,19 +142,17 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             />
           </div>
         </ShadowBox>
-        <div >
-          
-            <RoleTableComponent
-              classes={classes}
-              // data={data}
-              permissions={permission}
-              changeTextData={changeTextData}
-              permisionChangeHandler={permisionChangeHandler}
-              setPermissions={setPermissions}
-              allData={allData}
-              setAllData={setAllData}
-            />
-        
+        <div>
+          <RoleTableComponent
+            classes={classes}
+            // data={data}
+            permissions={permission}
+            changeTextData={changeTextData}
+            permisionChangeHandler={permisionChangeHandler}
+            setPermissions={setPermissions}
+            allData={allData}
+            setAllData={setAllData}
+          />
         </div>
 
         <div className={styles.actionButton}>
