@@ -146,7 +146,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           </div>
         </ShadowBox>
         <div>
-          <Suspense fallback={{}}>
+          <Suspense fallback={<></>}>
             <RoleTableComponent
               classes={classes}
               // data={data}
