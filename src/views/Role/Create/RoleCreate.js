@@ -1,22 +1,20 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { ButtonBase, CircularProgress, Typography } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
-
 import { makeStyles, useTheme } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
-
 import useRoleCreateHook from "./RoleCreateHook";
-import RoleTableComponent from "../RoleTable.component";
+// import RoleTableComponent from "../RoleTable.component";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import history from "../../../libs/history.utils";
-
 import {
   ActionButton,
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 
+const RoleTableComponent = lazy(() => import("../RoleTable.component"));
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -73,8 +71,8 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             color={theme.palette.text.primary}
             sx={{
               marginLeft: theme.spacing(1.3),
-              marginTop:theme.spacing(4),
-              marginBottom:theme.spacing(3)
+              marginTop: theme.spacing(4),
+              marginBottom: theme.spacing(3),
             }}
           >
             Role Details
@@ -128,13 +126,17 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             </div>
           </div>
           <div className={"formGroup"}>
-            <Typography variant="subtitle1" fontWeight={600} sx={{
-              marginLeft:theme.spacing(0.3)
-            }}>
+            <Typography
+              variant="subtitle1"
+              fontWeight={600}
+              sx={{
+                marginLeft: theme.spacing(0.3),
+              }}
+            >
               Status
             </Typography>
             <CustomIosSwitch
-            className={styles.statusActive}
+              className={styles.statusActive}
               value={form?.is_active}
               handleChange={() => {
                 changeTextData(!form?.is_active, "is_active");
@@ -143,17 +145,19 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             />
           </div>
         </ShadowBox>
-        <div >
-          <RoleTableComponent
-            classes={classes}
-            // data={data}
-            permissions={permission}
-            changeTextData={changeTextData}
-            permisionChangeHandler={permisionChangeHandler}
-            setPermissions={setPermissions}
-            allData={allData}
-            setAllData={setAllData}
-          />
+        <div>
+          <Suspense fallback={{}}>
+            <RoleTableComponent
+              classes={classes}
+              // data={data}
+              permissions={permission}
+              changeTextData={changeTextData}
+              permisionChangeHandler={permisionChangeHandler}
+              setPermissions={setPermissions}
+              allData={allData}
+              setAllData={setAllData}
+            />
+          </Suspense>
         </div>
 
         <div className={styles.actionButton}>
