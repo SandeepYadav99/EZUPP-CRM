@@ -62,7 +62,7 @@ const IOSSwitch = styled((props) => (
 export default function CustomIosSwitch({
   handleChange,
   label,
-  value,
+ 
   ...rest
 }) {
   const theme = useTheme();
@@ -72,7 +72,7 @@ export default function CustomIosSwitch({
         control={
           <IOSSwitch
             sx={{ m: 1 }}
-            checked={value ? true : false}
+           
             onChange={(e) => handleChange(e.target.checked)}
             theme={theme}
             defaultChecked

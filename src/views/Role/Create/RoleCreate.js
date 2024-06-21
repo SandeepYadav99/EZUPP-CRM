@@ -66,13 +66,11 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
           <Typography
-            variant="h4"
+            variant="h5"
             fontWeight={600}
             color={theme.palette.text.primary}
             sx={{
-              marginLeft: theme.spacing(1.3),
-              marginTop: theme.spacing(4),
-              marginBottom: theme.spacing(3),
+              margin: theme.spacing(1, 0, 1, 1),
             }}
           >
             Role Details
@@ -125,19 +123,20 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               />
             </div>
           </div>
-          <div className={"formGroup"}>
+          <div >
             <Typography
               variant="subtitle1"
               fontWeight={600}
               sx={{
-                marginLeft: theme.spacing(0.3),
+                ml: theme.spacing(1.5),
+                mt:theme.spacing(1)
               }}
             >
               Status
             </Typography>
             <CustomIosSwitch
               className={styles.statusActive}
-              value={form?.is_active}
+              checked={form?.is_active ? true : false}
               handleChange={() => {
                 changeTextData(!form?.is_active, "is_active");
               }}
@@ -145,7 +144,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             />
           </div>
         </ShadowBox>
-        <div>
+        <div >
           <Suspense fallback={<></>}>
             <RoleTableComponent
               classes={classes}

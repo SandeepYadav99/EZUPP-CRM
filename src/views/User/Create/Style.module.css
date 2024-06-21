@@ -5,15 +5,15 @@
   padding-bottom: 32px;
   flex-wrap: wrap;
 }
-.userContainer {
-  /* overflow: hidden !important; */
+.subContainer{
+  margin: 10px !important;
 }
 .count {
   margin: auto !important;
 }
 .outerFlex1 {
   /* padding-bottom: 30px; */
-  margin: 36px 0px 36px 0px !important;
+  margin-bottom: 24px!important;
 }
 .iconButton {
   display: flex;
