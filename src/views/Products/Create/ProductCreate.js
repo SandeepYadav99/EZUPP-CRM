@@ -14,6 +14,7 @@ import Settings from "./Components/Settings";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
 import useProductCreateHook from "./ProductCreateHook";
+import Cascader from "../../../components/FormFields/Cascader/Cascader";
 
 const ProductCreate = ({}) => {
   const {
@@ -72,6 +73,33 @@ const ProductCreate = ({}) => {
         manager={manager}
         department={department}
       />
+        <Cascader
+            value={[]}
+            //   isError={errorData.category}
+            label={"Industry"}
+            options={[{
+                value: "a",
+                label: "a",
+                children: [{
+                        value: "a.a",
+                    label: "a.a",
+                    children: []
+                    }],
+            },
+                {
+                    value: "b",
+                    label: "b",
+                    children: [{
+                        value: "b.a",
+                        label: "b.a",
+                        children: []
+                    }],
+                }
+                ]}
+            handleChange={(value) => {
+
+            }}
+        />
       <div className={styles.buttonContainer}>
         <div className={styles.cancelButton}>
           <ActionButton sx={{ mt: 4 }} onClick={handleCancel}>CANCEL</ActionButton>

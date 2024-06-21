@@ -68,13 +68,13 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
           <Typography
-            variant="h4"
+            variant="h5"
             fontWeight={600}
             color={theme.palette.text.primary}
             sx={{
               marginLeft: theme.spacing(1.3),
-              marginTop:theme.spacing(4),
-              marginBottom:theme.spacing(3)
+              // marginTop:theme.spacing(4),
+              // marginBottom:theme.spacing(3)
             }}
           >
             Role Details

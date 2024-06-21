@@ -188,6 +188,7 @@ const TopicView = (props) => {
         side={"right"}
       >
         <TopicViewForm
+          isOpen={sidePanel}
           dataExist={editData}
           handletoggleSidePannel={handleSideToggle}
           listlength={props?.data?.length}

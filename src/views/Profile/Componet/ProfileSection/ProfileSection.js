@@ -37,7 +37,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div>
           <div>
             <Typography
-              variant="h4"
+              variant="h5"
               color={theme.palette.text.primary}
               fontWeight={600}
               className={styles.profileTitle}
@@ -90,7 +90,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h4"
+          variant="h5"
           color={theme.palette.text.primary}
         >
           Personal Details
@@ -106,7 +106,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div> */}
           <div className={styles.profileContainer}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >

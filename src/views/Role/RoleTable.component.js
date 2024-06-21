@@ -7,7 +7,7 @@ import {
   TableRow,
   Checkbox,
   Typography,
-  
+
 } from "@mui/material";
 import { useTheme } from "@mui/styles";
 import styles from "./Style.module.css";
@@ -23,8 +23,7 @@ const RoleTableComponent = ({
   setPermissions,
 
 }) => {
-  const handleCheckboxChange = useCallback(
-    (event, permissionType, index) => {
+  const handleCheckboxChange = useCallback((event, permissionType, index) => {
       permisionChangeHandler(index, { [permissionType]: event });
     },
     [permisionChangeHandler, permissions]
@@ -135,7 +134,7 @@ const RoleTableComponent = ({
                 variant="h6"
                 fontWeight={600}
                 color={theme.palette.text.primary}
-             
+
               >
                 Modules
               </Typography>
@@ -147,7 +146,7 @@ const RoleTableComponent = ({
                 marginLeft: theme.spacing(-1),
               }}
               checked={
-                
+
                 permissions.every((permission) => permission.all_data)
               }
               onChange={handleAllDataChange}
@@ -201,7 +200,7 @@ const RoleTableComponent = ({
                 <TableCell
                   sx={{
                     borderBottom: "none",
-                    
+
                     [theme.breakpoints.down("sm")]: {
                       display: "block",
                       width: "100%",
@@ -213,7 +212,7 @@ const RoleTableComponent = ({
                       variant="h6"
                       sx={{
                         marginLeft:theme.spacing(0.5),
-                       
+
                       }}
                       color={theme.palette.text.secondary}
                     >
@@ -262,7 +261,7 @@ const RoleTableComponent = ({
                         ? allData
                         : permission?.read
                     }
-                  
+
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.read, `read`, index)
                     }
@@ -283,7 +282,7 @@ const RoleTableComponent = ({
                         ? allData
                         : permission?.create
                     }
-                    
+
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.create, `create`, index)
                     }
@@ -304,7 +303,7 @@ const RoleTableComponent = ({
                         ? allData
                         : permission?.update
                     }
-                  
+
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.update, `update`, index)
                     }
@@ -325,7 +324,7 @@ const RoleTableComponent = ({
                         ? allData
                         : permission?.delete
                     }
-                   
+
                     onChange={(event) =>
                       handleCheckboxChange(!permission?.delete, `delete`, index)
                     }

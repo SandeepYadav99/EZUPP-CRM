@@ -167,6 +167,7 @@ const QuestionView = (props) => {
     if (sidePanel) {
       return (
         <QuestionsForm
+         isOpen={sidePanel}
           category={category}
           handleDataSave={handleDataSave}
           data={editData}

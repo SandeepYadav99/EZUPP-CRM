@@ -24,6 +24,7 @@ import CustomIosSwitch from "../../../../../components/FormFields/CustomIosSwitc
 
 const TopicViewForm = ({
   dataExist,
+  isOpen,
   handletoggleSidePannel,
   listlength = 0,
 }) => {
@@ -36,7 +37,7 @@ const TopicViewForm = ({
     confirmPopUp,
     suspendItem,
     handleDialogClose,
-  } = useTopicView(dataExist, handletoggleSidePannel, listlength);
+  } = useTopicView(dataExist,isOpen, handletoggleSidePannel, listlength);
 
   const renderDialog = () => {
     if (confirmPopUp) {
@@ -113,7 +114,7 @@ const TopicViewForm = ({
                 changeTextData(value, "visible_to");
               }}
             >
-              <MenuItem value={"BOTH"}>General</MenuItem>;
+              <MenuItem value={"GENERAL"}>General</MenuItem>;
             </CustomSelectField>
           </div>
         </div>

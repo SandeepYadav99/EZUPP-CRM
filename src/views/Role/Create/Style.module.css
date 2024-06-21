@@ -65,16 +65,16 @@
     margin-top: 20px;
 }
 .outerFlex1{
-  
+
 }
 .statusActive{
-    margin-bottom: 2rem !important;
+    /*margin-bottom: 2rem !important;*/
 }
 .iconButton{
     display: flex;
     gap: 12px;
-    margin-top:2rem !important;
-    margin-bottom: 2rem !important;
+    /*margin-top:2rem !important;*/
+    /*margin-bottom: 2rem !important;*/
 }
 .actionButton{
     display: flex;
