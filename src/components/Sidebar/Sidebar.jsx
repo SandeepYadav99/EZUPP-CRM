@@ -6,10 +6,8 @@ import clsx from "clsx";
 import { useTheme, withStyles } from "@mui/styles";
 import {
   Drawer,
-  SwipeableDrawer,
   Hidden,
   List,
-  ListItem,
   ListItemIcon,
   ListItemText,
   Collapse,
@@ -24,7 +22,6 @@ import sidebarStyle from "../../assets/jss/material-dashboard-react/sidebarStyle
 import { styled } from "@mui/material/styles";
 
 class CustomListItem extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -94,7 +91,7 @@ class CustomListItem extends React.Component {
   }
 
   render() {
-    const { prop, classes, color, key, activeRoute, isOpened, routes } =
+    const { prop, classes, color, key, activeRoute, isOpened, routes, theme } =
       this.props;
 
     if (!prop.is_sidebar) return null;
@@ -118,10 +115,7 @@ class CustomListItem extends React.Component {
             selected={isSelected}
             sx={{
               "&.Mui-selected": {
-                backgroundColor: "#EEEEF0",
-              },
-              "&.Mui-focusVisible": {
-                backgroundColor: "#EEEEF0",
+                backgroundColor: theme.palette.isActiveTab ? "#EEEEF0" : "",
               },
             }}
             className={classes.itemLink + listItemClasses}
@@ -154,6 +148,7 @@ class CustomListItem extends React.Component {
 }
 
 const CustomLink = ({ routes, classes, color, activeRoute, isOpened }) => {
+  const theme = useTheme();
   const renderLinks = useMemo(() => {
     const links = [];
     routes.forEach((prop, key) => {
@@ -166,6 +161,7 @@ const CustomLink = ({ routes, classes, color, activeRoute, isOpened }) => {
           activeRoute={activeRoute}
           color={color}
           isOpened={isOpened}
+          theme={theme}
         />
       );
     });
@@ -187,7 +183,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const Sidebar = ({ ...props }) => {
   const { classes, color, logo, image, logoText, routes } = props;
   // verifies if routeName is the one active (in browser input)
-  
+
   const subRoutes = useMemo(() => {
     return routes?.length > 0
       ? routes.filter(
