@@ -20,13 +20,13 @@
   align-items: center !important;
 }
 .bgProfile {
-  margin: 0px 60px !important;
+  /*margin: 0px 60px !important;*/
 }
-.profileTitle {
-  font-size: 22px !important;
-  font-weight: bold !important;
-  color: #636578 !important;
-}
+/*.profileTitle {*/
+/*  font-size: 22px !important;*/
+/*  font-weight: bold !important;*/
+/*  color: #636578 !important;*/
+/*}*/
 .profileHeaderAction {
   display: flex !important;
   gap: 15px !important;
@@ -39,8 +39,8 @@
   }
   .profileHeaderAction {
   justify-content: center;
-    
-    
+
+
   }
 }
 .resetPassworedAction {
@@ -86,7 +86,7 @@
 }
 .rightSection {
   flex: 1 1;
- 
+
 }
 @media (max-width: 1300px) {
   .profileFlex {
@@ -96,7 +96,7 @@
   .leftSection {
     flex: 1 1 !important;
   }
- 
+
 }
 .profileHeading {
   padding-top: 20px;
