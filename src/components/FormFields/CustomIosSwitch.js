@@ -14,7 +14,7 @@ const IOSSwitch = styled((props) => (
   padding: 0,
   "& .MuiSwitch-switchBase": {
     padding: 0,
-    margin: 2,
+    margin: 3,
     transitionDuration: "300ms",
     "&.Mui-checked": {
       transform: "translateX(26px)",
@@ -44,10 +44,11 @@ const IOSSwitch = styled((props) => (
   },
   "& .MuiSwitch-thumb": {
     boxSizing: "border-box",
-    width: 18,
-    height: 18,
-    borderRadius: "25px",
+    width: 15,
+    height: 15,
+    borderRadius: "20px",
     backgroundColor: theme.palette.contact,
+  
   },
   "& .MuiSwitch-track": {
     borderRadius: "25px",
