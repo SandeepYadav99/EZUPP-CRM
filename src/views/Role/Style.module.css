@@ -96,6 +96,7 @@
 .checkboxlabel{
   margin-left: 5px !important;
   margin-top: 1px !important;
+  margin-right: 5px !important;
 }
 @media (max-width: 768px) {
   .infoFiled1 {
