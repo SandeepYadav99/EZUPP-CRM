@@ -13,6 +13,12 @@ import {
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
+import {
+  CreateActionComponent,
+  CreateHeadaerComponent,
+  CreateHeadaerView,
+  HeaderTitleComponet,
+} from "../../../components/CustomListHeader/CustomListHeader";
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -43,36 +49,11 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
   const theme = useTheme();
   return (
     <>
-      <div className={styles.iconButton}>
-        <ButtonBase onClick={() => history.goBack()}>
-          <ArrowBackIos
-            sx={{
-              color: theme.palette.text.primary,
-            }}
-            fontSize={"small"}
-          />{" "}
-        </ButtonBase>
-        <Typography
-          variant="h4"
-          fontWeight={600}
-          color={theme.palette.text.primary}
-        >
-          {id ? "Edit" : "Create"} Role
-        </Typography>
-      </div>
-
+      <CreateHeadaerComponent title={id ? "Edit Role" : "Create Role"} />
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
-          <Typography
-            variant="h5"
-            fontWeight={600}
-            color={theme.palette.text.primary}
-            sx={{
-              margin: theme.spacing(1, 0, 1, 1),
-            }}
-          >
-            Role Details
-          </Typography>
+         
+          <HeaderTitleComponet headerTitle={" Role Details"}/>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
@@ -154,24 +135,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             setAllData={setAllData}
           />
         </div>
-
-        <div className={styles.actionButton}>
-          <ActionButton onClick={cancelRole}>CANCEL</ActionButton>
-          <PrimaryButton
-            variant={"contained"}
-            color={"primary"}
-            type={"submit"}
-            onClick={handleSubmit}
-          >
-            {isSubmitting ? (
-              <CircularProgress color="success" size="20px" />
-            ) : id ? (
-              "UPDATE"
-            ) : (
-              "SAVE"
-            )}
-          </PrimaryButton>
-        </div>
+        <CreateActionComponent
+          handleSubmit={handleSubmit}
+          isRemove={true}
+          isSubmitting={isSubmitting}
+          removeHandler={cancelRole}
+          title={id ? "UPDATE" : "SAVE"}
+        
+        />
+      
       </div>
 
       {/* <DeleteModal

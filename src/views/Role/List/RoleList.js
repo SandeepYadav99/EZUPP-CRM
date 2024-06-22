@@ -13,7 +13,10 @@ import useRoleListHook from "./RoleListHook";
 
 import StatusPill from "../../../components/Status/StatusPill.component";
 import ImageStack from "../../../components/AvatarGroup/ImageStack";
-import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
+import {
+  CustomListHeader,
+  ListActionComponent,
+} from "../../../components/CustomListHeader/CustomListHeader";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import ImageStackPopUp from "./ImageStackPopUp/ImageStackPopUp";
 import { useTheme } from "@mui/styles";
@@ -72,7 +75,9 @@ const RoleList = (props) => {
             open={isOpenImageStack}
             openProfilePopUp={openProfilePopUp}
           />
-        ) : "N/A"}
+        ) : (
+          "N/A"
+        )}
       </div>
     ),
     [isOpenImageStack, openProfilePopUp]
@@ -131,36 +136,12 @@ const RoleList = (props) => {
         key: "user_id",
         label: "Action",
         render: (temp, all) => (
-          <>
-            <IconButton
-              disableRipple="false"
-              onClick={() => {
-                // handleSideToggle(all?.id);
-                handleDetail(all);
-              }}
-            >
-              <Info
-                fontSize={"small"}
-                sx={{
-                  color: theme.palette.text.primary,
-                }}
-              />
-            </IconButton>
-            <IconButton
-              disableRipple="false"
-              onClick={() => {
-                // handleSideToggle(all?.id);
-                handleEdit(all);
-              }}
-            >
-              <Edit
-                fontSize={"small"}
-                sx={{
-                  color: theme.palette.text.primary,
-                }}
-              />
-            </IconButton>
-          </>
+          <ListActionComponent
+            allData={all}
+            handleDetail={handleDetail}
+            handleEdit={handleEdit}
+            key={all?.id}
+          />
         ),
       },
     ];

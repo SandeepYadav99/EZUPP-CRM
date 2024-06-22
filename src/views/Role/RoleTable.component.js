@@ -13,6 +13,7 @@ import styles from "./Style.module.css";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import { InfoOutlined } from "@mui/icons-material";
 import WraperComponentCheckBox from "./Component/WraperComponent";
+import { HeaderTitleComponet } from "../../components/CustomListHeader/CustomListHeader";
 
 const RoleTableComponent = ({
   permissions,
@@ -110,7 +111,7 @@ const RoleTableComponent = ({
     >
       <div className={styles.subContainer}>
         <div className={styles.infoFiled}>
-          <Typography
+          {/* <Typography
             variant="h4"
             fontWeight={600}
             color={theme.palette.text.primary}
@@ -119,7 +120,8 @@ const RoleTableComponent = ({
             }}
           >
             Permissions Granted
-          </Typography>
+          </Typography> */}
+          <HeaderTitleComponet headerTitle={"Permissions Granted"}/>
           <Tooltip title={"Info"} placement="top">
             <InfoOutlined fontSize="16px" />
           </Tooltip>
