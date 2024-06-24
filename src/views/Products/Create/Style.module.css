@@ -101,3 +101,10 @@
     flex-wrap: wrap;
   }
 }
+@media screen and (max-width: 600px) {
+  .outerFlex{
+    /* display: flex !important; */
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+}
