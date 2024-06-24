@@ -54,13 +54,29 @@ const ProductList = (props) => {
   } = useSelector((state) => state.product);
   const [productToDelete, setProductToDelete] = useState(null);
   const theme = useTheme();
+  
+  const truncateText = (text, length) => {
+    if (!text) return "";
+    const str = String(text);
+    return str.length > length ? `${str.substring(0, length)}...` : str;
+  };
+  
+  const wrapText = (text, length) => {
+    if (!text) return "";
+    const str = String(text);
+    const regex = new RegExp(`(.{1,${length}})`, "g");
+    return str.match(regex).join("\n");
+  };
+  
   const renderFirstCell = useCallback((user) => {
+    const capitalizedName = capitalizeFirstLetter(user?.name || '');
+    const wrappedName = wrapText(capitalizedName, 40);
     return (
       <div className={styles.firstCellFlex}>
         {/* <img src={user.image} alt="" crossOrigin="anonymous" /> */}
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
-          <div>{`${capitalizeFirstLetter(user?.name)}`} </div>
+          <div>{wrappedName} </div>
           <div> {user?.employee_id}</div>
         </div>
       </div>
@@ -101,7 +117,8 @@ const ProductList = (props) => {
         key: "product_code",
         label: "Product Code",
         sortable: false,
-        render: (temp, all) => <div>{all?.code}</div>,
+        render: (temp, all) => <div>{wrapText(all?.code, 20)}</div>,
+        
       },
       {
         key: "role",
@@ -126,7 +143,8 @@ const ProductList = (props) => {
                 window.open(all?.product_link, "_blank", "noopener,noreferrer");
               }}
             >
-              {all?.product_link}
+              {/* {all?.product_link} */}
+              {truncateText(all?.product_link, 30)}
             </a>
              ) : (
               "N/A"

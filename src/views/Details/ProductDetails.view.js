@@ -37,17 +37,22 @@ const ProductDetailview = () => {
   const getCurrencySymbol = (currency) => {
     switch (currency) {
       case 'INR':
-        return '₹'; // Indian Rupee symbol
+        return '₹'; 
       case 'USD':
-        return '$'; // US Dollar symbol
+        return '$'; 
       case 'EURO':
-        return '€'; // Euro symbol
+        return '€'; 
       default:
         return '';
     }
   };
   const currencySymbol = getCurrencySymbol(profileDetails?.currency);
-  
+  const wrapText = (text, length) => {
+    if (!text) return "";
+    const str = String(text);
+    const regex = new RegExp(`(.{1,${length}})`, "g");
+    return str.match(regex).join("\n");
+  };
   return (
     <div>
       <div>
@@ -103,10 +108,12 @@ const ProductDetailview = () => {
                   crossOrigin="anonymous"
                 />
                 <div className={styles.textContainer}>
+                  
                   <div className={styles.row1}>
-                    <Typography variant={"title"} color={"text.primary"}>
+                    <Typography variant={"title"} className={styles.productHeading} color={"text.primary"}>
                       {" "}
-                      {profileDetails?.name}
+                      {/* {profileDetails?.name} */}
+                      {wrapText(profileDetails?.name, 40)}
                     </Typography>
                     <div className={styles.right}>
                       <StatusPill status={profileDetails?.status} color={getStatusPillColor()}/>
@@ -121,6 +128,7 @@ const ProductDetailview = () => {
                   <Typography variant={"body1"} className={styles.link}>
                     <a href={profileDetails?.product_link} target={"_blank"}>
                       {profileDetails?.product_link}
+                      {/* {wrapText(profileDetails?.product_link, 40)} */}
                     </a>
                   </Typography>
                 </div>
@@ -222,7 +230,8 @@ const ProductDetailview = () => {
                         className={styles.email}
                       >
                         {" "}
-                        {profileDetails?.discount_value != null  ? `${profileDetails?.discount_percent} %` : "N/A"}
+                        {profileDetails?.discount_percent !== null  ? `${profileDetails?.discount_percent} %` : "N/A"}
+                     
                       </Typography>
                     </div>
                     <div className={styles.contactFlex}>

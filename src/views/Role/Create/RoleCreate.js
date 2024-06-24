@@ -2,21 +2,23 @@ import React from "react";
 import { ButtonBase, CircularProgress, Typography } from "@mui/material";
 import { ArrowBackIos, Delete as DeleteIcon } from "@mui/icons-material";
 import styles from "./Style.module.css";
-
 import { makeStyles, useTheme } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
-
 import useRoleCreateHook from "./RoleCreateHook";
 import RoleTableComponent from "../RoleTable.component";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import history from "../../../libs/history.utils";
-
 import {
   ActionButton,
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
-import CustomSwitch from "../../../components/FormFields/CustomSwitch";
+import {
+  CreateActionComponent,
+  CreateHeadaerComponent,
+  CreateHeadaerView,
+  HeaderTitleComponet,
+} from "../../../components/CustomListHeader/CustomListHeader";
 
 const useStyles = makeStyles((theme) => ({
   iconBtnError: {
@@ -47,38 +49,11 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
   const theme = useTheme();
   return (
     <>
-      <div className={styles.iconButton}>
-        <ButtonBase onClick={() => history.goBack()}>
-          <ArrowBackIos
-            sx={{
-              color: theme.palette.text.primary,
-            }}
-            fontSize={"small"}
-          />{" "}
-        </ButtonBase>
-        <Typography
-          variant="h4"
-          fontWeight={600}
-          color={theme.palette.text.primary}
-        >
-          {id ? "Edit" : "Create"} Role
-        </Typography>
-      </div>
-
+      <CreateHeadaerComponent title={id ? "Edit Role" : "Create Role"} />
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
-          <Typography
-            variant="h5"
-            fontWeight={600}
-            color={theme.palette.text.primary}
-            sx={{
-              marginLeft: theme.spacing(1.3),
-              // marginTop:theme.spacing(4),
-              // marginBottom:theme.spacing(3)
-            }}
-          >
-            Role Details
-          </Typography>
+
+          <HeaderTitleComponet headerTitle={" Role Details"}/>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
@@ -127,15 +102,20 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
               />
             </div>
           </div>
-          <div className={"formGroup"}>
-            <Typography variant="subtitle1" fontWeight={600} sx={{
-              marginLeft:theme.spacing(0.3)
-            }}>
+          <div>
+            <Typography
+              variant="subtitle1"
+              fontWeight={600}
+              sx={{
+                ml: theme.spacing(1.5),
+                mt: theme.spacing(1),
+              }}
+            >
               Status
             </Typography>
             <CustomIosSwitch
-            className={styles.statusActive}
-              value={form?.is_active}
+              className={styles.statusActive}
+              checked={form?.is_active ? true : false}
               handleChange={() => {
                 changeTextData(!form?.is_active, "is_active");
               }}
@@ -143,7 +123,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             />
           </div>
         </ShadowBox>
-        <div >
+        <div>
           <RoleTableComponent
             classes={classes}
             // data={data}
@@ -155,24 +135,15 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             setAllData={setAllData}
           />
         </div>
+        <CreateActionComponent
+          handleSubmit={handleSubmit}
+          isRemove={true}
+          isSubmitting={isSubmitting}
+          removeHandler={cancelRole}
+          title={id ? "UPDATE" : "SAVE"}
 
-        <div className={styles.actionButton}>
-          <ActionButton onClick={cancelRole}>CANCEL</ActionButton>
-          <PrimaryButton
-            variant={"contained"}
-            color={"primary"}
-            type={"submit"}
-            onClick={handleSubmit}
-          >
-            {isSubmitting ? (
-              <CircularProgress color="success" size="20px" />
-            ) : id ? (
-              "UPDATE"
-            ) : (
-              "SAVE"
-            )}
-          </PrimaryButton>
-        </div>
+        />
+
       </div>
 
       {/* <DeleteModal

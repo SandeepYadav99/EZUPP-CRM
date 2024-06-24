@@ -68,6 +68,7 @@ const TaskDetailView = ({}) => {
     },
     [filterValue]
   );
+
   const fetchTaskDetails = useCallback(() => {
     serviceTaskManagementDetail({ id: id }).then((res) => {
       if (!res?.error) {
@@ -118,17 +119,6 @@ const TaskDetailView = ({}) => {
     [setSidePanel] // , profileId, id,  userObject?.user?.id
   );
 
-  const upperSidePanelText = useCallback(() => {
-    return (
-      <Typography
-        variant="h3"
-        fontWeight={600}
-        sx={{ marginTop: theme.spacing(4), marginBottom: theme.spacing(4) }}
-      >
-        Update Task
-      </Typography>
-    );
-  }, [id]);
   return (
     <div>
       <div className={styles.outerFlex}>
@@ -156,7 +146,6 @@ const TaskDetailView = ({}) => {
             icon={<Edit fontSize="small" />}
           >
             <Typography variant="subtitle1">EDIT</Typography>
-   
           </ArrowOutlineButton>
         </div>
       </div>
@@ -199,7 +188,11 @@ const TaskDetailView = ({}) => {
 
       <SidePanelComponent
         handleToggle={handleSideToggle}
-        title={upperSidePanelText()}
+        title={
+          <Typography variant="h3" fontWeight={600}>
+            Update Task
+          </Typography>
+        }
         open={isSidePanel}
         side={"right"}
       >

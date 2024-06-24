@@ -1,6 +1,8 @@
 .mainContainer {
-  padding:0px 24px;
- 
+  padding: 10px
+}
+.subContainer{
+  margin: 10px !important;
 }
 .headerContainer {
   display: flex;
@@ -10,7 +12,7 @@
 .headerContainer .title {
   font-size: 1rem;
 }
-.checkBox{
+.checkBox {
   padding: 5px !important;
 }
 .bottomLine {
@@ -46,9 +48,8 @@
   font-weight: 700;
   margin-left: 15px;
 }
-.mainContainer{
+.mainContainer {
   width: 100% !important;
-
 }
 .crud {
   /* display: flex;
@@ -56,8 +57,8 @@
   flex-direction: row;
   justify-content: center; */
   display: inline-block !important;
- justify-content: center !important;
-  border: 1px solid #C5C5C5 !important;
+  justify-content: center !important;
+  border: 1px solid #c5c5c5 !important;
   background-color: #ffffff;
   color: #636578;
   border-radius: 6px;
@@ -65,7 +66,7 @@
   text-align: center;
   /* width: 80%; */
 }
-.crudHover{
+.crudHover {
   /* display: flex;
   align-items: center;
   flex-direction: row;
@@ -78,24 +79,28 @@
   /* width: 80%; */
   text-align: center;
   padding: 0% 10% 0% 2% !important;
-  border: 1px solid #2063CE;
+  border: 1px solid #2063ce;
 }
 .infoFiled {
   display: flex;
   gap: 5px;
-
+  margin: 15px 0px !important;
   align-items: center !important;
-
 }
-.infoFiled1{
+.infoFiled1 {
   display: flex;
   gap: 5px;
   align-items: center;
+
 }
-@media (max-width:768px) {
+.checkboxlabel{
+  margin-left: 5px !important;
+  margin-top: 1px !important;
+  margin-right: 5px !important;
+}
+@media (max-width: 768px) {
   .infoFiled1 {
-  margin-left: 15% !important;
-  
+    margin-left: 15% !important;
   }
 }
 .rowSeparator {
@@ -105,12 +110,12 @@
 .rowSeparator:last-child {
   border-bottom: none;
 }
-.subTitle{
+.subTitle {
   font-size: 14px !important;
   color: #888888 !important;
   font-weight: 600 !important;
 }
-.headerTitle{
+.headerTitle {
   font-size: 18px !important;
   color: #888888 !important;
   font-weight: 600 !important;
