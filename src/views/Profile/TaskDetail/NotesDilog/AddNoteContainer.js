@@ -1,6 +1,6 @@
 import {  Typography } from "@mui/material";
 
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import NotesDilog from "./NotesDilog";
 import useNotesDilogHook from "./NotesDilogHook";
 import NoteItem from "./NoteItems";
@@ -20,6 +20,19 @@ const AddNoteContainer = ({ details, styles, classes }) => {
     errorData,
     isSubmitting,
   } = useNotesDilogHook();
+
+  const noteLists =useMemo(()=>{
+if(noteDetails?.length > 0){
+  return noteDetails?.map((note, index) => (
+    <NoteItem
+      key={index}
+      note={note}
+      styles={styles}
+      classes={classes}
+    />
+  ))
+}
+  },[noteDetails])
 
   return (
     <div className={styles.plainPaper}>
@@ -49,7 +62,7 @@ const AddNoteContainer = ({ details, styles, classes }) => {
           onBlurHandler
         />
 
-        {noteDetails?.length > 0 ? (
+        {/* {noteDetails?.length > 0 ? (
           noteDetails?.map((note, index) => (
             <NoteItem
               key={index}
@@ -60,7 +73,8 @@ const AddNoteContainer = ({ details, styles, classes }) => {
           ))
         ) : (
           <div className={styles.notFound}>Notes not available!</div>
-        )}
+        )} */}
+        {noteLists}
       </div>
     </div>
   );

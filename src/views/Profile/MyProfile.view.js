@@ -108,7 +108,10 @@ const Profile = () => {
         <SidePanelComponent
           handleToggle={handleSideToggle}
           title={
-            <Typography variant="h3" fontWeight={600}>
+            <Typography variant="h4" sx={{
+              color:theme.palette.text.primary,
+              
+            }} fontWeight={600}>
               Add New Task{" "}
             </Typography>
           } // profileId ? "Update Hubs" :

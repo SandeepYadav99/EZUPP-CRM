@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { Button, ButtonBase, CircularProgress } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { Button, ButtonBase, CircularProgress } from "@mui/material";
+import { Close } from "@mui/icons-material";
 import Slide from "@mui/material/Slide";
 import Dialog from "@mui/material/Dialog";
 import styles from "./Styles.module.css";
@@ -87,12 +87,10 @@ const NotesDilog = ({
           </div>
 
           <div className={styles.printFlex}>
-            <div style={{  }}>
+            <div style={{}}>
               <PrimaryButton
-               
                 onClick={handleSubmit} // handleSubmit
               >
-
                 {isSubmitting ? (
                   <CircularProgress color="success" size="20px" />
                 ) : (

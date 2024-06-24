@@ -2,6 +2,7 @@ import { ButtonBase, Typography } from "@mui/material";
 import { Check } from "@mui/icons-material";
 import React, { useState } from "react";
 import { useTheme } from "@mui/styles";
+import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
 
 const TaskDetailHeader = ({
   details,
@@ -23,6 +24,11 @@ const TaskDetailHeader = ({
         variant="h3"
         fontWeight={600}
         color={theme.palette.text.primary}
+        sx={{
+          "&::first-letter": {
+            textTransform: "uppercase",
+          },
+        }}
       >
         {details?.title}
       </Typography>
