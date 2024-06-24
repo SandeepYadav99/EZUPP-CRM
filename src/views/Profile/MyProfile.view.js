@@ -38,93 +38,97 @@ const Profile = () => {
   };
   const theme = useTheme();
 
+  if (isLoading) {
+      return (
+          <div className={styles.bgProfile}>
+              <WaitingComponent />
+          </div>
+      )
+  }
+
   return (
     <div className={styles.bgProfile}>
-      {isLoading ? (
-        <WaitingComponent />
-      ) : (
         <div>
-          <div className={styles.upperFlex}>
-            <div className={styles.profileTitle}>
-              {location !== "/myprofile" && (
-                <ButtonBase onClick={() => history.push("/admin/users")}>
-                  <ArrowBackIos fontSize={"medium"} />{" "}
-                </ButtonBase>
-              )}
-              <Typography
-                variant="h3"
-                fontWeight={600}
-                color={theme.palette.text.primary}
-              >
-                Profile View
-              </Typography>
+            <div className={styles.upperFlex}>
+                <div className={styles.profileTitle}>
+                    {location !== "/myprofile" && (
+                        <ButtonBase onClick={() => history.push("/admin/users")}>
+                            <ArrowBackIos fontSize={"medium"} />{" "}
+                        </ButtonBase>
+                    )}
+                    <Typography
+                        variant="h3"
+                        fontWeight={600}
+                        color={theme.palette.text.primary}
+                    >
+                        Profile View
+                    </Typography>
+                </div>
+                <div className={styles.profileHeaderAction}>
+                    <ArrowOutlineButton
+                        onClick={handleClose}
+                        icon={<Lock fontSize="normal" />}
+                    >
+                        <Typography variant={"body1"} fontWeight={600} color={""}>
+                            RESET PASSWORD
+                        </Typography>
+                    </ArrowOutlineButton>
+                    <ArrowPrimaryButton
+                        icon={<Add fontSize={"small"} />}
+                        onClick={handleSideToggle}
+                    >
+                        <Typography variant={"body1"} fontWeight={600}>
+                            ADD TASK
+                        </Typography>
+                    </ArrowPrimaryButton>
+                </div>
             </div>
-            <div className={styles.profileHeaderAction}>
-              <ArrowOutlineButton
-                onClick={handleClose}
-                icon={<Lock fontSize="normal" />}
-              >
-                <Typography variant={"body1"} fontWeight={600} color={""}>
-                  RESET PASSWORD
-                </Typography>
-              </ArrowOutlineButton>
-              <ArrowPrimaryButton
-                icon={<Add fontSize={"small"} />}
-                onClick={handleSideToggle}
-              >
-                <Typography variant={"body1"} fontWeight={600}>
-                  ADD TASK
-                </Typography>
-              </ArrowPrimaryButton>
-            </div>
-          </div>
-          <div>
-            <div className={styles.profileFlex}>
-              <div className={styles.leftSection}>
-                <ProfileSection
-                  profileDetails={profileDetails}
-                  handleEdit={handleEdit}
-                />
-              </div>
+            <div>
+                <div className={styles.profileFlex}>
+                    <div className={styles.leftSection}>
+                        <ProfileSection
+                            profileDetails={profileDetails}
+                            handleEdit={handleEdit}
+                        />
+                    </div>
 
-                        <div className={styles.rightSection}>
-                            <TaskSection
-                                filterValue={filterValue}
-                                filterCompltedTask={filterCompltedTask}
-                                taskLists={taskLists}
-                                handleDetailPage={handleDetailPage}
-                                markAsCompleted={markAsCompleted}
-                                completedHandler={completedHandler}
-                            />
-                        </div>
+                    <div className={styles.rightSection}>
+                        <TaskSection
+                            filterValue={filterValue}
+                            filterCompltedTask={filterCompltedTask}
+                            taskLists={taskLists}
+                            handleDetailPage={handleDetailPage}
+                            markAsCompleted={markAsCompleted}
+                            completedHandler={completedHandler}
+                        />
                     </div>
                 </div>
+            </div>
 
-          <ResetPasswordDialog
-            open={open}
-            handleClose={handleClose}
-            email={profileDetails?.email}
-          />
-          <SidePanelComponent
-            handleToggle={handleSideToggle}
-            title={
-              <Typography variant="h3" fontWeight={600}>
-                Add New Task{" "}
-              </Typography>
-            } // profileId ? "Update Hubs" :
-            open={isSidePanel}
-            side={"right"}
-          >
-            <AddTaskCreate
-              handleSideToggle={handleSideToggle}
-              isSidePanel={isSidePanel}
-              // empId={profileId}
-              profileDetails={profileDetails}
-              handleCreatedTask={handleCreatedTask}
+            <ResetPasswordDialog
+                open={open}
+                handleClose={handleClose}
+                email={profileDetails?.email}
             />
-          </SidePanelComponent>
+            <SidePanelComponent
+                handleToggle={handleSideToggle}
+                title={
+                    <Typography variant="h3" fontWeight={600}>
+                        Add New Task{" "}
+                    </Typography>
+                } // profileId ? "Update Hubs" :
+                open={isSidePanel}
+                side={"right"}
+            >
+                <AddTaskCreate
+                    handleSideToggle={handleSideToggle}
+                    isSidePanel={isSidePanel}
+                    // empId={profileId}
+                    profileDetails={profileDetails}
+                    handleCreatedTask={handleCreatedTask}
+                />
+            </SidePanelComponent>
         </div>
-      )}
     </div>
   );
 };

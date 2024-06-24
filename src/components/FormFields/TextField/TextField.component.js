@@ -64,7 +64,7 @@ const CustomTextField = ({
         variant={"outlined"}
         // color={"primary"}
         size={"small"}
-        margin={"dense"}
+        // margin={"dense"}
         fullWidth
         {...rest}
       />

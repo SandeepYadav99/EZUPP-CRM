@@ -15,6 +15,7 @@ const TaskSection = ({
   completedHandler,
 }) => {
   const theme = useTheme()
+
   return (
     <ShadowBox width={"100%"}>
       <div>

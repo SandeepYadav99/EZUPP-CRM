@@ -97,11 +97,9 @@ function QuickContactView({ isOpen, handleToggle }) {
         <div className={styles.nameWrapper}>
           <div className={styles.dropdown}>
             <CustomSelectField
-              outlinedProps={{
-                sx: {
-                  borderTopRightRadius: theme.spacing(0),
-                  borderBottomRightRadius: theme.spacing(0),
-                },
+                sx={{
+                borderTopRightRadius: theme.spacing(0),
+                borderBottomRightRadius: theme.spacing(0)
               }}
               isError={errorData?.prefix_type}
               errorText={errorData?.prefix_type}
