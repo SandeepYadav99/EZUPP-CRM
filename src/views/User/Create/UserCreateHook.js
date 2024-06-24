@@ -107,8 +107,13 @@ function useUserCreateHook() {
   const checkForUserInfo = useCallback(
     (data, fieldName, errorArr) => {
       if (data) {
-        let filteredForm = { id: id ? id : "" };
-        filteredForm[fieldName] = data;
+        let filteredForm = { id: id ? id : userObject?.user_id };
+        if (fieldName === "userName") {
+          filteredForm["user_name"] = data;
+        } else {
+          filteredForm[fieldName] = data;
+        }
+     
         let req = serviceProviderIsExist({
           ...filteredForm,
         });

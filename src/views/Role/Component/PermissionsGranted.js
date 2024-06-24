@@ -7,7 +7,6 @@ const PermissionsGranted = ({ state, styles }) => {
   return (
     <div>
       {state?.permissions?.map((permission) => {
-     
         return (
           <div className={styles.rightContaiiner}>
             <div>
@@ -15,9 +14,9 @@ const PermissionsGranted = ({ state, styles }) => {
                 variant="h5"
                 margin={theme.spacing(1.5)}
                 fontWeight={600}
-                
+
                 color={theme.palette.text.primary}
-                
+
               >
                 {permission?.name}:
               </Typography>

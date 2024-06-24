@@ -6,7 +6,6 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import CustomTextField from "../../../FormFields/TextField.component";
 import styles from "./Style.module.css";
 import useAddTaskCreate from "./AddTaskCreateHook";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
@@ -16,6 +15,8 @@ import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDa
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 import { useTheme } from "@mui/styles";
+import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
+import CustomDateTimePicker from "../../../components/FormFields/DatePicker/CustomDateTimePicker";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -48,7 +49,7 @@ const AddTaskCreate = ({
       <ShadowBox width={"100%"}>
         <div className={styles.headerFlex}>
           <h4 className={styles.infoTitle}>
-            <Typography fontSize={18} fontWeight={600} sx={{ marginBottom:theme.spacing(2)}}>
+            <Typography fontSize={18} fontWeight={600} >
               Task Details
             </Typography>
             {/* <Tooltip title="Info" aria-label="info" placement="right">
@@ -57,7 +58,7 @@ const AddTaskCreate = ({
           </h4>
         </div>
 
-        <div>
+       
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomMultiComplete
@@ -150,9 +151,10 @@ const AddTaskCreate = ({
 
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomDatePicker
+              <CustomDateTimePicker
                 clearable
                 label={"Due Date"}
+             
                 onChange={(date) => {
                   changeTextData(date, "due_date");
                 }}
@@ -284,7 +286,7 @@ const AddTaskCreate = ({
               />
             </div>
           </div>
-        </div>
+    
       </ShadowBox>
       <div className={styles.actionButton}>
         <PrimaryButton

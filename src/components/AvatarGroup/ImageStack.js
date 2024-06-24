@@ -5,7 +5,7 @@ import { useTheme } from "@mui/styles";
 
 const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
   const theme = useTheme();
-  console.log(imageArray)
+
   return (
     <AvatarGroup
       max={4}

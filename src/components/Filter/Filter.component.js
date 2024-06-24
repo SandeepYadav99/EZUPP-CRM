@@ -4,7 +4,6 @@ import {
   TextField,
   Select,
   Popover,
-
   MenuItem,
   LinearProgress,
   FormControlLabel,
@@ -13,7 +12,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import {  withStyles } from "@mui/styles";
+import { withStyles } from "@mui/styles";
 
 import {
   FilterList as FilterIcon,
@@ -39,24 +38,42 @@ const styles = {
 const useStyles = (theme) => ({
   formControl: {
     minWidth: 120,
-    color:  theme.palette.text.primary,
+    color: theme.palette.text.primary,
     "& .MuiInputBase-input": {
       color: theme.palette.text.primary,
     },
   },
   formSelect: {
     color: `${theme.palette.text.primary} !important`,
-    background:theme.palette.tableHeadColor,
+    background: theme.palette.tableHeadColor,
   },
   inputLabel: {
-    marginTop:theme.spacing(-0.4),
+    marginTop: theme.spacing(-0.4),
     color: theme.palette.text.primary,
     "&.MuiInputLabel-outlined.MuiInputLabel-shrink": {
-        color: theme.palette.text.primary,
-        background:theme.palette.tableHeadColor,
+      color: theme.palette.text.primary,
+      background: theme.palette.tableHeadColor,
     },
-  
   },
+  searchInput: {
+    background: "transparent",
+    width: "100%",
+    height: "40px",
+    border: "none",
+    padding: "10px",
+    fontSize: "1rem",
+    color: theme.palette.text.primary,
+    "&:focus": {
+      outline: "none",
+    },
+    "&::placeholder": {
+      color: theme.palette.text.primary,
+    },
+  },
+  filterIcon: {
+    color: theme.palette.text.primary,
+  },
+
 });
 
 class FilterComponent extends Component {
@@ -187,7 +204,7 @@ class FilterComponent extends Component {
             {val.label.toUpperCase()}
           </InputLabel>
           <Select
-             classes={{select: classes.selectRoot, root: classes.selectRoot}}
+            classes={{ select: classes.selectRoot, root: classes.selectRoot }}
             labelId={"select" + val.name}
             // floatingLabelText={val.name.toUpperCase()}
             value={this.state.filter[i].value}
@@ -214,7 +231,7 @@ class FilterComponent extends Component {
       });
       return (
         <FormControl className={classes.formControl}>
-          <InputLabel id={"select" + val.name} >
+          <InputLabel id={"select" + val.name}>
             {val.label.toUpperCase()}
           </InputLabel>
           <Select
@@ -323,7 +340,6 @@ class FilterComponent extends Component {
             />
           }
           label={val.label}
-        
         />
       );
     });
@@ -332,8 +348,7 @@ class FilterComponent extends Component {
   }
 
   render() {
-    const { theme } = this.props;
-    console.log(theme);
+    const { classes } = this.props;
     return (
       <div style={{}}>
         <br />
@@ -345,7 +360,8 @@ class FilterComponent extends Component {
                 onBlur={this._handleSearchBlur}
                 value={this.state.query}
                 onChange={this._handleSearchChange}
-                className={cstyles.searchInput}
+                // className={cstyles.searchInput}
+                className={classes.searchInput}
                 placeholder={"Search"}
               />
             </div>
@@ -361,7 +377,7 @@ class FilterComponent extends Component {
               {/*    primary*/}
               {/*/>*/}
               <Button style={styles.flatButton} onClick={this.handleTouchTap}>
-                <FilterIcon />
+                <FilterIcon className={classes.filterIcon} />
               </Button>
               {/*<Menu*/}
               {/*    id="simple-menu"*/}

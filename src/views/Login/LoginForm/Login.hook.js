@@ -6,6 +6,7 @@ import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import { useDispatch } from "react-redux";
 import { isEmail } from "../../../libs/RegexUtils";
+import { serviceLoginUsingGoogleAuth } from "../../../services/AppSettings.service";
 
 const initialForm = {
   email: "",
@@ -16,6 +17,23 @@ const useLoginHook = () => {
   const [form, setForm] = useState({ ...initialForm });
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+
+  const responseMessage = (response) => {
+    const getAuthToken = response?.credential;
+    const req = serviceLoginUsingGoogleAuth({ type: "GOOGLE",access_token: getAuthToken });
+    req.then((res) => {
+      if (!res.error) {
+        const data = res?.data;
+        if (data) {
+          dispatch(actionLoginUser(data));
+          historyUtils.push(`/`);
+        }
+      }
+    });
+  };
+  const errorMessage = (error) => {
+    console.log(">>>>error",error);
+  };
 
   const [errorData, setErrorData] = useState({});
 
@@ -121,6 +139,8 @@ const useLoginHook = () => {
     handleForgotPassword,
     showPassword,
     togglePasswordVisibility,
+    responseMessage,
+    errorMessage
   };
 };
 

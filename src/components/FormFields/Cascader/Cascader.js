@@ -155,7 +155,7 @@ const Cascader = ({label, isError, defaultValue, options, handleChange, value, i
                 isError={isError}
                 onClick={handleBtnClick}
                 errorText={''}
-                disabled={true}
+                // disabled={false}
                 value={stringValue}
                 {...rest}
             />
