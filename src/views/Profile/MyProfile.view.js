@@ -53,6 +53,7 @@ const Profile = () => {
             )}
             <Typography
               variant="h3"
+              fontSize={22}
               fontWeight={600}
               color={theme.palette.text.primary}
             >
