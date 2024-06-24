@@ -6,6 +6,7 @@ import {
   Slide,
   Tooltip,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 import {
   Backup as BackupIcon,
@@ -40,6 +41,7 @@ const QuestionsFormView = ({
     suspendItem,
     handleDialogClose,
     descriptionRef,
+    isSubmitting
   } = useQuestionFormHook({
     category,
     data,
@@ -146,7 +148,7 @@ const QuestionsFormView = ({
             handleChange={() => {
               changeTextData(!form?.status, "status");
             }}
-            label={form?.status ? "Active" : "Inactive"}
+            label={form?.status ? "ACTIVE" : "INACTIVE"}
           />
 
           <div>
@@ -159,8 +161,14 @@ const QuestionsFormView = ({
         </div>
         <br />
         <div className={styles.submitBtn}>
-          <PrimaryButton onClick={handleSubmit}>
-            {data ? "Update" : "Save"}
+          <PrimaryButton onClick={handleSubmit} disabled={isSubmitting}>
+          {isSubmitting ? (
+              <CircularProgress color="success" size="20px" />
+            ) : data ? (
+              "Update"
+            ) : (
+              "Save"
+            )}
           </PrimaryButton>
         </div>
       </div>
