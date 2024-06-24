@@ -51,7 +51,7 @@ function useProductCreateHook() {
 
   const [tagList, setTagList] = useState([]);
   const codeDebouncer = useDebounce(form?.code, 500);
-
+ 
   useEffect(() => {
     (() => {
       Promise.allSettled([
@@ -82,11 +82,14 @@ function useProductCreateHook() {
           })
           setForm({
             ...form,
-            ...obj
+            ...obj,
+            // image: details.image || initialForm.image
           })
-          //setImages(details?.image);
-          
-        
+          // if (details.image) {
+          //   setImages(details.image);
+          // }
+          setImages(details?.image);
+        console.log("image", details?.image)
         } 
       });
     }
