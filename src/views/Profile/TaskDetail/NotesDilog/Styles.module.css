@@ -8,9 +8,10 @@
 }
 
 .printFlex {
-  display: flex;
-  justify-content: start;
-  margin-left: 8px;
+  display: flex !important;
+  justify-content: start !important;
+  margin-left: 8px !important;
+  margin-top: 15px !important;
 }
 
 .btmBtn {
@@ -25,10 +26,13 @@
   overflow: scroll;
 }
 .resetWrapper {
-  display: flex;
+  display: flex !important;
+  justify-content: space-between !important;
+margin-left: 10px !important;
+margin-right: 10px !important;
 }
-.resetPasswordWrapper {
-  padding: 1rem;
+.notesWrapper {
+  padding: 20px !important;
 }
 .fieldWrapper {
   display: flex;

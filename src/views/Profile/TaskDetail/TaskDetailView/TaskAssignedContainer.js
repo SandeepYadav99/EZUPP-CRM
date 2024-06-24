@@ -33,8 +33,11 @@ const TaskAssignedContainer = ({ styles, details, classes }) => {
             />
           </div>
         </div>
+      
       </div>
+     <div className={styles.hrline}/>
       <div className={styles.backgroundStatus1}>
+        
         <div className={styles.getfiledSpace}>
           {/* Avator  */}
           <div>

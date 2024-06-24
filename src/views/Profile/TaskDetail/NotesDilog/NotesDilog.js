@@ -1,5 +1,10 @@
 import React, { memo } from "react";
-import { Button, ButtonBase, CircularProgress } from "@mui/material";
+import {
+  Button,
+  ButtonBase,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import { Close } from "@mui/icons-material";
 import Slide from "@mui/material/Slide";
 import Dialog from "@mui/material/Dialog";
@@ -54,22 +59,27 @@ const NotesDilog = ({
         maxWidth={"sm"}
         TransitionComponent={Transition}
         open={isOpen}
-        onClose={() => {}}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        PaperProps={{
+          style: {
+            borderRadius: "10px",
+            maxWidth: "600px",
+            width: "calc(100% - 64px)",
+          },
+        }}
+        onClose={handleToggle}
+        // aria-labelledby="alert-dialog-title"
+        // aria-describedby="alert-dialog-description"
       >
-        <div className={styles.resetPasswordWrapper}>
+        <div className={styles.notesWrapper}>
           <div className={styles.resetWrapper}>
-            <ButtonBase
-              classes={{ root: classes.closeBtn }}
-              onClick={handleToggle}
-            >
+            <Typography variant="h5" fontWeight={600}>
+              Add Notes
+            </Typography>
+            <ButtonBase onClick={handleToggle}>
               <Close />
             </ButtonBase>
           </div>
-          <div>
-            <h2 className={styles.heading}>Add Notes</h2>
-          </div>
+
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
@@ -87,17 +97,15 @@ const NotesDilog = ({
           </div>
 
           <div className={styles.printFlex}>
-            <div style={{}}>
-              <PrimaryButton
-                onClick={handleSubmit} // handleSubmit
-              >
-                {isSubmitting ? (
-                  <CircularProgress color="success" size="20px" />
-                ) : (
-                  "SAVE & EXIT"
-                )}
-              </PrimaryButton>
-            </div>
+            <PrimaryButton
+              onClick={handleSubmit} // handleSubmit
+            >
+              {isSubmitting ? (
+                <CircularProgress color="success" size="20px" />
+              ) : (
+                "SAVE & EXIT"
+              )}
+            </PrimaryButton>
           </div>
         </div>
       </Dialog>
