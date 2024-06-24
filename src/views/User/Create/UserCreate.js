@@ -10,6 +10,10 @@ import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
 import useUserCreateHook from "./UserCreateHook";
 import { useTheme } from "@mui/styles";
+import {
+  CreateActionComponent,
+  CreateHeadaerComponent,
+} from "../../../components/CustomListHeader/CustomListHeader";
 
 const UserCreate = ({}) => {
   const {
@@ -25,20 +29,13 @@ const UserCreate = ({}) => {
     department,
     listData,
     isSubmitting,
-    designation
+    designation,
   } = useUserCreateHook();
-const theme = useTheme()
+  const theme = useTheme();
   return (
     <div className={styles.userContainer}>
       <div className={styles.outerFlex1}>
-        <div className={styles.iconButton}>
-          <ButtonBase onClick={() => history.goBack()}>
-            <ArrowBackIos fontSize={"medium"} />{" "}
-          </ButtonBase>
-          <Typography variant="h4" fontWeight={600} color={theme.palette.text.primary} >
-            {id ? "Update" : "Add"} User
-          </Typography>
-        </div>
+        <CreateHeadaerComponent title={id ? "Update User" : "Add User"} />
       </div>
       <PersonalInformation
         errorData={errorData}
@@ -64,13 +61,12 @@ const theme = useTheme()
         />
       )}
       <div className={styles.saveButton}>
-        <PrimaryButton color={"primary"} onClick={handleSubmit}>
-          {isSubmitting ? (
-            <CircularProgress color="success" size="20px" />
-          ) : (
-            "Save"
-          )}
-        </PrimaryButton>
+        <CreateActionComponent
+          handleSubmit={handleSubmit}
+          isRemove={false}
+          isSubmitting={isSubmitting}
+          title={id ? "Update" : "Save"}
+        />
       </div>
     </div>
   );

@@ -143,7 +143,8 @@
 .contactFlex {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  gap: 8px !important;
 }
 .email {
   max-width: 20rem !important;
@@ -165,8 +166,9 @@
 .activityFlex {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   color: #5f5151;
+  gap: 8px !important;
 }
 
 .email {

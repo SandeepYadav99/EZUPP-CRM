@@ -18,7 +18,10 @@ import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
-import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
+import {
+  CustomListHeader,
+  ListActionComponent,
+} from "../../../components/CustomListHeader/CustomListHeader";
 import { useTheme } from "@mui/styles";
 
 const UserList = (props) => {
@@ -149,37 +152,13 @@ const UserList = (props) => {
         label: "Action",
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            <IconButton
-              onClick={() => handleProfile(all)}
-              disableRipple="false"
-            >
-              <Info
-                fontSize={"small"}
-                sx={{
-                  color: theme.palette.text.primary,
-                }}
-              />
-            </IconButton>
-            <IconButton
-              disableRipple="false"
-              // color={theme.palette.status.service}
-              // onClick={() => handleProfile(all)}
-            >
-              <img
-                src={addTask}
-                alt="task"
-                width={20}
-                style={{ color: `${theme.palette.text.primary}` }}
-              />
-            </IconButton>
-            <IconButton onClick={() => handleEdit(all)} disableRipple="false">
-              <Edit
-                fontSize={"small"}
-                sx={{
-                  color: theme.palette.text.primary,
-                }}
-              />
-            </IconButton>
+            <ListActionComponent
+              allData={all}
+              handleDetail={handleProfile}
+              handleEdit={handleEdit}
+              isAnotherAction={true}
+            />
+           
           </div>
         ),
       },

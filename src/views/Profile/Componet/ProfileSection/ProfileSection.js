@@ -68,7 +68,10 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
                 },
               }}
             >
-              {profileDetails?.user_name} ({profileDetails?.employee_id})
+              {profileDetails?.user_name}{" "}
+              {profileDetails?.employee_id
+                ? `(${profileDetails?.employee_id})`
+                : " "}
             </Typography>
             <div className={styles.status}>
               <StatusPill
@@ -104,7 +107,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               {profileDetails?.user_name || "N/A"}
             </span>
           </div> */}
-          <div className={styles.profileContainer}>
+          <div className={styles.contactFlex}>
             <Typography
               variant="h6"
               color={theme?.palette.text.primary}
@@ -148,7 +151,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
             >
               {" "}
               {profileDetails?.contact || "N/A"}
@@ -166,7 +168,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
             >
               {" "}
               {profileDetails?.role?.name || "N/A"}
@@ -198,7 +199,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
             >
               {formatString(profileDetails?.department || "N/A")}
             </Typography>
@@ -216,7 +216,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
             >
               {formatString(profileDetails?.designation || "N/A")}
             </Typography>
@@ -234,8 +233,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
-              fo
               sx={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -246,8 +243,10 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
                 },
               }}
             >
-              {formatString(profileDetails?.manager?.name)} (
-              {profileDetails?.employee_id})
+              {formatString(profileDetails?.manager?.name || "N/A")}
+              {profileDetails?.employee_id
+                ? `(${profileDetails?.employee_id})`
+                : " "}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
@@ -263,7 +262,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
             >
               {profileDetails?.joiningDateText}
             </Typography>
@@ -281,7 +279,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
             >
               {profileDetails?.exitDateText}
             </Typography>
@@ -299,7 +296,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               variant="h6"
               color={theme?.palette.text.secondary}
               fontWeight={600}
-              marginLeft={2}
             >
               {profileDetails?.is_manager ? "Yes" : "No"}
             </Typography>
@@ -329,7 +325,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             variant="h6"
             color={theme?.palette.text.secondary}
             fontWeight={600}
-            marginLeft={2}
           >
             {profileDetails?.createdAtText}
           </Typography>
@@ -347,7 +342,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             variant="h6"
             color={theme?.palette.text.secondary}
             fontWeight={600}
-            marginLeft={2}
           >
             {profileDetails?.updatedAtText}
           </Typography>
@@ -365,7 +359,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             variant="h6"
             color={theme?.palette.text.secondary}
             fontWeight={600}
-            marginLeft={2}
             sx={{
               whiteSpace: "nowrap",
               overflow: "hidden",
@@ -376,8 +369,10 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               },
             }}
           >
-            {profileDetails?.updated_by?.name || "N/A"} (
-            {profileDetails?.employee_id})
+            {profileDetails?.updated_by?.name || "N/A"}
+            {profileDetails?.employee_id
+              ? `(${profileDetails?.employee_id})`
+              : " "}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
@@ -393,7 +388,6 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             variant="h6"
             color={theme?.palette.text.secondary}
             fontWeight={600}
-            marginLeft={2}
           >
             {profileDetails?.lastLoginText}
           </Typography>
