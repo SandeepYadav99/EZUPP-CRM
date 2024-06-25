@@ -15,6 +15,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import DomainSharpIcon from "@mui/icons-material/DomainSharp";
 import { useTheme } from "@mui/styles";
 import { useState } from "react";
+import CustomPhoneContactField from "../../../../../FormFields/CustomPhoneContact.componet";
 
 function QuickContactView({ isOpen, handleToggle }) {
   const {
@@ -36,6 +37,7 @@ function QuickContactView({ isOpen, handleToggle }) {
   } = useContactList({ isOpen, handleToggle });
   const theme = useTheme();
   const [selectedValue, setSelectedValue] = useState("");
+  console.log("contact",form)
 
   const options = [
     {
@@ -68,7 +70,7 @@ function QuickContactView({ isOpen, handleToggle }) {
           />
         </div>
 
-        <div className={"formFlex"}>
+        {/* <div className={"formFlex"}>
           <div className={styles.countryBox}>
             <CustomCountryFC
               type="tel"
@@ -81,7 +83,18 @@ function QuickContactView({ isOpen, handleToggle }) {
               }}
             />
           </div>
-        </div>
+        </div> */}
+          <div className={"styles.countryBox"}>
+                <CustomPhoneContactField
+                  isError={errorData?.contact}
+                  errorText={errorData?.contact}
+                  value={form?.contact}
+                  onTextChange={(text) => {
+                    changeTextData(text, "contact");
+                  }}
+                />
+              </div>
+        
         <CustomTextField
           isError={errorData?.email}
           errorText={errorData?.email}
@@ -111,13 +124,18 @@ function QuickContactView({ isOpen, handleToggle }) {
             >
               <MenuItem value="Mr">Mr</MenuItem>
               <MenuItem value="Mrs">Mrs</MenuItem>
-              <MenuItem value="Mrs">Miss. </MenuItem>
-              <MenuItem value="Mrs">Dr. </MenuItem>
+              <MenuItem value="Miss">Miss </MenuItem>
+              <MenuItem value="Dr">Dr </MenuItem>
             </CustomSelectField>
           </div>
 
           <div className={styles.textbox}>
             <CustomTextField
+            InputProps={{
+              sx:{
+                borderTopLeftRadius: theme.spacing(0),
+                borderBottomLeftRadius: theme.spacing(0)
+             }}}
               className={styles.widthfull}
               error={errorData?.full_name}
               value={form?.full_name}
@@ -254,7 +272,7 @@ function QuickContactView({ isOpen, handleToggle }) {
         </CustomSelectField>
         <div style={{ display: "flex", gap: "0.5rem" }}>
           <CustomCheckbox
-            sx={{ width: "1rem" }}
+            sx={{ width: "1rem",}}
             value={form?.is_lead_owner_task}
             handleChange={() => {
               changeTextData(!form?.is_lead_owner_task, "is_lead_owner_task");
@@ -263,7 +281,7 @@ function QuickContactView({ isOpen, handleToggle }) {
           <Typography
             component="span"
             variant="subtitle2"
-            color="text.secondary"
+            color={theme.palette.text.primary}
             sx={{ display: "flex", alignItems: "center" }}
           >
             Add initial task to Lead Owner
