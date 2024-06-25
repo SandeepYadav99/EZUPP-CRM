@@ -20,7 +20,7 @@ export const CustomListHeader = ({ handleCreate, title, sideTitlle }) => {
   const theme = useTheme();
   return (
     <div className={"HeaderCustom"}>
-      <Typography variant="h4" fontWeight={600}>
+      <Typography variant="h3" fontSize={18} fontWeight={600}>
         {sideTitlle}
       </Typography>
       <ArrowPrimaryButton
@@ -103,7 +103,8 @@ export const CreateHeadaerComponent = ({ id, title }) => {
         />{" "}
       </ButtonBase>
       <Typography
-        variant="h4"
+        variant="h3"
+        fontSize={22}
         fontWeight={600}
         color={theme.palette.text.primary}
       >
