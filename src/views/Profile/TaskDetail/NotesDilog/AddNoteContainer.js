@@ -1,13 +1,10 @@
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import NotesDilog from "./NotesDilog";
 import useNotesDilogHook from "./NotesDilogHook";
 import NoteItem from "./NoteItems";
-import {
- 
-  PrimaryButton,
-} from "../../../../components/Buttons/PrimaryButton";
+import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 
 const AddNoteContainer = ({ details, styles, classes }) => {
   const {
@@ -21,11 +18,20 @@ const AddNoteContainer = ({ details, styles, classes }) => {
     isSubmitting,
   } = useNotesDilogHook();
 
+  const noteLists = useMemo(() => {
+    if (noteDetails?.length > 0) {
+      return noteDetails?.map((note, index) => (
+        <NoteItem key={index} note={note} styles={styles} classes={classes} />
+      ));
+    }
+  }, [noteDetails]);
+  
+  const isNotNotes = !noteLists;
   return (
     <div className={styles.plainPaper}>
       <div className={styles.newContainer}>
         <div className={styles.notesContainer}>
-          <Typography variant="h4" >Notes</Typography>
+          <Typography variant="h4">Notes</Typography>
           <div>
             <PrimaryButton
               // className={styles.addTask}
@@ -33,7 +39,9 @@ const AddNoteContainer = ({ details, styles, classes }) => {
               // icon={<Add fontSize={"small"} />}
               paddingLR={2}
             >
-              <Typography variant={"h6"} fontWeight={'600'} color={"#FFFFFF"}>ADD NOTES</Typography>
+              <Typography variant={"h6"} fontWeight={"600"} color={"#FFFFFF"}>
+                ADD NOTES
+              </Typography>
             </PrimaryButton>
           </div>
         </div>
@@ -49,17 +57,11 @@ const AddNoteContainer = ({ details, styles, classes }) => {
           onBlurHandler
         />
 
-        {noteDetails?.length > 0 ? (
-          noteDetails?.map((note, index) => (
-            <NoteItem
-              key={index}
-              note={note}
-              styles={styles}
-              classes={classes}
-            />
-          ))
-        ) : (
-          <div className={styles.notFound}>Notes not available!</div>
+        {noteLists}
+        {isNotNotes && (
+          <Typography variant="h5" sx={{ textAlign: "center" }}>
+            Notes not available!
+          </Typography>
         )}
       </div>
     </div>

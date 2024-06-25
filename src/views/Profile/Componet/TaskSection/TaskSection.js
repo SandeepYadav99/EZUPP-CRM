@@ -1,5 +1,5 @@
 import { FormControl, MenuItem, Select, Typography } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "../Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import TaskListItem from "../../TaskListView";
@@ -9,22 +9,43 @@ import { useTheme } from "@mui/styles";
 const TaskSection = ({
   filterValue,
   filterCompltedTask,
-   taskLists,
+  taskLists,
   handleDetailPage,
   markAsCompleted,
   completedHandler,
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
+  const taskListData = useMemo(() => {
+    if (taskLists && taskLists?.length > 0) {
+      return taskLists?.map((task) => (
+        <TaskListItem
+          key={task.id}
+          task={task}
+          handleDetailPage={handleDetailPage}
+          markAsCompleted={markAsCompleted}
+          completedHandler={completedHandler}
+        />
+      ));
+    }
+  }, [taskLists]);
+
+  const isHaveTask = !taskListData;
   return (
     <ShadowBox width={"100%"}>
       <div>
         <div className={styles.upperFlex}>
-          <Typography variant="h4" fontWeight={600} color={theme.palette.text.primary}>Tasks Lists</Typography>
+          <Typography
+            variant="h4"
+            fontWeight={600}
+            color={theme.palette.text.primary}
+          >
+            Tasks Lists
+          </Typography>
           <div className={"myprofile"}>
             <CustomSelectField
-            // name={"ALL"}
-            //   disableUnderline
+              // name={"ALL"}
+              //   disableUnderline
               value={filterValue}
               handleChange={filterCompltedTask}
             >
@@ -34,18 +55,13 @@ const TaskSection = ({
             </CustomSelectField>
           </div>
         </div>
-        {taskLists && taskLists?.length > 0 ? (
-          taskLists?.map((task) => (
-            <TaskListItem
-              key={task.id}
-              task={task}
-              handleDetailPage={handleDetailPage}
-              markAsCompleted={markAsCompleted}
-              completedHandler={completedHandler}
-            />
-          ))
-        ) : (
-          <p className={styles.notfound}> Tasks is not available!</p>
+
+        {taskListData}
+        {isHaveTask && (
+          <Typography variant="h5" sx={{ textAlign: "center" }}>
+            {" "}
+            Tasks is not available!
+          </Typography>
         )}
       </div>
     </ShadowBox>

@@ -34,7 +34,9 @@
 }
 
 .headerFlex {
-
+margin-top: 2px !important;
+margin-bottom: 20px !important;
+margin-left: 10px !important;
 }
 
 .includeContainer {

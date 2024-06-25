@@ -1,20 +1,22 @@
-import { Avatar, CardHeader, Typography } from '@mui/material';
+import { Avatar, CardHeader, Typography } from "@mui/material";
 import React, { memo } from "react";
 import RouteName from "../../../../routes/Route.name";
 import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
 
 const TaskAssignedContainer = ({ styles, details, classes }) => {
-
   return (
     <div className={styles.mainFlex}>
       {/* <div className={styles.gaps} /> */}
-      <div className={styles.backgroundStatus1} style={{ width: details?.completedOnText === 'N/A' ? '44%' : '50%' }}>
+      <div
+        className={styles.backgroundStatus1}
+        style={{ width: details?.completedOnText === "N/A" ? "44%" : "50%" }}
+      >
         <div className={styles.getfiledSpace}>
           {/* Avator  */}
           <div>
             <CardHeader
               title={
-                <Typography variant="subtitle1" >Task assigned on:</Typography>
+                <Typography variant="subtitle1">Task assigned on:</Typography>
               }
               subheader={details?.assignedOnDetailText}
             />
@@ -22,44 +24,30 @@ const TaskAssignedContainer = ({ styles, details, classes }) => {
         </div>
         <div className={styles.getfiledSpace}>
           {/* Avator  */}
-          <div >
+          <div>
             <CardHeader
               title={
-                <Typography variant="subtitle1" >Task completed on:</Typography>
+                <Typography variant="subtitle1">Task completed on:</Typography>
               }
               subheader={details?.completedOnText} // completedOnText
             />
           </div>
         </div>
+      
       </div>
+     <div className={styles.hrline}/>
       <div className={styles.backgroundStatus1}>
+        
         <div className={styles.getfiledSpace}>
           {/* Avator  */}
           <div>
             <CardHeader
-              title={<span >Associated User</span>}
+              title={<span>Associated User</span>}
               subheader={
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    {details?.associatedUser?.name ?
-                    <>
-                  <Avatar
-                    className={classes.avatar}
-                    src={details?.associatedUser?.image}
-                  >
-                    {details?.associatedUser?.name
-                      ? details?.associatedUser?.name[0].toUpperCase()
-                      : "N/A"}
-                  </Avatar>
-                 <a
-                    href={ `/profile/?id=${details?.associatedUser?.id}`
-
-                    }
-                  >
-                    {capitalizeFirstLetter(details?.associatedUser?.name)
-                     }
-                  </a>
-                    </> : "N/A"}
-
+                  {capitalizeFirstLetter(
+                    details?.associatedUser?.name || "N/A"
+                  )}
                 </div>
               }
             />

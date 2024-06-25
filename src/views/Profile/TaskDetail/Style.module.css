@@ -21,10 +21,10 @@
   /* background-color: #f7f7f9;
   box-shadow: 0px 20px 80px #00000011; */
 }
-.newNotes{
+.newNotes {
   margin-top: 20px !important;
 }
-.arrowBack{
+.arrowBack {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -100,6 +100,12 @@
   width: 45%;
   flex-wrap: wrap;
 }
+.hrline {
+  border-bottom: 1px solid #e4e4e6 !important;
+  width: 110% !important;
+
+  margin-left: 2% !important;
+}
 .des {
   font-size: 14px;
 }
@@ -150,6 +156,7 @@
   padding: 3px 10px;
   border-radius: 25px;
 }
+
 .subTitle {
   color: #000000;
   font-size: 18px;
@@ -226,21 +233,17 @@
   /* opacity: 0.7; */
 }
 .selectWidth {
-  background-color: #FFF !important;
- 
-
+  background-color: #fff !important;
 }
-.boxHeight{
+.boxHeight {
   height: 45px !important;
 }
 .editAction {
   display: flex;
   gap: 10px;
   align-items: center;
- 
 }
-.boxHeight{
-
+.boxHeight {
 }
 .notFound {
   text-align: center;

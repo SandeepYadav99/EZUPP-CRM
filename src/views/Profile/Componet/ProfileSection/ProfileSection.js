@@ -93,7 +93,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h5"
+          variant="h4"
+          fontSize={18}
           color={theme.palette.text.primary}
         >
           Personal Details
@@ -116,7 +117,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               Email:
             </Typography>
             <Typography
-              variant="h6"
+              variant="body1"
               sx={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -133,7 +134,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
                 },
               }}
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+          
             >
               {" "}
               {profileDetails?.email || "N/A"}
@@ -141,16 +142,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div>
           <div className={styles.contactFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
               Contact:
             </Typography>
             <Typography
-              variant="h6"
+              variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+          
             >
               {" "}
               {profileDetails?.contact || "N/A"}
@@ -158,16 +159,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div>
           <div className={styles.contactFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
               Role:
             </Typography>
             <Typography
-              variant="h6"
+              variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+        
             >
               {" "}
               {profileDetails?.role?.name || "N/A"}
@@ -180,6 +181,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           marginTop={3}
           fontWeight={600}
           variant="h4"
+          fontSize={18}
           color={theme.palette.text.primary}
         >
           Work Details
@@ -188,7 +190,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <div>
           <div className={styles.activityFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
@@ -196,16 +198,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </Typography>
 
             <Typography
-              variant="h6"
+              variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+           
             >
               {formatString(profileDetails?.department || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
@@ -213,16 +215,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </Typography>
 
             <Typography
-              variant="h6"
+              variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+           
             >
               {formatString(profileDetails?.designation || "N/A")}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
@@ -230,9 +232,9 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </Typography>
 
             <Typography
-              variant="h6"
+              variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+            
               sx={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -251,7 +253,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div>
           <div className={styles.activityFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
@@ -259,16 +261,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </Typography>
 
             <Typography
-              variant="h6"
+              variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+             
             >
               {profileDetails?.joiningDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
@@ -276,16 +278,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </Typography>
 
             <Typography
-              variant="h6"
+              variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+           
             >
               {profileDetails?.exitDateText}
             </Typography>
           </div>
           <div className={styles.activityFlex}>
             <Typography
-              variant="h5"
+              variant="h6"
               color={theme?.palette.text.primary}
               fontWeight={600}
             >
@@ -293,7 +295,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </Typography>
 
             <Typography
-              variant="h6"
+             
               color={theme?.palette.text.secondary}
               fontWeight={600}
             >
@@ -307,6 +309,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           marginTop={3}
           fontWeight={600}
           variant="h4"
+          fontSize={18}
           color={theme.palette.text.primary}
         >
           Activity Information
@@ -314,7 +317,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <div className={styles.gaps} />
         <div className={styles.activityFlex}>
           <Typography
-            variant="h5"
+            variant="h6"
             color={theme?.palette.text.primary}
             fontWeight={600}
           >
@@ -322,16 +325,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </Typography>
 
           <Typography
-            variant="h6"
+            variant="body1"
             color={theme?.palette.text.secondary}
-            fontWeight={600}
+       
           >
             {profileDetails?.createdAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
           <Typography
-            variant="h5"
+            variant="h6"
             color={theme?.palette.text.primary}
             fontWeight={600}
           >
@@ -339,16 +342,16 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </Typography>
 
           <Typography
-            variant="h6"
+            variant="body1"
             color={theme?.palette.text.secondary}
-            fontWeight={600}
+          
           >
             {profileDetails?.updatedAtText}
           </Typography>
         </div>
         <div className={styles.activityFlex}>
           <Typography
-            variant="h5"
+            variant="h6"
             color={theme?.palette.text.primary}
             fontWeight={600}
           >
@@ -356,9 +359,9 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </Typography>
 
           <Typography
-            variant="h6"
+            variant="body1"
             color={theme?.palette.text.secondary}
-            fontWeight={600}
+          
             sx={{
               whiteSpace: "nowrap",
               overflow: "hidden",
@@ -377,7 +380,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         </div>
         <div className={styles.activityFlex}>
           <Typography
-            variant="h5"
+            variant="h6"
             color={theme?.palette.text.primary}
             fontWeight={600}
           >
@@ -385,9 +388,9 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </Typography>
 
           <Typography
-            variant="h6"
+            variant="body1"
             color={theme?.palette.text.secondary}
-            fontWeight={600}
+           
           >
             {profileDetails?.lastLoginText}
           </Typography>

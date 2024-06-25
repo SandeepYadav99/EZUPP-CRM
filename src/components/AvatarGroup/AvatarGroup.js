@@ -8,7 +8,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { styled } from "@mui/styles";
+import { styled, useTheme } from "@mui/styles";
 import styles from "./Styles.module.css";
 
 
@@ -52,15 +52,19 @@ export function UserCountAvatarsLabel({
   id,
   name
 }) {
+  const theme= useTheme();
+  console.log(theme)
   return (
     <CardHeader
       avatar={<Avatar src={imgPath}></Avatar>}
       title={
+        
         <a
           className={styles.boldTitle}
           href={`${"/profile/"}?id=${id}`}
         >
-          {name}
+          <Typography variant="subtitle1" sx={{color:theme.palette.primary.main}}>{name}</Typography>
+          
         </a>
       }
     />

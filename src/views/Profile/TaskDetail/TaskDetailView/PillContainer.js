@@ -10,7 +10,7 @@ const PillContainer = ({ details, styles }) => {
       {" "}
       <div className={styles.pillContainer}>
         <div>
-          <div>Task Priority</div>
+          {/* <div>Task Priority</div> */}
           <div>
             <StatusPill
               status={details?.priority}
@@ -19,14 +19,18 @@ const PillContainer = ({ details, styles }) => {
           </div>
         </div>
         <div>
-          <div>Task Type</div>
+          {/* <div>Task Type</div> */}
           <div className={styles.section}>{details?.type}</div>
         </div>
       </div>
       <div className={styles.des}>
         <Typography variant="subtitle1"  >Description: </Typography>
       </div>
-      <Typography variant="subtitle2" >{formattedDescription(details)}</Typography>
+      <Typography variant="subtitle2" sx={{
+        '&::first-letter':{
+          textTransform:"uppercase"
+        }
+      }}>{formattedDescription(details)}</Typography>
       <div className={styles.gaps} />
     </div>
   );
