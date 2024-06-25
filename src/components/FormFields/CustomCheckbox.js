@@ -9,10 +9,10 @@ const CustomCheckbox = ({ handleChange, label, ...rest }) => {
           onChange={(e) => {
             handleChange(e.target.checked);
           }}
+          {...rest}
         />
       }
       label={label}
-      {...rest}
     />
   );
 };

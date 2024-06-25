@@ -228,14 +228,20 @@ function useUserCreateHook() {
       }
     });
 
-    if (form?.name && form?.name?.length < 2) {
+    if (form?.name && form?.name?.trim().length < 2) {
       errors.name = true;
     }
-    if (form?.userName && form?.userName?.length < 2) {
+    if (form?.userName && form?.userName?.trim().length < 2) {
       errors.userName = true;
     }
-    if (form?.employee_id?.length <= 2) {
+    if (form?.employee_id?.trim().length <= 2) {
       errors.employee_id = true;
+    }
+    if(form?.designation && form?.designation?.trim().length <= 2){
+      errors.designation = true
+    }
+    if(form?.department && form?.department?.trim().length <= 2){
+      errors.department = true
     }
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
