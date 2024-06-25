@@ -73,9 +73,8 @@ const ProductCreate = ({}) => {
         manager={manager}
         department={department}
       />
-        <Cascader
+        {/* <Cascader
             value={[]}
-            //   isError={errorData.category}
             label={"Industry"}
             options={[{
                 value: "a",
@@ -99,7 +98,7 @@ const ProductCreate = ({}) => {
             handleChange={(value) => {
 
             }}
-        />
+        /> */}
       <div className={styles.buttonContainer}>
         <div className={styles.cancelButton}>
           <ActionButton sx={{ mt: 4 }} onClick={handleCancel}>CANCEL</ActionButton>
