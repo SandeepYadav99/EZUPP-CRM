@@ -147,7 +147,7 @@ function useProductCreateHook() {
     //   );
     //   errors["discount_value"] = true;
     // }
-    if (form.discount_value !== null && (form.ballpark_price === null || form.ballpark_price === "")) {
+    if (form.discount_value !== "" && (form.ballpark_price === null || form.ballpark_price === "")) {
       SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
       errors["discount_value"] = true;
     } else if (form.discount_value !== null && form.ballpark_price !== null) {
@@ -278,7 +278,7 @@ function useProductCreateHook() {
         });
       }
     },
-    [form, isSubmitting, setIsSubmitting, checkCodeValidation]
+    [form, isSubmitting, setIsSubmitting]
   );
 
   const onBlurHandler = useCallback(

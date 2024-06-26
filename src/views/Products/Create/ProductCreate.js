@@ -14,7 +14,7 @@ import Settings from "./Components/Settings";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
 import useProductCreateHook from "./ProductCreateHook";
-import Cascader from "../../../components/FormFields/Cascader/Cascader";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ProductCreate = ({}) => {
   const {
@@ -30,7 +30,8 @@ const ProductCreate = ({}) => {
     manager,
     department,
     listData,
-    tagList
+    tagList,
+    isSubmitting
   } = useProductCreateHook();
 
   return (
@@ -109,8 +110,9 @@ const ProductCreate = ({}) => {
             color={"primary"}
             sx={{ mt: 4 }}
             onClick={handleSubmit}
+            disabled={isSubmitting}
           >
-            {id ? "UPDATE" : "CREATE"}
+            {isSubmitting ? <CircularProgress size={24} /> :(id ? "UPDATE" : "CREATE")}
           </PrimaryButton>
         </div>
       </div>
