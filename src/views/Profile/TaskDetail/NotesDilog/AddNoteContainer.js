@@ -31,7 +31,7 @@ const AddNoteContainer = ({ details, styles, classes }) => {
     <div className={styles.plainPaper}>
       <div className={styles.newContainer}>
         <div className={styles.notesContainer}>
-          <Typography variant="h4">Notes</Typography>
+          <Typography variant="h5">Notes</Typography>
           <div>
             <PrimaryButton
               // className={styles.addTask}

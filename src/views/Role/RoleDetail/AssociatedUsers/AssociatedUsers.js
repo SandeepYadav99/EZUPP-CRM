@@ -105,7 +105,7 @@ const AssociatedUsers = ({ listData, id }) => {
         sortable: false,
         render: (temp, all) => (
           <div>
-            <IconButton onClick={()=>history.push(`/profile/?id=${all?.id}`)}>
+            <IconButton  disableRipple="false" onClick={()=>history.push(`/profile/?id=${all?.id}`)}>
               <Info fontSize="small" />
             </IconButton>
           </div>
@@ -144,7 +144,7 @@ const AssociatedUsers = ({ listData, id }) => {
 
   return (
     <ShadowBox width={"100%"}>
-      <Typography variant="h4" sx={{mb:2}}  fontWeight={600} color={theme.palette.text.primary} margin={theme.spacing(1)}>
+      <Typography variant="h5" sx={{mb:2}}  fontWeight={600} color={theme.palette.text.primary} margin={theme.spacing(1)}>
         Associated Users
       </Typography>
       <div style={{ width: "100%" }}>

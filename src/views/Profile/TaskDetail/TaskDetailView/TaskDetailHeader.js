@@ -21,7 +21,7 @@ const TaskDetailHeader = ({
   return (
     <div className={styles.headerTitle}>
       <Typography
-        variant="h4"
+        variant="h5"
         fontWeight={600}
         color={theme.palette.text.primary}
         sx={{

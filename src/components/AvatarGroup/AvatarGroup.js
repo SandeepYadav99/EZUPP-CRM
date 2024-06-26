@@ -11,7 +11,6 @@ import {
 import { styled, useTheme } from "@mui/styles";
 import styles from "./Styles.module.css";
 
-
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     backgroundColor: theme.palette.badgeColor.color,
@@ -50,21 +49,23 @@ export function UserCountAvatarsLabel({
   title,
   imgPath,
   id,
-  name
+  name,
 }) {
-  const theme= useTheme();
-  console.log(theme)
+  const theme = useTheme();
+
   return (
     <CardHeader
-      avatar={<Avatar src={imgPath}></Avatar>}
+      avatar={
+        <Avatar sx={{ height: "36px", width: "36px" }} src={imgPath}></Avatar>
+      }
       title={
-        
-        <a
-          className={styles.boldTitle}
-          href={`${"/profile/"}?id=${id}`}
-        >
-          <Typography variant="subtitle1" sx={{color:theme.palette.primary.main}}>{name}</Typography>
-          
+        <a className={styles.boldTitle} href={`${"/profile/"}?id=${id}`}>
+          <Typography
+            variant="subtitle1"
+            sx={{ color: theme.palette.primary.main}}
+          >
+            {name}
+          </Typography>
         </a>
       }
     />
@@ -368,23 +369,22 @@ export function UserCountAvatarsStatusIndicator({
   imgUrl,
 }) {
   return (
-    
-      <div className={styles.flexBox1}>
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          variant="dot"
+    <div className={styles.flexBox1}>
+      <StyledBadge
+        overlap="circular"
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        variant="dot"
+      >
+        <Avatar
+          src={imgUrl}
+          alt={title}
+          sx={{ width: width, height: width }}
+          className={styles.avatar1}
         >
-          <Avatar
-            src={imgUrl}
-            alt={title}
-            sx={{ width: width, height: width }}
-            className={styles.avatar1}
-          >
-            {title}
-          </Avatar>
-        </StyledBadge>
-        {/* <StyledBadge1
+          {title}
+        </Avatar>
+      </StyledBadge>
+      {/* <StyledBadge1
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
@@ -427,8 +427,7 @@ export function UserCountAvatarsStatusIndicator({
               PI
             </Avatar>
           </StyledBadge3> */}
-      </div>
-   
+    </div>
   );
 }
 

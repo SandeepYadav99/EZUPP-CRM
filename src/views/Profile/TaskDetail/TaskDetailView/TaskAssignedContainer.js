@@ -5,18 +5,18 @@ import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
 
 const TaskAssignedContainer = ({ styles, details, classes }) => {
   return (
-    <div className={styles.mainFlex}>
+    <div className={styles.mainFlex1}>
       {/* <div className={styles.gaps} /> */}
       <div
         className={styles.backgroundStatus1}
-        style={{ width: details?.completedOnText === "N/A" ? "44%" : "50%" }}
+        //  style={{ width: details?.completedOnText === "N/A" ? "30%" : "50%" }}
       >
         <div className={styles.getfiledSpace}>
           {/* Avator  */}
           <div>
             <CardHeader
               title={
-                <Typography variant="subtitle1">Task assigned on:</Typography>
+                <Typography variant="subtitle1" >Task assigned on:</Typography>
               }
               subheader={details?.assignedOnDetailText}
             />
@@ -42,7 +42,7 @@ const TaskAssignedContainer = ({ styles, details, classes }) => {
           {/* Avator  */}
           <div>
             <CardHeader
-              title={<span>Associated User</span>}
+              title={<Typography variant="subtitle1">Associated User</Typography>}
               subheader={
                 <div style={{ display: "flex", alignItems: "center" }}>
                   {capitalizeFirstLetter(
@@ -59,7 +59,7 @@ const TaskAssignedContainer = ({ styles, details, classes }) => {
           {/* Avator  */}
 
           <CardHeader
-            title={<span>Associated Task</span>}
+            title={<Typography variant="subtitle1">Associated Task</Typography>}
             subheader={
               <div>
                 {details?.associatedTask?.title ? (

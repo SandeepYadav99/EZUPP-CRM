@@ -4,6 +4,7 @@ import styles from "./Styles.module.css";
 import { AccessTime, AccessTimeFilled, Watch } from "@mui/icons-material";
 import StatusPill from "../../components/Status/StatusPill.component";
 import { useTheme } from "@mui/styles";
+import capitalizeFirstLetter from "../../hooks/CommonFunction";
 
 const TaskListItem = ({
   task,
@@ -24,7 +25,7 @@ const theme= useTheme()
   const formattedDescription = task?.description
     ? task.description.split("\n").map((line, index) => (
         <React.Fragment key={index}>
-          {line}
+          {capitalizeFirstLetter(line)}
           <br />
         </React.Fragment>
       ))
@@ -39,13 +40,13 @@ const theme= useTheme()
           onClick={handleCheckboxClick}
         />
         <Typography
-          variant="h6"
-        
+          variant="subtitle1"
+      
           color={theme.palette.text.primary}
           fontWeight={600}
           onClick={() => handleDetailPage(task)}
         >
-          {task?.title}
+          {capitalizeFirstLetter(task?.title)}
         </Typography>
       </div>
       <div onClick={() => handleDetailPage(task)} className={styles.detailView}>

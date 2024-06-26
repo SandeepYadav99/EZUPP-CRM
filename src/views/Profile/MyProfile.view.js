@@ -52,8 +52,8 @@ const Profile = () => {
               </ButtonBase>
             )}
             <Typography
-              variant="h3"
-              fontSize={22}
+              variant="h4"
+              fontSize={20}
               fontWeight={600}
               color={theme.palette.text.primary}
             >
@@ -109,9 +109,9 @@ const Profile = () => {
         <SidePanelComponent
           handleToggle={handleSideToggle}
           title={
-            <Typography variant="h4" sx={{
+            <Typography variant="h5"  fontSize={18} sx={{
               color:theme.palette.text.primary,
-              
+             
             }} fontWeight={600}>
               Add New Task{" "}
             </Typography>
