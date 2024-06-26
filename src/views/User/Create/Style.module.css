@@ -15,6 +15,9 @@
   /* padding-bottom: 30px; */
   margin-bottom: 24px !important;
 }
+.checkboxAction{
+  display: inline-block !important;
+}
 .actionButton {
   display: flex !important;
   flex-direction: column !important;
@@ -26,6 +29,7 @@
   gap: 5px;
 }
 .checkBoxmargin {
+  display: inline-block;
   /* margin-bottom: 2px !important; */
 }
 .footerBox {
@@ -83,7 +87,11 @@
 .dateContainer {
   width: 100% !important;
 }
-
+.checkbox{
+  display: flex !important;
+gap: 1px !important;
+  align-items: center !important;
+}
 /* .claimListWrapper {
   display: flex;
   flex-direction: column;

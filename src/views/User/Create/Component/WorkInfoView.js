@@ -143,35 +143,37 @@ const WorkInfoView = ({
             </div>
           </div>
 
-          <div className={styles.actionButton}>
-            <CustomCheckbox
-              value={form?.userManage}
-              handleChange={() => {
-                changeTextData(!form?.userManage, "userManage");
-              }}
-              label={
-                <Typography variant="body1" sx={{ pointerEvents: "none" }}>
-                  User is a manager?
-                </Typography>
-              }
-              checked={form?.userManage}
-            />
-
-            {!id && (
+          <div className={"formGroup"}>
+            <div className={styles.checkbox}>
               <CustomCheckbox
-                sx={{ height: "18px" }}
-                checked={form?.invoiteToUser}
-                value={form?.invoiteToUser}
+                value={form?.userManage}
                 handleChange={() => {
-                  changeTextData(!form?.invoiteToUser, "invoiteToUser");
+                  changeTextData(!form?.userManage, "userManage");
                 }}
-                label={
-                  <Typography variant="body1" sx={{ pointerEvents: "none" }}>
-                    Send Invite to user on email
-                  </Typography>
-                }
+                checked={form?.userManage}
               />
+              <Typography variant="body1" sx={{marginLeft:theme.spacing(-2)}}>
+                User is a manager?
+              </Typography>
+            </div>
+
+            <div className={styles.checkbox}>
+            {!id && (
+              <>
+                <CustomCheckbox
+                  sx={{ height: "18px" }}
+                  checked={form?.invoiteToUser}
+                  value={form?.invoiteToUser}
+                  handleChange={() => {
+                    changeTextData(!form?.invoiteToUser, "invoiteToUser");
+                  }}
+                />
+                <Typography variant="body1" sx={{marginLeft:theme.spacing(-2)}}>
+                  Send Invite to user on email
+                </Typography>
+              </>
             )}
+            </div>
           </div>
         </div>
       </ShadowBox>

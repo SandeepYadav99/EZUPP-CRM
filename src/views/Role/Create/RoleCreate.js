@@ -52,8 +52,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
       <CreateHeadaerComponent title={id ? "Edit Role" : "Create Role"} />
       <div className={styles.container}>
         <ShadowBox width={"100%"}>
-
-          <HeaderTitleComponet headerTitle={" Role Details"}/>
+          <HeaderTitleComponet headerTitle={" Role Details"} />
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
@@ -113,14 +112,22 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
             >
               Status
             </Typography>
-            <CustomIosSwitch
-              className={styles.statusActive}
-              checked={form?.is_active ? true : false}
-              handleChange={() => {
-                changeTextData(!form?.is_active, "is_active");
-              }}
-              label={form?.is_active ? `Active` : "Inactive"}
-            />
+            <div className={styles.switchAction}>
+              <CustomIosSwitch
+                className={styles.statusActive}
+                checked={form?.is_active ? true : false}
+                handleChange={() => {
+                  changeTextData(!form?.is_active, "is_active");
+                }}
+                // label={form?.is_active ? `Active` : "Inactive"}
+              />
+              <Typography
+                variant="subtitle1"
+                sx={{ ml: theme.spacing(-2), fontWaight: 600 }}
+              >
+                {form?.is_active ? `Active` : "Inactive"}
+              </Typography>
+            </div>
           </div>
         </ShadowBox>
         <div>
@@ -141,9 +148,7 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
           isSubmitting={isSubmitting}
           removeHandler={cancelRole}
           title={id ? "UPDATE" : "SAVE"}
-
         />
-
       </div>
 
       {/* <DeleteModal
