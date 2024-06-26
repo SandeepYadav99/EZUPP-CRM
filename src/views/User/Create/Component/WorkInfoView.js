@@ -150,7 +150,7 @@ const WorkInfoView = ({
                 changeTextData(!form?.userManage, "userManage");
               }}
               label={
-                <Typography variant="body1" sx={{ cursor: "default" }}>
+                <Typography variant="body1" sx={{ pointerEvents: "none" }}>
                   User is a manager?
                 </Typography>
               }
@@ -166,7 +166,7 @@ const WorkInfoView = ({
                   changeTextData(!form?.invoiteToUser, "invoiteToUser");
                 }}
                 label={
-                  <Typography variant="body1" sx={{ cursor: "default" }}>
+                  <Typography variant="body1" sx={{ pointerEvents: "none" }}>
                     Send Invite to user on email
                   </Typography>
                 }

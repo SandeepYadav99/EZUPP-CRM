@@ -246,8 +246,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
               }}
             >
               {formatString(profileDetails?.manager?.name || "N/A")}
-              {profileDetails?.employee_id
-                ? `(${profileDetails?.employee_id})`
+              {profileDetails?.manager?.employee_id
+                ? `(${profileDetails?.manager?.employee_id})`
                 : " "}
             </Typography>
           </div>
@@ -373,8 +373,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             }}
           >
             {profileDetails?.updated_by?.name || "N/A"}
-            {profileDetails?.employee_id
-              ? `(${profileDetails?.employee_id})`
+            {profileDetails?.updated_by?.employee_id
+              ? `(${profileDetails?.updated_by?.employee_id})`
               : " "}
           </Typography>
         </div>
