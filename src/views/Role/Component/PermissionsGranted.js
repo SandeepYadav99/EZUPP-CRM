@@ -7,11 +7,18 @@ const PermissionsGranted = ({ state, styles }) => {
   return (
     <div>
       {state?.permissions?.map((permission) => {
+        const permissionsArray = [];
+        if (permission?.all_data) permissionsArray.push("All Data");
+        if (permission?.create) permissionsArray.push("Create");
+        if (permission?.read) permissionsArray.push("Read");
+        if (permission?.update) permissionsArray.push("Update");
+        if (permission?.delete) permissionsArray.push("Delete");
+
         return (
           <div className={styles.rightContaiiner}>
             <div>
               <Typography
-                variant="h5"
+                variant="subtitle1"
                 margin={theme.spacing(1.5)}
                 fontWeight={600}
 
@@ -22,21 +29,9 @@ const PermissionsGranted = ({ state, styles }) => {
               </Typography>
             </div>
             <div className={styles.permissionRow}>
-              {permission?.all_data && (
-                <Typography variant="body1"  color={theme.palette.text.secondary}>All Data,</Typography>
-              )}
-              {permission?.create && (
-                <Typography variant="body1" color={theme.palette.text.secondary}>Create,</Typography>
-              )}
-              {permission?.read && (
-                <Typography variant="body1" color={theme.palette.text.secondary}>Read,</Typography>
-              )}
-              {permission?.update && (
-                <Typography variant="body1" color={theme.palette.text.secondary}>Update,</Typography>
-              )}
-              {permission?.delete && (
-                <Typography variant="body1" color={theme.palette.text.secondary}>Delete</Typography>
-              )}
+              <Typography variant="body1" color={theme.palette.text.secondary}>
+                {permissionsArray.join(", ")}
+              </Typography>
             </div>
           </div>
         );

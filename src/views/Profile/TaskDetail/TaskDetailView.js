@@ -126,7 +126,7 @@ const TaskDetailView = ({}) => {
           <ButtonBase onClick={() => historyUtils.goBack()}>
             <ArrowBackIosIcon fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant="h4" color={theme.palette.text.primary}>
+          <Typography variant="h4" fontSize={18} color={theme.palette.text.primary}>
             Task Detail
           </Typography>
         </div>
@@ -189,7 +189,7 @@ const TaskDetailView = ({}) => {
       <SidePanelComponent
         handleToggle={handleSideToggle}
         title={
-          <Typography variant="h3" fontWeight={600}>
+          <Typography variant="h5" fontSize={18} fontWeight={600}>
             Update Task
           </Typography>
         }

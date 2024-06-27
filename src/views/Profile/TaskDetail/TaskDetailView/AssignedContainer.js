@@ -5,15 +5,17 @@ import {
   UserCountAvatarsLabel,
   UserCountAvatarsLabelInitials,
 } from "../../../../components/AvatarGroup/AvatarGroup";
+import { useTheme } from "@mui/styles";
 
 const AssignedContainer = ({ details, styles, classes }) => {
+  const theme = useTheme()
   return (
     <div className={styles.mainFlex}>
       <div className={styles.backgroundStatus}>
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-           
+            sx={{mb:theme.spacing(-2)}}
             marginLeft={2}
           >
             Due Date:
@@ -25,7 +27,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            
+            sx={{mb:theme.spacing(-2)}}
             marginLeft={2}
           >
             Assigned To:
@@ -42,7 +44,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-           
+            sx={{mb:theme.spacing(-2)}}
             marginLeft={2}
           >
             Assigned By:
@@ -59,7 +61,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-           
+            sx={{mb:theme.spacing(-2)}}
             marginLeft={2}
           >
             Task Category:

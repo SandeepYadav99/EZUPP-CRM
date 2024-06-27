@@ -20,6 +20,9 @@ const NoteItem = ({ note, styles, classes }) => {
             marginLeft: theme.spacing(2),
             wordBreak: "break-word",
             marginTop: "8px",
+            "&::first-letter":{
+              textTransform:"uppercase"
+            }
           }}
         >
           {note?.title}

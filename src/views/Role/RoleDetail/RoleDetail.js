@@ -40,7 +40,7 @@ const RoleDetail = () => {
         return state;
     }
   };
-  
+
   const [state, dispatchDetail] = useReducer(reducer, initialState);
   const dispatch = useDispatch();
 
@@ -82,11 +82,18 @@ const RoleDetail = () => {
       <div className={styles.upperFlex}>
         <ButtonBase onClick={() => history.push(RouteName.ROLE)}>
           <ArrowBackIos fontSize={"small"} />{" "}
-          <span>
-            <b>Role Detail</b>
-          </span>
+          <Typography
+            variant="h3"
+            fontSize={18}
+            fontWeight={600}
+            color={theme.palette.text.primary}
+          >
+            Role Detail
+            {/* {id ? "Edit" : "Create"} Role */}
+          </Typography>
         </ButtonBase>
-        <div></div>
+       
+
         <div className={styles.profileHeading}></div>
         <div>
           <ArrowActionButton
@@ -103,7 +110,7 @@ const RoleDetail = () => {
           <div className={styles.boxleft}>
             <div>
               <Typography
-                variant="h4"
+                variant="h5"
                 fontWeight={600}
                 color={theme.palette.text.primary}
                 className={styles.title_is}
@@ -127,7 +134,7 @@ const RoleDetail = () => {
           </div>
           <hr className={styles.hrLine} />
           <Typography
-            variant="h5"
+            variant="subtitle1"
             fontWeight={600}
             color={theme.palette.text.primary}
             sx={{ mt: 2 }}
@@ -141,7 +148,7 @@ const RoleDetail = () => {
         <ShadowBox className={styles.leftSection}>
           <div>
             <Typography
-              variant="h4"
+              variant="h5"
               sx={{ mb: 2 }}
               fontWeight={600}
               color={theme.palette.text.primary}
