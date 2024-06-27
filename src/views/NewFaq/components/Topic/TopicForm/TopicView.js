@@ -121,6 +121,7 @@ const TopicViewForm = ({
           <CustomIosSwitch
             styles={{ marginLeft: "20px" }}
             value={form?.status}
+            checked={form?.status}
             handleChange={() => {
               changeTextData(!form?.status, "status");
             }}

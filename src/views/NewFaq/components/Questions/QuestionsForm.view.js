@@ -148,9 +148,9 @@ const QuestionsFormView = ({
             handleChange={() => {
               changeTextData(!form?.status, "status");
             }}
+            checked={form?.status}
             label={form?.status ? "ACTIVE" : "INACTIVE"}
           />
-
           <div>
             {data && (
               <IconButton onClick={() => handleDelete()}>
