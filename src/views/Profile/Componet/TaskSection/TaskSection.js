@@ -37,7 +37,6 @@ const TaskSection = ({
         <div className={styles.upperFlex}>
           <Typography
             variant="h5"
-            fontSize={18}
             fontWeight={600}
             color={theme.palette.text.primary}
           >

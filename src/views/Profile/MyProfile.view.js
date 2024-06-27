@@ -53,7 +53,7 @@ const Profile = () => {
             )}
             <Typography
               variant="h4"
-              fontSize={20}
+            
               fontWeight={600}
               color={theme.palette.text.primary}
             >
@@ -109,7 +109,7 @@ const Profile = () => {
         <SidePanelComponent
           handleToggle={handleSideToggle}
           title={
-            <Typography variant="h5"  fontSize={18} sx={{
+            <Typography variant="h4"   sx={{
               color:theme.palette.text.primary,
              
             }} fontWeight={600}>
