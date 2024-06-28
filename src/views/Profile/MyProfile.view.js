@@ -51,10 +51,16 @@ const Profile = () => {
                 <ArrowBackIos fontSize={"medium"} />{" "}
               </ButtonBase>
             )}
-            <Typography
-              variant="h4"
-              fontSize={20}
+            {/* <Typography
+              variant="h3"
+              fontSize={22}
               fontWeight={600}
+              color={theme.palette.text.primary}
+            >
+              Profile View
+            </Typography> */}
+            <Typography
+              variant="title1"
               color={theme.palette.text.primary}
             >
               Profile View
@@ -111,7 +117,7 @@ const Profile = () => {
           title={
             <Typography variant="h5"  fontSize={18} sx={{
               color:theme.palette.text.primary,
-             
+
             }} fontWeight={600}>
               Add New Task{" "}
             </Typography>

@@ -300,8 +300,10 @@
   /*align-items: center;*/
 }
 .proImage {
-  width: 100px;
-  height: 100px;
+  /* width: 100px;
+  height: 100px; */
+  width: 121px;
+  height: 121px;
   border-radius: 100%;
   display: block !important;
 }
