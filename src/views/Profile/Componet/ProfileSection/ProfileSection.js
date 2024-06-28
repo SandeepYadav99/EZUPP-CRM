@@ -94,8 +94,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h4"
-          fontSize={18}
+          variant="h5"
+          
           color={theme.palette.text.primary}
         >
           Personal Details
@@ -181,8 +181,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h4"
-          fontSize={18}
+          variant="h5"
+        
           color={theme.palette.text.primary}
         >
           Work Details
@@ -309,8 +309,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h4"
-          fontSize={18}
+          variant="h5"
+          
           color={theme.palette.text.primary}
         >
           Activity Information

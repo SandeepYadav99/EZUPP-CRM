@@ -44,3 +44,12 @@ export  const formatString = (inputString) => {
   
     return formattedPhoneNumber;
   };
+
+  // if Have "LOW" or "low" output => Low
+
+  export const  firstLeterConverter=(inputString)=> {
+    if (!inputString) {
+        return '';
+    }
+    return inputString.charAt(0).toUpperCase() + inputString.slice(1).toLowerCase();
+}

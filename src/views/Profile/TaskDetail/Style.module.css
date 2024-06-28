@@ -198,6 +198,11 @@
   text-align: center;
   justify-content: flex-start;
 }
+.statusPil {
+ display: flex !important;
+ gap: 8px !important;
+ margin-top: 5px !important;
+}
 .notesContainer {
   display: flex;
   justify-content: space-between;
