@@ -1,0 +1,14 @@
+.userInfoAssociated{
+    display: flex !important;
+    align-items: center !important;
+    margin-left: 10px !important;
+    margin-top: 8px !important;
+}
+.userInfoAssociated img{
+    border-radius: 36px !important;
+}
+.completedTask{
+    margin-left: 15px !important;
+    margin-bottom: 10px !important;
+    margin-top: 15px !important;
+}
