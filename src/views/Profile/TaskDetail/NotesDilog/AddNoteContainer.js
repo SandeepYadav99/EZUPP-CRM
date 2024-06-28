@@ -28,11 +28,11 @@ const AddNoteContainer = ({ details, styles, classes }) => {
   
   const isNotNotes = !noteLists;
   return (
-    <div className={styles.plainPaper}>
+ 
       <div className={styles.newContainer}>
         <div className={styles.notesContainer}>
           <Typography variant="h5">Notes</Typography>
-          <div>
+         
             <PrimaryButton
               // className={styles.addTask}
               onClick={toggleAcceptDialog}
@@ -43,9 +43,9 @@ const AddNoteContainer = ({ details, styles, classes }) => {
                 ADD NOTES
               </Typography>
             </PrimaryButton>
-          </div>
+        
         </div>
-        <div className={styles.gaps} />
+        {/* <div className={styles.gaps} /> */}
         <NotesDilog
           isOpen={isAcceptPopUp}
           handleToggle={toggleAcceptDialog}
@@ -64,7 +64,7 @@ const AddNoteContainer = ({ details, styles, classes }) => {
           </Typography>
         )}
       </div>
-    </div>
+
   );
 };
 
