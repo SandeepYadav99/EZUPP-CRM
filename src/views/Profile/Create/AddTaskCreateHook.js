@@ -23,10 +23,7 @@ const initialForm = {
   priority: "",
   associated_user: "",
   associated_task: "",
-  // comment:"",
-  // status: true,
   assigned_to: "",
-  // taskType:""
 };
 
 const initialTask = {
@@ -147,6 +144,9 @@ const useAddTaskCreate = ({
         delete errors[val];
       }
     });
+    if(form?.title?.length < 2){
+      errors.title = true
+    }
     // if (!form.due_date || isNaN(new Date(form?.due_date))) {
     //   setHelperText("Invalid date/time format.");
     //   errors.due_date = true;

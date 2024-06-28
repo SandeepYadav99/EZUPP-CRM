@@ -17,6 +17,7 @@ import CustomSelectField from "../../../components/FormFields/SelectField/Select
 import { useTheme } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import CustomDateTimePicker from "../../../components/FormFields/DatePicker/CustomDateTimePicker";
+import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -48,7 +49,7 @@ const AddTaskCreate = ({
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
         <div className={styles.headerFlex}>
-          <Typography variant="h4"  fontWeight={600}>
+          <Typography variant="h4" fontWeight={600}>
             Task Details
           </Typography>
           {/* <Tooltip title="Info" aria-label="info" placement="right">
@@ -62,7 +63,7 @@ const AddTaskCreate = ({
               AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
               // label="Assigned To"
               isError={errorData?.assigned_to}
-              getOptionLabel={(option) => `${option?.name} (${option?.email})`}
+              getOptionLabel={(option) => `${capitalizeFirstLetter(option?.name)} (${option?.email})`}
               value={form.assigned_to || fetchedAssignedUser || []}
               onTextChange={(text) => {
                 changeTextData(text, "assigned_to");
@@ -75,15 +76,14 @@ const AddTaskCreate = ({
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
-                      <Avatar
+                      <img
                         src={
                           form?.assigned_to?.image || fetchedAssignedUser?.image
                         }
-                        sx={{
-                          width: "25px",
-                          height: "25px",
-                          borderRadius: "25px",
-                        }}
+                        crossOrigin="anonymous"
+                        className={styles.avatorImage}
+                      
+                        alt=".."
                       />
                     ),
                   }}
@@ -91,16 +91,13 @@ const AddTaskCreate = ({
               )}
               renderOption={(props, option) => (
                 <li {...props}>
-                  <Avatar
+                  <img
                     src={option?.image}
-                    sx={{
-                      marginRight: theme.spacing(1),
-                      width: "25px",
-                      height: "25px",
-                      borderRadius: "25px",
-                    }}
+                    crossOrigin="anonymous"
+                    className={styles.avatorImage}
+                    alt=".."
                   />
-                  <div>{`${option?.name} (${option?.email})`}</div>
+                  <div>{`${capitalizeFirstLetter(option?.name)} (${option?.email})`}</div>
                 </li>
               )}
               disableClearable
@@ -233,28 +230,26 @@ const AddTaskCreate = ({
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
-                      <Avatar
-                        sx={{
-                          width: "25px",
-                          height: "25px",
-                          borderRadius: "25px",
-                        }}
-                        src={form?.associated_user?.image || ""}
-                      />
+                     <>
+                     {form?.associated_user?.image ?    <img
+                        src={form?.associated_user?.image || "."}
+                        crossOrigin="anonymous"
+                        className={styles.avatorImage}
+                        alt=".."
+                      />: <Avatar src="" sx={{ height:"25px", width:"25px", borderRadius:"25px"}}/>}
+                    
+                     </>
                     ),
                   }}
                 />
               )}
               renderOption={(props, option) => (
                 <li {...props}>
-                  <Avatar
+                  <img
                     src={option?.image}
-                    sx={{
-                      marginRight: theme.spacing(1),
-                      width: "25px",
-                      height: "25px",
-                      borderRadius: "25px",
-                    }}
+                    crossOrigin="anonymous"
+                    className={styles.avatorImage}
+                    alt=".."
                   />
                   <div>{`${option?.name} (${option?.email})`}</div>
                 </li>

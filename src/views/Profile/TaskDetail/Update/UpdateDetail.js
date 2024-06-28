@@ -51,7 +51,7 @@ const AddTaskUpdate = ({
     details,
   });
   const theme = useTheme();
-
+  console.log(form?.associated_user?.image);
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -85,16 +85,14 @@ const AddTaskUpdate = ({
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
-                        <Avatar
+                        <img
                           src={
                             form?.assigned_to?.image ||
                             fetchedAssignedUser?.image
                           }
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            borderRadius: "25px",
-                          }}
+                          crossOrigin="anonymous"
+                          className={styles.avatorImage}
+                          alt=".."
                         />
                       ),
                     }}
@@ -102,14 +100,11 @@ const AddTaskUpdate = ({
                 )}
                 renderOption={(props, option) => (
                   <li {...props}>
-                    <Avatar
+                    <img
                       src={option?.image}
-                      sx={{
-                        marginRight: theme.spacing(1),
-                        width: "25px",
-                        height: "25px",
-                        borderRadius: "25px",
-                      }}
+                      crossOrigin="anonymous"
+                      className={styles.avatorImage}
+                      alt=".."
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
@@ -244,28 +239,25 @@ const AddTaskUpdate = ({
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
-                        <Avatar
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            borderRadius: "25px",
-                          }}
-                          src={form?.associated_user?.image || ""}
-                        />
+                        <>
+                          <img
+                            src={form?.associated_user?.image || "."}
+                            crossOrigin="anonymous"
+                            className={styles.avatorImage}
+                            alt=".."
+                          />
+                        </>
                       ),
                     }}
                   />
                 )}
                 renderOption={(props, option) => (
                   <li {...props}>
-                    <Avatar
+                    <img
                       src={option?.image}
-                      sx={{
-                        marginRight: theme.spacing(1),
-                        width: "25px",
-                        height: "25px",
-                        borderRadius: "25px",
-                      }}
+                      crossOrigin="anonymous"
+                      className={styles.avatorImage}
+                      alt=".."
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
