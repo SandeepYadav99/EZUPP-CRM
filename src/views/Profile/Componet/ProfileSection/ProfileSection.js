@@ -37,10 +37,11 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div>
           <div>
             <Typography
-              variant="h5"
+              // variant="h5"
+                  variant="title"
               color={theme.palette.text.primary}
-              fontWeight={600}
-              className={styles.profileTitle}
+              // fontWeight={600}
+              // className={styles.profileTitle}
               sx={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -57,7 +58,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             <Typography
               variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+              // fontWeight={600}
               sx={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",

@@ -5,6 +5,7 @@ import CascaderItem from "./CascaderItem";
 import CustomTextField from "../../../FormFields/TextField.component";
 
 const Cascader = ({label, isError, defaultValue, options, handleChange, value, itemLabels, ...rest}) => {
+
     const [pos, setPos] = useState([0,0]);
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState([]);
@@ -26,6 +27,7 @@ const Cascader = ({label, isError, defaultValue, options, handleChange, value, i
 
 
     const getSelectedValues = useCallback((arr, options, level = 0, res = []) => {
+console.log("get selected",arr, options, level,  res)
         if (arr.length == res.length) {
             return res;
         }
@@ -34,7 +36,9 @@ const Cascader = ({label, isError, defaultValue, options, handleChange, value, i
             return [];
         }
         res.push(tempIndex);
+        console.log("res",res);
         return getSelectedValues(arr, options[tempIndex]?.children, level + 1, res);
+        
     }, [])
 
     const calcLevels = (opt) => {
@@ -101,9 +105,13 @@ const Cascader = ({label, isError, defaultValue, options, handleChange, value, i
 
 
     const handleItemClick = useCallback((data, index, level) => {
+        
         const arr = [...selected];
+        console.log("arr1",arr,index, level)
         arr.splice(level+1);
+        console.log("arr2",arr,index, level)
         arr[level] = index;
+        console.log("arr3",arr,index, level)
         setSelected(arr);
     }, [setSelected, selected, getSelectedArr]);
 
@@ -118,11 +126,15 @@ const Cascader = ({label, isError, defaultValue, options, handleChange, value, i
     }, [setIsOpen, setPos]);
 
     const renderItems = useMemo(() => {
+        console.log("menu",divRef.current)
+        console.log("selected items options",selected,itemLabels,options)
         const arr = [];
         arr.push(<CascaderItem value={selected} handleClick={handleItemClick} label={Array.isArray(itemLabels) ? itemLabels[0] : ''} level={0} options={options} />);
         let cascader = JSON.parse(JSON.stringify(options));
         selected.forEach((val, index) => {
+            console.log("valueee",val)
             const temp = cascader[val];
+            console.log("temp",temp);
             if (temp?.children) {
                 arr.push(<CascaderItem value={selected} handleClick={handleItemClick} label={Array.isArray(itemLabels)  ? itemLabels[index+1] : ''} level={index + 1} options={temp.children}/>);
                 cascader = temp.children;
@@ -132,6 +144,7 @@ const Cascader = ({label, isError, defaultValue, options, handleChange, value, i
     }, [selected, handleItemClick, options, itemLabels]);
 
     const renderMenu = useMemo(() => {
+    
         if (isOpen) {
             return (
                 <div className={styles.cascaderCont} ref={ref => {divRef.current = ref; }}>

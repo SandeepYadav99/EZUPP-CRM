@@ -36,11 +36,11 @@ const TaskSection = ({
       <div>
         <div className={styles.upperFlex}>
           <Typography
-            variant="h4"
+            variant="title"
             fontWeight={600}
             color={theme.palette.text.primary}
           >
-            Tasks Lists
+            Task List
           </Typography>
           <div className={"myprofile"}>
             <CustomSelectField
