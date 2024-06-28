@@ -89,6 +89,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
             <div className={"formGroup"}>
               <CustomIosSwitch
                 value={form?.status}
+                checked={form?.status ? true : false}
                 handleChange={() => {
                   changeTextData(!form?.status, "status");
                 }}
