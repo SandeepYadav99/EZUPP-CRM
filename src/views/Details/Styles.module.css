@@ -145,6 +145,7 @@
   text-decoration: underline;
   word-break: break-all;
   white-space: pre-wrap;
+  margin-bottom: 8px;
 }
   .profileContainer {
    display: flex;
@@ -365,6 +366,10 @@
 .productHeading{
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.spacing{
+  margin-bottom: 8px;
 }
 .dialogWrap{
   padding: 1.5rem;

@@ -60,7 +60,7 @@ const ProductDetailview = () => {
           <ButtonBase onClick={() => history.push("/products")}>
             <ArrowBackIos fontSize={"small"} />{" "}
             <span>
-              <Typography variant={"title1"}>Product Detail</Typography>
+              <Typography variant={"h4"}>Product Detail</Typography>
             </span>
           </ButtonBase>
           <div></div>
@@ -110,7 +110,7 @@ const ProductDetailview = () => {
                 <div className={styles.textContainer}>
                   
                   <div className={styles.row1}>
-                    <Typography variant={"title"} className={styles.productHeading} color={"text.primary"}>
+                    <Typography variant={"h5"} className={styles.productHeading} color={"text.primary"}>
                       {" "}
                       {/* {profileDetails?.name} */}
                       {wrapText(profileDetails?.name, 40)}
@@ -119,10 +119,10 @@ const ProductDetailview = () => {
                       <StatusPill status={profileDetails?.status} color={getStatusPillColor()}/>
                     </div>
                   </div>
-                  <Typography variant={"body1"} color={"text.secondary"}>
+                  <Typography variant={"body1"} color={"text.secondary"} className={styles.spacing}>
                     {profileDetails?.code}
                   </Typography>
-                  <Typography variant={"body1"} color={"text.secondary"}>
+                  <Typography variant={"body1"} color={"text.secondary"} className={styles.spacing}>
                     {profileDetails?.type}
                   </Typography>
                   <Typography variant={"body1"} className={styles.link}>
@@ -174,7 +174,7 @@ const ProductDetailview = () => {
                 <ShadowBox className={styles.productComm} >
                   <div className={styles.profileContainer}></div>
                   <div className={styles.title}>
-                    <Typography variant={"title"} color={"text.primary"}>
+                    <Typography variant={"h5"} color={"text.primary"}>
                       Product Commercials
                     </Typography>
                   </div>
@@ -254,7 +254,7 @@ const ProductDetailview = () => {
 
                   <div>
                     <div className={styles.title}>
-                      <Typography variant={"title"} color={"text.primary"}>
+                      <Typography variant={"h5"} color={"text.primary"}>
                         Activity Information
                       </Typography>
                     </div>
@@ -309,7 +309,7 @@ const ProductDetailview = () => {
 
                   <div className={styles.line} />
                   <div className={styles.title}>
-                    <Typography variant={"title"} color={"text.primary"}>
+                    <Typography variant={"h5"} color={"text.primary"}>
                       Settings
                     </Typography>
                   </div>
