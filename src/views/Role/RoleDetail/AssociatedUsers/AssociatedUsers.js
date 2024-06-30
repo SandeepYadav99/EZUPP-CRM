@@ -104,7 +104,7 @@ const AssociatedUsers = ({ listData, id }) => {
         label: "Action",
         sortable: false,
         render: (temp, all) => (
-          <div>
+          <div className={styles.actionButton}>
             <IconButton  disableRipple="false" onClick={()=>history.push(`/profile/?id=${all?.id}`)}>
               <Info fontSize="small" />
             </IconButton>

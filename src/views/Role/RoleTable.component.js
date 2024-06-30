@@ -143,7 +143,7 @@ const RoleTableComponent = ({
                   variant="h6"
                   fontWeight={600}
                   color={theme.palette.text.primary}
-                  sx={{ml:theme.spacing(-0.2)}}
+                  sx={{ml:theme.spacing(-1)}}
                 >
                   Modules
                 </Typography>
@@ -257,7 +257,7 @@ const RoleTableComponent = ({
                       <Typography
                         variant="h6"
                         sx={{
-                          marginLeft: theme.spacing(-0.3),
+                          marginLeft: theme.spacing(-1),
                         }}
                         color={theme.palette.text.secondary}
                       >

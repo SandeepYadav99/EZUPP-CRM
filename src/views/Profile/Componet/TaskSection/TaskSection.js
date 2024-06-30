@@ -42,9 +42,10 @@ const TaskSection = ({
           >
             Task List
           </Typography>
-          <div className={"myprofile"}>
+          <div >
             <CustomSelectField
               // name={"ALL"}
+              className={styles.customSelectField}
               //   disableUnderline
               value={filterValue}
               handleChange={filterCompltedTask}

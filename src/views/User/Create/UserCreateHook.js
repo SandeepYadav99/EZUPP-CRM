@@ -234,7 +234,7 @@ function useUserCreateHook() {
     if (form?.userName && form?.userName?.trim().length < 2) {
       errors.userName = true;
     }
-    if (form?.employee_id?.trim().length <= 2) {
+    if (form?.employee_id?.trim().length < 2) {
       errors.employee_id = true;
     }
     if(form?.designation && form?.designation?.trim().length <= 2){
@@ -285,11 +285,11 @@ function useUserCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
-        if (!text || text.length <= 40) {
+        if (!text ||  (!isSpace(text) && text.length <= 40)) {
           t[fieldName] = text;
         }
       } else if (fieldName === "userName") {
-        if (!text || (isAlphaNum(text) && text?.length <= 20)) {
+        if (!text || (!isSpace(text) && isAlphaNum(text) && text?.length <= 20)) {
           t[fieldName] = text?.toLowerCase();
         }
       } else if (fieldName === "email") {
@@ -297,7 +297,7 @@ function useUserCreateHook() {
           t[fieldName] = text;
         }
       } else if (fieldName === "employee_id") {
-        if (!text || text?.length <= 20) {
+        if (!text || (!isSpace(text) && text?.length <= 20)) {
           t[fieldName] = text;
         }
       } else if (fieldName === "contact") {

@@ -246,18 +246,25 @@ const useAddTaskUpdate = ({
       if (fieldName === "name") {
         t[fieldName] = text;
       } else if (fieldName === "category") {
-        const newValues = text?.filter((item) => item.trim() !== "");
-        const uniqueValues = text
-          ? newValues?.filter(
-              (item, index, self) =>
-                self.findIndex(
-                  (t) => t.toLowerCase() === item.toLowerCase()
-                ) === index
-            )
-          : [];
-        if (uniqueValues.length <= 2) {
-          t[fieldName] = uniqueValues;
-        }
+        const tempKeywords = text?.filter((val, index) => {
+          if (val?.trim() === "") {
+            return false;
+          } else if (val?.length < 2 || val?.length > 20) {
+            SnackbarUtils.error(
+              "Values cannot be less than 2 and more than 20 character"
+            );
+            return false;
+          } else {
+            const key = val?.trim().toLowerCase();
+            const isThere = text?.findIndex(
+              (keyTwo, indexTwo) =>
+                keyTwo?.toLowerCase() === key && index !== indexTwo
+            );
+            return isThere < 0;
+          }
+        });
+     
+        t[fieldName] = tempKeywords;
       } else if (fieldName === "associated_task") {
         t[fieldName] = text;
       } else if (fieldName === "assigned_to") {

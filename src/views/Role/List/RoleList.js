@@ -136,12 +136,14 @@ const RoleList = (props) => {
         key: "user_id",
         label: "Action",
         render: (temp, all) => (
-          <ListActionComponent
-            allData={all}
-            handleDetail={handleDetail}
-            handleEdit={handleEdit}
-            key={all?.id}
-          />
+          <div className={styles.listActionContainer}>
+            <ListActionComponent
+              allData={all}
+              handleDetail={handleDetail}
+              handleEdit={handleEdit}
+              key={all?.id}
+            />
+          </div>
         ),
       },
     ];
