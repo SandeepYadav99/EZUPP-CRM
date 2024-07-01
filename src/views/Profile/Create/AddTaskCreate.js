@@ -44,7 +44,7 @@ const AddTaskCreate = ({
     profileDetails,
   });
   const theme = useTheme();
-
+  
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -63,7 +63,9 @@ const AddTaskCreate = ({
               AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
               // label="Assigned To"
               isError={errorData?.assigned_to}
-              getOptionLabel={(option) => `${capitalizeFirstLetter(option?.name)} (${option?.email})`}
+              getOptionLabel={(option) =>
+                `${capitalizeFirstLetter(option?.name)} (${option?.email})`
+              }
               value={form.assigned_to || fetchedAssignedUser || []}
               onTextChange={(text) => {
                 changeTextData(text, "assigned_to");
@@ -76,15 +78,22 @@ const AddTaskCreate = ({
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
-                      <img
-                        src={
-                          form?.assigned_to?.image || fetchedAssignedUser?.image
-                        }
-                        crossOrigin="anonymous"
-                        className={styles.avatorImage}
-                      
-                        alt=".."
-                      />
+                      <>
+                        {form?.assigned_to?.image ||
+                        fetchedAssignedUser?.image ? (
+                          <img
+                            src={
+                              form?.assigned_to?.image ||
+                              fetchedAssignedUser?.image
+                            }
+                            crossOrigin="anonymous"
+                            className={styles.avatorImage}
+                            alt=".."
+                          />
+                        ) : (
+                          ""
+                        )}
+                      </>
                     ),
                   }}
                 />
@@ -97,7 +106,9 @@ const AddTaskCreate = ({
                     className={styles.avatorImage}
                     alt=".."
                   />
-                  <div>{`${capitalizeFirstLetter(option?.name)} (${option?.email})`}</div>
+                  <div>{`${capitalizeFirstLetter(option?.name)} (${
+                    option?.email
+                  })`}</div>
                 </li>
               )}
               disableClearable
@@ -219,7 +230,7 @@ const AddTaskCreate = ({
                 }`
               }
               AutoCompleteList={filteredUsers || []}
-              label="Associated User (Optional)"
+              // label="Associated User (Optional)"
               isError={errorData?.associated_user}
               value={form.associated_user}
               renderInput={(params) => (
@@ -230,15 +241,25 @@ const AddTaskCreate = ({
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
-                     <>
-                     {form?.associated_user?.image ?    <img
-                        src={form?.associated_user?.image || "."}
-                        crossOrigin="anonymous"
-                        className={styles.avatorImage}
-                        alt=".."
-                      />: <Avatar src="" sx={{ height:"25px", width:"25px", borderRadius:"25px"}}/>}
-                    
-                     </>
+                      <>
+                        {form?.associated_user?.image ? (
+                          <img
+                            src={form?.associated_user?.image || "."}
+                            crossOrigin="anonymous"
+                            className={styles.avatorImage}
+                            alt=".."
+                          />
+                        ) : (
+                          <Avatar
+                            src=""
+                            sx={{
+                              height: "25px",
+                              width: "25px",
+                              borderRadius: "25px",
+                            }}
+                          />
+                        )}
+                      </>
                     ),
                   }}
                 />
@@ -265,11 +286,17 @@ const AddTaskCreate = ({
             <CustomMultiComplete
               isError={errorData?.associated_task}
               AutoCompleteList={filteredTask}
-              label="Associated Task (Optional)"
               value={form.associated_task}
               onTextChange={(text) => {
                 changeTextData(text, "associated_task");
               }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="Associated Task (Optional)"
+                />
+              )}
               getOptionLabel={(option) => option?.title}
             />
           </div>

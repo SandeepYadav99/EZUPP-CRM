@@ -3,7 +3,7 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import styles from "../Style.module.css";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem, Typography } from "@mui/material";
+import { MenuItem, TextField, Typography } from "@mui/material";
 import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
@@ -89,8 +89,11 @@ const WorkInfoView = ({
                 defaultValue={form?.designation}
                 value={form?.designation}
                 onTextChange={(text) => {
+                  // if (text.length <= 40) {
                   changeTextData(text, "designation");
+                  // }
                 }}
+                
               />
             </div>
             <div className={"formGroup"}>

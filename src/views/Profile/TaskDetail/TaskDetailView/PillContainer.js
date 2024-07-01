@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import capitalizeFirstLetter, {
   firstLeterConverter,
-  formattedDescription,
+ 
 } from "../../../../hooks/CommonFunction";
 import StatusPill from "../../../../components/Status/StatusPill.component";
 import { Typography } from "@mui/material";
@@ -26,12 +26,16 @@ const PillContainer = ({ details, styles }) => {
       <Typography
         variant="subtitle2"
         sx={{
+          width:"100%",
+          wordBreak:"break-word",
+          textOverflow:"hidden",
+
           "&::first-letter": {
             textTransform: "uppercase",
           },
         }}
       >
-        {formattedDescription(details)}
+        {details?.description}
       </Typography>
       <div className={styles.gaps} />
     </div>

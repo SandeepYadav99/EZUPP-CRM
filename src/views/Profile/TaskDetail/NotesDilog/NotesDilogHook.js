@@ -63,7 +63,12 @@ const useNotesDilogHook = () => {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "descriptions") {
-        t[fieldName] = text.replace(/^\s+/, "");
+        if(text.length < 500){
+          t[fieldName] = text.replace(/^\s+/, "");
+
+        }else{
+          SnackbarUtils.error("Max 500 Characters");
+        }
       }
 
       setForm(t);
@@ -85,9 +90,9 @@ const useNotesDilogHook = () => {
       }
     });
 
-    if (form?.descriptions?.length > maxLength) {
-      SnackbarUtils.error("Max 500 Characters");
-    }
+    // if (form?.descriptions?.length > maxLength) {
+    //   SnackbarUtils.error("Max 500 Characters");
+    // }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];

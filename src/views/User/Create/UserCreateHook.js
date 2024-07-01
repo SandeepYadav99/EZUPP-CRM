@@ -246,18 +246,15 @@ function useUserCreateHook() {
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
-    const joinDate = new Date(form?.joining_date).getDate();
-    const endDate = new Date(form?.end_date).getDate();
-
-    if (
-      joinDate > endDate ||
-      new Date(form?.joining_date).getMonth() >
-        new Date(form?.end_date).getMonth()
-    ) {
-      errors.end_date = SnackbarUtils.error(
-        "Joining date should not be greater than end date"
-      );
-      errors.end_date = true;
+   
+    if (form?.joining_date && form?.end_date) {
+      const joinDate = new Date(form?.joining_date).getTime();
+      const endDate = new Date(form?.end_date).getTime();
+  
+      if (joinDate > endDate) {
+        errors.end_date = SnackbarUtils.error("Joining date should not be greater than end date");
+        errors.end_date = true;
+      }
     }
     // if (form?.url && !validateUrl(form?.url)) {
     //   errors.url = true;
@@ -311,8 +308,8 @@ function useUserCreateHook() {
           t[fieldName] = text?.toLowerCase();
         }
       } else if (fieldName === "designation") {
-        if (!text || (!isSpace(text) && text?.length <= 40)) {
-          t[fieldName] = text?.toLowerCase();
+        if (!text || (!isSpace(text) && text.length <= 40)) {
+          t[fieldName] = text.toLowerCase();
         }
       } else {
         t[fieldName] = text;

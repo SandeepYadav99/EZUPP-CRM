@@ -79,7 +79,7 @@ const useAddTaskUpdate = ({
     setFetchedAssignedTo(details?.assignedTo);
     setFetchedUser(details?.associatedUser);
     setFetchedTask(details?.associatedTask);
-  }, [details]);
+  }, [details, isSidePanel]);
 
   useEffect(() => {
     if (!isSidePanel) return;
@@ -187,8 +187,8 @@ const useAddTaskUpdate = ({
       category: industryID,
       type: form?.type,
       priority: form?.priority,
-      associated_user: form?.associated_user?._id || fetchedUser?.id,
-      associated_task: form?.associated_task?._id || fetchedTask?._id,
+      associated_user: form?.associated_user?._id , //|| fetchedUser?.id
+      associated_task: form?.associated_task?._id , // || fetchedTask?._id,
       comment: "Task",
       // is_completed: form?.status ? true : false,
       assigned_to: form?.assigned_to?._id || fetchedAssignedTo.id,

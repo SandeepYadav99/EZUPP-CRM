@@ -51,7 +51,6 @@ const AddTaskUpdate = ({
     details,
   });
   const theme = useTheme();
-  console.log(form?.associated_user?.image);
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -228,9 +227,9 @@ const AddTaskUpdate = ({
                   }`
                 }
                 AutoCompleteList={filteredUsers || []}
-                label="Associated User (Optional)"
+                // label="Associated User (Optional)"
                 isError={errorData?.associated_user}
-                value={form.associated_user || fetchedUser}
+                value={form.associated_user || fetchedUser}//  fetchedUser
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -240,12 +239,13 @@ const AddTaskUpdate = ({
                       ...params.InputProps,
                       startAdornment: (
                         <>
-                          <img
-                            src={form?.associated_user?.image || "."}
-                            crossOrigin="anonymous"
-                            className={styles.avatorImage}
-                            alt=".."
-                          />
+                        {form?.associated_user?.image || fetchedUser?.image ?    <img
+                           src={form?.associated_user?.image || fetchedUser?.image}
+                           crossOrigin="anonymous"
+                           className={styles.avatorImage}
+                           alt=".."
+                         />: <Avatar src="" sx={{ height:"25px", width:"25px", borderRadius:"25px"}}/>}
+                       
                         </>
                       ),
                     }}
@@ -265,12 +265,26 @@ const AddTaskUpdate = ({
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
                 }}
+                // disableClearable
               />
             </div>
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomMultiComplete
+            <CustomMultiComplete
+              isError={errorData?.associated_task}
+              AutoCompleteList={filteredTask}
+             
+              value={form.associated_task || fetchedTask}
+              onTextChange={(text) => {
+                changeTextData(text, "associated_task");
+              }}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined"  label="Associated Task (Optional)" />
+              )}
+              getOptionLabel={(option) => option?.title}
+            />
+              {/* <CustomMultiComplete
                 isError={errorData?.associated_task}
                 AutoCompleteList={filteredTask}
                 label="Associated Task (Optional)"
@@ -279,7 +293,7 @@ const AddTaskUpdate = ({
                   changeTextData(text, "associated_task");
                 }}
                 getOptionLabel={(option) => option?.title}
-              />
+              /> */}
             </div>
           </div>
         </div>
