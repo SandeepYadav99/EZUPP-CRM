@@ -11,7 +11,6 @@ import useAddTaskCreate from "./AddTaskCreateHook";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import MultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
-import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 import { useTheme } from "@mui/styles";
@@ -44,7 +43,7 @@ const AddTaskCreate = ({
     profileDetails,
   });
   const theme = useTheme();
-  
+
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -60,9 +59,9 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-              AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
+              AutoCompleteList={filteredAssignedTo ||  []}
               // label="Assigned To"
-              isError={errorData?.assigned_to}
+              // isError={errorData?.assigned_to}
               getOptionLabel={(option) =>
                 `${capitalizeFirstLetter(option?.name)} (${option?.email})`
               }
@@ -73,6 +72,7 @@ const AddTaskCreate = ({
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  error={errorData?.assigned_to}
                   variant="outlined"
                   label="Assigned To"
                   InputProps={{
@@ -229,20 +229,21 @@ const AddTaskCreate = ({
                   option?.email ? `(${option?.email})` : ""
                 }`
               }
-              AutoCompleteList={filteredUsers || []}
+              AutoCompleteList={filteredUsers ?? []}
               // label="Associated User (Optional)"
-              isError={errorData?.associated_user}
-              value={form.associated_user}
+              // isError={errorData?.associated_user}
+              value={form.associated_user || ""}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   variant="outlined"
+                  error={errorData?.associated_user}
                   label="Associated User (Optional)"
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
                       <>
-                        {form?.associated_user?.image ? (
+                        {form?.associated_user  ? (
                           <img
                             src={form?.associated_user?.image || "."}
                             crossOrigin="anonymous"

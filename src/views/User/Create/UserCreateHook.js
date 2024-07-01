@@ -113,7 +113,7 @@ function useUserCreateHook() {
         } else {
           filteredForm[fieldName] = data;
         }
-     
+
         let req = serviceProviderIsExist({
           ...filteredForm,
         });
@@ -227,7 +227,9 @@ function useUserCreateHook() {
         }
       }
     });
-
+    // if (form?.department && form?.department?.length >= 20) {
+    //   errors.department = "Department length must be less than or equal to 20 characters ";
+    // }
     if (form?.name && form?.name?.trim().length < 2) {
       errors.name = true;
     }
@@ -237,22 +239,24 @@ function useUserCreateHook() {
     if (form?.employee_id?.trim().length < 2) {
       errors.employee_id = true;
     }
-    if(form?.designation && form?.designation?.trim().length <= 2){
-      errors.designation = true
+    if (form?.designation && form?.designation?.trim().length <= 2) {
+      errors.designation = true;
     }
-    if(form?.department && form?.department?.trim().length <= 2){
-      errors.department = true
+    if (form?.department && form?.department?.trim().length <= 2) {
+      errors.department = true;
     }
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
-   
+
     if (form?.joining_date && form?.end_date) {
       const joinDate = new Date(form?.joining_date).getTime();
       const endDate = new Date(form?.end_date).getTime();
-  
+
       if (joinDate > endDate) {
-        errors.end_date = SnackbarUtils.error("Joining date should not be greater than end date");
+        errors.end_date = SnackbarUtils.error(
+          "Joining date should not be greater than end date"
+        );
         errors.end_date = true;
       }
     }
@@ -282,12 +286,15 @@ function useUserCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
-        if (!text ||  (!isSpace(text) && text.length <= 40)) {
-          t[fieldName] = text;
+        if (!text || (text.length <= 40)) {
+          t[fieldName] = text?.trimStart();
         }
       } else if (fieldName === "userName") {
-        if (!text || (!isSpace(text) && isAlphaNum(text) && text?.length <= 20)) {
-          t[fieldName] = text?.toLowerCase();
+        if (
+          !text ||
+          (isAlphaNum(text) && text?.length <= 20)
+        ) {
+          t[fieldName] = text?.toLowerCase()?.trimStart();
         }
       } else if (fieldName === "email") {
         if (text?.length <= 70) {

@@ -168,10 +168,14 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             <Typography
               variant="body1"
               color={theme?.palette.text.secondary}
-        
+              sx={{
+                '&:first-of-type': {
+                  textTransform: 'capitalize'
+                }
+              }}
             >
               {" "}
-              {profileDetails?.role?.name || "N/A"}
+              {profileDetails?.role?.display_name || "N/A"}
             </Typography>
           </div>
         </div>

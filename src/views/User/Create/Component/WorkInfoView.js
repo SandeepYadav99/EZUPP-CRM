@@ -68,10 +68,10 @@ const WorkInfoView = ({
                 defaultValue={form?.department}
                 value={form?.department}
                 onTextChange={(text) => {
-                 
+                
                   changeTextData(text, "department");
                 }}
-                className={styles.marginTop1}
+                // className={styles.marginTop1}
               />
             </div>
           </div>

@@ -160,7 +160,7 @@ export const HeaderTitleComponet = ({ headerTitle }) => {
       fontWeight={600}
       color={theme.palette.text.primary}
       sx={{
-        margin: theme.spacing(1, 0, 1, 0),
+        margin: theme.spacing(1, 0, 1, 1),
       }}
     >
       {headerTitle}

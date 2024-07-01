@@ -122,7 +122,7 @@ const UserList = (props) => {
         label: "User Role",
 
         sortable: false,
-        render: (temp, all) => <div>{all?.role?.name || "N/A"}</div>,
+        render: (temp, all) => <div className={styles.displayNam}>{all?.role?.display_name || "N/A"}</div>,
       },
 
       {

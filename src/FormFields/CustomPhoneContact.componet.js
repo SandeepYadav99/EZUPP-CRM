@@ -47,7 +47,7 @@ const CustomPhoneContactField = ({
           border: errorText ? "1px solid red" : "1px solid #ccc",
           color: theme.palette.text.primary,
           background: theme.palette.contact,
-          marginTop: theme.spacing(2),
+          // marginTop: theme.spacing(2),
         }}
         dropdownStyle={{
           backgroundColor: theme.palette.background?.paper,
@@ -58,10 +58,12 @@ const CustomPhoneContactField = ({
             color: theme.palette.text.primary,
             background: theme.palette.contact,
             position: "absolute",
-            top: theme.spacing(0.5),
+            // top: theme.spacing(0.7),
+            top: theme.spacing(-0.3),
             left: theme.spacing(2),
             display: "block",
-            letterSpacing:0
+            letterSpacing:0,
+            fontSize:"0.75rem"
           }}
          
            variant="h6"

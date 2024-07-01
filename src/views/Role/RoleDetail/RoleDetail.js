@@ -101,7 +101,7 @@ const RoleDetail = () => {
             className={styles.addTask}
             onClick={() => roleDelete()}
           >
-            <div className={styles.innerText}>Delete</div>
+            <div className={styles.innerText}>DELETE</div>
           </ArrowActionButton>
         </div>
       </div>

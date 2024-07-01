@@ -66,12 +66,13 @@ const AddTaskUpdate = ({
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomMultiComplete
-                AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
+                AutoCompleteList={filteredAssignedTo ||  []} // form.assigned_to ||
                 // label="Assigned To"
-                isError={errorData?.assigned_to}
+                // isError={errorData?.assigned_to}
                 getOptionLabel={(option) =>
                   `${option?.name} (${option?.email})`
                 }
+                
                 value={form.assigned_to || fetchedAssignedTo || []}
                 onTextChange={(text) => {
                   changeTextData(text, "assigned_to");
@@ -79,6 +80,7 @@ const AddTaskUpdate = ({
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    error={errorData?.assigned_to}
                     variant="outlined"
                     label="Assigned To"
                     InputProps={{
@@ -87,7 +89,7 @@ const AddTaskUpdate = ({
                         <img
                           src={
                             form?.assigned_to?.image ||
-                            fetchedAssignedUser?.image
+                            fetchedAssignedTo?.image
                           }
                           crossOrigin="anonymous"
                           className={styles.avatorImage}
@@ -108,7 +110,7 @@ const AddTaskUpdate = ({
                     <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
                 )}
-                disableClearable
+               
               />
             </div>
           </div>
