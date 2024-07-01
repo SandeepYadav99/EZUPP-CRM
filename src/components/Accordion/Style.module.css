@@ -21,13 +21,13 @@
 }
 .panelOpen {
     max-height: 1000px;
-    background: white;
+    /* background: white; */
     /*overflow: hidden;*/
 }
 
 .panelGroup {
     margin-bottom: 5px;
-    background-color: rgb(248, 249, 251);;
+    /* background-color: rgb(248, 249, 251);; */
     /*background-color: #fbfbfb;*/
     /*border-top: 5px solid;*/
     padding-top: 3px;

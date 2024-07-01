@@ -112,7 +112,7 @@ class QuestionView extends Component{
 
         return (
             <div>
-                <div className={styles.plainBg}>
+                <div >
                     <div className={styles.upperFlex}>
                         <div className={styles.title}>
                             {category ? category.title: ''}

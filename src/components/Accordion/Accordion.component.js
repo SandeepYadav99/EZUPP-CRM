@@ -1,112 +1,105 @@
 /**
  * Created by charnjeetelectrovese@gmail.com on 5/27/2020.
  */
-import React, {Component} from 'react';
-import {IconButton, Paper} from '@mui/material';
-import {withStyles} from '@mui/styles';
-import styles from './Style.module.css';
-import classNames from 'classnames';
-import {Edit, KeyboardArrowRight as DownIcon, KeyboardArrowUp as UpIcon} from '@mui/icons-material';
+import React, { Component } from "react";
+import { IconButton, Paper } from "@mui/material";
+import { useTheme, withStyles } from "@mui/styles";
+import styles from "./Style.module.css";
+import classNames from "classnames";
+import {
+  Edit,
+  KeyboardArrowRight as DownIcon,
+  KeyboardArrowUp as UpIcon,
+} from "@mui/icons-material";
 
-class Collapse extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: true,
-            expand: true
-        };
-        this._handleClick = this._handleClick.bind(this);
-        this._handleExpand = this._handleExpand.bind(this);
-    }
+const Collapse = (props) => {
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const [expand, setExpand] = React.useState(true);
 
-    componentDidMount(){
-        if(this.props.initial){
-            this.setState({
-                open: false
-            })
-        }
-        else {
-            this.setState({
-                open: true
-            })
-        }
-    }
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
-    _handleClick() {
-        this.setState({
-            open: !this.state.open
-        });
-    }
+  const handleExpand = () => {
+    setExpand(!expand);
+  };
 
-    _handleExpand() {
-        this.setState({
-            expand: !this.state.expand
-        });
-    }
+  const handleLowerView = () => {
+    const { onEditClick, quesIndex, newValue, children, title } = props;
 
-    _handleLowerView(){
-        const { onEditClick, quesIndex } = this.props;
-        if(this.props.newValue) {
-            return (
-                <div>
-                    <div onClick={this._handleExpand}
-                         className={classNames(styles.innerPanel, (this.state.open ? styles.panelOpen : styles.panelClose))}>
-                    <span className={styles.titleBlue}>
-                        {this.props.newValue}
-                        </span>
-                        <span className={styles.iconContainerBelow}>
-                        {!this.state.expand ? (<DownIcon/>) : (<UpIcon/>)}
-                    </span>
-                    </div>
-                    <div
-                        className={classNames(styles.panelCollapse, (this.state.expand ? styles.panelOpen : styles.panelClose))}>
-                        {this.props.children}
-                    </div>
-                </div>
-            )
-        }
-        else{
-            return(
-                <div className={classNames(styles.panelGroup)}>
-                    <div className={classNames(styles.panelHeader)}>
-                        <span className={styles.title}>
-                        {this.props.title}
-                        </span>
-                        <div className={classNames(styles.editFlex,'editAccordion')}>
-                            <span className={styles.iconContainer} onClick={this._handleClick}>
-                        {!this.state.open ? (<DownIcon/>) : (<UpIcon/>)}
-                        </span>
-                            <IconButton onClick={() => { onEditClick && onEditClick(quesIndex) }}>
-                                <Edit color={'primary'} fontSize={'small'}/>
-                            </IconButton>
-                        </div>
-                    </div>
-                    <div className={classNames((this.state.open ? styles.panelOpen : styles.panelClose))}>
-                        <div
-                            className={classNames(styles.panelCollapse, (this.state.expand ? styles.panelOpen : styles.panelClose))}>
-                            {this.props.children}
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    }
-
-    render() {
-        const { classes } = this.props;
-        return (
-            <div>
-                {this._handleLowerView()}
+    if (newValue) {
+      return (
+        <div>
+          <div
+            onClick={handleExpand}
+            className={classNames(
+              styles.innerPanel,
+              open ? styles.panelOpen : styles.panelClose
+            )}
+          >
+            <span className={styles.titleBlue}>{newValue}</span>
+            <span className={styles.iconContainerBelow}>
+              {!expand ? <DownIcon /> : <UpIcon />}
+            </span>
+          </div>
+          <div
+            className={classNames(
+              styles.panelCollapse,
+              expand ? styles.panelOpen : styles.panelClose
+            )}
+          >
+            {children}
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={classNames(styles.panelGroup)}
+          style={{
+            backgroundColor: theme.palette.mode === "dark" ? "#636578" : "#fff",
+            color: theme.palette.text.primary,
+          }}
+        >
+          <div className={classNames(styles.panelHeader)}>
+            <span className={styles.title}>{title}</span>
+            <div className={classNames(styles.editFlex, "editAccordion")}>
+              <span className={styles.iconContainer} onClick={handleClick}>
+                {!open ? <DownIcon /> : <UpIcon />}
+              </span>
+              <IconButton
+                onClick={() => {
+                  onEditClick && onEditClick(quesIndex);
+                }}
+              >
+                <Edit color={"primary"} fontSize={"small"} />
+              </IconButton>
             </div>
-        );
+          </div>
+          <div
+            className={classNames(open ? styles.panelOpen : styles.panelClose)}
+            style={{
+              color: theme.palette.text.primary,
+              backgroundColor:
+                theme.palette.mode === "dark" ? theme.palette.text.primary : "#fff",
+            }}
+          >
+            <div
+              className={classNames(
+                styles.panelCollapse,
+                expand ? styles.panelOpen : styles.panelClose
+              )}
+            >
+              {children}
+            </div>
+          </div>
+        </div>
+      );
     }
+  };
 
-}
+  return <div>{handleLowerView()}</div>;
+};
 
-const useStyles = (theme) => ({
-    highlightColor: {
-        borderColor: theme.highlightColor
-    }
-});
-
-export default withStyles(useStyles)(Collapse);
+export default Collapse;
