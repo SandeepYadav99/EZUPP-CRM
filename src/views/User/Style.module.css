@@ -46,3 +46,10 @@
     gap: 2px;
 margin-left: -10px !important;
 }
+
+.displayNam{
+
+}
+.displayNam::first-letter{
+    text-transform: uppercase;
+}
