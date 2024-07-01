@@ -110,7 +110,10 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
         aria-describedby="alert-dialog-description"
       >
         <div className={styles.dialogWrap}>
-            <Typography variant="subtitle1">
+        <Typography variant="h5" sx={{ mb: 1 }}>
+              {"Delete Unit"}
+            </Typography>
+            <Typography variant="body1" color={"text.secondary"}>
               {"Are your sure you want to delete the unit ?"}
             </Typography>
             

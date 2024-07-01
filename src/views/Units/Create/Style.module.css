@@ -103,8 +103,8 @@
     align-items: center;
 }
 .dialogWrap{
-  padding: 1.5rem;
-  max-width: 500px;
+  padding: 3rem;
+  max-width: 900px;
 }
 .cancelButton{
   text-align: left !important;
@@ -138,4 +138,8 @@
   .buttonWrapper {
     margin-top: 20px;
   }
+  .dialogWrap{
+    padding: 1.5rem;
+    max-width: 400px;
+  } 
 }
