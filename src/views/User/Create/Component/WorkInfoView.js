@@ -71,7 +71,7 @@ const WorkInfoView = ({
                 
                   changeTextData(text, "department");
                 }}
-                className={styles.marginTop1}
+                // className={styles.marginTop1}
               />
             </div>
           </div>
