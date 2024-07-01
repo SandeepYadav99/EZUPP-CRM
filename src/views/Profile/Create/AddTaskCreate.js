@@ -61,7 +61,7 @@ const AddTaskCreate = ({
             <CustomMultiComplete
               AutoCompleteList={filteredAssignedTo ||  []}
               // label="Assigned To"
-              isError={errorData?.assigned_to}
+              // isError={errorData?.assigned_to}
               getOptionLabel={(option) =>
                 `${capitalizeFirstLetter(option?.name)} (${option?.email})`
               }
@@ -229,20 +229,21 @@ const AddTaskCreate = ({
                   option?.email ? `(${option?.email})` : ""
                 }`
               }
-              AutoCompleteList={filteredUsers || []}
+              AutoCompleteList={filteredUsers ?? []}
               // label="Associated User (Optional)"
-              isError={errorData?.associated_user}
-              value={form.associated_user}
+              // isError={errorData?.associated_user}
+              value={form.associated_user || ""}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   variant="outlined"
+                  error={errorData?.associated_user}
                   label="Associated User (Optional)"
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
                       <>
-                        {form?.associated_user?.image ? (
+                        {form?.associated_user  ? (
                           <img
                             src={form?.associated_user?.image || "."}
                             crossOrigin="anonymous"

@@ -58,10 +58,11 @@ const CustomPhoneContactField = ({
             color: theme.palette.text.primary,
             background: theme.palette.contact,
             position: "absolute",
-            top: theme.spacing(0.5),
+            top: theme.spacing(0.7),
             left: theme.spacing(2),
             display: "block",
-            letterSpacing:0
+            letterSpacing:0,
+            fontSize:"0.75rem"
           }}
          
            variant="h6"

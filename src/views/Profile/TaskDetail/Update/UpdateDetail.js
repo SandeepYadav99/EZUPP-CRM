@@ -66,12 +66,13 @@ const AddTaskUpdate = ({
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomMultiComplete
-                AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
+                AutoCompleteList={filteredAssignedTo ||  []} // form.assigned_to ||
                 // label="Assigned To"
-                isError={errorData?.assigned_to}
+                // isError={errorData?.assigned_to}
                 getOptionLabel={(option) =>
                   `${option?.name} (${option?.email})`
                 }
+                
                 value={form.assigned_to || fetchedAssignedTo || []}
                 onTextChange={(text) => {
                   changeTextData(text, "assigned_to");
@@ -109,7 +110,7 @@ const AddTaskUpdate = ({
                     <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
                 )}
-                disableClearable
+               
               />
             </div>
           </div>

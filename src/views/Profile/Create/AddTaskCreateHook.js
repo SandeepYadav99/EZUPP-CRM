@@ -119,6 +119,7 @@ const useAddTaskCreate = ({
     [isAcceptPopUp, empId]
   );
 
+
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [
@@ -148,9 +149,7 @@ const useAddTaskCreate = ({
     if(form?.title?.length < 2){
       errors.title = true
     }
-    if(!form?.assigned_to){
-      errors.assigned_to= true;
-    }
+  
     // if (!form.due_date || isNaN(new Date(form?.due_date))) {
     //   setHelperText("Invalid date/time format.");
     //   errors.due_date = true;
@@ -304,9 +303,9 @@ const useAddTaskCreate = ({
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
-
+ 
     setErrorData({});
-  }, [form, setForm, setErrorData]);
+  }, [form, setForm, setErrorData, task]);
 
   return {
     form,
@@ -316,7 +315,7 @@ const useAddTaskCreate = ({
     handleSubmit,
     isSubmitting,
     errorData,
-    handleReset,
+   
     empId,
     categoryLists: task?.categoryLists,
     handleSearchUsers,
