@@ -51,7 +51,6 @@ const AddTaskUpdate = ({
     details,
   });
   const theme = useTheme();
-
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -85,16 +84,14 @@ const AddTaskUpdate = ({
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
-                        <Avatar
+                        <img
                           src={
                             form?.assigned_to?.image ||
                             fetchedAssignedUser?.image
                           }
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            borderRadius: "25px",
-                          }}
+                          crossOrigin="anonymous"
+                          className={styles.avatorImage}
+                          alt=".."
                         />
                       ),
                     }}
@@ -102,14 +99,11 @@ const AddTaskUpdate = ({
                 )}
                 renderOption={(props, option) => (
                   <li {...props}>
-                    <Avatar
+                    <img
                       src={option?.image}
-                      sx={{
-                        marginRight: theme.spacing(1),
-                        width: "25px",
-                        height: "25px",
-                        borderRadius: "25px",
-                      }}
+                      crossOrigin="anonymous"
+                      className={styles.avatorImage}
+                      alt=".."
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
@@ -233,9 +227,9 @@ const AddTaskUpdate = ({
                   }`
                 }
                 AutoCompleteList={filteredUsers || []}
-                label="Associated User (Optional)"
+                // label="Associated User (Optional)"
                 isError={errorData?.associated_user}
-                value={form.associated_user || fetchedUser}
+                value={form.associated_user || fetchedUser}//  fetchedUser
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -244,28 +238,26 @@ const AddTaskUpdate = ({
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
-                        <Avatar
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            borderRadius: "25px",
-                          }}
-                          src={form?.associated_user?.image || ""}
-                        />
+                        <>
+                        {form?.associated_user?.image || fetchedUser?.image ?    <img
+                           src={form?.associated_user?.image || fetchedUser?.image}
+                           crossOrigin="anonymous"
+                           className={styles.avatorImage}
+                           alt=".."
+                         />: <Avatar src="" sx={{ height:"25px", width:"25px", borderRadius:"25px"}}/>}
+                       
+                        </>
                       ),
                     }}
                   />
                 )}
                 renderOption={(props, option) => (
                   <li {...props}>
-                    <Avatar
+                    <img
                       src={option?.image}
-                      sx={{
-                        marginRight: theme.spacing(1),
-                        width: "25px",
-                        height: "25px",
-                        borderRadius: "25px",
-                      }}
+                      crossOrigin="anonymous"
+                      className={styles.avatorImage}
+                      alt=".."
                     />
                     <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
@@ -273,12 +265,26 @@ const AddTaskUpdate = ({
                 onTextChange={(text) => {
                   changeTextData(text, "associated_user");
                 }}
+                // disableClearable
               />
             </div>
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomMultiComplete
+            <CustomMultiComplete
+              isError={errorData?.associated_task}
+              AutoCompleteList={filteredTask}
+             
+              value={form.associated_task || fetchedTask}
+              onTextChange={(text) => {
+                changeTextData(text, "associated_task");
+              }}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined"  label="Associated Task (Optional)" />
+              )}
+              getOptionLabel={(option) => option?.title}
+            />
+              {/* <CustomMultiComplete
                 isError={errorData?.associated_task}
                 AutoCompleteList={filteredTask}
                 label="Associated Task (Optional)"
@@ -287,7 +293,7 @@ const AddTaskUpdate = ({
                   changeTextData(text, "associated_task");
                 }}
                 getOptionLabel={(option) => option?.title}
-              />
+              /> */}
             </div>
           </div>
         </div>

@@ -23,10 +23,7 @@ const initialForm = {
   priority: "",
   associated_user: "",
   associated_task: "",
-  // comment:"",
-  // status: true,
   assigned_to: "",
-  // taskType:""
 };
 
 const initialTask = {
@@ -147,6 +144,12 @@ const useAddTaskCreate = ({
         delete errors[val];
       }
     });
+    if(form?.title?.length < 2){
+      errors.title = true
+    }
+    if(!form?.assigned_to){
+      errors.assigned_to= true;
+    }
     // if (!form.due_date || isNaN(new Date(form?.due_date))) {
     //   setHelperText("Invalid date/time format.");
     //   errors.due_date = true;
@@ -242,7 +245,7 @@ const useAddTaskCreate = ({
         const tempKeywords = text?.filter((val, index) => {
           if (val?.trim() === "") {
             return false;
-          } else if (val?.length <= 2 || val?.length > 20) {
+          } else if (val?.length < 2 || val?.length > 20) {
             SnackbarUtils.error(
               "Values cannot be less than 2 and more than 20 character"
             );

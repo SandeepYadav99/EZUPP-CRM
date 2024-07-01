@@ -45,7 +45,12 @@
     font-weight: 700;
     margin-left: 15px;
 }
-
+.avatorImage{
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 25px !important;
+    margin-right: 10px !important;
+  }
 .infoTitle{
     margin-bottom: 15px;
     padding-bottom: 5px;

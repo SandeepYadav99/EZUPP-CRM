@@ -56,7 +56,7 @@ export function UserCountAvatarsLabel({
   return (
     <CardHeader
       avatar={
-        <Avatar sx={{ height: "36px", width: "36px" }} src={imgPath}></Avatar>
+        <Avatar sx={{ height: "36px", width: "36px" }}   ><img height={36} width={36} src={imgPath} crossOrigin="anonymous" alt=""/></Avatar>
       }
       title={
         <a className={styles.boldTitle} href={`${"/profile/"}?id=${id}`}>

@@ -126,20 +126,20 @@ const TaskDetailView = ({}) => {
           <ButtonBase onClick={() => historyUtils.goBack()}>
             <ArrowBackIosIcon fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant="h4" fontSize={18} color={theme.palette.text.primary}>
+          <Typography variant="h4"  color={theme.palette.text.primary}>
             Task Detail
           </Typography>
         </div>
 
         <div className={styles.editAction}>
-          <CustomSelectField
+          {/* <CustomSelectField
             value={filterValue}
             handleChange={filterCompltedTask}
           >
             <MenuItem value={"PENDING"}>Pending</MenuItem>
             <MenuItem value={"COMPLETED"}>Completed</MenuItem>
             <MenuItem value={"ALL"}>All</MenuItem>
-          </CustomSelectField>
+          </CustomSelectField> */}
 
           <ArrowOutlineButton
             onClick={handleSideToggle}
@@ -150,7 +150,7 @@ const TaskDetailView = ({}) => {
         </div>
       </div>
       <ShadowBox width={"100%"}>
-        <div>
+     
           <div className={styles.newContainer}>
             <TaskDetailHeader
               details={details} // details
@@ -171,11 +171,12 @@ const TaskDetailView = ({}) => {
               details={details}
             />
           </div>
-        </div>
+      
       </ShadowBox>
 
       <div className={styles.newNotes}>
         <ShadowBox width={"100%"}>
+         
           <AddNoteContainer
             details={details}
             styles={styles}
@@ -183,13 +184,15 @@ const TaskDetailView = ({}) => {
             toggleAcceptDialog={toggleAcceptDialog}
             isAcceptPopUp={isAcceptPopUp}
           />
+
+        
         </ShadowBox>
       </div>
 
       <SidePanelComponent
         handleToggle={handleSideToggle}
         title={
-          <Typography variant="h5" fontSize={18} fontWeight={600}>
+          <Typography variant="h4" fontWeight={600}>
             Update Task
           </Typography>
         }
