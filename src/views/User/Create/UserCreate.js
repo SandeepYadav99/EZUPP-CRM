@@ -65,7 +65,7 @@ const UserCreate = ({}) => {
           handleSubmit={handleSubmit}
           isRemove={false}
           isSubmitting={isSubmitting}
-          title={id ? "Update" : "Save"}
+          title={id ? "UPDATE" : "SAVE"}
         />
       </div>
     </div>

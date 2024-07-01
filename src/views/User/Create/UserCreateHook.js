@@ -286,15 +286,15 @@ function useUserCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
-        if (!text || (!isSpace(text) && text.length <= 40)) {
-          t[fieldName] = text;
+        if (!text || (text.length <= 40)) {
+          t[fieldName] = text?.trimStart();
         }
       } else if (fieldName === "userName") {
         if (
           !text ||
-          (!isSpace(text) && isAlphaNum(text) && text?.length <= 20)
+          (isAlphaNum(text) && text?.length <= 20)
         ) {
-          t[fieldName] = text?.toLowerCase();
+          t[fieldName] = text?.toLowerCase()?.trimStart();
         }
       } else if (fieldName === "email") {
         if (text?.length <= 70) {

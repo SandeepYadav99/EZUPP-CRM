@@ -192,8 +192,8 @@ const useAddTaskUpdate = ({
       category: industryID,
       type: form?.type,
       priority: form?.priority,
-      associated_user: form?.associated_user?._id , //|| fetchedUser?.id
-      associated_task: form?.associated_task?._id , // || fetchedTask?._id,
+      associated_user: form?.associated_user?._id || null, //|| fetchedUser?.id
+      associated_task: form?.associated_task?._id || null, // || fetchedTask?._id,
       comment: "Task",
       // is_completed: form?.status ? true : false,
       assigned_to: form?.assigned_to?._id || fetchedAssignedTo.id,
