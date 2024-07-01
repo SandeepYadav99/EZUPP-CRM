@@ -79,6 +79,7 @@ const AddTaskUpdate = ({
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    error={errorData?.assigned_to}
                     variant="outlined"
                     label="Assigned To"
                     InputProps={{
@@ -87,7 +88,7 @@ const AddTaskUpdate = ({
                         <img
                           src={
                             form?.assigned_to?.image ||
-                            fetchedAssignedUser?.image
+                            fetchedAssignedTo?.image
                           }
                           crossOrigin="anonymous"
                           className={styles.avatorImage}

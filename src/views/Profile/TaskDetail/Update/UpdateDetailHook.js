@@ -154,6 +154,9 @@ const useAddTaskUpdate = ({
         delete errors[val];
       }
     });
+    if(!form?.assigned_to){
+      errors.assigned_to= true;
+    }
     if (!form.due_date || isNaN(new Date(form?.due_date))) {
       setHelperText("Invalid date/time format.");
       errors.due_date = true;

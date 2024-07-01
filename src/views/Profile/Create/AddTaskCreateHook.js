@@ -133,6 +133,7 @@ const useAddTaskCreate = ({
     if (!fetchedAssignedUser) {
       required.push("assigned_to");
     }
+   
     required.forEach((val) => {
       if (
         !form?.[val] ||

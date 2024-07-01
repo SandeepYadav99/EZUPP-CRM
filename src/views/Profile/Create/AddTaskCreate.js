@@ -11,7 +11,6 @@ import useAddTaskCreate from "./AddTaskCreateHook";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import MultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
-import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../components/FormFields/SelectField/SelectField.component";
 import { useTheme } from "@mui/styles";
@@ -44,7 +43,7 @@ const AddTaskCreate = ({
     profileDetails,
   });
   const theme = useTheme();
-  
+
   return (
     <div className={styles.mainContainer}>
       <ShadowBox width={"100%"}>
@@ -60,7 +59,7 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-              AutoCompleteList={filteredAssignedTo || form.assigned_to || []}
+              AutoCompleteList={filteredAssignedTo ||  []}
               // label="Assigned To"
               isError={errorData?.assigned_to}
               getOptionLabel={(option) =>
@@ -73,6 +72,7 @@ const AddTaskCreate = ({
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  error={errorData?.assigned_to}
                   variant="outlined"
                   label="Assigned To"
                   InputProps={{
