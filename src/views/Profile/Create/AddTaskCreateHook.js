@@ -251,13 +251,13 @@ const useAddTaskCreate = ({
             );
             return false;
           } else {
-            const key = val?.trim().toLowerCase();
-            const isThere = text?.findIndex(
-              (keyTwo, indexTwo) =>
-                keyTwo?.toLowerCase() === key && index !== indexTwo
-            );
-            return isThere < 0;
-          }
+          const trimmedVal = val?.trim().toLowerCase();
+          const isDuplicate = text?.findIndex(
+            (otherVal, otherIndex) =>
+              otherVal?.toLowerCase() === trimmedVal && index !== otherIndex
+          ) >= 0;
+          return !isDuplicate;
+        }
         });
      
         t[fieldName] = tempKeywords;
