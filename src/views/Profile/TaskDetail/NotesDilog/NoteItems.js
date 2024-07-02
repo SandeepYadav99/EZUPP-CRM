@@ -6,37 +6,38 @@ import { useTheme } from "@mui/styles";
 const NoteItem = ({ note, styles, classes }) => {
   const theme = useTheme();
   return (
-    <div>
-      <Card
-        sx={{
-          margin: theme.spacing(1),
-          boxShadow:"none", 
-          borderBottom:"1px solid #E4E4E6"
-        }}
-      >
+    <div className={styles.notesView}>
+  
         <Typography
           variant="body1"
           sx={{
-            marginLeft: theme.spacing(2),
+            // marginLeft: theme.spacing(2),
             wordBreak: "break-word",
             marginTop: "8px",
-            "&::first-letter":{
-              textTransform:"uppercase"
-            }
+            "&::first-letter": {
+              textTransform: "uppercase",
+            },
           }}
         >
           {note?.title}
         </Typography>
-        <CardHeader
-          avatar={<Avatar src={note?.userData?.image} />}
-          title={
-            <span className={classes.boldTitle}>
+        <div className={styles.userInfo}>
+          <img
+            height={36}
+            width={36}
+            src={note?.userData?.image}
+            alt=""
+            crossOrigin="anonymous"
+          />
+          <div className={styles.subUserInfo}>
+            <Typography variant="subtitle1" fontWeight={600}>
               {capitalizeFirstLetter(note?.userData?.name)}
-            </span>
-          }
-          subheader={<span>{note?.createdAtText}</span>}
-        />
-      </Card>
+            </Typography>
+
+            <Typography variant="subtitle2" sx={{mt:theme.spacing(-0.5)}}>{note?.createdAtText}</Typography>
+          </div>
+        </div>
+    
       <div className={styles.gaps} />
     </div>
   );

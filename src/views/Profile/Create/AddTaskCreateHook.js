@@ -23,10 +23,7 @@ const initialForm = {
   priority: "",
   associated_user: "",
   associated_task: "",
-  // comment:"",
-  // status: true,
   assigned_to: "",
-  // taskType:""
 };
 
 const initialTask = {
@@ -122,6 +119,7 @@ const useAddTaskCreate = ({
     [isAcceptPopUp, empId]
   );
 
+
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [
@@ -136,6 +134,7 @@ const useAddTaskCreate = ({
     if (!fetchedAssignedUser) {
       required.push("assigned_to");
     }
+   
     required.forEach((val) => {
       if (
         !form?.[val] ||
@@ -147,6 +146,10 @@ const useAddTaskCreate = ({
         delete errors[val];
       }
     });
+    if(form?.title?.length < 2){
+      errors.title = true
+    }
+  
     // if (!form.due_date || isNaN(new Date(form?.due_date))) {
     //   setHelperText("Invalid date/time format.");
     //   errors.due_date = true;
@@ -180,8 +183,8 @@ const useAddTaskCreate = ({
       category: industryID,
       type: form?.type,
       priority: form?.priority,
-      associated_user: form?.associated_user?._id,
-      associated_task: form?.associated_task?._id,
+      associated_user: form?.associated_user?._id || null,
+      associated_task: form?.associated_task?._id || null,
       comment: "Task",
       // is_completed: form?.status ? true : false,
       assigned_to: form?.assigned_to?._id || fetchedAssignedUser?.id,
@@ -242,19 +245,19 @@ const useAddTaskCreate = ({
         const tempKeywords = text?.filter((val, index) => {
           if (val?.trim() === "") {
             return false;
-          } else if (val?.length <= 2 || val?.length > 20) {
+          } else if (val?.length < 2 || val?.length > 20) {
             SnackbarUtils.error(
               "Values cannot be less than 2 and more than 20 character"
             );
             return false;
           } else {
-            const key = val?.trim().toLowerCase();
-            const isThere = text?.findIndex(
-              (keyTwo, indexTwo) =>
-                keyTwo?.toLowerCase() === key && index !== indexTwo
-            );
-            return isThere < 0;
-          }
+          const trimmedVal = val?.trim().toLowerCase();
+          const isDuplicate = text?.findIndex(
+            (otherVal, otherIndex) =>
+              otherVal?.toLowerCase() === trimmedVal && index !== otherIndex
+          ) >= 0;
+          return !isDuplicate;
+        }
         });
      
         t[fieldName] = tempKeywords;
@@ -300,9 +303,9 @@ const useAddTaskCreate = ({
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
-
+ 
     setErrorData({});
-  }, [form, setForm, setErrorData]);
+  }, [form, setForm, setErrorData, task]);
 
   return {
     form,
@@ -312,7 +315,7 @@ const useAddTaskCreate = ({
     handleSubmit,
     isSubmitting,
     errorData,
-    handleReset,
+   
     empId,
     categoryLists: task?.categoryLists,
     handleSearchUsers,

@@ -150,7 +150,7 @@ const TaskDetailView = ({}) => {
         </div>
       </div>
       <ShadowBox width={"100%"}>
-        <div>
+     
           <div className={styles.newContainer}>
             <TaskDetailHeader
               details={details} // details
@@ -171,11 +171,12 @@ const TaskDetailView = ({}) => {
               details={details}
             />
           </div>
-        </div>
+      
       </ShadowBox>
 
       <div className={styles.newNotes}>
         <ShadowBox width={"100%"}>
+         
           <AddNoteContainer
             details={details}
             styles={styles}
@@ -183,6 +184,8 @@ const TaskDetailView = ({}) => {
             toggleAcceptDialog={toggleAcceptDialog}
             isAcceptPopUp={isAcceptPopUp}
           />
+
+        
         </ShadowBox>
       </div>
 

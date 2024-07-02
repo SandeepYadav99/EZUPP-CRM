@@ -83,8 +83,8 @@ const RoleDetail = () => {
         <ButtonBase onClick={() => history.push(RouteName.ROLE)}>
           <ArrowBackIos fontSize={"small"} />{" "}
           <Typography
-            variant="h3"
-            fontSize={18}
+            variant="h4"
+           
             fontWeight={600}
             color={theme.palette.text.primary}
           >
@@ -101,7 +101,7 @@ const RoleDetail = () => {
             className={styles.addTask}
             onClick={() => roleDelete()}
           >
-            <div className={styles.innerText}>Delete</div>
+            <div className={styles.innerText}>DELETE</div>
           </ArrowActionButton>
         </div>
       </div>

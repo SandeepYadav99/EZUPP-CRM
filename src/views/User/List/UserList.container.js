@@ -158,7 +158,7 @@ const UserList = (props) => {
               handleEdit={handleEdit}
               isAnotherAction={true}
             />
-           
+
           </div>
         ),
       },
