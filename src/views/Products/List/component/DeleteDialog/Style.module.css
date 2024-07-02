@@ -1,6 +1,6 @@
 .dialogWrap{
-    padding: 1.5rem;
-    max-width: 500px;
+    padding: 3rem;
+    max-width: 900px;
   }
   .cancelButton{
     text-align: left !important;
@@ -11,4 +11,10 @@
   }
   .savebutton{
     text-align: right !important;
+  }
+  @media (max-width: 767px) {
+    .dialogWrap{
+      padding: 1.5rem;
+      max-width: 400px;
+    } 
   }

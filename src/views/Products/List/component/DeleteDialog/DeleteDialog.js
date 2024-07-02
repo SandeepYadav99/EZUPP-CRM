@@ -17,7 +17,10 @@ function DeleteDialog({ isOpen, handleCLose, handleSubmit }) {
         aria-describedby="alert-dialog-description"
       >
         <div className={styles.dialogWrap}>
-          <Typography variant="subtitle1">
+          <Typography variant="h5" sx={{ mb: 1 }}>
+            {"Delete Product"}
+          </Typography>
+          <Typography variant="body1" color={"text.secondary"}>
             {"Are your sure you want to delete this item ?"}
           </Typography>
 

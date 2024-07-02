@@ -19,19 +19,8 @@
     align-items: center;
   }
   
-  .resetButton {
-    color: #2063CE !important;
-    /* background-color: white !important; */
-    padding: 15px 40px !important;
-    border-radius: 8px !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    margin-right: 15px !important;
-    border:1px solid #2063CE !important;
-  }
-  .resetButton:hover{
-    background-color: #E9FCF4;
-  }
+
+
   .container{
     margin-top: 20px;
   }
@@ -97,36 +86,28 @@
   .product{
     /* height: 508px; */
     margin-top: 25px;
-    width: 70%;
+    /* width: 70%; */
+    flex: 1 ;
     overflow: auto;
   }
 
-  
-  .addTask {
-    color: white !important;
-    background-color: #5f63f2 !important;
-    padding: 15px 40px !important;
-    border-radius: 5px !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    margin-right: 15px !important;
-  }
-  .addTask:hover{
-    background-color: #03AE85 !important;
-  }
   .leftSection {
     /*margin-right: 30px;*/
     margin-top: 25px;
-    flex: 0.5;
+    flex: 1  !important;
   }
   .rightSection {
-    flex: 1;
+    flex: 1 ;
     /* margin-left: 20px;
     margin-right: 10px; */
     margin-top: 20px !important;
     text-align: center;
   }
-  
+  .productComm{
+    
+   width: 24rem;
+   
+  }
   .profileHeading {
     padding-top: 20px;
     padding-bottom: 30px;
@@ -145,6 +126,7 @@
   text-decoration: underline;
   word-break: break-all;
   white-space: pre-wrap;
+  margin-bottom: 8px;
 }
   .profileContainer {
    display: flex;
@@ -158,35 +140,7 @@
     border-radius: 50%;
     text-align: start;
   }
-  .edit {
-    color: blue !important;
-   float: right !important;
-    /* width: 100%; */
-    text-decoration: underline !important;
-  }
-  
-  .name {
-    font-family: "Inter", sans-serif;
-    margin-top: 18px;
-    margin-bottom: 6px;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  
-  .position {
-    color: rgb(146, 153, 184);
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  
-  .designation {
-    color: rgb(146, 153, 184);
-    font-weight: 700;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-  }
-  
+
   .status {
     margin-bottom: 15px;
     font-size: 14px;
@@ -245,62 +199,7 @@
     margin-left: 12px;
     font-size: 0.9rem;
   }
-  
-  .contactIcons {
-    /* font-size: 0.9rem !important; */
-    color: #000000;
-  }
-  
-  .taskHeading {
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 15px 15px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    border-bottom: 1px solid rgb(241, 242, 246);
-  }
-  .check {
-    margin-top: 15px;
-    font-size: 16px;
-    color: #000000;
-    display: flex;
-    align-items: flex-start
-    
-  }
-  .check > div {
-      flex: 1; 
-      margin-left: 8px; 
-      word-break: break-word;
-      margin-top: 8px;
-      cursor: pointer;
-  }
-  
-  .dummy {
-    font-size: 0.8rem;
-  
-    margin-left: 12px;
-    color: #5f5151;
-  }
-  
-  .priority {
-    background-color: rgb(255, 85, 0);
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 25px;
-    color: white;
-    font-size: 0.8rem;
-    margin-left: 30px;
-  }
-  
-  .taskFlex {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-align: justify;
-    margin-left: 15px;
-    margin-top: 5px;
-  }
-  
+
   .section {
     font-size: 0.8rem;
     font-weight: 600;
@@ -309,10 +208,7 @@
     margin-left: 30px;
     border-radius: 25px;
   }
-  
-  .innerText {
-    margin-left: 10px;
-  }
+
   .detailView {
     cursor: pointer;
   }
@@ -365,14 +261,12 @@
 .productHeading{
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 8px;
 }
-.dialogWrap{
-  padding: 1.5rem;
-  max-width: 500px;
+.spacing{
+  margin-bottom: 8px;
 }
-.cancelButton{
-  text-align: left !important;
-}
+
 .buttonContainer {
     display: flex;
     justify-content: space-between; 
@@ -384,9 +278,7 @@
   display: flex;
   gap: 20px;
 }
-.productComm{
-  width: 23rem;
-}
+
 @media (max-width: 767px) {
 .upperFlex{
   flex-wrap: wrap;
@@ -403,7 +295,7 @@
   width: 100%;
 }
 .productComm{
-  width: 19rem;
+  width: 18rem;
 }
 .row1 {
   flex-direction: row;
