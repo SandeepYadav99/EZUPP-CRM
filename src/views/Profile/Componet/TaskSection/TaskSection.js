@@ -36,16 +36,16 @@ const TaskSection = ({
       <div>
         <div className={styles.upperFlex}>
           <Typography
-            variant="h5"
-            fontSize={18}
+            variant="title"
             fontWeight={600}
             color={theme.palette.text.primary}
           >
             Task List
           </Typography>
-          <div className={"myprofile"}>
+          <div >
             <CustomSelectField
               // name={"ALL"}
+              className={styles.customSelectField}
               //   disableUnderline
               value={filterValue}
               handleChange={filterCompltedTask}

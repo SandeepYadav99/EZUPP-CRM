@@ -12,7 +12,7 @@ const ImageStack = ({ industryData: imageArray, openProfilePopUp, open }) => {
       spacing="11"
       variant="circular"
       sx={{
-        marginLeft: theme.spacing(-3),
+        marginLeft: theme.spacing(-0.3),
         '& .MuiAvatarGroup-avatar': {
          border:`1px solid  ${theme.palette.border}`,
        }

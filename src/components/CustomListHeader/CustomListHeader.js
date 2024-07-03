@@ -59,18 +59,20 @@ export const ListActionComponent = ({
           }}
         />
       </IconButton>
-      {isAnotherAction &&  <IconButton
-              disableRipple="false"
-              // color={theme.palette.status.service}
-              // onClick={() => handleProfile(all)}
-            >
-              <img
-                src={addTask}
-                alt="task"
-                width={20}
-                style={{ color: `${theme.palette.text.primary}` }}
-              />
-            </IconButton>}
+      {isAnotherAction && (
+        <IconButton
+          disableRipple="false"
+          // color={theme.palette.status.service}
+          // onClick={() => handleProfile(all)}
+        >
+          <img
+            src={addTask}
+            alt="task"
+            width={20}
+            style={{ color: `${theme.palette.text.primary}` }}
+          />
+        </IconButton>
+      )}
       <IconButton
         disableRipple="false"
         onClick={() => {
@@ -126,7 +128,11 @@ export const CreateActionComponent = ({
 }) => {
   return (
     <div className={styles.actionButton}>
-      {isRemove ? <ActionButton onClick={removeHandler}>CANCEL</ActionButton> : <Typography></Typography>}
+      {isRemove ? (
+        <ActionButton onClick={removeHandler}>CANCEL</ActionButton>
+      ) : (
+        <Typography></Typography>
+      )}
 
       <PrimaryButton
         variant={"contained"}
@@ -145,7 +151,6 @@ export const CreateActionComponent = ({
 };
 
 // Crate / Update detail heading componet -> ex. Detail Title
-
 
 export const HeaderTitleComponet = ({ headerTitle }) => {
   const theme = useTheme();

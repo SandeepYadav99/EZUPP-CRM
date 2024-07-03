@@ -12,8 +12,7 @@ const TaskListItem = ({
   markAsCompleted,
   completedHandler,
 }) => {
-
-const theme= useTheme()
+  const theme = useTheme();
   const handleCheckboxClick = async (e) => {
     if (e.target.checked) {
       await markAsCompleted(task);
@@ -34,14 +33,13 @@ const theme= useTheme()
     <div>
       <div className={styles.check}>
         <Checkbox
-           color="primary"
+          color="primary"
           className={styles.checkbox}
           checked={task?.is_completed ? true : false}
           onClick={handleCheckboxClick}
         />
         <Typography
           variant="subtitle1"
-      
           color={theme.palette.text.primary}
           fontWeight={600}
           onClick={() => handleDetailPage(task)}
@@ -51,13 +49,32 @@ const theme= useTheme()
       </div>
       <div onClick={() => handleDetailPage(task)} className={styles.detailView}>
         {/* <div className={styles.dummy}></div> */}
-        <Typography variant="body1" color={theme?.palette.text.secondary} sx={{ml:theme.spacing(1.8)}} >
+        <Typography
+          variant="body1"
+          color={theme?.palette.text.secondary}
+          sx={{
+            ml: theme.spacing(1.8),
+            width: "auto",
+            wordBreak: "break-word",
+            height: "auto",
+            textOverflow: "hidden",
+          }}
+        >
           {formattedDescription}
         </Typography>
         <div className={styles.taskFlex}>
           <div className={styles.timeFlex}>
-            <AccessTimeFilled className={styles.contactIcons} color={theme.palette.text.primary} fontSize="small" />
-            <Typography variant="caption" color={theme.palette.text.primary} padding={1} fontWeight={600}>
+            <AccessTimeFilled
+              className={styles.contactIcons}
+              color={theme.palette.text.primary}
+              fontSize="small"
+            />
+            <Typography
+              variant="caption"
+              color={theme.palette.text.primary}
+              padding={1}
+              fontWeight={600}
+            >
               {task?.dueDateListText}
             </Typography>
           </div>

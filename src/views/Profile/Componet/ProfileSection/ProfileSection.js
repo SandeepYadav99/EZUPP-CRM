@@ -37,10 +37,11 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
           </div>
           <div>
             <Typography
-              variant="h5"
+              // variant="h5"
+                  variant="title"
               color={theme.palette.text.primary}
-              fontWeight={600}
-              className={styles.profileTitle}
+              // fontWeight={600}
+              // className={styles.profileTitle}
               sx={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -57,7 +58,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             <Typography
               variant="body1"
               color={theme?.palette.text.secondary}
-              fontWeight={600}
+              // fontWeight={600}
               sx={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -93,8 +94,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h4"
-          fontSize={18}
+          variant="h5"
+          
           color={theme.palette.text.primary}
         >
           Personal Details
@@ -168,10 +169,14 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             <Typography
               variant="body1"
               color={theme?.palette.text.secondary}
-        
+              sx={{
+                '&:first-of-type': {
+                  textTransform: 'capitalize'
+                }
+              }}
             >
               {" "}
-              {profileDetails?.role?.name || "N/A"}
+              {profileDetails?.role?.display_name || "N/A"}
             </Typography>
           </div>
         </div>
@@ -180,8 +185,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h4"
-          fontSize={18}
+          variant="h5"
+        
           color={theme.palette.text.primary}
         >
           Work Details
@@ -308,8 +313,8 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
         <Typography
           marginTop={3}
           fontWeight={600}
-          variant="h4"
-          fontSize={18}
+          variant="h5"
+          
           color={theme.palette.text.primary}
         >
           Activity Information

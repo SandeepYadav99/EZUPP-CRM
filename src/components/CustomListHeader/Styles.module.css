@@ -1,10 +1,13 @@
 .iconButton {
   display: flex !important;
-  gap: 3px !important;
+
 }
 
 .actionButton {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+}
+.listActionContainer{
+  margin-left: -10px !important;
 }

@@ -77,7 +77,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
               >
                 {details?.category?.map((cat, index) => (
                   <span key={index}>
-                    <StatusPill status={cat} color={cat.toLowerCase()} />
+                    <StatusPill status={cat} color={"draft"} />
                     {index < details.category.length - 1 && " , "}
                   </span>
                 ))}

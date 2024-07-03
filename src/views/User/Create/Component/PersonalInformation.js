@@ -148,7 +148,7 @@ const PersonalInformation = ({
                 >
                   {listData?.ROLES?.map((role) => (
                     <MenuItem value={role?.id} key={role?.id}>
-                      {role?.name}
+                      {role?.label}
                     </MenuItem>
                   ))}
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
