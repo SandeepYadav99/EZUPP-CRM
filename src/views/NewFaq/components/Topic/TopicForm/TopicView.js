@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Style.module.css";
 import useTopicView from "./TopicView.hook.js";
 import CustomTextField from "../../../../../components/FormFields/TextField/TextField.component";
-import { Button, IconButton, MenuItem, Tooltip, Typography } from "@mui/material";
+import { Button, CircularProgress, IconButton, MenuItem, Tooltip, Typography } from "@mui/material";
 import CustomSelectField from "../../../../../components/FormFields/SelectField/SelectField.component.js";
 import {
   Backup as BackupIcon,
@@ -14,10 +14,6 @@ import removeTask from "../../../../../assets/Assets/ic_delete@2x.png";
 
 import {
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
 } from "@mui/material";
 import { ActionButton, PrimaryButton } from "../../../../../components/Buttons/PrimaryButton.js";
 import CustomIosSwitch from "../../../../../components/FormFields/CustomIosSwitch.js";
@@ -37,6 +33,7 @@ const TopicViewForm = ({
     confirmPopUp,
     suspendItem,
     handleDialogClose,
+    isSubmitting
   } = useTopicView(dataExist,isOpen, handletoggleSidePannel, listlength);
 
   const renderDialog = () => {
@@ -124,10 +121,11 @@ const TopicViewForm = ({
           <CustomIosSwitch
             styles={{ marginLeft: "20px" }}
             value={form?.status}
+            checked={form?.status}
             handleChange={() => {
               changeTextData(!form?.status, "status");
             }}
-            label={form?.status ? "Active" : "Inactive"}
+            label={form?.status ? "ACTIVE" : "INACTIVE"}
           />
           {dataExist && (
             <div>
@@ -140,8 +138,14 @@ const TopicViewForm = ({
         {renderDialog()}
         <br />
         <div className={styles.submitBtn}>
-          <PrimaryButton onClick={handleSubmit}>
-            {dataExist ? "Update" : "Save"}
+          <PrimaryButton onClick={handleSubmit} disabled={isSubmitting}>
+          {isSubmitting ? (
+              <CircularProgress color="success" size="20px" />
+            ) : dataExist ? (
+              "Update"
+            ) : (
+              "Save"
+            )}
           </PrimaryButton>
         </div>
       </div>

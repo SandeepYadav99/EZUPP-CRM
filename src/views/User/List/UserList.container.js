@@ -115,14 +115,14 @@ const UserList = (props) => {
         label: "Designation",
 
         sortable: false,
-        render: (temp, all) => <div>{all?.designation || "N/A"}</div>,
+        render: (temp, all) => <div>{capitalizeFirstLetter(all?.designation) || "N/A"}</div>,
       },
       {
         key: "role",
         label: "User Role",
 
         sortable: false,
-        render: (temp, all) => <div className={styles.displayNam}>{all?.role?.display_name || "N/A"}</div>,
+        render: (temp, all) => <div>{all?.role?.name?.toUpperCase()|| "N/A"}</div>,
       },
 
       {
@@ -158,6 +158,7 @@ const UserList = (props) => {
               handleEdit={handleEdit}
               isAnotherAction={true}
             />
+
           </div>
         ),
       },

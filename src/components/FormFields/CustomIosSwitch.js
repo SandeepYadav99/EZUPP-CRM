@@ -76,7 +76,7 @@ export default function CustomIosSwitch({
            
             onChange={(e) => handleChange(e.target.checked)}
             theme={theme}
-            defaultChecked
+            // defaultChecked
           />
         }
         label={label}

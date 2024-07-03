@@ -73,7 +73,7 @@ function useNewBlogCreateHook({ location }) {
           author: data?.author,
           is_featured: data?.is_featured,
           status: data?.status,
-          tags: data?.tags,
+          tags: data?.tags?.length>1 ? data?.tags : data?.tags?.[0]?.split(","),
           blog_description: data?.blog_description,
           meta_description: data?.meta_description,
         });

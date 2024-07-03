@@ -1,0 +1,199 @@
+[
+  {
+    "_id": "620a3c8c0fe2939d6a156454",
+    "value": "620a3c8c0fe2939d6a156454",
+    "label": "Pharmaceutical",
+    "children": [
+      {
+        "value": "620bb7e1656e78cd5508cfaf",
+        "label": "Testing",
+        "children":[{"value": "62176ec5cc646a2fa048863z","label":"Acrobatic Sports"}]
+      },
+      {
+        "value": "620e0d2f2d725582e9e18b14",
+        "label": "Oral Drugs"
+      },
+      {
+        "value": "620e0dc12d725582e9e18b16",
+        "label": "Topical medicine"
+      }
+    ]
+  },
+  {
+    "_id": "620b60640fe2939d6a156514",
+    "value": "620b60640fe2939d6a156514",
+    "label": "FMCG",
+    "children": [
+      {
+        "value": "62176ec5cc646a2fa048863e",
+        "label": "Beverages",
+        "children":[{"value": "62176ec5cc646a2fa048863z","label":"Acrobatic Sports"}]
+
+      },
+      {
+        "value": "62176eedcc646a2fa0488640",
+        "label": "Frozen Goods"
+      },
+      {
+        "value": "62176fe1cc646a2fa0488642",
+        "label": "Cleaning"
+      },
+      {
+        "value": "621770b8cc646a2fa0488644",
+        "label": "Baked Goods"
+      }
+    ]
+  },
+  {
+    "_id": "620b6cc70fe2939d6a15651f",
+    "value": "620b6cc70fe2939d6a15651f",
+    "label": "Apparels",
+    "children": [
+      {
+        "value": "620e0e892d725582e9e18b28",
+        "label": "Business wear"
+      }
+    ]
+  },
+  {
+    "_id": "620ca5c0656e78cd5508d07d",
+    "value": "620ca5c0656e78cd5508d07d",
+    "label": "Printing and packing",
+    "children": []
+  },
+  {
+    "_id": "620ca602656e78cd5508d081",
+    "value": "620ca602656e78cd5508d081",
+    "label": "Furniture",
+    "children": [
+      {
+        "value": "620e0bbb2d725582e9e18b05",
+        "label": "Beds"
+      },
+      {
+        "value": "620e0bd32d725582e9e18b07",
+        "label": "Sofa"
+      },
+      {
+        "value": "620e0bf12d725582e9e18b09",
+        "label": "Tables"
+      }
+    ]
+  },
+  {
+    "_id": "620ca6b1656e78cd5508d088",
+    "value": "620ca6b1656e78cd5508d088",
+    "label": "Consumer Durable",
+    "children": []
+  },
+  {
+    "_id": "620cac5f656e78cd5508d08b",
+    "value": "620cac5f656e78cd5508d08b",
+    "label": "Sports and Toys",
+    "children": [
+      {
+        "value": "620cd2af656e78cd5508d138",
+        "label": "outdoor sport"
+      },
+      {
+        "value": "620ce14f656e78cd5508d141",
+        "label": "outdoor sport"
+      },
+      {
+        "value": "620cf454656e78cd5508d144",
+        "label": "Air Sports"
+      },
+      {
+        "value": "620cf488656e78cd5508d146",
+        "label": "Acrobatic Sports"
+      },
+      {
+        "value": "620cf4c3656e78cd5508d148",
+        "label": "Archery"
+      },
+      {
+        "value": "620cf636656e78cd5508d14c",
+        "label": "Basket Family"
+      },
+      {
+        "value": "620cf68d656e78cd5508d14e",
+        "label": "Bat and Ball"
+      },
+      {
+        "value": "620cf6bd656e78cd5508d150",
+        "label": "Board Sport"
+      },
+      {
+        "value": "620cf6fa656e78cd5508d152",
+        "label": "Catching Games"
+      },
+      {
+        "value": "620cf731656e78cd5508d154",
+        "label": "Climbing Games"
+      },
+      {
+        "value": "620cfa2f656e78cd5508d156",
+        "label": "Cycling"
+      },
+      {
+        "value": "620cfa6b656e78cd5508d158",
+        "label": "Grapplings"
+      },
+      {
+        "value": "62161cfd2996a35529dad450",
+        "label": "Field sports"
+      },
+      {
+        "value": "62161f1a2996a35529dad453",
+        "label": "Cycling"
+      },
+      {
+        "value": "62161fef2996a35529dad455",
+        "label": "Ski"
+      }
+    ]
+  },
+  {
+    "_id": "62173a97cc646a2fa048844a",
+    "value": "62173a97cc646a2fa048844a",
+    "label": "Agriculture",
+    "children": [
+      {
+        "value": "62173b41cc646a2fa048844f",
+        "label": "Organic"
+      },
+      {
+        "value": "621f4a6dd0d3e0e13b659cfd",
+        "label": "Organic"
+      },
+      {
+        "value": "621f4a78d0d3e0e13b659d15",
+        "label": "Non Organic"
+      }
+    ]
+  },
+  {
+    "_id": "644a5c59ff30bc1303f84cc5",
+    "value": "644a5c59ff30bc1303f84cc5",
+    "label": "Electronics",
+    "children": []
+  },
+  {
+    "_id": "644a5cb4ff30bc1303f84cdd",
+    "value": "644a5cb4ff30bc1303f84cdd",
+    "label": "Footwear",
+    "children": []
+  },
+  {
+    "_id": "659f7a6022279039fb04f8ac",
+    "value": "659f7a6022279039fb04f8ac",
+    "label": "toys",
+    "children": []
+  },
+  {
+    "_id": "65d727c1932d3e6d4cd4c12f",
+    "value": "65d727c1932d3e6d4cd4c12f",
+    "label": "Glasses",
+    "children": []
+  }
+]

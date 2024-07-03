@@ -124,6 +124,7 @@ const useTopicView = (dataExist,isOpen, handletoggleSidePannel, listlength = 0) 
       }else{
         SnackbarUtils.error(res?.message)
       }
+      setIsSubmitting(false)
     });
   }, [form, isSubmitting, setIsSubmitting, listlength]);
 
@@ -178,6 +179,7 @@ const useTopicView = (dataExist,isOpen, handletoggleSidePannel, listlength = 0) 
     confirmPopUp,
     suspendItem,
     handleDialogClose,
+    isSubmitting
   };
 };
 

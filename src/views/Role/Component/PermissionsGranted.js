@@ -22,7 +22,9 @@ const PermissionsGranted = ({ state, styles }) => {
                 mt={theme.spacing(0.8)}
                 mb={theme.spacing(0.8)}
                 fontWeight={600}
+
                 color={theme.palette.text.primary}
+
               >
                 {permission?.name}:
               </Typography>

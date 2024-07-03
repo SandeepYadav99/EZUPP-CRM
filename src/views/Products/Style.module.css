@@ -32,9 +32,9 @@
     border-radius: 50%;
     display: block !important;
 }
-.firstCellInfo {
+/* .firstCellInfo {
     margin-left: 10px;
-}
+} */
 .headerFlex {
     display: flex;
     justify-content: space-between;

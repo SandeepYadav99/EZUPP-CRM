@@ -145,6 +145,7 @@ const useQuestionFormHook = ({
         SnackbarUtils.error(res?.message);
         // handleToggleSidePannel();
       }
+      setIsSubmitting(false)
     });
   }, [form, isSubmitting, setIsSubmitting, listLength]);
 

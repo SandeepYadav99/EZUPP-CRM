@@ -507,16 +507,7 @@ class Product extends Component {
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-            <Cascader
-              value={category}
-            //   isError={errorData.category}
-              label={"Industry"}
-              options={items}
-               handleChange={(value) => {
-            //     changeTextData(value, "category");
-            this.setState({ category: value });
-              }}
-            />
+
           </div>
           </div>
 

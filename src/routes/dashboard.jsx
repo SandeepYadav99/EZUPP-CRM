@@ -320,7 +320,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.PRODUCT_UPDATE}:id`,
     sidebarName: "Products",
-    navbarName: "Products",
+    //navbarName: "Products",
     icon: LocalOffer,
     component: ProductCreate,
     is_sidebar: false,
@@ -330,7 +330,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.PRODUCT_CREATE}`,
     sidebarName: "Products",
-    navbarName: "Products",
+    //navbarName: "Products",
     icon: LocalOffer,
     component: ProductCreate,
     is_sidebar: false,

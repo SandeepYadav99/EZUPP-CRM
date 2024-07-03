@@ -141,11 +141,20 @@ function useProductCreateHook() {
       SnackbarUtils.error("Please Enter the Valid Url");
       errors["product_link"] = true;
     }
-    if (form.discount_value > form.ballpark_price) {
-      SnackbarUtils.error(
-        "Discount value should not be greater than Ballpark price value"
-      );
+    // if (form.discount_value > form.ballpark_price) {
+    //   SnackbarUtils.error(
+    //     "Discount value should not be greater than Ballpark price value"
+    //   );
+    //   errors["discount_value"] = true;
+    // }
+    if (form.discount_value !== "" && (form.ballpark_price === null || form.ballpark_price === "")) {
+      SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
       errors["discount_value"] = true;
+    } else if (form.discount_value !== null && form.ballpark_price !== null) {
+      if (form.discount_value > form.ballpark_price) {
+        SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
+        errors["discount_value"] = true;
+      }
     }
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {

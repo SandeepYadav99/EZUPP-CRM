@@ -48,6 +48,8 @@ import ColorPicker from "../../components/ColorPicker/ColorPicker";
 import CheckboxWithText from "../../components/RadioButtons/CheckboxWithText";
 import useStyleGuide from "./StyleGuide.hook";
 import Constants from "../../config/constants";
+import CascaderData from '../../config/cascader.json';
+import Cascader from "../../components/FormFields/Cascader/Cascader";
 
 const avatars = ["A", "B", "C", "2k"];
 const AutoCompleteData = [
@@ -572,6 +574,19 @@ const StyleGuide = ({}) => {
       <br />
       <div>
         <ColorPicker />
+
+         <Cascader
+            value={[]}
+            label={"Industry"}
+            options={CascaderData}
+            handleChange={(value) => {
+
+            }}
+        />
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </div>
     </ShadowBox >
   );
