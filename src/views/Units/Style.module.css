@@ -23,7 +23,7 @@
 }
 .firstCellFlex {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 .firstCellFlex img {
     width: 40px;
@@ -32,7 +32,7 @@
     display: block !important;
 }
 .firstCellInfo {
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 .headerFlex {
     display: flex;

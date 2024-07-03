@@ -262,6 +262,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 8px;
+  margin-top: -7px;
 }
 .spacing{
   margin-bottom: 8px;

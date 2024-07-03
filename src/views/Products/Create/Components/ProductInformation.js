@@ -52,7 +52,7 @@ const ProductInformation = ({
           </h4>
         </div>
         <div className={styles.outerFlex}>
-          <div className={`${styles.count}`} style={{ margin: "14px 10px 0 14px" }}>
+          <div className={`${styles.count}`} style={{ margin: "8px 10px 0 14px" }}>
             {renderImage}
             <div className={styles.headerFlex}>
             <Typography variant="subtitle3" className={styles.imgText}>

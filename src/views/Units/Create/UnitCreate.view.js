@@ -83,6 +83,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
                 handleChange={() => {
                   changeTextData(!form?.is_general, "is_general");
                 }}
+                checked={form?.is_general}
                 label={`Is General`}
               />
             </div>
@@ -100,7 +101,7 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
           </div>
         </div>
         <div style={{ float: "right" }} className={styles.buttonWrapper}>
-          <PrimaryButton onClick={handleSubmit}>{isEdit ? "UPDATE" : "SUBMIT"}</PrimaryButton>
+          <PrimaryButton onClick={handleSubmit}>{isEdit ? "UPDATE" : "CREATE"}</PrimaryButton>
         </div>
       </div>
       <Dialog
