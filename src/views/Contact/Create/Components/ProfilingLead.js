@@ -150,7 +150,7 @@ const ProfilingLead = ({
                 changeTextData(text, "contact_owner");
               }}
               enableField={["title"]}
-              style={{ marginTop: "4px" }}
+              style={{ marginTop: "-0.5px" }}
             />
           </div>
         </div>

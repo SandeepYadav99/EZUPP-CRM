@@ -163,6 +163,7 @@ const ProductInformation = ({
                     label="Associate Tags"
                     defaultValue={form?.tags}
                     value={form?.tags}
+                    sx={{mb:0.5}}
                     onTextChange={(text) => {
                       changeTextData(text, "tags");
                     }}

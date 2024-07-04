@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 import CustomCheckbox from "./../../../components/FormFields/CustomCheckbox";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import { Delete as DeleteIcon, Info as InfoIcon } from "@mui/icons-material";
 import {
   ActionButton,
@@ -17,6 +18,7 @@ import {
 import removeTask from "../../../assets/Assets/ic_delete@2x.png";
 // import { Autocomplete } from "@material-ui/lab";
 import { useParams } from "react-router";
+
 const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit}) => {
   const {
     changeTextData,
@@ -45,9 +47,10 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
  
   return (
     <div>
+      <ShadowBox className={styles.card}>
       <div className={styles.resetPasswordWrapper}>
         <div className={styles.fieldWrapper}>
-          <div className={styles.wrapper}>
+          {/* <div className={styles.wrapper}>
           <div className={styles.infoTitle}>
             <div className={styles.heading}>
             <Typography variant="subtitle1">Type</Typography> 
@@ -63,7 +66,8 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
                   <img src={removeTask} alt="task" width={20} />
                   </IconButton>
             )}
-          </div>
+          </div> */}
+          <Typography variant="h5">Unit Details</Typography>
           <CustomTextField
             isError={errorData?.name}
             errorText={errorData?.name}
@@ -75,9 +79,10 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
             onBlur={() => {
               onBlurHandler("name");
             }}
+            sx={{mt:1}}
           />
-          <div className={"formFlex"} style={{marginLeft: "-10px"}}>
-            <div className={"formGroup"}>
+          {/* <div className={"formFlex"} style={{marginLeft: "-10px"}}> */}
+            {/* <div className={"formGroup"}> */}
               <CustomCheckbox
                 value={form?.is_general}
                 handleChange={() => {
@@ -86,8 +91,9 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
                 checked={form?.is_general}
                 label={`Is General`}
               />
-            </div>
-            <div className={"formGroup"}>
+            {/* </div> */}
+            {/* <div className={"formGroup"}> */}
+            <Typography variant="subtitle1" sx={{mb:(-1)}}>Status</Typography>
               <CustomIosSwitch
                 value={form?.status}
                 checked={form?.status ? true : false}
@@ -97,13 +103,30 @@ const EventForm = ({ isOpen, handleToggle, candidateId, isInterview, id , isEdit
                 //label={`Active ?`}
                 label={form?.status ? "Active" : "Inactive"}
               />
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
         </div>
-        <div style={{ float: "right" }} className={styles.buttonWrapper}>
-          <PrimaryButton onClick={handleSubmit}>{isEdit ? "UPDATE" : "CREATE"}</PrimaryButton>
-        </div>
+       
+       
       </div>
+      </ShadowBox>
+      <div className={styles.buttonWrapper}>
+      {isEdit && (
+      <ActionButton onClick={openDialog} sx={{ml:1}} className={styles.buttonLeft}>
+              DELETE
+              <span className={styles.imageContainer}>
+                <img
+                  src={removeTask}
+                  alt="task"
+                  width={20}
+                  height={17}
+                  className={styles.binImage}
+                />
+              </span>
+            </ActionButton>
+          )}
+          <PrimaryButton onClick={handleSubmit} style={{ float: "right" }} className={styles.buttonRight} >{isEdit ? "UPDATE" : "CREATE"}</PrimaryButton>
+        </div>
       <Dialog
         open={isDialogOpen} 
         onClose={closeDialog}
