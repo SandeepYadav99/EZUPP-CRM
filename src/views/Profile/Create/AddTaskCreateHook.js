@@ -41,9 +41,9 @@ const useAddTaskCreate = ({
 }) => {
   const [errorData, setErrorData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({ ...initialForm });
   const [isAcceptPopUp, setIsAcceptPopUp] = useState(false);
-  const [fetchedAssignedUser, setFetchedAssinedUser] = useState([]);
+  const [form, setForm] = useState({ ...initialForm });
+
   const [taskTypes, setTaskTypes] = useState(["DISCUS"]);
   const [helperText, setHelperText] = useState("");
 
@@ -98,11 +98,26 @@ const useAddTaskCreate = ({
         // dispatchTask({ type: "FILTERED_USER", payload: [] });
       }
     });
-  }, [isSidePanel]);
+  }, [isSidePanel, empId]);
 
   useEffect(() => {
-    setFetchedAssinedUser(profileDetails);
-  }, [fetchedAssignedUser]);
+    if (!isSidePanel) return;
+    if (profileDetails?.id) {
+      const assignedValue = {
+        id: profileDetails?.id,
+        name: profileDetails?.name,
+        email: profileDetails?.email,
+        image: profileDetails?.image,
+      };
+
+      setForm({
+        ...form,
+        assigned_to: {
+          ...assignedValue,
+        },
+      });
+    }
+  }, [isSidePanel]);
 
   const handleSearchUsers = useCallback((searchText) => {}, []);
 
@@ -119,7 +134,6 @@ const useAddTaskCreate = ({
     [isAcceptPopUp, empId]
   );
 
-
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [
@@ -129,27 +143,24 @@ const useAddTaskCreate = ({
       "priority",
       "due_date",
       "category",
+      "assigned_to",
       // "taskType"
     ]; // "name", "description", "due_date", "task_type", "comment"
-    if (!fetchedAssignedUser) {
-      required.push("assigned_to");
-    }
-   
+
     required.forEach((val) => {
       if (
         !form?.[val] ||
         (Array.isArray(form?.[val]) && form?.[val]?.length === 0)
       ) {
         errors[val] = true;
-    
       } else if (["code"].indexOf(val) < 0) {
         delete errors[val];
       }
     });
-    if(form?.title?.length < 2){
-      errors.title = true
+    if (form?.title?.length < 2) {
+      errors.title = true;
     }
-  
+
     // if (!form.due_date || isNaN(new Date(form?.due_date))) {
     //   setHelperText("Invalid date/time format.");
     //   errors.due_date = true;
@@ -163,7 +174,7 @@ const useAddTaskCreate = ({
       }
     });
     return errors;
-  }, [form, errorData, helperText]);
+  }, [form, errorData, helperText, isSidePanel]);
 
   const submitToServer = useCallback(async () => {
     if (isSubmitting) {
@@ -187,7 +198,7 @@ const useAddTaskCreate = ({
       associated_task: form?.associated_task?._id || null,
       comment: "Task",
       // is_completed: form?.status ? true : false,
-      assigned_to: form?.assigned_to?._id || fetchedAssignedUser?.id,
+      assigned_to: form?.assigned_to?._id,
     };
 
     if (empId) {
@@ -234,7 +245,7 @@ const useAddTaskCreate = ({
     },
     [setErrorData, errorData]
   );
-
+console.log(form?.associated_user)
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;
@@ -251,31 +262,17 @@ const useAddTaskCreate = ({
             );
             return false;
           } else {
-          const trimmedVal = val?.trim().toLowerCase();
-          const isDuplicate = text?.findIndex(
-            (otherVal, otherIndex) =>
-              otherVal?.toLowerCase() === trimmedVal && index !== otherIndex
-          ) >= 0;
-          return !isDuplicate;
-        }
+            const trimmedVal = val?.trim().toLowerCase();
+            const isDuplicate =
+              text?.findIndex(
+                (otherVal, otherIndex) =>
+                  otherVal?.toLowerCase() === trimmedVal && index !== otherIndex
+              ) >= 0;
+            return !isDuplicate;
+          }
         });
-     
-        t[fieldName] = tempKeywords;
-      } else if (fieldName === "associated_task") {
-        t[fieldName] = text;
-      } else if (fieldName === "associated_user") {
-        t[fieldName] = text;
-      } else if (fieldName === "assigned_to") {
-        t[fieldName] = text;
-      } else if (fieldName === "due_date") {
-        // // if(text && isNaN(text)){
-        //    shouldRemoveError=true;
-        //   setHelperText("Invalid date/time format.");
-        // }else{
 
-        //   // setHelperText("");
-        // }
-        t[fieldName] = text;
+        t[fieldName] = tempKeywords;
       } else {
         t[fieldName] = text;
       }
@@ -303,9 +300,9 @@ const useAddTaskCreate = ({
 
   const handleReset = useCallback(() => {
     setForm({ ...initialForm });
- 
+
     setErrorData({});
-  }, [form, setForm, setErrorData, task]);
+  }, [form, setForm, setErrorData]);
 
   return {
     form,
@@ -315,7 +312,7 @@ const useAddTaskCreate = ({
     handleSubmit,
     isSubmitting,
     errorData,
-   
+
     empId,
     categoryLists: task?.categoryLists,
     handleSearchUsers,
@@ -325,7 +322,7 @@ const useAddTaskCreate = ({
     filteredUsers: task?.filteredUsers,
     filteredTask: task?.filteredTask,
     filteredAssignedTo: task?.filteredAssignedTo,
-    fetchedAssignedUser,
+
     taskTypes,
     helperText,
   };

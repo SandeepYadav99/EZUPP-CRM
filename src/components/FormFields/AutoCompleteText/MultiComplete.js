@@ -138,6 +138,7 @@ const CustomMultiComplete = ({
               </div>
             </StyledOption>
           )}
+          
           value={value}
           renderTags={(value, getTagProps) =>
             value?.map((option, index) => (

@@ -286,14 +286,11 @@ function useUserCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
-        if (!text || (text.length <= 40)) {
+        if (!text || text.length <= 40) {
           t[fieldName] = text?.trimStart();
         }
       } else if (fieldName === "userName") {
-        if (
-          !text ||
-          (isAlphaNum(text) && text?.length <= 20)
-        ) {
+        if (!text || (isAlphaNum(text) && text?.length <= 20)) {
           t[fieldName] = text?.toLowerCase()?.trimStart();
         }
       } else if (fieldName === "email") {
@@ -304,14 +301,10 @@ function useUserCreateHook() {
         if (!text || (!isSpace(text) && text?.length <= 20)) {
           t[fieldName] = text;
         }
-      } else if (fieldName === "contact") {
-        t[fieldName] = text;
-      } else if (fieldName === "end_date") {
-        t[fieldName] = text;
-      } else if (fieldName === "role") {
-        t[fieldName] = text;
       } else if (fieldName === "department") {
-        if (!text || (!isSpace(text) && text?.length <= 40)) {
+        console.log(text);
+        if (text.length <= 10) {
+          console.log(text);
           t[fieldName] = text?.toLowerCase();
         }
       } else if (fieldName === "designation") {
@@ -319,6 +312,7 @@ function useUserCreateHook() {
           t[fieldName] = text.toLowerCase();
         }
       } else {
+        console.log(text);
         t[fieldName] = text;
       }
       if (["email", "employee_id", "userName"].includes(fieldName)) {

@@ -20,6 +20,7 @@ const WorkInfoView = ({
   designation,
 }) => {
   const theme = useTheme();
+  
   return (
     <>
       <ShadowBox className={styles.mainBox}>
@@ -60,16 +61,18 @@ const WorkInfoView = ({
               <MultiComplete
                 isError={errorData?.department}
                 // multiple
-                autoSelect
-                isArray
+                 autoSelect
+                // isArray
                 AutoCompleteList={department}
                 getOptionLabel={(option) => option}
                 label={"Department"}
                 defaultValue={form?.department}
                 value={form?.department}
                 onTextChange={(text) => {
-                
-                  changeTextData(text, "department");
+                  console.log(text);
+                  if (text?.length <= 10) {
+                    changeTextData(text, "department");
+                  }
                 }}
                 // className={styles.marginTop1}
               />
@@ -93,7 +96,6 @@ const WorkInfoView = ({
                   changeTextData(text, "designation");
                   // }
                 }}
-                
               />
             </div>
             <div className={"formGroup"}>
@@ -156,27 +158,33 @@ const WorkInfoView = ({
                 }}
                 checked={form?.userManage}
               />
-              <Typography variant="body1" sx={{marginLeft:theme.spacing(-2)}}>
+              <Typography
+                variant="body1"
+                sx={{ marginLeft: theme.spacing(-2) }}
+              >
                 User is a manager?
               </Typography>
             </div>
 
             <div className={styles.checkbox}>
-            {!id && (
-              <>
-                <CustomCheckbox
-                  sx={{ height: "18px" }}
-                  checked={form?.invoiteToUser}
-                  value={form?.invoiteToUser}
-                  handleChange={() => {
-                    changeTextData(!form?.invoiteToUser, "invoiteToUser");
-                  }}
-                />
-                <Typography variant="body1" sx={{marginLeft:theme.spacing(-2)}}>
-                  Send Invite to user on email
-                </Typography>
-              </>
-            )}
+              {!id && (
+                <>
+                  <CustomCheckbox
+                    sx={{ height: "18px" }}
+                    checked={form?.invoiteToUser}
+                    value={form?.invoiteToUser}
+                    handleChange={() => {
+                      changeTextData(!form?.invoiteToUser, "invoiteToUser");
+                    }}
+                  />
+                  <Typography
+                    variant="body1"
+                    sx={{ marginLeft: theme.spacing(-2) }}
+                  >
+                    Send Invite to user on email
+                  </Typography>
+                </>
+              )}
             </div>
           </div>
         </div>

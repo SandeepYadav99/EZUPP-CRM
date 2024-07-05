@@ -66,17 +66,29 @@ const useAddTaskUpdate = ({
   const [task, dispatchTask] = useReducer(reducer, initialTask);
 
   useEffect(() => {
+    if(!isSidePanel) return;
     // setIsLoading(true);
+    const assignedValue = {
+      id: details?.assignedTo?.id,
+      name: details?.assignedTo?.name,
+      email: details?.assignedTo?.email,
+      image: details?.assignedTo?.image,
+    };
     setForm({
       ...form,
+      
       title: details?.title,
       category: details?.category,
       description: details?.description,
       due_date: details?.due_date,
       priority: details?.priority,
       type: details?.type,
+      assigned_to: {...assignedValue}
     });
-    setFetchedAssignedTo(details?.assignedTo);
+    // if(details?.assignedTo?.id){
+    //    setFetchedAssignedTo({...assignedValue});
+
+    // }
     setFetchedUser(details?.associatedUser);
     setFetchedTask(details?.associatedTask);
   }, [details, isSidePanel]);
@@ -139,10 +151,9 @@ const useAddTaskUpdate = ({
       "priority",
       "due_date",
       "category",
+      "assigned_to"
     ];
-    if (!fetchedAssignedTo) {
-      required.push("assigned_to");
-    }
+ 
     required.forEach((val) => {
       if (
         !form?.[val] ||
@@ -154,11 +165,7 @@ const useAddTaskUpdate = ({
         delete errors[val];
       }
     });
-    // console.log(form?.assigned_to, fetchedAssignedTo)
-    // console.log( fetchedAssignedTo)
-    // if(!form?.assigned_to){
-    //   errors.assigned_to= true;
-    // }
+
     if (!form.due_date || isNaN(new Date(form?.due_date))) {
       setHelperText("Invalid date/time format.");
       errors.due_date = true;
@@ -268,7 +275,7 @@ const useAddTaskUpdate = ({
             return isThere < 0;
           }
         });
-     
+
         t[fieldName] = tempKeywords;
       } else if (fieldName === "associated_task") {
         t[fieldName] = text;

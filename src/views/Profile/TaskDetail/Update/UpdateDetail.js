@@ -66,14 +66,12 @@ const AddTaskUpdate = ({
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomMultiComplete
-                AutoCompleteList={filteredAssignedTo ||  []} // form.assigned_to ||
-                // label="Assigned To"
-                // isError={errorData?.assigned_to}
+                AutoCompleteList={filteredAssignedTo || []} 
+             
                 getOptionLabel={(option) =>
                   `${option?.name} (${option?.email})`
                 }
-                
-                value={form.assigned_to || fetchedAssignedTo || []}
+                value={form.assigned_to}
                 onTextChange={(text) => {
                   changeTextData(text, "assigned_to");
                 }}
@@ -87,10 +85,7 @@ const AddTaskUpdate = ({
                       ...params.InputProps,
                       startAdornment: (
                         <img
-                          src={
-                            form?.assigned_to?.image ||
-                            fetchedAssignedTo?.image
-                          }
+                          src={form?.assigned_to?.image}
                           crossOrigin="anonymous"
                           className={styles.avatorImage}
                           alt=".."
@@ -110,7 +105,6 @@ const AddTaskUpdate = ({
                     <div>{`${option?.name} (${option?.email})`}</div>
                   </li>
                 )}
-               
               />
             </div>
           </div>
@@ -231,7 +225,7 @@ const AddTaskUpdate = ({
                 AutoCompleteList={filteredUsers || []}
                 // label="Associated User (Optional)"
                 isError={errorData?.associated_user}
-                value={form.associated_user || fetchedUser}//  fetchedUser
+                value={form.associated_user || fetchedUser} //  fetchedUser
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -241,13 +235,27 @@ const AddTaskUpdate = ({
                       ...params.InputProps,
                       startAdornment: (
                         <>
-                        {form?.associated_user?.image || fetchedUser?.image ?    <img
-                           src={form?.associated_user?.image || fetchedUser?.image}
-                           crossOrigin="anonymous"
-                           className={styles.avatorImage}
-                           alt=".."
-                         />: <Avatar src="" sx={{ height:"25px", width:"25px", borderRadius:"25px"}}/>}
-                       
+                          {form?.associated_user?.image ||
+                          fetchedUser?.image ? (
+                            <img
+                              src={
+                                form?.associated_user?.image ||
+                                fetchedUser?.image
+                              }
+                              crossOrigin="anonymous"
+                              className={styles.avatorImage}
+                              alt=".."
+                            />
+                          ) : (
+                            <Avatar
+                              src=""
+                              sx={{
+                                height: "25px",
+                                width: "25px",
+                                borderRadius: "25px",
+                              }}
+                            />
+                          )}
                         </>
                       ),
                     }}
@@ -273,19 +281,22 @@ const AddTaskUpdate = ({
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-            <CustomMultiComplete
-              isError={errorData?.associated_task}
-              AutoCompleteList={filteredTask}
-             
-              value={form.associated_task || fetchedTask}
-              onTextChange={(text) => {
-                changeTextData(text, "associated_task");
-              }}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined"  label="Associated Task (Optional)" />
-              )}
-              getOptionLabel={(option) => option?.title}
-            />
+              <CustomMultiComplete
+                isError={errorData?.associated_task}
+                AutoCompleteList={filteredTask}
+                value={form.associated_task || fetchedTask}
+                onTextChange={(text) => {
+                  changeTextData(text, "associated_task");
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label="Associated Task (Optional)"
+                  />
+                )}
+                getOptionLabel={(option) => option?.title}
+              />
               {/* <CustomMultiComplete
                 isError={errorData?.associated_task}
                 AutoCompleteList={filteredTask}

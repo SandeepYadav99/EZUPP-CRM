@@ -59,14 +59,15 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-              AutoCompleteList={filteredAssignedTo ||  []}
+              AutoCompleteList={filteredAssignedTo || []}
               // label="Assigned To"
               // isError={errorData?.assigned_to}
               getOptionLabel={(option) =>
                 `${capitalizeFirstLetter(option?.name)} (${option?.email})`
               }
-              value={form.assigned_to || fetchedAssignedUser || []}
+              value={form.assigned_to}
               onTextChange={(text) => {
+                
                 changeTextData(text, "assigned_to");
               }}
               renderInput={(params) => (
@@ -79,20 +80,16 @@ const AddTaskCreate = ({
                     ...params.InputProps,
                     startAdornment: (
                       <>
-                        {form?.assigned_to?.image ||
-                        fetchedAssignedUser?.image ? (
+                        
                           <img
                             src={
-                              form?.assigned_to?.image ||
-                              fetchedAssignedUser?.image
+                              form?.assigned_to?.image 
                             }
                             crossOrigin="anonymous"
                             className={styles.avatorImage}
                             alt=".."
                           />
-                        ) : (
-                          ""
-                        )}
+                       
                       </>
                     ),
                   }}
@@ -111,7 +108,7 @@ const AddTaskCreate = ({
                   })`}</div>
                 </li>
               )}
-              disableClearable
+             
             />
           </div>
         </div>
@@ -224,33 +221,32 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
+                AutoCompleteList={filteredUsers || []}
               getOptionLabel={(option) =>
-                `${option?.name || ""} ${
-                  option?.email ? `(${option?.email})` : ""
+                `${option?.name} ${
+                  option?.email && `(${option?.email})` 
                 }`
               }
-              AutoCompleteList={filteredUsers ?? []}
-              // label="Associated User (Optional)"
-              // isError={errorData?.associated_user}
-              value={form.associated_user || ""}
+             
+              value={form.associated_user}
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  variant="outlined"
                   error={errorData?.associated_user}
+                  variant="outlined"
                   label="Associated User (Optional)"
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
-                      <>
-                        {form?.associated_user  ? (
+                     
+                        form?.associated_user?.image ? 
                           <img
-                            src={form?.associated_user?.image || "."}
+                            src={form?.associated_user?.image}
                             crossOrigin="anonymous"
                             className={styles.avatorImage}
                             alt=".."
                           />
-                        ) : (
+                         : 
                           <Avatar
                             src=""
                             sx={{
@@ -258,9 +254,8 @@ const AddTaskCreate = ({
                               width: "25px",
                               borderRadius: "25px",
                             }}
-                          />
-                        )}
-                      </>
+                          ></Avatar>
+                       
                     ),
                   }}
                 />
@@ -279,14 +274,15 @@ const AddTaskCreate = ({
               onTextChange={(text) => {
                 changeTextData(text, "associated_user");
               }}
+              
             />
           </div>
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-              isError={errorData?.associated_task}
-              AutoCompleteList={filteredTask}
+              // isError={errorData?.associated_task}
+              AutoCompleteList={filteredTask || []}
               value={form.associated_task}
               onTextChange={(text) => {
                 changeTextData(text, "associated_task");
@@ -296,6 +292,7 @@ const AddTaskCreate = ({
                   {...params}
                   variant="outlined"
                   label="Associated Task (Optional)"
+                  error={errorData?.associated_task}
                 />
               )}
               getOptionLabel={(option) => option?.title}
