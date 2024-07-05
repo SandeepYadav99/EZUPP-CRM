@@ -2,7 +2,7 @@
     display: flex;
     /* align-items: center; */
     justify-content: space-between;
-    /* padding-bottom: 30px; */
+    padding-bottom: 25px;
 
   }
   .outerFlex1{
@@ -42,7 +42,11 @@
 }
   .lowerWrap{
     flex: 1;
+
   }
+.spacing{
+  margin-bottom: 32px;
+}
   .saveButton{
     text-align: right !important;
   }

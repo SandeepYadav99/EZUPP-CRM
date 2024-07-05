@@ -23,7 +23,8 @@
 
 .formFlex {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
+ 
 }
 .formFlex1 {
   display: flex;
@@ -37,6 +38,7 @@
 .formGroup1 {
   flex: 1;
   padding: 7px 10px;
+ 
   /*padding: 10px 15px*/
 }
 .formGroup221 {
@@ -71,6 +73,7 @@
 .formGroup {
   flex: 1;
   padding: 7px 10px;
+ 
   /*padding: 10px 15px*/
 }
 .formGroup1 {

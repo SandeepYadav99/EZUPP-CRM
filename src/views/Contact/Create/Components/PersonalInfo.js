@@ -77,9 +77,9 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
               />
             </div>
           </div>
-          <div className={"formFlex"}>
+          <div className={"headerFlex"}>
             <div className={"formGroup"}>
-              <Typography variant={"subtitle1"}>Gender</Typography>
+              <Typography variant={"subtitle1"} sx={{ml:0.8}}>Gender</Typography>
             </div>
           </div>
           <div className={"formFlex"}>

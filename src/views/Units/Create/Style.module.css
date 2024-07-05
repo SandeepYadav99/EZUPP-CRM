@@ -24,12 +24,18 @@
     display: flex;
   }
   .resetPasswordWrapper {
-    padding: 1.2rem;
+    padding: 0.2rem;
+  }
+  .card{
+    width: 95%;
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+
   }
   .fieldWrapper {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     /* margin-top: 10px; */
   }
   .checkBox > label {
@@ -130,7 +136,26 @@
 .buttonWrapper {
   display: flex;
   justify-content: flex-end;
-  /* margin-top: 15px; */
+  margin-top: 10px;
+  padding: 10px;
+}
+.imageContainer {
+  display: inline-block;
+  /* width: 20px; 
+  height: 5px;  */
+}
+.binImage{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+/* .buttonRight{
+  display: flex;
+  justify-content: flex-end;
+} */
+.buttonLeft{
+  display: flex;
+  justify-content: flex-start;
+  margin-right: auto;
 }
 @media (max-width: 767px) {
   

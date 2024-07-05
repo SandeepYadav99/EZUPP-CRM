@@ -161,7 +161,7 @@ const UnitsList = (props) => {
     currentPage,
     handleDrag,
   ]);
-  const panelTitle = editData ? "Update Unit" : "New Unit";
+  const panelTitle = editData ? "Update Unit" : "Add New Unit";
   return (
     <div>
       <ShadowBox className={styles.unit}>
