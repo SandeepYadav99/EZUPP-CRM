@@ -20,7 +20,7 @@ const WorkInfoView = ({
   designation,
 }) => {
   const theme = useTheme();
-  
+
   return (
     <>
       <ShadowBox className={styles.mainBox}>
@@ -61,7 +61,7 @@ const WorkInfoView = ({
               <MultiComplete
                 isError={errorData?.department}
                 // multiple
-                 autoSelect
+                autoSelect
                 // isArray
                 AutoCompleteList={department}
                 getOptionLabel={(option) => option}
@@ -149,9 +149,10 @@ const WorkInfoView = ({
             </div>
           </div>
 
-          <div className={"formGroup"}>
+          <div className={styles.checkboxAction}>
             <div className={styles.checkbox}>
               <CustomCheckbox
+                sx={{  color:theme.palette.text.primary}}
                 value={form?.userManage}
                 handleChange={() => {
                   changeTextData(!form?.userManage, "userManage");
@@ -170,7 +171,11 @@ const WorkInfoView = ({
               {!id && (
                 <>
                   <CustomCheckbox
-                    sx={{ height: "18px" }}
+                    sx={{
+                      height: "15px",
+                      color:theme.palette.text.primary,
+                      "& .MuiSvgIcon-root": {  },
+                    }}
                     checked={form?.invoiteToUser}
                     value={form?.invoiteToUser}
                     handleChange={() => {

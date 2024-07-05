@@ -253,6 +253,7 @@ console.log(form?.associated_user)
       if (fieldName === "name") {
         t[fieldName] = text;
       } else if (fieldName === "category") {
+    
         const tempKeywords = text?.filter((val, index) => {
           if (val?.trim() === "") {
             return false;
@@ -268,6 +269,10 @@ console.log(form?.associated_user)
                 (otherVal, otherIndex) =>
                   otherVal?.toLowerCase() === trimmedVal && index !== otherIndex
               ) >= 0;
+              if (isDuplicate) {
+                SnackbarUtils.error("Category keyword already created");
+                return false;
+              }
             return !isDuplicate;
           }
         });

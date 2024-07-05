@@ -35,7 +35,7 @@ const AddTaskCreate = ({
     filteredUsers,
     filteredTask,
     filteredAssignedTo,
-    fetchedAssignedUser,
+   
   } = useAddTaskCreate({
     handleSideToggle,
     isSidePanel,

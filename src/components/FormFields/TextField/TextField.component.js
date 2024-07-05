@@ -26,13 +26,16 @@ const CustomTextField = ({
     <>
       <TextField
         error={isError}
+        // sx={{
+        //   marginBottom:theme.spacing(0.4)
+        // }}
         helperText={
           <Typography
             variant="subtitle2"
             sx={{
               textAlign: "end",
               color: theme.palette.error.main,
-              // marginTop:theme.spacing(-0.9)
+               
             }}
           >
             {errorText}
@@ -53,7 +56,7 @@ const CustomTextField = ({
             ""
           ),
           ...(inputProps ? inputProps : {}),
-          sx: {
+          sx: {        
             color: theme.palette.text.primary,
             "& .MuiInputBase-input": {
               color: theme.palette.text.primary,

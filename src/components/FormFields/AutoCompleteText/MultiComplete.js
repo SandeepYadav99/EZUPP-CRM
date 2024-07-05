@@ -58,7 +58,7 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   const theme = useTheme();
- 
+
   return (
     <>
       {multiple ? (
@@ -138,7 +138,6 @@ const CustomMultiComplete = ({
               </div>
             </StyledOption>
           )}
-          
           value={value}
           renderTags={(value, getTagProps) =>
             value?.map((option, index) => (
@@ -150,7 +149,6 @@ const CustomMultiComplete = ({
                   "& .MuiChip-deleteIcon": {
                     color: theme.palette.text.primary,
                   },
-                  
                 }}
                 avatar={
                   showImage ? <Avatar src={option?.image} alt={"Image"} /> : ""
@@ -173,6 +171,9 @@ const CustomMultiComplete = ({
                 sx={{
                   "& .MuiInputLabel-root": {
                     color: theme.palette.text.primary,
+                  },
+                  "& .MuiInputBase-sizeSmall": {
+                    paddingBottom: "5px !important",
                   },
                 }}
                 {...params}
@@ -208,9 +209,7 @@ const CustomMultiComplete = ({
             color={"primary"}
             size={"small"}
             value={value ? value : null}
-            
             freeSolo
-             
             {...rest}
           />
         </>

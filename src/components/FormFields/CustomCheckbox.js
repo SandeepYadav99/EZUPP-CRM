@@ -9,9 +9,7 @@ const CustomCheckbox = ({ handleChange, label, ...rest }) => {
     <FormControlLabel
       control={
         <Checkbox
-        sx={{
-          color: theme?.palette?.text?.primary,
-        }}
+        
           onChange={(e) => {
             handleChange(e.target.checked);
           }}
