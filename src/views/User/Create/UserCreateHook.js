@@ -227,8 +227,11 @@ function useUserCreateHook() {
         }
       }
     });
-    // if (form?.department && form?.department?.length >= 20) {
-    //   errors.department = "Department length must be less than or equal to 20 characters ";
+    // if (form?.department  &&  form?.department?.length < 2 && form?.department?.length <= 40) {
+    //   errors.department = "Department length must be grater than 2 and less than or equal to 40 characters ";
+    // }
+    // if (form?.designation &&  form?.designation?.length < 2 && form?.designation?.length <= 40) {
+    //   errors.department = "Designation length must be grater than 2 and less than or equal to 40 characters ";
     // }
     if (form?.name && form?.name?.trim().length < 2) {
       errors.name = true;
@@ -239,10 +242,10 @@ function useUserCreateHook() {
     if (form?.employee_id?.trim().length < 2) {
       errors.employee_id = true;
     }
-    if (form?.designation && form?.designation?.trim().length <= 2) {
+    if (form?.designation && form?.designation?.trim().length < 2) {
       errors.designation = true;
     }
-    if (form?.department && form?.department?.trim().length <= 2) {
+    if (form?.department && form?.department?.trim().length < 2) {
       errors.department = true;
     }
     if (form?.email && !isEmail(form?.email)) {
@@ -302,13 +305,9 @@ function useUserCreateHook() {
           t[fieldName] = text;
         }
       } else if (fieldName === "department") {
-        console.log(text);
-        if (text.length <= 10) {
-          console.log(text);
-          t[fieldName] = text?.toLowerCase();
-        }
+        t[fieldName] = text?.toLowerCase();
       } else if (fieldName === "designation") {
-        if (!text || (!isSpace(text) && text.length <= 40)) {
+        if (!isSpace(text)) {
           t[fieldName] = text.toLowerCase();
         }
       } else {
@@ -402,6 +401,7 @@ function useUserCreateHook() {
     async (status) => {
       const errors = checkFormValidation();
       LogUtils.log("errors==>", errors);
+
       if (Object.keys(errors)?.length > 0) {
         setErrorData(errors);
         return true;

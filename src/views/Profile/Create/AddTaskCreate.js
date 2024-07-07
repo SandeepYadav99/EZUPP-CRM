@@ -17,6 +17,7 @@ import { useTheme } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import CustomDateTimePicker from "../../../components/FormFields/DatePicker/CustomDateTimePicker";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
+import { Clear, Search } from "@mui/icons-material";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -35,7 +36,6 @@ const AddTaskCreate = ({
     filteredUsers,
     filteredTask,
     filteredAssignedTo,
-   
   } = useAddTaskCreate({
     handleSideToggle,
     isSidePanel,
@@ -67,7 +67,6 @@ const AddTaskCreate = ({
               }
               value={form.assigned_to}
               onTextChange={(text) => {
-                
                 changeTextData(text, "assigned_to");
               }}
               renderInput={(params) => (
@@ -78,18 +77,37 @@ const AddTaskCreate = ({
                   label="Assigned To"
                   InputProps={{
                     ...params.InputProps,
+                    sx: {
+                      paddingRight: `${theme?.spacing(0)} !important`,
+                      color: theme.palette.text.primary,
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.text.primary,
+                      },
+                    },
+                    endAdornment: (
+                      <>
+                        {form?.assigned_to ? (
+                          <Clear
+                            onClick={() => changeTextData(null, "assigned_to")}
+                            style={{ cursor: "pointer" }}
+                          />
+                        ) : null}
+                        <Search
+                          sx={{
+                            marginRight: theme.spacing(2),
+                            cursor: "pointer",
+                          }}
+                        />
+                      </>
+                    ),
                     startAdornment: (
                       <>
-                        
-                          <img
-                            src={
-                              form?.assigned_to?.image 
-                            }
-                            crossOrigin="anonymous"
-                            className={styles.avatorImage}
-                            alt=".."
-                          />
-                       
+                        <img
+                          src={form?.assigned_to?.image}
+                          crossOrigin="anonymous"
+                          className={styles.avatorImage}
+                          alt=".."
+                        />
                       </>
                     ),
                   }}
@@ -108,7 +126,6 @@ const AddTaskCreate = ({
                   })`}</div>
                 </li>
               )}
-             
             />
           </div>
         </div>
@@ -170,7 +187,7 @@ const AddTaskCreate = ({
               isError={errorData?.category}
               multiple
               isArray
-              AutoCompleteList={categoryLists || []}
+              AutoCompleteList={categoryLists}
               getOptionLabel={(option) => option}
               label="Task Category"
               defaultValue={form?.category}
@@ -221,13 +238,10 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-                AutoCompleteList={filteredUsers || []}
+              AutoCompleteList={filteredUsers || []}
               getOptionLabel={(option) =>
-                `${option?.name} ${
-                  option?.email && `(${option?.email})` 
-                }`
+                `${option?.name} ${option?.email && `(${option?.email})`}`
               }
-             
               value={form.associated_user}
               renderInput={(params) => (
                 <TextField
@@ -237,25 +251,47 @@ const AddTaskCreate = ({
                   label="Associated User (Optional)"
                   InputProps={{
                     ...params.InputProps,
-                    startAdornment: (
-                     
-                        form?.associated_user?.image ? 
-                          <img
-                            src={form?.associated_user?.image}
-                            crossOrigin="anonymous"
-                            className={styles.avatorImage}
-                            alt=".."
+                    sx: {
+                      paddingRight: `${theme?.spacing(0)} !important`,
+                      color: theme.palette.text.primary,
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.text.primary,
+                      },
+                    },
+                    endAdornment: (
+                      <>
+                        {form?.associated_user ? (
+                          <Clear
+                            onClick={() =>
+                              changeTextData(null, "associated_user")
+                            }
+                            style={{ cursor: "pointer" }}
                           />
-                         : 
-                          <Avatar
-                            src=""
-                            sx={{
-                              height: "25px",
-                              width: "25px",
-                              borderRadius: "25px",
-                            }}
-                          ></Avatar>
-                       
+                        ) : null}
+                        <Search
+                          sx={{
+                            marginRight: theme.spacing(2),
+                            cursor: "pointer",
+                          }}
+                        />
+                      </>
+                    ),
+                    startAdornment: form?.associated_user?.image ? (
+                      <img
+                        src={form?.associated_user?.image}
+                        crossOrigin="anonymous"
+                        className={styles.avatorImage}
+                        alt=".."
+                      />
+                    ) : (
+                      <Avatar
+                        src=""
+                        sx={{
+                          height: "25px",
+                          width: "25px",
+                          borderRadius: "25px",
+                        }}
+                      ></Avatar>
                     ),
                   }}
                 />
@@ -274,7 +310,6 @@ const AddTaskCreate = ({
               onTextChange={(text) => {
                 changeTextData(text, "associated_user");
               }}
-              
             />
           </div>
         </div>
@@ -287,17 +322,48 @@ const AddTaskCreate = ({
               onTextChange={(text) => {
                 changeTextData(text, "associated_task");
               }}
+              defaultValue={form?.associated_task}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   variant="outlined"
                   label="Associated Task (Optional)"
                   error={errorData?.associated_task}
+                  InputProps={{
+                    ...params.InputProps,
+                    sx: {
+                      paddingRight: `${theme?.spacing(0)} !important`,
+                      color: theme.palette.text.primary,
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.text.primary,
+                      },
+                    },
+
+                    endAdornment: (
+                      <>
+                        {form?.associated_task ? (
+                          <Clear
+                            onClick={() =>
+                              changeTextData(null, "associated_task")
+                            }
+                            style={{ cursor: "pointer" }}
+                          />
+                        ) : null}
+                        <Search
+                          sx={{
+                            marginRight: theme.spacing(2),
+                            cursor: "pointer",
+                          }}
+                        />
+                      </>
+                    ),
+                  }}
                 />
               )}
               getOptionLabel={(option) => option?.title}
             />
           </div>
+         
         </div>
       </ShadowBox>
       <div className={styles.actionButton}>

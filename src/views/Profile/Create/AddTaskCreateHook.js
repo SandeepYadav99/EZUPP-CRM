@@ -253,31 +253,29 @@ console.log(form?.associated_user)
       if (fieldName === "name") {
         t[fieldName] = text;
       } else if (fieldName === "category") {
-    
         const tempKeywords = text?.filter((val, index) => {
-          if (val?.trim() === "") {
+          const trimmedVal = val?.trim();
+        
+          if (!trimmedVal) {
             return false;
-          } else if (val?.length < 2 || val?.length > 20) {
-            SnackbarUtils.error(
-              "Values cannot be less than 2 and more than 20 character"
-            );
+          } else if (trimmedVal.length < 2 || trimmedVal.length > 20) {
+            SnackbarUtils.error("Values cannot be less than 2 and more than 20 characters");
             return false;
           } else {
-            const trimmedVal = val?.trim().toLowerCase();
-            const isDuplicate =
-              text?.findIndex(
-                (otherVal, otherIndex) =>
-                  otherVal?.toLowerCase() === trimmedVal && index !== otherIndex
-              ) >= 0;
-              if (isDuplicate) {
-                SnackbarUtils.error("Category keyword already created");
-                return false;
-              }
-            return !isDuplicate;
+            const isDuplicate = text?.some((otherVal, otherIndex) => 
+              
+              otherVal?.trim().toLowerCase() === trimmedVal.toLowerCase() && index !== otherIndex
+            );
+        
+            if (isDuplicate) {
+              SnackbarUtils.error("Category keyword already created");
+              return false;
+            }
+        
+            return true;
           }
         });
-
-        t[fieldName] = tempKeywords;
+        t[fieldName] = tempKeywords;        
       } else {
         t[fieldName] = text;
       }

@@ -209,7 +209,8 @@ const CustomMultiComplete = ({
             color={"primary"}
             size={"small"}
             value={value ? value : null}
-            freeSolo
+            // freeSolo
+           
             {...rest}
           />
         </>

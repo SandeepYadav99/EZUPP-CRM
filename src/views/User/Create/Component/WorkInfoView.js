@@ -63,6 +63,7 @@ const WorkInfoView = ({
                 // multiple
                 autoSelect
                 // isArray
+                freeSolo
                 AutoCompleteList={department}
                 getOptionLabel={(option) => option}
                 label={"Department"}
@@ -75,6 +76,8 @@ const WorkInfoView = ({
                   }
                 }}
                 // className={styles.marginTop1}
+               
+
               />
             </div>
           </div>
@@ -83,18 +86,21 @@ const WorkInfoView = ({
             <div className={"formGroup"}>
               <MultiComplete
                 isError={errorData?.designation}
+                errorText={errorData?.designation}
                 // multiple
+                //  autoSelect
+                freeSolo
                 autoSelect
                 isArray
                 AutoCompleteList={designation}
                 getOptionLabel={(option) => option}
                 label={"Designation"}
-                defaultValue={form?.designation}
+                // defaultValue={form?.designation}
                 value={form?.designation}
-                onTextChange={(text) => {
-                  // if (text.length <= 40) {
+                onTextChange={(e,text) => {
+                 console.log(text)
                   changeTextData(text, "designation");
-                  // }
+                
                 }}
               />
             </div>
