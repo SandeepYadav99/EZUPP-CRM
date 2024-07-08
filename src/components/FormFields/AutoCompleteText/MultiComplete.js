@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import { styled } from "@mui/material/styles";
-import { InputAdornment} from "@mui/material";
+import { InputAdornment } from "@mui/material";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@mui/styles";
@@ -176,9 +176,9 @@ const CustomMultiComplete = ({
                     paddingBottom: "5px !important",
                   },
                   "& .MuiFormHelperText-root.Mui-error": {
-                    color: theme?.palette?.text?.error,
                     textAlign: "end",
                     marginTop: theme.spacing(-0.4),
+                    marginRight: theme.spacing(0),
                   },
                 }}
                 {...params}
