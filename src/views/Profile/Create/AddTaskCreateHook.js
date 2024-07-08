@@ -176,7 +176,7 @@ const useAddTaskCreate = ({
     return errors;
   }, [form, errorData, helperText, isSidePanel]);
 
-  const submitToServer = useCallback(async () => {
+  const submitToServer = useCallback( () => {
     if (isSubmitting) {
       return;
     }
@@ -198,16 +198,16 @@ const useAddTaskCreate = ({
       associated_task: form?.associated_task?._id || null,
       comment: "Task",
       // is_completed: form?.status ? true : false,
-      assigned_to: form?.assigned_to?._id,
+      assigned_to: form?.assigned_to?.id || form?.assigned_to?._id,
     };
 
     if (empId) {
       updateData.id = empId;
     }
 
-    try {
+  
       const req = serviceTaskManagementCreate; // empId ? serviceHubMasterUpdate :
-      const res = await req(updateData);
+      const res =  req(updateData);
 
       if (!res.error) {
         handleSideToggle();
@@ -215,10 +215,9 @@ const useAddTaskCreate = ({
       } else {
         SnackbarUtils.error(res.message);
       }
-    } catch (error) {
-    } finally {
+   
       setIsSubmitting(false);
-    }
+    
   }, [form, isSubmitting, setIsSubmitting, empId, handleSideToggle, dispatch]);
 
   const handleSubmit = useCallback(async () => {
@@ -245,7 +244,7 @@ const useAddTaskCreate = ({
     },
     [setErrorData, errorData]
   );
-console.log(form?.associated_user)
+
   const changeTextData = useCallback(
     (text, fieldName) => {
       let shouldRemoveError = true;

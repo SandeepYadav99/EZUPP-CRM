@@ -66,7 +66,7 @@ const useAddTaskUpdate = ({
   const [task, dispatchTask] = useReducer(reducer, initialTask);
 
   useEffect(() => {
-    if(!isSidePanel) return;
+    if (!isSidePanel) return;
     // setIsLoading(true);
     const assignedValue = {
       id: details?.assignedTo?.id,
@@ -74,23 +74,30 @@ const useAddTaskUpdate = ({
       email: details?.assignedTo?.email,
       image: details?.assignedTo?.image,
     };
+    const assignedUser = {
+      id: details?.associatedUser?.id,
+      name: details?.associatedUser?.name,
+      email: details?.associatedUser?.email,
+      image: details?.associatedUser?.image,
+    };
+    const assignedTask = {
+      id: details?.associatedTask?._id,
+      title: details?.associatedTask?.title,
+    };
+
     setForm({
       ...form,
-      
+
       title: details?.title,
       category: details?.category,
       description: details?.description,
       due_date: details?.due_date,
       priority: details?.priority,
       type: details?.type,
-      assigned_to: {...assignedValue}
+      assigned_to: { ...assignedValue },
+      associated_user: { ...assignedUser },
+      associated_task: { ...assignedTask },
     });
-    // if(details?.assignedTo?.id){
-    //    setFetchedAssignedTo({...assignedValue});
-
-    // }
-    setFetchedUser(details?.associatedUser);
-    setFetchedTask(details?.associatedTask);
   }, [details, isSidePanel]);
 
   useEffect(() => {
@@ -151,9 +158,9 @@ const useAddTaskUpdate = ({
       "priority",
       "due_date",
       "category",
-      "assigned_to"
+      "assigned_to",
     ];
- 
+
     required.forEach((val) => {
       if (
         !form?.[val] ||
@@ -181,7 +188,7 @@ const useAddTaskUpdate = ({
     return errors;
   }, [form, errorData]);
 
-  const submitToServer = useCallback(async () => {
+  const submitToServer = useCallback(() => {
     if (isSubmitting) {
       return;
     }
@@ -189,7 +196,7 @@ const useAddTaskUpdate = ({
 
     const industryID =
       Array.isArray(form.category) && form?.category?.length > 0
-        ? form?.category?.map((item) => item) // item.id || item._id
+        ? form?.category?.map((item) => item)
         : [];
 
     const updateData = {
@@ -199,31 +206,30 @@ const useAddTaskUpdate = ({
       category: industryID,
       type: form?.type,
       priority: form?.priority,
-      associated_user: form?.associated_user?._id || null, //|| fetchedUser?.id
-      associated_task: form?.associated_task?._id || null, // || fetchedTask?._id,
+      associated_user:
+        form?.associated_user?.id || form?.associated_user?._id || null,
+      associated_task:
+        form?.associated_task?.id || form?.associated_task?._id || null,
       comment: "Task",
       // is_completed: form?.status ? true : false,
-      assigned_to: form?.assigned_to?._id || fetchedAssignedTo.id,
+      assigned_to: form?.assigned_to?._id || form?.assigned_to?.id,
     };
 
     if (empId) {
       updateData.id = empId;
     }
 
-    try {
-      const req = serviceTaskManagementUpdate; // empId ? serviceHubMasterUpdate :
-      const res = await req(updateData);
+    const req = serviceTaskManagementUpdate;
+    const res = req(updateData);
 
-      if (!res.error) {
-        handleSideToggle();
-        handleCreatedTask();
-      } else {
-        SnackbarUtils.error(res.message);
-      }
-    } catch (error) {
-    } finally {
-      setIsSubmitting(false);
+    if (!res.error) {
+      handleSideToggle();
+      // handleCreatedTask();
+    } else {
+      SnackbarUtils.error(res.message);
     }
+
+    setIsSubmitting(false);
   }, [form, isSubmitting, setIsSubmitting, empId, handleSideToggle]);
 
   const handleSubmit = useCallback(async () => {
@@ -259,30 +265,31 @@ const useAddTaskUpdate = ({
         t[fieldName] = text;
       } else if (fieldName === "category") {
         const tempKeywords = text?.filter((val, index) => {
-          if (val?.trim() === "") {
+          const trimmedVal = val?.trim();
+
+          if (!trimmedVal) {
             return false;
-          } else if (val?.length < 2 || val?.length > 20) {
+          } else if (trimmedVal.length < 2 || trimmedVal.length > 20) {
             SnackbarUtils.error(
-              "Values cannot be less than 2 and more than 20 character"
+              "Values cannot be less than 2 and more than 20 characters"
             );
             return false;
           } else {
-            const key = val?.trim().toLowerCase();
-            const isThere = text?.findIndex(
-              (keyTwo, indexTwo) =>
-                keyTwo?.toLowerCase() === key && index !== indexTwo
+            const isDuplicate = text?.some(
+              (otherVal, otherIndex) =>
+                otherVal?.trim().toLowerCase() === trimmedVal.toLowerCase() &&
+                index !== otherIndex
             );
-            return isThere < 0;
+
+            if (isDuplicate) {
+              SnackbarUtils.error("Category keyword already created");
+              return false;
+            }
+
+            return true;
           }
         });
-
         t[fieldName] = tempKeywords;
-      } else if (fieldName === "associated_task") {
-        t[fieldName] = text;
-      } else if (fieldName === "assigned_to") {
-        t[fieldName] = text;
-      } else if (fieldName === "due_date") {
-        t[fieldName] = text;
       } else {
         t[fieldName] = text;
       }

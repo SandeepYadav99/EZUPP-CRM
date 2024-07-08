@@ -58,7 +58,7 @@ const CustomMultiComplete = ({
     [onChange, onTextChange, value]
   );
   const theme = useTheme();
-  console.log(errorText);
+ 
   return (
     <>
       {multiple ? (

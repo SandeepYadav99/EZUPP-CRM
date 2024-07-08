@@ -11,7 +11,6 @@ import styles from "./Style.module.css";
 import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
-import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomMultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
 import { useTheme } from "@mui/styles";
@@ -37,12 +36,10 @@ const AddTaskUpdate = ({
     filteredUsers,
     filteredTask,
     filteredAssignedTo,
-    fetchedAssignedTo,
-    fetchedTask,
-    fetchedUser,
+   
     categoryLists,
 
-    fetchedAssignedUser,
+    
   } = useAddTaskUpdate({
     handleSideToggle,
     isSidePanel,
@@ -225,7 +222,7 @@ const AddTaskUpdate = ({
                 AutoCompleteList={filteredUsers || []}
                 // label="Associated User (Optional)"
                 isError={errorData?.associated_user}
-                value={form.associated_user || fetchedUser} //  fetchedUser
+                value={form.associated_user } //  fetchedUser
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -235,12 +232,10 @@ const AddTaskUpdate = ({
                       ...params.InputProps,
                       startAdornment: (
                         <>
-                          {form?.associated_user?.image ||
-                          fetchedUser?.image ? (
+                          {form?.associated_user?.image  ? (
                             <img
                               src={
-                                form?.associated_user?.image ||
-                                fetchedUser?.image
+                                form?.associated_user?.image 
                               }
                               crossOrigin="anonymous"
                               className={styles.avatorImage}
@@ -284,7 +279,7 @@ const AddTaskUpdate = ({
               <CustomMultiComplete
                 isError={errorData?.associated_task}
                 AutoCompleteList={filteredTask}
-                value={form.associated_task || fetchedTask}
+                value={form.associated_task}
                 onTextChange={(text) => {
                   changeTextData(text, "associated_task");
                 }}
@@ -295,18 +290,9 @@ const AddTaskUpdate = ({
                     label="Associated Task (Optional)"
                   />
                 )}
-                getOptionLabel={(option) => option?.title}
+                getOptionLabel={(option) => option?.title || ""}
               />
-              {/* <CustomMultiComplete
-                isError={errorData?.associated_task}
-                AutoCompleteList={filteredTask}
-                label="Associated Task (Optional)"
-                value={form.associated_task || fetchedTask}
-                onTextChange={(text) => {
-                  changeTextData(text, "associated_task");
-                }}
-                getOptionLabel={(option) => option?.title}
-              /> */}
+             
             </div>
           </div>
         </div>

@@ -132,14 +132,7 @@ const TaskDetailView = ({}) => {
         </div>
 
         <div className={styles.editAction}>
-          {/* <CustomSelectField
-            value={filterValue}
-            handleChange={filterCompltedTask}
-          >
-            <MenuItem value={"PENDING"}>Pending</MenuItem>
-            <MenuItem value={"COMPLETED"}>Completed</MenuItem>
-            <MenuItem value={"ALL"}>All</MenuItem>
-          </CustomSelectField> */}
+       
 
           <ArrowOutlineButton
             onClick={handleSideToggle}
