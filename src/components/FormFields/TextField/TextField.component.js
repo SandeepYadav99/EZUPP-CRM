@@ -26,15 +26,19 @@ const CustomTextField = ({
     <>
       <TextField
         error={isError}
-        sx={{
-          "& .MuiFormHelperText-root.Mui-error":{
-            textAlign:"end",
-            marginTop:theme.spacing(-0.4),
-            marginRight:theme.spacing(0)
-          
-          }
-        }}
-        helperText={errorText}
+       
+        helperText={
+          <Typography
+            variant="subtitle2"
+            sx={{
+              textAlign: "end",
+              color: theme.palette.error.main,
+              marginRight: theme.spacing(0),
+            }}
+          >
+            {errorText}
+          </Typography>
+        }
         label={label}
         InputLabelProps={{
           sx: {
@@ -55,7 +59,6 @@ const CustomTextField = ({
             "& .MuiInputBase-input": {
               color: theme.palette.text.primary,
             },
-          
           },
         }}
         onChange={handleChange}
