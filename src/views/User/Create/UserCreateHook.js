@@ -227,12 +227,7 @@ function useUserCreateHook() {
         }
       }
     });
-    // if (form?.department  &&  form?.department?.length < 2 && form?.department?.length <= 40) {
-    //   errors.department = "Department length must be grater than 2 and less than or equal to 40 characters ";
-    // }
-    // if (form?.designation &&  form?.designation?.length < 2 && form?.designation?.length <= 40) {
-    //   errors.department = "Designation length must be grater than 2 and less than or equal to 40 characters ";
-    // }
+   
     if (form?.name && form?.name?.trim().length < 2) {
       errors.name = true;
     }
@@ -245,8 +240,16 @@ function useUserCreateHook() {
     if (form?.designation && form?.designation?.trim().length < 2) {
       errors.designation = true;
     }
+    if (form?.designation && form?.designation?.length > 40) {
+      errors.designation =
+        "Designation length must be  less than or equal to 40 characters ";
+    }
     if (form?.department && form?.department?.trim().length < 2) {
       errors.department = true;
+    }
+    if (form?.department && form?.department?.length > 40) {
+      errors.department =
+        "Department length must be  less than or equal to 40 characters ";
     }
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
@@ -263,10 +266,7 @@ function useUserCreateHook() {
         errors.end_date = true;
       }
     }
-    // if (form?.url && !validateUrl(form?.url)) {
-    //   errors.url = true;
-    //   SnackbarUtils.error("Please Enter the Valid Url");
-    // }
+  
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -274,7 +274,6 @@ function useUserCreateHook() {
     });
     return errors;
   }, [form, errorData, form?.country_code]);
-
   const removeError = useCallback(
     (title) => {
       const temp = JSON.parse(JSON.stringify(errorData));
@@ -305,13 +304,14 @@ function useUserCreateHook() {
           t[fieldName] = text;
         }
       } else if (fieldName === "department") {
+      
         t[fieldName] = text?.toLowerCase();
+        
       } else if (fieldName === "designation") {
-        if (!isSpace(text)) {
-          t[fieldName] = text.toLowerCase();
-        }
+      
+        t[fieldName] = text?.toLowerCase();
+     
       } else {
-        console.log(text);
         t[fieldName] = text;
       }
       if (["email", "employee_id", "userName"].includes(fieldName)) {

@@ -20,7 +20,6 @@ const WorkInfoView = ({
   designation,
 }) => {
   const theme = useTheme();
-
   return (
     <>
       <ShadowBox className={styles.mainBox}>
@@ -60,24 +59,20 @@ const WorkInfoView = ({
             <div className={"formGroup"}>
               <MultiComplete
                 isError={errorData?.department}
-                // multiple
+                errorText={errorData?.department}
                 autoSelect
-                // isArray
                 freeSolo
                 AutoCompleteList={department}
                 getOptionLabel={(option) => option}
                 label={"Department"}
-                defaultValue={form?.department}
+                // defaultValue={form?.department}
                 value={form?.department}
                 onTextChange={(text) => {
                   console.log(text);
-                  if (text?.length <= 10) {
-                    changeTextData(text, "department");
-                  }
+
+                  changeTextData(text, "department");
                 }}
                 // className={styles.marginTop1}
-               
-
               />
             </div>
           </div>
@@ -86,21 +81,17 @@ const WorkInfoView = ({
             <div className={"formGroup"}>
               <MultiComplete
                 isError={errorData?.designation}
-                errorText={errorData?.designation}
-                // multiple
-                //  autoSelect
+                 errorText={errorData?.designation}
+
                 freeSolo
                 autoSelect
-                isArray
                 AutoCompleteList={designation}
                 getOptionLabel={(option) => option}
                 label={"Designation"}
                 // defaultValue={form?.designation}
                 value={form?.designation}
-                onTextChange={(e,text) => {
-                 console.log(text)
+                onTextChange={(text) => {
                   changeTextData(text, "designation");
-                
                 }}
               />
             </div>
@@ -158,7 +149,7 @@ const WorkInfoView = ({
           <div className={styles.checkboxAction}>
             <div className={styles.checkbox}>
               <CustomCheckbox
-                sx={{  color:theme.palette.text.primary}}
+                sx={{ color: theme.palette.text.primary }}
                 value={form?.userManage}
                 handleChange={() => {
                   changeTextData(!form?.userManage, "userManage");
@@ -179,8 +170,8 @@ const WorkInfoView = ({
                   <CustomCheckbox
                     sx={{
                       height: "15px",
-                      color:theme.palette.text.primary,
-                      "& .MuiSvgIcon-root": {  },
+                      color: theme.palette.text.primary,
+                      "& .MuiSvgIcon-root": {},
                     }}
                     checked={form?.invoiteToUser}
                     value={form?.invoiteToUser}
