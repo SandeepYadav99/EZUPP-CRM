@@ -1,8 +1,8 @@
 import { ButtonBase, Typography } from "@mui/material";
 import { Check } from "@mui/icons-material";
-import React, { useState } from "react";
+import React  from "react";
 import { useTheme } from "@mui/styles";
-import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
+
 
 const TaskDetailHeader = ({
   details,
@@ -20,18 +20,21 @@ const TaskDetailHeader = ({
   };
   return (
     <div className={styles.headerTitle}>
-      <Typography
-        variant="h5"
-        fontWeight={600}
-        color={theme.palette.text.primary}
-        sx={{
-          "&::first-letter": {
-            textTransform: "uppercase",
-          },
-        }}
-      >
-        {details?.title}
-      </Typography>
+      <div className={styles.headerTypography}>
+        <Typography
+          variant="h5"
+          fontWeight={600}
+          color={theme.palette.text.primary}
+          sx={{
+           
+            "&::first-letter": {
+              textTransform: "uppercase",
+            },
+          }}
+        >
+          {details?.title}
+        </Typography>
+      </div>
       <div className={styles.complte}>
         <div
           className={`${styles.transition} ${
@@ -40,9 +43,9 @@ const TaskDetailHeader = ({
         >
           <ButtonBase onClick={handleButtonClick}>
             <Check fontSize={"small"} />
-            <span>
+            <Typography variant="h6">
               {details?.is_completed ? " Completed" : "Mark as Complete"}
-            </span>
+            </Typography>
           </ButtonBase>
         </div>
       </div>

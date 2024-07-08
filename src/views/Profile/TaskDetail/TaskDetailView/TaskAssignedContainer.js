@@ -1,4 +1,4 @@
-import { Avatar, CardHeader, Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
 import React, { memo } from "react";
 import RouteName from "../../../../routes/Route.name";
 import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
@@ -10,13 +10,13 @@ const TaskAssignedContainer = ({ styles, details, classes }) => {
     <div className={styles.mainFlex1}>
       <div className={associatedStyles.completedTask}>
         <Typography variant="subtitle1">Task assigned on:</Typography>
-        <Typography variant="subtitle2">
+        <Typography variant="h6" sx={{color: theme?.palette.text?.secondary}}>
           {details?.assignedOnDetailText}
         </Typography>
       </div>
       <div className={associatedStyles.completedTask}>
         <Typography variant="subtitle1">Task completed on:</Typography>
-        <Typography variant="subtitle2">{details?.completedOnText}</Typography>
+        <Typography variant="h6" sx={{color: theme?.palette.text?.secondary}}>{details?.completedOnText}</Typography>
       </div>
 
       <div className={styles.hrline} />
@@ -52,7 +52,7 @@ const TaskAssignedContainer = ({ styles, details, classes }) => {
           {details?.associatedTask?.title ? (
             <a
               href={`${RouteName.TASK_DETAIL}${details?.associatedTask?._id}`}
-              style={{ fontSize: "13px" }}
+             
             >
               {details?.associatedTask?.title}
             </a>

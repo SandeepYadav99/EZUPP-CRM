@@ -8,26 +8,32 @@ import {
 import { useTheme } from "@mui/styles";
 
 const AssignedContainer = ({ details, styles, classes }) => {
-  const theme = useTheme()
+  const theme = useTheme();
+
   return (
     <div className={styles.mainFlex}>
       <div className={styles.backgroundStatus}>
         <div className={styles.getfiledSpace}>
-          <Typography
-            variant="subtitle1"
-            sx={{mb:theme.spacing(-2)}}
-            marginLeft={2}
-          >
+          <Typography variant="subtitle1" sx={{ ml: theme.spacing(2) }}>
             Due Date:
           </Typography>{" "}
           <div>
-            <CardHeader subheader={details?.dueDateText} />
+            <Typography
+              variant="h5"
+              sx={{
+                ml: theme.spacing(2),
+                color: theme?.palette?.text?.secondary,
+              }}
+            >
+              {details?.dueDateText}
+            </Typography>
+            {/* <CardHeader subheader={details?.dueDateText} /> */}
           </div>
         </div>
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            sx={{mb:theme.spacing(-2)}}
+            sx={{ mb: theme.spacing(-2) }}
             marginLeft={2}
           >
             Assigned To:
@@ -44,7 +50,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            sx={{mb:theme.spacing(-2)}}
+            sx={{ mb: theme.spacing(-2) }}
             marginLeft={2}
           >
             Assigned By:
@@ -61,7 +67,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
         <div className={styles.getfiledSpace}>
           <Typography
             variant="subtitle1"
-            sx={{mb:theme.spacing(-2)}}
+            sx={{ mb: theme.spacing(-2) }}
             marginLeft={2}
           >
             Task Category:
@@ -78,7 +84,7 @@ const AssignedContainer = ({ details, styles, classes }) => {
                 {details?.category?.map((cat, index) => (
                   <span key={index}>
                     <StatusPill status={cat} color={"draft"} />
-                    {index < details.category.length - 1 && " , "}
+                    {index < details.category.length - 1 && "  "}
                   </span>
                 ))}
               </div>

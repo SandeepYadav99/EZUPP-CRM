@@ -1,7 +1,7 @@
 import React from "react";
 import { Checkbox, Typography } from "@mui/material";
 import styles from "./Styles.module.css";
-import { AccessTime, AccessTimeFilled, Watch } from "@mui/icons-material";
+import {  AccessTimeFilled } from "@mui/icons-material";
 import StatusPill from "../../components/Status/StatusPill.component";
 import { useTheme } from "@mui/styles";
 import capitalizeFirstLetter from "../../hooks/CommonFunction";
@@ -45,6 +45,12 @@ const TaskListItem = ({
           variant="subtitle1"
           color={theme.palette.text.primary}
           fontWeight={600}
+          sx={{
+            width: "auto",
+            wordBreak: "break-word",
+            height: "auto",
+            textOverflow: "hidden",
+          }}
         >
           {capitalizeFirstLetter(task?.title)}
         </Typography>
