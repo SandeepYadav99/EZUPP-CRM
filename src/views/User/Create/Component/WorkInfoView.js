@@ -59,16 +59,17 @@ const WorkInfoView = ({
             <div className={"formGroup"}>
               <MultiComplete
                 isError={errorData?.department}
-                // multiple
+                errorText={errorData?.department}
                 autoSelect
-                isArray
+                freeSolo
                 AutoCompleteList={department}
                 getOptionLabel={(option) => option}
                 label={"Department"}
-                defaultValue={form?.department}
+                // defaultValue={form?.department}
                 value={form?.department}
                 onTextChange={(text) => {
-                
+                  console.log(text);
+
                   changeTextData(text, "department");
                 }}
                 // className={styles.marginTop1}
@@ -80,20 +81,18 @@ const WorkInfoView = ({
             <div className={"formGroup"}>
               <MultiComplete
                 isError={errorData?.designation}
-                // multiple
+                 errorText={errorData?.designation}
+
+                freeSolo
                 autoSelect
-                isArray
                 AutoCompleteList={designation}
                 getOptionLabel={(option) => option}
                 label={"Designation"}
-                defaultValue={form?.designation}
+                // defaultValue={form?.designation}
                 value={form?.designation}
                 onTextChange={(text) => {
-                  // if (text.length <= 40) {
                   changeTextData(text, "designation");
-                  // }
                 }}
-                
               />
             </div>
             <div className={"formGroup"}>
@@ -147,36 +146,47 @@ const WorkInfoView = ({
             </div>
           </div>
 
-          <div className={"formGroup"}>
+          <div className={styles.checkboxAction}>
             <div className={styles.checkbox}>
               <CustomCheckbox
+                sx={{ color: theme.palette.text.primary }}
                 value={form?.userManage}
                 handleChange={() => {
                   changeTextData(!form?.userManage, "userManage");
                 }}
                 checked={form?.userManage}
               />
-              <Typography variant="body1" sx={{marginLeft:theme.spacing(-2)}}>
+              <Typography
+                variant="body1"
+                sx={{ marginLeft: theme.spacing(-2) }}
+              >
                 User is a manager?
               </Typography>
             </div>
 
             <div className={styles.checkbox}>
-            {!id && (
-              <>
-                <CustomCheckbox
-                  sx={{ height: "18px" }}
-                  checked={form?.invoiteToUser}
-                  value={form?.invoiteToUser}
-                  handleChange={() => {
-                    changeTextData(!form?.invoiteToUser, "invoiteToUser");
-                  }}
-                />
-                <Typography variant="body1" sx={{marginLeft:theme.spacing(-2)}}>
-                  Send Invite to user on email
-                </Typography>
-              </>
-            )}
+              {!id && (
+                <>
+                  <CustomCheckbox
+                    sx={{
+                      height: "15px",
+                      color: theme.palette.text.primary,
+                      "& .MuiSvgIcon-root": {},
+                    }}
+                    checked={form?.invoiteToUser}
+                    value={form?.invoiteToUser}
+                    handleChange={() => {
+                      changeTextData(!form?.invoiteToUser, "invoiteToUser");
+                    }}
+                  />
+                  <Typography
+                    variant="body1"
+                    sx={{ marginLeft: theme.spacing(-2) }}
+                  >
+                    Send Invite to user on email
+                  </Typography>
+                </>
+              )}
             </div>
           </div>
         </div>

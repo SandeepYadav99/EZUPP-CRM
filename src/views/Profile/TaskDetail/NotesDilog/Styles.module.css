@@ -13,7 +13,9 @@
   margin-left: 8px !important;
   margin-top: 15px !important;
 }
-
+.subUserInfo{
+  margin-top: 8px !important;
+}
 .btmBtn {
   background-color: #29cb97 !important;
   padding: 15px 50px !important;

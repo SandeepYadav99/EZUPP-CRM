@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import { styled } from "@mui/material/styles";
-import { InputAdornment, InputBase } from "@mui/material";
+import { InputAdornment } from "@mui/material";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@mui/styles";
@@ -149,7 +149,6 @@ const CustomMultiComplete = ({
                   "& .MuiChip-deleteIcon": {
                     color: theme.palette.text.primary,
                   },
-                  
                 }}
                 avatar={
                   showImage ? <Avatar src={option?.image} alt={"Image"} /> : ""
@@ -167,11 +166,19 @@ const CustomMultiComplete = ({
             renderInput={(params) => (
               <TextField
                 error={isError}
-                helperText={errorText}
+                helperText={isError && errorText}
                 label={label}
                 sx={{
                   "& .MuiInputLabel-root": {
                     color: theme.palette.text.primary,
+                  },
+                  "& .MuiInputBase-sizeSmall": {
+                    paddingBottom: "5px !important",
+                  },
+                  "& .MuiFormHelperText-root.Mui-error": {
+                    textAlign: "end",
+                    marginTop: theme.spacing(-0.4),
+                    marginRight: theme.spacing(0),
                   },
                 }}
                 {...params}
@@ -207,9 +214,8 @@ const CustomMultiComplete = ({
             color={"primary"}
             size={"small"}
             value={value ? value : null}
-            
-            freeSolo
-             
+            // freeSolo
+
             {...rest}
           />
         </>

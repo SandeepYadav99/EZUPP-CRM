@@ -40,6 +40,7 @@
 .userInfo{
   display: flex !important;
   gap: 10px !important;
+  margin-top: 8px !important;
 }
 .userInfo img{
   border-radius: 36px !important;
@@ -239,9 +240,17 @@
 .headerTitle {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+.headerTypography{
+ text-overflow: ellipsis;
+ overflow: hidden !important;
+ word-wrap: break-word !important;
+ flex: 1 !important;
 }
 .complte {
+  /* flex: 0.1 !important; */
 }
 .transition {
   transition: opacity 0.6s ease-in-out, transform 0.2s ease-in-out;

@@ -122,8 +122,8 @@ const HubMasterCreate = ({ handleSideToggle, isSidePanel, empId }) => {
                 // label={form?.is_active ? `Active` : "Inactive"}
               />
               <Typography
-                variant="subtitle1"
-                sx={{ ml: theme.spacing(-2), fontWaight: 600 }}
+                variant="body1"
+                sx={{ ml: theme.spacing(-2), fontWaight: 400 , color:theme.palette.text.secondary}}
               >
                 {form?.is_active ? `Active` : "Inactive"}
               </Typography>

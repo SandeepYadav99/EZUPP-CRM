@@ -55,7 +55,6 @@ const useNotesDilogHook = () => {
       setErrorData(temp);
     },
     [setErrorData, errorData]
-
   );
 
   const changeTextData = useCallback(
@@ -63,17 +62,16 @@ const useNotesDilogHook = () => {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "descriptions") {
-        if(text.length < 500){
+        if (text.length < 500) {
           t[fieldName] = text.replace(/^\s+/, "");
-
-        }else{
-          SnackbarUtils.error("Max 500 Characters");
         }
       }
 
       setForm(t);
       shouldRemoveError && removeError(fieldName);
-    }, [removeError, form, setForm]);
+    },
+    [removeError, form, setForm]
+  );
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
@@ -110,30 +108,28 @@ const useNotesDilogHook = () => {
       title: form?.descriptions,
       task_id: id,
     };
-      const req =await serviceTaskMnagmentNotesCreate; 
-      const res =  req(updateData);
-      if (!res.error) {
-        serviceTaskMnagmentNotesList({
-          task_id: id ? id : "",
-          index: 1,
-          row: null,
-          order: null,
-          query: "",
-          query_data: null,
-        }).then((res) => {
-          if (!res.error) {
-            setNoteDetail(res.data);
-            toggleAcceptDialog();
-          } else {
-            SnackbarUtils.error(res.message);
-          }
-        });
-      } else {
-        SnackbarUtils.error(res.message);
-      }
-      setIsSubmitting(false);
-  
-    
+    const req = await serviceTaskMnagmentNotesCreate;
+    const res = req(updateData);
+    if (!res.error) {
+      serviceTaskMnagmentNotesList({
+        task_id: id ? id : "",
+        index: 1,
+        row: null,
+        order: null,
+        query: "",
+        query_data: null,
+      }).then((res) => {
+        if (!res.error) {
+          setNoteDetail(res.data);
+          toggleAcceptDialog();
+        } else {
+          SnackbarUtils.error(res.message);
+        }
+      });
+    } else {
+      SnackbarUtils.error(res.message);
+    }
+    setIsSubmitting(false);
   }, [isSubmitting, form?.descriptions, id, toggleAcceptDialog]);
 
   const handleSubmit = useCallback(async () => {
@@ -141,7 +137,7 @@ const useNotesDilogHook = () => {
     if (Object.keys(errors)?.length > 0) {
       setErrorData(errors);
     } else {
-       submitToServer();
+      submitToServer();
     }
   }, [checkFormValidation, setErrorData, form, submitToServer]);
 
@@ -159,7 +155,7 @@ const useNotesDilogHook = () => {
     },
     [changeTextData, errorData, setErrorData]
   );
- 
+
   return {
     form,
     toggleAcceptDialog,
@@ -169,7 +165,7 @@ const useNotesDilogHook = () => {
     noteDetails,
     errorData,
     onBlurHandler,
-    isSubmitting
+    isSubmitting,
   };
 };
 

@@ -27,12 +27,15 @@ import { arrayMove } from "react-sortable-hoc";
 import TopicViewForm from "../Topic/TopicForm/TopicView.js";
 import { serviceUpdateFaqPriority } from "../../../../services/Faq.service";
 import debounce from "lodash.debounce";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox.js";
+import { useTheme } from "@mui/styles";
 
 const TopicView = (props) => {
   const [active, setActive] = useState(0);
   const [sidePanel, setSidePanel] = useState(false);
   const [editData, setEditData] = useState(null);
   const [topics, setTopics] = useState([]);
+  const theme = useTheme();
 
   const prevDataRef = useRef();
   useEffect(() => {
@@ -124,6 +127,14 @@ const TopicView = (props) => {
         <ul key={`list_val_${val.id}`} className={styles.list}>
           <li className={styles.item}>
             <ButtonBase
+              sx={{
+                backgroundColor:
+                  selectedCategory &&
+                  val.id === selectedCategory.id &&
+                  theme.palette.mode === "dark"
+                    ? "#636578"
+                    : "",
+              }}
               className={
                 selectedCategory && val.id === selectedCategory.id
                   ? csx(styles.selected, styles.active)
@@ -170,7 +181,7 @@ const TopicView = (props) => {
 
   return (
     <div>
-      <div className={styles.plainBg}>
+      <ShadowBox>
         <div className={styles.upperFlex}>
           <div className={styles.title}>Browse By Topic</div>
           <div>
@@ -180,7 +191,7 @@ const TopicView = (props) => {
           </div>
         </div>
         <div>{renderList()}</div>
-      </div>
+      </ShadowBox>
       <SidePanelComponent
         handleToggle={handleSideToggle}
         title={"Add/Manage FAQ"}

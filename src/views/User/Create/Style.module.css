@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
- 
+
   flex-wrap: wrap;
 }
 .subContainer {
@@ -15,7 +15,7 @@
   /* padding-bottom: 30px; */
   margin-bottom: 24px !important;
 }
-.checkboxAction{
+.checkboxAction {
   display: inline-block !important;
 }
 .actionButton {
@@ -87,10 +87,13 @@
 .dateContainer {
   width: 100% !important;
 }
-.checkbox{
+.checkbox {
   display: flex !important;
-gap: 1px !important;
+  gap: 1px !important;
   align-items: center !important;
+}
+.checkboxAction {
+  margin: -3px 10px !important;
 }
 /* .claimListWrapper {
   display: flex;

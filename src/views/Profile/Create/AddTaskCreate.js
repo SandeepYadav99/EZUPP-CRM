@@ -17,6 +17,7 @@ import { useTheme } from "@mui/styles";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import CustomDateTimePicker from "../../../components/FormFields/DatePicker/CustomDateTimePicker";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
+import { Clear, Search } from "@mui/icons-material";
 
 const AddTaskCreate = ({
   handleSideToggle,
@@ -35,7 +36,6 @@ const AddTaskCreate = ({
     filteredUsers,
     filteredTask,
     filteredAssignedTo,
-    fetchedAssignedUser,
   } = useAddTaskCreate({
     handleSideToggle,
     isSidePanel,
@@ -59,13 +59,13 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-              AutoCompleteList={filteredAssignedTo ||  []}
+              AutoCompleteList={filteredAssignedTo || []}
               // label="Assigned To"
               // isError={errorData?.assigned_to}
               getOptionLabel={(option) =>
                 `${capitalizeFirstLetter(option?.name)} (${option?.email})`
               }
-              value={form.assigned_to || fetchedAssignedUser || []}
+              value={form.assigned_to}
               onTextChange={(text) => {
                 changeTextData(text, "assigned_to");
               }}
@@ -77,22 +77,37 @@ const AddTaskCreate = ({
                   label="Assigned To"
                   InputProps={{
                     ...params.InputProps,
+                    sx: {
+                      paddingRight: `${theme?.spacing(0)} !important`,
+                      color: theme.palette.text.primary,
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.text.primary,
+                      },
+                    },
+                    endAdornment: (
+                      <>
+                        {form?.assigned_to ? (
+                          <Clear
+                            onClick={() => changeTextData(null, "assigned_to")}
+                            style={{ cursor: "pointer" }}
+                          />
+                        ) : null}
+                        <Search
+                          sx={{
+                            marginRight: theme.spacing(2),
+                            cursor: "pointer",
+                          }}
+                        />
+                      </>
+                    ),
                     startAdornment: (
                       <>
-                        {form?.assigned_to?.image ||
-                        fetchedAssignedUser?.image ? (
-                          <img
-                            src={
-                              form?.assigned_to?.image ||
-                              fetchedAssignedUser?.image
-                            }
-                            crossOrigin="anonymous"
-                            className={styles.avatorImage}
-                            alt=".."
-                          />
-                        ) : (
-                          ""
-                        )}
+                        <img
+                          src={form?.assigned_to?.image}
+                          crossOrigin="anonymous"
+                          className={styles.avatorImage}
+                          alt=".."
+                        />
                       </>
                     ),
                   }}
@@ -111,7 +126,6 @@ const AddTaskCreate = ({
                   })`}</div>
                 </li>
               )}
-              disableClearable
             />
           </div>
         </div>
@@ -173,7 +187,7 @@ const AddTaskCreate = ({
               isError={errorData?.category}
               multiple
               isArray
-              AutoCompleteList={categoryLists || []}
+              AutoCompleteList={categoryLists}
               getOptionLabel={(option) => option}
               label="Task Category"
               defaultValue={form?.category}
@@ -224,43 +238,60 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
+              AutoCompleteList={filteredUsers || []}
               getOptionLabel={(option) =>
-                `${option?.name || ""} ${
-                  option?.email ? `(${option?.email})` : ""
-                }`
+                `${option?.name} ${option?.email && `(${option?.email})`}`
               }
-              AutoCompleteList={filteredUsers ?? []}
-              // label="Associated User (Optional)"
-              // isError={errorData?.associated_user}
-              value={form.associated_user || ""}
+              value={form.associated_user}
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  variant="outlined"
                   error={errorData?.associated_user}
+                  variant="outlined"
                   label="Associated User (Optional)"
                   InputProps={{
                     ...params.InputProps,
-                    startAdornment: (
+                    sx: {
+                      paddingRight: `${theme?.spacing(0)} !important`,
+                      color: theme.palette.text.primary,
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.text.primary,
+                      },
+                    },
+                    endAdornment: (
                       <>
-                        {form?.associated_user  ? (
-                          <img
-                            src={form?.associated_user?.image || "."}
-                            crossOrigin="anonymous"
-                            className={styles.avatorImage}
-                            alt=".."
+                        {form?.associated_user ? (
+                          <Clear
+                            onClick={() =>
+                              changeTextData(null, "associated_user")
+                            }
+                            style={{ cursor: "pointer" }}
                           />
-                        ) : (
-                          <Avatar
-                            src=""
-                            sx={{
-                              height: "25px",
-                              width: "25px",
-                              borderRadius: "25px",
-                            }}
-                          />
-                        )}
+                        ) : null}
+                        <Search
+                          sx={{
+                            marginRight: theme.spacing(2),
+                            cursor: "pointer",
+                          }}
+                        />
                       </>
+                    ),
+                    startAdornment: form?.associated_user?.image ? (
+                      <img
+                        src={form?.associated_user?.image}
+                        crossOrigin="anonymous"
+                        className={styles.avatorImage}
+                        alt=".."
+                      />
+                    ) : (
+                      <Avatar
+                        src=""
+                        sx={{
+                          height: "25px",
+                          width: "25px",
+                          borderRadius: "25px",
+                        }}
+                      ></Avatar>
                     ),
                   }}
                 />
@@ -285,22 +316,54 @@ const AddTaskCreate = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
             <CustomMultiComplete
-              isError={errorData?.associated_task}
-              AutoCompleteList={filteredTask}
+              // isError={errorData?.associated_task}
+              AutoCompleteList={filteredTask || []}
               value={form.associated_task}
               onTextChange={(text) => {
                 changeTextData(text, "associated_task");
               }}
+              defaultValue={form?.associated_task}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   variant="outlined"
                   label="Associated Task (Optional)"
+                  error={errorData?.associated_task}
+                  InputProps={{
+                    ...params.InputProps,
+                    sx: {
+                      paddingRight: `${theme?.spacing(0)} !important`,
+                      color: theme.palette.text.primary,
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.text.primary,
+                      },
+                    },
+
+                    endAdornment: (
+                      <>
+                        {form?.associated_task ? (
+                          <Clear
+                            onClick={() =>
+                              changeTextData(null, "associated_task")
+                            }
+                            style={{ cursor: "pointer" }}
+                          />
+                        ) : null}
+                        <Search
+                          sx={{
+                            marginRight: theme.spacing(2),
+                            cursor: "pointer",
+                          }}
+                        />
+                      </>
+                    ),
+                  }}
                 />
               )}
               getOptionLabel={(option) => option?.title}
             />
           </div>
+         
         </div>
       </ShadowBox>
       <div className={styles.actionButton}>

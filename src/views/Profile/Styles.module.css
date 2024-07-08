@@ -14,7 +14,9 @@
   /* margin-top: 36px !important;
   margin-bottom: 36px !important; */
 }
-
+.outerClick{
+  cursor: pointer !important;
+}
 .profileTitle {
   display: flex !important;
   align-items: center !important;

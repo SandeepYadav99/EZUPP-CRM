@@ -27,6 +27,7 @@ import {
 import debounce from "lodash.debounce";
 import { serviceUpdateFaqPriority } from "../../../../services/Faq.service";
 import { serviceUpdateFaqQuestionPriority } from "../../../../services/FaqQuestion.service";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 
 
 const QuestionView = (props) => {
@@ -182,7 +183,7 @@ const QuestionView = (props) => {
 
   return (
     <div>
-      <div className={styles.plainBg}>
+      <ShadowBox width={'100%'} className={styles.plainBg}>
         <div className={styles.upperFlex}>
           <div className={styles.title}>{category ? category.title : ""}</div>
           <div>
@@ -192,7 +193,7 @@ const QuestionView = (props) => {
           </div>
         </div>
         <div>{renderQuestions()}</div>
-      </div>
+      </ShadowBox>
       <SidePanelComponent
         handleToggle={handleSideToggle}
         title={"Add/Manage FAQ Topic"}

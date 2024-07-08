@@ -32,7 +32,7 @@
     position: relative !important;
     padding: 12px 0px 12px 20px !important;
     transition: all 0.3s ease 0s !important;
-    background-color: rgb(255, 255, 255) !important;
+    /* background-color: rgb(255, 255, 255) !important; */
 }
 
 .selected::before {

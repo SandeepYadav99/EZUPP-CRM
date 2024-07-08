@@ -1,17 +1,18 @@
 import React, { memo } from "react";
-import { Avatar, Card, CardHeader, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import capitalizeFirstLetter from "../../../../hooks/CommonFunction";
 import { useTheme } from "@mui/styles";
 
-const NoteItem = ({ note, styles, classes }) => {
+const NoteItem = ({ note, styles }) => {
   const theme = useTheme();
+
   return (
     <div className={styles.notesView}>
   
         <Typography
           variant="body1"
           sx={{
-            // marginLeft: theme.spacing(2),
+           
             wordBreak: "break-word",
             marginTop: "8px",
             "&::first-letter": {
@@ -34,7 +35,7 @@ const NoteItem = ({ note, styles, classes }) => {
               {capitalizeFirstLetter(note?.userData?.name)}
             </Typography>
 
-            <Typography variant="subtitle2" sx={{mt:theme.spacing(-0.5)}}>{note?.createdAtText}</Typography>
+            <Typography variant="h6" sx={{mt:theme.spacing(-0.5), color:theme?.palette.text?.secondary}}>{note?.createdAtText}</Typography>
           </div>
         </div>
     

@@ -164,7 +164,7 @@ class TopicView extends Component{
         // }
         return(
             <div>
-                <div className={styles.plainBg}>
+                <div >
                     <div className={styles.upperFlex}>
                         <div className={styles.title}>Browse By Topic</div>
                         <div>

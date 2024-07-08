@@ -56,13 +56,13 @@ export function UserCountAvatarsLabel({
   return (
     <CardHeader
       avatar={
-        <Avatar sx={{ height: "36px", width: "36px" }}   ><img height={36} width={36} src={imgPath} crossOrigin="anonymous" alt=""/></Avatar>
+        <Avatar sx={{ height: "36px", width: "36px" , mr:"-8px"}}   ><img height={36} width={36} src={imgPath} crossOrigin="anonymous" alt=""/></Avatar>
       }
       title={
         <a className={styles.boldTitle} href={`${"/profile/"}?id=${id}`}>
           <Typography
             variant="subtitle1"
-            sx={{ color: theme.palette.primary.main}}
+            sx={{ color: theme.palette.primary.main,  mr:"8px"}}
           >
             {name}
           </Typography>

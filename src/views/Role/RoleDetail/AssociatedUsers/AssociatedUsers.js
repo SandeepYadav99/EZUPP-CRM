@@ -24,7 +24,7 @@ const AssociatedUsers = ({ listData, id }) => {
     isCalling,
     data,
     currentData,
-    currentPage
+    currentPage,
   } = useAssociatedUsersHook({ listData, id });
   const theme = useTheme();
   // const {
@@ -34,7 +34,6 @@ const AssociatedUsers = ({ listData, id }) => {
   //   is_fetching: isFetching,
   // } = useSelector((state) => state.associatedManufactures);
 
- 
   const renderFirstCell = useCallback((product) => {
     if (product) {
       return (
@@ -105,8 +104,16 @@ const AssociatedUsers = ({ listData, id }) => {
         sortable: false,
         render: (temp, all) => (
           <div className={styles.actionButton}>
-            <IconButton  disableRipple="false" onClick={()=>history.push(`/profile/?id=${all?.id}`)}>
-              <Info fontSize="small" />
+            <IconButton
+              disableRipple="false"
+              onClick={() => history.push(`/profile/?id=${all?.id}`)}
+            >
+              <Info
+                fontSize="small"
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
             </IconButton>
           </div>
         ),
@@ -139,12 +146,18 @@ const AssociatedUsers = ({ listData, id }) => {
     handleRowSize,
     data,
     currentPage,
-    currentData
+    currentData,
   ]);
 
   return (
     <ShadowBox width={"100%"}>
-      <Typography variant="h5" sx={{mb:2}}  fontWeight={600} color={theme.palette.text.primary} margin={theme.spacing(1)}>
+      <Typography
+        variant="h5"
+        sx={{ mb: 2 }}
+        fontWeight={600}
+        color={theme.palette.text.primary}
+        margin={theme.spacing(1)}
+      >
         Associated Users
       </Typography>
       <div style={{ width: "100%" }}>

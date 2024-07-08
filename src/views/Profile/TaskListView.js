@@ -1,7 +1,7 @@
 import React from "react";
 import { Checkbox, Typography } from "@mui/material";
 import styles from "./Styles.module.css";
-import { AccessTime, AccessTimeFilled, Watch } from "@mui/icons-material";
+import {  AccessTimeFilled } from "@mui/icons-material";
 import StatusPill from "../../components/Status/StatusPill.component";
 import { useTheme } from "@mui/styles";
 import capitalizeFirstLetter from "../../hooks/CommonFunction";
@@ -30,24 +30,32 @@ const TaskListItem = ({
       ))
     : null;
   return (
-    <div>
+    <div className={styles.outerClick} onClick={() => handleDetailPage(task)}>
       <div className={styles.check}>
         <Checkbox
           color="primary"
           className={styles.checkbox}
           checked={task?.is_completed ? true : false}
-          onClick={handleCheckboxClick}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleCheckboxClick(e);
+          }}
         />
         <Typography
           variant="subtitle1"
           color={theme.palette.text.primary}
           fontWeight={600}
-          onClick={() => handleDetailPage(task)}
+          sx={{
+            width: "auto",
+            wordBreak: "break-word",
+            height: "auto",
+            textOverflow: "hidden",
+          }}
         >
           {capitalizeFirstLetter(task?.title)}
         </Typography>
       </div>
-      <div onClick={() => handleDetailPage(task)} className={styles.detailView}>
+      <div className={styles.detailView}>
         {/* <div className={styles.dummy}></div> */}
         <Typography
           variant="body1"

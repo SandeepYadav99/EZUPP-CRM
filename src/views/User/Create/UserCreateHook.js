@@ -227,9 +227,7 @@ function useUserCreateHook() {
         }
       }
     });
-    // if (form?.department && form?.department?.length >= 20) {
-    //   errors.department = "Department length must be less than or equal to 20 characters ";
-    // }
+   
     if (form?.name && form?.name?.trim().length < 2) {
       errors.name = true;
     }
@@ -239,11 +237,19 @@ function useUserCreateHook() {
     if (form?.employee_id?.trim().length < 2) {
       errors.employee_id = true;
     }
-    if (form?.designation && form?.designation?.trim().length <= 2) {
+    if (form?.designation && form?.designation?.trim().length < 2) {
       errors.designation = true;
     }
-    if (form?.department && form?.department?.trim().length <= 2) {
+    if (form?.designation && form?.designation?.length > 40) {
+      errors.designation =
+        "Designation length must be  less than or equal to 40 characters ";
+    }
+    if (form?.department && form?.department?.trim().length < 2) {
       errors.department = true;
+    }
+    if (form?.department && form?.department?.length > 40) {
+      errors.department =
+        "Department length must be  less than or equal to 40 characters ";
     }
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
@@ -260,10 +266,7 @@ function useUserCreateHook() {
         errors.end_date = true;
       }
     }
-    // if (form?.url && !validateUrl(form?.url)) {
-    //   errors.url = true;
-    //   SnackbarUtils.error("Please Enter the Valid Url");
-    // }
+  
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -271,7 +274,6 @@ function useUserCreateHook() {
     });
     return errors;
   }, [form, errorData, form?.country_code]);
-
   const removeError = useCallback(
     (title) => {
       const temp = JSON.parse(JSON.stringify(errorData));
@@ -286,14 +288,11 @@ function useUserCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "name") {
-        if (!text || (text.length <= 40)) {
+        if (!text || text.length <= 40) {
           t[fieldName] = text?.trimStart();
         }
       } else if (fieldName === "userName") {
-        if (
-          !text ||
-          (isAlphaNum(text) && text?.length <= 20)
-        ) {
+        if (!text || (isAlphaNum(text) && text?.length <= 20)) {
           t[fieldName] = text?.toLowerCase()?.trimStart();
         }
       } else if (fieldName === "email") {
@@ -304,20 +303,14 @@ function useUserCreateHook() {
         if (!text || (!isSpace(text) && text?.length <= 20)) {
           t[fieldName] = text;
         }
-      } else if (fieldName === "contact") {
-        t[fieldName] = text;
-      } else if (fieldName === "end_date") {
-        t[fieldName] = text;
-      } else if (fieldName === "role") {
-        t[fieldName] = text;
       } else if (fieldName === "department") {
-        if (!text || (!isSpace(text) && text?.length <= 40)) {
-          t[fieldName] = text?.toLowerCase();
-        }
+      
+        t[fieldName] = text?.toLowerCase();
+        
       } else if (fieldName === "designation") {
-        if (!text || (!isSpace(text) && text.length <= 40)) {
-          t[fieldName] = text.toLowerCase();
-        }
+      
+        t[fieldName] = text?.toLowerCase();
+     
       } else {
         t[fieldName] = text;
       }
@@ -408,6 +401,7 @@ function useUserCreateHook() {
     async (status) => {
       const errors = checkFormValidation();
       LogUtils.log("errors==>", errors);
+
       if (Object.keys(errors)?.length > 0) {
         setErrorData(errors);
         return true;
