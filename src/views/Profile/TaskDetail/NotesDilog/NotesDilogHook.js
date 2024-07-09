@@ -25,27 +25,29 @@ const useNotesDilogHook = () => {
   );
 
   useEffect(() => {
-    handleReset();
+    if (!isAcceptPopUp) {
+      handleReset();
+    }
   }, [isAcceptPopUp]);
 
   useEffect(() => {
-    const debounceTimeout = setTimeout(() => {
-      serviceTaskMnagmentNotesList({
-        task_id: id ? id : "",
-        index: 1,
-        row: null,
-        order: null,
-        query: "",
-        query_data: null,
-      }).then((res) => {
-        if (!res.error) {
-          setNoteDetail(res.data);
-        } else {
-          SnackbarUtils.error(res.message);
-        }
-      });
-    }, 300);
-    return () => clearTimeout(debounceTimeout);
+    // const debounceTimeout = setTimeout(() => {
+    serviceTaskMnagmentNotesList({
+      task_id: id ? id : "",
+      index: 1,
+      row: null,
+      order: null,
+      query: "",
+      query_data: null,
+    }).then((res) => {
+      if (!res.error) {
+        setNoteDetail(res.data);
+      } else {
+        SnackbarUtils.error(res.message);
+      }
+    });
+    // }, 300);
+    // return () => clearTimeout(debounceTimeout);
   }, [id]);
 
   const removeError = useCallback(
@@ -99,7 +101,7 @@ const useNotesDilogHook = () => {
     return errors;
   }, [form, errorData]);
 
-  const submitToServer = useCallback(async () => {
+  const submitToServer = useCallback(() => {
     if (isSubmitting) {
       return;
     }
@@ -108,29 +110,36 @@ const useNotesDilogHook = () => {
       title: form?.descriptions,
       task_id: id,
     };
-    const req = await serviceTaskMnagmentNotesCreate;
+    const req = serviceTaskMnagmentNotesCreate;
     const res = req(updateData);
-    if (!res.error) {
-      serviceTaskMnagmentNotesList({
-        task_id: id ? id : "",
-        index: 1,
-        row: null,
-        order: null,
-        query: "",
-        query_data: null,
-      }).then((res) => {
-        if (!res.error) {
-          setNoteDetail(res.data);
+   
+      if (!res.error) {
+        serviceTaskMnagmentNotesList({
+          task_id: id ? id : "",
+          index: 1,
+          row: null,
+          order: null,
+          query: "",
+          query_data: null,
+        }).then((res) => {
+          if (!res.error) {
+            setNoteDetail(res.data);
+          } else {
+            SnackbarUtils.error(res.message);
+          }
+          setIsSubmitting(false);
           toggleAcceptDialog();
-        } else {
-          SnackbarUtils.error(res.message);
-        }
-      });
-    } else {
-      SnackbarUtils.error(res.message);
-    }
-    setIsSubmitting(false);
-  }, [isSubmitting, form?.descriptions, id, toggleAcceptDialog]);
+        });
+      } else {
+        SnackbarUtils.error(res.message);
+      }
+  }, [
+    isSubmitting,
+    form?.descriptions,
+    id,
+    toggleAcceptDialog,
+    setIsSubmitting,
+  ]);
 
   const handleSubmit = useCallback(async () => {
     const errors = checkFormValidation();
@@ -149,9 +158,9 @@ const useNotesDilogHook = () => {
 
   const onBlurHandler = useCallback(
     (type) => {
-      if (form?.[type]) {
-        changeTextData(form?.[type].trim(), type);
-      }
+      // if (form?.[type]) {
+      //   changeTextData(form?.[type].trim(), type);
+      // }
     },
     [changeTextData, errorData, setErrorData]
   );
