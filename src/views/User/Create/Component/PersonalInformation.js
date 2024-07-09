@@ -20,6 +20,7 @@ const PersonalInformation = ({
   listData,
   userId,
   id,
+
 }) => {
   const theme = useTheme();
   return (
@@ -154,41 +155,45 @@ const PersonalInformation = ({
                   {/* <MenuItem value={"OWNER"}>Owner</MenuItem> */}
                 </CustomSelectField>
               </div>
-              <div className={"formGroup"}>
-                {id ? (
-                  <CustomSelectField
-                    isError={errorData?.status}
-                    errorText={errorData?.status}
-                    label={"Status"}
-                    // disabled={userId === id ? true : false}
-                    value={form?.status}
-                    handleChange={(value) => {
-                      changeTextData(value, "status");
-                    }}
-                    className={styles.custonCSS}
-                  >
-                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
-                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
-                    <MenuItem value={"DELETED"}>Deleted</MenuItem>
-                    <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
-                  </CustomSelectField>
-                ) : (
-                  <CustomSelectField
-                    isError={errorData?.status}
-                    errorText={errorData?.status}
-                    label={"Status"}
-                    // disabled={userId === id ? true : false}
-                    value={form?.status}
-                    handleChange={(value) => {
-                      changeTextData(value, "status");
-                    }}
-                    className={styles.custonCSS}
-                  >
-                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
-                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
-                  </CustomSelectField>
-                )}
-              </div>
+              {id !== userId ? (
+                <div className={"formGroup"}>
+                  {id ? (
+                    <CustomSelectField
+                      isError={errorData?.status}
+                      errorText={errorData?.status}
+                      label={"Status"}
+                      // disabled={userId === id ? true : false}
+                      value={form?.status}
+                      handleChange={(value) => {
+                        changeTextData(value, "status");
+                      }}
+                      className={styles.custonCSS}
+                    >
+                      <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                      <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                      <MenuItem value={"DELETED"}>Deleted</MenuItem>
+                      <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
+                    </CustomSelectField>
+                  ) : (
+                    <CustomSelectField
+                      isError={errorData?.status}
+                      errorText={errorData?.status}
+                      label={"Status"}
+                      // disabled={userId === id ? true : false}
+                      value={form?.status}
+                      handleChange={(value) => {
+                        changeTextData(value, "status");
+                      }}
+                      className={styles.custonCSS}
+                    >
+                      <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                      <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                    </CustomSelectField>
+                  )}
+                </div>
+              ) : (
+                <div className="formGroup"></div>
+              )}
             </div>
           </div>
         </div>

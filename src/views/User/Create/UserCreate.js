@@ -1,13 +1,10 @@
 import React from "react";
 
 import styles from "./Style.module.css";
-import { ButtonBase, CircularProgress, Typography } from "@mui/material";
 
-import { PrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import WorkInfoView from "./Component/WorkInfoView";
 import PersonalInformation from "./Component/PersonalInformation";
-import { ArrowBackIos } from "@mui/icons-material";
-import history from "../../../libs/history.utils";
+
 import useUserCreateHook from "./UserCreateHook";
 import { useTheme } from "@mui/styles";
 import {
@@ -30,6 +27,7 @@ const UserCreate = ({}) => {
     listData,
     isSubmitting,
     designation,
+ 
   } = useUserCreateHook();
   const theme = useTheme();
   return (
@@ -58,6 +56,7 @@ const UserCreate = ({}) => {
           department={department}
           designation={designation}
           id={id}
+         
         />
       )}
       <div className={styles.saveButton}>
