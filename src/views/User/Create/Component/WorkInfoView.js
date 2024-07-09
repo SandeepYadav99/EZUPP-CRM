@@ -18,6 +18,7 @@ const WorkInfoView = ({
   department,
   id,
   designation,
+  userId
 }) => {
   const theme = useTheme();
   return (
