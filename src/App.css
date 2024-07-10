@@ -24,7 +24,6 @@
 .formFlex {
   display: flex;
   margin-bottom: 6px;
- 
 }
 .formFlex1 {
   display: flex;
@@ -38,7 +37,7 @@
 .formGroup1 {
   flex: 1;
   padding: 7px 10px;
- 
+
   /*padding: 10px 15px*/
 }
 .formGroup221 {
@@ -73,7 +72,7 @@
 .formGroup {
   flex: 1;
   padding: 7px 10px;
- 
+
   /*padding: 10px 15px*/
 }
 .formGroup1 {
@@ -331,11 +330,11 @@ input[type="radio"] + label:hover {
 .innerHtml::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
 }
-.innerHtml img{
+.innerHtml img {
   max-width: 400px;
   max-height: 300px;
 }
-.innerHtml .se-video-container{
+.innerHtml .se-video-container {
   margin-top: 10px;
   max-width: 400px;
   max-height: 210px;
@@ -603,8 +602,8 @@ input[type="radio"] + label:hover {
   position: absolute;
   z-index: 2;
 }
-.css-hip9hq-MuiPaper-root-MuiAppBar-root{
-    box-shadow: 3px 3px 6px #00000029;
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  box-shadow: 3px 3px 6px #00000029;
 }
 .Demo__suggestion-item {
   padding: 8px;
@@ -1284,4 +1283,9 @@ button span {
   .bottomAction {
     overflow: visible !important;
   }
+}
+
+.squire {
+  color: #ff0000 !important;
+  font-size: 15px !important;
 }

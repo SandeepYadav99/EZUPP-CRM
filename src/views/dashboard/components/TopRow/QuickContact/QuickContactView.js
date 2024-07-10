@@ -61,13 +61,13 @@ function QuickContactView({ isOpen, handleToggle }) {
           Personal Information
         </Typography>
         <div className={styles.cardGrid1}>
-          <CardType
+          {/* <CardType
             options={options}
             handleBusinessToggle={(text) => {
               changeTextData(text, "contact_type");
             }}
             value={form?.contact_type}
-          />
+          /> */}
         </div>
 
         {/* <div className={"formFlex"}>
@@ -150,7 +150,7 @@ function QuickContactView({ isOpen, handleToggle }) {
           </div>
         </div>
       </ShadowBox>
-      {form?.contact_type === "BUSINESS" && (
+      {/* {form?.contact_type === "BUSINESS" && (
         <ShadowBox
           sx={{ padding: "1rem" }}
           className={showBusiness ? styles.cardWrapper : styles.inactive}
@@ -197,7 +197,7 @@ function QuickContactView({ isOpen, handleToggle }) {
             <MenuItem value="ETC">ETC</MenuItem>
           </CustomSelectField>
         </ShadowBox>
-      )}
+      )} */}
 
       <ShadowBox sx={{ padding: "1rem" }} className={styles.cardWrapper}>
         <Typography variant={"h5"} color={"text.secondary"}>

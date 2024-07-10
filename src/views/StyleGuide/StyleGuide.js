@@ -48,8 +48,11 @@ import ColorPicker from "../../components/ColorPicker/ColorPicker";
 import CheckboxWithText from "../../components/RadioButtons/CheckboxWithText";
 import useStyleGuide from "./StyleGuide.hook";
 import Constants from "../../config/constants";
-import CascaderData from '../../config/cascader.json';
+import CascaderData from "../../config/cascader.json";
 import Cascader from "../../components/FormFields/Cascader/Cascader";
+import CustomTextFiled from "../../CustomFormFiled/LabelTextFiled";
+import LabelTextFiled from "../../CustomFormFiled/LabelTextFiled";
+import TextFiledCustom from "../../CustomFormFiled/TextFiledCustom";
 
 const avatars = ["A", "B", "C", "2k"];
 const AutoCompleteData = [
@@ -104,7 +107,7 @@ const StyleGuide = ({}) => {
   };
 
   return (
-    <ShadowBox style={{width:"100%"}}>
+    <ShadowBox style={{ width: "100%" }}>
       <div className={"formFlex"}>
         <div className={styles.sideMargin}>
           <div>
@@ -402,9 +405,9 @@ const StyleGuide = ({}) => {
               { name: "remember", font: "12" },
             ].map((key) => {
               return (
-                  <Typography variant={key?.name}>
-                    Here is the text - {key?.name} - {key?.font}px  {" "}
-                  </Typography>
+                <Typography variant={key?.name}>
+                  Here is the text - {key?.name} - {key?.font}px{" "}
+                </Typography>
               );
             })}
 
@@ -427,9 +430,9 @@ const StyleGuide = ({}) => {
               "remember",
             ].map((key) => {
               return (
-                  <Typography color={"text.secondary"} variant={key}>
-                    Here is the text - {key} {" "}
-                  </Typography>
+                <Typography color={"text.secondary"} variant={key}>
+                  Here is the text - {key}{" "}
+                </Typography>
               );
             })}
           </div>
@@ -441,7 +444,9 @@ const StyleGuide = ({}) => {
       <br />
       <div className={styles.avatorFlex}>
         <div>
-          <Typography variant="h5" marginBottom={3}>Size</Typography>
+          <Typography variant="h5" marginBottom={3}>
+            Size
+          </Typography>
           <UserCountAvatarsLabelInitials
             width={34}
             height={34}
@@ -450,7 +455,9 @@ const StyleGuide = ({}) => {
           />
         </div>
         <div>
-        <Typography variant="h5" marginBottom={3}>Status Indicator </Typography>
+          <Typography variant="h5" marginBottom={3}>
+            Status Indicator{" "}
+          </Typography>
           <UserCountAvatarsStatusIndicator
             width={44}
             height={44}
@@ -459,7 +466,9 @@ const StyleGuide = ({}) => {
           />
         </div>
         <div>
-        <Typography variant="h5" marginBottom={3}>Pull Up </Typography>
+          <Typography variant="h5" marginBottom={3}>
+            Pull Up{" "}
+          </Typography>
           <UserCountAvatarsLableAvatarGroup
             width={54}
             height={54}
@@ -575,20 +584,39 @@ const StyleGuide = ({}) => {
       <div>
         <ColorPicker />
 
-         <Cascader
-            value={[]}
-            label={"Industry"}
-            options={CascaderData}
-            handleChange={(value) => {
-
-            }}
+        <Cascader
+          value={[]}
+          label={"Industry"}
+          options={CascaderData}
+          handleChange={(value) => {}}
         />
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <LabelTextFiled
+          label={
+            <Typography sx={{ fontWeight: 600 }}>
+              Field label <span className="squire">*</span>
+            </Typography>
+          }
+          placeholder={"Give a name for your field"}
+        />
+        {/* / */}
+        <LabelTextFiled
+          label={
+            <Typography sx={{ fontWeight: 600 }}>Internal name</Typography>
+          }
+          disabled="true"
+          placeholder={"Internal name "}
+        /><br/> 
+        {/* //////// */}
+        <TextFiledCustom
+          label={
+            <Typography sx={{ fontWeight: 600 }}>Text Filed</Typography>
+          }
+         
+          // placeholder={"Internal name "}
+        />
       </div>
-    </ShadowBox >
+    </ShadowBox>
   );
 };
 
