@@ -1,5 +1,4 @@
-import { InputLabel, TextField, Typography } from "@mui/material";
-import { useTheme } from "@mui/styles";
+import {  TextField } from "@mui/material";
 import React, { useCallback } from "react";
 
 const TextFiledCustom = ({
@@ -9,6 +8,7 @@ const TextFiledCustom = ({
   isCurser,
   ...rest
 }) => {
+
   const handleChange = useCallback(
     (e) => {
       onTextChange && onTextChange(e.target.value);

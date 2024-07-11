@@ -1,5 +1,4 @@
 import { InputLabel, TextField, Typography } from "@mui/material";
-import { useTheme } from "@mui/styles";
 import React, { useCallback, useMemo } from "react";
 
 const LabelTextFiled = ({
@@ -10,7 +9,6 @@ const LabelTextFiled = ({
   isCurser,
   ...rest
 }) => {
-  const theme = useTheme();
 
   const handleChange = useCallback(
     (e) => {
