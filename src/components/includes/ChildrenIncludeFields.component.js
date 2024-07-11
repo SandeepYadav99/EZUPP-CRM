@@ -1,8 +1,9 @@
-
 import React from "react";
 import styles from "./style.module.css";
 import TextFiledCustom from "../../CustomFormFiled/TextFiledCustom";
-import { ButtonBase } from "@mui/material";
+import { ButtonBase, Typography } from "@mui/material";
+import { Remove } from "@mui/icons-material";
+import { useTheme } from "@mui/styles";
 
 const ChildrenIncludeFields = ({
   index,
@@ -15,18 +16,17 @@ const ChildrenIncludeFields = ({
   currency,
   listWarehouse,
 }) => {
+  const theme = useTheme();
   const handleChange = (e) => {
     const name = e?.target?.name;
     const value = e?.target?.value;
- 
-      changeData(index, { [name]: value });
-    
+
+    changeData(index, { [name]: value });
   };
 
-const changeTextData=(value,key)=>{
-  changeData(index, { [key]: value });
-
-}
+  const changeTextData = (value, key) => {
+    changeData(index, { [key]: value });
+  };
   return (
     <div>
       <div className={styles.flexContainer}>
@@ -43,8 +43,7 @@ const changeTextData=(value,key)=>{
               label={"Label Name"}
             />
           </div>
-      
-       
+
           <div className={"textCenter"}>
             <ButtonBase
               className={styles.removeBtn}
@@ -53,7 +52,29 @@ const changeTextData=(value,key)=>{
                 handlePress(index === 0 ? "-" : "-", index);
               }}
             >
-              {index === 0 ? "Remove" : "Remove"}
+              {index === 0 ? (
+                <Typography
+                  sx={{
+                    width: "25px",
+                    height: "25px",
+                    borderRadius: "25px",
+                    backgroundColor: theme.palette.text.error,
+                  }}
+                >
+                  <Remove sx={{ color: "#fff" }} />{" "}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    width: "25px",
+                    height: "25px",
+                    borderRadius: "25px",
+                    backgroundColor: theme.palette.text.error,
+                  }}
+                >
+                  <Remove sx={{ color: "#fff" }} />{" "}
+                </Typography>
+              )}
             </ButtonBase>
           </div>
         </div>
