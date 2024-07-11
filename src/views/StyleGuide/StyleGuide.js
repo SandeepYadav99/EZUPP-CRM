@@ -640,14 +640,15 @@ const StyleGuide = ({}) => {
             <Typography
               sx={{
                 fontWeight: 600,
-                mt: theme.spacing(0.5),
+                 mt: theme.spacing(-0.2),
                 backgroundColor: "#fff",
               }}
             >
               Name
             </Typography>
           }
-          value="Select"
+          
+           handleChange={()=>{}}
         >
           <MenuItem value={"Select"}>{"Select"}</MenuItem>
         </SelectFields>
