@@ -1,6 +1,6 @@
 import { InputLabel, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/styles";
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 
 const LabelTextFiled = ({
   label,
@@ -20,10 +20,14 @@ const LabelTextFiled = ({
     [onTextChange, onChange]
   );
 
+  const id = useMemo(() => {
+    return Date.now() + "LABEL" + label;
+  }, [label]);
+
   return (
     <>
       <InputLabel>
-        <Typography>{label}</Typography>
+        <Typography htmlFor={`label${id}`}>{label}</Typography>
       </InputLabel>
       <TextField
         sx={{
@@ -33,12 +37,14 @@ const LabelTextFiled = ({
             fontWeight: "600",
           },
         }}
+        name={label}
+        id={`label${id}`}
         error={isError}
         onChange={handleChange}
         variant={"outlined"}
         margin={"dense"}
         size="small"
-        fullWidth={"true"}
+        fullWidth
         {...rest}
       />
     </>

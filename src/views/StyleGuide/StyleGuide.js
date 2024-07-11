@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import PageBoxComponent from "../../components/PageBox/PageBox.component";
 import CustomSelectField from "../../components/FormFields/SelectField/SelectField.component";
 import CustomDatePicker from "../../components/FormFields/DatePicker/CustomDatePicker";
 import RadioButtons from "../../components/RadioButtons/RadioButtons";
 import RadioButtonWithText from "../../components/RadioButtons/RadioButtonWithText";
 import BasicButtonGroup from "../../components/BasicButtonGroup/BasicButtonGroup";
+
 import {
   ActionButton,
   ArrowActionButton,
@@ -19,29 +19,23 @@ import {
   Typography,
   Autocomplete,
   TextField,
-  Avatar,
+ 
 } from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import UserCountAvatars, {
-  UserCountAvatarsAnimation,
-  UserCountAvatarsInitials,
+  
   UserCountAvatarsLabelInitials,
   UserCountAvatarsLableAvatarGroup,
-  UserCountAvatarsLableAvatarStatusIndicator,
-  UserCountAvatarsShapes,
-  UserCountAvatarsSize,
+ 
   UserCountAvatarsStatusIndicator,
 } from "../../components/AvatarGroup/AvatarGroup";
-import { UserCountRadioLables } from "../../components/BasicAndCustomRadio/RadioLables";
-import { CustomOptionRadiosWithIcon } from "../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon";
 import TimeLine from "../../components/TimeLine/TimeLine.component";
 import { useTheme } from "@mui/styles";
 import CustomMultiComplete from "../../components/FormFields/AutoCompleteText/MultiComplete";
 import img from "../../assets/img/1.png";
-import home from "../../assets/Assets/ic_dashboard_grey.png";
 import business from "../../assets/Assets/ic_business (1).png";
 import individual from "../../assets/Assets/ic_individual (1).png";
 import ColorPicker from "../../components/ColorPicker/ColorPicker";
@@ -50,9 +44,10 @@ import useStyleGuide from "./StyleGuide.hook";
 import Constants from "../../config/constants";
 import CascaderData from "../../config/cascader.json";
 import Cascader from "../../components/FormFields/Cascader/Cascader";
-import CustomTextFiled from "../../CustomFormFiled/LabelTextFiled";
 import LabelTextFiled from "../../CustomFormFiled/LabelTextFiled";
 import TextFiledCustom from "../../CustomFormFiled/TextFiledCustom";
+import DisabledTextField from "../../CustomFormFiled/DisabledTextField";
+import SelectFields from "../../CustomFormFiled/CustomSelectField";
 
 const avatars = ["A", "B", "C", "2k"];
 const AutoCompleteData = [
@@ -80,7 +75,7 @@ const AutoCompleteData = [
 ];
 const StyleGuide = ({}) => {
   const theme = useTheme();
-
+  console.log(theme);
   const { checkboxValue, handleCheckboxChange } = useStyleGuide({});
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [selectedUsersSingle, setSelectedUsersSingle] = useState("");
@@ -599,22 +594,50 @@ const StyleGuide = ({}) => {
           }
           placeholder={"Give a name for your field"}
         />
-        {/* / */}
-        <LabelTextFiled
-          label={
-            <Typography sx={{ fontWeight: 600 }}>Internal name</Typography>
-          }
-          disabled="true"
-          placeholder={"Internal name "}
-        /><br/> 
-        {/* //////// */}
+     
         <TextFiledCustom
           label={
-            <Typography sx={{ fontWeight: 600 }}>Text Filed</Typography>
+            <Typography sx={{ fontWeight: 600, mt: theme.spacing(-0.2) }}>
+              Internal name
+            </Typography>
           }
-         
-          // placeholder={"Internal name "}
+          disabled={true}
+          sx={{
+            "& .MuiInputBase-root.Mui-disabled": {
+              "& > fieldset": {
+                borderColor: "rgb(192, 192, 192)",
+              },
+            },
+          }}
         />
+        <br />
+     
+        <TextFiledCustom
+          label={
+            <Typography sx={{ fontWeight: 600, mt: theme.spacing(-0.2) }}>
+              Text Filed
+            </Typography>
+          }
+
+        />
+  
+        <SelectFields
+          label={
+            <Typography
+              sx={{
+                fontWeight: 600,
+                mt: theme.spacing(0.5),
+                backgroundColor: "#fff",
+              }}
+            >
+              Name
+            </Typography>
+          }
+          value="Select"
+        >
+          <MenuItem value={"Select"}>{"Select"}</MenuItem>
+        </SelectFields>
+        {/* PLACE HOLDER  */}
       </div>
     </ShadowBox>
   );

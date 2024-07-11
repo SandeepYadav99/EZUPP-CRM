@@ -2,7 +2,7 @@ import { InputLabel, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/styles";
 import React, { useCallback } from "react";
 
-const TextFiledCustom = ({
+const DisabledTextField = ({
   onTextChange,
   disabled,
   isError,
@@ -20,6 +20,13 @@ const TextFiledCustom = ({
     <TextField
       disabled={disabled}
       error={isError}
+      sx={{
+        "& .MuiInputBase-root.Mui-disabled": {
+          "& > fieldset": {
+            borderColor: "rgb(192, 192, 192)",
+          },
+        },
+    }}
       onChange={handleChange}
       variant={"outlined"}
       margin={"dense"}
@@ -30,4 +37,4 @@ const TextFiledCustom = ({
   );
 };
 
-export default TextFiledCustom;
+export default DisabledTextField;
