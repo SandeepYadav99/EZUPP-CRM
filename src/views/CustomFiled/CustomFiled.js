@@ -15,11 +15,14 @@ const CustomFiled = () => {
     useCustomFiledHook();
   return (
     <ShadowBox width={"100%"}>
+      <div>
+      <Typography fontWeight={600} variant="h5">Custom Field</Typography>  
+      </div>
       <div className="formFlex">
         <div className="formGroup">
-          <Typography sx={{ mb: theme.spacing(-1.5) }}>
+          {/* <Typography sx={{ mb: theme.spacing(-1.5) }}>
             Field lable *
-          </Typography>
+          </Typography> */}
           <CustomTextField
             isError={errorData?.fieldLable}
             errorText={errorData?.fieldLable}
@@ -34,9 +37,9 @@ const CustomFiled = () => {
       <div className="formFlex">
         <div className="formGroup">
             <div className={styles.internalName}>
-          <Typography sx={{ mb: theme.spacing(-1.5) }}>
+          {/* <Typography sx={{ mb: theme.spacing(-1.5) }}>
             Internal name
-          </Typography>
+          </Typography> */}
           <CustomTextField
             isError={errorData?.internalName}
             errorText={errorData?.internalName}
