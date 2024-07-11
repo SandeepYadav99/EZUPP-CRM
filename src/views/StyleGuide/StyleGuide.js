@@ -48,6 +48,8 @@ import LabelTextFiled from "../../CustomFormFiled/LabelTextFiled";
 import TextFiledCustom from "../../CustomFormFiled/TextFiledCustom";
 import DisabledTextField from "../../CustomFormFiled/DisabledTextField";
 import SelectFields from "../../CustomFormFiled/CustomSelectField";
+import ChildrenIncludeFields from "../../components/includes/ChildrenIncludeFields.component";
+import ChildrenIncludesComponent from "../../components/includes/ChildrenIncludes.component";
 
 const avatars = ["A", "B", "C", "2k"];
 const AutoCompleteData = [
@@ -586,26 +588,38 @@ const StyleGuide = ({}) => {
           handleChange={(value) => {}}
         />
         <br />
+        {/* <Typography fontWeight={600}>Label Text Filed With placeholder & Text Filed , Select Filed, Add and Remove Form </Typography> */}
         <LabelTextFiled
           label={
             <Typography sx={{ fontWeight: 600 }}>
               Field label <span className="squire">*</span>
             </Typography>
           }
+          sx={{
+            mt: theme.spacing(-0.2),
+              input: {
+                fontWeight: "600",
+              },
+          }}
           placeholder={"Give a name for your field"}
         />
      
-        <TextFiledCustom
+        <LabelTextFiled
           label={
-            <Typography sx={{ fontWeight: 600, mt: theme.spacing(-0.2) }}>
-              Internal name
+            <Typography>
+             Internal name
             </Typography>
           }
           disabled={true}
+          placeholder={"emails"}
           sx={{
+            mt: theme.spacing(-0.2),
             "& .MuiInputBase-root.Mui-disabled": {
               "& > fieldset": {
                 borderColor: "rgb(192, 192, 192)",
+              },
+              input: {
+                fontWeight: "600",
               },
             },
           }}
@@ -637,7 +651,12 @@ const StyleGuide = ({}) => {
         >
           <MenuItem value={"Select"}>{"Select"}</MenuItem>
         </SelectFields>
-        {/* PLACE HOLDER  */}
+      
+         <div className={"formFlex"}>
+            <div className={"formGroup"}>
+              <ChildrenIncludesComponent />
+            </div>
+          </div>
       </div>
     </ShadowBox>
   );

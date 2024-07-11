@@ -30,13 +30,6 @@ const LabelTextFiled = ({
         <Typography htmlFor={`label${id}`}>{label}</Typography>
       </InputLabel>
       <TextField
-        sx={{
-          mt: theme.spacing(-0.2),
-
-          input: {
-            fontWeight: "600",
-          },
-        }}
         name={label}
         id={`label${id}`}
         error={isError}

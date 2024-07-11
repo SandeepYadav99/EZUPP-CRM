@@ -17,7 +17,8 @@ const SelectFields = ({
   ...rest
 }) => {
   const inputLabelRef = useRef(null);
-const theme = useTheme()
+const theme = useTheme();
+
   const id = useMemo(() => {
     return Date.now() + "SELECTED_LABEL" + label;
   }, [label]);
