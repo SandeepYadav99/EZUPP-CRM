@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./style.module.css";
-import TextFiledCustom from "../../CustomFormFiled/TextFiledCustom";
 import { ButtonBase, Typography } from "@mui/material";
 import { Remove } from "@mui/icons-material";
 import { useTheme } from "@mui/styles";
+import CustomTextField from "../../FormFields/TextField.component";
 
 const ChildrenIncludeFields = ({
   index,
@@ -32,7 +32,7 @@ const ChildrenIncludeFields = ({
       <div className={styles.flexContainer}>
         <div className={styles.firstRow}>
           <div className={styles.flex1}>
-            <TextFiledCustom
+            <CustomTextField
               error={errors?.name}
               onChange={handleChange}
               value={data?.name}

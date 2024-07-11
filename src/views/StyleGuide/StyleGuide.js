@@ -44,12 +44,7 @@ import useStyleGuide from "./StyleGuide.hook";
 import Constants from "../../config/constants";
 import CascaderData from "../../config/cascader.json";
 import Cascader from "../../components/FormFields/Cascader/Cascader";
-import LabelTextFiled from "../../CustomFormFiled/LabelTextFiled";
-import TextFiledCustom from "../../CustomFormFiled/TextFiledCustom";
-import DisabledTextField from "../../CustomFormFiled/DisabledTextField";
-import SelectFields from "../../CustomFormFiled/CustomSelectField";
-import ChildrenIncludeFields from "../../components/includes/ChildrenIncludeFields.component";
-import ChildrenIncludesComponent from "../../components/includes/ChildrenIncludes.component";
+
 
 const avatars = ["A", "B", "C", "2k"];
 const AutoCompleteData = [
@@ -588,77 +583,8 @@ const StyleGuide = ({}) => {
           handleChange={(value) => {}}
         />
         <br />
-        {/* <Typography fontWeight={600}>Label Text Filed With placeholder & Text Filed , Select Filed, Add and Remove Form </Typography> */}
-        <LabelTextFiled
-          label={
-            <Typography sx={{ fontWeight: 600 }}>
-              Field label <span className="squire">*</span>
-            </Typography>
-          }
-          sx={{
-            mt: theme.spacing(-0.2),
-              input: {
-                fontWeight: "600",
-              },
-          }}
-          placeholder={"Give a name for your field"}
-        />
      
-        <LabelTextFiled
-          label={
-            <Typography>
-             Internal name
-            </Typography>
-          }
-          disabled={true}
-          placeholder={"emails"}
-          sx={{
-            mt: theme.spacing(-0.2),
-            "& .MuiInputBase-root.Mui-disabled": {
-              "& > fieldset": {
-                borderColor: "rgb(192, 192, 192)",
-              },
-              input: {
-                fontWeight: "600",
-              },
-            },
-          }}
-        />
-        <br />
-     
-        <TextFiledCustom
-          label={
-            <Typography sx={{ fontWeight: 600, mt: theme.spacing(-0.2) }}>
-              Text Filed
-            </Typography>
-          }
-
-        />
-  
-        <SelectFields
-          label={
-            <Typography
-              sx={{
-                fontWeight: 600,
-                 mt: theme.spacing(-0.2),
-                backgroundColor: "#fff",
-              }}
-            >
-              Name
-            </Typography>
-          }
-          
-           handleChange={()=>{}}
-        >
-          <MenuItem value={"Select"}>{"Select"}</MenuItem>
-        </SelectFields>
-      
-         <div className={"formFlex"}>
-            <div className={"formGroup"}>
-              <ChildrenIncludesComponent />
-            </div>
-          </div>
-      </div>
+</div>
     </ShadowBox>
   );
 };
