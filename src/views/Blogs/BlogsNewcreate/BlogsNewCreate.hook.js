@@ -47,8 +47,8 @@ function useNewBlogCreateHook({ location }) {
         serviceGetIndustryList(),
       ]);
   
-      const tagList = promises[0].value?.data;
-      const industryList = promises[1].value?.data;
+      const tagList = promises[0]?.value?.data;
+      const industryList = promises[1]?.value?.data;
 
       setTagList(tagList);
     })();
