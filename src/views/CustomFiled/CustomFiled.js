@@ -20,9 +20,7 @@ const CustomFiled = () => {
       </div>
       <div className="formFlex">
         <div className="formGroup">
-          {/* <Typography sx={{ mb: theme.spacing(-1.5) }}>
-            Field lable *
-          </Typography> */}
+        
           <CustomTextField
             isError={errorData?.fieldLable}
             errorText={errorData?.fieldLable}
@@ -37,9 +35,7 @@ const CustomFiled = () => {
       <div className="formFlex">
         <div className="formGroup">
             <div className={styles.internalName}>
-          {/* <Typography sx={{ mb: theme.spacing(-1.5) }}>
-            Internal name
-          </Typography> */}
+       
           <CustomTextField
             isError={errorData?.internalName}
             errorText={errorData?.internalName}
@@ -48,6 +44,7 @@ const CustomFiled = () => {
                 Internal name
               </Typography>
             }
+            disabled
             value={form?.internalName}
             handleChange={(value) => {
               changeTextData(value, "internalName");
