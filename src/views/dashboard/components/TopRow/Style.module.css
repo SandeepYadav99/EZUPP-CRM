@@ -281,4 +281,21 @@ height: 86px;
       gap: 10px;
   }
   }
-  
+    @media (max-width: 768px) {
+      .buttonAndImageContainer {
+        /* position: relative; */
+      }
+      .image{
+        position: static;
+        /* margin-top: -55%; */
+
+        
+      }
+      .sales{
+        height: auto !important;
+      }
+      .customerImg{
+        display: flex;
+        align-items: flex-end !important;
+      }
+    }

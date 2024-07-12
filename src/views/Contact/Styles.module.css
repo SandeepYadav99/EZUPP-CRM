@@ -121,3 +121,15 @@
 .gap{
   gap: 40px;
 }
+@media (max-width: 767px) {
+    .radio {
+     flex-wrap: wrap;
+  
+    }
+    
+  }
+  @media (max-width: 1024px) {
+    .radio {
+      flex-wrap: wrap;
+    }
+  }
