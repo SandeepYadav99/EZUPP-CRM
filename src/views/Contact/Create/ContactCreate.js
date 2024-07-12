@@ -91,11 +91,11 @@ const ContactCreate = ({}) => {
         form={form}
         changeTextData={changeTextData}
       />
-      <BusinessInfo
+      {/* <BusinessInfo
         errorData={errorData}
         form={form}
         changeTextData={changeTextData}
-      />
+      /> */}
       <ProfilingLead
         errorData={errorData}
         form={form}

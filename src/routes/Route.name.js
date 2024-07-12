@@ -51,5 +51,6 @@ export default {
   PRODUCT_UPDATE:"/product/update/",
   NOTIFICATION_DETAILS:"/notifications",
   CONTACT_LIST: "/contact",
-  CONTACT_CREATE: "/contact/create"
+  CONTACT_CREATE: "/contact/create",
+  CUSTOM_FILED:"/custom/filed"
 };

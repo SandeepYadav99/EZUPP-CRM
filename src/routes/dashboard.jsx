@@ -70,6 +70,7 @@ import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
+import CustomFiled from "../views/CustomFiled/CustomFiled";
 
 
  
@@ -506,6 +507,16 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
+  },
+  {
+    path: RouteName.CUSTOM_FILED,
+    sidebarName: "CUSTOM FILED",
+    navbarName: "CUSTOM FILED",
+    icon: SupervisedUserCircle,
+    component: CustomFiled,
+    is_sidebar: false,
+    is_protect: true,
+
   },
 
   // {

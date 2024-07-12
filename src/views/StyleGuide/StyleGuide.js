@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import PageBoxComponent from "../../components/PageBox/PageBox.component";
 import CustomSelectField from "../../components/FormFields/SelectField/SelectField.component";
 import CustomDatePicker from "../../components/FormFields/DatePicker/CustomDatePicker";
 import RadioButtons from "../../components/RadioButtons/RadioButtons";
 import RadioButtonWithText from "../../components/RadioButtons/RadioButtonWithText";
 import BasicButtonGroup from "../../components/BasicButtonGroup/BasicButtonGroup";
+
 import {
   ActionButton,
   ArrowActionButton,
@@ -19,37 +19,32 @@ import {
   Typography,
   Autocomplete,
   TextField,
-  Avatar,
+ 
 } from "@mui/material";
 import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 import StatusPill from "../../components/Status/StatusPill.component";
 // import CustomTextField from '../../FormFields/TextField.component';
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import UserCountAvatars, {
-  UserCountAvatarsAnimation,
-  UserCountAvatarsInitials,
+  
   UserCountAvatarsLabelInitials,
   UserCountAvatarsLableAvatarGroup,
-  UserCountAvatarsLableAvatarStatusIndicator,
-  UserCountAvatarsShapes,
-  UserCountAvatarsSize,
+ 
   UserCountAvatarsStatusIndicator,
 } from "../../components/AvatarGroup/AvatarGroup";
-import { UserCountRadioLables } from "../../components/BasicAndCustomRadio/RadioLables";
-import { CustomOptionRadiosWithIcon } from "../../components/BasicAndCustomRadio/CustomOptionRadiosWithIcon";
 import TimeLine from "../../components/TimeLine/TimeLine.component";
 import { useTheme } from "@mui/styles";
 import CustomMultiComplete from "../../components/FormFields/AutoCompleteText/MultiComplete";
 import img from "../../assets/img/1.png";
-import home from "../../assets/Assets/ic_dashboard_grey.png";
 import business from "../../assets/Assets/ic_business (1).png";
 import individual from "../../assets/Assets/ic_individual (1).png";
 import ColorPicker from "../../components/ColorPicker/ColorPicker";
 import CheckboxWithText from "../../components/RadioButtons/CheckboxWithText";
 import useStyleGuide from "./StyleGuide.hook";
 import Constants from "../../config/constants";
-import CascaderData from '../../config/cascader.json';
+import CascaderData from "../../config/cascader.json";
 import Cascader from "../../components/FormFields/Cascader/Cascader";
+
 
 const avatars = ["A", "B", "C", "2k"];
 const AutoCompleteData = [
@@ -77,7 +72,7 @@ const AutoCompleteData = [
 ];
 const StyleGuide = ({}) => {
   const theme = useTheme();
-
+  console.log(theme);
   const { checkboxValue, handleCheckboxChange } = useStyleGuide({});
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [selectedUsersSingle, setSelectedUsersSingle] = useState("");
@@ -104,7 +99,7 @@ const StyleGuide = ({}) => {
   };
 
   return (
-    <ShadowBox style={{width:"100%"}}>
+    <ShadowBox style={{ width: "100%" }}>
       <div className={"formFlex"}>
         <div className={styles.sideMargin}>
           <div>
@@ -402,9 +397,9 @@ const StyleGuide = ({}) => {
               { name: "remember", font: "12" },
             ].map((key) => {
               return (
-                  <Typography variant={key?.name}>
-                    Here is the text - {key?.name} - {key?.font}px  {" "}
-                  </Typography>
+                <Typography variant={key?.name}>
+                  Here is the text - {key?.name} - {key?.font}px{" "}
+                </Typography>
               );
             })}
 
@@ -427,9 +422,9 @@ const StyleGuide = ({}) => {
               "remember",
             ].map((key) => {
               return (
-                  <Typography color={"text.secondary"} variant={key}>
-                    Here is the text - {key} {" "}
-                  </Typography>
+                <Typography color={"text.secondary"} variant={key}>
+                  Here is the text - {key}{" "}
+                </Typography>
               );
             })}
           </div>
@@ -441,7 +436,9 @@ const StyleGuide = ({}) => {
       <br />
       <div className={styles.avatorFlex}>
         <div>
-          <Typography variant="h5" marginBottom={3}>Size</Typography>
+          <Typography variant="h5" marginBottom={3}>
+            Size
+          </Typography>
           <UserCountAvatarsLabelInitials
             width={34}
             height={34}
@@ -450,7 +447,9 @@ const StyleGuide = ({}) => {
           />
         </div>
         <div>
-        <Typography variant="h5" marginBottom={3}>Status Indicator </Typography>
+          <Typography variant="h5" marginBottom={3}>
+            Status Indicator{" "}
+          </Typography>
           <UserCountAvatarsStatusIndicator
             width={44}
             height={44}
@@ -459,7 +458,9 @@ const StyleGuide = ({}) => {
           />
         </div>
         <div>
-        <Typography variant="h5" marginBottom={3}>Pull Up </Typography>
+          <Typography variant="h5" marginBottom={3}>
+            Pull Up{" "}
+          </Typography>
           <UserCountAvatarsLableAvatarGroup
             width={54}
             height={54}
@@ -575,20 +576,16 @@ const StyleGuide = ({}) => {
       <div>
         <ColorPicker />
 
-         <Cascader
-            value={[]}
-            label={"Industry"}
-            options={CascaderData}
-            handleChange={(value) => {
-
-            }}
+        <Cascader
+          value={[]}
+          label={"Industry"}
+          options={CascaderData}
+          handleChange={(value) => {}}
         />
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-      </div>
-    </ShadowBox >
+        <br />
+     
+</div>
+    </ShadowBox>
   );
 };
 

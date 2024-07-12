@@ -83,8 +83,8 @@ const ContactCreatehook = () => {
         serviceGetTagsList(),
         serviceGetList(["PRODUCTS"]),
       ]);
-      const tagList = promises[0].value?.data;
-      const ProductList = promises[1].value?.data;
+      const tagList = promises[0]?.value?.data;
+      const ProductList = promises[1]?.value?.data;
       // setAssociateTagsData([...tagList]);
       setListData(ProductList);
     })();

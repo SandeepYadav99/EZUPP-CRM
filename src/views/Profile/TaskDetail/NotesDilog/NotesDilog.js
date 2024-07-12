@@ -98,7 +98,9 @@ const NotesDilog = ({
 
           <div className={styles.printFlex}>
             <PrimaryButton
-              onClick={handleSubmit} // handleSubmit
+              onClick={() => {
+                handleSubmit();
+              }}
             >
               {isSubmitting ? (
                 <CircularProgress color="success" size="20px" />
