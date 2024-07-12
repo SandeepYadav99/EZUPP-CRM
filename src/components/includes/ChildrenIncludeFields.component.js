@@ -37,10 +37,10 @@ const ChildrenIncludeFields = ({
               onChange={handleChange}
               value={data?.name}
               fullWidth={true}
-              name={"name"}
+              name={"dropdown"}
               margin={"dense"}
               variant={"outlined"}
-              label={"Label Name"}
+              label={"Dropdown"}
             />
           </div>
 

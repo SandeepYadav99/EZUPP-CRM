@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 const initialForm = {
-  fieldLable: "",
+  name: "",
   internalName: "",
   fieldType: "",
   textFiled: "",
@@ -12,7 +12,7 @@ const useCustomFiledHook = () => {
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [
-      "fieldLable",
+      "name",
       //   "internalName",
       "fieldType",
     ];

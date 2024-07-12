@@ -11,47 +11,42 @@ import styles from "./Style.module.css";
 
 const CustomFiled = () => {
   const theme = useTheme();
-  const { form, errorData, changeTextData, handleSubmit , ChildenRef} =
+  const { form, errorData, changeTextData, handleSubmit, ChildenRef } =
     useCustomFiledHook();
   return (
     <ShadowBox width={"100%"}>
       <div>
-      <Typography fontWeight={600} variant="h5">Custom Field</Typography>  
+        <Typography fontWeight={600} variant="h5">
+          Custom Field
+        </Typography>
       </div>
       <div className="formFlex">
         <div className="formGroup">
-        
           <CustomTextField
-            isError={errorData?.fieldLable}
-            errorText={errorData?.fieldLable}
-            label={<Typography sx={{mt:theme.spacing(-0.5)}}>Field lable</Typography>}
-            value={form?.fieldLable}
+            isError={errorData?.name}
+            errorText={errorData?.name}
+            label={"Name"}
+            value={form?.name}
             handleChange={(value) => {
-              changeTextData(value, "fieldLable");
+              changeTextData(value, "name");
             }}
           />
         </div>
       </div>
       <div className="formFlex">
         <div className="formGroup">
-            <div className={styles.internalName}>
-       
-          <CustomTextField
-            isError={errorData?.internalName}
-            errorText={errorData?.internalName}
-            label={
-              <Typography sx={{ mt: theme.spacing(-0.8) }}>
-                Internal name
-              </Typography>
-            }
-            disabled
-            value={form?.internalName}
-            handleChange={(value) => {
-              changeTextData(value, "internalName");
-            }}
-          />
-
-            </div>
+          <div className={styles.internalName}>
+            <CustomTextField
+              isError={errorData?.internalName}
+              errorText={errorData?.internalName}
+              label={"Internal name"}
+            
+              value={form?.internalName}
+              handleChange={(value) => {
+                changeTextData(value, "internalName");
+              }}
+            />
+          </div>
         </div>
       </div>
       <div className="formFlex">
@@ -75,7 +70,7 @@ const CustomFiled = () => {
         <div className="formFlex">
           <div className="formGroup">
             {" "}
-            <ChildrenIncludesComponent ref={ChildenRef}/>
+            <ChildrenIncludesComponent ref={ChildenRef} />
           </div>
         </div>
       )}
@@ -85,7 +80,11 @@ const CustomFiled = () => {
             <CustomTextField
               isError={errorData?.textFiled}
               errorText={errorData?.textFiled}
-              label={<Typography sx={{mt:theme.spacing(-0.5)}}>Text Filed</Typography>}
+              label={
+                <Typography sx={{ mt: theme.spacing(-0.5) }}>
+                  Text Filed
+                </Typography>
+              }
               value={form?.textFiled}
               handleChange={(value) => {
                 changeTextData(value, "textFiled");
