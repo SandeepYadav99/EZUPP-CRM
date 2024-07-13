@@ -279,12 +279,17 @@ padding: 0px;
 
 @media only screen and (max-width: 769px) {
   .userImage {
-    width: 70px;
-    height: 70px;
+    width: 57px;
+    height: 57px;
     object-fit: cover;
     border-radius: 100% !important;
   }
   .meetingSchedule {
     min-width: 100%;
+    height: auto;
+  }
+  .containerWidth{
+    flex: none;
+    height: 522px !important;
   }
 }

@@ -34,6 +34,7 @@ const QuickAccess = () => {
                     variant={"body2"}
                     color={"text.secondary"}
                     sx={{ ml: 1 }}
+                   
                   >
                     {item.bodyText}
                   </Typography>

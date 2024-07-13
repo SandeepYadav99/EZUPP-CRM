@@ -232,7 +232,7 @@ height: 86px;
   cursor: pointer;
 }
   @media only screen and (max-width:1296px) {
-      .iconCont{
+      /* .iconCont{
           display: flex;
           width: 30%;
           height: 100px;
@@ -240,7 +240,7 @@ height: 86px;
           flex-direction: column; 
           justify-content: center;
           gap: 10px;
-      }
+      } */
       
   }
   
@@ -271,7 +271,7 @@ height: 86px;
       flex-direction: column !important;
       justify-content: space-between !important;
     }
-    .iconCont{
+    /* .iconCont{
       display: flex;
       width: 30%;
       height: 100px;
@@ -279,7 +279,7 @@ height: 86px;
       flex-direction: column;
       justify-content: center;
       gap: 10px;
-  }
+  } */
   }
     @media (max-width: 768px) {
       .buttonAndImageContainer {
