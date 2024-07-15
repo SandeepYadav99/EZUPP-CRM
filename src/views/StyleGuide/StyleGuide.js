@@ -4,7 +4,7 @@ import CustomDatePicker from "../../components/FormFields/DatePicker/CustomDateP
 import RadioButtons from "../../components/RadioButtons/RadioButtons";
 import RadioButtonWithText from "../../components/RadioButtons/RadioButtonWithText";
 import BasicButtonGroup from "../../components/BasicButtonGroup/BasicButtonGroup";
-
+import Pipeline from "../../components/PipelineStages/Pipeline"
 import {
   ActionButton,
   ArrowActionButton,
@@ -566,6 +566,22 @@ const StyleGuide = ({}) => {
         selectedIndex={0}
         onButtonClick={(index) => console.log(`Button ${index} clicked`)}
       />
+      <br></br>
+      <div>
+        <Typography variant={"h5"}>Pipeline Stages</Typography>
+      </div>
+      <br></br>
+        <Pipeline
+        buttonText={[
+          "Qualified",
+          "Contact Made",
+          "Demo Scheduled",
+          "Proposal Made",
+          "Negotiations Started",
+          
+        ]}
+        onButtonClick={(index) => { }}
+        />
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">
           Reusable TimeLine Component

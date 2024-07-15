@@ -361,7 +361,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.CONTACT_CREATE}`,
     sidebarName: "Contact",
-    navbarName: "Contact",
+    //navbarName: "Contact",
     icon: SupervisedUserCircle,
     component: ContactCreate,
     is_sidebar: false,
