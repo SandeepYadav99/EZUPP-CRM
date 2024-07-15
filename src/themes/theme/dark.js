@@ -26,8 +26,7 @@ const contact = "#3A3E5B";
 const switchTheme = "#2063CE";
 const isActiveTab = "";
 const swithcTrack = "#39393D";
-const selected= "#2d8647";
-const deselect= "#E4E4E6";
+
 const DarkTheme = (colors) => {
   const { grey } = colors;
   const greyColors = {
@@ -63,8 +62,6 @@ const DarkTheme = (colors) => {
     },
     background: {
       paper: "#30334E",
-      selected: "#2d8647",
-      deselect: "#E4E4E6",
     
     },
     error: {
@@ -78,8 +75,6 @@ const DarkTheme = (colors) => {
       dark: alpha(bgcolors, 0.9),
     },
     textColor: textColor,
-    selected: selected,
-    deselect: deselect,
     secondary: {
       main: secondary,
       light: alpha(secondary, 0.5),
