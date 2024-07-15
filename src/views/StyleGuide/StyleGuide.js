@@ -578,7 +578,6 @@ const StyleGuide = ({}) => {
           "Demo Scheduled",
           "Proposal Made",
           "Negotiations Started",
-          
         ]}
         onButtonClick={(index) => { }}
         />

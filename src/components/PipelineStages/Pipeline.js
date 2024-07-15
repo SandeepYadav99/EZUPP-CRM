@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Styles.module.css';
 import {useTheme} from "@mui/styles";
 import { Tooltip } from '@mui/material';
-export default function CustomButtonGroup({buttonText, onButtonClick}) {
+export default function CustomButtonGroup({buttonText, value, onButtonClick}) {
   const theme = useTheme();
   const [selectedButtons, setSelectedButtons] = useState([]);
   const [hoveredButton, setHoveredButton] = useState(null);
@@ -30,20 +30,20 @@ export default function CustomButtonGroup({buttonText, onButtonClick}) {
           key={index}
           title={text}
           placement="bottom"
-          enterDelay={100} 
+          enterDelay={100}
         >
-        <div
+        <button
           key={index}
           onClick={() => handleButtonClick(index)}
           onMouseEnter={() => setHoveredButton(index)}
           onMouseLeave={() => setHoveredButton(null)}
-          className={`${styles.button} ${selectedButtons.includes(index) ? styles.selected : ''}`}  
+          className={`${styles.button} ${selectedButtons.includes(index) ? styles.selected : ''}`}
           style={{  backgroundColor: selectedButtons.includes(index)
             ? theme.palette.selected.main
-            : theme.palette.border}}       
+            : theme.palette.border}}
         >
-         
-        </div>
+
+        </button>
         </Tooltip>
         </>
       ))}
