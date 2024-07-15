@@ -12,7 +12,7 @@ import styles from "./Style.module.css";
 
 const CustomFiled = () => {
   const theme = useTheme();
-  const { form, errorData, changeTextData, handleSubmit, ChildenRef } =
+  const { form, errorData, changeTextData, handleSubmit, dropDownRef } =
     useCustomFiledHook();
   return (
     <ShadowBox width={"100%"}>
@@ -71,7 +71,7 @@ const CustomFiled = () => {
         <div className="formFlex">
           <div className="formGroup">
             {" "}
-            <ChildrenIncludesComponent ref={ChildenRef} />
+            <ChildrenIncludesComponent ref={dropDownRef} />
           </div>
         </div>
       )}

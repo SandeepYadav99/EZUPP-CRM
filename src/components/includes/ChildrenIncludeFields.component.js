@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 import { ButtonBase, Typography } from "@mui/material";
 import { Remove } from "@mui/icons-material";
 import { useTheme } from "@mui/styles";
-import CustomTextField from "../../FormFields/TextField.component";
+import CustomTextField from "../../components/FormFields/TextField/TextField.component";
 
 const ChildrenIncludeFields = ({
   index,
@@ -27,19 +27,23 @@ const ChildrenIncludeFields = ({
   const changeTextData = (value, key) => {
     changeData(index, { [key]: value });
   };
+
   return (
     <div>
       <div className={styles.flexContainer}>
         <div className={styles.firstRow}>
           <div className={styles.flex1}>
             <CustomTextField
-              error={errors?.name}
+             isError={errors?.dropdown}
+             errorText={errors?.dropdown}
+             
               onChange={handleChange}
-              value={data?.name}
-              fullWidth={true}
+              value={data?.dropdown}
+           
               name={"dropdown"}
-              margin={"dense"}
-              variant={"outlined"}
+              handleChange={(value) => {
+                changeTextData(value, "dropdown");
+              }}
               label={"Dropdown"}
             />
           </div>

@@ -19,7 +19,7 @@ import { ButtonBase } from "@mui/material";
 import { Add } from "@mui/icons-material";
 
 const TEMP_OBJ = {
-  name: "",
+  dropdown: "",
  
 };
 
@@ -85,18 +85,21 @@ const ChildrenIncludeForm = (
     //     return false;
     // }
     fields.forEach((val, index) => {
+    
       const err =
         index in errorData ? JSON.parse(JSON.stringify(errorData[index])) : {};
-      const required = ["name"];
+      const required = ["dropdown"];
       required.forEach((key) => {
         if (!val[key]) {
           err[key] = true;
         }
       });
+     
       if (Object.keys(err).length > 0) {
         errors[index] = err;
       }
     });
+  
     setErrorData(errors);
     return !(Object.keys(errors).length > 0);
   };
@@ -182,6 +185,7 @@ const ChildrenIncludeForm = (
         const index = fields.findIndex((val) => val?.sku?.sku === variant?.sku);
         return index < 0;
       });
+
       return (
         <div>
           <ChildrenIncludeFields
@@ -215,7 +219,7 @@ const ChildrenIncludeForm = (
     <>
     
 
-      <div>
+      <div className={styles.dropdownAction}>
         <ButtonBase
           className={styles.addition}
           label={"+"}
