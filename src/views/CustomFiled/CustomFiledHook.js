@@ -1,6 +1,6 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 const initialForm = {
-  fieldLable: "",
+  name: "",
   internalName: "",
   fieldType: "",
   textFiled: "",
@@ -8,16 +8,16 @@ const initialForm = {
 const useCustomFiledHook = () => {
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
-  const ChildenRef = useRef(null);
+  const dropDownRef = useRef(null);
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
     let required = [
-      "fieldLable",
-      //   "internalName",
+      "name",
+      "internalName",
       "fieldType",
     ];
     if (form?.fieldType === "TEXT_FIELD") {
-      required.push("textFiled");
+       required.push("textFiled");
     }
     required.forEach((val) => {
       if (
@@ -40,9 +40,16 @@ const useCustomFiledHook = () => {
     return errors;
   }, [form, errorData]);
 
+  // useEffect(() => {
+  
+  //     handleReset();
+    
+  // }, []);
+
   const handleSubmit = useCallback(async () => {
     const errors = checkFormValidation();
-    if (Object.keys(errors)?.length > 0) {
+    const isIncludesValidOne =form?.fieldType === "DROPDOWN" && dropDownRef.current.isValid();
+    if (Object.keys(errors)?.length > 0 ||  !isIncludesValidOne) {
       setErrorData(errors);
     } else {
       //   await submitToServer();
@@ -78,12 +85,17 @@ const useCustomFiledHook = () => {
     [removeError, form, setForm]
   );
 
+  const handleReset = useCallback(() => {
+    setForm({ ...initialForm });
+    setErrorData({});
+  
+  }, [form, setForm]);
   return {
     form,
     errorData,
     changeTextData,
     handleSubmit,
-    ChildenRef,
+    dropDownRef,
   };
 };
 

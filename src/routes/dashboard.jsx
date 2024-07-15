@@ -510,8 +510,8 @@ const dashboardRoutes = [
   },
   {
     path: RouteName.CUSTOM_FILED,
-    sidebarName: "CUSTOM FILED",
-    navbarName: "CUSTOM FILED",
+    sidebarName: "Custom Filed",
+    navbarName: "Custom Filed",
     icon: SupervisedUserCircle,
     component: CustomFiled,
     is_sidebar: false,
