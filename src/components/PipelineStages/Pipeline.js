@@ -6,19 +6,25 @@ export default function CustomButtonGroup({buttonText, value, onButtonClick}) {
   const theme = useTheme();
   const [selectedButtons, setSelectedButtons] = useState([]);
   const [hoveredButton, setHoveredButton] = useState(null);
-  useEffect(() => {
-    setSelectedButtons([0]);
-  }, []);
+  // useEffect(() => {
+  //   setSelectedButtons([value]);
+  // }, [value]);
+
+  // const handleButtonClick = (index) => {
+  //   setSelectedButtons((prevSelected) => {
+  //       const newSelectedButtons = [];
+  //       for (let i = 0; i <= index; i++) {
+  //         newSelectedButtons.push(i);
+  //       }
+  //       return newSelectedButtons;
+  //     });
+  //     onButtonClick(index);
+  // };
+  const [selectedIndex, setSelectedIndex] = useState(value);
 
   const handleButtonClick = (index) => {
-    setSelectedButtons((prevSelected) => {
-        const newSelectedButtons = [];
-        for (let i = 0; i <= index; i++) {
-          newSelectedButtons.push(i);
-        }
-        return newSelectedButtons;
-      });
-      onButtonClick(index);
+    setSelectedIndex(index);
+    onButtonClick(index);
   };
 
 
@@ -35,11 +41,9 @@ export default function CustomButtonGroup({buttonText, value, onButtonClick}) {
         <button
           key={index}
           onClick={() => handleButtonClick(index)}
-          onMouseEnter={() => setHoveredButton(index)}
-          onMouseLeave={() => setHoveredButton(null)}
-          className={`${styles.button} ${selectedButtons.includes(index) ? styles.selected : ''}`}
-          style={{  backgroundColor: selectedButtons.includes(index)
-            ? theme.palette.selected.main
+          className={`${styles.button} ${index <= selectedIndex  ? styles.selected : ''}`}
+          style={{  backgroundColor:  index <= selectedIndex 
+            ? theme.palette.primary.main
             : theme.palette.border}}
         >
 

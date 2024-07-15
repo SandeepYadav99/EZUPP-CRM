@@ -166,6 +166,14 @@ export default {
         FEMALE: 'FEMALE',
         MALE: 'MALE'
     },
+    PIPELINE_STAGES: {
+        QUALIFIED: 'Qualified',
+        CONTACT_MADE: 'Contact Made',
+        DEMO_SCHEDULED: 'Demo Scheduled',
+        PROPOSAL_MADE: 'Proposal Made',
+        NEGOTIATIONS_STARTED:'Negotiations Started'
+
+    },
     LOG_ENABLED: true,
     WARNING_ENABLED: true,
     ERROR_ENABLED: true,

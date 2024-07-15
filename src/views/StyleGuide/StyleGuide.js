@@ -573,12 +573,13 @@ const StyleGuide = ({}) => {
       <br></br>
         <Pipeline
         buttonText={[
-          "Qualified",
-          "Contact Made",
-          "Demo Scheduled",
-          "Proposal Made",
-          "Negotiations Started",
+          Constants.PIPELINE_STAGES.QUALIFIED,
+          Constants.PIPELINE_STAGES.CONTACT_MADE,
+          Constants.PIPELINE_STAGES.DEMO_SCHEDULED,
+          Constants.PIPELINE_STAGES.PROPOSAL_MADE,
+          Constants.PIPELINE_STAGES.NEGOTIATIONS_STARTED,
         ]}
+        value={0}
         onButtonClick={(index) => { }}
         />
       <div className={styles.timeLineComponent}>

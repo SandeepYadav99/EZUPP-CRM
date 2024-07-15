@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  width: 35%;
 }
 
 .button {
@@ -9,7 +10,7 @@
   padding: 15px;
   cursor: pointer;
   border: none;
-  background: #E4E4E6;
+  /* background: #E4E4E6; */
   outline: none;
   position: relative;
   display: flex;
@@ -26,7 +27,7 @@
 }
 
 .button.selected {
-  background-color: #2d8647; 
+  /* background-color: #2d8647;  */
   -webkit-clip-path: polygon(calc(100% - 6px) 0, 100% 50%, calc(100% - 6px) 100%, 2px 100%, 8px 50%, 2px 0);
     clip-path: polygon(calc(100% - 6px) 0, 100% 50%, calc(100% - 6px) 100%, 2px 100%, 8px 50%, 2px 0);
   
