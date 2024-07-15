@@ -1,5 +1,6 @@
 import React from "react";
-import CustomTextField from "../../FormFields/TextField.component";
+import CustomTextField from "../../components/FormFields/TextField/TextField.component";
+
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import { MenuItem, Typography } from "@mui/material";
 import { useTheme } from "@mui/styles";
@@ -40,7 +41,7 @@ const CustomFiled = () => {
               isError={errorData?.internalName}
               errorText={errorData?.internalName}
               label={"Internal name"}
-            
+
               value={form?.internalName}
               handleChange={(value) => {
                 changeTextData(value, "internalName");
