@@ -1,8 +1,42 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { serviceGroups } from "../../../helper/Helper";
 
 function useServiceGroupCreate() {
   const [serviceData, setServiceData] = useState([...serviceGroups]);
+  const [allData, setAllData] = useState([...serviceGroups]);
+  const [inputValue, setInputValue] = useState("");
+  const [isSidePanel, setSidePanel] = useState(false);
+  const [editData, setEditData] = useState(null);
+
+  const renderList = useCallback(() => {
+    // serviceGetCalendar({
+    //   index: 1,
+    //   row: "createdAt",
+    //   order: "desc",
+    //   query: "",
+    //   query_data: null,
+    // }).then((res) => {
+    //   if (!res.error) {
+    //     setData(res.data);
+    //   }
+    // });
+  }, []);
+
+  useEffect(() => {
+    renderList();
+  }, []);
+
+  const handleSideToggle = useCallback(
+    (data) => {
+      setSidePanel((e) => !e);
+      if (data) {
+        setEditData(data);
+      } else {
+        setEditData(null);
+      }
+    },
+    [setEditData, setSidePanel]
+  );
 
   const handleDrag = useCallback(
     (dragId, dragOverId) => {
@@ -39,9 +73,32 @@ function useServiceGroupCreate() {
     [serviceData]
   );
 
+  const handleSearchValueChange = useCallback(
+    (value) => {
+      if (value) {
+        const tempData = allData.filter((val) => {
+          if (val?.title?.match(new RegExp(value, "ig"))) {
+            return val;
+          }
+        });
+        setServiceData(tempData);
+      } else {
+        setServiceData(allData);
+      }
+      setInputValue(value);
+    },
+    [, serviceData, setServiceData, allData, inputValue]
+  );
+
   return {
     serviceData,
     handleDrag,
+    handleSearchValueChange,
+    inputValue,
+    editData,
+    renderList,
+    isSidePanel,
+    handleSideToggle,
   };
 }
 

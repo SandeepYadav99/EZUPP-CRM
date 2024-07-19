@@ -8,9 +8,13 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import styles from "./Style.module.css";
-import ShadowBox from "../ShadowBox/ShadowBox";
 
-function CustomAccordion({ data, draggable = false, handleDrag }) {
+function CustomAccordion({
+  data,
+  draggable = false,
+  handleDrag,
+  handleSideToggle,
+}) {
   const [expanded, setExpanded] = useState(0);
   const draggedItem = useRef();
   const draggedOverItem = useRef();
@@ -18,8 +22,9 @@ function CustomAccordion({ data, draggable = false, handleDrag }) {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
   return (
-    <ShadowBox className={styles.notBox}>
+    <div className={styles.notBox}>
       {data?.map((group, groupIndex) => (
         <Accordion
           key={`acc_${groupIndex}`}
@@ -35,7 +40,14 @@ function CustomAccordion({ data, draggable = false, handleDrag }) {
             <Box className={styles.BoxWrap}>
               <Typography variant="subtitle1">{group?.title}</Typography>
               <Box>
-                <Button variant="outlined" sx={{ mr: 1 }}>
+                <Button
+                  variant="outlined"
+                  sx={{ mr: 1 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSideToggle(group);
+                  }}
+                >
                   Edit Group
                 </Button>
                 <Button variant="contained">Add Service</Button>
@@ -92,7 +104,7 @@ function CustomAccordion({ data, draggable = false, handleDrag }) {
           </AccordionDetails>
         </Accordion>
       ))}
-    </ShadowBox>
+    </div>
   );
 }
 
