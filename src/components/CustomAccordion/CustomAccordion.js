@@ -11,7 +11,7 @@ import styles from "./Style.module.css";
 import ShadowBox from "../ShadowBox/ShadowBox";
 
 function CustomAccordion({ data, draggable = false, handleDrag }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(0);
   const draggedItem = useRef();
   const draggedOverItem = useRef();
 
