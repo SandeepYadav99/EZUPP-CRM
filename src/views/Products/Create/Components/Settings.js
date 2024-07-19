@@ -1,6 +1,6 @@
 import React from "react";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
-import { MenuItem, Typography, Autocomplete, TextField } from "@mui/material";
+import { MenuItem, Typography } from "@mui/material";
 import CustomCheckbox from "../../../../components/FormFields/CustomCheckbox";
 import CheckboxWithText from "../../../../components/RadioButtons/CheckboxWithText";
 import useStyleGuide from "../../../StyleGuide/StyleGuide.hook";
@@ -46,7 +46,9 @@ const Settings = ({
                 </CustomSelectField>
               </div>
 
-              <div className={"formGroup"}></div>
+              <div className={"formGroup"}>
+             
+              </div>
             </div>
             <div className={`formFlex ${styles.space}`}>
               <div className={`formGroup `}>

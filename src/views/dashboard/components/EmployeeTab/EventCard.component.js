@@ -1,9 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useCallback, useEffect } from "react";
 import styles from "./Style.module.css";
 // import noEvent from "./../../../../../assets/img/ic_no event today.png";
 import imagelogo3 from "../../../../assets/Assets/ic_call.png";
-import { Typography } from "@mui/material";
+import { MenuItem, Dialog, Typography } from "@mui/material";
 import { PrimaryButton } from "../../../../components/Buttons/PrimaryButton";
+import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
+import CustomTextField from "../../../../FormFields/TextField.component";
 import { Checkbox } from "@mui/material";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { ActionButton } from "../../../../components/Buttons/PrimaryButton";
@@ -20,8 +22,30 @@ import { makeStyles, useTheme } from "@mui/styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NoteAddRoundedIcon from "@mui/icons-material/NoteAddRounded";
 import CallRoundedIcon from "@mui/icons-material/CallRounded";
+import close from "../../../../assets/Assets/ic_close.png";
 
 function EventCard({ data, item }) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedLead, setSelectedLead] = useState(" ");
+ 
+  useEffect(() => {
+   
+  }, [isDialogOpen]);
+  const openDialog = useCallback((name) => {
+    setSelectedLead(name);
+    setIsDialogOpen(true);
+    
+  }, [setIsDialogOpen]);
+
+  const closeDialog = useCallback(() => {
+    setIsDialogOpen(false);
+  }, [setIsDialogOpen]);
+
+  const handleSubmit = () => {
+    // Handle submit logic here
+    closeDialog();
+  };
+
   const list = useMemo(() => {
     if (data?.length === 0) {
       return (
@@ -127,11 +151,14 @@ function EventCard({ data, item }) {
               <div className={styles.iconCardsBoxContainer}>
                 {/* {item === "contact" ? ( */}
                 <div className={styles.iconCardsBox}>
-                  {/* <img className={styles.iconCards} src={imageLogo1} alt="" /> */}
                   <AccountCircleIcon color="primary" />
-                  {/* <img className={styles.iconCards} src={imageLogo2} alt="" /> */}
-                  <NoteAddRoundedIcon sx={{ color: "#FF7700" }} />
-                  {/* <img className={styles.iconCards} src={imagelogo3} alt="" /> */}
+                  <div>
+                    <NoteAddRoundedIcon
+                      onClick={() => openDialog(emp.name)}
+                      sx={{ color: "#FF7700", cursor: "pointer" }}
+                    />
+                  </div>
+
                   <CallRoundedIcon color="secondary" />
                 </div>
                 {/* ) : (
@@ -225,13 +252,88 @@ function EventCard({ data, item }) {
                 <StatusPill status={"Payment"} color={"low"} />
               </div>
             </div> */}
+
+            
           </div>
         );
       });
+     
     }
-  }, [data, item]);
+  }, [data, item, openDialog, closeDialog, isDialogOpen]);
 
-  return <div className={styles.paperBackground}>{list} </div>;
+  return <div className={styles.paperBackground}>{list}
+   <Dialog
+              open={isDialogOpen}
+              onClose={closeDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+              //maxWidth={false}
+              fullWidth={true}
+              // backdropProps={{
+              //   style: {
+              //     backgroundColor: "rgba(0, 0, 0, 0.5)",
+              //     opacity: "0.5 !important",
+              //   },
+              // }}
+              sx={{
+                width: "700px",
+                maxWidth: "100%",
+                margin: "auto",
+                // backgroundColor: "rgba(0, 0, 0, 0.5)",
+                // opacity: 0.5,
+              }}
+            >
+              <div className={`${styles.dialogWrap} `}>
+                <div className={styles.closeRow}>
+                  <Typography variant="h5" sx={{ mb: 3 }}>
+                    {"Add Note"}
+                  </Typography>
+                  <img
+                    src={close}
+                    className={styles.close}
+                    alt="close"
+                    onClick={closeDialog}
+                  />
+                </div>
+                <CustomSelectField
+                  name={"name"}
+                  label={"Select Lead"}
+                  //value="James Doe"
+                  value={selectedLead}
+          //onChange={handleSelectChange}
+          
+          onChange={() => {}}
+                >
+                  <MenuItem value="James Doe">James Doe</MenuItem>
+                  <MenuItem value="Jim Doe">Jim Doe</MenuItem>
+                  <MenuItem value="Jane Doe">Jane Doe</MenuItem>
+                  <MenuItem value="Alex downs">Alex downs</MenuItem>
+                  <MenuItem value="Steven Maclure">Steven Maclure</MenuItem>
+                  
+                </CustomSelectField>
+                <CustomTextField
+                  label={"Add Comments"}
+                  multiline
+                  rows="5"
+                  sx={{ mt: 2 }}
+                  className={styles.desc}
+                />
+
+                <div className={styles.buttonContainer}>
+                  <div className={styles.cancelButton}>
+                    <ActionButton sx={{ mt: 4 }} onClick={closeDialog}>
+                      CANCEL
+                    </ActionButton>
+                  </div>
+
+                  <div className={styles.saveButton}>
+                    <PrimaryButton color={"primary"} sx={{ mt: 4, ml: 4 }}>
+                      SAVE
+                    </PrimaryButton>
+                  </div>
+                </div>
+              </div>
+            </Dialog> </div>;
 }
 
 export default EventCard;
