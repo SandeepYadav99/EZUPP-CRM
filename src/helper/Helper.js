@@ -680,3 +680,36 @@ export const leadStatus = [
     value: "Junk Lead",
   },
 ];
+export const serviceGroups = [
+  {
+    title: "Hair Services (4)",
+    id:"gfdg",
+    priority:0,
+    services: [
+      { name: "Hair Cut", duration: "30 mins", price: "₹ 120" ,priority:0,id:"jsdfhsf"},
+      { name: "Hair Colouring", duration: "40 mins", price: "₹ 250" ,priority:1,id:"jsdfdfhsf"},
+      { name: "Hair Styles", duration: "45 mins", price: "₹ 300" ,priority:2,id:"jsfdsdfhsf"},
+      { name: "Hair Straightening", duration: "60 mins", price: "₹ 450" ,priority:3,id:"jsdfhdfssdfsf"},
+    ],
+  },
+  {
+    title: "Beauty Services (4)",
+    id:"gfgfddg",
+    priority:1,
+    services: [
+      { name: "Facial", duration: "50 mins", price: "₹ 600" ,priority:0,id:"jcxsdfhsf" },
+      { name: "Manicure", duration: "30 mins", price: "₹ 200" ,priority:1,id:"jsdfdfdfhsf" },
+      { name: "Pedicure", duration: "40 mins", price: "₹ 250" ,priority:2,id:"jsfdewsdfhsf" },
+      { name: "Makeup", duration: "60 mins", price: "₹ 700" ,priority:3,id:"jsdfcxhdfssdfsf" },
+    ],
+  },
+  {
+    title: "Hair Removal (2)",
+    id:"gffsdg",
+    priority:2,
+    services: [
+      { name: "Threading", duration: "25 mins", price: "₹ 100",priority:0,id:"jcxsdfpshsf" },
+      { name: "Waxing", duration: "45 mins", price: "₹ 400",priority:1,id:"jsdfdfdakfhsf" },
+    ],
+  },
+];
