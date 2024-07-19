@@ -65,13 +65,13 @@ import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
 import ProductCreate from "../views/Products/Create/ProductCreate";
-import React from "react";
+import React, { lazy } from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
 import CustomFiled from "../views/CustomFiled/CustomFiled";
-
+const CustomerAcquisition = lazy(() => import('../views/CustomerAcquisition/List/CustomerAcquisition')); 
 
  
 const dashboardRoutes = [
@@ -554,6 +554,15 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
+  },
+  {
+    path: `${RouteName?.CUSTOMERS_ACQUISITION}`,
+    sidebarName: "Customers Acquisition",
+    navbarName: "Customers Acquisition",
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+    component:CustomerAcquisition
   },
 ];
 
