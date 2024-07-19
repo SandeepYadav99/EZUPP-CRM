@@ -86,6 +86,14 @@ const useCustomerAcquisition = ({}) => {
     [queryFilter]
   );
  
+  const handleOpenSidePanel = useCallback(
+    (data) => {
+      setSidePanel((e) => !e);
+      setEditData(null);
+     
+    },
+    [ setSidePanel]
+  );
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
@@ -146,14 +154,13 @@ const useCustomerAcquisition = ({}) => {
     handleSearchValueChange,
     handleSortOrderChange,
     handleEdit,
-    isCalling,
-    editData,
+  
     isSidePanel,
+    handleToggleSidePannel,
+   
     configFilter,
     handleCreate,
-    handleToggleSidePannel,
 
-    handleProfile,
   };
 };
 

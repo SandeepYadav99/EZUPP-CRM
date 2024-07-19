@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import DataTables from "../../../Datatables/Datatable.table";
 import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
-
+import styles from "./Style.module.css"
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import { useTheme } from "@mui/styles";
 import { CustomListHeader } from "../../../components/CustomListHeader/CustomListHeader";
 import useCustomerAcquisition from "./CustomerAcquisitionHook";
+import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
+import CustomerAcquisitionCreate from "../Create/CustomerAcquisitionCreate";
 
 const CustomerAcquisition = (props) => {
   const {
@@ -19,7 +21,8 @@ const CustomerAcquisition = (props) => {
     handleSearchValueChange,
     handleProfile,
     configFilter,
-
+    isSidePanel,
+    handleToggleSidePannel,
     handleCreate,
   } = useCustomerAcquisition({});
 
@@ -76,11 +79,11 @@ const CustomerAcquisition = (props) => {
   ]);
 
   return (
-    <div>
+    <div className={styles}>
       <ShadowBox width={"100%"}>
         <CustomListHeader
           title={"ADD CHANNEL"}
-          handleCreate={handleCreate}
+          handleCreate={handleToggleSidePannel}
           sideTitlle={"Customer Acquisition"}
         />
 
@@ -102,6 +105,16 @@ const CustomerAcquisition = (props) => {
           </div>
         </div>
       </ShadowBox>
+      <SidePanelComponent
+        handleToggle={handleToggleSidePannel}
+        title={"Add Customer Acquisition"}
+        open={isSidePanel}
+        side={"right"}
+      >
+        <CustomerAcquisitionCreate  handleToggleSidePannel={handleToggleSidePannel}
+          isSidePanel={isSidePanel}
+         />
+      </SidePanelComponent>
     </div>
   );
 };

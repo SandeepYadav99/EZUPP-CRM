@@ -1,6 +1,7 @@
 .mainContainer {
   padding: 10px;
 }
+
 .headerContainer {
   display: flex;
   justify-content: space-between;
