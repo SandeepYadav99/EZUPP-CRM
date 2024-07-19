@@ -194,7 +194,7 @@ const TopicView = (props) => {
       </ShadowBox>
       <SidePanelComponent
         handleToggle={handleSideToggle}
-        title={"Add/Manage FAQ"}
+        title={editData?.id ? "Edit FAQ" :"Add FAQ"}
         open={sidePanel}
         side={"right"}
       >

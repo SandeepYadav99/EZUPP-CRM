@@ -206,9 +206,30 @@
 .delete{
     color: red;
 }
-
+.ShadowBoxContainer{
+margin-top: 15px;
+  margin-left: 2.5%;
+}
+.primaryButton{
+    margin-left: 10px !important;
+}
+.deleteButton{
+    margin-left: 18px;
+}
 .submitBtn{
-    text-align: center;
+    /* text-align: end; */
+    margin-top: 15px;
+    /* margin-right: 5px; */
+   
+    display: flex;
+    
+    justify-content: space-between;
+}
+.submitBtnNone{
+    text-align: end;
+    margin-top: 15px;
+    margin-right: 4px;
+   
 }
 
 .outerFlex{

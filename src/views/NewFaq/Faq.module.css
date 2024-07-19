@@ -1,12 +1,13 @@
 .headerContainer {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
+    align-items: center; */
+    padding-bottom: 20px;
 }
 .headerContainer .title {
-    font-size: 16px;
-    font-weight: 600;
+    /* font-size: 16px;
+    font-weight: 600; */
+    /* font: normal normal 600 ; */
 }
 .editorContainer {
     max-height: 500px;
