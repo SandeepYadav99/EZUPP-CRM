@@ -84,7 +84,7 @@ const CustomerAcquisition = (props) => {
         <CustomListHeader
           title={"ADD CHANNEL"}
           handleCreate={handleToggleSidePannel}
-          sideTitlle={"Customer Acquisition"}
+          sideTitlle={"Customer Acquisition Channel"}
         />
 
         <div>
