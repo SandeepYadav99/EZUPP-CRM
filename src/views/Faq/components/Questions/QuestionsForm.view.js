@@ -46,6 +46,7 @@ import {
   Slide,
   Tooltip,
 } from "@mui/material";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -411,15 +412,11 @@ class QuestionsFormView extends Component {
     console.log(data,"data is here where are you ??");
     return (
       <div>
-        <div className={styles.headerFlex}>
-          <h4 className={styles.infoTitle}>
-            <div className={styles.heading}>Questions</div>
-            <Tooltip title="Info" aria-label="info" placement="right">
-              <InfoIcon fontSize={"small"} />
-            </Tooltip>
-          </h4>
-        </div>
+       
         <form onSubmit={handleSubmit(this._handleSubmit)}>
+          <ShadowBox width={"100%"}>
+
+         
           <div className={styles.category}>
             <b>Title</b> - {category.title}
           </div>
@@ -427,19 +424,7 @@ class QuestionsFormView extends Component {
           <div className={styles.category}>
             <b>Applies To</b> - {category.visible_to}
           </div>
-          {/*<div className={'formFlex'}>*/}
-          {/*    <div className={'formGroup'}>*/}
-          {/*        <Field*/}
-          {/*            fullWidth={true}*/}
-          {/*            name="title"*/}
-          {/*            component={renderOutlinedTextFieldWithLimit}*/}
-          {/*            maxLimit={100}*/}
-          {/*            margin={'dense'}*/}
-          {/*            inputProps={{readOnly: 'true'}}*/}
-          {/*            label="Topic Header/Question"/>*/}
-          {/*    </div>*/}
-          {/*</div>*/}
-
+        
           <div className={"formFlex"}>
             <div className={"formGroup"}>
               <Field
@@ -453,21 +438,6 @@ class QuestionsFormView extends Component {
               />
             </div>
           </div>
-
-          {/*<div className={'formFlex'}>*/}
-          {/*    <div className={'formGroup'}>*/}
-          {/*        <Field fullWidth={true}*/}
-          {/*               name="visible_to"*/}
-          {/*               component={renderOutlinedSelectField}*/}
-          {/*               margin={'dense'}*/}
-          {/*               inputProps={{readOnly: 'true'}}*/}
-          {/*               label="Applies To">*/}
-          {/*            <MenuItem value={'BOTH'}>General</MenuItem>*/}
-          {/*            <MenuItem value={'CUSTOMER'}>Customers</MenuItem>*/}
-          {/*            <MenuItem value={'MANUFACTURE'}>Manufacturers</MenuItem>*/}
-          {/*        </Field>*/}
-          {/*    </div>*/}
-          {/*</div>*/}
 
           <div className={"formFlex"}>
             <div className={"formGroup"}>
@@ -509,7 +479,7 @@ class QuestionsFormView extends Component {
               {/*<span className={styles.delete}>Delete Permanently</span>*/}
             </div>
           </div>
-
+          </ShadowBox>
           <br />
           <div className={styles.submitBtn}>
             <Button

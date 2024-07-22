@@ -54,5 +54,7 @@ export default {
   CONTACT_CREATE: "/contact/create",
   CUSTOM_FILED:"/custom/filed",
   SERVICE_GROUP:"/service/group",
-  WHATSAPP_INVOICE:"/whatsapp/invoice"
+  WHATSAPP_INVOICE:"/whatsapp/invoice",
+  CUSTOM_FILED:"/custom/filed", 
+  CUSTOMERS_ACQUISITION:"/customer/acquisition"
 };

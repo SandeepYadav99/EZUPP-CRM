@@ -1,0 +1,131 @@
+.outerFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+}
+.subContainer {
+  margin: 10px !important;
+}
+.count {
+  margin: auto !important;
+}
+.outerFlex1 {
+  /* padding-bottom: 30px; */
+  margin-bottom: 24px !important;
+}
+.checkboxAction {
+  display: inline-block !important;
+}
+.actionButton {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-left: 8px !important;
+  width: 30% !important;
+}
+.headeTitle{
+    margin-top: -8px;
+}
+.iconButton {
+  display: flex;
+  gap: 5px;
+}
+.shadowBox {
+  width: 98%;
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.checkBoxmargin {
+  display: inline-block;
+  /* margin-bottom: 2px !important; */
+}
+.footerBox {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.saveButton {
+  text-align: right !important;
+  margin-top: 20px !important;
+ margin-left: 8px;
+}
+.imageGuide {
+  display: flex;
+  margin-top: 8px !important;
+  margin-left: 5px !important;
+  align-items: center !important;
+  gap: 1px !important;
+}
+.new_line {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2px;
+}
+.cont {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lowerWrap {
+  flex: 1;
+}
+.marginTop {
+  margin-top: 4px !important;
+}
+.marginTop1 {
+  margin-top: 4px !important;
+}
+.marginTop2 {
+  /* margin-top: -2px !important; */
+}
+.lowerWrap1 {
+  display: flex;
+  align-items: center !important;
+  flex: 1 1 100%;
+}
+.mainBox {
+  width: 100% !important;
+  margin-top: 25px;
+  margin-bottom: 10px !important;
+}
+.subMain {
+  margin-bottom: 32px !important;
+}
+.dateContainer {
+  width: 100% !important;
+}
+.checkbox {
+  display: flex !important;
+  gap: 1px !important;
+  align-items: center !important;
+}
+.checkboxAction {
+  margin: -3px 10px !important;
+}
+/* .claimListWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .plainPaper {
+    background-color: #F7F7F9;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,.15);
+    margin-bottom: 20px;
+    padding: .4rem 1.2rem;
+  }
+  .imageGuideFlex{
+    display: flex !important;
+  
+  }
+  
+  
+  
+  
+  
+  .custonCSS{
+    width: 50% ;
+  } */

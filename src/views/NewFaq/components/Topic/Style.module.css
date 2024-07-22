@@ -27,6 +27,7 @@
 .selected{
    text-align: left !important;
     width: 100%;
+  
     display: inline-block !important;
     font-weight: 500 !important;
     position: relative !important;
@@ -41,6 +42,7 @@
     top: 0px;
     height: 100%;
     width: 2px;
+   
     border-radius: 10px;
     opacity: 0;
     visibility: hidden;

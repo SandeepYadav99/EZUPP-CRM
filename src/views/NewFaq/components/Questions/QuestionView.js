@@ -180,7 +180,7 @@ const QuestionView = (props) => {
     }
     return null;
   };
-
+console.log(editData)
   return (
     <div>
       <ShadowBox width={'100%'} className={styles.plainBg}>
@@ -196,7 +196,7 @@ const QuestionView = (props) => {
       </ShadowBox>
       <SidePanelComponent
         handleToggle={handleSideToggle}
-        title={"Add/Manage FAQ Topic"}
+        title={editData?.id ? "Edit FAQ Topic" :"Add FAQ Topic"}
         open={sidePanel}
         side={"right"}
       >

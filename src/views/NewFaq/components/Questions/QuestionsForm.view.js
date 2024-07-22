@@ -23,6 +23,7 @@ import {
 import CustomIosSwitch from "../../../../components/FormFields/CustomIosSwitch";
 import removeTask from "../../../../assets/Assets/ic_delete@2x.png";
 import styles from "./Style.module.css";
+import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 
 const QuestionsFormView = ({
   category,
@@ -96,23 +97,16 @@ const QuestionsFormView = ({
 
   return (
     <div>
-      <div className={styles.headerFlex}>
-        <h4 className={styles.infoTitle}>
-          <div className={styles.heading}>Questions</div>
-          <Tooltip title="Info" aria-label="info" placement="right">
-            <InfoIcon fontSize={"small"} />
-          </Tooltip>
-        </h4>
-      </div>
-      <div>
+     <div className={styles.shadoBoxContainer}>
+      <ShadowBox width={"95%"}>
         <div className={styles.category}>
-          <b>Title</b> - {category.title}
+          <Typography variant="h5" fontWeight={600} sx={{mb:"15px", ml:"-18px"}}>Topic Details</Typography>
+        <Typography variant="h6" fontWeight={600} sx={{ ml:"-15px"}}> {category.title} </Typography> 
         </div>
-        <div className={styles.category}>
-          <b>Applies To</b> - {category.visible_to}
+        <div className={styles.category1}>
+          <Typography variant="h6" fontWeight={600}>Applies To </Typography>  - <Typography variant="h6" fontWeight={400}>{category.visible_to}</Typography>
         </div>
-        <div className={"formFlex"}>
-          <div className={"formGroup"}>
+       
             <CustomTextField
               isError={errorData?.question}
               errorText={errorData?.question}
@@ -122,24 +116,18 @@ const QuestionsFormView = ({
                 changeTextData(text, "question");
               }}
             />
-          </div>
-        </div>
+        
         <div>
           <div className={styles.lblTxt}>Answer</div>
-          <div className={"formFlex"}>
-            <div
-              className={csx("formGroup", styles.editorContainer)}
-              style={editorStyle}
-            >
+        
               <NewEditor
                 editorData={form?.description}
                 handleChangeEditor={(html) => {
                   descriptionRef.current(html, "description");
                 }}
-                height={"300px"}
+                height={"200px"}
               />
-            </div>
-          </div>
+            
         </div>
         <br />
         <div className={styles.bottomFlex}>
@@ -152,26 +140,25 @@ const QuestionsFormView = ({
             label={form?.status ? "ACTIVE" : "INACTIVE"}
           />
           <div>
-            {data && (
-              <IconButton onClick={() => handleDelete()}>
-                <img src={removeTask} alt="task" width={20} />
-              </IconButton>
-            )}
+          
           </div>
         </div>
         <br />
-        <div className={styles.submitBtn}>
+       
+      </ShadowBox>
+
+     </div>
+      <div className={styles.submitBtn}>
           <PrimaryButton onClick={handleSubmit} disabled={isSubmitting}>
           {isSubmitting ? (
               <CircularProgress color="success" size="20px" />
             ) : data ? (
-              "Update"
+              "UPDATE"
             ) : (
-              "Save"
+              "SAVE"
             )}
           </PrimaryButton>
         </div>
-      </div>
       {renderDialog()}
     </div>
   );

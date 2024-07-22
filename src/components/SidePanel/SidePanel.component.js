@@ -146,6 +146,7 @@ class SidePanelComponent extends Component {
           <div
             className={styles.noScrollbar}
             style={{
+              // overflow:"auto",
               overflowX: "hidden",
               overflowY: "scroll",
               width: "calc(100% - 20px)",

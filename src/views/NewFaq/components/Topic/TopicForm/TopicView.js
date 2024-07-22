@@ -2,7 +2,14 @@ import React from "react";
 import styles from "./Style.module.css";
 import useTopicView from "./TopicView.hook.js";
 import CustomTextField from "../../../../../components/FormFields/TextField/TextField.component";
-import { Button, CircularProgress, IconButton, MenuItem, Tooltip, Typography } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  IconButton,
+  MenuItem,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import CustomSelectField from "../../../../../components/FormFields/SelectField/SelectField.component.js";
 import {
   Backup as BackupIcon,
@@ -12,11 +19,14 @@ import {
 
 import removeTask from "../../../../../assets/Assets/ic_delete@2x.png";
 
+import { Dialog } from "@mui/material";
 import {
-  Dialog,
-} from "@mui/material";
-import { ActionButton, PrimaryButton } from "../../../../../components/Buttons/PrimaryButton.js";
+  ActionButton,
+  OutlineButton,
+  PrimaryButton,
+} from "../../../../../components/Buttons/PrimaryButton.js";
 import CustomIosSwitch from "../../../../../components/FormFields/CustomIosSwitch.js";
+import ShadowBox from "../../../../../components/ShadowBox/ShadowBox.js";
 
 const TopicViewForm = ({
   dataExist,
@@ -33,8 +43,8 @@ const TopicViewForm = ({
     confirmPopUp,
     suspendItem,
     handleDialogClose,
-    isSubmitting
-  } = useTopicView(dataExist,isOpen, handletoggleSidePannel, listlength);
+    isSubmitting,
+  } = useTopicView(dataExist, isOpen, handletoggleSidePannel, listlength);
 
   const renderDialog = () => {
     if (confirmPopUp) {
@@ -77,49 +87,50 @@ const TopicViewForm = ({
 
   return (
     <div>
-      <div className={styles.headerFlex}>
-        <h4 className={styles.infoTitle}>
-          <div className={styles.heading}>FAQ</div>
-          <Tooltip title="Info" aria-label="info" placement="right">
-            <InfoIcon fontSize={"small"} />
-          </Tooltip>
-        </h4>
-      </div>
-      <div>
+
+   
+    <div className={styles.ShadowBoxContainer}>
+    
+      <ShadowBox width={"100%"}>
+      <div className={styles.category}>
+          <Typography variant="h5" fontWeight={600} sx={{mb:"25px", ml:"8px"}}>FAQ Details</Typography>
+       
+        </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomTextField
-              isError={errorData?.title}
-              errorText={errorData?.title}
-              label={"Topic Header/Question (Max 100 Character )"}
-              value={form?.title}
-              onTextChange={(text) => {
-                changeTextData(text, "title");
-              }}
-            />
-          </div>
+        <CustomTextField
+          isError={errorData?.title}
+          errorText={errorData?.title}
+          label={"Topic Header/Question (Max 100 Character )"}
+          value={form?.title}
+          onTextChange={(text) => {
+            changeTextData(text, "title");
+          }}
+        />
+        </div>
         </div>
 
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomSelectField
-              isError={errorData?.visible_to}
-              errorText={errorData?.visible_to}
-              label={"Applies to"}
-              value={form?.visible_to}
-              handleChange={(value) => {
-                changeTextData(value, "visible_to");
-              }}
-            >
-              <MenuItem value={"GENERAL"}>General</MenuItem>;
-            </CustomSelectField>
-          </div>
+        <CustomSelectField
+          isError={errorData?.visible_to}
+          errorText={errorData?.visible_to}
+          label={"Applies to"}
+          value={form?.visible_to}
+          handleChange={(value) => {
+            changeTextData(value, "visible_to");
+          }}
+        >
+          <MenuItem value={"GENERAL"}>General</MenuItem>;
+        </CustomSelectField>
         </div>
-        <br />
+        </div>
+      
 
         <div className={styles.bottomFlex}>
+       
           <CustomIosSwitch
-            styles={{ marginLeft: "20px" }}
+            // styles={{ marginLeft: "20px" }}
             value={form?.status}
             checked={form?.status}
             handleChange={() => {
@@ -127,27 +138,27 @@ const TopicViewForm = ({
             }}
             label={form?.status ? "ACTIVE" : "INACTIVE"}
           />
-          {dataExist && (
-            <div>
-              <IconButton onClick={handleDelete}>
-                <img src={removeTask} alt="task" width={20} />
-              </IconButton>
-            </div>
-          )}
         </div>
         {renderDialog()}
         <br />
-        <div className={styles.submitBtn}>
-          <PrimaryButton onClick={handleSubmit} disabled={isSubmitting}>
+      </ShadowBox>
+      </div>
+      <div className={dataExist ? styles.submitBtn : styles.submitBtnNone}>
+      {dataExist && (
+            <div className={styles.deleteButton}>
+              <ActionButton onClick={handleDelete}>DELETE</ActionButton>
+            </div>
+          )}
+          
+        <PrimaryButton onClick={handleSubmit} disabled={isSubmitting} className={styles.primaryButton}>
           {isSubmitting ? (
-              <CircularProgress color="success" size="20px" />
-            ) : dataExist ? (
-              "Update"
-            ) : (
-              "Save"
-            )}
-          </PrimaryButton>
-        </div>
+            <CircularProgress color="success" size="20px" />
+          ) : dataExist ? (
+            "UPDATE"
+          ) : (
+            "SAVE"
+          )}
+        </PrimaryButton>
       </div>
     </div>
   );
