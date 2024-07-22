@@ -52,5 +52,7 @@ export default {
   NOTIFICATION_DETAILS:"/notifications",
   CONTACT_LIST: "/contact",
   CONTACT_CREATE: "/contact/create",
-  CUSTOM_FILED:"/custom/filed"
+  CUSTOM_FILED:"/custom/filed",
+  SERVICE_GROUP:"/service/group",
+  WHATSAPP_INVOICE:"/whatsapp/invoice"
 };
