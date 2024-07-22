@@ -72,6 +72,7 @@ import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
 import CustomFiled from "../views/CustomFiled/CustomFiled";
 import ServiceGroupCreate from "../views/ServiceGroup/ServiceGroupCreate/ServiceGroupCreate.view";
+import InvoiceCreate from "../views/WhatsappInvoice/InvoiceCreate/InvoiceCreate.view";
 
 
  
@@ -552,6 +553,13 @@ const dashboardRoutes = [
   {
     path: `${RouteName?.SERVICE_GROUP}`,
     component: ServiceGroupCreate,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path: `${RouteName?.WHATSAPP_INVOICE}`,
+    component: InvoiceCreate,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
