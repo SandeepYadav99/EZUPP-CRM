@@ -8,12 +8,18 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import styles from "./Style.module.css";
+import { getCurrencySymbol } from "../../helper/Helper";
+import StatusPill from "../Status/StatusPill.component";
+import { Edit } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 function CustomAccordion({
   data,
   draggable = false,
   handleDrag,
   handleSideToggle,
+  handleCreate,
+  handleUpdate
 }) {
   const [expanded, setExpanded] = useState(0);
   const draggedItem = useRef();
@@ -50,20 +56,28 @@ function CustomAccordion({
                 >
                   Edit Group
                 </Button>
-                <Button variant="contained">Add Service</Button>
+                <Button
+                  variant="contained"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCreate(group?.id);
+                  }}
+                >
+                  Add Service
+                </Button>
               </Box>
             </Box>
           </AccordionSummary>
           <AccordionDetails className={styles.detailWrap}>
             <Divider />
-            {group?.services?.map((service, serviceIndex) => (
+            {group?.products?.map((service, serviceIndex) => (
               <Box
                 id={service?.id}
                 key={serviceIndex}
                 className={styles.desBox}
                 sx={{
                   borderBottom:
-                    serviceIndex < group.services.length - 1 ? 1 : 0,
+                    serviceIndex < group?.products?.length - 1 ? 1 : 0,
                   borderColor: "divider",
                 }}
                 draggable={draggable}
@@ -93,12 +107,30 @@ function CustomAccordion({
                 <Typography className={styles.formFlex}>
                   {service.name}
                 </Typography>
-                <Typography className={styles.formFlex1}>
-                  {service.duration}
+                <Typography className={styles.formFlex}>
+                  {`${service.duration} mins`}
                 </Typography>
-                <Typography className={styles.formFlex2}>
-                  {service.price}
+                <Typography className={styles.formFlex}>
+                  {getCurrencySymbol(service?.currency)}
+                  {service.full_price}
                 </Typography>
+                <div className={styles.formFlex}>
+                  <StatusPill
+                    status={service?.status}
+                    color={service?.status}
+                  />
+                </div>
+                <div className={styles.formFlex2}>
+                <IconButton
+                  color="primary"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleUpdate(service?.id);
+                  }}
+                >
+                  <Edit fontSize={"small"} />
+                </IconButton>
+                </div>
               </Box>
             ))}
           </AccordionDetails>

@@ -1,5 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { serviceGroups } from "../../../helper/Helper";
+import {
+  serviceGetProductGroup,
+  serviceGetProductGroupPriority,
+} from "../../../services/ProductGroup.service";
+import debounce from "lodash.debounce";
+import RouteName from "../../../routes/Route.name";
+import historyUtils from "../../../libs/history.utils";
 
 function useServiceGroupCreate() {
   const [serviceData, setServiceData] = useState([...serviceGroups]);
@@ -9,21 +22,42 @@ function useServiceGroupCreate() {
   const [editData, setEditData] = useState(null);
 
   const renderList = useCallback(() => {
-    // serviceGetCalendar({
-    //   index: 1,
-    //   row: "createdAt",
-    //   order: "desc",
-    //   query: "",
-    //   query_data: null,
-    // }).then((res) => {
-    //   if (!res.error) {
-    //     setData(res.data);
-    //   }
-    // });
+    serviceGetProductGroup().then((res) => {
+      if (!res.error) {
+        setAllData(res?.data);
+        setServiceData(res?.data);
+      }
+    });
   }, []);
 
+  
   useEffect(() => {
     renderList();
+  }, []);
+
+  const updatePrioirty = useCallback((all) => {
+    const req = serviceGetProductGroupPriority({ data: [...all] });
+    req.then((res) => {
+      if (!res?.error) {
+        console.log(">>>>res", res);
+      }
+    });
+  }, []);
+
+  const handleCreate = useCallback((data) => {
+    historyUtils.push(RouteName.PRODUCT_CREATE,{
+      parentId:data
+    });
+  }, []);
+
+  const handleUpdate = useCallback((data) => {
+    historyUtils.push(RouteName.PRODUCT_UPDATE + data);
+  }, []);
+  
+  const priorityDebounce = useMemo(() => {
+    return debounce((e) => {
+      updatePrioirty(e);
+    }, 1000);
   }, []);
 
   const handleSideToggle = useCallback(
@@ -46,12 +80,12 @@ function useServiceGroupCreate() {
       let dragCategory = null;
 
       for (let category of all) {
-        for (let i = 0; i < category?.services?.length; i++) {
-          if (category?.services[i]?.id === dragId) {
+        for (let i = 0; i < category?.products?.length; i++) {
+          if (category?.products[i]?.id === dragId) {
             dragIndex = i;
             dragCategory = category;
           }
-          if (category?.services[i]?.id === dragOverId) {
+          if (category?.products[i]?.id === dragOverId) {
             dragOverIndex = i;
           }
           if (dragIndex !== -1 && dragOverIndex !== -1) break;
@@ -59,13 +93,14 @@ function useServiceGroupCreate() {
         if (dragIndex !== -1 && dragOverIndex !== -1) break;
       }
       if (dragIndex >= 0 && dragOverIndex >= 0 && dragCategory) {
-        const [draggedItem] = dragCategory?.services.splice(dragIndex, 1);
-        dragCategory?.services?.splice(dragOverIndex, 0, draggedItem);
+        const [draggedItem] = dragCategory?.products.splice(dragIndex, 1);
+        dragCategory?.products?.splice(dragOverIndex, 0, draggedItem);
 
-        dragCategory?.services?.forEach((service, index) => {
+        dragCategory?.products?.forEach((service, index) => {
           service.priority = index;
         });
       }
+      priorityDebounce([...all]);
       setServiceData([...all]);
       console.log("all", all);
       // props.actionDragFaq(dragId, dragOverId);
@@ -99,6 +134,8 @@ function useServiceGroupCreate() {
     renderList,
     isSidePanel,
     handleSideToggle,
+    handleCreate,
+    handleUpdate
   };
 }
 
