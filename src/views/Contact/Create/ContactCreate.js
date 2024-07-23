@@ -42,9 +42,12 @@ const ContactCreate = ({}) => {
           onClose={handleDialogClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
+          PaperProps={{
+            sx: { borderRadius: '9px' } 
+          }}
         >
           <div className={styles.dialogWrap}>
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" sx={{mb:1}}>
               {"Contact Already Existing!"}
             </Typography>
             <Typography variant="body1">
@@ -55,7 +58,7 @@ const ContactCreate = ({}) => {
             <div className={styles.buttonContainer}>
               <div className={styles.cancelButton}>
                 <ActionButton sx={{ mt: 2 }} onClick={handleDialogClose}>
-                  CANCEL
+                 <Typography variant="subtitle1" > CANCEL </Typography>
                 </ActionButton>
               </div>
 
@@ -65,7 +68,7 @@ const ContactCreate = ({}) => {
                   sx={{ mt: 2 }}
                 //   onClick={handleSubmit}
                 >
-                  VIEW CONTACT
+                 <Typography variant="subtitle1" > VIEW CONTACT</Typography> 
                 </PrimaryButton>
               </div>
             </div>

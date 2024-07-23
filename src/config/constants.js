@@ -176,7 +176,7 @@ export default {
         IN_PROGRESS: 'In Progress',
         PROPOSAL_SENT: 'Proposal Sent',
         ARCHIVED: 'Archived',
-        CUSTOMERS: 'Customers'
+        CUSTOMER: 'Customers'
 
     },
     LOG_ENABLED: true,

@@ -45,7 +45,7 @@ const ContactList = (props) => {
         {/* <img src={user.image} alt="" crossOrigin="anonymous" /> */}
 
         <div className={classNames(styles.firstCellInfo, "openSans")}>
-          <div>{`${capitalizeFirstLetter(user?.first_name)}`} </div>
+          <div>{`${capitalizeFirstLetter(user?.full_name)}`} </div>
           <div> {user?.employee_id}</div>
         </div>
       </div>
@@ -68,7 +68,7 @@ const ContactList = (props) => {
   const tableStructure = useMemo(
     () => [
       {
-        key: "name",
+        key: "full_name",
         label: "Name",
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
@@ -121,7 +121,7 @@ const ContactList = (props) => {
         render: (temp, all) => <div>{all?.product_link}</div>,
       },
       {
-        key: "status",
+        key: "lead_stage",
         label: "Status",
         sortable: false,
         render: (temp, all) => <div>{renderStatus(all.status)}</div>,

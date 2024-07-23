@@ -23,41 +23,19 @@ import debounce from "lodash.debounce";
 
 const initialForm = {
   prefix: "",
-  contact_name: "",
   full_name: "",
   gender: "NOT_PREFER",
-  age: "",
+  country_code: "",
   contact: "",
   email: "",
-  wa_contact: "",
-  alternate_email: "",
-  job_title: "",
-  country: "",
-  address: "",
-  business_name: "",
-  industry: "",
-  website: "",
-  buying_role: "",
-  company_size: "",
   source: "",
-  service_product: [],
-  priority: "",
-  seniority: "",
-  description: "",
-  contact_type: "",
-  contact_owner: "",
-  lead_status: "",
-  lead_type: "",
-  lead_details: "",
-  time_zone: "",
-  linkedin_url: "",
-  instagram_url: "",
-  twitter_url: "",
-  facebook_url: "",
-  youtube_url: "",
-  wa_broadcast_channel: "",
-  is_newsletter_subscribed: "NEWS",
-  utm: "",
+  notes: "",
+  lead_owner: "",
+  lead_stage: "",
+  dob: "",
+  doa: "",
+  interested_products: [],
+  tags: "",
 };
 const sourceDDValues = [
   "Website",
@@ -76,9 +54,11 @@ const ContactCreatehook = () => {
   const emailDebouncer = useDebounce(form.email, 500);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [tagList, setTagList] = useState([]);
+  const [LeadOwnerData, setLeadOwnerData] = useState([]);
   const [listData, setListData] = useState({
     PRODUCTS: [],
   });
+
 
   const { id } = useParams();
 
@@ -94,7 +74,12 @@ const ContactCreatehook = () => {
       setListData(ProductList);
     })();
   }, []);
-
+  // useEffect(() => {
+  //   if (isOpen) {
+   
+  //     setLeadOwnerData([...leadOwnerList]);
+  //   }
+  // }, [isOpen]);
   const handleDialogClose = () => {
     setConfirmPopUp(false);
   };
@@ -104,11 +89,8 @@ const ContactCreatehook = () => {
     let required = [
       "email",
       "contact",
-      "job_title",
-      "country",
-      "source",
-      "address",
-      "business_name",
+      "full_name",
+      // "lead_stage"
     ];
     required.forEach((val) => {
       if (
@@ -122,19 +104,7 @@ const ContactCreatehook = () => {
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
-    [
-      "instagram_url",
-      "facebook_url",
-      "twitter_url",
-      "linkedin_url",
-      "youtube_url",
-      "website",
-    ]?.forEach((key) => {
-      if (form[key] && !validateUrl(form[key])) {
-        errors[key] = true;
-        SnackbarUtils.error(`Please Enter a Valid ${removeUnderScore(key)}`);
-      }
-    });
+    
 
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
@@ -185,10 +155,6 @@ const ContactCreatehook = () => {
         if (text?.length <= 60) {
           t[fieldName] = text;
         }
-      } else if (fieldName === "age" || fieldName === "company_size") {
-        if (text >= 0) {
-          t[fieldName] = text;
-        }
       } else {
         t[fieldName] = text;
       }
@@ -213,8 +179,6 @@ const ContactCreatehook = () => {
           updatedFd[key] = getId;
         } else if (key === "tags") {
           updatedFd[key] = form[key]?.length > 0 ? form[key]?.join(",") : "";
-        } else if (key === "is_newsletter_subscribed") {
-          updatedFd[key] = form[key] === "NEWS";
         } else {
           updatedFd[key] = form[key];
         }

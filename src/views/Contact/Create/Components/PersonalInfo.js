@@ -179,10 +179,10 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
               label={"Anniversary"}
               // maxDate={new Date()}
               onChange={(date) => {
-                changeTextData(date, "anniversary");
+                changeTextData(date, "doa");
               }}
-              value={form?.anniversary}
-              isError={errorData?.anniversary}
+              value={form?.doa}
+              isError={errorData?.doa}
               // sx={{
               //   '& .css-1c1ddbs-MuiInputBase-input-MuiOutlinedInput-input': {
               //     paddingBottom: '7px',

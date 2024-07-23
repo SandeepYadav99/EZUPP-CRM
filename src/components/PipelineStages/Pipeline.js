@@ -24,7 +24,8 @@ export default function CustomButtonGroup({buttonText, value, onButtonClick}) {
 
   const handleButtonClick = (index) => {
     setSelectedIndex(index);
-    onButtonClick(index);
+    console.log('Button clicked:', buttonText[index]);
+    onButtonClick(buttonText[index]);
   };
 
 

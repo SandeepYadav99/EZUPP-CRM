@@ -60,16 +60,22 @@ const ProfilingLead = ({
         
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-          <Autocomplete
+          {console.log(listData)}
+          <MultiComplete
               size={"small"}
               multiple
               id="tags-outlined"
-              options={AutoCompleteData ? AutoCompleteData : []}
-              getOptionLabel={(option) => option.title}
-              value={form?.interested_in}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="Interested In" />
-              )}
+              // options={AutoCompleteData ? AutoCompleteData : []}
+              AutoCompleteList={listData?.PRODUCTS ? listData?.PRODUCTS : []}
+               label={"Interested In"}
+              value={form?.interested_products}
+              
+              onTextChange={(text) => {
+                changeTextData(text, "interested_products");
+              }}
+             
+              enableField={["label"]}
+           
             />
            
           </div>
@@ -140,7 +146,7 @@ const ProfilingLead = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
           <MultiComplete
-              isError={errorData?.contact_owner}
+              isError={errorData?.lead_owner}
               AutoCompleteList={
                 contactOwnerlistData ? contactOwnerlistData : []
               }
@@ -160,10 +166,12 @@ const ProfilingLead = ({
           Constants.PIPELINE_STAGES.IN_PROGRESS,
           Constants.PIPELINE_STAGES.PROPOSAL_SENT,
           Constants.PIPELINE_STAGES.ARCHIVED,
-          Constants.PIPELINE_STAGES.CUSTOMERS,
+          Constants.PIPELINE_STAGES.CUSTOMER,
         ]}
-        value={0}
-        onButtonClick={(index) => { }}
+        value={form?.lead_stage}
+        onButtonClick={(buttonText, index) => {
+          form.lead_stage = buttonText[index];
+        }}
         className={styles.stages}
         />
           </div>
