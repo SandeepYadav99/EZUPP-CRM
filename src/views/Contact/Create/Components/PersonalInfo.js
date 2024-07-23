@@ -14,7 +14,7 @@ import Constants from "../../../../config/constants";
 import { InfoOutlined as InfoIcon } from "@mui/icons-material";
 import LogUtils from "../../../../libs/LogUtils";
 import { useTheme } from "@mui/styles";
-const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
+const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form}) => {
   const theme = useTheme();
   return (
     <ShadowBox className={styles.contact}>

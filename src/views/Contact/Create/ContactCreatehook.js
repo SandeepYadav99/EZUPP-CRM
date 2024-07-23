@@ -8,6 +8,7 @@ import LogUtils from "../../../libs/LogUtils";
 import useDebounce from "../../../hooks/DebounceHook";
 import history from "../../../libs/history.utils";
 import RouteName from "../../../routes/Route.name";
+import { leadOwnerList } from "../../../helper/Helper";
 import { cleanContactNumber, removeUnderScore } from "../../../helper/Helper";
 import {
   serviceContactCheck,
@@ -55,13 +56,19 @@ const ContactCreatehook = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [tagList, setTagList] = useState([]);
   const [LeadOwnerData, setLeadOwnerData] = useState([]);
+  const [associateTagsData, setAssociateTagsData] = useState([]);
   const [listData, setListData] = useState({
     PRODUCTS: [],
   });
 
 
   const { id } = useParams();
-
+  useEffect(() => {
+    
+      
+      setLeadOwnerData([...leadOwnerList]);
+  
+  }, []);
   useEffect(() => {
     (async () => {
       const promises = await Promise.allSettled([
@@ -70,7 +77,7 @@ const ContactCreatehook = () => {
       ]);
       const tagList = promises[0]?.value?.data || [];
       const ProductList = promises[1]?.value?.data;
-      // setAssociateTagsData([...tagList]);
+       setAssociateTagsData([...tagList]);
       setListData(ProductList);
     })();
   }, []);
@@ -229,7 +236,9 @@ const ContactCreatehook = () => {
     listData,
     confirmPopUp,
     tagList,
+    LeadOwnerData,
     handleDialogClose,
+    associateTagsData,
     // suspendItem
   };
 };

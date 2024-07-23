@@ -26,24 +26,10 @@ const ProfilingLead = ({
   contactOwnerlistData,
   listData,
   tagList,
+  associateTagsData,
+  LeadOwnerData,
 }) => {
-  const AutoCompleteData = [
-    {
-      id: 1,
-      title: "Hair Spa",
-      label: "Hair Spa",
-    },
-    {
-      id: 2,
-      title: "Nail Extensions",
-      label: "Nail Extensions",
-    },
-    {
-      id: 1,
-      title: "Hair Cut",
-      label: "Hair Cut",
-    },
-  ];
+  
   return (
     <>
       <ShadowBox className={styles.contact}>
@@ -113,19 +99,17 @@ const ProfilingLead = ({
         <div className={"formFlex"}>
           <div className={"formGroup"}>
           <MultiComplete
-                    isError={errorData?.tags}
-                    // multiple
-                    // isArray
-                    // AutoCompleteList={tagList ? tagList : []}
-                    // getOptionLabel={(option) => option}
-                    label="Tags"
-                    defaultValue={form?.tags}
-                    value={form?.tags}
-                    sx={{mb:0.5}}
-                    onTextChange={(text) => {
-                      changeTextData(text, "tags");
-                    }}
-                  />
+          isError={errorData?.tags}
+          multiple
+          isArray
+          AutoCompleteList={associateTagsData ? associateTagsData : []}
+          label="Tags"
+          value={form?.tags}
+          onTextChange={(text) => {
+            changeTextData(text, "tags");
+          }}
+          enableField={["title"]}
+        />
             
           </div>
           
@@ -147,9 +131,7 @@ const ProfilingLead = ({
           <div className={"formGroup"}>
           <MultiComplete
               isError={errorData?.lead_owner}
-              AutoCompleteList={
-                contactOwnerlistData ? contactOwnerlistData : []
-              }
+              AutoCompleteList={LeadOwnerData ? LeadOwnerData : []}
               label="Lead Owner"
               value={form?.lead_owner}
               onTextChange={(text) => {

@@ -57,11 +57,23 @@ const ContactList = (props) => {
     };
     serviceDeleteProduct(params);
   };
-  const renderStatus = useCallback((status) => {
-    if (status === "ACTIVE") {
-      return <StatusPill status={"ACTIVE"} color={"active"} />;
-    } else if (status === "INACTIVE") {
-      return <StatusPill status={"INACTIVE"} color={"high"} />;
+  const renderStatus = useCallback((lead_stage) => {
+    if (lead_stage === "PENDING") {
+      return <StatusPill status={"Pending"} color={"medium"} />;
+    } else if (lead_stage === "IN_PROGRESS") {
+      return <StatusPill status={"In Progress"} color={"active"} />;
+    }
+    else if (lead_stage === "PROPOSAL_SENT") {
+      return <StatusPill status={"Proposal Sent"} color={"active"} />;
+    }
+    else if (lead_stage === "ARCHIVED") {
+      return <StatusPill status={"Archived"} color={"service"} />;
+    }
+    else if (lead_stage === "CUSTOMER") {
+      return <StatusPill status={"Customer"} color={"draft"} />;
+    }
+    else if (lead_stage === " PROPOSAL_SENT") {
+      return <StatusPill status={"Proposal Sent"} color={"proposal"} />;
     }
   }, []);
 
@@ -97,7 +109,7 @@ const ContactList = (props) => {
         ),
       },
       {
-        key: "role",
+        key: "interested_products",
         label: "Interest Area",
         sortable: false,
         render: (temp, all) => (
@@ -115,16 +127,10 @@ const ContactList = (props) => {
         ),
       },
       {
-        key: "productLink",
-        label: "Activity",
-        sortable: false,
-        render: (temp, all) => <div>{all?.product_link}</div>,
-      },
-      {
         key: "lead_stage",
         label: "Status",
         sortable: false,
-        render: (temp, all) => <div>{renderStatus(all.status)}</div>,
+        render: (temp, all) => <div>{renderStatus(all.lead_stage)}</div>,
       },
       //   {
       //     key: "last_login",

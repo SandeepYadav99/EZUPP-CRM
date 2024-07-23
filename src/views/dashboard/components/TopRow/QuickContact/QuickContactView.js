@@ -262,13 +262,13 @@ function QuickContactView({ isOpen, handleToggle }) {
             changeTextData(value, "lead_stage_type");
           }}
         >
-          <MenuItem value="REAL ESTATES">REAL ESTATES </MenuItem>
-          <MenuItem value="E COMMERCE">E COMMERCE</MenuItem>
-          <MenuItem value="ARTIFICIAL INTELLIGENCE">
-            ARTIFICIAL INTELLIGENCE
+          <MenuItem value="PENDING">PENDING</MenuItem>
+          <MenuItem value=" IN_PROGRESS"> IN PROGRESS</MenuItem>
+          <MenuItem value="PROPOSAL_SENT">
+          PROPOSAL SENT
           </MenuItem>
-          <MenuItem value="DATA STORAGE">DATA STORAGE</MenuItem>
-          <MenuItem value="ETC">ETC</MenuItem>
+          <MenuItem value="ARCHIVED"> ARCHIVED</MenuItem>
+          <MenuItem value="CUSTOMER">CUSTOMER</MenuItem>
         </CustomSelectField>
         <div style={{ display: "flex", gap: "0.5rem" }}>
           <CustomCheckbox

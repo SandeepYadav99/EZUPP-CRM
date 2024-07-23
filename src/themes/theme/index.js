@@ -95,6 +95,7 @@ const Theme = (colors) => {
       service: "#636578",
       warm: "#EBC50B",
       draft: "#2063CE",
+      proposal:"#F883E4",
     },
     success: {
       main: success,
