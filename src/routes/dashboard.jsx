@@ -305,7 +305,7 @@ const dashboardRoutes = [
     sidebarName: "Products",
     // navbarName: "Products",
     icon: AccountBox,
-    component: ProductList,
+    component: ServiceGroupCreate,
     is_sidebar: true,
     is_protect: true,
     parent: "masters",
@@ -550,13 +550,7 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
   },
-  {
-    path: `${RouteName?.SERVICE_GROUP}`,
-    component: ServiceGroupCreate,
-    is_sidebar: false,
-    is_protect: true,
-    should_regex: false,
-  },
+ 
   {
     path: `${RouteName?.WHATSAPP_INVOICE}`,
     component: InvoiceCreate,

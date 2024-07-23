@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import {
-  serviceCreateContact,
-  serviceDeleteContact,
-  serviceUpdateContact,
-} from "../../../services/Contact.service";
+  serviceCreateProductGroup,
+  serviceDeleteProductGroup,
+  serviceUpdateProductGroup,
+} from "../../../services/ProductGroup.service";
 
 const initialForm = {
   title: "",
@@ -85,20 +85,19 @@ const useAddGroupCreateHook = ({
   const submitToServer = useCallback(() => {
     if (!isSubmitting) {
       setIsSubmitting(true);
-      let req = serviceCreateContact;
+      let req;
       if (editData?.id) {
-        req = serviceUpdateContact;
+        req = serviceUpdateProductGroup({ ...form, id: editData?.id });
+      } else {
+        req = serviceCreateProductGroup({ ...form });
       }
-
-      req({
-        ...form,
-      }).then((res) => {
+      req.then((res) => {
         if (!res.error) {
-          handleToggle();
-          renderList();
           SnackbarUtils.success(
             `${editData?.id ? "Updated" : "Created"} successfully`
           );
+          handleToggle();
+          renderList();
         } else {
           SnackbarUtils.error(res?.message);
         }
@@ -128,7 +127,7 @@ const useAddGroupCreateHook = ({
 
   const handleDelete = useCallback(
     (id) => {
-      const req = serviceDeleteContact({ id: id });
+      const req = serviceDeleteProductGroup({ id: id });
       req.then((res) => {
         if (!res?.error) {
           SnackbarUtils.success("Deleted Successfully");

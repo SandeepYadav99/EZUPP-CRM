@@ -1,5 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { serviceGroups } from "../../../helper/Helper";
+import {
+  serviceGetProductGroup,
+  serviceGetProductGroupPriority,
+} from "../../../services/ProductGroup.service";
+import debounce from "lodash.debounce";
+import RouteName from "../../../routes/Route.name";
+import historyUtils from "../../../libs/history.utils";
 
 function useServiceGroupCreate() {
   const [serviceData, setServiceData] = useState([...serviceGroups]);
@@ -8,22 +21,39 @@ function useServiceGroupCreate() {
   const [isSidePanel, setSidePanel] = useState(false);
   const [editData, setEditData] = useState(null);
 
+  // serviceGetProductGroupPriority
+
   const renderList = useCallback(() => {
-    // serviceGetCalendar({
-    //   index: 1,
-    //   row: "createdAt",
-    //   order: "desc",
-    //   query: "",
-    //   query_data: null,
-    // }).then((res) => {
-    //   if (!res.error) {
-    //     setData(res.data);
-    //   }
-    // });
+    serviceGetProductGroup().then((res) => {
+      if (!res.error) {
+        setAllData(res?.data);
+        setServiceData(res?.data);
+      }
+    });
   }, []);
 
+  
   useEffect(() => {
     renderList();
+  }, []);
+
+  const updatePrioirty = useCallback((all) => {
+    const req = serviceGetProductGroupPriority({ data: [...all] });
+    req.then((res) => {
+      if (!res?.error) {
+        console.log(">>>>res", res);
+      }
+    });
+  }, []);
+
+  const handleCreate = useCallback(() => {
+    historyUtils.push(RouteName.PRODUCT_CREATE);
+  }, []);
+
+  const priorityDebounce = useMemo(() => {
+    return debounce((e) => {
+      updatePrioirty(e);
+    }, 1000);
   }, []);
 
   const handleSideToggle = useCallback(
@@ -66,6 +96,7 @@ function useServiceGroupCreate() {
           service.priority = index;
         });
       }
+      priorityDebounce([...all]);
       setServiceData([...all]);
       console.log("all", all);
       // props.actionDragFaq(dragId, dragOverId);
@@ -99,6 +130,7 @@ function useServiceGroupCreate() {
     renderList,
     isSidePanel,
     handleSideToggle,
+    handleCreate,
   };
 }
 

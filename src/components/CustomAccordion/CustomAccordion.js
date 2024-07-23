@@ -14,6 +14,7 @@ function CustomAccordion({
   draggable = false,
   handleDrag,
   handleSideToggle,
+  handleCreate
 }) {
   const [expanded, setExpanded] = useState(0);
   const draggedItem = useRef();
@@ -50,7 +51,12 @@ function CustomAccordion({
                 >
                   Edit Group
                 </Button>
-                <Button variant="contained">Add Service</Button>
+                <Button variant="contained" 
+                 onClick={(e) => {
+                  e.stopPropagation();
+                  handleCreate();
+                }}
+                >Add Service</Button>
               </Box>
             </Box>
           </AccordionSummary>

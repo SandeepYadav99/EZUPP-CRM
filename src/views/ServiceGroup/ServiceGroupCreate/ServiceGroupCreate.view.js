@@ -3,10 +3,14 @@ import CustomAccordion from "../../../components/CustomAccordion/CustomAccordion
 import useServiceGroupCreate from "./ServiceGroupCreate.hook";
 import styles from "./Style.module.css";
 import { Box, TextField, Button } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import SidePanelComponent from "../../../components/SidePanel/SidePanel.component";
 import AddGroupCreate from "../AddGroupCreate/AddGroupCreate.view";
+import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
+import { Typography } from "@mui/material";
+import FilterComponent from "../../../components/Filter/Filter.component";
 
 function ServiceGroupCreate() {
   const {
@@ -18,45 +22,40 @@ function ServiceGroupCreate() {
     renderList,
     isSidePanel,
     handleSideToggle,
+    handleCreate
   } = useServiceGroupCreate();
 
   return (
     <ShadowBox className={styles.serviceWrapp}>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        p={2}
-      >
-        <TextField
-          variant="outlined"
-          placeholder="Search service name"
-          InputProps={{
-            endAdornment: <SearchIcon />,
-          }}
-          value={inputValue}
-          onChange={(e) => handleSearchValueChange(e?.target?.value)}
-          sx={{ width: "400px" }}
+      <div className={styles.headerContainer}>
+        <Typography
+          variant={"title"}
+          color={"text.primary"}
+          className={styles.title}
+        >
+          Product List
+        </Typography>
+        <ArrowPrimaryButton
+          onClick={() => handleSideToggle()}
+          icon={<Add fontSize="normal" />}
+        >
+          Create New Group
+        </ArrowPrimaryButton>
+      </div>
+
+      <div style={{ width: "100%" }}>
+        <FilterComponent
+          filters={[]}
+          handleSearchValueChange={handleSearchValueChange}
         />
-        <Box>
-          <Button variant="contained" color="error" sx={{ marginRight: 1 }}>
-            Delete All
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => handleSideToggle()}
-          >
-            Add New Group
-          </Button>
-        </Box>
-      </Box>
+      </div>
       <div className={styles.lowerWrap}>
         <CustomAccordion
           data={serviceData}
           draggable
           handleDrag={handleDrag}
           handleSideToggle={handleSideToggle}
+          handleCreate={handleCreate}
         />
       </div>
       <SidePanelComponent
