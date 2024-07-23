@@ -112,7 +112,7 @@ const Theme = (colors) => {
       hint: "#B9B9B9",
       error: '#ff0000',
       bright: '#FFF',
-     
+
     },
     primaryButton: {
       hover: secondary,
