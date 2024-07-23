@@ -1,21 +1,20 @@
 import React from "react";
 import styles from "./Style.module.css";
-import { ButtonBase, Dialog, IconButton, Typography } from "@mui/material";
+import {  IconButton, Typography } from "@mui/material";
 import DashboardSnackbar from "../../../components/Snackbar.component";
 import Slide from "@mui/material/Slide";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
 import useFirstResetPassowrd from "./FirstResetPassword.hook";
 import CustomTextField from "../../../FormFields/TextField.component";
-import backArrow from "../../../assets/CRMAssets/ic_back.png";
-import logoImage from "../../../assets/CRMAssets/ezupp_login_logo.png";
-import useLoginHook from "../../Login/LoginForm/Login.hook";
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
+import logoImage from "../../../assets/CRMAssets/ezupp_login_logo.png";
+
+import { useTheme } from "@mui/styles";
+
 
 const FirstResetPassowrd = ({ handleClose, open, email }) => {
+  const theme = useTheme()
   const {
     form,
     changeTextData,
@@ -56,11 +55,13 @@ const FirstResetPassowrd = ({ handleClose, open, email }) => {
           </div>
           <div className={styles.underlineData}></div>
           <div>
-            <br />
-            <span className={styles.headingText2}>
+           <div className={styles.resetText}>
+            <Typography variant={"h4"} sx={{color:theme?.palette?.text?.primary}}>
               Set up password for your account{" "}
-            </span>
-            <br />
+            </Typography>
+
+           </div>
+           
             <CustomTextField
               fullWidth={true}
               name="password"

@@ -1,24 +1,22 @@
 import React from "react";
 import styles from "./Style.module.css";
-import { ButtonBase, Dialog, IconButton, Typography } from "@mui/material";
+import { ButtonBase,  IconButton, Typography } from "@mui/material";
 
 import Slide from "@mui/material/Slide";
-import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
+import { ArrowBackIos, Close, Visibility, VisibilityOff } from "@mui/icons-material";
 import {
-  ActionButton,
+ 
   ArrowPrimaryButton,
 } from "../../components/Buttons/PrimaryButton";
 import useResetPasswordHook from "./ResetPassword.hook";
-import backArrow from "../../assets/CRMAssets/ic_back.png";
 import CustomTextField from "../../FormFields/TextField.component";
 import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
 import DashboardSnackbar from "../../components/Snackbar.component";
+import { useTheme } from "@mui/styles";
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
 
 const ResetPasswordView = ({ handleClose, open, email }) => {
+  const theme = useTheme()
   const {
     form,
     changeTextData,
@@ -122,17 +120,14 @@ const ResetPasswordView = ({ handleClose, open, email }) => {
               <ArrowPrimaryButton onClick={handleSubmit}>
                 <Typography variant=" body1">SET NEW PASSWORD</Typography>
               </ArrowPrimaryButton>
+
                 <ButtonBase
                   onClick={handleReturn}
-                  className={styles.back}
-                  id={styles.forgotBtn}
+                  className={styles.backArrowAction}
                 >
-                  <img
-                    src={backArrow}
-                    alt="backtext"
-                    style={{ height: "12px" }}
-                  />
-                  <Typography variant={"caption"}>Back To Login</Typography>
+                
+                  <ArrowBackIos fontSize={"small"} color="primary"/>
+                  <Typography variant={"body1"} sx={{color:theme?.palette?.primary?.main, ml:-0.5, mt:0.3}}>Back To Login</Typography>
                 </ButtonBase>
             </div>
           </div>

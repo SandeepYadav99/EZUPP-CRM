@@ -3,23 +3,23 @@ import styles from "./Style.module.css";
 import useForgotPasswordHook from "./ForgotPassword.hook";
 import CustomTextField from "../../../FormFields/TextField.component";
 import DashboardSnackbar from "../../../components/Snackbar.component";
-import classNames from "classnames";
+
 import logoImage from "../../../assets/CRMAssets/ezupp_login_logo.png";
-import googleImageContainer from "../../../assets/CRMAssets/google_neutral.png";
 import { ArrowPrimaryButton } from "../../../components/Buttons/PrimaryButton";
-import backArrow from "../../../assets/CRMAssets/ic_back.png";
+
 import { ButtonBase, Typography } from "@mui/material";
+import { useTheme } from "@mui/styles";
+import { ArrowBackIos } from "@mui/icons-material";
 
 const ForgotPasswordView = () => {
+  const theme = useTheme()
   const {
     handleSubmit,
     onBlurHandler,
     changeTextData,
     form,
     errorData,
-    isSubmitting,
-    showPassword,
-    togglePasswordVisibility,
+   
     handleReturn,
   } = useForgotPasswordHook();
 
@@ -104,11 +104,11 @@ const ForgotPasswordView = () => {
                 <span className={styles.bottomSignup}>
                   <ButtonBase
                     onClick={handleReturn}
-                    className={styles.back}
-                    id={styles.forgotBtn}
+                    // className={styles.back}
+                    // id={styles.forgotBtn}
                   >
-                    <img src={backArrow} alt="backtext"  style={{height:"12px"}}/>
-                    <Typography variant={"caption"}>Back To Login</Typography>
+                   <ArrowBackIos fontSize={"small"} color="primary"/>
+                   <Typography variant={"body1"} sx={{color:theme?.palette?.primary?.main, ml:-0.5, mt:0.3}}>Back To Login</Typography>
                   </ButtonBase>
                 </span>
               </div>
