@@ -108,6 +108,18 @@ export const calenderData = [
   },
 ];
 
+export const getCurrencySymbol = (currency) => {
+  switch (currency) {
+    case 'INR':
+      return '₹ '; 
+    case 'USD':
+      return '$ '; 
+    case 'EURO':
+      return '€ '; 
+    default:
+      return '';
+  }
+};
 export const guestList = [
   {
     id:1,

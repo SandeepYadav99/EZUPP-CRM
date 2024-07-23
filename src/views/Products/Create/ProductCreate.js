@@ -20,7 +20,7 @@ import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import CustomMultiComplete from "../../../components/FormFields/AutoCompleteText/MultiComplete";
 import CustomIosSwitch from "../../../components/FormFields/CustomIosSwitch";
 
-const ProductCreate = ({}) => {
+const ProductCreate = ({location}) => {
   const {
     errorData,
     changeTextData,
@@ -30,7 +30,7 @@ const ProductCreate = ({}) => {
     handleCancel,
     id,
     isSubmitting,
-  } = useProductCreateHook();
+  } = useProductCreateHook({location});
   const AutoCompleteData = [
     {
       id: 1,
@@ -199,13 +199,13 @@ const ProductCreate = ({}) => {
               <div className={`formGroup ${styles.fieldcont}`}>
                 <Typography variant="subtitle1">Status</Typography>
                 <CustomIosSwitch
-                  value={form?.status}
-                  checked={form?.status ? true : false}
+                  value={form?.is_active}
+                  checked={form?.is_active ? true : false}
                   handleChange={() => {
-                    changeTextData(!form?.status, "status");
+                    changeTextData(!form?.is_active, "is_active");
                   }}
                   //label={`Active ?`}
-                  label={form?.status ? "Active" : "Inactive"}
+                  label={form?.is_active ? "Active" : "Inactive"}
                 />
               </div>
             </div>

@@ -14,6 +14,7 @@ import editTask from "../../assets/Assets/ic_edit_blue@2x.png";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import useProductDetailHook from "./ProductDetailsHook";
 import DeleteDialog from "../Products/List/component/DeleteDialog/DeleteDialog";
+import { getCurrencySymbol } from "../../helper/Helper";
 
 const ProductDetailview = () => {
   const { isLoading, handleSideToggle, handleDetailPage, profileDetails, handleDelete, openDialog,
@@ -34,18 +35,7 @@ const ProductDetailview = () => {
     }
 
   };
-  const getCurrencySymbol = (currency) => {
-    switch (currency) {
-      case 'INR':
-        return '₹'; 
-      case 'USD':
-        return '$'; 
-      case 'EURO':
-        return '€'; 
-      default:
-        return '';
-    }
-  };
+
   const currencySymbol = getCurrencySymbol(profileDetails?.currency);
   const wrapText = (text, length) => {
     if (!text) return "";

@@ -16,7 +16,7 @@ import {
 } from "../../../services/index.services";
 import history from "../../../libs/history.utils";
 
-function useProductCreateHook() {
+function useProductCreateHook({ location }) {
   const initialForm = {
     name: "",
     duration: "",
@@ -31,7 +31,7 @@ function useProductCreateHook() {
     description: "",
     is_active: true,
   };
-
+  const parentId = location?.state?.parentId;
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
@@ -43,31 +43,35 @@ function useProductCreateHook() {
 
   const [tagList, setTagList] = useState([]);
 
-  useEffect(() => {
-    (() => {
-      Promise.allSettled([
-        serviceGetUnitsList(["UNITS"]),
-        serviceGetTagList({
-          query: "",
-          type: "PRODUCT",
-        }),
-      ]).then((promises) => {
-        const unitList = promises[0]?.value?.data;
-        const tagList = promises[1]?.value?.data;
-        setListData(unitList);
-        setTagList([...tagList]);
-      });
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (() => {
+  //     Promise.allSettled([
+  //       serviceGetUnitsList(["UNITS"]),
+  //       serviceGetTagList({
+  //         query: "",
+  //         type: "PRODUCT",
+  //       }),
+  //     ]).then((promises) => {
+  //       const unitList = promises[0]?.value?.data;
+  //       const tagList = promises[1]?.value?.data;
+  //       setListData(unitList);
+  //       setTagList([...tagList]);
+  //     });
+  //   })();
+  // }, []);
 
   useEffect(() => {
     if (id) {
       serviceGetProductDetails({ id }).then((res) => {
         if (!res.error) {
           const details = res.data.details;
-          const obj = {};
+          const obj = { product_group_id: details?.product_group_id };
           Object.keys({ ...initialForm })?.forEach((key) => {
-            obj[key] = details[key] || "";
+            if (key === "is_active") {
+              obj[key] = details["status"] === "ACTIVE";
+            } else {
+              obj[key] = details[key] || "";
+            }
           });
           setForm({
             ...form,
@@ -80,7 +84,7 @@ function useProductCreateHook() {
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "duration", "currency", "full_price"];
+    let required = ["name", "duration", "currency", "full_price","type"];
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
@@ -145,6 +149,9 @@ function useProductCreateHook() {
       setIsSubmitting(true);
       let req;
       const data = { ...form };
+      if (parentId) {
+        data.product_group_id = parentId;
+      }
       if (id) {
         data.id = id;
         req = serviceUpdateProduct({ ...data });
@@ -160,7 +167,7 @@ function useProductCreateHook() {
         setIsSubmitting(false);
       });
     }
-  }, [form, isSubmitting, setIsSubmitting]);
+  }, [form, isSubmitting, setIsSubmitting, parentId]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -181,7 +188,7 @@ function useProductCreateHook() {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, submitToServer, parentId]
   );
 
   const handleCancel = useCallback(() => {

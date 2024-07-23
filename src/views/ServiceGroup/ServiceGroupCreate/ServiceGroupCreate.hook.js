@@ -21,8 +21,6 @@ function useServiceGroupCreate() {
   const [isSidePanel, setSidePanel] = useState(false);
   const [editData, setEditData] = useState(null);
 
-  // serviceGetProductGroupPriority
-
   const renderList = useCallback(() => {
     serviceGetProductGroup().then((res) => {
       if (!res.error) {
@@ -46,10 +44,16 @@ function useServiceGroupCreate() {
     });
   }, []);
 
-  const handleCreate = useCallback(() => {
-    historyUtils.push(RouteName.PRODUCT_CREATE);
+  const handleCreate = useCallback((data) => {
+    historyUtils.push(RouteName.PRODUCT_CREATE,{
+      parentId:data
+    });
   }, []);
 
+  const handleUpdate = useCallback((data) => {
+    historyUtils.push(RouteName.PRODUCT_UPDATE + data);
+  }, []);
+  
   const priorityDebounce = useMemo(() => {
     return debounce((e) => {
       updatePrioirty(e);
@@ -76,12 +80,12 @@ function useServiceGroupCreate() {
       let dragCategory = null;
 
       for (let category of all) {
-        for (let i = 0; i < category?.services?.length; i++) {
-          if (category?.services[i]?.id === dragId) {
+        for (let i = 0; i < category?.products?.length; i++) {
+          if (category?.products[i]?.id === dragId) {
             dragIndex = i;
             dragCategory = category;
           }
-          if (category?.services[i]?.id === dragOverId) {
+          if (category?.products[i]?.id === dragOverId) {
             dragOverIndex = i;
           }
           if (dragIndex !== -1 && dragOverIndex !== -1) break;
@@ -89,10 +93,10 @@ function useServiceGroupCreate() {
         if (dragIndex !== -1 && dragOverIndex !== -1) break;
       }
       if (dragIndex >= 0 && dragOverIndex >= 0 && dragCategory) {
-        const [draggedItem] = dragCategory?.services.splice(dragIndex, 1);
-        dragCategory?.services?.splice(dragOverIndex, 0, draggedItem);
+        const [draggedItem] = dragCategory?.products.splice(dragIndex, 1);
+        dragCategory?.products?.splice(dragOverIndex, 0, draggedItem);
 
-        dragCategory?.services?.forEach((service, index) => {
+        dragCategory?.products?.forEach((service, index) => {
           service.priority = index;
         });
       }
@@ -131,6 +135,7 @@ function useServiceGroupCreate() {
     isSidePanel,
     handleSideToggle,
     handleCreate,
+    handleUpdate
   };
 }
 

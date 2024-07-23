@@ -22,7 +22,8 @@ function ServiceGroupCreate() {
     renderList,
     isSidePanel,
     handleSideToggle,
-    handleCreate
+    handleCreate,
+    handleUpdate
   } = useServiceGroupCreate();
 
   return (
@@ -56,6 +57,7 @@ function ServiceGroupCreate() {
           handleDrag={handleDrag}
           handleSideToggle={handleSideToggle}
           handleCreate={handleCreate}
+          handleUpdate={handleUpdate}
         />
       </div>
       <SidePanelComponent
