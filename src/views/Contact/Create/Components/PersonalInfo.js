@@ -183,11 +183,12 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
               }}
               value={form?.anniversary}
               isError={errorData?.anniversary}
-              sx={{
-                '& .css-1c1ddbs-MuiInputBase-input-MuiOutlinedInput-input': {
-                  paddingBottom: '7px',
-                },
-              }}
+              // sx={{
+              //   '& .css-1c1ddbs-MuiInputBase-input-MuiOutlinedInput-input': {
+              //     paddingBottom: '7px',
+              //   },
+              // }}
+              
               className={styles.date}
             />
               {/* <CustomTextField
