@@ -5,6 +5,7 @@ import ShadowBox from "../../../../components/ShadowBox/ShadowBox";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import CustomPhoneContactField from "../../../../FormFields/CustomPhoneContact.componet";
 import CustomSelectField from "../../../../components/FormFields/SelectField/SelectField.component";
+import CustomDatePicker from "../../../../components/FormFields/DatePicker/CustomDatePicker";
 import RadioButtons from "../../../../components/RadioButtons/RadioButtons";
 import prefer from "../../../../assets/Assets/ic_prefer_not_to_say.png";
 import female from "../../../../assets/Assets/ic_female.png";
@@ -55,7 +56,12 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                   type="name"
                   isError={errorData?.full_name}
                   errorText={errorData?.full_name}
-                  label={"Full Name"}
+                  label={
+                    <>
+          Full Name
+          <span style={{ color: theme.palette.error.main }}>*</span>
+        </>
+                  }
                   value={form?.full_name}
                   className={styles.name}
                   onTextChange={(text) => {
@@ -65,7 +71,7 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
               </div>
             </div>
             <div className={"formGroup"}>
-              <CustomTextField
+              {/* <CustomTextField
                 type="number"
                 isError={errorData?.age}
                 errorText={errorData?.age}
@@ -74,7 +80,31 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                 onTextChange={(text) => {
                   changeTextData(text, "age");
                 }}
+              /> */}
+               <CustomPhoneContactField
+                isError={errorData?.contact}
+                errorText={errorData?.contact}
+                value={form?.contact}
+                // contactType="Phone No"
+                label={
+                  <>
+                  Phone No.
+                  <span style={{ color: theme.palette.error.main }}>*</span>
+                </>}
+                onTextChange={(text) => {
+                  changeTextData(text, "contact");
+                }}
+                isValid={(value) => {
+                  if (value.match(/12345/)) {
+                    return "";
+                  } else if (value.match(/1234/)) {
+                    return false;
+                  } else {
+                    return true;
+                  }
+                }}
               />
+
             </div>
           </div>
           <div className={"headerFlex"}>
@@ -111,28 +141,7 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomPhoneContactField
-                isError={errorData?.contact}
-                errorText={errorData?.contact}
-                value={form?.contact}
-                // contactType="Phone No"
-                label={"Phone No."}
-                onTextChange={(text) => {
-                  changeTextData(text, "contact");
-                }}
-                isValid={(value) => {
-                  if (value.match(/12345/)) {
-                    return "";
-                  } else if (value.match(/1234/)) {
-                    return false;
-                  } else {
-                    return true;
-                  }
-                }}
-              />
-            </div>
-            <div className={"formGroup"}>
-              <CustomTextField
+            <CustomTextField
                 type="email"
                 isError={errorData?.email}
                 errorText={errorData?.email}
@@ -141,15 +150,47 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                 onTextChange={(text) => {
                   changeTextData(text, "email");
                 }}
-                // onBlur={() => {
-                //   onBlurHandler("name");
-                // }}
+                
               />
+            </div>
+            <div className={"formGroup"}>
+            <CustomDatePicker
+              clearable
+              label={"D.O.B"}
+              // maxDate={new Date()}
+              onChange={(date) => {
+                changeTextData(date, "dob");
+              }}
+              value={form?.dob}
+              isError={errorData?.dob}
+              sx={{
+                '& .css-1c1ddbs-MuiInputBase-input-MuiOutlinedInput-input': {
+                  paddingBottom: '7px',
+                },
+              }}
+              className={styles.date}
+            />
             </div>
           </div>
           <div className={"formFlex"}>
             <div className={"formGroup"}>
-              <CustomTextField
+            <CustomDatePicker
+              clearable
+              label={"Anniversary"}
+              // maxDate={new Date()}
+              onChange={(date) => {
+                changeTextData(date, "anniversary");
+              }}
+              value={form?.anniversary}
+              isError={errorData?.anniversary}
+              sx={{
+                '& .css-1c1ddbs-MuiInputBase-input-MuiOutlinedInput-input': {
+                  paddingBottom: '7px',
+                },
+              }}
+              className={styles.date}
+            />
+              {/* <CustomTextField
                 type="email"
                 isError={errorData?.alternate_email}
                 errorText={errorData?.alternate_email}
@@ -158,10 +199,10 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                 onTextChange={(text) => {
                   changeTextData(text, "alternate_email");
                 }}
-              />
+              /> */}
             </div>
             <div className={"formGroup"}>
-              <CustomPhoneContactField
+              {/* <CustomPhoneContactField
                 isError={errorData?.wa_contact}
                 errorText={errorData?.wa_contact}
                 value={form?.wa_contact}
@@ -178,10 +219,10 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                     return true;
                   }
                 }}
-              />
+              /> */}
             </div>
           </div>
-          <div className={"formFlex"}>
+          {/* <div className={"formFlex"}>
             <div className={"formGroup"}>
               <CustomTextField
                 type="name"
@@ -224,7 +265,7 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form }) => {
                 className={styles.desc}
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </ShadowBox>

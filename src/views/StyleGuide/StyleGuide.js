@@ -236,7 +236,7 @@ const StyleGuide = ({}) => {
           </div>
           <div className={styles.boxCont}>
             <div className={styles.boxCont}>
-              <Typography variant={"h6"}>Multipe select</Typography>
+              <Typography variant={"h6"}>Multiple select</Typography>
             </div>
             <Autocomplete
               size={"small"}

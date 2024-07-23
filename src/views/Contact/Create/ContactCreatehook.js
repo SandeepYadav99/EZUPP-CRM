@@ -13,6 +13,10 @@ import {
   serviceContactCheck,
   serviceCreateContact,
 } from "../../../services/Contact.service";
+import {
+  serviceGetTagList,
+  serviceGetUnitsList,
+} from "../../../services/index.services";
 import { serviceGetTagsList } from "../../../services/Blogs.service";
 import { serviceGetList } from "../../../services/index.services";
 import debounce from "lodash.debounce";
@@ -71,6 +75,7 @@ const ContactCreatehook = () => {
   const [source, setSource] = useState([...sourceDDValues]);
   const emailDebouncer = useDebounce(form.email, 500);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [tagList, setTagList] = useState([]);
   const [listData, setListData] = useState({
     PRODUCTS: [],
   });
@@ -83,7 +88,7 @@ const ContactCreatehook = () => {
         serviceGetTagsList(),
         serviceGetList(["PRODUCTS"]),
       ]);
-      const tagList = promises[0]?.value?.data;
+      const tagList = promises[0]?.value?.data || [];
       const ProductList = promises[1]?.value?.data;
       // setAssociateTagsData([...tagList]);
       setListData(ProductList);
@@ -259,6 +264,7 @@ const ContactCreatehook = () => {
     handleCancel,
     listData,
     confirmPopUp,
+    tagList,
     handleDialogClose,
     // suspendItem
   };

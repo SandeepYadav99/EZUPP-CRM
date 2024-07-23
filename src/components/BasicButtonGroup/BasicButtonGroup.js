@@ -23,7 +23,7 @@ export default function BasicButtonGroup({ buttonText,  selectedIndex, onButtonC
           style={{
             color: selectedButton === index ? theme.palette.text.bright : theme.palette.text.secondary,
              borderColor: '#E4E4E6',
-             backgroundColor: selectedButton === index ? `${theme.palette.primary.main}`: `${theme.palette.background.paper}`
+             backgroundColor: selectedButton === index ? `${theme.palette.primary.main}`: `${theme.palette.tableHeadColor}`
           }}
           variant={selectedButton === index ? "contained" : "outlined"}
         >

@@ -103,11 +103,11 @@ const ContactCreate = ({}) => {
         source={source}
         listData={listData}
       />
-      <AdditionalInfo
+      {/* <AdditionalInfo
         errorData={errorData}
         form={form}
         changeTextData={changeTextData}
-      />
+      /> */}
       <div className={styles.buttonContainer}>
         <div className={styles.cancelButton}>
           <ActionButton sx={{ mt: 4 }} onClick={handleCancel}>

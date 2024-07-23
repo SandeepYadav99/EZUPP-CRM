@@ -32,6 +32,7 @@ import UnitsList from "../views/Units/UnitList.container";
 import NotificationDetails from "../components/NotificationCard/NotificationDetails";
 import ContactList from "../views/Contact/ContactList.container";
 import ContactCreate from "../views/Contact/Create/ContactCreate";
+import ContactDetail from "../views/Contact/Detail/ContactDetail";
 import {
   Dashboard,
   MeetingRoom,
@@ -367,6 +368,16 @@ const dashboardRoutes = [
     //navbarName: "Contact",
     icon: SupervisedUserCircle,
     component: ContactCreate,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path: `${RouteName.CONTACT_DETAIL}`,
+    sidebarName: "Contact",
+    //navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: ContactDetail,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,

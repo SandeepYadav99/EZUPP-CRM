@@ -14,6 +14,8 @@ import CustomSelectField from "../../../../components/FormFields/SelectField/Sel
 import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import { InfoOutlined as InfoIcon } from "@mui/icons-material";
 import { leadStatus } from "../../../../helper/Helper";
+import Constants from "../../../../config/constants";
+import Pipeline from "../../../../components/PipelineStages/Pipeline";
 const ProfilingLead = ({
   errorData,
   changeTextData,
@@ -22,8 +24,26 @@ const ProfilingLead = ({
   source,
   sourceData,
   contactOwnerlistData,
-  listData
+  listData,
+  tagList,
 }) => {
+  const AutoCompleteData = [
+    {
+      id: 1,
+      title: "Hair Spa",
+      label: "Hair Spa",
+    },
+    {
+      id: 2,
+      title: "Nail Extensions",
+      label: "Nail Extensions",
+    },
+    {
+      id: 1,
+      title: "Hair Cut",
+      label: "Hair Cut",
+    },
+  ];
   return (
     <>
       <ShadowBox className={styles.contact}>
@@ -39,20 +59,38 @@ const ProfilingLead = ({
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <MultiComplete
+          <Autocomplete
+              size={"small"}
+              multiple
+              id="tags-outlined"
+              options={AutoCompleteData ? AutoCompleteData : []}
+              getOptionLabel={(option) => option.title}
+              value={form?.interested_in}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined" label="Interested In" />
+              )}
+            />
+           
+          </div>
+          <div className={"formGroup"}>
+          <CustomSelectField
               isError={errorData?.source}
               AutoCompleteList={source ? source : []}
               label="Source"
               value={form?.source}
-              onTextChange={(text) => {
-                changeTextData(text, "source");
+              handleChange={(value) => {
+                changeTextData(value, "source");
               }}
-              enableField={["title"]}
-              // style={{ marginTop: "4px" }}
-            />
-          </div>
-          <div className={"formGroup"}>
-          <MultiComplete
+            >
+              <MenuItem value="Website">Website</MenuItem>
+              <MenuItem value="Social">Social</MenuItem>
+              <MenuItem value="Affilate">Affilate</MenuItem>
+              <MenuItem value="Referal">Referal</MenuItem>
+              <MenuItem value="Call">Call</MenuItem>
+              <MenuItem value="Database">Database</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
+          </CustomSelectField>
+          {/* <MultiComplete
           isError={errorData?.service_product}
           multiple
           AutoCompleteList={listData?.PRODUCTS ? listData?.PRODUCTS : []}
@@ -62,55 +100,30 @@ const ProfilingLead = ({
             changeTextData(text, "service_product");
           }}
           enableField={["label"]}
-        />
+        /> */}
           </div>
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomSelectField
-              isError={errorData?.priority}
-              errorText={errorData?.priority}
-              label={"Priority"}
-              value={form?.priority}
-              handleChange={(value) => {
-                changeTextData(value, "priority");
-              }}
-            >
-              <MenuItem value="LOW">LOW</MenuItem>
-              <MenuItem value="MEDIUM">MEDIUM</MenuItem>
-              <MenuItem value="HIGH">HIGH</MenuItem>
-            </CustomSelectField>
+          <MultiComplete
+                    isError={errorData?.tags}
+                    // multiple
+                    // isArray
+                    // AutoCompleteList={tagList ? tagList : []}
+                    // getOptionLabel={(option) => option}
+                    label="Tags"
+                    defaultValue={form?.tags}
+                    value={form?.tags}
+                    sx={{mb:0.5}}
+                    onTextChange={(text) => {
+                      changeTextData(text, "tags");
+                    }}
+                  />
+            
           </div>
-          <div className={"formGroup"}>
-            <CustomSelectField
-              isError={errorData?.seniority}
-              errorText={errorData?.seniority}
-              label={"Seniority"}
-              value={form?.seniority}
-              handleChange={(value) => {
-                changeTextData(value, "seniority");
-              }}
-            >
-              <MenuItem value="JUNIOR">JUNIOR</MenuItem>
-              <MenuItem value="SENIOR">SENIOR</MenuItem>
-            </CustomSelectField>
-          </div>
+          
         </div>
-        <div className={`formFlex `}>
-          <div className={"formGroup"}>
-            <CustomTextField
-              isError={errorData?.description}
-              errorText={errorData?.description}
-              label={"Description"}
-              multiline
-              rows="3"
-              onTextChange={(text) => {
-                changeTextData(text, "description");
-              }}
-              className={styles.desc}
-            />
-          </div>
-        </div>
+       
       </ShadowBox>
       <ShadowBox className={styles.contact}>
         <div className={"headerFlex"}>
@@ -125,79 +138,45 @@ const ProfilingLead = ({
         </div>
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomSelectField
-              isError={errorData?.contact_type}
-              errorText={errorData?.contact_type}
-              label={"Contact Type"}
-              value={form?.contact_type}
-              handleChange={(value) => {
-                changeTextData(value, "contact_type");
-              }}
-            >
-              <MenuItem value="Business">BUSINESS</MenuItem>
-              <MenuItem value="Indvidual">INDVIDUAL</MenuItem>
-            </CustomSelectField>
-          </div>
-          <div className={"formGroup"}>
-            <MultiComplete
+          <MultiComplete
               isError={errorData?.contact_owner}
               AutoCompleteList={
                 contactOwnerlistData ? contactOwnerlistData : []
               }
-              label="Contact Owner"
-              value={form?.contact_owner}
+              label="Lead Owner"
+              value={form?.lead_owner}
               onTextChange={(text) => {
-                changeTextData(text, "contact_owner");
+                changeTextData(text, "lead_owner");
               }}
               enableField={["title"]}
               style={{ marginTop: "-0.5px" }}
             />
           </div>
-        </div>
-        <div className={"formFlex"}>
           <div className={"formGroup"}>
-            <CustomSelectField
-              isError={errorData?.lead_status}
-              errorText={errorData?.lead_status}
-              label={"Lead Status"}
-              value={form?.lead_status}
-              handleChange={(value) => {
-                changeTextData(value, "lead_status");
-              }}
-            >
-              {leadStatus?.map((item, index) => (
-                <MenuItem value={item?.value} key={`status_${index}`}>
-                  {item?.label}
-                </MenuItem>
-              ))}
-            </CustomSelectField>
-          </div>
-          <div className={"formGroup"}>
-            <CustomSelectField
-              isError={errorData?.lead_type}
-              errorText={errorData?.lead_type}
-              label={"Lead Type"}
-              value={form?.lead_type}
-              handleChange={(value) => {
-                changeTextData(value, "lead_type");
-              }}
-            >
-              <MenuItem value="Hot">Hot</MenuItem>
-              <MenuItem value="Regular">Regular</MenuItem>
-              <MenuItem value="Cold">Cold</MenuItem>
-            </CustomSelectField>
+          <Pipeline
+        buttonText={[
+          Constants.PIPELINE_STAGES.PENDING,
+          Constants.PIPELINE_STAGES.IN_PROGRESS,
+          Constants.PIPELINE_STAGES.PROPOSAL_SENT,
+          Constants.PIPELINE_STAGES.ARCHIVED,
+          Constants.PIPELINE_STAGES.CUSTOMERS,
+        ]}
+        value={0}
+        onButtonClick={(index) => { }}
+        className={styles.stages}
+        />
           </div>
         </div>
         <div className={`formFlex `}>
           <div className={"formGroup"}>
             <CustomTextField
-              isError={errorData?.lead_details}
-              errorText={errorData?.lead_details}
-              label={"Lead Details"}
+              isError={errorData?.notes}
+              errorText={errorData?.notes}
+              label={"Notes"}
               multiline
               rows="3"
               onTextChange={(text) => {
-                changeTextData(text, "lead_details");
+                changeTextData(text, "notes");
               }}
               className={styles.desc}
             />

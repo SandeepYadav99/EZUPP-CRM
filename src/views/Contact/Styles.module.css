@@ -104,8 +104,15 @@
     width: 300%
   
 }
+.stages{
+    width: 30% !important;
+}
 .lineWrapper{
     display: flex;
+    gap: 10px;
+}
+.date{
+    padding: 10.5px 14px 6px 12px !important;
 }
 .saveButton{
     text-align: right !important;

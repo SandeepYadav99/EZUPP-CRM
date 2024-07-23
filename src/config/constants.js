@@ -171,7 +171,12 @@ export default {
         CONTACT_MADE: 'Contact Made',
         DEMO_SCHEDULED: 'Demo Scheduled',
         PROPOSAL_MADE: 'Proposal Made',
-        NEGOTIATIONS_STARTED:'Negotiations Started'
+        NEGOTIATIONS_STARTED:'Negotiations Started',
+        PENDING: 'Pending',
+        IN_PROGRESS: 'In Progress',
+        PROPOSAL_SENT: 'Proposal Sent',
+        ARCHIVED: 'Archived',
+        CUSTOMERS: 'Customers'
 
     },
     LOG_ENABLED: true,

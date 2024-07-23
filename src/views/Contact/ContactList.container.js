@@ -69,19 +69,30 @@ const ContactList = (props) => {
     () => [
       {
         key: "name",
-        label: "Lead Info",
+        label: "Name",
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "contact",
-        label: "Contact",
+        label: "Contact Info",
         sortable: false,
         render: (temp, all) => (
           <div>
             {all?.full_contact}
             <br />
             {all?.email}
+          </div>
+        ),
+      },
+      {
+        key: "source",
+        label: "Source",
+        sortable: false,
+        render: (temp, all) => (
+          <div>
+            {all?.source}
+           
           </div>
         ),
       },
