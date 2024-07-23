@@ -26,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
     inputRoot: {
         overflow: 'hidden'
     },
-    input: {
-        paddingRight: '40px', // adjust based on the width of your adornment
-    }
 }));
 
 const CustomTextField = ({
