@@ -97,11 +97,8 @@ const ProductCreate = ({location}) => {
                   onBlur={() => {
                     onBlurHandler("duration");
                   }}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">Mins</InputAdornment>
-                    ),
-                  }}
+                  adornText={"Mins"}
+
                 />
               </div>
             </div>
@@ -134,11 +131,7 @@ const ProductCreate = ({location}) => {
                   onBlur={() => {
                     onBlurHandler("tax_slab");
                   }}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">%</InputAdornment>
-                    ),
-                  }}
+                  adornText={"%"}
                 />
               </div>
             </div>
