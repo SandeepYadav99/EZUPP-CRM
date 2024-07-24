@@ -252,3 +252,6 @@ opacity: 1; */
   display: block;
   text-align: center;
 }
+.confined {
+  position: relative;
+}

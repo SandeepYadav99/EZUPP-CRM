@@ -96,7 +96,7 @@ const TopRow = () => {
                   <div className={styles.iconCont}>
                     <img
                       src={item.image2}
-                      className="customerImg"
+                      className={styles.customerImg}
                       alt="Query Image"
                     />
                     <div className={styles.customerDiv2}>
@@ -112,7 +112,7 @@ const TopRow = () => {
                   <div className={styles.iconCont}>
                     <img
                       src={item.image3}
-                      className="customerImg"
+                      className={styles.customerImg}
                       alt="Query Image"
                     />
                     <div className={styles.customerDiv2}>
@@ -128,7 +128,7 @@ const TopRow = () => {
                   <div className={styles.iconCont}>
                     <img
                       src={item.image4}
-                      className="customerImg"
+                      className={styles.customerImg}
                       alt="Query Image"
                     />
                     <div className={styles.customerDiv2}>

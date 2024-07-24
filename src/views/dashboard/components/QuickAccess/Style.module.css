@@ -63,3 +63,21 @@ margin-left: 10px;
       min-width: 100%;
     }
     }
+@media only screen and (max-width: 600px) {
+    .firstRow{
+        display: flex;
+        flex-direction: column;
+       
+    } 
+    .row{
+        width: 100%;
+        margin-top: 10px;
+        border-bottom: 2px solid #ebedf4;
+    } 
+    .row:last-child {
+        border-bottom: none;
+    }
+    .text{
+        margin-bottom: 10px;
+    }
+}

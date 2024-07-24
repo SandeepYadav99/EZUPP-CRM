@@ -121,7 +121,7 @@ class SidePanelComponent extends Component {
           ? "calc(45vw)"
           : window.innerWidth - this.state.delta,
       height: "100%",
-      backgroundColor: theme.palette.contentDark,
+      backgroundColor: theme.palette.NavHeadColor,
       color: theme.palette.textColor,
       top: "0px",
       position: "fixed",
@@ -146,6 +146,7 @@ class SidePanelComponent extends Component {
           <div
             className={styles.noScrollbar}
             style={{
+              // overflow:"auto",
               overflowX: "hidden",
               overflowY: "scroll",
               width: "calc(100% - 20px)",

@@ -65,13 +65,17 @@ import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
 import ProductCreate from "../views/Products/Create/ProductCreate";
-import React from "react";
+import React, { lazy } from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
 import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
 import CustomFiled from "../views/CustomFiled/CustomFiled";
+import ServiceGroupCreate from "../views/ServiceGroup/ServiceGroupCreate/ServiceGroupCreate.view";
+import InvoiceCreate from "../views/WhatsappInvoice/InvoiceCreate/InvoiceCreate.view";
+import AdminUserCreate from "../views/User/AdminUserCreate/AdminUserCreate.view";
 
+const CustomerAcquisition = lazy(() => import('../views/CustomerAcquisition/List/CustomerAcquisition')); 
 
  
 const dashboardRoutes = [
@@ -190,25 +194,25 @@ const dashboardRoutes = [
   },
   {
     path: RouteName.ADMIN_USER,
-    sidebarName: "Admin Users",
-    // navbarName: "Admin Users",
+    sidebarName: "Staff List",
+    // navbarName: "Staff List",
     icon: People,
     component: UserList,
     is_sidebar: true,
     is_protect: true,
-    parent: "admin",
+    parent: "staff_manage",
   },
   {
     path: RouteName.ADMIN_USER_CREATE,
     parentRoute:`${RouteName.ADMIN_USER}`,
-    component: UserCreate,
+    component: AdminUserCreate,
     is_sidebar: false,
     is_protect: true,
   },
   {
     path: `${RouteName.ADMIN_USER_UPDATE}:id`,
     parentRoute:`${RouteName.ADMIN_USER}`,
-    component: UserCreate,
+    component: AdminUserCreate,
     is_sidebar: false,
     is_protect: true,
   },
@@ -303,7 +307,7 @@ const dashboardRoutes = [
     sidebarName: "Products",
     // navbarName: "Products",
     icon: AccountBox,
-    component: ProductList,
+    component: ServiceGroupCreate,
     is_sidebar: true,
     is_protect: true,
     parent: "masters",
@@ -361,7 +365,7 @@ const dashboardRoutes = [
   {
     path: `${RouteName.CONTACT_CREATE}`,
     sidebarName: "Contact",
-    navbarName: "Contact",
+    //navbarName: "Contact",
     icon: SupervisedUserCircle,
     component: ContactCreate,
     is_sidebar: false,
@@ -509,6 +513,15 @@ const dashboardRoutes = [
     should_regex: false,
   },
   {
+    path: "null",
+    sidebarName: "Staff Management",
+    // navbarName: "Staff Management",
+    icon: AdminPanelSettings,
+    is_sidebar: true,
+    slug: "staff_manage",
+    is_parent: true,
+  },
+  {
     path: RouteName.CUSTOM_FILED,
     sidebarName: "Custom Filed",
     navbarName: "Custom Filed",
@@ -548,12 +561,29 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
   },
+ 
+  {
+    path: `${RouteName?.WHATSAPP_INVOICE}`,
+    component: InvoiceCreate,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
   {
     path: `${RouteName?.BLOGS_UPDATE}:id`,
     component: NewBlogsCreate,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
+  },
+  {
+    path: `${RouteName?.CUSTOMERS_ACQUISITION}`,
+    sidebarName: "Customers Acquisition",
+    navbarName: "Customers Acquisition",
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+    component:CustomerAcquisition
   },
 ];
 

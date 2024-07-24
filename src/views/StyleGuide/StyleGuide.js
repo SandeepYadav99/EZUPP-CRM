@@ -4,7 +4,7 @@ import CustomDatePicker from "../../components/FormFields/DatePicker/CustomDateP
 import RadioButtons from "../../components/RadioButtons/RadioButtons";
 import RadioButtonWithText from "../../components/RadioButtons/RadioButtonWithText";
 import BasicButtonGroup from "../../components/BasicButtonGroup/BasicButtonGroup";
-
+import Pipeline from "../../components/PipelineStages/Pipeline"
 import {
   ActionButton,
   ArrowActionButton,
@@ -213,6 +213,7 @@ const StyleGuide = ({}) => {
           <Typography variant={"h5"}>Select Field</Typography>
           <div className={styles.boxCont}>
             <CustomSelectField name={"name"} label={"Name"}>
+              
               <MenuItem value="Electrovese">Electrovese</MenuItem>
             </CustomSelectField>
             <br />
@@ -566,6 +567,22 @@ const StyleGuide = ({}) => {
         selectedIndex={0}
         onButtonClick={(index) => console.log(`Button ${index} clicked`)}
       />
+      <br></br>
+      <div>
+        <Typography variant={"h5"}>Pipeline Stages</Typography>
+      </div>
+      <br></br>
+        <Pipeline
+        buttonText={[
+          Constants.PIPELINE_STAGES.QUALIFIED,
+          Constants.PIPELINE_STAGES.CONTACT_MADE,
+          Constants.PIPELINE_STAGES.DEMO_SCHEDULED,
+          Constants.PIPELINE_STAGES.PROPOSAL_MADE,
+          Constants.PIPELINE_STAGES.NEGOTIATIONS_STARTED,
+        ]}
+        value={0}
+        onButtonClick={(index) => { }}
+        />
       <div className={styles.timeLineComponent}>
         <Typography gutterBottom variant="h5">
           Reusable TimeLine Component

@@ -1,12 +1,9 @@
-.backgroundColor {
+/* .backgroundColor {
   background-color: white !important;
-  /*border-top-left-radius: 10px;*/
-  /*border-top-right-radius: 10px;*/
-  /* border-radius: 10px; */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 0px 20px 80px #00000011 !important;
-}
+} */
 .title{
   display: 'flex' !important;
   align-items: center !important;
@@ -240,6 +237,28 @@ padding: 0px;
   padding-right:5px;
 
 }
+.dialogWrap{
+  padding: 2rem;
+  /* max-width: 100% !important; */
+}
+.cancelButton{
+  text-align: left !important;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.closeRow{
+  display: flex;
+  justify-content: space-between;
+}
+.close{
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
 @media (max-width: 500px) {
   .noEvent > img {
     width: 250px;
@@ -279,12 +298,17 @@ padding: 0px;
 
 @media only screen and (max-width: 769px) {
   .userImage {
-    width: 70px;
-    height: 70px;
+    width: 57px;
+    height: 57px;
     object-fit: cover;
     border-radius: 100% !important;
   }
   .meetingSchedule {
     min-width: 100%;
+    height: auto;
+  }
+  .containerWidth{
+    flex: none;
+    height: 522px !important;
   }
 }
