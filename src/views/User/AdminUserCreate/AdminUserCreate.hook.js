@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useReducer } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { useState } from "react";
 import { isAlphaNum, isEmail, isSpace } from "../../../libs/RegexUtils";
 import { useParams } from "react-router";
-
 import SnackbarUtils from "../../../libs/SnackbarUtils";
 import historyUtils from "../../../libs/history.utils";
 import LogUtils from "../../../libs/LogUtils";
@@ -10,9 +9,7 @@ import parsePhoneNumberFromString from "libphonenumber-js";
 import {
   serviceCreateProviderUser,
   serviceGetProviderUserDetail,
-  serviceProfileManager,
   serviceProviderIsExist,
-  serviceProviderProfileGetKeyword,
   serviceUpdateProviderUser,
 } from "../../../services/ProviderUser.service";
 import { serviceGetList } from "../../../services/index.services";
@@ -21,14 +18,13 @@ import debounce from "lodash.debounce";
 function useAdminUserCreateHook() {
   const initialForm = {
     name: "",
-    userName: "",
+    user_name: "",
     image: "",
     contact: "",
     email: "",
     role: "",
     type: "",
     employee_id: "",
-    // password: "1231231admin",
     joining_date: "",
     manager: "",
     end_date: "",
@@ -36,69 +32,64 @@ function useAdminUserCreateHook() {
     invoiteToUser: false,
     status: "",
   };
-  const initialState = {
-    manager: [],
-    ROLES: [],
-    images: null,
-    isSubmitting: false,
-  };
+
   const [form, setForm] = useState({ ...initialForm });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorData, setErrorData] = useState({});
+  const [listData, setListData] = useState({
+    ROLES: [],
+    MANAGERS: [],
+  });
+
   const { id } = useParams();
 
-  const userData = localStorage.getItem("user");
-  const userObject = JSON.parse(userData);
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "SET_MANAGER":
-        return { ...state, manager: action.payload };
-      case "ROLES":
-        return { ...state, ROLES: action.payload };
-      case "IMAGES":
-        return { ...state, images: action.payload };
-      case "IS_SUBMITING":
-        return { ...state, isSubmitting: action.payload };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
   console.log("form", form);
+
   useEffect(() => {
-    Promise.all([
-      serviceGetList(["ROLES", "MANAGERS"]),
-      serviceProfileManager({}),
-      serviceProviderProfileGetKeyword({
-        query: "",
-        type: "DEPARTMENT",
-      }),
-      serviceProviderProfileGetKeyword({
-        query: "",
-        type: "DESIGNATION",
-      }),
-    ]).then(([rolesRes, managerRes, departmentRes, designationRes]) => {
-      if (!rolesRes.error) {
-        dispatch({ type: "ROLES", payload: rolesRes.data });
-      }
-      if (!managerRes.error) {
-        dispatch({ type: "SET_MANAGER", payload: managerRes.data });
-      }
-      if (!departmentRes.error) {
-        dispatch({ type: "SET_DEPARTMENT", payload: departmentRes.data });
-      }
-      if (!designationRes.error) {
-        dispatch({ type: "SET_DESIGNATION", payload: designationRes.data });
+    serviceGetList(["ROLES", "MANAGERS"]).then((res) => {
+      if (!res.error) {
+        setListData(res.data);
       }
     });
   }, []);
 
+  useEffect(() => {
+    if (id) {
+      serviceGetProviderUserDetail({ id: id }).then((res) => {
+        if (!res.error) {
+          const data = res?.data;
+
+          const formData = {
+            ...form,
+            name: data?.name,
+            user_name: data?.user_name,
+            contact: data?.contact,
+            email: data?.email,
+            role: data?.role?.id,
+            employee_id: data?.employee_id,
+            joining_date: data?.joining_date,
+            manager: data?.manager?.id,
+            end_date: data?.exit_date,
+            manager_id: data?.is_manager,
+            invoiteToUser: data?.is_primary_user,
+            status: data?.status,
+          };
+
+          setForm(formData);
+        } else {
+          SnackbarUtils.error(res?.message);
+        }
+      });
+    }
+  }, [id]);
   const checkForUserInfo = useCallback(
     (data, fieldName, errorArr) => {
       if (data) {
-        let filteredForm = { id: id ? id : userObject?.user_id };
-        if (fieldName === "userName") {
+        let filteredForm = {};
+        if (id) {
+          filteredForm.id = id;
+        }
+        if (fieldName === "user_name") {
           filteredForm["user_name"] = data;
         } else {
           filteredForm[fieldName] = data;
@@ -117,7 +108,7 @@ function useAdminUserCreateHook() {
               if (fieldName === "email") {
                 errors[fieldName] = `Email already exist`;
               }
-              if (fieldName === "userName") {
+              if (fieldName === "user_name") {
                 errors[fieldName] = `Username already exists`;
               }
               setErrorData(errors);
@@ -138,49 +129,9 @@ function useAdminUserCreateHook() {
     }, 1000);
   }, [checkForUserInfo]);
 
-  useEffect(() => {
-    if (id) {
-      serviceGetProviderUserDetail({ id: id }).then((res) => {
-        if (!res.error) {
-          const data = res?.data;
-
-          const formData = {
-            ...form,
-            name: data?.name,
-            userName: data?.user_name,
-            contact: data?.contact,
-            email: data?.email,
-            role: data?.role?.id,
-            employee_id: data?.employee_id,
-            joining_date: data?.joining_date,
-            manager: data?.manager?.id,
-            end_date: data?.exit_date,
-            manager_id: data?.is_manager,
-            invoiteToUser: data?.is_primary_user,
-            status: data?.status,
-          };
-
-          setForm(formData);
-          dispatch({ type: "IMAGES", payload: data?.image });
-          // setImages(data?.image);
-        } else {
-          SnackbarUtils.error(res?.message);
-        }
-      });
-    }
-  }, [id]);
-
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = [
-      "name",
-      "email",
-      "contact",
-      "userName",
-      "status",
-      // "role",
-      ...(userObject?.user_id === id ? [] : ["employee_id"]),
-    ];
+    let required = ["name", "email", "contact", "user_name", "status"];
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
@@ -206,8 +157,8 @@ function useAdminUserCreateHook() {
     if (form?.name && form?.name?.trim().length < 2) {
       errors.name = true;
     }
-    if (form?.userName && form?.userName?.trim().length < 2) {
-      errors.userName = true;
+    if (form?.user_name && form?.user_name?.trim().length < 2) {
+      errors.user_name = true;
     }
     if (form?.employee_id?.trim().length < 2) {
       errors.employee_id = true;
@@ -255,7 +206,7 @@ function useAdminUserCreateHook() {
         if (!text || text.length <= 40) {
           t[fieldName] = text?.trimStart();
         }
-      } else if (fieldName === "userName") {
+      } else if (fieldName === "user_name") {
         if (!text || (isAlphaNum(text) && text?.length <= 20)) {
           t[fieldName] = text?.toLowerCase()?.trimStart();
         }
@@ -270,7 +221,7 @@ function useAdminUserCreateHook() {
       } else {
         t[fieldName] = text;
       }
-      if (["email", "employee_id", "userName"].includes(fieldName)) {
+      if (["email", "employee_id", "user_name"].includes(fieldName)) {
         checkUserInfoDebouncer(text, fieldName, errorData);
       }
       setForm(t);
@@ -281,9 +232,8 @@ function useAdminUserCreateHook() {
 
   const submitToServer = useCallback(
     (status) => {
-      if (!state?.isSubmitting) {
-        dispatch({ type: "IS_SUBMITING", payload: true });
-
+      if (isSubmitting) {
+        setIsSubmitting(true);
         const fd = new FormData();
 
         const formDataFields = {
@@ -291,30 +241,12 @@ function useAdminUserCreateHook() {
           image: form?.image,
           contact: form?.contact,
           email: form?.email,
-          user_name: form?.userName,
+          user_name: form?.user_name,
           is_primary_user: true,
           status: form?.status,
           // email_send: form?.invoiteToUser,
-          employee_id: form?.employee_id || userObject?.employee_id,
           country_code: 91,
         };
-        // if (form?.manager ) {
-        //   formDataFields.manager = form?.manager;
-        // }
-        // if (form?.role) {
-        //   formDataFields.role_id = form?.role;
-        // }
-        if (userObject?.user_id !== id) {
-          formDataFields.joining_date = form?.joining_date || "";
-          formDataFields.exit_date = form?.end_date || "";
-          formDataFields.designation = form?.designation
-            ? form?.designation
-            : "";
-          formDataFields.role_id = form?.role || "";
-          formDataFields.manager = form?.manager || "";
-          formDataFields.send_email = id ? false : form?.invoiteToUser;
-          formDataFields.is_manager = form?.manager_id;
-        }
 
         for (const field in formDataFields) {
           if (formDataFields.hasOwnProperty(field)) {
@@ -336,11 +268,11 @@ function useAdminUserCreateHook() {
           } else {
             SnackbarUtils.error(res?.message);
           }
-          dispatch({ type: "IS_SUBMITING", payload: false });
         });
+        setIsSubmitting(false);
       }
     },
-    [form, state, checkFormValidation, setErrorData]
+    [form, checkFormValidation, setErrorData]
   );
 
   const onBlurHandler = useCallback(
@@ -363,22 +295,19 @@ function useAdminUserCreateHook() {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer, state]
+    [checkFormValidation, setErrorData, form, submitToServer]
   );
 
   return {
     form,
     errorData,
-    listData: state?.ROLES,
+    listData,
     changeTextData,
     onBlurHandler,
     removeError,
     handleSubmit,
-    isSubmitting: state?.isSubmitting,
-    images: state?.images,
+    // images,
     id,
-    userId: userObject?.user_id,
-    manager: state.manager,
   };
 }
 

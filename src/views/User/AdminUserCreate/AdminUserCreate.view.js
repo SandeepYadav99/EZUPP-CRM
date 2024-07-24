@@ -16,6 +16,8 @@ import useAdminUserCreateHook from "./AdminUserCreate.hook";
 import { useTheme } from "@mui/styles";
 import CustomDatePicker from "../../../components/FormFields/DatePicker/CustomDatePicker";
 import CustomCheckbox from "../../../components/FormFields/CustomCheckbox";
+import CustomFileField from "../../../components/FileField/CustomFileField";
+import UploaderImage from "../../../components/FileComponent/UploaderImage.component";
 
 const AdminUserCreate = ({}) => {
   const {
@@ -56,27 +58,30 @@ const AdminUserCreate = ({}) => {
 
           <div className={styles.outerFlex}>
             <div className={styles.count}>
-              <File
-                style={{ margin: "auto" }}
-                max_size={5 * 1024 * 1024}
+              <CustomFileField
+                maxSize={5 * 1024 * 1024}
                 type={["jpg", "png", "jpeg"]}
-                fullWidth={true}
                 name="image"
                 accept={"image/*"}
-                label="Profile"
-                // link={""}
-                // bannerLabel
-                banner={true}
-                cirularBanner={true}
                 error={errorData?.image}
-                value={form?.image}
-                default_image={images ? images : ""}
                 onChange={(file) => {
                   if (file) {
                     changeTextData(file, "image");
                   }
                 }}
+                value={form?.image}
+                // defaultImage={require("../../../assets/img/profile.png")}
+                render={({ value, url, error, ...rest }) => (
+                  <UploaderImage
+                    cirularBanner
+                    error={error}
+                    value={value}
+                    url={url}
+                    {...rest}
+                  />
+                )}
               />
+
               <div className={styles.imageGuide}>
                 <ImageInfoToolTip
                   title={"Image Guide"}
@@ -109,15 +114,15 @@ const AdminUserCreate = ({}) => {
 
                 <div className={"formGroup"}>
                   <CustomTextField
-                    isError={errorData?.userName}
-                    errorText={errorData?.userName}
+                    isError={errorData?.user_name}
+                    errorText={errorData?.user_name}
                     label={"User Name"}
-                    value={form?.userName}
+                    value={form?.user_name}
                     onTextChange={(text) => {
-                      changeTextData(text, "userName");
+                      changeTextData(text, "user_name");
                     }}
                     // onBlur={() => {
-                    //   onBlurHandler("userName");
+                    //   onBlurHandler("user_name");
                     // }}
                   />
                 </div>
