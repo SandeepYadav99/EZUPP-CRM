@@ -4,7 +4,7 @@ import styles from "./File.module.css";
 import csx from "classnames";
 
 
-const FileFieldImageComponent = ({value, url, onChange}) => {
+const FileFieldImageComponent = ({value, url, onChange, error, default_image, multiple, title, accept}) => {
     return (
         <div>
             <div className={styles.imageBtnContainer}>
