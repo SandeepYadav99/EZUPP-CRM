@@ -42,6 +42,7 @@
 .row{
   display: flex;
   justify-content: space-between;
+  /* gap: 50px; */
 }
 .row21{
   display: flex;
@@ -92,11 +93,21 @@
     /* height: 508px; */
     margin-top: 25px;
     /* width: 70%; */
-    flex: 1 ;
+    /* flex: 1 ; */
     overflow: auto;
     padding: 22px 22px;
+    flex: 0 0 auto;
+    width: 28rem;
   }
-
+  .product1{
+   
+    margin-top: 25px;
+   height: 65% !important;
+   /* flex-grow: 1 !important; */
+  flex: 1;
+    padding: 22px 22px;
+   
+  }
   .leftSection {
     /*margin-right: 30px;*/
     margin-top: 25px;

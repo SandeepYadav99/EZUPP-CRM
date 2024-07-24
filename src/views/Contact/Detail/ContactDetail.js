@@ -9,9 +9,10 @@ import {
   PrimaryButton,
 } from "../../../components/Buttons/PrimaryButton";
 import removeTask from "../../../assets/Assets/ic_delete@2x.png";
-import editTask from "../../../assets/Assets/ic_edit_blue@2x.png";
+import editTask from "../../../assets/Assets/ic_edit_white.png";
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
+import LeadTimeLine from "../../../components/TimeLine/LeadTimeLine.component";
 import data from "./Data";
 import { it } from "date-fns/locale";
 const ContactDetail = () => {
@@ -86,6 +87,15 @@ const ContactDetail = () => {
               <Typography variant="h6" color={"text.secondary"} >D.O.B: {item.dob}</Typography>
               <Typography variant="h6" color={"text.secondary"} >Anniversary: {item.dob}</Typography>
             </ShadowBox>
+            <ShadowBox className={styles.product1}>
+            <Typography variant="h5">Status</Typography>
+            <LeadTimeLine
+              data={[{id: 1, status:'IN_PROGRESS', title: 'In Progress', description: 'Phone call follow up done regarding any more queries and offers explained', date: '10 Mins Ago'},
+                  {id: 2, status:'PENDING', title: 'Pending', description: 'Lead has been created for the Hair and nail related services', date: '2 Days Ago'}
+              ]}
+             
+          />
+           </ShadowBox>
           </div>
            <div className={styles.gridColumn}>
            <ShadowBox className={styles.product}>
