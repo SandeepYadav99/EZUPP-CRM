@@ -141,9 +141,9 @@
 }
 .checkbox {
   display: flex !important;
-  gap: 1px !important;
+  gap: 5px !important;
   align-items: center !important;
 }
 .checkboxAction {
-  margin: -3px 10px !important;
+  /* margin: -3px 10px !important; */
 }

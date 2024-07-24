@@ -5,8 +5,6 @@ import {
   CreateHeadaerComponent,
 } from "../../../components/CustomListHeader/CustomListHeader";
 import { MenuItem, Typography } from "@mui/material";
-import File from "../../../components/FileComponent/FileComponent.component";
-
 import ImageInfoToolTip from "../../../components/ImageInfo/ImageInfo";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import CustomPhoneContactField from "../../../FormFields/CustomPhoneContact.componet";
@@ -28,7 +26,7 @@ const AdminUserCreate = ({}) => {
     handleSubmit,
     userId,
     id,
-    images,
+    image,
     manager,
     listData,
     isSubmitting,
@@ -55,7 +53,6 @@ const AdminUserCreate = ({}) => {
           >
             Personal Information
           </Typography>
-
           <div className={styles.outerFlex}>
             <div className={styles.count}>
               <CustomFileField
@@ -70,7 +67,7 @@ const AdminUserCreate = ({}) => {
                   }
                 }}
                 value={form?.image}
-                // defaultImage={require("../../../assets/img/profile.png")}
+                defaultImage={image}
                 render={({ value, url, error, ...rest }) => (
                   <UploaderImage
                     cirularBanner
@@ -154,54 +151,32 @@ const AdminUserCreate = ({}) => {
                 </div>
               </div>
               <div className={"formFlex"}>
-                {id !== userId ? (
-                  <div className={"formGroup"}>
-                    {id ? (
-                      <CustomSelectField
-                        isError={errorData?.status}
-                        errorText={errorData?.status}
-                        label={"Status"}
-                        // disabled={userId === id ? true : false}
-                        value={form?.status}
-                        handleChange={(value) => {
-                          changeTextData(value, "status");
-                        }}
-                        className={styles.custonCSS}
-                      >
-                        <MenuItem value={"ACTIVE"}>Active</MenuItem>
-                        <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
-                        <MenuItem value={"DELETED"}>Deleted</MenuItem>
-                        <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
-                      </CustomSelectField>
-                    ) : (
-                      <CustomSelectField
-                        isError={errorData?.status}
-                        errorText={errorData?.status}
-                        label={"Status"}
-                        // disabled={userId === id ? true : false}
-                        value={form?.status}
-                        handleChange={(value) => {
-                          changeTextData(value, "status");
-                        }}
-                        className={styles.custonCSS}
-                      >
-                        <MenuItem value={"ACTIVE"}>Active</MenuItem>
-                        <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
-                      </CustomSelectField>
-                    )}
-                  </div>
-                ) : (
-                  <div className="formGroup"></div>
-                )}
                 <div className={"formGroup"}>
                   <CustomSelectField
-                    isError={errorData?.role}
-                    errorText={errorData?.role}
-                    label={"Role"}
-                    disabled={userId === id ? true : false}
-                    value={form?.role}
+                    isError={errorData?.status}
+                    errorText={errorData?.status}
+                    label={"Status"}
+                    value={form?.status}
                     handleChange={(value) => {
-                      changeTextData(value, "role");
+                      changeTextData(value, "status");
+                    }}
+                    className={styles.custonCSS}
+                  >
+                    <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                    <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                    <MenuItem value={"DELETED"}>Deleted</MenuItem>
+                    <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
+                  </CustomSelectField>
+                </div>
+
+                <div className={"formGroup"}>
+                  <CustomSelectField
+                    isError={errorData?.role_id}
+                    errorText={errorData?.role_id}
+                    label={"Role"}
+                    value={form?.role_id}
+                    handleChange={(value) => {
+                      changeTextData(value, "role_id");
                     }}
                     className={styles.custonCSS}
                   >
@@ -252,16 +227,16 @@ const AdminUserCreate = ({}) => {
             </div>
             <div className={"formGroup"}>
               <CustomSelectField
-                isError={errorData?.manager}
-                errorText={errorData?.manager}
+                isError={errorData?.manager_id}
+                errorText={errorData?.manager_id}
                 label={"Manager"}
                 className={styles.marginTop2}
-                value={form?.manager}
+                value={form?.manager_id}
                 handleChange={(value) => {
-                  changeTextData(value, "manager");
+                  changeTextData(value, "manager_id");
                 }}
               >
-                {manager?.map((item) => {
+                {listData?.MANAGERS?.map((item) => {
                   return (
                     <MenuItem
                       key={item?.id}
@@ -293,24 +268,45 @@ const AdminUserCreate = ({}) => {
                 // className={styles.dateContainer}
                 label={"End Date"}
                 onChange={(value) => {
-                  changeTextData(value, "end_date");
+                  changeTextData(value, "exit_date");
                 }}
-                value={form?.end_date}
-                isError={errorData?.end_date}
-                errorText={errorData?.end_date}
+                value={form?.exit_date}
+                isError={errorData?.exit_date}
+                errorText={errorData?.exit_date}
               />
             </div>
           </div>
+          <div className={"formFlex"}>
+            <div className={"formGroup"}>
+              <CustomSelectField
+                isError={errorData?.status}
+                errorText={errorData?.status}
+                label={"Status"}
+                // disabled={userId === id ? true : false}
+                value={form?.status}
+                handleChange={(value) => {
+                  changeTextData(value, "status");
+                }}
+                className={styles.custonCSS}
+              >
+                <MenuItem value={"ACTIVE"}>Active</MenuItem>
+                <MenuItem value={"INACTIVE"}>Inactive</MenuItem>
+                <MenuItem value={"DELETED"}>Deleted</MenuItem>
+                <MenuItem value={"SUSPENDED"}>Suspended</MenuItem>
+              </CustomSelectField>
+            </div>
 
+            <div className={"formGroup"}></div>
+          </div>
           <div className={styles.checkboxAction}>
             <div className={styles.checkbox}>
               <CustomCheckbox
                 sx={{ color: theme.palette.text.primary }}
-                value={form?.manager_id}
+                value={form?.is_manager}
                 handleChange={() => {
-                  changeTextData(!form?.manager_id, "manager_id");
+                  changeTextData(!form?.is_manager, "is_manager");
                 }}
-                checked={form?.manager_id}
+                checked={form?.is_manager}
               />
               <Typography
                 variant="body1"
@@ -322,31 +318,7 @@ const AdminUserCreate = ({}) => {
 
             <div className={styles.checkbox}>
               <CustomCheckbox
-                sx={{
-                  height: "15px",
-                  color: theme.palette.text.primary,
-                  "& .MuiSvgIcon-root": {},
-                }}
-                checked={form?.invoiteToUser}
-                value={form?.invoiteToUser}
-                handleChange={() => {
-                  changeTextData(!form?.invoiteToUser, "invoiteToUser");
-                }}
-              />
-              <Typography
-                variant="body1"
-                sx={{ marginLeft: theme.spacing(-2) }}
-              >
-                Provide login access to this staff
-              </Typography>
-            </div>
-            <div className={styles.checkbox}>
-              <CustomCheckbox
-                sx={{
-                  height: "15px",
-                  color: theme.palette.text.primary,
-                  "& .MuiSvgIcon-root": {},
-                }}
+                sx={{ color: theme.palette.text.primary }}
                 checked={form?.is_login_access}
                 value={form?.is_login_access}
                 handleChange={() => {
@@ -357,9 +329,27 @@ const AdminUserCreate = ({}) => {
                 variant="body1"
                 sx={{ marginLeft: theme.spacing(-2) }}
               >
-                Send Invite to user on email
+                Provide login access to this staff
               </Typography>
             </div>
+            {!id && (
+              <div className={styles.checkbox}>
+                <CustomCheckbox
+                  sx={{ color: theme.palette.text.primary }}
+                  checked={form?.send_email}
+                  value={form?.send_email}
+                  handleChange={() => {
+                    changeTextData(!form?.send_email, "send_email");
+                  }}
+                />
+                <Typography
+                  variant="body1"
+                  sx={{ marginLeft: theme.spacing(-2) }}
+                >
+                  Send Invite to user on email
+                </Typography>
+              </div>
+            )}
           </div>
         </div>
       </ShadowBox>

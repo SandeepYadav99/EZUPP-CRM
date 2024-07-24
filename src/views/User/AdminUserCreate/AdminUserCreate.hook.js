@@ -19,31 +19,31 @@ function useAdminUserCreateHook() {
   const initialForm = {
     name: "",
     user_name: "",
-    image: "",
+    image: null,
     contact: "",
     email: "",
-    role: "",
+    role_id: "",
     type: "",
     employee_id: "",
     joining_date: "",
-    manager: "",
-    end_date: "",
-    manager_id: false,
-    invoiteToUser: false,
+    exit_date: "",
+    manager_id: "",
+    is_login_access: false,
+    send_email: false,
+    is_manager: false,
     status: "",
   };
 
   const [form, setForm] = useState({ ...initialForm });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorData, setErrorData] = useState({});
+  const [image, setImage] = useState("");
   const [listData, setListData] = useState({
     ROLES: [],
     MANAGERS: [],
   });
 
   const { id } = useParams();
-
-  console.log("form", form);
 
   useEffect(() => {
     serviceGetList(["ROLES", "MANAGERS"]).then((res) => {
@@ -58,26 +58,24 @@ function useAdminUserCreateHook() {
       serviceGetProviderUserDetail({ id: id }).then((res) => {
         if (!res.error) {
           const data = res?.data;
-
-          const formData = {
-            ...form,
-            name: data?.name,
-            user_name: data?.user_name,
-            contact: data?.contact,
-            email: data?.email,
-            role: data?.role?.id,
-            employee_id: data?.employee_id,
-            joining_date: data?.joining_date,
-            manager: data?.manager?.id,
-            end_date: data?.exit_date,
-            manager_id: data?.is_manager,
-            invoiteToUser: data?.is_primary_user,
-            status: data?.status,
-          };
-
-          setForm(formData);
-        } else {
-          SnackbarUtils.error(res?.message);
+          const obj = {};
+          Object.keys({ ...initialForm })?.forEach((key) => {
+            if (
+              ["is_login_access", "send_email", "is_manager"]?.includes(key)
+            ) {
+              obj[key] = data[key] ? true : false;
+            } else if (key === "contact") {
+              const value = `+${data?.country_code} ${data?.contact}`;
+              obj[key] = value || "";
+            } else {
+              obj[key] = data[key] || "";
+            }
+          });
+          setForm({
+            ...obj,
+            image: null,
+          });
+          setImage(data?.image);
         }
       });
     }
@@ -94,7 +92,6 @@ function useAdminUserCreateHook() {
         } else {
           filteredForm[fieldName] = data;
         }
-
         let req = serviceProviderIsExist({
           ...filteredForm,
         });
@@ -142,14 +139,12 @@ function useAdminUserCreateHook() {
 
       if (val === "contact" && form?.contact) {
         const phoneNumber = parsePhoneNumberFromString(form.contact);
+        console.log("phoneNumber", phoneNumber);
         if (phoneNumber) {
-          if (phoneNumber?.isValid() === false) {
+          if (!phoneNumber?.isValid()) {
             errors.contact = true;
             SnackbarUtils.error("Invalid contact");
           }
-        } else {
-          errors.contact = true;
-          SnackbarUtils.error("Invalid contact");
         }
       }
     });
@@ -163,22 +158,20 @@ function useAdminUserCreateHook() {
     if (form?.employee_id?.trim().length < 2) {
       errors.employee_id = true;
     }
-    if (form?.designation && form?.designation?.trim().length < 2) {
-      errors.designation = true;
-    }
+
     if (form?.email && !isEmail(form?.email)) {
       errors.email = true;
     }
 
-    if (form?.joining_date && form?.end_date) {
+    if (form?.joining_date && form?.exit_date) {
       const joinDate = new Date(form?.joining_date).getTime();
-      const endDate = new Date(form?.end_date).getTime();
+      const endDate = new Date(form?.exit_date).getTime();
 
       if (joinDate > endDate) {
-        errors.end_date = SnackbarUtils.error(
+        errors.exit_date = SnackbarUtils.error(
           "Joining date should not be greater than end date"
         );
-        errors.end_date = true;
+        errors.exit_date = true;
       }
     }
 
@@ -188,7 +181,7 @@ function useAdminUserCreateHook() {
       }
     });
     return errors;
-  }, [form, errorData, form?.country_code]);
+  }, [form, errorData]);
   const removeError = useCallback(
     (title) => {
       const temp = JSON.parse(JSON.stringify(errorData));
@@ -230,50 +223,46 @@ function useAdminUserCreateHook() {
     [removeError, form, setForm]
   );
 
-  const submitToServer = useCallback(
-    (status) => {
-      if (isSubmitting) {
-        setIsSubmitting(true);
-        const fd = new FormData();
-
-        const formDataFields = {
-          name: form?.name,
-          image: form?.image,
-          contact: form?.contact,
-          email: form?.email,
-          user_name: form?.user_name,
-          is_primary_user: true,
-          status: form?.status,
-          // email_send: form?.invoiteToUser,
-          country_code: 91,
-        };
-
-        for (const field in formDataFields) {
-          if (formDataFields.hasOwnProperty(field)) {
-            fd.append(field, formDataFields[field]);
-          }
-        }
-
-        let req;
-        if (id) {
-          fd.append("id", id);
-          // fd.append("image", images ? images : null);
-          req = serviceUpdateProviderUser(fd);
-        } else {
-          req = serviceCreateProviderUser(fd);
-        }
-        req.then((res) => {
-          if (!res.error) {
-            historyUtils.goBack();
+  const submitToServer = useCallback(() => {
+    if (!isSubmitting) {
+      setIsSubmitting(true);
+      const fd = new FormData();
+      Object.keys(form).forEach((key) => {
+        if (["image"].indexOf(key) < 0 && form[key]) {
+          if (key === "contact") {
+            const phoneNumber = parsePhoneNumberFromString(form?.contact);
+            fd.append("country_code", phoneNumber?.countryCallingCode);
+            fd.append("contact", phoneNumber?.nationalNumber);
+          } else if (
+            ["is_login_access", "send_email", "is_manager"]?.includes(key)
+          ) {
+            fd.append(key, form[key] ? true : false);
           } else {
-            SnackbarUtils.error(res?.message);
+            fd.append(key, form[key]);
           }
-        });
-        setIsSubmitting(false);
+        }
+      });
+      if (form?.image) {
+        fd.append("image", form?.image);
       }
-    },
-    [form, checkFormValidation, setErrorData]
-  );
+
+      let req;
+      if (id) {
+        fd.append("id", id);
+        req = serviceUpdateProviderUser(fd);
+      } else {
+        req = serviceCreateProviderUser(fd);
+      }
+      req.then((res) => {
+        if (!res.error) {
+          historyUtils.goBack();
+        } else {
+          SnackbarUtils.error(res?.message);
+        }
+      });
+      setIsSubmitting(false);
+    }
+  }, [form, setForm, checkFormValidation, setErrorData]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -293,9 +282,9 @@ function useAdminUserCreateHook() {
         setErrorData(errors);
         return true;
       }
-      submitToServer(status);
+      submitToServer();
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, setForm, submitToServer]
   );
 
   return {
@@ -306,7 +295,7 @@ function useAdminUserCreateHook() {
     onBlurHandler,
     removeError,
     handleSubmit,
-    // images,
+    image,
     id,
   };
 }

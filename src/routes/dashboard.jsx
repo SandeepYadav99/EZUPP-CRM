@@ -193,13 +193,13 @@ const dashboardRoutes = [
   },
   {
     path: RouteName.ADMIN_USER,
-    sidebarName: "Admin Users",
-    // navbarName: "Admin Users",
+    sidebarName: "Staff List",
+    // navbarName: "Staff List",
     icon: People,
     component: UserList,
     is_sidebar: true,
     is_protect: true,
-    parent: "admin",
+    parent: "staff_manage",
   },
   {
     path: RouteName.ADMIN_USER_CREATE,
@@ -510,6 +510,15 @@ const dashboardRoutes = [
     is_sidebar: false,
     is_protect: true,
     should_regex: false,
+  },
+  {
+    path: "null",
+    sidebarName: "Staff Management",
+    // navbarName: "Staff Management",
+    icon: AdminPanelSettings,
+    is_sidebar: true,
+    slug: "staff_manage",
+    is_parent: true,
   },
   {
     path: RouteName.CUSTOM_FILED,
