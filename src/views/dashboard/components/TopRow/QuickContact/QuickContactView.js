@@ -92,6 +92,15 @@ function QuickContactView({ isOpen, handleToggle }) {
                   onTextChange={(text) => {
                     changeTextData(text, "contact");
                   }}
+                  isValid={(value) => {
+                    if (value.match(/12345/)) {
+                      return "";
+                    } else if (value.match(/1234/)) {
+                      return false;
+                    } else {
+                      return true;
+                    }
+                  }}
                 />
               </div>
         
@@ -119,7 +128,7 @@ function QuickContactView({ isOpen, handleToggle }) {
               label={"Prefix"}
               value={form?.prefix_type}
               handleChange={(value) => {
-                changeTextData(value, "prefix_type");
+                changeTextData(value, "prefix");
               }}
             >
               <MenuItem value="Mr">Mr</MenuItem>
@@ -204,14 +213,15 @@ function QuickContactView({ isOpen, handleToggle }) {
           Service Information
         </Typography>
         <MultiComplete
-          isError={errorData?.service_product}
+          isError={errorData?.interested_products}
           multiple
-          AutoCompleteList={listData?.PRODUCTS ? listData?.PRODUCTS : []}
+          AutoCompleteList={listData?.PRODUCTS ? listData?.PRODUCTS : []}         
           label={"Interested In"}
-          value={form?.service_product}
+          value={form?.interested_products}
           onTextChange={(text) => {
-            changeTextData(text, "service_product");
+            changeTextData(text, "interested_products");
           }}
+          
           enableField={["label"]}
         />
         <MultiComplete
@@ -244,38 +254,38 @@ function QuickContactView({ isOpen, handleToggle }) {
         </Typography>
 
         <MultiComplete
-          isError={errorData?.contact_owner}
+          isError={errorData?.lead_owner}
           AutoCompleteList={LeadOwnerData ? LeadOwnerData : []}
           label="Lead Owner"
-          value={form?.contact_owner}
+          value={form?.lead_owner}
           onTextChange={(text) => {
-            changeTextData(text, "contact_owner");
+            changeTextData(text, "lead_owner");
           }}
           enableField={["title"]}
         />
         <CustomSelectField
-          isError={errorData?.lead_stage_type}
-          errorText={errorData?.lead_stage_type}
+          isError={errorData?.lead_stage}
+          errorText={errorData?.lead_stage}
           label={"Lead Stage"}
-          value={form?.lead_stage_type}
+          value={form?.lead_stage}
           handleChange={(value) => {
-            changeTextData(value, "lead_stage_type");
+            changeTextData(value, "lead_stage");
           }}
         >
-          <MenuItem value="PENDING">PENDING</MenuItem>
-          <MenuItem value=" IN_PROGRESS"> IN PROGRESS</MenuItem>
+          <MenuItem value="PENDING">Pending</MenuItem>
+          <MenuItem value=" IN_PROGRESS"> In Progress</MenuItem>
           <MenuItem value="PROPOSAL_SENT">
-          PROPOSAL SENT
+          Propsal Sent
           </MenuItem>
-          <MenuItem value="ARCHIVED"> ARCHIVED</MenuItem>
-          <MenuItem value="CUSTOMER">CUSTOMER</MenuItem>
+          <MenuItem value="ARCHIVED"> Archived</MenuItem>
+          <MenuItem value="CUSTOMER">Customer</MenuItem>
         </CustomSelectField>
         <div style={{ display: "flex", gap: "0.5rem" }}>
           <CustomCheckbox
             sx={{ width: "1rem",}}
-            value={form?.is_lead_owner_task}
+            value={form?.should_add_task}
             handleChange={() => {
-              changeTextData(!form?.is_lead_owner_task, "is_lead_owner_task");
+              changeTextData(!form?.should_add_task, "should_add_task");
             }}
           />
           <Typography
@@ -290,7 +300,7 @@ function QuickContactView({ isOpen, handleToggle }) {
       </ShadowBox>
       <div className={styles.buttonBox}>
         <OutlineButton onClick={handleSubmit}>SAVE & ADD INFO</OutlineButton>
-        <PrimaryButton>CREATE</PrimaryButton>{" "}
+        <PrimaryButton onClick={handleSubmit}>CREATE</PrimaryButton>{" "}
       </div>
     </>
   );

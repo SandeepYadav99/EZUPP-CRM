@@ -46,7 +46,7 @@ const ProfilingLead = ({
         
         <div className={"formFlex"}>
           <div className={"formGroup"}>
-          {console.log("Product list: ",listData)}
+          {console.log(listData)}
           <MultiComplete
               size={"small"}
               multiple
@@ -97,86 +97,24 @@ const ProfilingLead = ({
           </div>
         </div>
         <div className={"formFlex"}>
-          <div className={"formGroup"}>
-          <MultiComplete
-          isError={errorData?.tags}
-          multiple
-          isArray
-          AutoCompleteList={associateTagsData ? associateTagsData : []}
-          label="Tags"
-          value={form?.tags}
-          onTextChange={(text) => {
-            changeTextData(text, "tags");
-          }}
-          enableField={["title"]}
-        />
-            
-          </div>
-          
-        </div>
-       
-      </ShadowBox>
-      <ShadowBox className={styles.contact}>
-        <div className={"headerFlex"}>
-          <h4 className={"infoTitle"}>
-            <Typography variant={"title"} className={"heading"}>
-              Lead Details
-            </Typography>
-            <Tooltip title="Info" aria-label="info" placement="right">
-              <InfoIcon fontSize={"small"} />
-            </Tooltip>
-          </h4>
-        </div>
-        <div className={"formFlex"}>
-          <div className={"formGroup"}>
-          <MultiComplete
-              isError={errorData?.lead_owner}
-              AutoCompleteList={LeadOwnerData ? LeadOwnerData : []}
-              label="Lead Owner"
-              value={form?.lead_owner}
-              onTextChange={(text) => {
-                changeTextData(text, "lead_owner");
-              }}
-              enableField={["title"]}
-              style={{ marginTop: "-0.5px" }}
-            />
-          </div>
-          <div className={"formGroup"}>
-          <Pipeline
-        buttonText={[
-         'Pending',
-    'In Progress',
-    'Proposal Sent',
-    'Archived',
-    'Customer',
-        ]}
-        value={form?.lead_stage}
-        // onButtonClick={(buttonText, index) => {
-        //   form.lead_stage = buttonText[index];
-        // }}
-        onButtonClick={(selectedValue) => {
-          form.lead_stage = selectedValue;
-        }}
-        className={styles.stages}
-        />
-          </div>
-        </div>
-        <div className={`formFlex `}>
-          <div className={"formGroup"}>
+            <div className={"formGroup"}>
             <CustomTextField
-              isError={errorData?.notes}
-              errorText={errorData?.notes}
-              label={"Notes"}
-              multiline
-              rows="3"
-              onTextChange={(text) => {
-                changeTextData(text, "notes");
-              }}
-              className={styles.desc}
-            />
-          </div>
-        </div>
+                type="referred_by"
+                isError={errorData?.referred_by}
+                errorText={errorData?.referred_by}
+                label={"Referred By"}
+                value={form?.referred_by}
+                onTextChange={(text) => {
+                  changeTextData(text, "referred_by");
+                }}
+                
+              />
+            </div>
+            <div className={"formGroup"}>
+                </div>
+</div>       
       </ShadowBox>
+      
     </>
   );
 };

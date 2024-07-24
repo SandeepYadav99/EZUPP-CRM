@@ -1,0 +1,175 @@
+
+  .upperFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .gridContainer{
+    display: flex;
+    gap:20px
+  }
+  .gridColumn{
+    display: flex;
+    flex-direction: column;
+   flex: 1;
+  }
+
+  .edit{
+    display: flex;
+    justify-content: space-between;
+   gap: 170px;
+  }
+.row{
+  display: flex;
+  justify-content: space-between;
+}
+.row21{
+  display: flex;
+  align-items: center;
+ gap: 20px;
+ justify-content: space-between !important;
+ 
+}
+.overview{
+    display: flex;
+    gap: 10px;
+}
+.overImg{
+    width: 65px;
+height: 65px;
+}
+.overviewComp{
+    display: flex;
+    flex-direction: column;
+}
+.downbtn{
+    display: flex;
+    flex-direction: end;
+    margin-left: auto;
+    margin-top: -40px;
+}
+.textContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column; 
+}
+.imageContainer {
+  display: inline-block;
+  /* width: 20px; 
+  height: 5px;  */
+}
+
+
+.row1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+
+}
+
+  .product{
+    margin-top: 25px;
+    /* flex: 1 ; */
+  flex: 0 0 auto;
+    padding: 22px 22px;
+   
+  }
+  .product1{
+   
+    margin-top: 25px;
+   height: 65% !important;
+   /* flex-grow: 1 !important; */
+  /* flex: 1; */
+    padding: 22px 22px;
+   
+  }
+  .tab{
+    height: 408px;
+    margin-top: 25px;
+    /* width: 70%; */
+    flex: 1 ;
+  width: 100%;
+    padding: 22px 22px;
+  }
+
+  .leftSection {
+    /*margin-right: 30px;*/
+    margin-top: 25px;
+    flex: 1  !important;
+  }
+
+  .profileHeading {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+ 
+
+  .line{
+    /* width: 100% !important; */
+    margin-top: 20px;
+    border-bottom: 1px solid #00000029;
+  }
+
+  
+  .lines {
+    border: none !important;  
+    border-bottom: 1px solid gray !important; 
+    padding: 2px !important;
+  }
+  .notfound {
+    text-align: center;
+    font-size: 20px;
+  
+  }
+
+
+.productHeading{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  margin-top: -7px;
+}
+.spacing{
+  margin-bottom: 8px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between; 
+}
+.savebutton{
+  text-align: right !important;
+}
+.buttonRow{
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 767px) {
+.upperFlex{
+  flex-wrap: wrap;
+} 
+.buttonRow{
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.gridContainer{
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.product{
+  width: 100%;
+}
+.productComm{
+  width: 18rem;
+}
+.row1 {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+}

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo , useState} from "react";
+import React, { useCallback, useMemo } from "react";
 import { Button, IconButton } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
@@ -12,15 +12,14 @@ import styles from "./Styles.module.css";
 import DataTables from "./../../Datatables/Datatable.table";
 import Constants from "./../../config/constants";
 import FilterComponent from "./../../components/Filter/Filter.component";
-import useUserListHook from "./ContactListHook";
+import useUserListHook from "./CustomerListHook";
 import capitalizeFirstLetter from "./../../hooks/CommonFunction";
 import { ArrowPrimaryButton } from "./../../components/Buttons/PrimaryButton";
 import StatusPill from "./../../components/Status/StatusPill.component";
 import { serviceDeleteProduct } from "./../../services/Product.service";
 import ShadowBox from "../../components/ShadowBox/ShadowBox";
 import BasicButtonGroup from "../../components/BasicButtonGroup/BasicButtonGroup";
-import ContactCreatehook from "./Create/ContactCreatehook";
-const ContactList = (props) => {
+const CustomersList = (props) => {
   const {
     handleSortOrderChange,
     handleRowSize,
@@ -32,14 +31,13 @@ const ContactList = (props) => {
     configFilter,
     handleCreate,
   } = useUserListHook({});
-//const{getProductNames, productMap}= ContactCreatehook({});
+
   const {
     present,
     all: allData,
     currentPage,
     is_fetching: isFetching,
   } = useSelector((state) => state.contact);
-
 
   const renderFirstCell = useCallback((user) => {
     return (
@@ -81,13 +79,13 @@ const ContactList = (props) => {
     () => [
       {
         key: "full_name",
-        label: "Name",
+        label: "Customer Name",
         sortable: false,
         render: (value, all) => <div>{renderFirstCell(all)}</div>,
       },
       {
         key: "contact",
-        label: "Contact Info",
+        label: "Contact ",
         sortable: false,
         render: (temp, all) => (
           <div>
@@ -98,45 +96,32 @@ const ContactList = (props) => {
         ),
       },
       {
-        key: "source",
-        label: "Source",
+        key: "total_purchase_value",
+        label: "Total Purchase Value",
         sortable: false,
         render: (temp, all) => (
           <div>
-            {all?.source}
+            {all?.total_purchase_value ?? 0}
            
           </div>
         ),
       },
       {
-        key: "interested_products",
-        label: "Interest Area",
+        key: "lifetime_visit_count",
+        label: "Lifetime Visit Count",
         sortable: false,
         render: (temp, all) => (
          
-         
-          <div className={styles.prodWrpa}>
-            
-            { console.log("interested_products:", all?.interested_products)}
-            {all?.interested_products?.map((item, index) => (
-              <Typography
-                variant={"body1"}
-                className={styles.tags}
-                key={`interested_products_${index}`}
-              >
-                {item?.name}
-              </Typography>
-            ))}
-          </div>
+          <div>{all.lifetime_visit_count ?? 0}</div>
+          
         
         ),
-        
       },
       {
-        key: "lead_stage",
-        label: "Status",
+        key: "last_visited_date",
+        label: "Last Visited Date",
         sortable: false,
-        render: (temp, all) => <div>{renderStatus(all.lead_stage)}</div>,
+        render: (temp, all) => <div>{all.last_visited_date ?? 0}</div>,
       },
       //   {
       //     key: "last_login",
@@ -199,7 +184,7 @@ const ContactList = (props) => {
           color={"text.primary"}
           className={styles.title}
         >
-          Contact List
+          Customer
         </Typography>
         <ArrowPrimaryButton
           onClick={handleCreate}
@@ -208,20 +193,8 @@ const ContactList = (props) => {
           CREATE
         </ArrowPrimaryButton>
       </div>
-      <br></br>
-      <br></br>
-      <BasicButtonGroup
-        buttonText={[
-          "Pending",
-          "In Progress",
-          "Proposal Sent",
-          "Archived",
-          "Customers",
-          "All",
-        ]}
-        selectedIndex={5}
-        onButtonClick={(index) => console.log(`Button ${index} clicked`)}
-      />
+     
+
       <div>
         <FilterComponent
           is_progress={isFetching}
@@ -244,4 +217,4 @@ const ContactList = (props) => {
   );
 };
 
-export default ContactList;
+export default CustomersList;

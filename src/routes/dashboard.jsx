@@ -33,6 +33,9 @@ import NotificationDetails from "../components/NotificationCard/NotificationDeta
 import ContactList from "../views/Contact/ContactList.container";
 import ContactCreate from "../views/Contact/Create/ContactCreate";
 import ContactDetail from "../views/Contact/Detail/ContactDetail";
+import CustomerCreate from "../views/Customer/Create/CustomerCreate";
+import CustomersList from "../views/Customer/CustomerList.container";
+import CustomerDetail from "../views/Customer/Detail/CustomerDetail";
 import {
   Dashboard,
   MeetingRoom,
@@ -373,11 +376,41 @@ const dashboardRoutes = [
     should_regex: false,
   },
   {
-    path: `${RouteName.CONTACT_DETAIL}`,
+    path: `${RouteName.CONTACT_DETAIL}:id`,
     sidebarName: "Contact",
     //navbarName: "Contact",
     icon: SupervisedUserCircle,
     component: ContactDetail,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path: `${RouteName.CUSTOMER_LIST}`,
+    sidebarName: "Customer",
+    // navbarName: "Contact",
+    icon: Contacts,
+    component: CustomersList,
+    is_sidebar: true,
+    is_protect: true,
+    should_regex: true,
+  },
+  {
+    path: `${RouteName.CUSTOMER_CREATE}`,
+    sidebarName: "Customer",
+    //navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: CustomerCreate,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
+    path: `${RouteName.CUSTOMER_DETAIL}`,
+    sidebarName: "Customer",
+    //navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: CustomerDetail,
     is_sidebar: false,
     is_protect: true,
     should_regex: false,

@@ -172,11 +172,11 @@ export default {
         DEMO_SCHEDULED: 'Demo Scheduled',
         PROPOSAL_MADE: 'Proposal Made',
         NEGOTIATIONS_STARTED:'Negotiations Started',
-        PENDING: 'Pending',
-        IN_PROGRESS: 'In Progress',
-        PROPOSAL_SENT: 'Proposal Sent',
-        ARCHIVED: 'Archived',
-        CUSTOMER: 'Customers'
+        PENDING: 'PENDING',
+        IN_PROGRESS: 'IN_PROGRESS',
+        PROPOSAL_SENT: 'PROPOSAL_SENT',
+        ARCHIVED: 'ARCHIVED',
+        CUSTOMER: 'CUSTOMER'
 
     },
     LOG_ENABLED: true,

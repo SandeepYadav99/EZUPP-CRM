@@ -20,13 +20,22 @@ export default function CustomButtonGroup({buttonText, value, onButtonClick}) {
   //     });
   //     onButtonClick(index);
   // };
-  const [selectedIndex, setSelectedIndex] = useState(value);
+  const [selectedIndex, setSelectedIndex] = useState(() => {
+    // Find the index of the initial value in buttonText array
+    return buttonText.indexOf(value);
+  });
+
+  useEffect(() => {
+    // Update selectedIndex whenever value changes
+    setSelectedIndex(buttonText.indexOf(value));
+  }, [value, buttonText]);
 
   const handleButtonClick = (index) => {
     setSelectedIndex(index);
     console.log('Button clicked:', buttonText[index]);
     onButtonClick(buttonText[index]);
   };
+ 
 
 
   return (
