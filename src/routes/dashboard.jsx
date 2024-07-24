@@ -73,6 +73,7 @@ import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
 import CustomFiled from "../views/CustomFiled/CustomFiled";
 import ServiceGroupCreate from "../views/ServiceGroup/ServiceGroupCreate/ServiceGroupCreate.view";
 import InvoiceCreate from "../views/WhatsappInvoice/InvoiceCreate/InvoiceCreate.view";
+import AdminUserCreate from "../views/User/AdminUserCreate/AdminUserCreate.view";
 
 
  
@@ -203,14 +204,14 @@ const dashboardRoutes = [
   {
     path: RouteName.ADMIN_USER_CREATE,
     parentRoute:`${RouteName.ADMIN_USER}`,
-    component: UserCreate,
+    component: AdminUserCreate,
     is_sidebar: false,
     is_protect: true,
   },
   {
     path: `${RouteName.ADMIN_USER_UPDATE}:id`,
     parentRoute:`${RouteName.ADMIN_USER}`,
-    component: UserCreate,
+    component: AdminUserCreate,
     is_sidebar: false,
     is_protect: true,
   },

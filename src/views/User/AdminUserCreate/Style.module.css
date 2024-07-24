@@ -1,0 +1,149 @@
+.mainContainer {
+  padding: 10px;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.7rem;
+}
+.headerContainer .title {
+  font-size: 1rem;
+}
+.bottomLine {
+  opacity: 0.4;
+  color: grey;
+  margin-bottom: 5px;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 1 */
+.firstCellFlex {
+  display: flex;
+  align-items: center;
+  gap: 8px !important;
+}
+.firstCellFlex img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block !important;
+}
+.emailLength {
+  max-width: 290px;
+  word-wrap: break-word;
+}
+.firstCellInfo {
+  /* margin-left: 10px; */
+}
+.actionButton {
+  display: flex;
+  gap: 2px;
+  margin-left: -10px !important;
+}
+
+.displayNam {
+}
+.displayNam::first-letter {
+  text-transform: uppercase;
+}
+.outerFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+}
+.subContainer {
+  margin: 10px !important;
+}
+.count {
+  margin: auto !important;
+}
+.outerFlex1 {
+  /* padding-bottom: 30px; */
+  margin-bottom: 24px !important;
+}
+.checkboxAction {
+  display: inline-block !important;
+}
+.actionButton {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-left: 8px !important;
+  width: 30% !important;
+}
+.iconButton {
+  display: flex;
+  gap: 5px;
+}
+.checkBoxmargin {
+  display: inline-block;
+  /* margin-bottom: 2px !important; */
+}
+.footerBox {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.saveButton {
+  text-align: right !important;
+  margin-top: 10px !important;
+}
+.imageGuide {
+  display: flex;
+  margin-top: 8px !important;
+  margin-left: 5px !important;
+  align-items: center !important;
+  gap: 1px !important;
+}
+.new_line {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2px;
+}
+.cont {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lowerWrap {
+  flex: 1;
+}
+.marginTop {
+  margin-top: 4px !important;
+}
+.marginTop1 {
+  margin-top: 4px !important;
+}
+.marginTop2 {
+  /* margin-top: -2px !important; */
+}
+.lowerWrap1 {
+  display: flex;
+  align-items: center !important;
+  flex: 1 1 100%;
+}
+.mainBox {
+  width: 100% !important;
+  margin-top: 25px;
+  margin-bottom: 10px !important;
+}
+.subMain {
+  margin-bottom: 32px !important;
+}
+.dateContainer {
+  width: 100% !important;
+}
+.checkbox {
+  display: flex !important;
+  gap: 1px !important;
+  align-items: center !important;
+}
+.checkboxAction {
+  margin: -3px 10px !important;
+}
