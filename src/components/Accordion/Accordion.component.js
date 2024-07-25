@@ -14,6 +14,7 @@ import {
 
 const Collapse = (props) => {
   const theme = useTheme();
+  console.log(theme)
   const [open, setOpen] = React.useState(false);
   const [expand, setExpand] = React.useState(true);
 
@@ -57,12 +58,15 @@ const Collapse = (props) => {
       return (
         <div
           className={classNames(styles.panelGroup)}
-          style={{
-            backgroundColor: theme.palette.mode === "dark" ? "#636578" : "#fff",
-            color: theme.palette.text.primary,
-          }}
+          // style={{
+          //   backgroundColor: theme.palette.tableHeadColor,
+          //   color: theme.palette.text.primary,
+          // }}
         >
-          <div className={classNames(styles.panelHeader)}>
+          <div className={classNames(styles.panelHeader)}  style={{
+            backgroundColor:  theme.palette.tableHeadColor,
+            color: theme.palette.text.primary,
+          }}>
             <span className={styles.title}>{title}</span>
             <div className={classNames(styles.editFlex, "editAccordion")}>
               <span className={styles.iconContainer} onClick={handleClick}>

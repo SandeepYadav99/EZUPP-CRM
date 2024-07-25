@@ -219,7 +219,13 @@
 .signContainer {
   /* padding: 10% 15%; */
 }
+.firstLoginContainer{
+  /* display: flex !important;
+  justify-content: space-between !important; */
+  margin-bottom: 15px !important;
+  margin-left: -5px !important;
 
+}
 .signContainer2 {
   padding-left: 15% !important;
   padding-right: 15% !important;

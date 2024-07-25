@@ -108,7 +108,7 @@ class TopicView extends Component{
                                 <Edit color={'primary'} fontSize={'small'}/>
                             </IconButton>
                         </li>
-                        <hr className={styles.line}/>
+                        {/* <hr className={styles.line}/> */}
                     </ul>
                 )
             })
