@@ -16,7 +16,7 @@ import history from "../../../libs/history.utils";
 
 const useSource = ({}) => {
   const [isSidePanel, setSidePanel] = useState(false);         
-  const [isCalling, setIsCalling] = useState(false);
+
   const [editData, setEditData] = useState(null);
 
   const dispatch = useDispatch();
@@ -86,14 +86,6 @@ const useSource = ({}) => {
     [queryFilter]
   );
  
-  const handleOpenSidePanel = useCallback(
-    (data) => {
-      setSidePanel((e) => !e);
-      setEditData(null);
-     
-    },
-    [ setSidePanel]
-  );
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
@@ -116,9 +108,7 @@ const useSource = ({}) => {
     history.push(`${RouteName.ADMIN_USER_UPDATE}${type?.id}`);
   }, []);
 
-  const handleProfile = useCallback((type) => {
-    history.push(`${"/profile/"}?id=${type?.id}`);
-  }, []);
+ 
   const handleToggleSidePannel = useCallback(
     (data) => {
       setSidePanel((e) => !e);
@@ -132,12 +122,7 @@ const useSource = ({}) => {
 
   const configFilter = useMemo(() => {
     return [
-      // {
-      //   label: "Created On",
-      //   name: "createdAt",
-      //   type: "date",
-      //   options: { maxDate: new Date() },
-      // },
+    
       {
         label: "Status",
         name: "status",
