@@ -1,5 +1,4 @@
 import React from "react";
-// import { ButtonBase } from "@material-ui/core";
 import styles from "./Style.module.css";
 import CustomTextField from "../../../../components/FormFields/TextField/TextField.component";
 import useEventFormHook from "./EventForm.hook";
@@ -11,7 +10,6 @@ import {
   OutlineButton,
   PrimaryButton,
 } from "../../../../components/Buttons/PrimaryButton";
-// import { Autocomplete } from "@material-ui/lab";
 
 const EventForm = ({ isOpen, handleToggle, candidateId, isInterview }) => {
   const {
