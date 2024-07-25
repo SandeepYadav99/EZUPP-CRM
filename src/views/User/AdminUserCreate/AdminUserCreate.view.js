@@ -74,7 +74,6 @@ const AdminUserCreate = ({}) => {
                     error={error}
                     value={value}
                     url={url}
-                    default_image={image}
                     {...rest}
                   />
                 )}

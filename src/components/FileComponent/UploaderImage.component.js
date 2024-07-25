@@ -15,7 +15,7 @@ function UploaderImage({
 }) {
   const backgroundStyle = useMemo(
     () => ({
-      // backgroundImage: `url(${url})`,
+      backgroundImage: `url(${url})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       borderColor: error ? "red" : "#c2c2c2",
@@ -54,9 +54,7 @@ function UploaderImage({
           }
           style={backgroundStyle}
         >
-          {url && <img src={url} alt=".." crossOrigin="anonymous" />}
-
-          <div className={styles.imgLowerContainer}>
+         <div className={styles.imgLowerContainer}>
             <div style={{ marginTop: "20px" }}>
               <span className={styles.plus}>{renderPlusIcon()}</span>
               <div className={styles.textUpload}>{renderTextUpload()}</div>
