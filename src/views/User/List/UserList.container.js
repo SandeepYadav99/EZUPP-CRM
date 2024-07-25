@@ -1,13 +1,7 @@
 import React, { useCallback, useMemo } from "react";
-import { IconButton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import {
-  Info as EditIcon,
-  Info,
-  OpenInNew as OpenInNewIcon,
-  Edit,
-} from "@mui/icons-material";
 import addTask from "../../../assets/img/ic_add_task@2x.png";
 import styles from "../Style.module.css";
 import DataTables from "../../../Datatables/Datatable.table";
@@ -15,7 +9,6 @@ import Constants from "../../../config/constants";
 import FilterComponent from "../../../components/Filter/Filter.component";
 import useUserListHook from "./UserListHook";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
-
 import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 import StatusPill from "../../../components/Status/StatusPill.component";
 import {
@@ -111,13 +104,6 @@ const UserList = (props) => {
         ),
       },
       {
-        key: "designation",
-        label: "Designation",
-
-        sortable: false,
-        render: (temp, all) => <div>{capitalizeFirstLetter(all?.designation) || "N/A"}</div>,
-      },
-      {
         key: "role",
         label: "User Role",
 
@@ -196,7 +182,7 @@ const UserList = (props) => {
         <CustomListHeader
           title={"CREATE"}
           handleCreate={handleCreate}
-          sideTitlle={"User List"}
+          sideTitlle={"Staff List"}
         />
 
         <div>

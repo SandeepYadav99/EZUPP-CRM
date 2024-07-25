@@ -91,6 +91,7 @@ const DarkTheme = (colors) => {
       medium: "#FF9100",
       low: "#78D90F",
       active: "#03AE85",
+      ACTIVE: "#03AE85",
       business: "#888cff",
       Discuss: "#636578",
       service: "#636578",

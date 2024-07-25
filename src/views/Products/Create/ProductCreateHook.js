@@ -8,119 +8,83 @@ import {
   serviceCreateProduct,
   serviceUpdateProduct,
   serviceDeleteProduct,
-  serviceProductCheck,
-  serviceGetProductDetails
+  serviceGetProductDetails,
 } from "../../../services/Product.service";
 import {
   serviceGetTagList,
   serviceGetUnitsList,
 } from "../../../services/index.services";
-import { validateUrl } from "../../../libs/RegexUtils";
 import history from "../../../libs/history.utils";
-import useDebounce from "../../../hooks/DebounceHook";
 
-function useProductCreateHook() {
+function useProductCreateHook({ location }) {
   const initialForm = {
     name: "",
-    code: "",
-    product_link: "",
-    tags: [],
-    description: "",
-    image: null,
-    unit_id: "",
-    currency: "",
-    ballpark_cost: "",
-    ballpark_price: "",
-    discount_percent: "",
-    discount_value: "",
+    duration: "",
+    staff_ids: [],
+    tax_slab: "",
+    hsn_code: "",
     type: "",
-    status: "",
-    is_show_public: false,
-    is_value_add: false,
+    currency: "",
+    reminder_days: "",
+    full_price: "",
+    discounted_price: "",
+    description: "",
+    is_active: true,
   };
-
+  const parentId = location?.state?.parentId;
   const [form, setForm] = useState({ ...initialForm });
   const [errorData, setErrorData] = useState({});
   const [images, setImages] = useState(null);
   const { id } = useParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [profileDetails, setProfileDetails] = useState({});
   const [listData, setListData] = useState({
     UNITS: [],
   });
 
   const [tagList, setTagList] = useState([]);
-  const codeDebouncer = useDebounce(form?.code, 500);
- 
-  useEffect(() => {
-    (() => {
-      Promise.allSettled([
-        serviceGetUnitsList(["UNITS"]),
-        serviceGetTagList({
-          query: "",
-          type: "PRODUCT",
-        }),
-      ]).then((promises) => {
-        const unitList = promises[0]?.value?.data;
-        const tagList = promises[1]?.value?.data;
-        setListData(unitList);
-        setTagList([...tagList]);
-      });
-    })();
-  }, []);
+
+  // useEffect(() => {
+  //   (() => {
+  //     Promise.allSettled([
+  //       serviceGetUnitsList(["UNITS"]),
+  //       serviceGetTagList({
+  //         query: "",
+  //         type: "PRODUCT",
+  //       }),
+  //     ]).then((promises) => {
+  //       const unitList = promises[0]?.value?.data;
+  //       const tagList = promises[1]?.value?.data;
+  //       setListData(unitList);
+  //       setTagList([...tagList]);
+  //     });
+  //   })();
+  // }, []);
 
   useEffect(() => {
     if (id) {
       serviceGetProductDetails({ id }).then((res) => {
         if (!res.error) {
           const details = res.data.details;
-          const obj ={}
-          Object.keys({...initialForm})?.forEach((key)=>{
-            if(key !== "image"){
-              obj[key] = details[key] != null ? details[key] : initialForm[key];
+          const obj = { product_group_id: details?.product_group_id };
+          Object.keys({ ...initialForm })?.forEach((key) => {
+            if (key === "is_active") {
+              obj[key] = details["status"] === "ACTIVE";
+            } else {
+              obj[key] = details[key] || "";
             }
-          })
+          });
           setForm({
             ...form,
             ...obj,
-            // image: details.image || initialForm.image
-          })
-          // if (details.image) {
-          //   setImages(details.image);
-          // }
-          setImages(details?.image);
-        console.log("image", details?.image)
-        } 
+          });
+        }
       });
     }
-  
-    
   }, [id]);
-
-  const checkCodeValidation = useCallback(() => {
-    serviceProductCheck({ code: form?.code , id:id ? id : null }).then((res) => {
-      if (!res.error) {
-        const errors = JSON.parse(JSON.stringify(errorData));
-        if (res.data.is_exists) {
-          errors["code"] = "Product code already exists";
-          setErrorData(errors);
-        } else {
-          delete errors.code;
-          setErrorData(errors);
-        }
-      }
-    });
-  }, [errorData, setErrorData, form?.code, id]);
-
-  useEffect(() => {
-    if (codeDebouncer) {
-      checkCodeValidation();
-    }
-  }, [codeDebouncer]);
 
   const checkFormValidation = useCallback(() => {
     const errors = { ...errorData };
-    let required = ["name", "code", "type", "currency", "status", "unit_id"];
+    let required = ["name", "duration", "currency", "full_price","type"];
     required.forEach((val) => {
       if (
         (!form?.[val] && parseInt(form?.[val]) != 0) ||
@@ -131,31 +95,7 @@ function useProductCreateHook() {
         delete errors[val];
       }
     });
-    if (form?.name?.length < 2) {
-      errors["name"] = true;
-    }
-    if (form?.code?.length < 2) {
-      errors["code"] = true;
-    }
-    if (form?.product_link && !validateUrl(form?.product_link)) {
-      SnackbarUtils.error("Please Enter the Valid Url");
-      errors["product_link"] = true;
-    }
-    // if (form.discount_value > form.ballpark_price) {
-    //   SnackbarUtils.error(
-    //     "Discount value should not be greater than Ballpark price value"
-    //   );
-    //   errors["discount_value"] = true;
-    // }
-    if (form.discount_value !== "" && (form.ballpark_price === null || form.ballpark_price === "")) {
-      SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
-      errors["discount_value"] = true;
-    } else if (form.discount_value !== null && form.ballpark_price !== null) {
-      if (form.discount_value > form.ballpark_price) {
-        SnackbarUtils.error("Discount value should not be greater than Ballpark price value");
-        errors["discount_value"] = true;
-      }
-    }
+
     Object.keys(errors).forEach((key) => {
       if (!errors[key]) {
         delete errors[key];
@@ -167,10 +107,10 @@ function useProductCreateHook() {
   const removeError = useCallback(
     (title) => {
       const temp = JSON.parse(JSON.stringify(errorData));
-      if(title !== "code"){
+      if (title !== "code") {
         temp[title] = false;
         setErrorData(temp);
-    }
+      }
     },
     [setErrorData, errorData]
   );
@@ -180,50 +120,21 @@ function useProductCreateHook() {
       let shouldRemoveError = true;
       const t = { ...form };
       if (
-        ["ballpark_cost", "ballpark_price", "discount_value"]?.includes(
-          fieldName
-        )
+        [
+          "duration",
+          "tax_slab",
+          "reminder_days",
+          "full_price",
+          "discounted_price",
+        ]?.includes(fieldName)
       ) {
         if (text >= 0) {
-          t[fieldName] = text;
-          setForm(t);
-          setProfileDetails((prevDetails) => ({
-           ...prevDetails,
-            [fieldName]: text,
-          }));
-        }
-      } else if (fieldName === "discount_percent") {
-        if (text >= 0 && text <= 100) {
-          t[fieldName] = text;
-        }
-      } else if (fieldName === "code") {
-        if (text?.length <= 40) {
           t[fieldName] = text;
         }
       } else if (fieldName === "name") {
         if (text?.length <= 100) {
           t[fieldName] = text;
         }
-      } else if (fieldName === "tags") {
-        const tempKeywords = text?.filter((val, index) => {
-          if (val?.trim() === "") {
-            return false;
-          } else if (val?.length < 2 || val?.length > 20) {
-            SnackbarUtils.error(
-              "Values cannot be less than 2 and more than 20 character"
-            );
-            return false;
-          } else {
-            const key = val?.trim().toLowerCase();
-            const isThere = text?.findIndex(
-              (keyTwo, indexTwo) =>
-                keyTwo?.toLowerCase() === key && index !== indexTwo
-            );
-            return isThere < 0;
-          }
-        });
-        console.log("tempKeywords", tempKeywords);
-        t[fieldName] = tempKeywords;
       } else {
         t[fieldName] = text;
       }
@@ -233,53 +144,30 @@ function useProductCreateHook() {
     [removeError, form, setForm]
   );
   console.log(form, "Form");
-  const submitToServer = useCallback(
-    (status) => {
-      if (!isSubmitting) {
-        setIsSubmitting(true);
-        const fd = new FormData();
-        Object.keys(form).forEach((key) => {
-          if (["image"].indexOf(key) < 0) {
-            if (key === "is_show_public" || key === "is_value_add") {
-              fd.append(key, form[key] ? true : false);
-            } else {
-              if (
-                ["ballpark_cost", "ballpark_price", "discount_percent", "discount_value"].includes(key) &&
-                form[key] == null
-              ) {
-                fd.append(key, 0);
-              } else {
-                fd.append(key, form[key]);
-              }
-              //fd.append(key, form[key]);
-            }
-          }
-        });
-        if (form?.image) {
-          fd.append("image", form?.image);
-        }
-        let req;
-        if (id) {
-          fd.append("id", id);
-          req = serviceUpdateProduct(fd);
-        } else {
-          req = serviceCreateProduct(fd);
-        }
-        req.then((res) => {
-          if (!res.error) {
-            historyUtils.goBack();
-          } else {
-            SnackbarUtils.error(res?.message);
-            if (res.message.includes("Product code already exists")) {
-              setErrorData((prev) => ({ ...prev, code: true }));
-            }
-          }
-          setIsSubmitting(false);
-        });
+  const submitToServer = useCallback(() => {
+    if (!isSubmitting) {
+      setIsSubmitting(true);
+      let req;
+      const data = { ...form };
+      if (parentId) {
+        data.product_group_id = parentId;
       }
-    },
-    [form, isSubmitting, setIsSubmitting]
-  );
+      if (id) {
+        data.id = id;
+        req = serviceUpdateProduct({ ...data });
+      } else {
+        req = serviceCreateProduct({ ...data });
+      }
+      req.then((res) => {
+        if (!res.error) {
+          historyUtils.goBack();
+        } else {
+          SnackbarUtils.error(res?.message);
+        }
+        setIsSubmitting(false);
+      });
+    }
+  }, [form, isSubmitting, setIsSubmitting, parentId]);
 
   const onBlurHandler = useCallback(
     (type) => {
@@ -287,7 +175,7 @@ function useProductCreateHook() {
         changeTextData(form?.[type].trim(), type);
       }
     },
-    [changeTextData, checkCodeValidation]
+    [changeTextData]
   );
 
   const handleSubmit = useCallback(
@@ -300,7 +188,7 @@ function useProductCreateHook() {
       }
       submitToServer(status);
     },
-    [checkFormValidation, setErrorData, form, submitToServer]
+    [checkFormValidation, setErrorData, form, submitToServer, parentId]
   );
 
   const handleCancel = useCallback(() => {
