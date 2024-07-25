@@ -76,6 +76,7 @@ import InvoiceCreate from "../views/WhatsappInvoice/InvoiceCreate/InvoiceCreate.
 import AdminUserCreate from "../views/User/AdminUserCreate/AdminUserCreate.view";
 
 const CustomerAcquisition = lazy(() => import('../views/CustomerAcquisition/List/CustomerAcquisition')); 
+const Source = lazy(() => import('../views/Source/List/Source')); 
 
  
 const dashboardRoutes = [
@@ -584,6 +585,15 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
     component:CustomerAcquisition
+  },
+  {
+    path: `${RouteName?.SOURCE}`,
+    sidebarName: "Source",
+    navbarName: "Source",
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+    component:Source
   },
 ];
 
