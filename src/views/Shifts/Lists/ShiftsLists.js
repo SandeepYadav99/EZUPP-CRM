@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { IconButton,ButtonBase, Avatar  } from "@mui/material";
+import { IconButton, ButtonBase, Avatar } from "@mui/material";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import PageBox from "../../../components/PageBox/PageBox.component";
@@ -18,8 +18,11 @@ import {
   Add,
   DeleteOutline,
   Edit,
+  Info,
   InfoOutlined,
 } from "@mui/icons-material";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
 
 const ShiftsLists = ({}) => {
   const {
@@ -40,6 +43,7 @@ const ShiftsLists = ({}) => {
     isDelete,
     deleteId,
   } = useShiftsListsHook({});
+  const theme = useTheme();
 
   const {
     data,
@@ -141,7 +145,7 @@ const ShiftsLists = ({}) => {
         label: "Action",
         render: (temp, all) => (
           <div>
-            <IconButton
+            {/* <IconButton
               className={"tableActionBtn"}
               color="secondary"
               disabled={isCalling}
@@ -150,30 +154,50 @@ const ShiftsLists = ({}) => {
               }}
             >
               <InfoOutlined fontSize={"small"} />
+            </IconButton> */}
+            <IconButton
+              disableRipple="false"
+              onClick={() => {
+                // handleSideToggle(all?.id);
+                handleViewShiftDetail(all);
+              }}
+            >
+              <Info
+                fontSize={"small"}
+                sx={{
+                  color: theme.palette.text.primary,
+                }}
+              />
             </IconButton>
             {!all?.is_default && (
               <IconButton
-                className={"tableActionBtn"}
-                color="secondary"
-                disabled={isCalling}
+                disableRipple="false"
                 onClick={() => {
                   handleToggleSidePannel(all);
                 }}
               >
-                <Edit fontSize={"small"} />
+                <Edit
+                  fontSize={"small"}
+                  sx={{
+                    color: theme.palette.text.primary,
+                  }}
+                />
               </IconButton>
             )}
 
             {!all?.is_default && (
               <IconButton
-                className={"tableActionBtn"}
-                color="secondary"
-                disabled={isCalling}
+                disableRipple="false"
                 onClick={() => {
                   toggleDelete(all);
                 }}
               >
-                <DeleteOutline fontSize={"small"} />
+                <DeleteOutline
+                  fontSize={"small"}
+                  sx={{
+                    color: theme.palette.text.primary,
+                  }}
+                />
               </IconButton>
             )}
           </div>
@@ -219,7 +243,7 @@ const ShiftsLists = ({}) => {
 
   return (
     <div>
-      <PageBox>
+      <ShadowBox className={styles.wrapper}>
         <div className={styles.headerContainer}>
           <div>
             <span className={styles.title}>Shifts</span>
@@ -270,7 +294,7 @@ const ShiftsLists = ({}) => {
             />
           </div>
         </div>
-      </PageBox>
+      </ShadowBox>
       <SidePanelComponent
         handleToggle={() => handleToggleSidePannel()}
         title={renderTile()}

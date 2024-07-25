@@ -13,6 +13,7 @@ import StatusPill from "../../../components/Status/StatusPill.component";
 import { Add, Delete, DeleteOutline, Info } from "@mui/icons-material";
 import capitalizeFirstLetter from "../../../hooks/CommonFunction";
 import { ButtonBase,IconButton } from "@mui/material";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 
 const AssociatedEmployees = ({ listData, id }) => {
   const {
@@ -169,7 +170,7 @@ const AssociatedEmployees = ({ listData, id }) => {
     );
   }, [id]);
   return (
-    <PageBoxComponent>
+    <ShadowBox className={styles.wrapper}>
       <div className={styles.listAction}>
         <div className={styles.employeTitle}>
           Associated Employees ({data?.length || 0})
@@ -205,7 +206,7 @@ const AssociatedEmployees = ({ listData, id }) => {
         <AddEmployeeTable isOpen={isSidePanel} handleClose={handleSideToggle} />
         }
       </SidePanelComponent>
-    </PageBoxComponent>
+    </ShadowBox>
   );
 };
 

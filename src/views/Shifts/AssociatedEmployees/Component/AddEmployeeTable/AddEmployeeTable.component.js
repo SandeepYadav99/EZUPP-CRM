@@ -120,7 +120,7 @@ const AddEmployeeTable = ({ handleClose }) => {
       ...Constants.DATATABLE_PROPERTIES,
       columns: tableStructure,
       data: currentData,
-      count: data.length,
+      count: data?.length,
       page: currentPage - 1,
       rowsPerPage: 10,
       allRowSelected: false,

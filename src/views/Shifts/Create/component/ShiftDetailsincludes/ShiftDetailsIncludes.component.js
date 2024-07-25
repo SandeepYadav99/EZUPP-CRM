@@ -76,13 +76,13 @@ const ShiftDetailsIncludeForm = (
           err[key] = true;
         }
       });
-      if (val?.start_time && !isDate(val?.start_time)) {
+      if (val?.start_time && !isDate(new Date(val?.start_time))) {
         if (isInvalidDateFormat(val?.start_time)) {
           SnackbarUtils.error("Please enter the valid Time");
           err["start_time"] = true;
         }
       }
-      if (val?.end_time && !isDate(val?.end_time)) {
+      if (val?.end_time && !isDate(new Date (val?.end_time))) {
         if (isInvalidDateFormat(val?.end_time)) {
           SnackbarUtils.error("Please enter the valid Time");
           err["end_time"] = true;

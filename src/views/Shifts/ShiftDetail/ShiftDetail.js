@@ -10,6 +10,7 @@ import { actionDetailShifts } from "../../../actions/ShiftsLists.action";
 import WaitingComponent from "../../../components/Waiting.component";
 import { ArrowBackIos } from "@mui/icons-material";
 import { ButtonBase } from "@mui/material";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
 
 const ShiftDetail = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const ShiftDetail = () => {
   }
   
   return (
-    <div>
+    <ShadowBox className={styles.Wrapper}>
       <div className={styles.container}>
         <ButtonBase onClick={() => historyUtils.goBack()}>
           <ArrowBackIos fontSize={"small"} />{" "}
@@ -39,7 +40,7 @@ const ShiftDetail = () => {
       <div className={styles.employe}>
         <AssociatedEmployees />
       </div>
-    </div>
+    </ShadowBox>
   );
 };
 

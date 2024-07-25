@@ -43,16 +43,16 @@ const useAddEmployeeTable = ({ handleClose }) => {
     const from = currentPage * totalShow - totalShow;
     let to = currentPage * totalShow;
 
-    if (from <= data.length) {
-      to = to <= data.length ? to : data.length;
-      setCurrentData(data.slice(from, to));
+    if (from <= data?.length) {
+      to = to <= data?.length ? to : data?.length;
+      setCurrentData(data?.slice(from, to));
     }
   };
 
   const handlePageChange = useCallback(
     (type) => {
       console.log("_handlePageChange", type);
-      if (Math.ceil(data.length / totalShow) >= type + 1) {
+      if (Math.ceil(data?.length / totalShow) >= type + 1) {
         setCurrentPage(type + 1);
         _processData();
       }
@@ -77,7 +77,7 @@ const useAddEmployeeTable = ({ handleClose }) => {
       console.log("_handleSearchValueChange", value);
       queryFilter("SEARCH_TEXT", value);
       if (value) {
-        const tempData = allData.filter((val) => {
+        const tempData = allData?.filter((val) => {
           if (
             val?.name?.match(new RegExp(value, "ig")) ||
             val?.code?.match(new RegExp(value, "ig"))
@@ -105,7 +105,7 @@ const useAddEmployeeTable = ({ handleClose }) => {
   const handleCheckbox = useCallback(
     (data) => {
       const tempSelected = JSON.parse(JSON.stringify(selected));
-      const tempIndex = tempSelected.findIndex((sel) => sel.id === data.id);
+      const tempIndex = tempSelected.findIndex((sel) => sel.id === data?.id);
       if (tempIndex >= 0) {
         tempSelected.splice(tempIndex, 1);
       } else {

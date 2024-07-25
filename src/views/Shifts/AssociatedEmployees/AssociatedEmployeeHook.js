@@ -41,16 +41,16 @@ const useAssociatedEmployeeHook = ({}) => {
     //     }
     // });
 
-    if (from <= data.length) {
-      to = to <= data.length ? to : data.length;
-      setCurrentData(data.slice(from, to));
+    if (from <= data?.length) {
+      to = to <= data?.length ? to : data?.length;
+      setCurrentData(data?.slice(from, to));
     }
   }, [setCurrentData, currentPage, data, totalShow]);
 
   const handlePageChange = useCallback(
     (type) => {
       console.log(data);
-      if (Math.ceil(data.length / totalShow) >= type + 1) {
+      if (Math.ceil(data?.length / totalShow) >= type + 1) {
         setCurrentPage(type + 1);
         _processData();
       }

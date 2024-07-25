@@ -1,19 +1,24 @@
 import React, { useCallback } from "react";
-import PageBoxComponent from "../../../components/PageBox/PageBox.component";
 import styles from "./Style.module.css";
 import { getWorkingDays } from "../../../helper/Helper";
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
+import ShadowBox from "../../../components/ShadowBox/ShadowBox";
+import { useTheme } from "@mui/styles";
 
 const ShiftDetailView = ({ shiftDays }) => {
+  const theme = useTheme();
   const renderShift = useCallback((shift) => {
-    
     if (shift?.is_week_off && !shift?.is_occasional_working) {
       return (
         <div className={styles.avatorSubFlex} key={shift?.name}>
           <Avatar className={styles.avator}>
             {shift?.name?.substring(0, 2)}
           </Avatar>
-          <div className={styles.title}>Week Off</div>
+          <div className={styles.title}>
+            <Typography variant="body1" color={theme?.palette?.text?.secondary}>
+              Week Off
+            </Typography>
+          </div>
         </div>
       );
     } else if (shift?.is_occasional_working && shift?.is_week_off) {
@@ -27,7 +32,14 @@ const ShiftDetailView = ({ shiftDays }) => {
               {shift?.startDateText} - {shift?.endDateText}
             </div>
             <div className={styles.fontSize}>
-              (Occasional Working Days: {shift?.occasional_working_days?.map((res, i, arr)=><span>{getWorkingDays[res]}{i !== (arr.length-1) ? ', ' : ''}</span>)})
+              (Occasional Working Days:{" "}
+              {shift?.occasional_working_days?.map((res, i, arr) => (
+                <span>
+                  {getWorkingDays[res]}
+                  {i !== arr.length - 1 ? ", " : ""}
+                </span>
+              ))}
+              )
             </div>
           </div>
         </div>
@@ -39,7 +51,7 @@ const ShiftDetailView = ({ shiftDays }) => {
             {shift?.name?.substring(0, 2)}
           </Avatar>
           <div className={styles.titleTime}>
-          {shift?.startDateText} - {shift?.endDateText}
+            {shift?.startDateText} - {shift?.endDateText}
           </div>
         </div>
       );
@@ -47,12 +59,10 @@ const ShiftDetailView = ({ shiftDays }) => {
   }, []);
 
   return (
-    <PageBoxComponent>
+    <ShadowBox className={styles.Wrp}>
       <div className={styles.container}>Shift Details</div>
-      <div className={styles.avatorFlex}>
-        {shiftDays?.map(renderShift)}
-      </div>
-    </PageBoxComponent>
+      <div className={styles.avatorFlex}>{shiftDays?.map(renderShift)}</div>
+    </ShadowBox>
   );
 };
 

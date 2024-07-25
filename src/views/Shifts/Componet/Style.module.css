@@ -4,6 +4,9 @@
   row-gap: 30px !important;
   column-gap: 20px !important;
 }
+.Wrp{
+  width: 100%;
+}
 .avatorSubFlex {
   display: flex;
   gap: 10px !important;
@@ -38,7 +41,7 @@
   font-weight: 600 !important;
 }
 .title {
-  color: #161616 !important;
+  /* color: #161616 !important; */
   font-size: 14px !important;
 }
 .fontSize {

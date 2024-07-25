@@ -2,7 +2,13 @@ import React from "react";
 import styles from "./Style.module.css";
 import CustomTextField from "../../../components/FormFields/TextField/TextField.component";
 import useHoursCreateHook from "./HoursCreateHook";
-import { ButtonBase , MenuItem, CircularProgress} from "@mui/material";
+import {
+  ButtonBase,
+  MenuItem,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
+import { useTheme } from "@mui/styles";
 
 const HoursCreate = ({ handleToggleSidePannel, isSidePanel, qrId }) => {
   const {
@@ -14,7 +20,7 @@ const HoursCreate = ({ handleToggleSidePannel, isSidePanel, qrId }) => {
     isSubmitting,
     listData,
   } = useHoursCreateHook({ handleToggleSidePannel, isSidePanel, qrId });
-
+  const theme = useTheme();
   return (
     <div className={styles.container}>
       <div className={"formFlex"} style={{ alignItems: "center" }}>
@@ -55,9 +61,11 @@ const HoursCreate = ({ handleToggleSidePannel, isSidePanel, qrId }) => {
       <div className={"formFlex"}>
         <div className={"formGroup"}>
           <div className={styles.notesDes}>
-            <strong>Note: </strong>
-            By Default, Full-day hours are set by the maximum hours in any
-            shift, while half-day hours are half of that.
+            <Typography variant="body1" color={theme.palette.text.primary}>
+              <strong>Note: </strong>
+              By Default, Full-day hours are set by the maximum hours in any
+              shift, while half-day hours are half of that.
+            </Typography>
           </div>
         </div>
       </div>
