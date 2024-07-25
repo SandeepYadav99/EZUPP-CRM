@@ -56,5 +56,7 @@ export default {
   SERVICE_GROUP:"/service/group",
   WHATSAPP_INVOICE:"/whatsapp/invoice",
   CUSTOM_FILED:"/custom/filed", 
-  CUSTOMERS_ACQUISITION:"/customer/acquisition"
+  CUSTOMERS_ACQUISITION:"/customer/acquisition",
+  SHIFTS:"/shifts",
+  SHIFTS_DETAILS:"/shifts/detail/",
 };
