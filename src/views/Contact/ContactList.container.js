@@ -25,7 +25,7 @@ const ContactList = (props) => {
     handleSortOrderChange,
     handleRowSize,
     handlePageChange,
-    handleEdit,
+    handleDetail,
     handleFilterDataChange,
     handleSearchValueChange,
     handleProfile,
@@ -109,7 +109,7 @@ const ContactList = (props) => {
         ),
       },
       {
-        key: "interested_products",
+        key: "interestedProducts",
         label: "Interest Area",
         sortable: false,
         render: (temp, all) => (
@@ -118,14 +118,16 @@ const ContactList = (props) => {
           <div className={styles.prodWrpa}>
             
             { console.log("interested_products:", all?.interested_products)}
-            {all?.interested_products?.map((item, index) => (
-              <Typography
-                variant={"body1"}
-                className={styles.tags}
-                key={`interested_products_${index}`}
-              >
-                {item?.name}
-              </Typography>
+            {all?.interestedProducts?.map((item, index) => (
+              // <Typography
+              //   variant={"body2"}
+              //   className={styles.tags}
+              //   key={`interestedProducts_${index}`}
+              // >
+              //   {item?.name}
+              // </Typography>
+              <StatusPill status={item?.name} color={"service"} />
+              
             ))}
           </div>
         
@@ -144,31 +146,30 @@ const ContactList = (props) => {
       //     sortable: false,
       //     render: (temp, all) => <div>{all?.updatedAtText?.split(' ')[0]}<br/>{all?.updatedAtText?.split(' ')[1]}</div>,
       //   },
-      //   {
-      //     key: "user_id",
-      //     label: "Action",
-      //     render: (temp, all) => (
-      //       <div className={styles.actionButton}>
-      //         <IconButton
+        // {
+        //   key: "user_id",
+        //   label: "Action",
+        //   render: (temp, all) => (
+        //     <div className={styles.actionButton}>
+        //       <IconButton
 
-      //           onClick={() => handleEdit(all)}
-      //         >
-      //           <Edit fontSize={"small"} />
-      //         </IconButton>
-      //         <IconButton onClick={()=>handleDelete(all)  }>
-
-      //         </IconButton>
-      //       </div>
-      //     ),
-      //   },
+        //         onClick={() => handleDetail(all)}
+        //       >
+        //         {/* <Edit fontSize={"small"} /> */}
+        //       </IconButton>
+             
+        //     </div>
+        //   ),
+        // },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete]
+    [renderFirstCell, renderStatus, handleDetail, handleProfile, handleDelete]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
       onSortOrderChange: handleSortOrderChange,
       onPageChange: handlePageChange,
       onRowSizeChange: handleRowSize,
+      clickableRow: handleDetail,
     };
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,

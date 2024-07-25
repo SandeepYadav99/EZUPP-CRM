@@ -377,7 +377,7 @@ const dashboardRoutes = [
     should_regex: false,
   },
   {
-    path: `${RouteName.CONTACT_DETAIL}`,
+    path: `${RouteName.CONTACT_DETAIL}:id`,
     sidebarName: "Contact",
     //navbarName: "Contact",
     icon: SupervisedUserCircle,

@@ -63,7 +63,7 @@ const Profile = () => {
               variant="title1"
               color={theme.palette.text.primary}
             >
-              Profile View
+              Staff Profile 
             </Typography>
           </div>
           <div className={styles.profileHeaderAction}>
@@ -86,8 +86,8 @@ const Profile = () => {
           </div>
         </div>
         <div>
-          <div className={styles.profileFlex}>
-            <div className={styles.leftSection}>
+          <div className={styles.oneColm}>
+            <div >
               <ProfileSection
                 profileDetails={profileDetails}
                 handleEdit={handleEdit}
