@@ -253,14 +253,14 @@
   .alignCenterButton{
     display: flex;
     justify-content: center !important;
-    margin-top: 30px;
+    margin-top: 28px;
     margin-bottom: 20px;
   }
   .text{
     font-size: 14px;
     color: #888888; 
    text-align: center !important;
-   padding: 0 5% !important;
+   padding: 0 5.6% !important;
    letter-spacing: 0 !important;
   
   }

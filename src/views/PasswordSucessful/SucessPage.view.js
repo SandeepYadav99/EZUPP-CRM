@@ -35,9 +35,9 @@ function SuccessPageView() {
           <div className={styles.signContainer}>
             <Typography variant="h3" sx={{
               textAlign:"center",
-              font: "normal normal 900 24px Arial",
+              font: "normal normal 600 24px Arial",
               color: "#636578",
-              mb:1
+              mb:1.3
             }}>
               Reset Password email sent successfully!
             </Typography>
