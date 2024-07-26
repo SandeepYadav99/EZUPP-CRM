@@ -36,7 +36,7 @@ const TopicView = (props) => {
   const [editData, setEditData] = useState(null);
   const [topics, setTopics] = useState([]);
   const theme = useTheme();
-
+console.log(theme)
   const prevDataRef = useRef();
   useEffect(() => {
     prevDataRef.current = props.data;
@@ -134,6 +134,7 @@ const TopicView = (props) => {
                   theme.palette.mode === "dark"
                     ? "#636578"
                     : "",
+      
               }}
               className={
                 selectedCategory && val.id === selectedCategory.id
@@ -173,7 +174,7 @@ const TopicView = (props) => {
               <Edit color={"primary"} fontSize={"small"} />
             </IconButton>
           </li>
-          <hr className={styles.line} />
+          <div className={styles.line} />
         </ul>
       ));
     }
@@ -194,7 +195,7 @@ const TopicView = (props) => {
       </ShadowBox>
       <SidePanelComponent
         handleToggle={handleSideToggle}
-        title={editData?.id ? "Edit FAQ" :"Add FAQ"}
+        title={editData?.id ? "Edit FAQ" : "Add FAQ"}
         open={sidePanel}
         side={"right"}
       >

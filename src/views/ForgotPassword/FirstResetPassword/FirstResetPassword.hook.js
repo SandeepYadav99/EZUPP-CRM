@@ -27,16 +27,17 @@ const useFirstResetPassowrd = ({ open, email, handleClose }) => {
   const [form, setForm] = useState({ ...initialForm });
 
   const location = useLocation();
-
+console.log(location)
   const getQueryParams = (search) => {
     return new URLSearchParams(search);
   };
 
   const queryParams = getQueryParams(location.search);
+  console.log(queryParams)
   const tokenData = queryParams.get("token");
   const emailDataName = queryParams.get("email");
   const UserName = queryParams.get("name");
-
+console.log(UserName)
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const togglePasswordVisibility = () => {

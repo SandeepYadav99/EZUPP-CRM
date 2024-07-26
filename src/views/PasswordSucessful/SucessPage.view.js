@@ -1,24 +1,11 @@
-/**
- * Created by charnjeetelectrovese@gmail.com on 12/13/2018.
- */
 import React from "react";
 import styles from "./Style.module.css";
 import DashboardSnackbar from "../../components/Snackbar.component";
-import classNames from "classnames";
 import logoImage from "../../assets/CRMAssets/ezupp_login_logo.png";
-import googleImageContainer from "../../assets/CRMAssets/google_neutral.png";
-import csx from "classnames";
 import {
-  MenuItem,
-  Button,
-  IconButton,
-  ButtonBase,
   Typography,
 } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import useSuccessPage from "./SucessPage.hook";
-import CustomTextField from "../../components/FormFields/TextField/TextField.component";
-import CustomCheckBox from "../../components/FormFields/CustomCheckbox";
 import { ArrowPrimaryButton } from "../../components/Buttons/PrimaryButton";
 import ResetPasswordImage from "../../assets/Assets/reset_password_email@2x.png";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
@@ -26,14 +13,7 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 function SuccessPageView() {
   const {
     handleSubmit,
-    onBlurHandler,
-    changeTextData,
-    form,
-    errorData,
-    isSubmitting,
-    handleForgotPassword,
-    togglePasswordVisibility,
-    showPassword,
+   
   } = useSuccessPage();
 
   const location = useLocation();
@@ -53,18 +33,23 @@ function SuccessPageView() {
             <img src={ResetPasswordImage} className={styles.imageadjust} />
           </div>
           <div className={styles.signContainer}>
-            <div className={styles.headingText}>
+            <Typography variant="h3" sx={{
+              textAlign:"center",
+              font: "normal normal 600 24px Arial",
+              color: "#636578",
+              mb:1.3
+            }}>
               Reset Password email sent successfully!
-            </div>
-            <br />
+            </Typography>
+          
             <div className={styles.text}>
-              <div>
+             
                 We have successfully sent the reset password email to
-                <b className={styles.fontAdjustWeight}>{AddressData}.</b>
-              </div>
-              <div> Please check your email for further instructions.</div>
+                <b className={styles.fontAdjustWeight}>{AddressData}.</b><br/>
+               Please check your email for further instructions.
+              
             </div>
-            <br />
+          
           </div>
           <div className={styles.alignCenterButton}>
             <ArrowPrimaryButton onClick={handleSubmit}>

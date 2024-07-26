@@ -38,20 +38,18 @@ const FirstResetPassowrd = ({ handleClose, open, email }) => {
             <img src={logoImage} alt="text_data" style={{ width: "250px" }} />
           </div>
           <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
+          className={styles.firstLoginContainer}
+           
           >
             <span className={styles.headingText}>
               You have been invited to Ezupp CRM!
             </span>
           </div>
-          <br />
+       
           <div className={styles.alignInRowData}>
-            <span className={styles.heading2Data}>{UserName} </span>
+            <Typography variant={"subtitle1"} >{UserName} </Typography>
 
-            <Typography variant={"login1"}>{emailDataName}</Typography>
+            <Typography variant={"body1"}>{emailDataName}</Typography>
           </div>
           <div className={styles.underlineData}></div>
           <div>
