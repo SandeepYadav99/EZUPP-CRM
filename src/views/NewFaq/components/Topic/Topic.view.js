@@ -23,7 +23,6 @@ import {
   actionDragFaq,
 } from "../../../../actions/Faq.action";
 import { connect } from "react-redux";
-import { arrayMove } from "react-sortable-hoc";
 import TopicViewForm from "../Topic/TopicForm/TopicView.js";
 import { serviceUpdateFaqPriority } from "../../../../services/Faq.service";
 import debounce from "lodash.debounce";
@@ -119,7 +118,7 @@ const TopicView = (props) => {
     },
     [props]
   );
-
+ 
   const renderList = () => {
     const { data, selectedCategory } = props;
     if (data.length > 0) {
@@ -132,9 +131,11 @@ const TopicView = (props) => {
                   selectedCategory &&
                   val.id === selectedCategory.id &&
                   theme.palette.mode === "dark"
-                    ? theme.palette.text.primary
+                    ? theme.palette.status.service
                     : "",
-      
+                "&::before": {
+                  backgroundColor: theme.palette.primary.main,
+                },
               }}
               className={
                 selectedCategory && val.id === selectedCategory.id
