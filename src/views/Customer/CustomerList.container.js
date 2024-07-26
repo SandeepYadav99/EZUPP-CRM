@@ -24,7 +24,7 @@ const CustomersList = (props) => {
     handleSortOrderChange,
     handleRowSize,
     handlePageChange,
-    handleEdit,
+    handleDetail,
     handleFilterDataChange,
     handleSearchValueChange,
     handleProfile,
@@ -147,13 +147,14 @@ const CustomersList = (props) => {
       //     ),
       //   },
     ],
-    [renderFirstCell, renderStatus, handleEdit, handleProfile, handleDelete]
+    [renderFirstCell, renderStatus, handleDetail, handleProfile, handleDelete]
   );
   const tableData = useMemo(() => {
     const datatableFunctions = {
       onSortOrderChange: handleSortOrderChange,
       onPageChange: handlePageChange,
       onRowSizeChange: handleRowSize,
+      clickableRow: handleDetail,
     };
     const datatable = {
       ...Constants.DATATABLE_PROPERTIES,

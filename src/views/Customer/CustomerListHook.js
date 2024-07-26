@@ -83,8 +83,8 @@ const useUserListHook = ({}) => {
     [query, queryData]
   );
 
-  const handleEdit = useCallback((type) => {
-    history.push(`${RouteName.PRODUCT_DETAILS}${type?.id}`);
+  const handleDetail = useCallback((type) => {
+    history.push(`${RouteName.CUSTOMER_DETAIL}${type?.id}`);
   }, []);
 
   const handleCreate = useCallback(() => {
@@ -113,7 +113,7 @@ const useUserListHook = ({}) => {
     handleFilterDataChange,
     handleSearchValueChange,
     handleSortOrderChange,
-    handleEdit,
+    handleDetail,
     editData,
     configFilter,
     handleCreate,

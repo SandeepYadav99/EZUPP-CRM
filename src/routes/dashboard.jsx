@@ -407,7 +407,7 @@ const dashboardRoutes = [
     should_regex: false,
   },
   {
-    path: `${RouteName.CUSTOMER_DETAIL}`,
+    path: `${RouteName.CUSTOMER_DETAIL}:id`,
     sidebarName: "Customer",
     //navbarName: "Contact",
     icon: SupervisedUserCircle,
