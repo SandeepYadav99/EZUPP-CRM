@@ -96,6 +96,7 @@ const Theme = (colors) => {
       service: "#636578",
       warm: "#EBC50B",
       draft: "#2063CE",
+      proposal:"#F883E4",
     },
     success: {
       main: success,
@@ -113,7 +114,7 @@ const Theme = (colors) => {
       hint: "#B9B9B9",
       error: '#ff0000',
       bright: '#FFF',
-     
+
     },
     primaryButton: {
       hover: secondary,

@@ -13,6 +13,7 @@ import { cleanContactNumber, removeUnderScore } from "../../../helper/Helper";
 import {
   serviceContactCheck,
   serviceCreateContact,
+  serviceCreateCustomer,
 } from "../../../services/Contact.service";
 import {
   serviceGetTagList,
@@ -21,7 +22,6 @@ import {
 import { serviceGetTagsList } from "../../../services/Blogs.service";
 import { serviceGetList } from "../../../services/index.services";
 import debounce from "lodash.debounce";
-import Constants from "../../../config/constants";
 
 const initialForm = {
   prefix: "",
@@ -58,7 +58,6 @@ const ContactCreatehook = () => {
   const [tagList, setTagList] = useState([]);
   const [LeadOwnerData, setLeadOwnerData] = useState([]);
   const [associateTagsData, setAssociateTagsData] = useState([]);
-  const [productMap, setProductMap] = useState({});
   const [listData, setListData] = useState({
     PRODUCTS: [],
   });
@@ -79,20 +78,12 @@ const ContactCreatehook = () => {
       ]);
       const tagList = promises[0]?.value?.data || [];
       const ProductList = promises[1]?.value?.data;
-      // const productMap = ProductList.reduce((map, product) => {
-      //   map[product.id] = product.label;
-      //   return map;
-      // }, {});
+      console.log("Tag List:", tagList); 
+    console.log("Product List:", ProductList);
        setAssociateTagsData([...tagList]);
       setListData(ProductList);
-      //setProductMap(productMap); 
-      console.log("PRODUCT LIST", ProductList);
     })();
   }, []);
- 
-  // const getProductNames = (ids, productMap) => {
-  //   return ids.map(id => productMap[id] || "Unknown Product");
-  // };
   // useEffect(() => {
   //   if (isOpen) {
    
@@ -191,13 +182,6 @@ const ContactCreatehook = () => {
     },
     [removeError, form, setForm, checkCandidateExistDebouncer]
   );
-  const leadStageMapping = {
-    'Pending': Constants.PIPELINE_STAGES.PENDING,
-    'In Progress': Constants.PIPELINE_STAGES.IN_PROGRESS,
-    'Proposal Sent': Constants.PIPELINE_STAGES.PROPOSAL_SENT,
-    'Archived': Constants.PIPELINE_STAGES.ARCHIVED,
-    'Customer': Constants.PIPELINE_STAGES.CUSTOMER,
-  };
 
   const submitToServer = useCallback(() => {
     if (!isSubmitting) {
@@ -205,17 +189,9 @@ const ContactCreatehook = () => {
       const updatedFd = {};
       Object.keys({ ...initialForm }).forEach((key) => {
         if (key === "interested_products") {
-           const getId =
+          const getId =
             form[key]?.length > 0 ? form[key]?.map((item) => item?.id) : [];
-         
           updatedFd[key] = getId;
-          
-          
-          
-        } if (key === "lead_stage") {
-          const displayValue = form[key];
-          const apiValue = leadStageMapping[displayValue];
-          updatedFd[key] = apiValue;
         } else if (key === "tags") {
           updatedFd[key] = form[key]?.length > 0 ? form[key]?.join(",") : "";
         } else {
@@ -225,7 +201,7 @@ const ContactCreatehook = () => {
       const cleanContact = cleanContactNumber(form?.contact);
       const contactValues = cleanContact.length ? cleanContact?.split(" ") : [];
       console.log(">>>>>", { updatedFd, form }, cleanContact?.split(" "));
-      serviceCreateContact({
+      serviceCreateCustomer({
         ...updatedFd,
         country_code: contactValues?.length > 0 ? contactValues[0] : "",
         contact: contactValues?.length > 1 ? contactValues?.[1] : "",
@@ -255,7 +231,7 @@ const ContactCreatehook = () => {
   );
 
   const handleCancel = useCallback(() => {
-    history.push(RouteName.CONTACT_LIST);
+    history.push(RouteName.CUSTOMER_LIST);
   }, []);
 
   return {
@@ -269,8 +245,6 @@ const ContactCreatehook = () => {
     confirmPopUp,
     tagList,
     LeadOwnerData,
-    // getProductNames,
-    // productMap,
     handleDialogClose,
     associateTagsData,
     // suspendItem

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Styles.module.css';
 import {useTheme} from "@mui/styles";
-import { Tooltip } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 export default function CustomButtonGroup({buttonText, value, onButtonClick}) {
   const theme = useTheme();
   const [selectedButtons, setSelectedButtons] = useState([]);
@@ -20,35 +20,46 @@ export default function CustomButtonGroup({buttonText, value, onButtonClick}) {
   //     });
   //     onButtonClick(index);
   // };
-  const [selectedIndex, setSelectedIndex] = useState(value);
+  const [selectedIndex, setSelectedIndex] = useState(() => {
+    // Find the index of the initial value in buttonText array
+    return buttonText.indexOf(value);
+  });
+
+  useEffect(() => {
+    // Update selectedIndex whenever value changes
+    setSelectedIndex(buttonText.indexOf(value));
+  }, [value, buttonText]);
 
   const handleButtonClick = (index) => {
     setSelectedIndex(index);
-    onButtonClick(index);
+    console.log('Button clicked:', buttonText[index]);
+    onButtonClick(buttonText[index]);
   };
+ 
 
 
   return (
     <div className={styles.buttonGroup}>
       {buttonText.map((text, index) => (
         <>
-        <Tooltip
+        {/* <Tooltip
           key={index}
           title={text}
           placement="bottom"
           enterDelay={100}
-        >
+        > */}
         <button
           key={index}
           onClick={() => handleButtonClick(index)}
           className={`${styles.button} ${index <= selectedIndex  ? styles.selected : ''}`}
           style={{  backgroundColor:  index <= selectedIndex 
             ? theme.palette.primary.main
-            : theme.palette.border}}
+            : theme.palette.border,
+            color: index <= selectedIndex  ? theme.palette.text.bright : theme.palette.text.primary,}}
         >
-
+ <Typography variant="body2">{text}</Typography>
         </button>
-        </Tooltip>
+        {/* </Tooltip> */}
         </>
       ))}
     </div>

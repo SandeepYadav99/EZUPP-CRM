@@ -87,8 +87,14 @@
   flex: 0.5 !important;
 }
 .rightSection {
-  flex: 1 1;
+  display: flex;
+  margin-top: 20px;
+  width: 60%;
 
+}
+.oneColm{
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 1300px) {
   .profileFlex {

@@ -3,9 +3,7 @@ import styles from "../Styles.module.css";
 import { ArrowBackIos } from "@mui/icons-material";
 import history from "../../../libs/history.utils";
 import PersonalInfo from "./Components/PersonalInfo";
-import BusinessInfo from "./Components/BusinessInfo";
 import ProfilingLead from "./Components/ProfilingLead";
-import AdditionalInfo from "./Components/AdditionalInfo";
 import {
   PrimaryButton,
   ActionButton,
@@ -16,10 +14,10 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import ContactCreatehook from "./ContactCreatehook";
+import ContactCreatehook from "./CustomerCreatehook";
 import LogUtils from "../../../libs/LogUtils";
 
-const ContactCreate = ({}) => {
+const CustomerCreate = ({}) => {
   const {
     errorData,
     form,
@@ -86,7 +84,7 @@ const ContactCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant={"title1"}>Create Contact</Typography>
+          <Typography variant={"title1"}>Create Customer</Typography>
         </div>
       </div>
       <PersonalInfo
@@ -132,4 +130,4 @@ const ContactCreate = ({}) => {
   );
 };
 
-export default ContactCreate;
+export default CustomerCreate;

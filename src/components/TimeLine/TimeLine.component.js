@@ -77,36 +77,6 @@ const TimelineComponent = () => {
                     <CreateMeeting data={val} />{" "}
                   </TimelineContent>
                 )}
-                {/* <TimelineContent>
-                  <div
-                    className={`${
-                      id === 0 ? styles?.underline : styles.underlineOther
-                    }`}
-                  >
-                    <Typography
-                      variant="subtitle1"
-                      sx={{ color: "#636578", fontWeight: "500" }}
-                    >
-                      {val?.heading}
-                    </Typography>
-                    <Typography variant="subtitle1" sx={{ color: "#bbbcc4" }}>
-                      {val?.date}
-                    </Typography>
-                  </div>
-                  <div className={styles?.underline2}>
-                    <Typography variant="subtitle1" sx={{ color: "#636578" }}>
-                      {val?.t1}
-                    </Typography>
-                    <Typography variant="subtitle1" sx={{ color: "#bbbcc4" }}>
-                      {val?.time}
-                    </Typography>
-                  </div>
-                  <div className={styles.underline3}>
-                    <Typography variant="subtitle1" sx={{ color: "#6E6E6E" }}>
-                      {val?.t1} <br />
-                    </Typography>
-                  </div>
-                </TimelineContent> */}
               </TimelineItem>
             );
           })}

@@ -13,10 +13,12 @@ import male from "../../../../assets/Assets/ic_male.png";
 import Constants from "../../../../config/constants";
 import { InfoOutlined as InfoIcon } from "@mui/icons-material";
 import LogUtils from "../../../../libs/LogUtils";
+import MultiComplete from "../../../../components/FormFields/AutoCompleteText/MultiComplete";
 import { useTheme } from "@mui/styles";
-const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form}) => {
+const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form, listData, associateTagsData, source}) => {
   const theme = useTheme();
   return (
+    <>
     <ShadowBox className={styles.contact}>
       <div className={"headerFlex"}>
         <h4 className={"infoTitle"}>
@@ -270,6 +272,8 @@ const PersonalInfo = ({ errorData, changeTextData, onBlurHandler, form}) => {
         </div>
       </div>
     </ShadowBox>
+      
+    </>
   );
 };
 

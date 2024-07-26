@@ -4,6 +4,8 @@ import RouteName from "./../../routes/Route.name";
 import {
   actionFetchContact,
   actionSetPageContactRequests,
+  actionFetchCustomer,
+  actionSetPageCustomerRequests,
 } from "./../../actions/Contact.action";
 import history from "./../../libs/history.utils";
 
@@ -22,7 +24,7 @@ const useUserListHook = ({}) => {
 
   useEffect(() => {
     dispatch(
-      actionFetchContact(
+      actionFetchCustomer(
         1,
         {},
         {
@@ -35,13 +37,13 @@ const useUserListHook = ({}) => {
   }, []);
 
   const handlePageChange = useCallback((type) => {
-    dispatch(actionSetPageContactRequests(type));
+    dispatch(actionSetPageCustomerRequests(type));
   }, []);
 
   const queryFilter = useCallback(
     (key, value) => {
       dispatch(
-        actionFetchContact(1, sortingData, {
+        actionFetchCustomer(1, sortingData, {
           query: key == "SEARCH_TEXT" ? value : query,
           query_data: key == "FILTER_DATA" ? value : queryData,
         })
@@ -66,9 +68,9 @@ const useUserListHook = ({}) => {
 
   const handleSortOrderChange = useCallback(
     (row, order) => {
-      dispatch(actionSetPageContactRequests(1));
+      dispatch(actionSetPageCustomerRequests(1));
       dispatch(
-        actionFetchContact(
+        actionFetchCustomer(
           1,
           { row, order },
           {
@@ -82,11 +84,11 @@ const useUserListHook = ({}) => {
   );
 
   const handleDetail = useCallback((type) => {
-    history.push(`${RouteName.CONTACT_DETAIL}${type?.id}`);
+    history.push(`${RouteName.CUSTOMER_DETAIL}${type?.id}`);
   }, []);
 
   const handleCreate = useCallback(() => {
-    history.push(RouteName.CONTACT_CREATE);
+    history.push(RouteName.CUSTOMER_CREATE);
   }, []);
 
   const configFilter = useMemo(() => {

@@ -52,6 +52,7 @@ export default {
   NOTIFICATION_DETAILS:"/notifications",
   CONTACT_LIST: "/contact",
   CONTACT_CREATE: "/contact/create",
+  CONTACT_DETAIL: "/contact/detail",
   CUSTOM_FILED:"/custom/filed",
   SERVICE_GROUP:"/service/group",
   WHATSAPP_INVOICE:"/whatsapp/invoice",
@@ -59,4 +60,7 @@ export default {
   CUSTOMERS_ACQUISITION:"/customer/acquisition",
   SHIFTS:"/shifts",
   SHIFTS_DETAILS:"/shifts/detail/",
+  CUSTOMER_LIST: "/customer",
+  CUSTOMER_CREATE: "/customer/create",
+  CUSTOMER_DETAIL: "/customer/detail",
 };
