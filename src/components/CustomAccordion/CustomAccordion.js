@@ -12,6 +12,7 @@ import { getCurrencySymbol } from "../../helper/Helper";
 import StatusPill from "../Status/StatusPill.component";
 import { Edit } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import {  OutlineButton, PrimaryButton } from "../Buttons/PrimaryButton";
 
 function CustomAccordion({
   data,
@@ -44,9 +45,9 @@ function CustomAccordion({
             id={`panel${groupIndex}-header`}
           >
             <Box className={styles.BoxWrap}>
-              <Typography variant="subtitle1">{group?.title}</Typography>
+              <Typography variant="subtitle1">{group?.title}{` (${group?.products?.length || 0})`}</Typography>
               <Box>
-                <Button
+                <OutlineButton
                   variant="outlined"
                   sx={{ mr: 1 }}
                   onClick={(e) => {
@@ -55,8 +56,8 @@ function CustomAccordion({
                   }}
                 >
                   Edit Group
-                </Button>
-                <Button
+                </OutlineButton>
+                <PrimaryButton
                   variant="contained"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -64,7 +65,7 @@ function CustomAccordion({
                   }}
                 >
                   Add Service
-                </Button>
+                </PrimaryButton>
               </Box>
             </Box>
           </AccordionSummary>
