@@ -18,15 +18,14 @@ import { it } from "date-fns/locale";
 const ContactDetail = () => {
   const getStatusPillColor = () => {
     if (data?.status === "ACTIVE") {
-      return "active"; 
+      return "active";
     } else if (data?.status === "DELETED") {
-      return "high"; 
-    }else if (data?.status === "In Progress") {
-      return "active"; 
-    }  else if (data?.status === "DRAFT") {
-      return "draft"; 
+      return "high";
+    } else if (data?.status === "In Progress") {
+      return "active";
+    } else if (data?.status === "DRAFT") {
+      return "draft";
     }
-
   };
   return (
     <div>
@@ -73,52 +72,100 @@ const ContactDetail = () => {
         </div>
         {data.Data.map((item, index) => (
           <>
-          <div className={styles.gridContainer}>
-            <ShadowBox className={styles.product}>
-              <div className={styles.row}>
-                <Typography variant="h5">{item.name}</Typography>
-                <OutlineButton>EDIT</OutlineButton>
-              </div>
-              <Typography variant="h6" color={"text.secondary"} style={{ marginTop: -8 }}>{item.phone}</Typography>
-              <Typography variant="h6" color={"text.secondary"} sx={{mb:1}}>{item.email}</Typography>
-              <StatusPill status={"In Progress"} color={"active"} />
-              <div className={styles.line}></div>
-              <Typography variant="h6" color={"text.secondary"} sx={{mt:1.5}}>Gender: {item.gender}</Typography>
-              <Typography variant="h6" color={"text.secondary"} >D.O.B: {item.dob}</Typography>
-              <Typography variant="h6" color={"text.secondary"} >Anniversary: {item.dob}</Typography>
-            </ShadowBox>
-            <ShadowBox className={styles.product1}>
-            <Typography variant="h5">Status</Typography>
-            <LeadTimeLine
-              data={[{id: 1, status:'IN_PROGRESS', title: 'In Progress', description: 'Phone call follow up done regarding any more queries and offers explained', date: '10 Mins Ago'},
-                  {id: 2, status:'PENDING', title: 'Pending', description: 'Lead has been created for the Hair and nail related services', date: '2 Days Ago'}
-              ]}
-             
-          />
-           </ShadowBox>
-          </div>
-           <div className={styles.gridColumn}>
-           <ShadowBox className={styles.product}>
-            <Typography variant="h5">Lead Details</Typography>
-          
-           <Typography variant="h6" color={"text.secondary"} sx={{mt:2}}>Source: {item.source}</Typography>
-           <Typography variant="h6" color={"text.secondary"} >Interested In: {item.interested_in}</Typography>
-           <Typography variant="h6" color={"text.secondary"} >Lead Owner: {item.lead_owner}</Typography>
-           <div className={styles.line}></div>
-           <Typography variant="h5"  sx={{mt:1.5}}>Associated Tags</Typography>
-            <div className={styles.row21}> 
-            <Typography
+            <div className={styles.gridContainer}>
+              <ShadowBox className={styles.product}>
+                <div className={styles.row}>
+                  <Typography variant="h5">{item.name}</Typography>
+                  <OutlineButton>EDIT</OutlineButton>
+                </div>
+                <Typography
+                  variant="h6"
+                  color={"text.secondary"}
+                  style={{ marginTop: -8 }}
+                >
+                  {item.phone}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color={"text.secondary"}
+                  sx={{ mb: 1 }}
+                >
+                  {item.email}
+                </Typography>
+                <StatusPill status={"In Progress"} color={"active"} />
+                <div className={styles.line}></div>
+                <Typography
+                  variant="h6"
+                  color={"text.secondary"}
+                  sx={{ mt: 1.5 }}
+                >
+                  Gender: {item.gender}
+                </Typography>
+                <Typography variant="h6" color={"text.secondary"}>
+                  D.O.B: {item.dob}
+                </Typography>
+                <Typography variant="h6" color={"text.secondary"}>
+                  Anniversary: {item.dob}
+                </Typography>
+              </ShadowBox>
+              <ShadowBox className={styles.product1}>
+                <Typography variant="h5">Status</Typography>
+                <LeadTimeLine
+                  data={[
+                    {
+                      id: 1,
+                      status: "IN_PROGRESS",
+                      title: "In Progress",
+                      description:
+                        "Phone call follow up done regarding any more queries and offers explained",
+                      date: "10 Mins Ago",
+                    },
+                    {
+                      id: 2,
+                      status: "PENDING",
+                      title: "Pending",
+                      description:
+                        "Lead has been created for the Hair and nail related services",
+                      date: "2 Days Ago",
+                    },
+                  ]}
+                />
+              </ShadowBox>
+            </div>
+            <div className={styles.gridColumn}>
+              <ShadowBox className={styles.product}>
+                <Typography variant="h5">Lead Details</Typography>
+
+                <Typography
+                  variant="h6"
+                  color={"text.secondary"}
+                  sx={{ mt: 2 }}
+                >
+                  Source: {item.source}
+                </Typography>
+                <Typography variant="h6" color={"text.secondary"}>
+                  Interested In: {item.interested_in}
+                </Typography>
+                <Typography variant="h6" color={"text.secondary"}>
+                  Lead Owner: {item.lead_owner}
+                </Typography>
+                <div className={styles.line}></div>
+                <Typography variant="h5" sx={{ mt: 1.5 }}>
+                  Associated Tags
+                </Typography>
+                <div className={styles.row21}>
+                  <Typography
                     variant={"body1"}
                     className={styles.tags}
-                    sx={{mt:1}}
+                    sx={{ mt: 1 }}
                     color={"text.primary"}
                   >
-                    {item.tags} 
+                    {item.tags}
                   </Typography>
+                </div>
+              </ShadowBox>
             </div>
-         </ShadowBox>
-           </div>
-         </>
+          </>
         ))}
       </div>
     </div>

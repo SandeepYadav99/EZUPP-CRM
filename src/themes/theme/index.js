@@ -97,6 +97,7 @@ const Theme = (colors) => {
       warm: "#EBC50B",
       draft: "#2063CE",
       proposal:"#F883E4",
+      new: "#20B0CE",
     },
     success: {
       main: success,

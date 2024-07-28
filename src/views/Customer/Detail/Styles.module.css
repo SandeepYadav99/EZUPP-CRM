@@ -7,6 +7,7 @@
 
   .gridContainer{
     display: flex;
+    align-items: start;
     gap:20px
   }
   .gridColumn{
@@ -24,12 +25,27 @@
   display: flex;
   justify-content: space-between;
 }
+.tags{
+  background: #E8F0FE 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  padding: 5px 15px;
+  text-align: center;
+ 
+ 
+}
 .row21{
   display: flex;
   align-items: center;
  gap: 20px;
  justify-content: space-between !important;
  
+}
+.tagRow{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+ 
+
 }
 .overview{
     display: flex;
@@ -76,6 +92,12 @@ height: 65px;
     padding: 22px 22px;
    
   }
+  .productQuery{
+    margin-top: 25px;
+   width: 27rem;
+  flex: 0 0 auto;
+    padding: 22px 22px;
+  }
   .product1{
    
     margin-top: 25px;
@@ -85,9 +107,10 @@ height: 65px;
     padding: 22px 22px;
    
   }
+
   .tab{
-    height: 408px;
-    margin-top: 25px;
+    /* height: 408px; */
+    margin-top: -15px;
     /* width: 70%; */
     flex: 1 ;
   width: 100%;
@@ -106,14 +129,57 @@ height: 65px;
     font-size: 1rem;
     font-weight: bolder;
   }
- 
-
+  .spaceTop{
+    margin-top: 10px;
+  }
+  .marginTop{
+    margin-top: -10px !important;
+  }
+  .detail{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+.box{
+  border: 1.5px solid #ebedf4;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-top: 15px;
+  padding: 10px 10px;
+}
+.boxDialog{
+  border: 1.5px solid #ebedf4;
+  border-radius: 5px;
+  margin-right: 200px;
+  margin-top: 15px;
+  padding: 10px 10px;
+}
   .line{
     /* width: 100% !important; */
     margin-top: 20px;
     border-bottom: 1px solid #00000029;
   }
-
+  .dialogWrap{
+    padding: 2rem;
+    /* max-width: 100% !important; */
+  }
+  .cancelButton{
+    text-align: left !important;
+  }
+  .buttonContainer {
+      display: flex;
+      justify-content: space-between; 
+  }
+  
+  .closeRow{
+    display: flex;
+    justify-content: space-between;
+  }
+  .close{
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+  }
   
   .lines {
     border: none !important;  
@@ -125,8 +191,30 @@ height: 65px;
     font-size: 20px;
   
   }
-
-
+.paddingLR{
+  padding: 10px ;
+ 
+}
+.rowHeader, .rowSub {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.cell {
+  padding: 10px;
+}
+.oneRow{
+display: flex;
+gap: 4px;
+}
+.time{
+  margin-top: 2px;
+  width: 14px;
+  height: 14px;
+}
+/* .col{
+  padding-left: 2px;
+} */
 .productHeading{
   display: flex;
   flex-wrap: wrap;

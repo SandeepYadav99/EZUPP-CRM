@@ -79,26 +79,14 @@ const ContactCreatehook = () => {
       ]);
       const tagList = promises[0]?.value?.data || [];
       const ProductList = promises[1]?.value?.data;
-      // const productMap = ProductList.reduce((map, product) => {
-      //   map[product.id] = product.label;
-      //   return map;
-      // }, {});
+     
        setAssociateTagsData([...tagList]);
       setListData(ProductList);
-      //setProductMap(productMap); 
+      
       console.log("PRODUCT LIST", ProductList);
     })();
   }, []);
  
-  // const getProductNames = (ids, productMap) => {
-  //   return ids.map(id => productMap[id] || "Unknown Product");
-  // };
-  // useEffect(() => {
-  //   if (isOpen) {
-   
-  //     setLeadOwnerData([...leadOwnerList]);
-  //   }
-  // }, [isOpen]);
   const handleDialogClose = () => {
     setConfirmPopUp(false);
   };
