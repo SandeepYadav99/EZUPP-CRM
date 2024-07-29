@@ -165,8 +165,9 @@ const ContactCreatehook = () => {
       let shouldRemoveError = true;
       const t = { ...form };
       if (fieldName === "full_name") {
-        if (text?.length <= 60) {
-          t[fieldName] = text;
+        const alphabeticText = text.replace(/[^a-zA-Z\s]/g, "");
+        if (alphabeticText.length <= 60) {
+          t[fieldName] = alphabeticText;
         }
       } else if (fieldName === "interested_products") {
        
