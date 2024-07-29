@@ -61,4 +61,5 @@ export default {
   CUSTOMER_LIST: "/customer",
   CUSTOMER_CREATE: "/customer/create",
   CUSTOMER_DETAIL: "/customer/detail",
+  CUSTOMER_UPDATE: "/customer/update",
 };

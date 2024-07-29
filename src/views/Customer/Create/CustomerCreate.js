@@ -30,6 +30,7 @@ const CustomerCreate = ({}) => {
     confirmPopUp,
     handleDialogClose,
     suspendItem,
+    id
   } = ContactCreatehook();
   const RenderDialog = () => {
     if (confirmPopUp) {
@@ -84,7 +85,7 @@ const CustomerCreate = ({}) => {
           <ButtonBase onClick={() => history.goBack()}>
             <ArrowBackIos fontSize={"small"} />{" "}
           </ButtonBase>
-          <Typography variant={"title1"}>Create Customer</Typography>
+          <Typography variant={"title1"}>{id ? "Update" : "Create"} Customer</Typography>
         </div>
       </div>
       <PersonalInfo

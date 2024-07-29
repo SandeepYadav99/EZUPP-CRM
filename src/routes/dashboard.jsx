@@ -417,6 +417,16 @@ const dashboardRoutes = [
     should_regex: false,
   },
   {
+    path: `${RouteName.CUSTOMER_UPDATE}:id`,
+    sidebarName: "Customer",
+    //navbarName: "Contact",
+    icon: SupervisedUserCircle,
+    component: CustomerCreate,
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+  },
+  {
     path: `${RouteName.CALENDAR}`,
     sidebarName: "Calendar",
     // navbarName: "Calendar",

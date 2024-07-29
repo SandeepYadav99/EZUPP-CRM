@@ -37,7 +37,7 @@ const CustomerDetail = () => {
     closeCancelAppointmentDialog,
     isCancelAppointmentDialogOpen,
     handleCancelAppointmentClick,
-    handleGoBackClick} =
+    handleGoBackClick, id,  customerDetails,  handleEdit} =
     CustomerDetailHook();
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedAppointmentTab, setSelectedAppointmentTab] = useState(0);
@@ -82,18 +82,21 @@ const CustomerDetail = () => {
           <div className={styles.gridContainer}>
             <ShadowBox className={styles.product}>
               <div className={styles.edit}>
-                <Typography variant="h5">{data.name}</Typography>
-                <OutlineButton>EDIT</OutlineButton>
+                <Typography variant="h5">{customerDetails?.full_name}</Typography>
+                <OutlineButton onClick={() => {
+                
+                handleEdit();
+              }}>EDIT</OutlineButton>
               </div>
               <Typography
                 variant="h6"
                 color={"text.secondary"}
                 style={{ marginTop: -8 }}
               >
-                {data.phone}
+                {customerDetails?.contact}
               </Typography>
               <Typography variant="h6" color={"text.secondary"} sx={{ mb: 1 }}>
-                {data.email}
+                {customerDetails?.email}
               </Typography>
               {/* <StatusPill status={"In Progress"} color={"active"} /> */}
               <div className={styles.line}></div>
@@ -102,13 +105,13 @@ const CustomerDetail = () => {
                 color={"text.secondary"}
                 sx={{ mt: 1.5 }}
               >
-                Gender: {data.gender}
+                Gender: {customerDetails?.gender}
               </Typography>
               <Typography variant="h6" color={"text.secondary"}>
-                D.O.B: {data.dob}
+                D.O.B: {customerDetails?.dobText ? customerDetails.dobText : 'N/A'}
               </Typography>
               <Typography variant="h6" color={"text.secondary"}>
-                Anniversary: {data.dob}
+                Anniversary: {customerDetails?.doaText ? customerDetails.doaText : 'N/A'}
               </Typography>
             </ShadowBox>
 

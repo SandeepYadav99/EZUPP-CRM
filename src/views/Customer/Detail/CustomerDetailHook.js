@@ -2,7 +2,13 @@ import React from 'react'
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { serviceGetTagsList } from "../../../services/Blogs.service";
 import { serviceGetList } from "../../../services/index.services";
+import {
+  serviceGetContactDetails,serviceUpdateContact,
 
+} from "../../../services/Contact.service";
+import { useParams } from "react-router-dom";
+import history from "../../../libs/history.utils";
+import RouteName from "../../../routes/Route.name";
 const initialForm = {
   
   interested_products: [],
@@ -17,9 +23,33 @@ const CustomerDetailHook = () => {
   const [selectedLead, setSelectedLead] = useState(" ");
   const [associateTagsData, setAssociateTagsData] = useState([]);
   const [tagList, setTagList] = useState([]);
+  const [customerDetails, setCustomerDetails] = useState(null);
+  const { id } = useParams();
   const [listData, setListData] = useState({
     PRODUCTS: [],
   });
+ 
+
+
+ 
+
+  useEffect(() => {
+    serviceGetContactDetails({ id: id ? id : "" }).then((res) => {
+      if (!res?.error) {
+        setCustomerDetails(res?.data?.details);
+      }
+    });
+  }, [id]);
+
+  const handleEdit = useCallback(() => {
+    if (id) {
+    
+      history.push(`${RouteName.CUSTOMER_UPDATE}${id}`);
+    } else {
+      console.error('ID is undefined');
+    }
+  }, [id, history]);
+
   useEffect(() => {
     (async () => {
       const promises = await Promise.allSettled([
@@ -112,6 +142,9 @@ const CustomerDetailHook = () => {
     associateTagsData,
     form,
     changeTextData,
+    id,
+    customerDetails,
+    handleEdit,
   };
 };
 

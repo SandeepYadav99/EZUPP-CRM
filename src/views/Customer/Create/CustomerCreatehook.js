@@ -14,6 +14,7 @@ import {
   serviceContactCheck,
   serviceCreateContact,
   serviceCreateCustomer,
+  serviceUpdateContact,
 } from "../../../services/Contact.service";
 import {
   serviceGetTagList,
@@ -201,7 +202,8 @@ const ContactCreatehook = () => {
       const cleanContact = cleanContactNumber(form?.contact);
       const contactValues = cleanContact.length ? cleanContact?.split(" ") : [];
       console.log(">>>>>", { updatedFd, form }, cleanContact?.split(" "));
-      serviceCreateCustomer({
+      const serviceCall = form.id ? serviceUpdateContact : serviceCreateCustomer;
+      serviceCall({
         ...updatedFd,
         country_code: contactValues?.length > 0 ? contactValues[0] : "",
         contact: contactValues?.length > 1 ? contactValues?.[1] : "",
@@ -247,6 +249,7 @@ const ContactCreatehook = () => {
     LeadOwnerData,
     handleDialogClose,
     associateTagsData,
+    id,
     // suspendItem
   };
 };
