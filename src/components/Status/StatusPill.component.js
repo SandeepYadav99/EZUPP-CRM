@@ -9,7 +9,7 @@ import LogUtils from "../../libs/LogUtils";
 const StatusPill = ({color, status}) => {
     const theme = useTheme();
     const colorCode = useMemo(() => {
-        return ['high', 'medium', 'low','active', 'business', "Discuss", "inactive", "service", "warm", "draft","ACTIVE"].indexOf(color) >= 0 ? color: 'high';
+        return ['high', 'medium', 'low','active', 'business', "Discuss", "inactive", "service", "warm", "draft", "proposal", "ACTIVE", "new"].indexOf(color) >= 0 ? color: 'high';
     }, [color]);
 
     return (

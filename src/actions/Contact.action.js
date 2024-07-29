@@ -1,6 +1,6 @@
 import store from '../store';
 import Constants from '../config/constants';
-import {serviceCreateContact, serviceGetContact, serviceUpdateContact,serviceDeleteContact} from "../services/Contact.service";
+import {serviceCreateContact, serviceGetContact, serviceUpdateContact,serviceDeleteContact, serviceCreateCustomer, serviceGetCustomer} from "../services/Contact.service";
 import EventEmitter from "../libs/Events.utils";
 
 
@@ -41,8 +41,40 @@ export function actionFetchContact(index = 1, sorting = {}, filter = {}) {
     };
 }
 
+export function actionFetchCustomer(index = 1, sorting = {}, filter = {}) {
+    const request = serviceGetCustomer({ index, row: sorting.row, order: sorting.order, ...filter });
+    return (dispatch) => {
+        dispatch({type: FETCH_INIT, payload: null});
+        request.then((data) => {
+            dispatch({type: SET_FILTER, payload: filter});
+            dispatch({type: SET_SORTING, payload: sorting});
+            if (!data.error) {
+                dispatch({type: FETCHED, payload: { data: data.data, page: index }});
+                dispatch({ type: SET_SERVER_PAGE, payload: index });
+                if (index == 1) {
+                    dispatch({type: CHANGE_PAGE, payload: index - 1});
+                }
+            } else {
+                dispatch({type: FETCHED_FAIL, payload: null});
+            }
+        });
+    };
+}
+
 export function actionCreateContact(data) {
     const request = serviceCreateContact(data);
+    return (dispatch) => {
+        request.then((data) => {
+            if (!data.error) {
+                EventEmitter.dispatch(EventEmitter.THROW_ERROR, {error: 'Saved', type: 'success'});
+                dispatch({type: CREATE_DATA, payload: data.data})
+            }
+        })
+    }
+}
+
+export function actionCreateCustomer(data) {
+    const request = serviceCreateCustomer(data);
     return (dispatch) => {
         request.then((data) => {
             if (!data.error) {
@@ -115,6 +147,25 @@ export function actionSetPageContactRequests(page) {
 
     if (totalLength <= ((page + 1) * Constants.DEFAULT_PAGE_VALUE)) {
         store.dispatch(actionFetchContact(serverPage + 1, sortingData, {query, query_data: queryData}));
+        // this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order, { query: this.props.query, query_data: this.props.query_data });
+    }
+    return {
+        type: CHANGE_PAGE,
+        payload: page,
+    };
+}
+
+export function actionSetPageCustomerRequests(page) {
+    const stateData = store.getState().contact;
+    const currentPage = stateData.currentPage;
+    const totalLength = stateData.all.length;
+    const sortingData = stateData.sorting_data;
+    const query = stateData.query;
+    const queryData = stateData.query_data;
+    const serverPage = stateData.serverPage;
+
+    if (totalLength <= ((page + 1) * Constants.DEFAULT_PAGE_VALUE)) {
+        store.dispatch(actionFetchCustomer(serverPage + 1, sortingData, {query, query_data: queryData}));
         // this.props.fetchNextUsers(this.props.serverPage + 1, this.props.sorting_data.row, this.props.sorting_data.order, { query: this.props.query, query_data: this.props.query_data });
     }
     return {

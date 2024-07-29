@@ -52,9 +52,14 @@ export default {
   NOTIFICATION_DETAILS:"/notifications",
   CONTACT_LIST: "/contact",
   CONTACT_CREATE: "/contact/create",
+  CONTACT_DETAIL: "/contact/detail",
   CUSTOM_FILED:"/custom/filed",
   SERVICE_GROUP:"/service/group",
   WHATSAPP_INVOICE:"/whatsapp/invoice",
   CUSTOM_FILED:"/custom/filed", 
-  CUSTOMERS_ACQUISITION:"/customer/acquisition"
+  CUSTOMERS_ACQUISITION:"/customer/acquisition",
+  CUSTOMER_LIST: "/customer",
+  CUSTOMER_CREATE: "/customer/create",
+  CUSTOMER_DETAIL: "/customer/detail",
+  CUSTOMER_UPDATE: "/customer/update",
 };

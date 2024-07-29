@@ -3,6 +3,7 @@ import Error from "../assets/img/not_verified.png";
 import Normal from "../assets/img/verified.png";
 import Alert from "../assets/img/warning.png";
 import Review from "../assets/img/sent_blue.svg";
+import LogUtils from "./LogUtils";
 
 export default function renderImagebyType(status) {
   switch (status) {
@@ -23,4 +24,15 @@ export default function renderImagebyType(status) {
 
 export const monthsArr = [
   'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
-]; 
+];
+
+
+export const convertStatusToColorCode = (status) => {
+  const statues = {
+    PENDING: "medium",
+    IN_PROGRESS: "high",
+  };
+  if (statues?.[status]) {
+    return statues[status];
+  } return "medium";
+}

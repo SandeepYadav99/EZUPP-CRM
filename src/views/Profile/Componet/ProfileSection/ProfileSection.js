@@ -21,7 +21,9 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
   }, []);
 
   return (
-    <ShadowBox width={"100%"}>
+    <>
+    <div className={styles.container}>
+    <ShadowBox className={styles.box1}>
       <div>
         <div className={styles.profileContainer}>
           <div>
@@ -85,12 +87,15 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
                 onClick={() => handleEdit(profileDetails)}
                 paddingLR={2}
                 borderRadius={4}
+                sx={{mt:1}}
               >
                 <Typography variant={"subtitle1"}>EDIT</Typography>
               </PrimaryButton>
             </div>
           </div>
         </div>
+       
+        <hr className={styles.hrColor} style={{marginTop: "20px"}}/>
         <Typography
           marginTop={3}
           fontWeight={600}
@@ -113,7 +118,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             <Typography
               variant="h6"
               color={theme?.palette.text.primary}
-              fontWeight={600}
+             
             >
               Email:
             </Typography>
@@ -145,7 +150,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             <Typography
               variant="h6"
               color={theme?.palette.text.primary}
-              fontWeight={600}
+              
             >
               Contact:
             </Typography>
@@ -162,7 +167,7 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             <Typography
               variant="h6"
               color={theme?.palette.text.primary}
-              fontWeight={600}
+              
             >
               Role:
             </Typography>
@@ -180,228 +185,282 @@ const ProfileSection = ({ profileDetails, handleEdit }) => {
             </Typography>
           </div>
         </div>
-        <div className={styles.gaps} />
-        <hr className={styles.hrColor} />
-        <Typography
-          marginTop={3}
-          fontWeight={600}
-          variant="h5"
         
-          color={theme.palette.text.primary}
-        >
-          Work Details
-        </Typography>
-        <div className={styles.gaps} />
-        <div>
-          <div className={styles.activityFlex}>
-            <Typography
-              variant="h6"
-              color={theme?.palette.text.primary}
-              fontWeight={600}
-            >
-              Department:
-            </Typography>
-
-            <Typography
-              variant="body1"
-              color={theme?.palette.text.secondary}
-           
-            >
-              {formatString(profileDetails?.department || "N/A")}
-            </Typography>
-          </div>
-          <div className={styles.activityFlex}>
-            <Typography
-              variant="h6"
-              color={theme?.palette.text.primary}
-              fontWeight={600}
-            >
-              Designation:
-            </Typography>
-
-            <Typography
-              variant="body1"
-              color={theme?.palette.text.secondary}
-           
-            >
-              {formatString(profileDetails?.designation || "N/A")}
-            </Typography>
-          </div>
-          <div className={styles.activityFlex}>
-            <Typography
-              variant="h6"
-              color={theme?.palette.text.primary}
-              fontWeight={600}
-            >
-              Manager:
-            </Typography>
-
-            <Typography
-              variant="body1"
-              color={theme?.palette.text.secondary}
-            
-              sx={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                wordSpacing: "0",
-                [theme.breakpoints.down("sm")]: {
-                  whiteSpace: "pre-wrap",
-                },
-              }}
-            >
-              {formatString(profileDetails?.manager?.name || "N/A")}
-              {profileDetails?.manager?.employee_id
-                ? `(${profileDetails?.manager?.employee_id})`
-                : " "}
-            </Typography>
-          </div>
-          <div className={styles.activityFlex}>
-            <Typography
-              variant="h6"
-              color={theme?.palette.text.primary}
-              fontWeight={600}
-            >
-              Joining Date:
-            </Typography>
-
-            <Typography
-              variant="body1"
-              color={theme?.palette.text.secondary}
-             
-            >
-              {profileDetails?.joiningDateText}
-            </Typography>
-          </div>
-          <div className={styles.activityFlex}>
-            <Typography
-              variant="h6"
-              color={theme?.palette.text.primary}
-              fontWeight={600}
-            >
-              Exit Date:
-            </Typography>
-
-            <Typography
-              variant="body1"
-              color={theme?.palette.text.secondary}
-           
-            >
-              {profileDetails?.exitDateText}
-            </Typography>
-          </div>
-          <div className={styles.activityFlex}>
-            <Typography
-              variant="h6"
-              color={theme?.palette.text.primary}
-              fontWeight={600}
-            >
-              User is a Manager:
-            </Typography>
-
-            <Typography
-             
-              color={theme?.palette.text.secondary}
-              fontWeight={600}
-            >
-              {profileDetails?.is_manager ? "Yes" : "No"}
-            </Typography>
-          </div>
-        </div>
-        <div className={styles.gaps} />
-        <hr className={styles.hrColor} />
-        <Typography
-          marginTop={3}
-          fontWeight={600}
-          variant="h5"
-          
-          color={theme.palette.text.primary}
-        >
-          Activity Information
-        </Typography>
-        <div className={styles.gaps} />
-        <div className={styles.activityFlex}>
-          <Typography
-            variant="h6"
-            color={theme?.palette.text.primary}
-            fontWeight={600}
-          >
-            Created On:
-          </Typography>
-
-          <Typography
-            variant="body1"
-            color={theme?.palette.text.secondary}
-       
-          >
-            {profileDetails?.createdAtText}
-          </Typography>
-        </div>
-        <div className={styles.activityFlex}>
-          <Typography
-            variant="h6"
-            color={theme?.palette.text.primary}
-            fontWeight={600}
-          >
-            Updated On:
-          </Typography>
-
-          <Typography
-            variant="body1"
-            color={theme?.palette.text.secondary}
-          
-          >
-            {profileDetails?.updatedAtText}
-          </Typography>
-        </div>
-        <div className={styles.activityFlex}>
-          <Typography
-            variant="h6"
-            color={theme?.palette.text.primary}
-            fontWeight={600}
-          >
-            Updated By:
-          </Typography>
-
-          <Typography
-            variant="body1"
-            color={theme?.palette.text.secondary}
-          
-            sx={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              wordSpacing: "0",
-              [theme.breakpoints.down("sm")]: {
-                whiteSpace: "pre-wrap",
-              },
-            }}
-          >
-            {profileDetails?.updated_by?.name || "N/A"}
-            {profileDetails?.updated_by?.employee_id
-              ? `(${profileDetails?.updated_by?.employee_id})`
-              : " "}
-          </Typography>
-        </div>
-        <div className={styles.activityFlex}>
-          <Typography
-            variant="h6"
-            color={theme?.palette.text.primary}
-            fontWeight={600}
-          >
-            Last Login:
-          </Typography>
-
-          <Typography
-            variant="body1"
-            color={theme?.palette.text.secondary}
-           
-          >
-            {profileDetails?.lastLoginText}
-          </Typography>
-        </div>
       </div>
     </ShadowBox>
+    <ShadowBox className={styles.box2}>
+    {/* <div className={styles.gaps} /> */}
+    {/* <hr className={styles.hrColor} /> */}
+    <Typography
+      // marginTop={3}
+      fontWeight={600}
+      variant="h5"
+    
+      color={theme.palette.text.primary}
+    >
+      Work Details
+    </Typography>
+    {/* <div className={styles.gaps} /> */}
+    <div>
+      <div className={styles.activityFlex}>
+        {/* <Typography
+          variant="h6"
+          color={theme?.palette.text.primary}
+          fontWeight={600}
+        >
+          Department:
+        </Typography>
+
+        <Typography
+          variant="body1"
+          color={theme?.palette.text.secondary}
+       
+        >
+          {formatString(profileDetails?.department || "N/A")}
+        </Typography>
+      </div>
+      <div className={styles.activityFlex}>
+        <Typography
+          variant="h6"
+          color={theme?.palette.text.primary}
+          fontWeight={600}
+        >
+          Designation:
+        </Typography> */}
+
+        {/* <Typography
+          variant="body1"
+          color={theme?.palette.text.secondary}
+       
+        >
+          {formatString(profileDetails?.designation || "N/A")}
+        </Typography> */}
+      </div>
+      <div className={styles.inArow}>
+      <div className={styles.activityFlex}>
+        <Typography
+          variant="h6"
+          color={theme?.palette.text.primary}
+          // fontWeight={600}
+          
+        >
+          Manager:
+        </Typography>
+
+        <Typography
+          variant="body1"
+          color={theme?.palette.text.secondary}
+        
+          sx={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            wordSpacing: "0",
+            [theme.breakpoints.down("sm")]: {
+              whiteSpace: "pre-wrap",
+            },
+          }}
+        >
+          {formatString(profileDetails?.manager?.name || "N/A")}
+          {profileDetails?.manager?.employee_id
+            ? `(${profileDetails?.manager?.employee_id})`
+            : " "}
+        </Typography>
+
+        
+      </div>
+      <div className={styles.activityFlex} >
+        <Typography
+          variant="h6"
+          color={theme?.palette.text.primary}
+          
+        >
+          User is a Manager:
+        </Typography>
+
+        <Typography
+         
+          color={theme?.palette.text.secondary}
+         
+        >
+          {profileDetails?.is_manager ? "Yes" : "No"}
+        </Typography>
+      </div>
+      </div>
+      <div className={styles.inArow}>
+      <div className={styles.activityFlex}>
+        <Typography
+          variant="h6"
+          color={theme?.palette.text.primary}
+          // fontWeight={600}
+        >
+          Joining Date:
+        </Typography>
+
+        <Typography
+          variant="body1"
+          color={theme?.palette.text.secondary}
+         
+        >
+          {profileDetails?.joiningDateText}
+        </Typography>
+      </div>
+      <div className={styles.activityFlex}>
+        <Typography
+          variant="h6"
+          color={theme?.palette.text.primary}
+        
+        >
+          Assigned Shift:
+        </Typography>
+
+        <Typography
+          variant="body1"
+          color={theme?.palette.text.secondary}
+         
+        >
+          {profileDetails?.joiningDateText}
+        </Typography>
+      </div>
+      </div>
+      <div className={styles.activityFlex}>
+        <Typography
+          variant="h6"
+          color={theme?.palette.text.primary}
+         
+        >
+          Exit Date:
+        </Typography>
+
+        <Typography
+          variant="body1"
+          color={theme?.palette.text.secondary}
+       
+        >
+          {profileDetails?.exitDateText}
+        </Typography>
+      </div>
+     
+    </div>
+   
+    <div className={styles.gaps} />
+    <hr className={styles.hrColor} />
+    <Typography
+      marginTop={3}
+      fontWeight={600}
+      variant="h5"
+      
+      color={theme.palette.text.primary}
+    >
+      Activity Information
+    </Typography>
+    <div className={styles.gaps} />
+    <div className={styles.inArow}>
+    <div className={styles.activityFlex}>
+      <Typography
+        variant="h6"
+        color={theme?.palette.text.primary}
+      
+      >
+        Created On:
+      </Typography>
+
+      <Typography
+        variant="body1"
+        color={theme?.palette.text.secondary}
+   
+      >
+        {profileDetails?.createdAtText}
+      </Typography>
+    </div>
+    <div className={styles.activityFlex}>
+      <Typography
+        variant="h6"
+        color={theme?.palette.text.primary}
+      
+      >
+       Login Access:
+      </Typography>
+
+      <Typography
+        variant="body1"
+        color={theme?.palette.text.secondary}
+   
+      >
+        {profileDetails?.loginAccess || "Enabled"}
+      </Typography>
+    </div>
+    </div>
+    <div className={styles.inArow}>
+    <div className={styles.activityFlex}>
+      <Typography
+        variant="h6"
+        color={theme?.palette.text.primary}
+      
+      >
+        Updated On:
+      </Typography>
+
+      <Typography
+        variant="body1"
+        color={theme?.palette.text.secondary}
+      
+      >
+        {profileDetails?.updatedAtText}
+      </Typography>
+    </div>
+    <div className={styles.activityFlex}>
+      <Typography
+        variant="h6"
+        color={theme?.palette.text.primary}
+        
+      >
+        Last Login:
+      </Typography>
+
+      <Typography
+        variant="body1"
+        color={theme?.palette.text.secondary}
+       
+      >
+        {profileDetails?.lastLoginText}
+      </Typography>
+    </div>
+    </div>
+   
+    <div className={styles.activityFlex}>
+      <Typography
+        variant="h6"
+        color={theme?.palette.text.primary}
+        
+      >
+        Updated By:
+      </Typography>
+
+      <Typography
+        variant="body1"
+        color={theme?.palette.text.secondary}
+      
+        sx={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          wordSpacing: "0",
+          [theme.breakpoints.down("sm")]: {
+            whiteSpace: "pre-wrap",
+          },
+        }}
+      >
+        {profileDetails?.updated_by?.name || "N/A"}
+        {profileDetails?.updated_by?.employee_id
+          ? `(${profileDetails?.updated_by?.employee_id})`
+          : " "}
+      </Typography>
+    </div>
+   
+    </ShadowBox>
+    </div>
+    </>
   );
 };
 

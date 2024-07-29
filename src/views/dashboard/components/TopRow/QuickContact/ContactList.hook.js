@@ -6,25 +6,28 @@ import { leadOwnerList } from "../../../../../helper/Helper";
 import { serviceGetTagsList } from "../../../../../services/Blogs.service";
 import { serviceGetList } from "../../../../../services/index.services";
 import { isEmail } from "../../../../../libs/RegexUtils";
-import { serviceCreateContactQuick } from "../../../../../services/Contact.service";
+import { serviceCreateContactQuick ,serviceCreateContact} from "../../../../../services/Contact.service";
 import SnackbarUtils from "../../../../../libs/SnackbarUtils";
 import historyUtils from "../../../../../libs/history.utils";
+import Constants from "../../../../../config/constants";
 
 const initialForm = {
-  contact_type: "BUSINESS",
+ // contact_type: "BUSINESS",
   contact: "",
   email: "",
   full_name: "",
-  prefix_type: "",
-  job_title: "",
-  buying_role: "",
-  service_product: [],
-  company: "",
+  country_code: "",
+  prefix: "",
+  //job_title: "",
+  //buying_role: "",
+  interested_products: [],
+  //company: "",
   tags: [],
   source: "",
-  contact_owner: "",
-  lead_stage_type: "",
-  is_lead_owner_task: false,
+  lead_owner: "",
+  lead_stage: "",
+ // should_add_task: false,
+ // is_lead_owner_task: false,
 };
 function useContactList({ isOpen, handleToggle }) {
   const [showBusiness, setShowBusiness] = useState(true);
@@ -102,18 +105,22 @@ function useContactList({ isOpen, handleToggle }) {
     const errors = {};
 
     let required = [
-      "contact",
-      "email",
-      "full_name",
-      "prefix_type",
-      "service_product",
+      // "contact",
+      // "email",
+      // "full_name",
+      // "prefix_type",
+      // "service_product",
       // "buying_role",
       // "job_title",
       // "company",
-      "tags",
-      "source",
-      "contact_owner",
-      "lead_stage_type",
+      // "tags",
+      // "source",
+      // "contact_owner",
+      // "lead_stage_type",
+      "email",
+      "contact",
+      "full_name",
+       "lead_stage"
     ];
     if (form?.contact_type === "BUSINESS") {
       required.push(...["buying_role", "job_title", "company"]);
@@ -137,17 +144,29 @@ function useContactList({ isOpen, handleToggle }) {
       }
     });
     return errors;
-  }, [form, errorData]);
+  }, [form, errorData, form?.country_code]);
+
+  const leadStageMapping = {
+    'Pending': Constants.PIPELINE_STAGES.PENDING,
+    'In Progress': Constants.PIPELINE_STAGES.IN_PROGRESS,
+    'Proposal Sent': Constants.PIPELINE_STAGES.PROPOSAL_SENT,
+    'Archived': Constants.PIPELINE_STAGES.ARCHIVED,
+    'Customer': Constants.PIPELINE_STAGES.CUSTOMER,
+  };
 
   const submitToServer = useCallback(() => {
     if (!isSubmitting) {
       setIsSubmitting(true);
       const updatedFd = {};
       Object.keys({ ...initialForm }).forEach((key) => {
-        if (key === "service_product") {
+        if (key === "interested_products") {
           const getId =
             form[key]?.length > 0 ? form[key]?.map((item) => item?.id) : [];
           updatedFd[key] = getId;
+        } if (key === "lead_stage") {
+          const displayValue = form[key];
+          const apiValue = leadStageMapping[displayValue];
+          updatedFd[key] = apiValue;
         } else if (key === "tags") {
           updatedFd[key] = form[key]?.length > 0 ? form[key]?.join(",") : "";
         } else {
@@ -156,10 +175,13 @@ function useContactList({ isOpen, handleToggle }) {
       });
       console.log(">>>>>", { updatedFd, form });
       const contactWithCD = cleanContactNumber(form?.contact);
+      const cleanContact = cleanContactNumber(form?.contact);
+      const contactValues = cleanContact.length ? cleanContact?.split(" ") : [];
       console.log("contactWithCD", contactWithCD);
-      serviceCreateContactQuick({
+      serviceCreateContact({
         ...updatedFd,
-        contact: `${cleanContactNumber(form?.contact)}`,
+        country_code: contactValues?.length > 0 ? contactValues[0] : "",
+        contact: contactValues?.length > 1 ? contactValues?.[1] : "",
       }).then((res) => {
         if (!res.error) {
           SnackbarUtils.success("Request Approved");
