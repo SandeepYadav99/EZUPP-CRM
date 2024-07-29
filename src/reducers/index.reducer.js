@@ -32,6 +32,8 @@ import ServiceFormReducer from './ServiceForm.reducer';
 
 import MilestoneReducer from './Milestone.reducer';
 import ContactReducer from './Contact.reducer';
+import ShiftsReducer from './Shifts.reducer';
+import AssociatedEmployeesReducer from './AssociatedEmployees.reducer';
 
 const rootReducer = combineReducers({
     state: (state = {}) => state,
@@ -63,7 +65,9 @@ const rootReducer = combineReducers({
     hubMaster:HubMasterReducer,
     common: CommonReducer,
     associatedManufactures:AssociatedManufacturesReducer,
-    contact:ContactReducer
+    contact:ContactReducer,
+    Shifts:ShiftsReducer, 
+    associatedEmployee:AssociatedEmployeesReducer
 
 });
 

@@ -61,25 +61,27 @@ import {
   LiveHelp,
   ManageAccounts,
   ContentPaste,
+  PeopleOutlined,
 } from "@mui/icons-material";
 import RouteName from "./Route.name";
 import TaskDetailView from "../views/Profile/TaskDetail/TaskDetailView";
-import ServiceListContainer from "../views/Service/List/ServiceListContainer";
 import ServiceDetailView from "../views/Service/Detail/ServiceDetailView";
 import StyleGuide from "../views/StyleGuide/StyleGuide";
 import UserCreate from "../views/User/Create/UserCreate";
 import ProductCreate from "../views/Products/Create/ProductCreate";
 import React, { lazy } from "react";
 import CalendarList from "../views/Calendar/CalendarList.view";
-import BlogsCreate from "../views/Blogs/BlogsCreate/BlogCreate";
 import NewBlogsCreate from "../views/Blogs/BlogsNewcreate/BlogsNewCreate";
 import RoleDetail from "../views/Role/RoleDetail/RoleDetail";
 import CustomFiled from "../views/CustomFiled/CustomFiled";
 import ServiceGroupCreate from "../views/ServiceGroup/ServiceGroupCreate/ServiceGroupCreate.view";
 import InvoiceCreate from "../views/WhatsappInvoice/InvoiceCreate/InvoiceCreate.view";
 import AdminUserCreate from "../views/User/AdminUserCreate/AdminUserCreate.view";
+import ShiftDetail from "../views/Shifts/ShiftDetail/ShiftDetail";
 
 const CustomerAcquisition = lazy(() => import('../views/CustomerAcquisition/List/CustomerAcquisition')); 
+const Source = lazy(() => import('../views/Source/List/Source')); 
+const ShiftsLists = lazy(() => import("../views/Shifts/Lists/ShiftsLists"));
 
  
 const dashboardRoutes = [
@@ -205,6 +207,27 @@ const dashboardRoutes = [
     is_sidebar: true,
     is_protect: true,
     parent: "staff_manage",
+  },
+  {
+    path: RouteName.SHIFTS,
+    sidebarName: "Shifts",
+    navbarName: "Shifts",
+    icon: PeopleOutlined,
+    component: ShiftsLists,
+    is_sidebar: true,
+    is_protect: true,
+    should_regex: true,
+    parent: "staff_manage",
+    // roles: [Roles.ADMIN, Roles.CORPORATE_HR],
+  },
+  {
+    path: `${RouteName.SHIFTS_DETAILS}:id`,
+    navbarName: "Shifts",
+    component: ShiftDetail,
+    is_protect: true,
+    should_regex: true,
+    parent: "staff_manage",
+    // roles: [Roles.ADMIN, Roles.CORPORATE_HR],
   },
   {
     path: RouteName.ADMIN_USER_CREATE,
@@ -638,6 +661,15 @@ const dashboardRoutes = [
     is_protect: true,
     should_regex: false,
     component:CustomerAcquisition
+  },
+  {
+    path: `${RouteName?.SOURCE}`,
+    sidebarName: "Source",
+    navbarName: "Source",
+    is_sidebar: false,
+    is_protect: true,
+    should_regex: false,
+    component:Source
   },
 ];
 

@@ -35,7 +35,7 @@ const TopicView = (props) => {
   const [editData, setEditData] = useState(null);
   const [topics, setTopics] = useState([]);
   const theme = useTheme();
-
+console.log(theme)
   const prevDataRef = useRef();
   useEffect(() => {
     prevDataRef.current = props.data;
@@ -131,7 +131,7 @@ const TopicView = (props) => {
                   selectedCategory &&
                   val.id === selectedCategory.id &&
                   theme.palette.mode === "dark"
-                    ? theme.palette.status.service
+                    ? "#636578"
                     : "",
                 "&::before": {
                   backgroundColor: theme.palette.primary.main,
