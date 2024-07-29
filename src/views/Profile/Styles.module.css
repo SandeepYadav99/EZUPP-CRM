@@ -14,7 +14,7 @@
   /* margin-top: 36px !important;
   margin-bottom: 36px !important; */
 }
-.outerClick{
+.outerClick {
   cursor: pointer !important;
 }
 .profileTitle {
@@ -34,15 +34,13 @@
   gap: 15px !important;
   flex-wrap: wrap !important;
 }
-@media (max-width:892px) {
+@media (max-width: 892px) {
   .upperFlex {
-   flex-direction: column;
-   gap: 10px;
+    flex-direction: column;
+    gap: 10px;
   }
   .profileHeaderAction {
-  justify-content: center;
-
-
+    justify-content: center;
   }
 }
 .resetPassworedAction {
@@ -90,9 +88,14 @@
   display: flex;
   margin-top: 20px;
   width: 60%;
-
 }
-.oneColm{
+.calendar_staff {
+  width: 100%;
+  margin-top: 15px;
+  height: 100%;
+  overflow: hidden;
+}
+.oneColm {
   display: flex;
   flex-direction: column;
 }
@@ -104,7 +107,6 @@
   .leftSection {
     flex: 1 1 !important;
   }
-
 }
 .profileHeading {
   padding-top: 20px;
@@ -218,7 +220,6 @@
   /* font-size: 0.9rem !important; */
   height: 14px;
   width: 14px;
-
 }
 
 .taskHeading {

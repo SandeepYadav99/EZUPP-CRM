@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, {  useState } from "react";
 import styles from "./Styles.module.css";
 import ResetPasswordDialog from "../ForgotPassword/ResetPassword.view";
 import useMyProfileHook from "./MyProfileHook";
@@ -11,9 +11,10 @@ import {
 import { ButtonBase, Typography, useTheme } from "@mui/material";
 import { Add, ArrowBackIos, Lock } from "@mui/icons-material";
 import ProfileSection from "./Componet/ProfileSection/ProfileSection";
-import TaskSection from "./Componet/TaskSection/TaskSection";
 import AddTaskCreate from "./Create/AddTaskCreate";
 import SidePanelComponent from "../../components/SidePanel/SidePanel.component";
+import StaffCalendar from "./StaffCalendar/StaffCalendar";
+
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -59,11 +60,8 @@ const Profile = () => {
             >
               Profile View
             </Typography> */}
-            <Typography
-              variant="title1"
-              color={theme.palette.text.primary}
-            >
-              Staff Profile 
+            <Typography variant="title1" color={theme.palette.text.primary}>
+              Staff Profile
             </Typography>
           </div>
           <div className={styles.profileHeaderAction}>
@@ -87,14 +85,14 @@ const Profile = () => {
         </div>
         <div>
           <div className={styles.oneColm}>
-            <div >
+            <div>
               <ProfileSection
                 profileDetails={profileDetails}
                 handleEdit={handleEdit}
               />
             </div>
 
-            <div className={styles.rightSection}>
+            {/* <div className={styles.rightSection} >
               <TaskSection
                 filterValue={filterValue}
                 filterCompltedTask={filterCompltedTask}
@@ -103,10 +101,10 @@ const Profile = () => {
                 markAsCompleted={markAsCompleted}
                 completedHandler={completedHandler}
               />
-            </div>
+            </div> */}
           </div>
         </div>
-
+        <StaffCalendar data={[]} />
         <ResetPasswordDialog
           open={open}
           handleClose={handleClose}
@@ -115,10 +113,13 @@ const Profile = () => {
         <SidePanelComponent
           handleToggle={handleSideToggle}
           title={
-            <Typography variant="h4"   sx={{
-              color:theme.palette.text.primary,
-
-            }} fontWeight={600}>
+            <Typography
+              variant="h4"
+              sx={{
+                color: theme.palette.text.primary,
+              }}
+              fontWeight={600}
+            >
               Add New Task{" "}
             </Typography>
           } // profileId ? "Update Hubs" :

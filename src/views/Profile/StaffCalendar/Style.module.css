@@ -1,0 +1,25 @@
+.toolWrapper {
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+}
+.backIcon {
+  color: #919bb0 !important;
+}
+.upperWrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.calendar_staff {
+  width: 100%;
+  margin-top: 15px;
+  height: 50%;
+  overflow: hidden;
+}
+.detailWrap .rbc-time-content {
+  margin-bottom: -57px;
+}
